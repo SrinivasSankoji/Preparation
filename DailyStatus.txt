@@ -78,9 +78,16 @@ JWT Introduction
 
 18-OCT-2019 :
 *************
-Config Server Local File System							
-@RequestBodyAdvice										
-@ResponseBodyAdvice										
+Git Commit											   [18-OCT-2019]  (Done)
+Config Server Local File System						   	
+@RequestBodyAdvice									   [18-OCT-2019]  (Done)						   	
+@ResponseBodyAdvice									   [18-OCT-2019]  (Done)
+														
+Hikari Connection Pool									
+Logger Implementation									
+							    
+
+							   
 
 
 

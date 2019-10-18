@@ -10,13 +10,14 @@ https://netsurfingzone.com/spring/spring-boot-interceptor-example
 https://o7planning.org/en/11689/spring-boot-interceptors-tutorial   (For Example)
 https://www.programering.com/a/MDOxkzMwATk.html
 http://www.mkjava.com/tutorial/filter-vs-interceptor/
+http://www.javabyexamples.com/quick-guide-to-responsebodyadvice-in-spring-mvc/
 
 
 Annotation List :
 *****************
 @ExceptionHandler
 @Controller Advice
-@RestController Advice
+@RestController
 @RequestBody							   [17-OCT-2019]  (Done)		
 @Response Body							   [17-OCT-2019]  (Done)
 @Interceptor                               [17-OCT-2019]  (Done)
@@ -33,9 +34,9 @@ Annotation List :
 @Primary
 @Required
 @Conditional
-Service Locater Factory Bean
-@RequestBodyAdvice
-@ResponseBodyAdvice
+Service Locater Factory Bean			  
+@RequestBodyAdvice						  [18-OCT-2019]  (Done)
+@ResponseBodyAdvice						  [18-OCT-2019]  (Done)
 
 
 Spring Boot Implementation List (tuturself):
@@ -47,15 +48,13 @@ application.yml
 How to handle retry with Spring-Retry 
 Difference between @Component, @Repository & @Service annotations in Spring
 Spring Boot JDBC + MySQL + HikariCP example
-SpringBoot : How to integrate a Filter in Spring Boot Application
+SpringBoot : How to Integrate a Filter in Spring Boot Application
 Project springsandwich | annotated, type-safe interceptors for Spring web controllers
 Spring Boot Log back integration
 Spring Boot SSL [HTTPS] Integration
 Spring Boot 2 and Consul integration with Swagger 2.8.0
 Netflix Zuul: Setup and sample application
-
 Spring Boot Implementation List (tuturself):
-
 
 @Interceptor :
 **************
@@ -96,6 +95,44 @@ Here We Have to Annotate The Controller Method With @ResponseBody
 ************************************
 @RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
 Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
+
+We Need To Implement all The Four Methods of Request Body Advice.
+We Have supports()Method Which decides whether the Implementation should run for the Current Request.
+We Have beforeBodyMethod() Method which runs before Spring MVC Reads The Request Body.
+We Have afterBodyRead() Method which Runs After The Body is Read and Converted into an Object.
+In After bodyRead() Method ,We Have an Access to The Converted Object and Cast Into an Appropriate Type
+and We Can Also Modify The Fields.
+
+Finally When The Request Body is Empty, We Can Put Our Custom Logic into handleEmptyBody() Method.
+We Must Return a Value to Use ,Either Provide The Object or an Entirely New Object.
+
+@ResponseBodyAdvice (javabyexamples):
+*************************************
+By Using @ResponseBodyAdvice We Can Modify the Response Before Spring MVC Writes it to the Response Body.
+Since We are Annotating The Controller with @RestController all the End Point Methods Implicitly will have the 
+@ResponseBody Annotation.
+As A Result Spring MVC will Write the Method Return Value to the Response.
+@ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
+
+ResponseBodyAdvice has Two Methods :
+
+Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
+Provides the Return Type and Converter Type.
+beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
+Here We Have The Chance Modify the Response Object.
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
 
 
 
