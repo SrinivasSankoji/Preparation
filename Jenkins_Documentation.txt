@@ -1,0 +1,285 @@
+1.Jenkins Introduction  [18-06-2019] [DONE]
+2.Set up Jenkins on Tomcat
+3.Change Home Directory
+4.Using CLI
+5.Create Users,Manage and assign Roles [21-06-2019] [DONE]
+6.Basic Configuration
+7.Job in Jenkins [25-06-2019] [DONE]
+8.Jenkins Integrating With GIT [25-06-2019] [DONE]
+9.CATLIGHT
+10.Automated Deployment [25-06-2019] [DONE] 
+11.Implementing Automated Deployment 
+12.Sending Email form Jenkins 
+13.Pipeline in Jenkins 
+14.Setting Up Delivery PipeLine in Jenkins 
+15.Setting Up Build PipeLine in Jenkins 
+16.Blue Ocean 
+17.Trigger Job With Email 
+18.Build Monitor View 
+19.Install Jenkins on AWS 
+
+
+********************************************** Jenkins Introduction   *******************************************************************
+
+		Jenkins is a Java Application and is Platform Independent and it does not Require any Platform(Window,Mac or Linux).
+		Jenkins is Used for Continuous Integration and Continuous Delivery.
+		When We work in the Team,We work with Different Developers and Each Developer will do the Changes in the Code 
+		and Commit the Code in The Repository(GitHub/BitBucket).
+		At the End of The Day,There are Many Developers who are Changing the Code and Checking in the Code to the Repository
+		and now the Build has Failed.
+		It is very Difficult to Identify at which Point the Build has Failed and who has done the Changes.
+		To Resolve the Above Situation we use Jenkins.
+		As soon as When Developer Commits the Code in The Shared Repository,Jenkins will take the Latest Code and Trigger the Build
+		Build Notification will be sent out.If there is any issue we can revert that Back.
+		If the Build is Successful we can also Integrate our Unit Test as a Post Build Action ans sent the Report Back.
+		
+		Download Jenkins :
+		------------------
+
+		Download the Jenkins from  https://jenkins.io/download/ --> Extract the Zip File --> Run the Executable File.
+		It will be installed in C:/Program Files/Jenkins
+		Then Copy the Jenkins.war File and Place in Any Directive i.e D:\Software.
+		To Start Jenkins --> Go to The Location where Jenkins.war is Present  --> run the Command  :
+		java -jar jenkins.war -httpPort=9002
+		Open the Jenkins in the Browser --> http://localhost:9002/ and Enter the Password Generated i.e Generated in the Folder
+		C:\Users\Bhaumik Chary\.jenkins\secrets\initialAdminPassword --> 
+		Enter it --> Select the Option you Want --> Then Continue as Admin.
+		
+		
+********************************************** Setting up Jenkins on Tomcat   *************************************************************
+Download and Install Tomcat 
+
+********************************************** Basic Configuration in Jenkins *************************************************************
+
+
+********************************************** Create Users,Manage and Assign Roles   *****************************************************
+
+Create New Users :
+------------------
+
+		Go To Manage Jenkins --> Configure System --> 
+		Home Directory is the Place where we have all the Information.
+		It Contains the Secrets --> iniialAdminPassword File that contains the Password.
+		To Create a New User in Jenkins --> Manage Jenkins --> Manage User --> Create User --> Enter the UserName and Password.
+		bhaumik@23
+
+Configure Users :
+-----------------
+		Whenever we Logged in to Particular User, We get The Option for Configure the User.
+		Here we can Change the Password,Add the API Token,Change the Mail,add the SSH Key and so on.
+		From the Logged in User we can manage Jenkins like an administrator.If we want user specific,
+		then we can restrict by Manging the Roles i.e by using a Plug in Called Role Strategy Plug In.
+
+Create and Manage User Roles : Install Role Strategy Plug In
+------------------------------------------------------------
+		We can add The Role Strategy Plug In in 3 Ways 
+
+		Method 1 :
+		----------
+		Download it form the URL https://wiki.jenkins.io/display/JENKINS/Role+Strategy+Plugin
+		rolestrategy.hpi file will be downloaded into the System
+		Then Go To Jenkins home directory  and inside home directory There is a folder called Plug Ins and put the Hpi file here
+		and restart the Jenkins
+
+		Method 2 :
+		----------
+		manage Jenkins --> manage Plug ins --> 
+		Then we have different options like 
+		Updates,Available,Installed and Advance
+		Go to Available Section and search role and click on 	Download Now and Install after Restart.
+		Then Restart the Jenkins.
+		run the command java -jar jenkins.war -httpPort=9002
+		After Successful Installation it will be available in Installed Section.
+
+		Method 3 :
+		----------
+		Go to the Advanced Section and Select the Downloaded role based strategy hpi File.
+
+Using Role Strategy Plug In :
+-----------------------------
+
+		Manage Jenkins --> Configure Global Security --> Authorization --> Role based Strategy
+		Make sure that Enable Security is Checked and Select the Role Based Strategy.
+		now Login as Another User then It Will Show as Access Denied Page
+		
+		To Resolve this and Give the Access to Users
+		Manage Jenkins --> Manage and Assign Roles --> 
+		we have 3 options
+		A.Manage Roles
+		B.Assign Roles
+		C.Role Strategy Macro
+
+		Manage Roles has 3 Options
+
+		1. Global Roles
+		Global Roles provide an Authorization Access to Global Level.
+		Which Role can have access to Which Options
+
+		2.Project Roles :
+		We can Create Roles Specific to Project
+
+		We have two Options
+		Role to add   :  Developer
+		Role Pattern  : Dev*(Project Name)
+
+		Click on Apply and then Save
+
+Assigning Roles to User:
+------------------------
+		Manage Jenkins --> Manage And Assign Roles --> Assign Roles --> Select The Appropriate Options.
+		To Test the Scenario --> Create New Item(Project)
+		
+********************************************** Getting Started With Jobs ********************************************************************
+
+Steps involved in Jobs  are
+A. Create a Basic Job in Jenkins
+B. Basic Job Configurations
+C. Run the Job Remotely
+D. Chain Job Execution
+
+		Create A Basic Job in Jenkins :
+		*******************************
+		Jenkins --> Create New Item --> Add Details of the Item --> Then Click on OK
+
+		After that 5 Tabs will be Opened.
+		General  --> Add Description to The Project
+		Source Code  --> Get the Code from any Repository
+		Build Triggers --> Build Options  -->  
+						   Poll SCM For Git Repository
+						   Build Periodically (* * * * *) For Every Minute  (H/60 * * * * ) To Run it Hourly
+						   
+		Build Environment --> 
+		Build  --> Command Prompt to Use  (Here We Used VER to check the Version of Windows)
+		Post Build Actions  --> After Build Which Action it has to be Taken.
+		Now the New Project has been Added in The Jenkins DashBoard.
+		
+		Run the Job Remotely :
+		**********************
+		
+		Click on Project --> Configure --> Build Triggers --> Select the Options Trigger Build Remotely -->  It Will Give the URL 
+		Copy the URL and Paste it it on the Browser i.e JENKINS_URL/job/Test1/build?token=TOKEN_NAME
+		Repleace Jenkins URL with HostName or local host
+		Then it will Build the Job --> Then See the Build Version in The Project
+		
+		Chain Job Execution :
+		*********************
+		Create 2 New Projects Test2 and Test3 i.e 
+		Create New Item --> Select Free Style Project --> Apply OK
+		Requirement is When we Run the Project Test 1 It has to run Test2 and after Execution of Test 2 it has to execute Test3
+		i.e In Test1 Project --> Configure --> Build Trigger Options 
+		--> Select the Option Build after Other Projects are Built --> add the Project Test2
+		After Successful Execution of Test2 --> Post Build Actions --> Select the Option Build Other Project --> Add the Test 3 Project
+		Finally Build the Project Test1 and it Internally Chains the Other Projects.
+
+********************************************** Jenkins Integration With GIT *****************************************************************
+
+		Create a Java Program
+		Run the Java Program in Jenkins
+		Add The Java Project to Git
+		Add Git Plug Ins to the Jenkins
+		Manage Jenkins --> Manage Plug Ins --> Search Git Plug In --> Then install
+
+		In The Build Project --> Add Project form Git Hub by Passing GIT Repository
+		and select the Option Poll SCM  i.e whenever any Changes done in Git Repository it will build automatically
+		in Jenkins.
+
+********************************************** How to Use CatLight **************************************************************************
+
+	    Cat Light is a status Notifier for Developers
+		Cat Light will monitor all the Jobs on Jenkins i.e whenever there is any status change that needs our attention
+		the it will pop up on our desk top.
+		We can choose the things to track and sees status in tray.
+		This is very useful when we are Manging Multiple Jobs in Jenkins 
+		and it is very difficult to go every time in the Server i.e Jenkins DashBoard.
+		Example are Build start,Build Stop,Build Failure etc.
+		
+		Download Cat Light form the URL  https://catlight.io/downloads  
+		
+		Run the Executable File and it will open the Pop Up. Select the Jenkins Option.
+		Enter the Jenkins URL with user name and Password.
+		
+		Select the Project which ever you want and Save.
+		We will get the Cat Light icon at the Bottom.
+		We can also Change the CatLight Settings If Required.
+		
+********************************************** Automated Deployment ******************************************************
+
+		Before Understanding Automated Deployment,The Main Stages in Continuous Delivery and Deployment Pipeline of a Product are
+		Build --> Deploy --> Test --> Release
+		Corresponding to every Stage, there are jobs and every job is chained.
+		i.e when the build job is successful then only deployment job has to run and so on.
+		All jobs are chained in Continuous Integrated System.
+		After every job we have a notification which will tell status of the Jobs 
+		and also are there any issues and also all the information about the Job.
+
+		Project Set Up :
+		----------------
+			   Developers 
+		   --> Commit the Code in VCS(GIT) 
+		   --> build the Project in Jenkins whenever any commit has done in GIT (Build Stage)
+		   -->  Out come is artifact that can be either War or Jar -->  Deploy to the Server (Deployment Stage)
+		   --> once the Deployment is done we will have different Test jobs that will perform the Testing (Test Stage)
+		   --> Once Every thing is successful we will release to Production (Release Stage)
+			   Deployment to the Test server and Production Server are the actual Deployment Steps	   
+               Automated Deployment is the process of Automating the Deployment Process in a Continuous Delivery System
+			   
+********************************************** Implementing Automated Deployment **********************************************************
+
+
+
+
+********************************************** Sending Email Notification and PipeLine ****************************************************
+
+
+********************************************** Delivery PipeLine In Jenkins ***************************************************************
+
+
+********************************************** Build PipeLine In Jenkins ******************************************************************
+
+
+********************************************** Build Ocean in Jenkins  ********************************************************************
+
+
+********************************************** Trigger Job With Email in  Jenkins  ********************************************************
+
+
+********************************************** Build Monitor View Jenkins  ******************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

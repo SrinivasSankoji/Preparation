@@ -1,0 +1,92 @@
+Jenkov CSS :
+************
+1.Introduction                     [13-AUG-2019]  (Done)
+2.Using CSS in HTML				   [13-AUG-2019]  (Done)
+3.Properties and Rules			   [14-AUG-2019]  (Done)	   
+4.Selectors						   [14-AUG-2019]  (Done)
+5.Inheritance
+6.Precedence
+7.Box Model
+8.Margin
+9.Padding
+10.Border
+11.Units
+12.Colors
+13.Text Styling
+14.List Styling
+15.Table Styling
+16.Link Styling
+17.Form Styling
+18.Image Styling
+19.Background Images
+20.Gradients
+21.Box Shadow
+22.display
+23.Float
+24.Position
+25.Media Queries
+26.Column Layout
+27.Opacity
+28.Web Fonts
+29.2D Transformations
+30.Transitions
+
+1.Introduction :
+****************
+CSS Stands for Cascading Style Sheet.CSS is used inside HTML to Style the Content of HTML Page.
+A Modern WebApplication Consists of HTML,CSS and Java Script.
+HTML is used to define What the Content is to be Displayed on the Browser.
+CSS is used to define How the Content is to be Displayed.
+Java Script Makes the Web Application User Interactive.
+Current Version of CSS is CSS 3.0
+
+2.Using CSS in HTML :
+*********************
+Can Be Defined inside HTML Tag.
+Can be Defined inside HTML ELement
+Can be Declared in other File and Import in the HTML Element.
+
+3.Properties and Rules	 :
+**************************
+We Style HTML Elements via CSS Properties.
+Different HTML Elements have Different CSS Properties.
+CSS Properties can be Organized into CSS Rules.
+
+CSS Rule Groups a Set of CSS Properties Together and applies to the CSS Elements.
+
+	div 
+	{
+	border:1px solid black;
+	font-size:20px;
+	}
+
+4.Selectors :
+*************
+CSS Selectors are the Part of CSS Rules that Determines what HTML Elements are Affected by the CSS Rule.
+
+div {
+ border:1px solid black;
+}
+
+Here div is the CSS Selector that has to be appended to the HTML that Contains div Tag.
+
+Universal Selector :
+--------------------
+
+* {
+  font-Size : 20px;
+}
+
+All the Elements in the HTML will have the Font Size defined in the CSS File.
+
+
+Element Selector :
+------------------
+If we Want to Apply CSS Rule based on Element Type we use Element Selector.
+
+
+
+
+
+
+

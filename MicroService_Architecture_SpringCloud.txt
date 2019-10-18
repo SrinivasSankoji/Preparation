@@ -1,0 +1,162 @@
+Introducing Spring Cloud :
+**************************
+Spring Cloud is Not a Single Project,But rather a Cluster of Them.
+Spring Cloud Provides a tool for Developers to Quickly Build Some of the Common Patterns in 
+Distributed System.Some of Them are :
+Configuration Management
+Service Discovery
+Circuit Breaker
+Intelligent Routing
+Micro Proxy
+Control Bus
+One Time Token
+Global Locks
+Leadership Election
+Distributed Sessions
+Cluster State
+
+Some of The Projects under Spring Cloud Umbrella are :
+Spring Cloud Netflix
+Spring Cloud Config
+Spring Cloud Bus
+
+Spring Cloud Netflix : 
+---------------------- 
+Netflix was the First Organization to work around with Micro Services. 
+Most of the Projects under Netflix are made open Source for Public Use. 
+Some of them are Eureka,Hystrix,Zuul,consul and so on.
+
+Spring Cloud Config :
+---------------------
+This Project Provides a Centralized Configuration Management for Making use of GIT or SVN.
+
+Spring Cloud Bus :
+------------------
+This Makes the Micro Service and Infrastructure Components to Communicate with Each Other
+in a Distributed Set Up.
+
+Challenges in a Micro Services Architecture :
+*********************************************
+
+Configuration Management :
+**************************
+In a System With Micro Services Architecture,Large Number of Micro Services has to Communicate With Each Other.
+Each Micro Service has to Run in Multiple Environments and to Scale the Application More No of Instances of Each Micro Service
+runs in Multiple Environments.
+Here Operations Team has to Maintain all the Configuration Management Details.
+
+Spring Cloud Config Provides a Solution to Such Configuration Management by Maintaining all the Configuration Details 
+in GIT Repository.
+Spring Cloud Config Server then Provides all the Information to Micro Services.
+
+Dynamic Scale Up And Down :
+***************************
+If Micro Service A has to Communicate with Micro Service B.
+Currently there are 3 Instances of Micro Service B are Running.
+It is Possible that any Point of Time The Number of Instances of Micro Service can be Added or Removed.
+Need is we need to Dynamically Find out The Number of Micro Service B Instances are Running	.
+
+The Solution involves Multiple Components :
+
+Service Registration :
+----------------------
+All The Micro Services has to register with Naming Server and Spring Boot Provides Eureka Server.
+
+Service Discovery:
+------------------
+When One Micro Service wants to Communicate with Another Micro Service,Then Calling Micro Service Communicates with 
+Service Registry (Eureka Server) about The Instances of that Micro Service and Eureka Server Provides the URL to the Calling
+Micro Service.
+This Helps in Providing Dynamic Relation Ship of the Micro Service.
+
+Load Balancing :
+----------------
+When Multiple Instances of The Same Micro Service are Running and want to Distribute The Load Between them.
+Spring Cloud Provides a Client Side Load Balancing Framework Using Ribbon.
+
+Visibility and Monitoring :
+***************************
+In Micro Service Architecture we need to have Complete Visibility on what is Happening  in Our Micro Services.
+In Order to Trace the Request,We need to have a Unique Identifier for Each and Every Request.
+Spring Cloud Sleuth helps in assigning a Unique Identifier to each and Every Request.
+We can Use a Distributed Tracing Solution Like Zipkin to Trace the Request across Multiple Components.
+
+API Gateway :
+-------------
+All the Micro Services will have Some Common Features Like Security,Logging and Analytics.
+API Gateway Provides a great Solution to Implement this Common Features and one of them is
+Netflix Zuul API Gateway.
+
+Fault Tolerance :
+-----------------
+What If Micro Services Goes Down.
+Hystrix helps in Improving Fault Tolerance.
+
+
+Spring Cloud Technologies :
+***************************
+Cloud Bootstrap
+Function 
+Task
+
+Circuit Breaker :
+-----------------
+Hystrix										[11-OCT-2019]  (Done)
+Hystrix DashBoard							
+Turbine
+Turbine Stream
+
+resilience4j
+
+Cloud Config :
+--------------
+Config Client								[26-OCT-2019]  (Done)
+Config Server								[02-OCT-2019]  (Done)
+Vault Configuration
+Apache Zookeeper Configuration
+Consul Configuration
+
+Cloud Discovery :
+-----------------
+Eureka Discovery Client						[11-OCT-2019]  (Done)
+Eureka Server							    [02-OCT-2019]  (Done)
+Apache Zookeeper Discovery
+Cloud Foundry Discovery
+Consul Discovery
+
+Cloud Messaging :
+-----------------
+Cloud Bus
+Cloud Stream
+Reactive Cloud Stream
+
+Cloud Routing :
+---------------
+Zuul										[10-OCT-2019]  (Done)
+Gateway										
+Ribbon										
+Open Feign              					[07-OCT-2019]  (Done)
+Other Gateway are Linkered,Nginix
+
+Cloud Security :
+----------------
+Cloud Security
+Cloud OAuth2
+
+Cloud Tools :
+-------------
+Cloud Connectors 
+Open Service Broker  
+
+Cloud Tracing :
+---------------
+Sleuth
+Zipkin Client
+
+
+
+
+
+
+
+ 

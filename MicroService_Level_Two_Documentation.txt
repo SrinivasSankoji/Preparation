@@ -1,0 +1,364 @@
+1.Agenda and PreRequisites 						  [18-JUL-2019]  (Done)
+2.Fault Tolerance vs Resilience 				  [18-JUL-2019]  (Done)
+3.Recap of Micro Services Level One 			  [18-JUL-2019]  (Done)
+4.Calling an External API						  PENDING
+5.What IF Micro Services Goes Down  			  [05-SEP-2019]  (Done)
+6.What If Micro Services Goes Slow  			  [05-SEP-2019]  (Done)
+7.The Problem With Threads          			  [05-SEP-2019]  (Done)
+8.Possible Solution For Slow Micro Services       [05-SEP-2019]  (Done)
+9.Adding Timeout to Rest Template                 [05-SEP-2019]  (Done)
+10.We Haven't Solved Yet                  		  [07-SEP-2019]  (Done)
+11.Understanding The Circuit Breaker Pattern   	  [07-SEP-2019]  (Done)
+12.Circuit Breaker Parameters     				  [07-SEP-2019]  (Done)
+13.What to Do When Circuit Breaks       		  [09-SEP-2019]  (Done)
+14.Circuit Breaker Benefits						  [09-SEP-2019]  (Done)
+15.What is Hystrix								  [09-SEP-2019]  (Done)
+16.Adding Hystrix to Spring Boot				  [14-SEP-2019]  (Done)
+17.How Does Hystrix Works						  [14-SEP-2019]  (Done)
+18.Problem With Hystrix Proxy					  [14-SEP-2019]  (Done)
+19.Refactoring For Granular FallBack			  [14-SEP-2019]  (Done)
+20.Configuring Hystrix Parameters				  [10-SEP-2019]  (Done)
+21.Hystrix DashBoard							  [10-SEP-2019]  (Done)
+22.Bulk A Head Pattern							  [10-SEP-2019]  (Done)
+23.Summary										  [10-SEP-2019]  (Done)
+
+
+1.Agenda and PreRequisites :
+****************************
+Understanding The Challenges with the Availability of Micro Services and 
+Making Micro Services Resilient and Fault Tolerance.
+
+2.Fault Tolerance vs Resilience
+********************************
+What is Fault Tolerance :
+-------------------------
+In the Given Micro Service Application,If there is a Fault Then What is the Impact of The Fault.
+How much Tolerance does the System has for The Specific Fault is Nothing But Fault Tolerance.
+
+Example : If One Micro Service Application Goes Down,does the Whole Application Goes Down ?
+If A Part of The Application Functionality Goes Down and We have Some way Of Handling Failures,Then We don't have Any Impact.
+
+What is Resilient:
+------------------
+How many Faults That a System Can Tolerate Before it Back to its Need is Called Resilience.
+A Part of Resilience is That How Much Can the System Bounce Back  From a Fault.
+If Some thing Goes Down,Then Some of The Functionalities Won't Work and When it Comes Back 
+There would be Some Mechanism to Correct the System and that Comes Under Resilience.
+
+Both are Very Similar Concepts But Slight Differences.
+We Can Technically Have a System which is Very Fault Tolerant but Not Resilience But Most of the Times it Goes Together.
+
+3.Recap of Micro Services Level One
+************************************
+Created 3 Services and Made them as Eureka Client
+Registered With Discovery Server(Spring Boot Application)
+
+4.Calling an External API
+**************************
+Use MovieDB for Movie Information(Movie info Service) and For This Make a External Call to an Service .
+If More no Of External Calls then More Chances of Failures.
+
+https://www.themoviedb.org/?language=en-US
+
+srinivassankoji  --> User Name
+srinivaschary.chary@gmail.com
+1234 --> Password
+
+5.What IF Micro Services Goes Down
+***********************************
+Here the Micro Service is Not Resilient because we don't have Single Catch Block.
+
+							--> Movie Info Service   -->  Movie DB
+
+Movie Catalog Service  --> 
+			^
+			|				--> Ratings Data Service
+			|
+Discovery Server 
+
+The Above Scenario is Not Fault Tolerant Because If One Micro Service Fails,Entire Application Goes Down.
+Question is How do we Make Resilient ?
+One of the Problem with Micro Service is that If Particular Instance Goes Down,We don't want the Entire Application to Go Down.
+In This Case We Make Multiple Instances of Micro Service.
+We don't have to do any thing this to Work because we Make the Service As Eureka Client that Registers with Eureka Server.
+Eureka Server knows that For that Particular Micro Service Two Instances are Running(By Using Load Balancing Technology Called Ribbon) and 
+If One Service Goes Down,Eureka Server will automatically Point to Another Micro Service.
+There is a Client Side Load Balancing Technology called Ribbon and it does a Round Robin i.e If it sees more than one instance
+of a Micro Service,It Manages the Load between the other  Micro Services.
+
+6.What If Micro Services Goes Slow
+***********************************
+If a Micro Service is Slow It is a Much Bigger Problem.
+In the Above Example We have made an External Call from Movie Info Service to get Movie DB.
+Movie Catalog Service is the Client and from this Service we are Making the Calls to Movie Info Service and Ratings Data Service.
+From the Movie Catalog Service we are Calling Other two Services.
+If Any API that Depends on Movie Info Service will be Slow because Movie DB Service is Slow.
+but in this Case Other Services will also be Affected.
+Because For Each call to the API,It will create a Thread in the Thread Pool and it will be there in the Thread Pool until it returns the Response.
+If There are Multiple Call to the Slow API Then Number of Waiting  Threads in the Thread Pool will Increase and 
+After Some Period No New Threads Will be Created  To Make The New API Calls. 
+
+7.The Problem With Threads
+***************************
+Let us Consider the Web Server and It Process the Request ad Returns the Response.
+For Each Request It Creates a New Thread and Executes the Request,Gives Back the Response and Thread is removed from the Web Server.
+If The Request Comes in a faster way than Processing the Request,
+At Certain Point of Time no Space will be Available for the New Thread to Create.
+In this Case Entire Application will Go Down In case of Micro Services.
+
+8.Possible Solution For Slow Micro Services
+********************************************
+Possible Solution for Slow Micro Services are TimeOut.
+Once the Micro Service is taking time,Return Back with an Error.
+Once we Send back the Response,Thread form the Web Server will be Removed.
+The Other Solutions are Increase the Size of the Tomcat Thread Pool.
+In case of Web Application,we have 100 of Users and If Each User Click on Refresh Button then It Multiplies the Number of Requests
+At this Point of Time Application Goes Down.
+Increasing the Thread pool Size is Not The Long Term Solution.
+With Time Out We Technically Have Solution For the Problem of Micro Service Being Slow Down.
+It also allows the New Requests.
+We are using Rest Template to make the API Call and we can also set the Time Out to The Rest Template.
+This is One of the Way to set the Time Out but Not The Preferred Way.
+
+9.Adding Timeout to Rest Template
+**********************************
+In Movie Catalog Application i.e calling Movie Info Service and  Ratings Data Service,
+Where we Configured the Rest Template,create the HttpComponentsClientHttpRequestFactory and
+set the Time Out to the setConnectTimeout() Method.
+
+HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory=
+				new HttpComponentsClientHttpRequestFactory();
+		httpComponentsClientHttpRequestFactory.setConnectTimeout(3);	
+		
+Pass the HttpComponentsClientHttpRequestFactory to the Rest Template i.e 
+return new RestTemplate(httpComponentsClientHttpRequestFactory);
+
+10.We Haven't Solved the Problem Yet
+*************************************
+If we Have Set the Timeout For 3 Seconds Then it is not the Correct Solution.
+Here Each Request will Wait for 3 Seconds For any Single Request and once the Response is not received within 3 Seconds,It will throw an Error.
+Here the Scenario is Threads Still exists on the Web Server Because of this Scenario.
+A Thread is Going to wait For 3 Seconds when there is a call to Slow Micro Service and once it receives the Response,Thread will be Removed from the Web Server.
+If the Response Does not Receive within 3 Seconds,then also Thread will be Removed from the Web Server.
+If there is a Request per Second and the Time Out is 3 Seconds,After Some Time there is No Space for the New Threads in the Web Server.
+Time Out Will Solve the Problem as long as the Number of Request Per Second is Less than Time Out.
+
+11.Understanding The Circuit Breaker Pattern
+**********************************************
+
+						   /--> Movie Info Service   -->  Movie DB(Slow Service and External)
+(Client Service)		  /
+Movie Catalog Service  -- 
+					  ^	 \
+					   \  \---> Ratings Data Service
+						\
+						 ------ Discovery Server 
+
+Here the Time Out Scenario Cannot Provide the Complete Solution.
+Here The Movie Catalog Service has to be Little Smart i.e 
+Movie Catalog Service is Sending So Many Requests(i.e To Movie Info and Ratings Data Service) 
+and out of that Request Detect the Service which is getting slow Response.
+Rather Than Sending the Request Continuously to the Slow Service,Stop Sending the Request to The Service for Particular Time.
+After Some Period of Time Check the Slow Service has Recovered or Not.
+Wait till the Service Recovers back to its Original State.	
+
+When the Service is Slow 
+1.Detect Something is Wrong i.e Micro Service Calling Another Micro Service has the Ability to Detect that Something is Wrong.
+2.Take Temporary Steps to Avoid the Situation Getting Worse i.e If the Micro Service is Struggling and If we Send More Requests to that
+Service,It Will Effect the Entire Application.
+3.DeACtivate The Problem Component so that it Does Not Effect DownStream Components i.e 
+Stop Sending the Requests to the Service which is Slow.
+The above 3 Steps are Common in Fault Tolerance Systems and is Called Circuit Breaker Pattern.
+Technically We Can Apply Circuit Breaker to Every Micro Service Which is Calling Another Micro Service.
+
+12.Circuit Breaker Parameters
+******************************
+Now We have a Movie Catalog Service that has the Capability of Circuit Breaker.
+When a Request Comes in to the Movie Catalog Service,It has to call the Movie Info Service and it internally Calls
+Movie DB Service and returns the Response Back to the Movie Catalog Service.
+Here We Have to Provide the Response to the Movie Catalog Service even in the Failure or Slowness of Other Services.
+We Need to Have Mechanism that Any Micro Service that Calls Another Micro Service 
+which has Circuit Breaker to do some thing that It Cannot be Supposed to do(Return Response In Case of Time Out or Slow Service Scenarios).
+Before knowing what to do when the Circuit Breaks ,we need to know when the Circuit Breaks.
+Every Circuit Breaker needs to be Triggered by Something.
+In Case of Electrical Circuit,Circuit Breaker is Triggered by the Variance in the Amount of Power Supply.
+There is Some Parameter Set in the Circuit Breaker and Amount of Power that Crosses the Parameter then it Breaks the Circuit.
+Consider the Scenario to set the Parameters to Break the Circuit in Case of Micro Services :
+
+				Web Server
+	
+Request   -->    Success    ---------->   Micro Service --> Calls Another Service  
+Request   -->    Timeout	---------->   Micro Service --> Calls Another Service
+Request   -->    Success	---------->   Micro Service --> Calls Another Service
+Request   -->    Failure	---------->   Micro Service --> Calls Another Service
+Request   -->    Success	---------->   Micro Service --> Calls Another Service
+Request   -->    Failure	---------->   Micro Service --> Calls Another Service
+Request   -->    Success	---------->   Micro Service --> Calls Another Service
+Request   -->    Failure	---------->   Micro Service --> Calls Another Service
+
+
+If the Second Request is Timed out,Immediately we Cannot break the Circuit because Timeout Can Happens and 
+For one Timeout we Cannot break the Circuit.
+Similar is the Case for One Failure.
+At what Point we need to break the Circuit ?
+At Any Point of Time,If Last 3 Request are Timed out the Break the Circuit is One Scenario.But Not Valid.
+If we Have Alternate Success and Failures then there is No Chance of Breaking the Circuit.
+The Logic that need to be Set to Break the Circuit has to be Smart Enough and that has to use the Bunch of Use Cases.
+
+Standard Parameters to Break the Circuit :
+1.Last N Requests to Consider for the Decision.
+2.How Many of Those Should Fail.
+3.Timeout Duration
+
+When Does the Circuit Comes Back to Original State :
+1.How Long after a Circuit Trip to Try Again i.e When does the Circuit Breaker look again at The Failed Micro Service and Give Some Time.
+
+Examples But Cannot be Used in Production :
+-------------------------------------------
+Last N requests to Consider for the Decision. 5 Requests
+How Many of those Should Fail  : 3 Requests
+Timeout Duration : 2 Seconds
+How Long to Wait : 10 Seconds
+
+Request   -->    100ms      --> Success    ---------->   Micro Service --> Calls Another Service 
+Request   -->    4  Seconds --> Failure    ---------->   Micro Service --> Calls Another Service 
+Request   -->    300ms      --> Success    ---------->   Micro Service --> Calls Another Service 
+Request   -->    5  Seconds --> Failure    ---------->   Micro Service --> Calls Another Service 
+Request   -->    5  Seconds --> Failure    ---------->   Micro Service --> Calls Another Service 
+
+Then It Breaks the Circuit and Sleep for 10 Seconds because it Meets the Condition of Last 3 Requests.
+Even if the 6th Request takes 200ms, then also Circuit is Going to Break.
+How do we get the Information that I want these Many Requests to Fail before I Break the Circuit.
+It Depends on How Many Request are Coming In,How Frequently Request are Coming In,
+How Bigger is the Thread pool and How Much Capacity an Application Server can Handle.
+
+13.What to Do When Circuit Breaks
+**********************************
+What Causes Circuit to Trip.
+We Have Well Defined Parameters,Well Defined Formula which informs This is the Point where the Circuit needs to Trip.
+i.e not Going to Send any Calls to the Failure or Slow Service.
+When the Requests are Continuously Coming to Movie Catalog Service and don't want to call the Failure Service.
+How do we Handle the Requests ?
+Answer is Fall Back Mechanism.
+Here Movie Info Service is Slow because of Movie DB Service is Slow.
+Now From the Movie Catalog Service,Stop Calling the Movie Info Service.
+Something Else will be there when a Circuit Breaks instead of Doing the Things Usually.
+Bunch of Things we Can do For Fall Back Mechanism.
+1.Throw an Error i.e Some thing Fails,Not Calling the Micro Service Any More when the Requests are Coming in,Throw an Error.
+2.Return a Fall Back Default Response :
+3.Save Previous Response in the Cache and Use that ,When it is Possible and This is The Best Way.
+Here We Many not Get The Valuable Information or Accurate Information But We get Sensible Response.
+
+14.Circuit Breaker Benefits
+****************************
+We Want Circuit Breakers Because We Want Fail Fast.Instead of Micro Services Failing Later and Handling Them 
+let them Fail Fast.
+Fall Back Functionality
+Automatic Recovery
+In Case of Circuit Breaker Pattern we have to do the Following things.
+1.When to Break the Circuit
+2.What to Do When Circuit Breaks
+3.When to Resume Requests
+
+15.What is Hystrix
+*******************
+Hystrix is an Open Source Library Created by NetFlix.
+Hystrix Implements Circuit Breaker Pattern.
+We Need to give Only the Configuration Parameters to the Hystrix When the Circuit Breaks.
+Hystrix works well with Spring Boot.
+Another Popular Pattern Alternative to Circuit Breaker Pattern is Adaptive Fault Tolerance.
+  
+16.Adding Hystrix to Spring Boot
+*********************************
+Step 1:
+-------
+Add the Hystrix Maven Dependency to Spring Boot i.e 
+Spring-cloud-starter-netflix-hystrix
+
+Step 2:
+-------
+Add the Annotation @EnableCircuitBreaker to the Main Application Class.
+By Adding this Our Application will get the Hystrix Features.
+
+Step 3:
+-------
+From the Above Step We Add Hystrix Capabilities To the Application But It Does Nothing.
+To get The Features of Hystrix Add the Annotation @HystrixCommand to the Methods That Needs Circuit Breakers.
+Now It Breaks the Circuit when the Things Go Wrong.
+
+Step 4:
+-------
+Configure the Hystrix Behavior i.e Add the Parameters,Here Movie Catalog Service is the Place where we add the Hystrix Behavior.
+Before Adding the Parameters What would be the Fall back Mechanism when the Circuit Breaks ?
+Here @HystrixCommand Annotation Accepts an Argument and One Of Them is fallbackMethod()
+Here FallbackMethod Should have the Hard coded Response In Case When the Circuit Breaks or get the Data From Cache.
+Reduce the Possibility of an Error When the Fall back Method Executes.
+
+Restart All The Applications and Test the Scenario.
+
+17.How Does Hystrix Works
+**************************
+In Case of Our Application,If the Movie Info Service or Ratings Data Service Fails,
+It will Call the Fall Back Method and Returns the Response.
+We Have Added only the Annotation @HystrixCommand to call the Fall back Method in Case when API Fails.
+
+Here we Have an API Class and Inside The Class we have a Method Annotated with @HystrxiCommand.
+Hystrix will Create a Proxy For that Class and Some Body Calls the Method,Hystrix will give the Proxy Class Instead of Proxy Class.
+Proxy Class Contains the Circuit Breaker Logic.
+When Somebody Makes a Call Hystrix is Constantly Watching what the Method is returning Back.
+If the Response is Success then it Passes the Original Response.
+If Some thing Fails,Then it Calls the Fall back Method and Returns the Fall back Response.
+
+18.Problem With Hystrix Proxy
+******************************
+The Circuit Breaker We have Implemented is not Accurate and this can be Better.
+Here Movie Catalog Service calls the Rating Data Service and Movie Info Service and If Any one of those Service Fails
+It will Call the Fall back Method.
+Consider the Ratings Data Service is Fine and Movie Info Service is Slow and In this Case also it Will Break the Circuit
+and returns the Fall Back Response.
+Here the Possible Solution will be If Movie Info Service Fails,It has to return its Fall Back Response 
+and similar is the Case with Ratings Data Service.
+We want to have More Granularity in case of Fall Back Mechanism i.e individual Fall Back for Each Service.
+Where ever we calling With The Rest Template in MovieCatalogController,Make them as Private Methods and add the @HystrixCommand Annotation
+to Enable the Hystrix Behavior and call the Fall Back Method In case of Failures.
+In the Above Case It Will Not Call the Fall Back  Method in Case of Any Failures Because of Proxy Class.
+Proxy Class is a Wrapper around the Instance of the API Class.
+We have added the Fall Back Methods inside the Class.
+Hystrix will execute the Fall Back Methods Only when the Call is from External API i.e Calling from an URL 
+and in this case it  will Create the Proxy Class and Proxy Class Verifies the Response is Success or Failure and returns either
+Success Response or Fall Back Response.
+Hystrix does not have an Opportunity to intercept between two Methods.
+The Only way to Implement Circuit Breaker is Take the Methods into Another Class and add the Features of Hystrix Behavior.
+
+19.Refactoring For Granular FallBack
+*************************************
+Create the Separate Classes for Movie Info And Ratings Data and Annotate with @Service.
+In Movie Catalog Controller,Auto wire the MovieCatalog and Ratings Data Classes.
+Here We Simulate the Failure by Bringing the Service Down.
+We can also do this by Timeout.
+
+20.Configuring Hystrix Parameters
+**********************************
+Till Now we have set the Default Parameter in the @HystrixCommand Annotation.
+We have Lot more Parameters to set in the @HystrixCommand Annotation.
+We can add more Parameters in the commandProperties = {@HystrixProperty(name="",value=""),
+													   @HystrixProperty(name="",value="")}
+
+
+21.Hystrix DashBoard
+*********************
+Hystrix Provides the Feature i.e the Ability to Display the Data in the DashBoard commonly Refereed to as Hystrix DashBoard.
+We Add a Bunch of Binaries to the Class Path and it Provides a Kind of Web Application with the Display of 
+What are the Different Circuit Breakers we have in the System,
+What are the Circuits that are Open,Closed,The Number of Request that are Coming In,The Number of Time Outs that are Happening.
+We get all these Information in the Form of Visual Format.
+We Can set Up Hystrix DashBoard for a Single Application or We Can Set up a External Hystrix DashBoard for Multiple Micro Service Applications.
+
+
+
+22.Bulk A Head Pattern
+***********************
+
+
+23.Summary
+**********

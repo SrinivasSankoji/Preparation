@@ -1,0 +1,47 @@
+1.Vertex Introduction
+2.Overview
+3.Installation
+4.First Vertx Application
+5.Verticles
+6.Buffers
+7.HTTP Server
+8.HTTP Client
+9.TCP Server
+10.TCP Client
+11.Timers
+12.Command Line
+
+
+1.Vertex Introduction :
+***********************
+Vertex is a Polyglot Web Framework that Shares Common Functionalities among its Supported Languages Like Java,Kotlin etc.
+Vertex Operates on Java Virtual Machine.
+
+We can Measure the Performance of the Application by Fetching the Data From Database,Updating the Database and Delivering the Database.
+The More Requests Served per Second the Better Performance.
+Such an I/O Scenario where little Computing is involved,Non Blocking Framework would have and Edge.
+
+Vertex Operates on a Single Event Loop and also takes the Advantage of JVM.
+Vertex Maintain a Thread Pool with a Size that Can Match the Number of Available Cores .
+With Concurrency Support,Vertex also Supports CPU Heavy Processing that Requires Parallel Computing.
+
+Event Loops is the Main Part of Vertex.
+
+Scenario :
+----------
+To Connect to a Database Client Requires a Connector Driver and the Most Commonly used JDBC Driver.
+The Problem with Driver is Blocking and it Blocks at the Socket Level.
+Thread will Always Stuck there Until it Receives the Response.
+
+
+
+
+
+
+
+
+
+
+
+
+

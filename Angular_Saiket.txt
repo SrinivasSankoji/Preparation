@@ -1,0 +1,273 @@
+1.Angular Application using Angular CLI		  [09-AUG-2019]  (Done)
+2.Angular Directory Structure				  [09-AUG-2019]  (Done)
+3.BootStrap Process   						  [09-AUG-2019]  (Done)
+4.Components								  [09-AUG-2019]  (Done)
+5.View Encapsulation						  [10-AUG-2019]  (Done)
+6.Angular Debugging							  [10-AUG-2019]  (Done)			  
+7.Life Cycle Hook							  [10-AUG-2019]  (Done)
+8.Change Detection Strategy					  [12-AUG-2019]  (Done)
+9.Content Protection						  
+10.Routing
+11.@ng Bootstrap
+12.@viewChild and @ViewChildren
+13.@ContentChild and @ContentChildren
+14.Routing Events
+15.Modular Design and Lazy Loading
+
+1.Angular Application using Angular CLI :
+*****************************************
+
+
+2.Angular Directory Structure :
+*******************************
+To Terminate the Angular use CTRL+C and then Select Y.
+We Can also Change the Default Port of Angular by Changing in angular.json  File
+
+
+3.BootStrap Process :
+*********************
+Angular Can be used in JavaScript Host Environments or Mobile Platforms.
+main.ts is the Entry Point of Application.
+bootStrapModule() bootstraps the Root Module by Taking module name as an argument and In our case here it is app Module.
+App Module then starts the Dependency Injection system using @ngModule Decorator.
+@ngModule Decorator has J son data as Meta data.
+declarations[] : It registers all the Components within the Application.
+imports[] : It registers all the Modules within the Application.It can Custom Module or Predefined Module.
+providers[] : It Registers all the Services within the Application.
+bootstrap[] : In the bootstrap[] we need to specify the Component that Acts as an Entry Point Component For the Application. 
+
+BootStrapping Component create Component Views for all child Components and instantiates  Components and Directive Classes.
+Angular Component goes recursively through Factories created for all the Components and create Views.
+It also creates DOM Nodes and Attaches them to each other.
+After this Angular Triggers all Life Cycle  Hooks on Components like onInit(),onDestroy() etc.
+
+4.Components @Component Overview:
+*********************************
+Decorators are New Feature of TypeScript and are used through out the Angular Code.
+Decorator allows us to decorate Classes and Functions similar to Annotations in Java.
+With Decorator we can Configure and Customize Classes in Design Time.
+They are just Functions used to Add Meta Data to the thing they are Attached to.
+When we create a Component we need to tell the information about the Component and that can be done by using @Component Decorator.
+
+Core Element of Angular is Component and it is reusable across the Application.
+Component Decorator has three Elements i.e
+selector,template url and style url.
+
+To generate a component we use the command : ng g c test
+To Create a Component within the Specified Folder we use the command : ng g c folder/test
+To generate the Component not within any folder just like app component we use the command : ng g c folder/test --flat=true
+If we want to give a specific prefix to the Selector then we use the command : ng g  c folder/test --prefix="myApp"
+If we want to skip spec file generation we use the command : ng g c folder/test --spec=false
+If we want to generate the inline template we use the command : ng g c folder/test --inline-template=true
+
+Finally when we create any Component It Must be declared and imported in the App Module.
+
+5.View Encapsulation :
+**********************
+Encapsulation specifies How the Templates and Styles should be encapsulated.
+Before Going to understand Encapsulation we need to know the Concept of Shadow DOM.
+It Allows us to hide the DOM logic behind other Elements.
+Also it enables us to apply scope styles to elements without exposing them to outer World.
+Angular Comes with View Encapsulation Built In which enables us to use Shadow DOM or even to Emulate It.
+It can have 3 possible values i.e Emulated,Native and NONE.
+
+
+The style url property in the Component Class is applicable to that Component only and If we Define a Global style  and want to apply
+to all the Components then we need to use 
+
+encapsulation:ViewEncapsulation.NONE
+
+The Concept of Shadow DOM is applicable for only encapsulation:ViewEncapsulation.Native
+
+i.e No Styles are written in the Document Head AnyMore.
+However Styles do now end up within the Component Template inside the Shadow DOM Root.
+Shadow DOM does not inherit any style define in the Head or any where in the Document Body.
+Rather it has its own style where as it does not go outside and other styles cannot come inside.
+
+Default value of view Encapsulation is Emulated.
+
+
+Animations :
+------------
+animations property takes an array of several Triggers.
+Each Trigger defines Some Animation.
+we need to give a Name to the Animation ans state to the Animation i.e 
+From the initial state to the final state and how it can transit from initial state to final state.
+Example :  when we click on Button,it has to become large and again click on it ,it will become small.
+
+providers :
+preservedWhiteSpaces :
+viewProviders :
+
+6.Angular Debugging	 :
+**********************
+
+
+
+7.Life Cycle Hook :
+*******************
+A Component in Angular has Life Cycle.It Goes through number of Phases Starting from initiation to Destruction.
+We can Hook into different Phases of Component Life Cycle to Control the Application.
+Life Cycle Hooks are of Four Types which are Specific to Angular Component and Directives.
+
+The Number of Methods Called in a Sequence to execute a Component at Specific Moment is called Life Cycle Hook.
+First Step of a Life Cycle is to Create a Component By Executing its Constructor.
+Once the Component is Created Life Cycle Methods are Called in the Following Sequence.
+
+1.ngOnChanges()
+2.ngOnInit()
+3.ngDoCheck()
+4.ngAfterContentInit()
+5.ngAfterContentChecked()
+6.ngAfterViewInit()
+7.ngAfterViewChecked()
+8.ngOnDestroy()
+
+1.ngOnChanges() :
+-----------------
+This Method is invoked when there is a Change in Component Property and at that time onChange() will be executed.
+
+ngOnInit() :
+------------
+This method initializes the Component and will be executed only Once.
+Whenever we call the HTTP request and want to execute once,then we write in this Method.
+
+ngDoCheck() :
+-------------
+doCheck() is internally invoked by Angular when it detects that there are Some Changes in the Code.
+We can also implement custom doCheck() if required.
+
+ngAfterContentInit() :
+--------------------
+If we Want to Include any External Content in the Component View,Then need to write the Code inside ngAfterContentInit(). 
+
+ngAfterContentChecked() :
+-----------------------
+After the External Content is Projected into the Component,Then this Method is Invoked.
+
+ngAfterViewInit() :
+-------------------
+If We Want to Perform any Operation either in Parent or Child Component after the Component is Initialized,
+then we Need to Perform in this Method.
+Example : On Page Load,If we want the Cursor to be displayed i one of the input Filed,we need to write inside
+ngAfterViewInit()
+
+ngAfterViewChecked() :
+----------------------
+This Method is invoked every time after ngAfterViewInit() and ngAfterContentChecked()
+to check the Component View. 
+
+onDestroy() :
+-------------
+This Method is invoked by Angular just before destroying the Component/Directive.
+It also UnSuscribes the Observables and detach Event Handlers to avoid Memory Leaks.
+
+8.Change Detection Strategy :
+*****************************
+The Way Angular Performs its rendering and updates its view is a key Factor of Angular Framework and its Features.
+
+Change Detection :
+------------------
+The Basic Mechanism of Change Detection is to perform Check against two States i.e one is New State and another is Current State.
+If one of the State is different from another,then some thing has changed and need to update the View.
+Change Detection Means Updating the View when the Data has Changed.
+
+Angular Change Detection is done in Two Steps.
+If The Application Developer changes the Property in the Component Class,then Angular has to reflect the state of the Model in the View by Re Rendering it.
+Angular does this by Sending an Event or Property Binding.
+
+Flow :
+------
+Angular is a Component Based Architecture which involves interaction between each Component and forms the Component Tree.
+
+
+
+										App Component
+										
+					TODOLIST Component				  Header Component
+
+		TODO Component(1)       TODO Component(2)
+
+In The Above Example we have a TODOLIST Component that Manages the TODO Component.
+If we Modify the List by Changing in the TODO Component,then the Flow will be
+
+
+Developer Changes the Model in the TODO Component.
+Angular Change Detection kicks to propagate the Navigation.
+Change Detection goes through every Component in the Component Tree from Top to Bottom and verifies is there any Dependent Model has Changed.
+If Yes It will update the Component
+Angular updates the Component View.
+
+The Way Angular runs the Change Detection Strategy by Starting from Top to Bottom and Continues until it reaches the End.
+This makes the System more Predictable and more Performance.
+Angular Provides two ways of change Detection Strategies.
+
+ChangeDetectionStrategy.Default :
+---------------------------------
+In order to Update the View, we need to access the new Value,get the Old Value and compare them.
+If there are any changes,then update the View.
+
+By Default Angular will check every time and assumes that there are Changes,Update the Component and renders the View.
+This is called Dirty Checking.
+
+ChangeDetectionStrategy.onPush :
+--------------------------------
+When we use the onPush() Strategy .we say to the Angular that it should not make any guess to update the Changes in the Component rendering.
+It will rely only on the changes in the input references,Some events triggered y the Component or its Child Component.
+Finally Developer can ask the Angular to do the Change Detection by using componentRef.markForCheck()
+
+with onPush() Component only Depends on its inputs.
+
+Change Detection Strategy will be kicks in  :
+
+When the Input References Changes
+An Event Originated from Component or one of its Children
+Run Change Detection Explicitly(ComponentRef.markForCheck())
+use the async pipe in the View.
+
+with onPush() Angular only depends on the Component's Input,events Originated from Component or its child Component,Calling markForCheck() explicitly
+and using async pipe in the Template to perform the Change Detection Mechanism to Update the View.
+
+9.Content Protection :
+**********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

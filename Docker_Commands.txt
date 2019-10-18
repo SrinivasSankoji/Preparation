@@ -1,0 +1,22 @@
+FROM  openjdk:8
+EXPOSE 9102
+ADD target/SpringBootDockerImage.jar SpringBootDockerImage.jar
+ENTRYPOINT ["java", "-jar", "/SpringBootDockerImage.jar"]
+
+
+FROM openjdk:8
+ADD target/SpringBootDockerImage.jar SpringBootDockerImage.jar
+EXPOSE 9102
+ENTRYPOINT ["java", "-jar", "SpringBootDockerImage.jar"]
+
+
+Command to Build the Docker File :
+**********************************
+docker build -f SpringBootDockerImage.jar .
+
+docker build -t SpringBootDockerImage.jar:latest .
+
+docker build -f SpringBootDockerImage .
+
+docker build -f Dockerfile -t SpringBootDockerImage .
+

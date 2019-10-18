@@ -1,0 +1,65 @@
+1.Angular Architecture              [12-AUG-2019]  (Done)
+2.Decorators
+3.Life Cycle Hooks					[12-AUG-2019]  (Done)
+4.Services and Http Requests		
+5.Configure Proxy API Calls
+6.Routing
+7.Login Application
+8.Registration Application
+9.Sessions
+10.Pipes and Custom Pipes
+11.Directives and Custom Directives
+12.Redux and Concepts
+13.Deploying Angular Application
+
+1.Angular Architecture :
+************************
+Angular is Open Source Java Script Framework to build Front End Web Applications.
+
+Architecture of Angular is Mainly Divided into three Parts :
+1.Modules
+2.Components
+3.Services
+
+1.Modules :
+-----------
+Angular Follows Modular Approach i.e Application in Angular is defined by Modules.
+Every Angular Application has at least one ngModule i.e appModule and all other Modules are nested inside app Module.
+ngModule is the basic Module that enables bootStrpping.
+ngModule Maintains the group of Components,Services and all other Modules.
+A Module can import or Export functionality from other Modules.
+A small Application can have only one Module where for large Application may have Feature Modules.
+
+To Create a Module we use the Command : ng g module occdaily
+
+NgModule MetaData :
+-------------------
+The ngModule takes a Single Meta Data and has the Following Properties.
+
+declarations[] :
+----------------
+All the Components,directives and Pipes that belongs to Particular Module are included in the Declarations Array.
+
+exports[] :
+-----------
+Component of another ngModule has to be used in the current ngModule, then it has to be declared in the exports[].
+
+imports[] :
+-----------
+If other Modules has to be used in the Current Module,it has to be declared in the import Statement.
+Example Browser Module,Forms Module
+
+providers[] :
+-------------
+All the Services Related to Particular Module has to be declared in the Providers[]
+
+bootstrap[] :
+-------------
+The Component which has to be bootstrapped when the Application Starts has to be declared in the bootstrap[].
+
+
+
+
+
+
+

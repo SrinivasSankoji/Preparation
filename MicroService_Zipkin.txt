@@ -1,0 +1,111 @@
+1.Go Micro services,Part 12: Distributed Tracing With Zipkin DZone  
+
+2.Micro services distributed tracing with Zipkin and Micronaut -->  https://guides.micronaut.io/micronaut-microservices-distributed-tracing-zipkin/guide/index.html
+
+3.MicroServices - Part 6 : Distributed Tracing with Spring Cloud Sleuth and Zipkin 
+https://sivalabs.in/2018/03/microservices-part-6-distributed-tracing-with-spring-cloud-sleuth-and-zipkin/
+
+4.ZIPKIN TUTORIAL: GET STARTED EASILY WITH DISTRIBUTED TRACING
+https://www.scalyr.com/blog/zipkin-tutorial-distributed-tracing/
+
+5.Distributed Tracing in Micro services using Zipkin, Sleuth and ELK Stack.
+https://medium.com/swlh/distributed-tracing-in-micoservices-using-spring-zipkin-sleuth-and-elk-stack-5665c5fbecf
+
+6.Building Micro Services, part 7. Distributed tracing with Zipkin and Spring Cloud Sleuth
+https://callistaenterprise.se/blogg/teknik/2017/07/29/building-microservices-part-7-distributed-tracing/
+
+Building Micro Services
+https://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
+
+MICROSERVICES LOGGING BEST PRACTICES 
+https://www.scalyr.com/blog/microservices-logging-best-practices/
+
+
+
+
+6.Go Micro services,Part 12: Distributed Tracing With Zipkin DZone  :
+*********************************************************************
+1.Introduction :
+----------------
+The More Communication Between Micro Services we Get in our System,The Harder to understand what's Going On.
+Specifically When the Load Increases and Response Time becomes Slower than Expected.
+To get a Better Understanding on What is Going on,We need to able to Trace the Request as it Passes through the Number of
+CoOperating Micro Services and Measure the Processing Time in Each Micro Service that is Involved in Responding to the Request.
+The Trace Event for One Request Must be Collected and Grouped Together and Presented in an Understandable Way.
+This is What Exactly Zipkin About. 
+Zipkin Originate from Twitter and become a Open Source Project in GitHub.
+Spring Cloud Sleuth Can be Used in Micro Services that has been developed by Spring Cloud,Simplifies the Creation of Trace Events
+and Sending them to Zipkin Server.
+
+2.Trace Id and Span Id :
+------------------------
+Trace Represents the Whole processing Request.
+Span Represents the Processing Time that Takes Part in Each Micro Service in Processing Request.
+All Trace Events i.e Whole Processing Request Will share a Unique Trace Id and Each Individual Processing Step i.e Span 
+will Give a Unique Span Id.
+
+3.Spring Cloud Sleuth :
+-----------------------
+Spring Cloud Sleuth Intercepts Incoming Requests and Picks up the Trace id form the Incoming Request or Create a New Trace Id
+If None Was Specified.
+For OutGoing Request it Fills Out The Trace Id In the Outgoing Message.
+Both Synchronous and Asynchronous Messages are Supported.
+HTTP for Synchronous Request and Spring Cloud Stream Binder For Asynchronous Messages.
+Spring Cloud Sleuth Also handles the Creation of Spans and Span Id and Sends them to the Zipkin Server.
+If The Internal Processing Uses Multiple Threads i.e Hystrix Based Circuit Beaker then 
+Spring Cloud Sleuth is Capable to Move Thread Local Information i.e The Trace Id Between Two Threads.
+Spring Cloud Sleuth Interacts with Logging Framework Used in Each Micro Service and 
+Adds the Trace ID and Span Id to Each Log Record.
+
+4.Adding Zipkin Server :
+------------------------
+Setting Up Zipkin Server is Straight Forward and is Similar to Other Spring Cloud Servers.
+Example Spring Cloud Config Server,Discovery Server etc.
+Zipkin Server Runs as a Conventional Spring Boot Application.
+
+Add the Annotation @EnableZipkinStreamServer to the Spring Boot Application then 
+The Application Becomes the Zipkin Server.
+Now the Application can be Able to Trace Events Synchronously over HTTP.
+Receive Trace Events Asynchronously over Spring Cloud Stream.
+Present a Web Base UI For Searching Trace Events Manually.
+Present a Restful and J son Based API For Searching and Tracing the Events Pragmatically.
+Store Trace Events in Memory.
+
+It is Also Possible to Configure a Zipkin Server to store the Trace Events in Database Lile MySql and Elastic Search.
+
+5.Sending Trace Events Using Spring Cloud Sleuth :
+--------------------------------------------------
+To Enable Our Micro Services to Send the Trace Events to the Zipkin Server Add the Below Dependencies.
+
+Spring-Cloud-Starter-Sleuth
+Spring_Cloud-Sleuth-Stream
+
+These Dependencies Will Enable Micro Services to Stream Tracing Events Asynchronously to the Zipkin Server over Event Bus.
+To Ensure We Send all the Trace Messages to Zipkin Server,Add the Below Configuration to the Common Config File i.e application.yml
+
+spring.sleuth.sampler.percentage: 1.0
+
+To Make It Possible For Spring Cloud Sleuth to add Tracing Headers to the Outgoing Request,It is Important that
+RestTemplate is Injected and Not Created Directly.
+
+Example :
+---------
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

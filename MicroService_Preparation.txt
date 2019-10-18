@@ -1,0 +1,89 @@
+						**********************  DZone  *************************************************
+Basics :
+--------						
+1.Improving The Reliability of Micro Services
+2.Design Patterns for Micro Services
+3.Learn How to Secure Service-to-Service Micro Services
+4.Micro Services Architecture: The Importance of Centralized Logging
+5.Database Operations at Micro Service Level 
+6.Tools to Help and Manage Micro Services
+7.Micro Service Best Practices: Build an Archetype
+7 Strategies for Assigning Ids to Micro Services
+8.Micro Services Architectures: Event Driven Approach
+9.Deployment Strategy in Micro Services
+10.Five Questions Everyone Is Asking About Micro services (Part 4)  DZone
+11.Best Practices for Event-Driven Micro service Architecture 
+12.Micro services Using Spring Boot and Spring Cloud — Part 1: Overview  DZone
+13.API vs. MicroServices: a MicroService is More Than Just an API
+https://www.scalyr.com/blog/api-vs-microservices/
+14.
+
+Architecture :
+--------------
+Micro Services in Practice: From Architecture to Deployment [19-JUL-2019]  (Done)
+Micro Services Architecture With Spring Boot and Spring Cloud [22-JUL-2019]  (Done)
+Micro Services Architecture: Introduction to Spring Cloud [23-JUL-2019]  (Done)
+
+Hystrix :
+---------
+Making Your Micro Services Resilient and Fault Tolerant  [31-JUL-2019]  (Done)
+How to Make Services Resilient in a Micro Services Environment
+Micro Services Architectures: What Is Fault Tolerance?
+
+Service Discovery :
+-------------------
+Service Discovery in a Micro Services Architecture (https://www.slideshare.net/josdirksen/service-discovery-in-a-microservice-architecture-using-consul)
+Service Discovery With Docker and Consul: Part 1
+Consul Service Discovery (Part 1)
+Spring Cloud Service Registry and Discovery
+
+Config Server :
+---------------
+Intro to Spring Cloud Config Server 
+Micro services and Spring Cloud Config Server  [12-SEP-2019] 
+
+Zuul :
+------
+API Gateway using Spring Boot & Zuul  (https://medium.com/@nepalBrothers/)
+Micro services Communication:Zuul API Gateway (https://dzone.com/articles/microservices-communication-zuul-api-gateway-1)
+Spring Boot 2 Micro Services with Netflix Zuul API Gateway 
+(https://javabeginnerstutorial.com/spring-boot/spring-boot-2-microservices-with-netflix-zuul-api-gateway/)
+MicroServices - Part 5 : Spring Cloud Zuul Proxy as API Gateway 
+(https://sivalabs.in/2018/03/microservices-part-5-spring-cloud-zuul-proxy-as-api-gateway/)
+Rule Your Micro services With an API Gateway: Part I Dzone
+http://javaonfly.blogspot.com/2017/08/microservices-communication-zuul-api.html
+
+Micro Service Architecture  :
+*****************************
+D:\Documents\MicroService_Architecture.txt [19-JUL-2019]  (Done)
+D:\Documents\MicroService_ResilientAndFaultTolerant.txt
+D:\Documents\MicroService_MakeResilient.txt
+
+Micro Service Architecture Cloud Introduction:
+**********************************************
+D:\Documents\MicroService_Architecture_CloudIntroduction.txt [22-JUL-2019]  (Done)
+
+Micro Service Architecture Spring Cloud :
+*****************************************
+D:\Documents\MicroService_Architecture_SpringCloud.txt [23-JUL-2019]  (Done)
+
+MicroService Level One :
+************************
+D:\Documents\MicroService_Level_One_Documentation.txt
+
+Micro Service Level Two :
+*************************
+D:\Documents\MicroService_Level_Two_Documentation.txt
+
+Client Side Load Balancing Tech Primers :  https://www.youtube.com/watch?v=-PbnWGddmcM
+Server Side Load Balancing Tech primers :  https://www.youtube.com/watch?v=z90Dcid2py4
+Spring Cloud Config Server Tech Primers :  https://www.youtube.com/watch?v=b2ih5RCuxTM&t=86s
+Hystrix Dashboard          Tech Primers :  https://www.youtube.com/watch?v=SxJ2uLZWOyw
+Client Side Load Balancing Java Techie :https://www.youtube.com/watch?v=ueyVjOnDHYQ
+
+
+
+
+
+
+

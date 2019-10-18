@@ -1,0 +1,124 @@
+References :
+************
+https://springframework.guru/spring-framework-annotations/
+https://www.javaguides.net/2018/10/spring-boot-annotations.html
+https://www.journaldev.com/16966/spring-annotations
+https://www.tuturself.com/posts/view?menuId=3&postId=1071   (For Example)
+https://www.oodlestechnologies.com/blogs/How-To-Configure-The-Interceptor-With-Spring-Boot-Application/
+https://dzone.com/articles/how-to-configure-the-interceptor-with-spring-boot
+https://netsurfingzone.com/spring/spring-boot-interceptor-example
+https://o7planning.org/en/11689/spring-boot-interceptors-tutorial   (For Example)
+https://www.programering.com/a/MDOxkzMwATk.html
+http://www.mkjava.com/tutorial/filter-vs-interceptor/
+
+
+Annotation List :
+*****************
+@ExceptionHandler
+@Controller Advice
+@RestController Advice
+@RequestBody							   [17-OCT-2019]  (Done)		
+@Response Body							   [17-OCT-2019]  (Done)
+@Interceptor                               [17-OCT-2019]  (Done)
+@Component								   
+@Service
+@Repository
+@Configuration
+@Bean
+@Controller
+@Value
+@ConfigurationProperties
+@Autowired
+@Qualifier
+@Primary
+@Required
+@Conditional
+Service Locater Factory Bean
+@RequestBodyAdvice
+@ResponseBodyAdvice
+
+
+Spring Boot Implementation List (tuturself):
+********************************************
+Spring Boot Caching -- EHCache
+Spring Boot With Redis
+Spring Boot With Docker
+application.yml
+How to handle retry with Spring-Retry 
+Difference between @Component, @Repository & @Service annotations in Spring
+Spring Boot JDBC + MySQL + HikariCP example
+SpringBoot : How to integrate a Filter in Spring Boot Application
+Project springsandwich | annotated, type-safe interceptors for Spring web controllers
+Spring Boot Log back integration
+Spring Boot SSL [HTTPS] Integration
+Spring Boot 2 and Consul integration with Swagger 2.8.0
+Netflix Zuul: Setup and sample application
+
+Spring Boot Implementation List (tuturself):
+
+
+@Interceptor :
+**************
+In Spring When a Request is Sent to The Controller,
+It Will Have to Pass Through The Interceptors(Zero or More) Before Being Processed by The Controller.
+Spring Interceptor is a Concept Similar to Servlet Filter.
+Spring Interceptor is applied to Requests That are Sending to Controller.
+We Can Use Interceptors to do Some Logs Such as Writing Logs,Adding or Updating Configurations Before Request is Being 
+Processed by Controller.
+
+Our Interceptor Must Implement org.springframework.web.servlet.HandlerInterceptor or
+org.springframework.web.servlet.hadler.HandlerInterceptorAdaptor Class
+
+Difference Between Filter and Interceptor :
+-------------------------------------------
+A Servlet Filter is Used in the Web Layer Only and We Cannot use it Outside of The Web Context.
+Interceptors Can be Used any Where.
+For Authentication of Web Pages We Use Servlet Filter Where as For Security Stuff in The Business Layer or  Logging/Bug Tracking
+We Use Interceptors.
+Interceptors do Not Rely on the Servlet Container Where as Filter Depends on Servlet Container.
+HTTP Specification does not openly Prevent any HTTP Method For Having a Request Body But It It is Wise Not to Use Get Method.
+Because HTTP Servers and Proxy Servers May Discard the Request Body For GET Request and Fail in UnExpected Ways.
+
+@RequestBody (springframework.guru):
+************************************
+@RequestBody Annotation Indicates That a Method Parameter Should bound to the value of the HTTP Request Body.
+HttpMessageConverter is Responsible for Converting from HttpRequest Message to Object and assigned to the Variable.
+@RequestBody Does Not Depend on the Media Type.
+
+@ResponseBody (javabyexamples):
+*******************************
+@ResponseBody Annotation Indicates that The Result Type Should be Written Straight into the Response Body
+In What Ever Format We Specify an Internally Uses HttpMessageConverter to Convert The HTTP Message Into
+Specified Format.
+Here We Have to Annotate The Controller Method With @ResponseBody
+
+@RequestBodyAdvice (javabyexamples):
+************************************
+@RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
+Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

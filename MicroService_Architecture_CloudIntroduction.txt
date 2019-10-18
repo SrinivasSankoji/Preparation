@@ -1,0 +1,55 @@
+Need For Cloud :
+****************
+Loads on Application are Not Consistent Throughout the Year.
+
+1.Consider a Start Company which has the Potential to Grow Very Fast.
+2.Consider an On-line Shopping Portal,which Customer Load varies throughout the Year
+3.Insurance Company which has Peak Load at Particular Time
+
+If we Provide an Infrastructure that supports the System at Peek Time and what about at the Rest of The Time.
+Rest of the Time it would be Sitting Idle and Wasting the Resources.
+Cloud Makes a Provision Infrastructure that Handles at the Peek Time and Release when it is not Required.
+
+Building Applications for the Cloud :
+*************************************
+We Cannot take any Application and Just Put it on the Cloud.
+There are Best Practices to Develop Such Cloud Native Applications and This is also Known as Twelve Factor Application.
+Best Practice For Making Cloud Native Applications are 12 Factor Applications.
+
+Advantages of the Cloud :
+*************************
+Auto Scaling and Agility :
+--------------------------
+There is No Need to Increase the Infrastructure at the Time of Peak Load.It will do on Demand.
+
+Cost Reduction :
+----------------
+Pay for what we Use.
+
+Scalability and Elasticity:
+---------------------------
+When the Applications are Built Very well,They Can Auto Scale Based on Demand.
+
+Reliability:
+------------
+We Can Built a Micro Service With Fault Tolerance Built into Them that Makes the Application Reliable.
+
+Manifestations of the Cloud :
+*****************************
+IAAS :
+------
+Infrastructure as Service is the First Level of Cloud.Here it only Provides the Hardware needed to run the Application.
+
+PAAS:
+-----
+Platform as Service is the Next Level of Cloud.It Provides a Platform i.e Operating System or Managed Software
+on Top of Hardware.
+
+SAAS:
+-----
+Software as Service is third Level of Cloud,Where the Cloud Provider Provides a Software Product 
+on the Cloud.
+
+
+
+

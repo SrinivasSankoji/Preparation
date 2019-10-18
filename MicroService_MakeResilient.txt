@@ -1,0 +1,7 @@
+Even though Micro Service Architecture isolates the Failures through defined Boundaries
+there is high chance of Network,Hardware,database or Application issues which will lead to temporarily 
+unavailability of Component.
+We Have an Easier Way to Build Fault Tolerance with the help of Spring Boot Components like Hystrix and Resilience 4j Libraries.
+
+Retry :
+*******

@@ -1,0 +1,68 @@
+Eureka Server :
+***************
+
+References :
+------------
+Eureka server  --> http://javaonfly.blogspot.com/2017/07/microservicespring-cloud-eureka-server.html  (Step 1)
+
+Eureka Client  --> http://javaonfly.blogspot.com/2017/07/microservicescommunication.html
+
+Eureka Server  --> http://javaonfly.blogspot.com/2017/07/microservicespring-cloud-eureka-server.html
+
+
+
+Introduction :
+**************
+Eureka Server is Nothing But an Implementation of Service Discovery Pattern Where Each Service Registers Themselves with Eureka Server
+And Client Micro Service Look Up Dependent Micro Service to Get The Job Done.
+
+In Case If We Don't HAve Eureka Server We Need to Hard code the URL to call the Service.
+
+http://localhost:8080/payroll/1  or http://127.0.0.1/payroll/1
+
+This is Possible If We Know the IP and Port Number of Each ad Every Service.
+This Wont Work If The URL is Dynamic.
+If we Want to Scale The Micro Service based on Load That is Not Possible in This Case.
+
+Eureka server/client communication: 
+-----------------------------------
+Every Micro Service Registers with Eureka Server When Boot strapped.
+Generally It Uses the Service Id to Register With Eureka Server.
+After Registering with Eureka Server For Every 30 Seconds It Pings to Eureka Server to Notify that
+Service itself is Available.
+If Eureka Server is not getting any Ping From a Service for a Quite Long Time,Then the Service is Unregistered From Eureka Server
+Automatically and Server Notifies the State of the Registry to all other Services.
+
+What is Eureka server itself :
+------------------------------
+Eureka Server is Nothing But Another Micro Service which Treats itself as Client.
+Eureka Server has to be Highly Available Because Every Micro Service Communicates Needs to Communicate with Other Micro Service
+through Service Registry.
+Here Discovery Server will become a Single Point of Failure.
+To Over Come this We Create Multiple Instances of Eureka Server and Runs Through Load Balancer.
+When There are Multiple Eureka Servers Each Registry needs to Have Synchronized Registry Details So That Every Registry 
+Knows about the Current State of Every Micro Service.
+Eureka Server Communicates its Peer Server as Client and Clone the Updated State of Registry.
+By Default Eureka Server acts itself as Client and  we can Perform this bY Configuring the Property
+
+eureka.client.service url.defaultZone.property=http://localhost:8761/eureka/  (Change When Deployed in Production)
+
+Service Discovery Automates the Process of Multiple Instance Creations on Demand and Provides
+High Availability of our Micro Services.
+
+
+Eureka Server works in Two Modes.
+Stand Alone :
+-------------
+In Local We Configure Stand Alone Mode Where we have Only One Eureka Server i.e LocalHost and Same Cloning property Form Itself.
+Clustered :
+-----------
+We Have Multiple Eureka Server Each Cloning its State From Its Peer.
+Eureka Server can Have Properties File and Communicate With Config Server as Other Micro Service Communicates.
+For This We Need To Define bootstrap.properties
+
+
+
+
+
+ 

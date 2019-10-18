@@ -1,0 +1,4 @@
+spring.data.hbase.zkQuorum=18.217.39.110:2181
+spring.data.hbase.zkBasePath=/hbase
+spring.data.hbase.rootDir=file:///home/hbase-2.0
+

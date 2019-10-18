@@ -1,0 +1,40 @@
+1.Java 8 Download
+-----------------
+
+Set up as Environment Variable
+
+2.sbt download
+--------------
+
+https://www.scala-sbt.org/download.html
+
+3.IntelliJ Idea Community Version
+---------------------------------
+
+4.Play FrameWork:
+-----------------
+Go TO Download Section and Download Play Java Starter Example.
+Delete the SBT Folders in the Downloaded Project.
+Open the Command Prompt from Poject Work Space and Enter sbt Update
+sbt
+complie
+
+5.Import the Play Project to IntelliJ.
+
+
+
+6.In Eclipse Copy the Line from Documentation setting up Workspace
+and run the Commands:
+sbt
+compile
+eclipse
+
+
+
+
+
+
+
+
+
+

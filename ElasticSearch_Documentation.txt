@@ -1,0 +1,94 @@
+Introduction :
+
+Elastic is  a Realtime distributed and open source full text search  and analytics engine.
+It is used in developing single page Applications.
+It is accessible from Restful Webservices  and  uses json object to store data.
+It enables users to explore very large amount of  data at very high speed.
+
+Features :
+
+Elastic search is scalabale upto petabyte of structured and unstructured data.
+Elastic search can be used as a replacement of document stores like MongoDb and Raven DB.
+Elastic search uses denormalization to improove search Performance.
+Elastic search is one of the most popular search engines and is used by wikipidea Stackoverflow and GitHub.
+Elastic Search is open source and licence version is 2.0.
+
+Key Concepts :
+1.Node
+2.Cluster
+3.Index
+4.Type/Mapping
+5.Document
+6.Shard
+7.Replicas
+
+Node :
+Node refers to a single runnning instance of Elastic serach.
+Single physical and virtual server accomodates multiple nodes depending upon the 
+capabilities of Physical Resources like RAM,Storage and Processing power.
+
+Cluster :
+Cluster is a collection of one or more Nodes.
+Cluster provides collective Indexing and search capabilities across all the nodes 
+for the Entire Data.
+
+Index : 
+Index is a collection of different type of documents or document properties.
+Index uses the concept of shard to improove the performance of the system.
+Example: Set of documents contains data of Social Networking Application.
+
+Type/Mapping:
+It is a collection of documents sharing the same set of common fields present in the Index.
+Example :An  Index contains a data of Social Networking Application and there can be a specific 
+type for user profile data ,messaging data and comments data.
+
+Document :
+It is collection of Fields  in a specified Mannaer defined in JSON format.
+Each Document belongs to a Type and resides inside Index.
+Each document is associated with a Unique identifier named as UID.
+
+Shard :
+Index are horizontally Sub divided into Shards.
+Each Shard Contains all the properties of Document but less number of JSON objects tha Index.
+The Horizontal Seperation Makes Shard an Independent Node WHich can Be stored in any Node.
+Primary Shard is the Original Horizinatal Part of an Index and these Primary Shards are converted into 
+Replica Shards.
+
+
+Replica :
+Elastic search Allows user to create Replicas of their Indexes and Shards.
+Replicas Not Only Help in Availaibility Of Data in case of Failure But Also Improoves 
+the Performance of the System by carrying out a paralell search in these 
+
+
+Features:
+
+Elastic Search is developed in java which makes compatible on alomost every platform.
+Elastic Search is Real Time i.e After one second the added document is searchable in this Engine.
+Elastic Search is distributed which makes easy to scale and Integrate in any Big Organization.
+Creating Full backups are easy bu using the concept of GateWay.
+Elastic Search returns JSON object as Response.
+Handling Multi Tenancy is very Easy in Elastic Search.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

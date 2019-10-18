@@ -1,0 +1,601 @@
+1.Introduction                                         [29-SEP-2019]  (Done)
+2.Setting Up AOP									   [29-SEP-2019]  (Done)
+3.Aspect Programming One							   [29-SEP-2019]  (Done)
+4.Aspect Programming Two                               [29-SEP-2019]  (Done)
+5.Point Cuts and Wild Card Expressions				   [29-SEP-2019]  (Done)
+6.Few More Point Cut Expressions					   [29-SEP-2019]  (Done)
+7.Join Points and Advice Arguments					   [02-OCT-2019]  (Done)		   
+8.After Advice Type									   [02-OCT-2019]  (Done)
+9.Around Advice Type								   [02-OCT-2019]  (Done)
+10.Naming Conventions and Custom Advice Annotations	   [02-OCT-2019]  (Done)
+
+11.AOP XML Configuration							   [02-OCT-2019]  ()
+12.Understanding AOP Proxies						   [02-OCT-2019]  ()
+
+
+Scenarios :
+***********
+execution             (Done)
+within				  (Done)
+Before                (Done)
+After				  (Done)
+After Returning
+After Throwing
+Around                (Done)
+Method Name           (Done)
+Class Name            (Done)
+Parameter Names
+Parameter Values      (Done)
+Execution Time
+Point cut
+Apply Only for Public Methods Scenario
+
+
+
+
+Reference Sites :
+*****************
+
+Implementing AOP With Spring Boot and AspectJ
+https://dzone.com/articles/implementing-aop-with-spring-boot-and-aspectj
+
+Spring Boot + Spring AOP Logging Example Tutorial
+https://www.javaguides.net/2019/05/spring-boot-spring-aop-logging-example-tutorial.html
+
+Spring AOP Example Tutorial 
+https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations
+
+Spring Boot + AOP Simple Example
+https://www.javainuse.com/spring/spring-boot-aop
+
+Declaring Pointcut Expressions with Examples
+https://www.dineshonjava.com/pointcuts-and-wildcard-expressions/
+
+Spring AOP pointcut advice example
+https://www.byteslounge.com/tutorials/spring-aop-pointcut-advice-example
+
+Issues in AOP :
+
+https://stackoverflow.com/questions/18469703/log-the-return-value-of-a-method-using-spring-aop
+
+https://subscription.packtpub.com/book/application_development/9781783985807/12/ch12lvl1sec124/measuring-the-execution-time-of-methods-using-an-around-advice
+
+
+
+
+1.Introduction :
+****************
+Aspect Oriented Programming is One of the Feature Provided by Spring.AOP is Not Just a Feature,It is also a Model of Programming.
+AOP is a Programming Paradigm that aims to increase Modularity by allowing the separation of Cross Cutting Concerns.
+It adds the Additional Behavior to the Existing code without Modification of Existing Code.
+
+We Normally write the Code in Functions and Each Function accomplishes a Particular Task.
+A Function Can call another Functions and when the Last Function Finishes its Execution then it will be the End of the Program.
+A Single Program Contains lot of Functions.
+Problem in this Approach is If we Have a Complex Design the we have a whole lot of Functions 
+and there could be a lot of Dependency between Functions.
+We could get a Better Design By Using Object Oriented Programing.
+In Case of Object Oriented Programming We Could not think of Functions and We Would Think of Entities 
+and Each Object Contains the Member Variables and the Methods(Functions).
+We Have Encapsulated Entities and We can Design More Complex Code Because we Have Cleaner Design and Separation of Concepts.
+The Problem Here is In Some cases Not all the Tasks in our Program wants to do.
+For Example If there is Common Feature Across all the Objects like Logging.
+No Matter How Many Objects we have,We need to Write the Common Code in all the Objects.
+Here We are repeating the Code in all the Objects.
+One of the Solution is Separate the Logger Method and Create it inside Another New Object and Include them in all the Objects 
+wherever it is Required.
+Here Object has to be included in all the Objects and there is a Dependency of Logger Objects in all the Objects.
+Here Logger Object is not adding any  Business Value.
+Too Many RelationShip to the Cross Cutting Objects.Here Cross Cutting Objects Means Objects that Concerns Other Objects in 
+the Problem Domain.
+Code is Required in all The Objects and Cannot be Changed at Once in all the Objects.
+These are Significant Because the Whole Concept of Cross Cutting Objects is Common in Software Design.
+Most of the Times we use Different objects and these Might be not a Part of Problem Domain.
+It Could be Infrastructure Related,Security Related Transactions Related etc.
+We Can Use Aspect Oriented Programming to deal with Cross Cutting Objects.
+We Have to Create an Aspect for Logging/Security/Transaction and Place the Common Code in the Aspect.
+Aspect is also a class with Special Feature.
+After Creating an Aspect we do not Reference these Aspects in the Object.
+Here We Define a Aspect Configuration i.e It Tells Which Aspect has to be Applied Which Methods of Which Object. 
+This Configuration has to be Defined in Aspect.
+This is the Difference between the Traditional Object Oriented Programming and Aspect Oriented Programming.
+Spring Helps in Providing the Aspects.
+One of the Example is @Before.
+The Method in the Aspect will get Executed Just Before or After the Original Method Executed.
+Aspect gets the Power By Wrapping around the Target Method.
+We Can Configure an Aspect to the Before Execution and After Execution of Target Method.
+
+Join Point :
+------------
+Join Point is a Point During the Execution of a Program such as Execution of Method.
+In Spring AOP JoinPoint always represents the Method Execution.
+
+PointCut :
+----------
+Pointcut is a Predicate that helps to match the Target Method and Advice to be Applied.
+Pointcut will be executed at a Particular Join Point.
+
+Advice :
+--------
+Advice is an Action Taken by an Aspect at a Particular Join Point.
+Different Types of Advice include Before,Around and After.
+In Spring Advice is Considered as Interceptor.
+
+Cross Cutting Concern :
+***********************
+Spring AOP Provides the way to Dynamically add the Cross Cutting Concerns Before,Around and After the Actual Logic By Using Simple 
+Pluggable Configurations.
+It Makes Easy to Maintain the Code in the Present and Future as Well.
+
+Examples of cross-cutting concerns:
+1.Logging
+2.Security
+3.Transaction management
+4.Auditing,
+5.Caching
+6.Internationalization
+7.Error detection and correction
+8.Memory management
+9.Performance monitoring
+10.Synchronization
+
+Steps to Create an Aspect :
+---------------------------
+Write Aspects(Class)
+Configure Aspects where ever it Can Apply i.e Define Advice(Methods) inside Aspect Class.
+
+4.Aspect Programming Two  :
+***************************
+Requirement is to Display the Log Message whenever getName() Method of Circle Object is called.
+Here We Need To Create an Aspect(Class) and Define the Advice(Method) inside the Aspect.
+
+@Aspect.
+Class Logging Aspect 
+{
+   @Before
+   public void loggingAdvice()
+   {
+    system.out.println("Advice Run GetName() Method Called);
+   }
+}
+
+Here Advice is a Standard AOP Terminology.For this kind of Cross Cutting Concerns,we have Isolated into an Aspect.
+Aspect Can Contain Number of Advices(Methods).
+Advice Methods got Executed When the Particular Method Gets Executed.
+The Way to Convert a Standard Class to an Aspect By Using an Annotation @Aspect.
+loggingAdvice() has to be Executed Before getName() gets Executed By Using @Before Annotation.
+The Parameter to the @Before() is the Execution and Location of the Target Method.
+
+Approach One :
+--------------
+			@Before("execution("public String getName()")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+
+loggingAdvice() has to run before the Execution of the Method public String getName()
+
+Here the Problem is We Have Not Mentioned the Details of Any Class.
+If We Have getName() Method in Any Other Class,Then also It Will be Executed.
+public String getName() will be Executed No Matter In Which Class it is.
+
+5.Point Cuts and Wild Card Expressions :
+****************************************
+Requirement is public String getName() has to be Called When getName() of Circle class is Being Called.
+In Order to Restrict to a Particular Class,We need to pass the Class Name i.e Path of the Method as an Argument to execute().
+
+Approach Two :
+--------------
+			@Before("execution("public String com.chary.bhaumik.aop.service.EmployeeServiceImpl.createEmployee()")")
+			public void loggingAdvice()
+			{
+			   system.out.println("Advice Run GetName() Method Called);
+			}
+	
+If We Want to Apply One Particular Advice to Multiple Point Cut Methods.
+This is the Concept of Cross Cutting Concern i.e One Piece of Code(Advice) that applies to Different Points of Execution in the Code
+and needs to be Isolated.
+If We Want to Apply Different Advise Methods To Be Executed In the Execution of a Particular Point.
+
+Approach Three : Multiple Advise Applied to Single Point Cut (Wild Cards) :
+---------------------------------------------------------------------------
+
+Solution One : Use Separate Advise For Each Method
+
+			@Before("execution("public String com.chary.bhaumik.aop.service.EmployeeServiceImpl.createEmployee()")")
+			public void loggingAdvice()
+			{
+			   system.out.println("Advice Run GetName() Method Called);
+			}
+			
+			@Before("execution("public String com.chary.bhaumik.aop.service.EmployeeServiceImpl.createEmployee()")")
+			public void loggingAdvice()
+			{
+			   system.out.println("Advice Run GetName() Method Called);
+			}
+			
+Solution Two : pass Method Name as an Argument execution()
+			
+			@Before("execution("public String getName()")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+The Problem in Solution One is we are Duplicating the Code.
+The Problem in Solution Two is It Is applicable to all the Methods that have the Same Syntax 
+and We Cannot Restrict them Based on Condition Like Return Type,Method Name Starts With etc.
+
+
+
+Note : Method that Starts with get Then This Advise will be Applied.
+
+			@Before("execution("public String get*()")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+			
+Note : Method that Starts with get and Whose Return Type is Anything Then This Advise will be Applied.
+
+			@Before("execution("public * get*()")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+			
+Note : Method that Starts with get,Whose Return Type is Anything and with Some Argument Then This Advise will be Applied.
+
+			@Before("execution("public * get*(*)")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+			
+Note :Method that Starts with get,Whose Return Type is Anything and Irrespective of Arguments Then This Advise will beApplied.	
+
+			@Before("execution("public * get*(..)")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+	
+Here Arguments can be Zero or Any Number of Arguments.
+We Can also Have Package Name to Have More Control.
+
+			@Before("execution("public * com.chary.bhaumik.Shape.*.get*(..)")")
+		    public void loggingAdvice()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+
+Approach Three : One Advise Applied to Multiple Point Cut :
+-----------------------------------------------------------
+One of The Solution is Define Multiple Advises .
+
+			@Before("execution("public * get*()")")
+		    public void loggingAdviceOne()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+
+			
+			@After("execution("public * get*()")")
+		    public void loggingAdviceTwo()
+		    {
+			  system.out.println("Advice Run GetName() Method Called);
+		    }
+
+Here we Are Repeating the Advice Method For the Same Requirement.
+Possible Solution is PointCut.
+
+PointCut is AOP Terminology For All the Points in the Execution of The Code where we want the Advice Method to Cut In.
+The Point Where the Advice Method Want to Cut In.
+
+Example : execution("public * get*() is a Point Cut For loggingAdviceOne.
+
+Since We Have Same Point Cuts that are Being Used By Two Different Advises Methods,Define a Point Cut Separately and 
+pass The Expression to the Advise.
+
+		@Pointcut(execution("public * get*()"))
+		public void allGetters()
+		{
+
+		}
+			
+Change the Parameter In Advise Methods :	
+
+		@After("allGetters")
+		public void loggingAdviceOne()
+		{
+		  system.out.println("Advice Run GetName() Method Called);
+		}
+
+		@Before("allSetters")
+		public void loggingAdviceTwo()
+		{
+		  system.out.println("Advice Run GetName() Method Called);
+		}
+		
+6.Few More Point Cut Expressions :
+**********************************	
+We Defined a Point Cut and based on these Point Cut all the Advise Methods Will be Executed.
+There are other Ways We Can Define Point Cut based on Complexity and Need of the Requirement.
+execution is one Of Them.
+
+Requirement is to Execute the Advice method For all the Methods of circle Class.
+
+		@Pointcut(execution("* * com.chary.bhaumik.Circle.*(..)"))
+		public void allCircleMethods()
+		{
+		 
+		}
+		
+		@Before("allCircleMethods")
+		public void loggingAdvice()
+		{
+		  system.out.println("Advice Run GetName() Method Called);
+		}
+		
+The Another Way to Define Pointcut For all the Methods in the Circle Class is to use Within.
+
+		@Pointcut(execution("within(com.chary.bhaumik.Circle)"))
+		public void allCircleMethods()
+		{
+		 
+		}
+		
+		@Before("allCircleMethods")
+		public void loggingAdvice()
+		{
+		  system.out.println("Advice Run GetName() Method Called);
+		}
+
+Point Cut To Be Applied to all the Methods in The Circle Whose Name Starts with get.
+		
+		@Pointcut(execution("within(com.chary.bhaumik.Circle.*.*get*)"))
+		public void allCircleMethods()
+		{
+		 
+		}
+
+Note :
+------
+Within takes the Parameter as Class where as Execution takes the Parameter as Method.
+
+Pointcut(args) :
+----------------
+args Stands For the Arguments that the Advise Should Have For the Pointcut Execute.
+The Better Way to Define Point Cuts is To Combine them in a Single Advise.
+
+7.Join Points and Advice Arguments	 : 
+**************************************
+
+Consider the Example 
+
+
+		@Before("allCircleMethods")
+		public void loggingAdvice()
+		{
+		  system.out.println("Advice Run GetName() Method Called);
+		}
+		
+		@Pointcut(execution("within(com.chary.bhaumik.Circle.*.*get*)"))
+		public void allCircleMethods()
+		{
+		 
+		}
+		
+Here the Advice Method Will be Executed For all the Methods in the Circle and Display the Same Message For Both Setters and Getters.
+Here We Need to Modify the Message in the Advice() Based on Method Execution. 
+If Getter is Executed the Display the Getter Message.
+Similar is the CAse With Setter.
+This Can be Done By Using JonPoint.
+JoinPoint has the Information about the ACtual Method Call that Triggers when the Advice is Called.
+
+		@Before("allCircleMethods")
+		public void loggingAdvice(JoinPoint joinPoint)
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+
+JoinPoint needs all the Place in our Code where we apply Advice and here it is Methods.
+As Per Spring we can Apply Only to Methods.
+And Using AspectJ we can apply Advice to Members also.
+
+Consider the Situation Where we can have advice for String Arguments i.e
+
+		@Before("args(String)")
+		public void stringArgumentAdvice()
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+
+If I Want to know the Actual argument Passed here.The We need to pass the Name as argument in the Advice Method.
+
+		@Before("args(String)")
+		public void stringArgumentAdvice(String name)
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+
+8.After Advice Type	 :
+**********************		
+
+We have a Circle Object with getName().
+We also have an advice method to execute before execution of getName().
+
+		@Before("args(String)")
+		public void stringArgumentAdvice()
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+		
+Consider the situation where Advice Method needs to be executed after the Execution of getName()
+For this purpose we use @After Advice.
+
+		@After("args(String)")
+		public void stringArgumentAdvice()
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+		
+Here @After Advice Method will be executed always irrespective of the Target Method is Successfully executed or Not,
+Target Method is thrown an Exception or Not.
+
+If we want an Advice Method to run only when the Target Method is Executed Successfully the we use @AfterReturning.
+
+		@AfterReturning("args(String)")
+		public void stringArgumentAdvice()
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+
+If the Target Method is Executed Successfully,Then only the Advice Method is called.
+
+
+If we want an Advice Method to be Executed when the Target Method has thrown an Exception,then we use @AfterThrowing Advice
+
+		@AfterThrowing("args(String)")
+		public void exceptionAdvice()
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+		
+If we want to Capture the Target Object while Calling the @AfterReturning Advice,then Change the argument in the @AfterReturning
+
+		@AfterReturning(pointcut="args(String)",returning="returnString")
+		public void returnAdvice(String name,String returning)
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+
+If we want to work with Any Return Type Then Make it as Object.
+
+Similarly If we want to capture the Exception Object while Executing the Advice ,We pass the throwing Parameter in Advice.
+
+		@AfterThrowing(pointcut="args(String)",throwing="exception")
+		public void returnAdvice(String name,RuntimeException exception)
+		{
+		  system.out.println(joinPoint.toString();
+		  system.out.println(joinPoint.getTarget());
+		}
+		
+9.Around Advice Type  :
+***********************
+We have an Advice eType Before an Execution of Target Method,After an Execution of Target Method.
+For After Case we have Mote Control Like After Target Method is Successful,Target Method Throw an Exception etc.
+
+There is one other Advice named @Around.
+
+If we want the Target method to be executed Before the Target Method Execution and After the Target Method Execution we Use @Around.
+		
+		@Around("allGetters")
+		public void aroundAdvice(ProceedingJoinPoint preceedingJoinPoint)
+		{
+		//Before 
+		 preceedingJoinPoint.proceed()
+		 //After 
+		}
+		
+@Around Advice Method has to take an argument Mandatory i.e PreceedingJoinPoint preceedingJoinPoint
+We Could have More arguments based on requirement.
+
+
+In Our Advice Code,If the Target Method has to be Executed we use preceedingJoinPoint.proceed()
+Similarly We can also skip the Target Method Execution based on Conditions.This is One of the Powerful Feature using @Around.
+
+
+10.Naming Conventions and Custom Advice Annotations	 :
+******************************************************
+There should be separate Aspect Package For Aspects.
+If we are Applying Login Advice,Method Name should End with Advice i.e  loggingAdvice()
+
+11.AOP XML Configuration :
+**************************
+
+
+
+
+13.Understanding AOP Proxies :
+******************************
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+		
+
+
+
+
+
+
+		
+
+
+
+	
+
+
+
+			
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

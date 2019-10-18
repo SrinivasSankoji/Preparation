@@ -1,0 +1,196 @@
+GIT is a Distributed Version Control System Tool and was developed by Linus Torvards.
+
+VCS(Version Control System) is a software that helps software developers to work together and maintain
+complete history of their work.
+
+Allows to work together.
+Does not allow overwriting each others code.
+Maintains History of Each Version.
+
+Types of VCS are
+Centralized Version Control System(SVN)
+Distributed Version Control System (GIT)
+
+Distributed Version Control System :
+
+Centralized Version Control System uses a Central Server to Store all files and enables Team Collabaration.
+But the Main Drawback is it is a Single Point of Failure i.e if the Central Server Fails No One can Collabarate and 
+even in the Worst Case if the Proper backup is not taken we will lose the entire History of the Project.
+
+Advantages of GIT :
+-------------------
+1.Free and Open Source.
+2.Fast and Small.
+3.Implicit Backing.
+4.Security.
+5.No Need of Powerful Hardware.
+6.Easier Branching.
+
+
+1.Free and Open Source.
+
+2.Fast and Small :
+Most of the Operations are Performed Locally ,It gives a huge benefit interms of Speed and
+it does not rely on Central Server.
+There is no Need to intercat with Central Server Every Time.
+Though GIT Mirrors Entire Repository , The Size of the Data in the Local System(Client Side) is Small.
+
+3.Implicit Backup :
+The Chances of Loosing data are very Rare because of Multiple Copies of data is present in Local System.
+Data Present in Client Side Mirrors the Repository.
+
+4.Security :
+GIT Uses a Common Cryptographic Hash Function Called Secure Hash Function(SHA1) to name and Identify Objects
+within Database.
+It Implies It is Impossible to Change File data and Commit Message and Any other Database withou Knowing GIT.
+
+5.No Need of Powerful Hardware :
+In Case of Centralized Version Control System, The Central Server needs to be Powerful enough to Serve Requets.
+In Distributed Version Control System , Developers dont interact with Server untill and Unless they need to pull
+or Push Changes.
+Most of the Operations are performed on Client Side.
+
+6.Easier Branching :
+Centralized Version Control System Uses a Copy Mechanism for Branching.
+If we Create a New Branch ,it Copies all the Data into the Newly Created Branch and it is time Consuming.
+Deletion and Merging of Branches in CVCS is complex and time Consuming.
+But Branch Management with GIT is very Simple and it takes only few Seconds to Create,delete and Merge Branches.
+
+Distributed Version Control System (DVCS) Terminologies :
+---------------------------------------------------------
+1.Local Repository 
+2.Working Directory and Staging Area or Index
+3.Blobs
+4.Trees
+5.Commits
+6.Branches
+7.Tags
+8.Clone
+9.Pull
+10.Push
+11.Head
+12.Revision
+13.URL
+
+1.Local Repository :
+
+Every VCS Provides a private workspace as a Local Copy.Developers Make Changes in their Private WorkSpace
+and after Commit these cahnges become a part of Repository.
+GIT Gives a Private Copy as a Whole Repository and user can add,remove,rename,move file and commit chnages and many
+More.
+
+2.Working Directory and Staging Area or Index :
+
+Working Directory is the Place Where all the Files are Checked Out.
+In Other CVCS developers generally Make Modifications and commmit their Changes Directly to the repository.
+But in GIT ,Whenever we Commit an Operation GIT Looks for the File Present in Staging Area and Only Files 
+Present in the Staging area are Considered for Commit and not all the Modified Files.
+
+Lets See The Basic Workflow of GIT :
+
+  A.Modify a File From Working Directory.
+  B.Add these files to the Staging Area i.e After Performing ADD and Commit Operation.
+  C.After Push Operation GIT Stores the Changes Permanently to the GIT Repository.
+  
+3.Blobs :
+BLOB Stands For Binary Large Object.
+Each Version of a File is Represented as a BLOB in GIT .
+BLOB Contains the File Data but it doesnot contain the MetaDeta about the File.
+BLOB is a Binary File in GIT DataBase.
+In GIT Files are not Addressed By Names and are Content Addressed.
+
+4.Trees :
+Tree is an Object which represents a Directory.
+It holds blobs as well as other SubDirectories.
+A Tree is a Binary File That Stores References to BLOBS.
+
+5.Commits:
+Commit Holds the Current State of The Repository and consider the commited Object as a Node of the Linked List.
+Every Commit Object has a Pointer to the Parent Commit Object.
+
+6.Branches :
+Branches are Used to Create a New Line of Developement and By Default GIT has a Master Branch
+and which is same as Trunk in SubVersion.
+Usually A Branch is Created to work on a New Feature and once the Feature is Completed It is merged
+Back with Master Branch and it is Deleted.
+Every Branch is Referenced By HEAD which points to the Latest Commit.
+When we make a Commit Head is Updated with the Latest Commit.
+
+7.Tags :
+Tag assigns a Meaningful Name with a Specific Version in the Repository.
+Tags are Simmilar to Branches But the Difference is that tags are Immutable.
+Once Tag is Created for a Particular Commit We cannot Modify Them
+Usually We Create Tag for Product Releases.
+
+8.Clone :
+Clone Operation Creates the Instance of the Repository.
+Clone Operation not only checks out the Working Directory But It also
+Mirrors the Complete Repository.
+User Can Perform Any Operation With this Repository.
+
+9.Pull:
+Pull Operation Copies the Changes from Remote Repository Instance
+to the Local Repository Instance.
+Pull Operation is used for Synchronization Between Two Repository Instances.
+It is Similar to Update Operation in SubVersion.
+
+10.Push :
+Push Operation Copies all Changes from Local Repository Instance to Remote Repository Instance.
+This is used to Store the Changes Permanently in the GIT Repository.
+This is same as Commit Operation in SubVersion.
+
+11.HEAD :
+Head is a Pointer which always point to the Latest Commit in the Branch.
+Whenever we Make a Commit ,Head is updated with the Latest Commit.
+
+Heads are stored in .git/refs/heads
+
+12.Revision :
+Revision Represents the Version of the Source Code and Revision in GIT are Represented by Commits.
+
+13.URL:
+
+URL Represnts the Location of the GIT Repository.
+
+GIT LifeCycle  :
+----------------
+General LifeCycle of GIT :
+
+1.Clone the GIT repository as Working Copy.
+2.Modify the Working Copy by adding and Editing the Files.
+3.If Possible we can modify the Working Copy By Taking Some Other Developers Code.
+Then Review the Code.
+4.Commit the Code and Everything is Fine Push the Code to GIT Repository.
+5.After Pushing the Code to GIT ,If Somethinng Goes Wrong then Correct the latest
+Commit and Push the Changes.
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

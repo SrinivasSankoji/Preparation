@@ -1,0 +1,163 @@
+1.For Each Method in Iterable Interface
+2.Default and Static Method in Interfaces(Interface Changes)
+3.Functional Interfaces and Lambda Expressions
+4.Java Stream API For Bulk Data Operations on Collections
+5.Java Time API
+6.Collection API Improvements
+7.Concurrency API Improvements
+8.Java IO Improvements
+9.Miscellaneous Core API Improvements
+10.Method References
+
+Java 8 Implementation :
+----------------------
+Stream
+ParalellStream
+Time API
+Optional Class
+CopyonWriteArrayList
+Sort in Java 8
+
+
+
+
+1. Default and Static Methods in Interface :
+********************************************
+
+   Before Java8 Interface can have only public and Abstract Methods.
+   It was not Possible to add new Functionality to the Existing Interface
+   without Forcing all the Implementation classes to implement the Interface.
+   It is also not Possible to create Interface with Implementation.
+   
+   
+   From Java 8 We have Interfaces with Default and Static Methods.
+   
+   
+   Static Method :
+   ---------------
+   
+   interface Scanner
+   {
+      static void print()
+	  {
+		System.out.println("This is Interface Scanner");
+	  }
+	  
+   }
+   
+   This Method is available only inside interface and can be overridden by Its Implementation Classes.
+   
+   Default Method :
+   ----------------
+   
+   interface Printer
+   {
+	default void print()
+	{
+		System.out.println("This is Interface Printer");
+	}
+   }
+   
+   Default Methods are declared in the Interfaces using default keyword and can be overridde and Accessible by the 
+   instances of the implementation classes.
+   
+2.Functional Interface and Lambda Expressions :
+***********************************************
+   
+   Functional Interfaces are new Concept Introduced in Java8.
+   An Interface with only one abstract Method and can have any number of default and static Methods
+   is called Functional Interface.
+   @FunctionalInterface is used to mark an interface as Functional Interface so that accidentally 
+   we cannot declare more than one abstract Methods.
+   
+   One of the Major benefits of Functional Interface is that it provides the Possibility to Use
+   Lambda Expressions to instantiate them.
+   
+   We can Instantiate an Interface with Anonymous Class but the code looks Bulky.
+   
+   Thread :
+   --------
+   Runnable runnable=new Runnable()
+							  {
+								@override
+								public void run()
+								{
+								System.out.println("My Runnable")
+								}
+							  };
+	
+	Since Functional Interfaces has only one method Implementation,Lambda Expression
+	can Easily Provide the Method Implementation.
+	
+	Thread :
+	--------
+	Runnable runnable=() -> {
+							System.out.println("My Runnable");
+							}
+	
+    If we have a single Statement in the Method Implementation the no need  of Curly Braces.
+	
+	Interface i1=(s)->System.out.println(s);
+	i1.void("Hello");
+	
+	Finally Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces Easily.
+	To use Lambda Expressions in java, we need to create our own functional interfaces or use the predefinded
+	Functional Interfaces provided by java.
+	Mark the Predefined Functional Interface bu using @FunctionalInterface Annotation.
+	@FunctionalInterface is introduced in Java 8.
+	
+	@FunctionalInterface
+	interface MyFunctioanlInterface
+	{
+		public int addMethod(int a,int b);
+	}
+	
+	MyFunctioanlInterface myFunctioanlInterface=(a,b)->a+b;
+	System.out.println("Result :"+myFunctioanlInterface.addMethod(12, 100));
+	
+3.Stream API for Bulk Data Operations on Collections :
+******************************************************
+Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations
+with Collection.
+Stream API allows Sequential as well as Parallel Execution.
+Collection Interface has been extended with stream() and paralellStream() default methods to get
+the stream for Sequential and Parallel Execution.
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+	
+	
+	
+	
+	
+
+   
+   
+   
+
+
+   
+   

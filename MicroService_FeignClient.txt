@@ -1,0 +1,44 @@
+
+References :
+************
+
+Spring Cloud- REST call using Netflix Feign Client
+https://www.javainuse.com/spring/spring-cloud-netflix-feign-tutorial
+
+Spring Cloud Feign Example :
+https://www.devglan.com/spring-cloud/spring-cloud-feign-example
+
+Rest API testing with Spring Cloud Feign Clients
+https://www.blazemeter.com/blog/Rest-API-testing-with-Spring-Cloud-Feign-Clients/
+
+Making REST Communication Easy with Feign Clients
+https://www.javacodegeeks.com/2018/10/making-rest-communication-easy-with-feign-clients.html
+
+Spring Feign Client HTTP Request Example
+http://www.appsdeveloperblog.com/spring-feign-client-http-request-example/
+
+Feign as a REST client 
+http://javaonfly.blogspot.com/2017/07/microservices-communication-feign-as.html (Step 1)
+
+What is Feign :
+***************
+Feign is a Declarative Web Service Client That Makes of Writing Web Service Clients Easier.
+We Use The Different Annotations Provided by Spring Framework Such as @RequestMapping,@PathVariable
+in Java Interface to define the abstract implementation of our actual API.
+Feign Internally process these Annotations into a Templatized Request to the Actual Web Service.
+Spring Cloud Provides out of Box Integration with Ribbon and Eureka While Using Feign.
+
+By Using Feign Client We Can Make a Request to a Micro Service that has registered with Discovery Server or
+Make a Request to an External Web Service.
+
+
+
+
+
+
+
+
+
+
+
+

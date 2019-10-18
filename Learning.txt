@@ -1,0 +1,985 @@
+
+
+				YEE MANISHIKI EE MAJILI OO... PAI VAADU CHUPISTAADU....NUVVU KORUKUNTE MAATRAM ...DORIKEDHE KAADU ANTAADU.....
+								
+bhaumik@23
+nandini@27	
+
+BlockChain :
+************
+https://hackernoon.com/		
+
+Writing Queries in YAML File in Micro Services  
+Testing Micro Services  
+Component Scan  
+													
+Screen Shot :
+*************
+Spring Boot
+Hibernate/Spring Data JPA
+Web Services (JAX_RPC,JAX_WS,JAXB,REST,SOAP,WSDL)
+Rabbit MQ
+DevOps (Maven,Git,SVN,Docker/Kubernetes)
+Java Script Framework (Java Script,Angular JS)
+SQL/PLSQL
+Apache Camel
+HTML
+CSS
+Unit Testing(J Unit)
+Web Socket Programming
+Linux (Basic Commands,Shell Scripting)
+No SQL (MongoDB,Cassandra,Elastic Search,Redis)
+Queuing Engines or Quartz
+Intellij
+Micro Services (NetFlix Zuul,Eureka,Hystrix)
+Event Driven Architecture
+Design Driven Development
+RxJava,Vertex
+
+***************************************  Developer    *****************************************
+
+D:\Documents\Java_Topics.txt
+D:\Documents\Java8_Features.txt
+
+Block Chain Technology : JavaScript
+						 C ++ or Go Language
+						 Solidity(For Smart Contract Development)
+						 The Block Chain 
+						 Crypt o Economics
+						 Satoshi Nakamoto’s whitepaper of Bitcoin
+						 Go Language
+						 
+						 
+Java :                             Design Patterns :				Spring :
+******  						   *****************				********
+Jdbc   								Observable        				Spring Boot 1 & 2	                       
+Servlet								Iterate							Spring Security
+JSP									Circuit Breaker					Spring Integration
+Struts1								Bulk Head						Spring Batch
+Struts2								Adapter Design Pattern			Spring Cloud	
+JSF																	Spring Factories
+J son																Spring Web Flux
+Data Structure & Algorithms											Spring AOP
+Java JDK Tools : Java papers.com									Spring Data JPA
+Apache CXF
+Apigee
+Jersey
+WADL
+SOAP
+RxJava
+Vertex
+						
+ORM Framework :					  Database :						Front End Technologies :
+***************					  **********						************************
+Hibernate						  Oracle							Java Script
+Open JPA						  DB2								AJAX
+								  PL/SQL							JQuery
+																	BootStrap
+																	Angular Basics
+																	Forms
+																	Material
+																	React Hooks
+			
+Spring Boot :														Dev Ops:
+*************														********
+Profiles in Spring Boot												Git,SVN
+Live Reload in Spring Boot											GitHub & BitBucket
+Reactive and Non Reactive Web application							Jenkins						
+Spring Web Flux to Support Reactive Web application					Bosh				
+Spring Boot Actuator Web API Documentation							Chef
+CompletableFuture with Spring Data JPA								Puppet
+Spring Boot – Introduction											Concourse																		
+Spring Boot – Starter parent										Hudson
+Spring Boot – Starter templates										Bamboo			
+Spring Boot – Multi-module project									TeamCity
+Spring Boot – Annotations											AWS
+Spring Boot – Auto configuration									Docker
+Spring Boot – Logging												Vagrant
+Spring Boot – DevTools												New Relic
+Spring Boot – WAR Packaging	
+Spring Boot – Hibernate
+Spring Boot – REST API
+Spring Boot – ResponseBodyEmitter
+Spring Boot – SseEmitter
+Spring Boot – POST with Headers										Streaming :
+Spring Boot – Error Handling										***********
+Spring Boot – HATEOAS												JMS
+Spring Boot – @Async      [08-AUG-2019]  (Done)   					Kafka
+Spring Boot – Async Controller										RabitMQ
+Spring Boot – Caching
+Spring Boot – Retry
+Spring Boot – JUnit
+Spring Boot – BasicAuth												No SQL :
+Spring Boot – MockMVC												********
+Spring Boot – Mockito												Elastic Search
+Spring Boot – H2 Database											Mongo DB
+Spring Boot – Ehcache 3.x											Cassandra
+Spring Boot – Performance Logs										Dynamo DB
+Spring Boot – Test Async Controller									Redis Server
+Spring Boot – TestRestTemplate										HBase
+Spring Boot – RestTemplate GET
+Spring Boot – RestTemplate POST
+Spring Boot – RestTemplate timeout
+Spring Boot – RestTemplate BasicAuth
+			
+Cloud :
+*******
+AWS
+Azure
+PCF
+GCE(Google Container Engine)
+Cloud Native Apps Using PCF
+Spring Cloud Data Flow
+Pivotal Cloud Foundry Developer
+Spring XD
+AWS Lambda
+
+Private Cloud Platform:
+***********************
+Open Shift
+Kubernetes
+Docker
+
+Logging
+*******
+LogBack
+Flogger : LimeGuru
+
+Reactive Streams
+PrtoBuff
+Netty Server
+
+Emerging Technologies :
+***********************
+Deeplearning4j
+Splunk
+JHipster
+
+OpenAPI Specification 3.0
+
+
+----------------------- Tools and Technologies ---------------------------
+
+Devops
+Custom request in Swagger Implementation
+Jenkins(Build Tool)
+GIT(Repository) Git Pod
+LDAP Authentication
+Linux Commands
+Retrace (Code Analysis/Coverage, Profiling, Logging, and App Performance Tools)
+OverOps
+JRat (Java Runtime Analysis Toolkit)
+FindBugs Alternatives (PMD Eclipse Tutorial,Eclipse Check Style Tutorial,Eclipse Sonar Tutorial)
+Check Style
+Cobertura
+Plumber – Memory Leak Detection
+Java doc(Commercial)
+VisualVM	
+EHCache
+Spark
+JS-Beautify
+JMS
+Hadoop
+Single Page Application (SPA) project.
+LogBack Implementation
+WebSocket(Two Way Communication)
+DataGrip(SQL Tool)
+Spring Cloud
+Spring Foundry
+Bit Bucket
+uDeploy
+
+---------------- MicroServices Architecture Related Technologies ------------------------------
+
+Spring Boot Eureka(Service Discovery Server)
+Netflix Zuul API Gateway.
+Spring Cloud Zuul Proxy as API Gateway
+Netflix
+Docker
+LoadBalancer
+Topic : API Gateway Advantages:Authentication, monitoring, load balancing, Caching, 
+Request shaping and management and static Response handling
+
+----------------------- Preparation ---------------------------
+OOPS
+Exception Handling
+MultiThreading
+Lang Package
+Interfaces and Modifiers
+Collections
+Serialization and Externalization
+Generics
+Inner Classes
+Garbage Collector
+Enumeration
+Files
+Java 8 Features
+Servlet
+JSP
+Spring IOC
+Spring MVC
+MicroServices Architecture
+Spring RestRestful Web services
+Hibernate
+Struts2
+HBase
+SQl
+PL/SQL
+HashMap Internal Implementation
+ArrayList Internal Implementation
+Java Basics : Java papers.com
+
+---------------------------  On line Preparation Topics  ----------------------------------------
+
+Java Basics : Java papers.com
+Internal vs. External Iteration
+Stream 
+Boxed Stream
+Lambda Expression
+Functional Interface
+Method References
+Java Class path
+System.out.println
+Java Array
+Java Primitive
+Java Variable
+Java Pass By Value and Pass By Reference
+Access Modifiers In Java
+Java Static
+Java Static Import
+Java Final Keyword
+Java Abstract Class and Methods
+Java Cast and Conversions
+Java Numeric Promotion
+Java This
+Java Weak Reference
+Java Clone, Shallow Copy and Deep Copy
+Java Marker Interface
+Java null and NullPointerException
+Java Annotations
+Java Variable Arguments
+Java Integer Cache
+Java Double Brace Initialization
+Java JSON Conversion Tutorial
+Java Method Reference ::
+
+============== Elastic Search ============================
+
+Query DSL(Conditions)
+Query DSL in SQL Format
+Query DSL in String Format
+Spring Data with Elastic Search
+
+Request Body Search Queries :
+Query
+From/Size
+Sort
+Source Filtering
+Fields
+Script Fields
+Doc Value Fields
+Post Filter
+Highlighting
+Re scoring
+Search Type
+Scroll
+Preference
+Explain
+Version
+Index_Boot
+min_Score
+Named Queries
+Inner Hits
+Filed Collapsing
+Search After
+
+------------------ Scala Preparation ------------------
+Traits
+Implicit Function(Practice)
+Implicit Import
+Companion Object
+Companion Class as Factory Class
+Type Aliasing vs Case Class(Confusing)
+Streams in Immutable Collections
+Implicit Function(High Usage)
+Implicit Class(High Usage)
+Package Objects
+
+
+Functions in Scala:
+------------------
+Map Function
+Partition Function
+mkString
+reduce
+
+
+-------------------- Java 8 Features ----------------------------------
+
+Default and Static Method in Interfaces
+Functional Interfaces
+For Each Method in Iterable Interface
+Java Stream API 
+Java Time API
+Collection API Improvements
+Concurrency API Improvements
+Java IO Improvements
+Optional Class
+Lambda Expression
+Stream Filter
+Collectors Class 
+StringJoiner
+Arrays Parallel Sort
+Type Annotations
+Repeating Annotations
+Completable Future
+PipeLines and Streams
+Nashron Java script Engine
+Concurrent Accumulators
+PermGen Space Removed
+TLS SNI
+--------------------------------------  Angular Preparation (December) ----------------------------------
+
+Introduction and Evolution
+Evolution of Angular
+Differences between AngularJS and Angular
+Angular Features 
+Building Blocks of Angular
+Modules
+Components
+Templates
+Meta data
+Property Binding
+Data Binding  
+Directives
+Services
+Dependency Injection
+Installing Angular4
+
+Defining Style Sheets
+Class Binding
+Style Binding
+Animation
+Deploying Our Own App
+
+----------------------------------------December 2018 ------------------------------------------------------
+
+Architecture
+Git and GitHub
+Rest Template Scenarios :
+
+1.getForObject(J son)(Done)
+2.getForObject(XML)
+3.exchange (Done)
+4.headForHeaders
+5.getForEntity()
+6.delete()
+7.put()
+8.postForObject
+9.postForLocation
+10.postForEntity
+
+
+Elastic Search Scenarios :
+Spring Boot + Spring Data + Elastic Search 
+SearchQueryBuilder 
+Redis Server Scenarios(Hash,List.Set,String)
+
+----------------------------------------- JANUARY 2019 ----------------------------------------------
+
+Scala UDF's 
+Scala Basics and Spark SQL
+Play Framework
+Kafka
+Create Restful Service Using Scala
+Spring Cloud
+Leaflet/Eris/GIS Framework
+Talend
+Ab Inito
+https://www.youtube.com/channel/UCB12jjYsYv-eipCvBDcMbXw/search?query=kafka+
+Spark Submit
+
+----------------------------------------- APRIL 2019 ----------------------------------------------
+
+SPARK :
+*******
+
+DataFrame SQL Query  Revision
+Spark SQL Revision
+DataFrame Statistics Revision
+DataFrame Operations Revision
+Spark Functions
+Fundamentals Revision
+Functions Revision
+Classes Revision
+
+Spring Cloud :
+**************
+Deploying MicroService in Spring Cloud
+
+
+ANGULAR FUNDEMENTALS :
+**********************
+
+Evolution Of Angular [01-APRIL-2019]  (Done)
+Difference  Between Angular and Angular JS   [01-APRIL-2019] (Done)
+Modules  [04-APRIL-2019] (Done)
+Components    [05-APRIL-2019] (Done)
+Interpolation  [08-APRIL-2019]  (Done)
+Property,Class,Style and Event Binding [23-APRIL-2019]  (Done)
+Templates Reference Variables          [23-APRIL-2019]  (Done)
+Two Way Binding  [23-APRIL-2019]  (Done)
+ngIf ,NgFor,ngSwitch Directive  [23-APRIL-2019]  (Done)
+Component Interaction  [26-APRIL-2019]  (Done)
+Pipes                  [26-APRIL-2019]  (Done)
+Services               [27-APRIL-2019]  (Done)
+Dependency Injection   [27-APRIL-2019]  (Done)
+HTTP and Observables   [28-APRIL-2019]  (Done)
+Fetch Data Using HTTP  [28-APRIL-2019]  (Done)
+HTTP Error Handling    [29-APRIL-2019]  (Done)
+Routing and Navigation [02-MAY-2019]    (Done)
+Wild Card Route and Redirecting Routes [02-MAY-2019]  (Done)
+Route Parameters  [03-MAY-2019]   (Done)
+Para map Observable [04-MAY-2019]   (Done)
+Optional Route Parameters [13-MAY-2019]   (Done)
+Relative Navigation [13-MAY-2019]   (Done)
+Child Routes [14-MAY-2019]   (Done)
+Angular 6 Features 
+Updating to New Angular Version
+
+JAVA 8:
+*******
+
+Java 8 Collectors
+Completable Future in Java
+ThreadPoolExecutor in Java
+Load Balancer in Java
+Java Anonymous Class Example (Java 8)
+Enum in Switch 
+
+Java 8 String Joiner :
+----------------------
+Joining strings by specifying delimiter  [23-APRIL-2019]  (Done)
+Adding prefix and suffix to the output String [23-APRIL-2019]  (Done)
+Merging two StringJoiner objects [23-APRIL-2019]  (Done)
+setEmptyValue(), length() and toString() [23-APRIL-2019]  (Done)
+
+Java 8 Method Reference :
+-------------------------
+instance method of an object
+static method of a class
+instance method of an arbitrary object of a particular type
+to a constructor
+
+
+Java 8 Streams :
+----------------
+Stream Creation      		   [18-APRIL-2019]  (Done)
+Stream Operations :  forEach   [19-APRIL-2019]  (Done)
+					 Map       [19-APRIL-2019]  (Done)
+					 Collect   [19-APRIL-2019]  (Done)
+					 Filter    [19-APRIL-2019]  (Done)
+					 findFirst [19-APRIL-2019]  (Done)
+					 toArray   [19-APRIL-2019]  (Done)
+					 flatMap   [19-APRIL-2019]  (Done)
+					 peek      [19-APRIL-2019]  (Done)
+					 
+Method Types and Pipelines
+Lazy Evaluation
+Comparison Based Stream Operations : sorted     [19-APRIL-2019]  (Done)
+									 min 
+									 max				
+									 distinct
+									 allMatch, [19-APRIL-2019]  (Done)
+									 anyMatch, [19-APRIL-2019]  (Done)
+									 noneMatch [19-APRIL-2019]  (Done)
+Stream Specializations 
+Reduction Operations
+Advanced collect : joining      	  [03-MAY-2019]  (Done)
+				   toSet  			  [03-MAY-2019]  (Done)
+				   toCollection  	  [03-MAY-2019]  (Done)
+				   summarizingDouble  [03-MAY-2019]  (Done)
+				   partitioningBy     [03-MAY-2019]  (Done)
+				   groupingBy         [03-MAY-2019]  (Done)
+				   mapping   		  [03-MAY-2019]  (Done)
+				   reducing  		  [03-MAY-2019]  (Done)
+Parallel Streams
+Infinite Streams :  generate
+					iterate
+File Operations : File Write Operation
+				  File Read Operation
+
+MultiThreading :
+****************
+
+Concurrency Basics  [03-APRIL-2019]  (Done)
+Thread and Runnable [03-APRIL-2019]  (Done)
+Executor Service 
+Thread Pool
+Callable In Java
+Feature In JAVA
+Thread Synchronization
+Locks and Atomic Variables
+
+Completable Future in Java
+ThreadPoolExecutor in Java
+concurrent API offered by Java
+
+Java Concepts :
+****************
+Interceptors in Java
+Filters in Java
+
+Spring JDBC Concepts :
+**********************
+
+Restful Web services Stateful or Stateless :
+*******************************************
+
+Coding Exercise :
+------------------
+Streams to calculate Total in the Grid (Done)
+
+-----------------------------------------   MAY 2019 (Angular,Forms,Java 8) --------------------------------------------------
+
+Tools :
+*******
+
+GitHub  Command Prompt and Eclipse
+Jenkins 
+JWT Token 
+AWS
+Docker Implementation
+Deploying Micro Service in Cloud  Example
+J son Tutorial
+Web Socket Implementation
+Git Pod for GIT
+
+ANGULAR BAISCS :
+****************
+Introduction
+Getting Started
+Hello World Application
+Flow of Execution
+File Structure
+Flow of Execution
+Component
+Creating a New Component
+Template
+Property Binding
+Class Binding
+Style Binding 
+Event Binding
+Template Reference Variables
+Two Way Data Binding
+Dependency Injection
+Using Service
+Http and Observable
+Http Error Handling
+
+ANGULAR FORMS :
+***************
+
+Java 8 :
+********
+Collectors :
+	Grouping  [03-MAY-2019]  (Done)
+	joining   [03-MAY-2019]  (Done)
+	averagingInt [03-MAY-2019]  (Done)
+	summarizingInt [03-MAY-2019]  (Done)
+	joining [03-MAY-2019]  (Done)
+	toMap
+    iterate [03-MAY-2019]  (Done)
+	partitioningBy
+	FlatMap [13-MAY-2019]  (Done)
+	Reduce  [03-MAY-2019]  (Done)
+	Filter Null Values in Stream [03-MAY-2019]  (Done)
+	If Else Logic in Streams     [03-MAY-2019]  (Done)
+	
+	
+
+Java 8 Util Functions :
+******************
+Java Predicate   [13-MAY-2019]  (Reading Done) 
+
+Java Supplier  :Instantiate Supplier using Lambda Expression  [14-MAY-2019]  (Done)
+				Instantiate Supplier using Method Reference   [14-MAY-2019]  (Done)
+				Instantiate Supplier using Default Constructor  [14-MAY-2019]  (Done)
+				Custom Supplier Functional Interface  [14-MAY-2019]  (Done)
+				BooleanSupplier, IntSupplier, LongSupplier, DoubleSupplier
+				Java Supplier vs Consumer  [14-MAY-2019]  (Done)
+				
+Java Custom Functional Interface :  @FunctionalInterface
+									Create Functional Interface
+									Instantiate Functional Interface using Lambda Expression
+									Instantiate Functional Interface using Method Reference
+									Instantiate Functional Interface using Constructor Reference
+									Functional Interface with Default Methods
+									Functional Interface with Generic and Default Methods
+									Functional Interface Inheritance
+
+Java 8 Function Examples :
+Java 8 BooleanSupplier, IntSupplier, LongSupplier and DoubleSupplier Example
+Java 8 UnaryOperator and BinaryOperator Example
+Java 8 BiConsumer, BiFunction and BiPredicate Example
+Java 8 Consumer Interface and forEach Loop
+Function.apply in Java 8
+
+Stackify.com  Java 8 Streams :
+******************************
+
+Comparator :
+************
+Define Comparator Using Lambda Expression [28-MAY-2019]  (Done)
+Comparator with Stream Sorted [28-MAY-2019]  (Done)
+Comparator with Collections.sort [28-MAY-2019]  (Done)
+
+----------------------------------------- JUNE(Angular => Git => Jenkins => On line Preparation) -------------------------------------------------- 
+
+Angular Forms :
+***************
+Template Driven Forms
+Validations
+Form Submission
+Reactive Forms
+
+GIT :
+*****
+
+
+Jenkins :
+*********
+Jenkin for Continuous Integration : What is Continuous Integration ?
+									What is Jenkin ?
+									Jenkin History
+									Why Continuous Integration with Jenkins ?
+									Real-world case study of Continuous Integration
+									Advantages of using Jenkins
+									Disadvantages of using Jenkins
+Download & Install Jenkins on Windows :
+GitHub Integration: Install Git Plugin: 
+Create Users & Manage Permissions: Role Strategy Plugin: 
+Create Builds with the Jenkins Freestyle Project :
+Pipeline Tutorial: JenkinsFile EXAMPLE :
+Continuous Integration - Jenkins vs Travis-CI :
+
+Anonymous :
+***********
+Spring Boot CLI
+Jackson
+Gson
+FastJson
+
+Technology :
+============
+REST API :
+**********
+What is REST  [06-JUN-2019]  (Done)
+REST Constraints [06-JUN-2019]  (Done)
+REST Resource Naming Guide [06-JUN-2019]  (Done)
+
+----------------------------------------- July(Angular,Micro Services Level 1 and 2,Maven)  ------------------ 
+Technology : 
+************
+MicroServices Level 1(Service Discovery) [15-JUL-2019 TO 21-JUL-2019] [Daily] 
+MicroServices Level 2(Fault Tolerance and Resilience)  [15-JUL-2019 TO 21-JUL-2019] 
+Maven  [22-JUL-2019 TO 28-JUL-2019] 
+Jenkins 
+
+----------------------------------------- August(Angular)  -----------------------------------------
+Topics :
+********
+Reactive Programming :
+----------------------
+https://medium.com/@johnmcclean/reactive-programming-with-java-8-and-simple-react-the-tutorial-3634f512eeb1
+https://www.baeldung.com/rx-java
+https://howtodoinjava.com/library/rxjava-tutorial/
+	
+
+Data Structure Preparation :  
+****************************
+D:\Documents\Collection_Implementation.txt 
+
+https://knpcode.com/java/collections/arraylist-internal-implementation-in-java/
+https://examples.javacodegeeks.com/core-java/list-works-internally-java/
+https://www.codenuclear.com/how-arraylist-works-internally-java/
+
+ArrayList Internal Implementation     			[06-AUG-2019]  (Done) 
+
+Multi Threading :   
+-----------------    
+ThreadPoolExecutor  			[07-AUG-2019]  (Done)     
+ExecutorService     			[07-AUG-2019]  (Done)    
+Callable            			[07-AUG-2019]  (Done)    
+Future              			[07-AUG-2019]  (Done)    
+
+Life Cycle Hook	    			[12-AUG-2019]  (Done) 
+Change Detection Strategy   	[12-AUG-2019]  (Done)    
+Angular Architecture			[12-AUG-2019]  (Done)     
+
+Docker Introduction [26-AUG-2019] (Done)
+Docker File and Docker Image [26-AUG-2019] (Done) 
+Docker Architecture  [27-AUG-2019] (Done) 
+ 
+----------------------------------------- September(Angular,Micro Services) -------------------------------------------------------
+
+Debugging in Angular 					
+Routing 						
+Lazy Module in Angular 			
+Lazy Component in Angular 
+Angular Routing Notes 
+Component in Depth Java Brains 
+Angular Saiket 		
+
+https://www.youtube.com/watch?v=yc0T_emHRk0&list=PLAMEGW4ShCV20DlyETj4cxwuABcOEF3vy
+https://www.youtube.com/watch?v=UV3cw4QLJLs&list=PLKiTC45c1PK-Y6VhaWUo-4_52zDXie0Az
+
+
+Docker Compose :
+https://hackernoon.com/practical-introduction-to-docker-compose-d34e79c4c2b6
+Using Docker Containers As Development Machines
+https://medium.com/rate-engineering/using-docker-containers-as-development-machines-4de8199fc662
+Using Docker Compose to Run Your Applications
+https://medium.com/rate-engineering/using-docker-containers-to-run-a-distributed-application-locally-eeabd360bca3
+Docker compose tutorial for beginners by example [all you need to know]
+https://takacsmark.com/docker-compose-tutorial-beginners-by-example-basics/
+
+Architecture :
+**************
+Event Driven Architecture   
+Reactive Architecture  
+PolyGlot 
+Concurrency Models  
+Reactive Programming  
+Asynchronous Programming  
+Reactive Programming Pattern
+
+Spring Cloud  :
+---------------
+javainuse.com
+logicbig.com
+https://www.springboottutorial.com/introduction-to-centralized-logging-with-microservices
+https://howtodoinjava.com
+https://o7planning.org/en/11701/spring-cloud
+https://javabeginnerstutorial.com
+DEBESH SAHOO Youtube
+Java Techie Youtube
+Melardev :  https://www.youtube.com/watch?v=no-m5JK-gGc&list=PLfkTJXI2Tk-cBhNhznRoLKMQAWsF9vXTv
+Defog Tech  Youtube
+Tech Primers https://www.youtube.com/watch?v=-PbnWGddmcM&list=PLTyWtrsGknYd0JgqeARypdRy-SX1ORYhs
+Docker Image --Tech Primers :  https://www.youtube.com/watch?v=FlSup_eelYE&t=1116s
+Circuit Breaker :  Prabhu Sunderraman :  https://www.youtube.com/watch?v=WROAugDCnAk
+
+Spring Boot Tutorial com
+-------------------------
+Programming Basics - Five Things To Think About While Programming
+Introduction To Aspect Oriented Programming and Cross Cutting Concerns
+Micro service Best Practice - Build an Archetype
+What is Service Discovery
+Centralized Configuration and Configuration Server
+API Gateway
+Importance of Centralized Logging
+Introduction to Auto Scaling
+What is Fault Tolerance
+
+HowToDoInJava :
+***************
+Spring Cloud - Visualization 
+Spring Cloud - Docker                         [Aware] 
+Spring Cloud – Config Server                  [Done]                
+Spring Cloud – Netflix Service Discovery      [Done]           
+Spring Cloud – Hystrix Circuit Breaker        [Aware]         
+Spring Cloud – Zuul API Gateway               [Aware]       
+Spring Cloud – Zipkin and Sleuth              [Aware]       
+Spring Cloud – Ribbon with eureka     		   
+Spring Cloud – Consul Service Discovery               
+Spring Cloud – Cloud Foundry Deployment  
+
+JavaInUse :
+***********
+Microservice Registration and Discovery with Spring cloud using Netflix Eureka- Part 1    [25-SEP-2019]  (Done) 
+Microservice Registration and Discovery with Spring cloud using Netflix Eureka- Part 2	  [25-SEP-2019]  (Done) 
+Microservice Registration and Discovery with Spring cloud using Netflix Eureka- Part 3	  [25-SEP-2019]  (Done) 
+Microservice Registration and Discovery with Spring cloud using Netflix Eureka- Part 4	  [25-SEP-2019]  (Done) 
+Spring Cloud Config Server Simple Example            									  [26-SEP-2019]  (Done)
+Spring Cloud Config Server Using Git Simple Example  									  [26-SEP-2019]  (Done)
+
+Profiles in Spring                            [17-SEP-2019]  (Done)  
+Logging in Spring Boot                        [20-SEP-2019]  (Done)  
+Cloud bus   
+Routing Rules
+Filter Implementation	
+Configuring Logback with Spring Boot (https://www.codingame.com/playgrounds/4497/configuring-logback-with-spring-boot)
+
+o7planning :
+************
+
+DZone :
+*******
+Best Practices for Event-Driven Micro service Architecture -> https://dzone.com/articles/best-practices-for-event-driven-microservice-archi
+Micro services and Spring Cloud Config Server --> https://dzone.com/articles/microservices-and-spring-cloud-config-server
+Intro to Spring Cloud Config Server  -->  https://dzone.com/articles/intro-to-spring-cloud-config-server
+
+DZone --> Five Questions Everyone Is Asking About Micro services (Part 4)  DZone
+
+Oracle Database : 
+CREATE A ORACLE DATABASE DOCKER CONTAINER FOR YOUR SPRING BOOT + JOOQ APPLICATION
+https://info.michael-simons.eu/2016/10/30/create-a-oracle-database-docker-container-for-your-spring-boot-jooq-application/
+
+Deploying Spring Boot Applications
+https://medium.com/swlh/deploying-spring-boot-applications-15e14db25ff0
+
+Dockerize REST Spring-boot application with Hibernate having database as MySQL
+https://medium.com/@itsromiljain/dockerize-rest-spring-boot-application-with-hibernate-having-database-as-mysql-579abcc4edc4
+
+----------------------------------------------------								 	
+Micro Services Level One                            (Done) [24-09-2019]   
+Micro Services Level Two    						(Done) [30-09-2019]    
+Spring Cloud - Eureka Server with Example			(Done) [25-09-2019]
+Creating Multiple Instances							(Done) [24-09-2019]					 
+Spring Cloud – Config Server Example				(Done) [26-09-2019]   
+Spring Cloud – Config Client Example  				(Done) [26-09-2019]   (One Pending Task)	
+	
+
+Spring AOP :
+************
+Introduction 										(Done) [29-09-2019]
+AOP Example Before                                  (Done) [30-09-2019]
+
+Adding a Configuration Server :
+https://callistaenterprise.se/blogg/teknik/2017/05/12/building-microservices-part-6-configuration-server/
+
+https://dzone.com/articles/dynamic-configuration-management-in-microservice-a
+
+
+----------------------------------------- October(Angular,VertX) ---------------------------------------------------------
+CORS
+Routing Rules 
+Filter Implementation 
+Blue/green deployment  
+Artifact Repository  
+Puppet and Chef 
+AWS or Cloud Foundry, BlueMix 
+Correlate ID
+Spring Boot DashBoard
+Spring Boot Admin
+MultiModule Project
+properties vs yaml
+
+Other Gateway Solutions : Zuul,Linkerd,Nginx.  (devglan)
+Apply checksum in the Response Header.  (devglan)
+Response is not Tempered Due To Middle Man Attack.  (devglan)
+Global Filters are Netty Router,Web Sockets, Load Balancer,Metrics.  (devglan)
+Functional and Traditional style API definition.  (devglan)
+
+Spring Security Java Brains :
+*****************************
+Introduction
+Security Concepts
+Sample Project
+Authentication
+Authorization
+Internally Authentication Works
+Jdbc Authentication
+JPA Authentication
+Json Web Token
+Spring Boot LDAP
+
+Spring Security  Devglan :
+**************************
+
+
+Spring Cloud :
+**************
+Spring Cloud – Hystrix Circuit Breaker Example  	
+Spring Cloud – Zipkin and Sleuth Example			
+Spring Cloud – Zuul API Gateway  Example	
+12 Factor Principles 
+Spring Cloud - Eureka Client with Example	 		
+Dockerizing a Spring Boot Application 
+
+Docker :
+********
+Docker Installation    (Automation Step By Step)   [02-OCT-2019]  (Done)
+Docker Basic Commands  (Automation Step By Step)   [02-OCT-2019]  (Done)
+Docker Images  		   (Automation Step By Step)
+Docker Containers      (Automation Step By Step) 
+Docker File			   (Automation Step By Step)
+Docker Compose		   (Automation Step By Step)
+Docker Volume		   (Automation Step By Step)
+Docker Swarm		   (Automation Step By Step)
+
+Docker Concepts		   (JavaInUse)
+Docker Basics          (Developers Thought)
+Docker Basics  		   (LearnCode.Academy,KodeKloud)
+
+
+Spring AOP :
+************
+7.Join Points and Advice Arguments					   [02-OCT-2019]  (Done)		   
+8.After Advice Type									   [02-OCT-2019]  (Done)
+9.Around Advice Type								   [02-OCT-2019]  (Done)
+10.Naming Conventions and Custom Advice Annotations	   [02-OCT-2019]  (Done)
+11.AOP XML Configuration							   
+12.Understanding AOP Proxies						   
+
+
+Reference Sites :
+*****************
+
+Monitoring containerized microservices with a centralized logging architecture.
+https://medium.com/hackernoon/monitoring-containerized-microservices-with-a-centralized-logging-architecture-ba6771c1971a
+
+My experiences with API gateways…
+https://medium.com/@mahesh.mahadevan/my-experiences-with-api-gateways-8a93ad17c4c4
+
+From Monolith to Service Mesh, via a Front Proxy — Learnings from stories of building the Envoy Proxy
+https://blog.getambassador.io/from-monolith-to-service-mesh-via-a-front-proxy-learnings-from-stories-of-building-the-envoy-333711bfd60c
+
+Using API Gateways to Facilitate Your Transition from Monolith to Microservices
+https://itnext.io/using-api-gateways-to-facilitate-your-transition-from-monolith-to-microservices-c08fe3489237
+
+
+JavaInUse :
+***********
+Spring Boot Admin Simple Example
+Spring Cloud- Netflix Eureka + Ribbon Simple Example
+Spring Cloud- Netflix Hystrix Circuit Breaker Simple Example
+Spring Cloud- Netflix Eureka + Ribbon + Hystrix Simple Example
+Spring Cloud- Netflix Feign Simple Example												
+Spring Cloud- Netflix Zuul Simple Example
+Spring Cloud Tutorial - Spring Cloud Gateway Hello World Example
+Spring Cloud Tutorial - Spring Cloud Gateway + Netflix Eureka Example
+Spring Cloud Tutorial - Spring Cloud Gateway + Netflix Eureka + Netflix Hystrix Example
+Spring Cloud Tutorial - Distributed Log Tracing using Sleuth and Zipkin Example
+
+Devglan :
+*********
+Introduction to Microservices 
+Spring Cloud NetFlix Eureka  
+Spring Netflix Zuul																    [10-OCT-2019]  (Done)
+Spring Cloud Gateway		 														[10-OCT-2019]  (Done)			
+Spring Cloud Gateway Example     
+Spring Cloud Hystrix Example		 												[11-OCT-2019]  (Done)
+Spring Cloud Configuration - Externalize Application Configuration					[16-OCT-2019]  (Done)  
+Refresh Property Config at Runtime in Spring Cloud Config
+Spring Cloud Netflix Feign															[04-OCT-2019]  (Done)
+Updating Cloud Config Properties at Runtime											[16-OCT-2019]  (Partially) 
+Encrypting and Decrypting Sensitive Configuration
+JDBC Back End Spring Cloud Config
+
+Java 9:
+*******
+Modules in Java 9
+
+
+
+
+
+
+
+
+
+
+
+

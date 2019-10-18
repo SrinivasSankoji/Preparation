@@ -1,0 +1,69 @@
+Angular set Up:
+*****************
+
+Download Node and Visual Studio Code
+Create a Folder Named Angular from Visual Studio Code
+run the Node.exe to install Node 
+
+In the Console npm install -g @angular/cli
+
+To Create a Project :
+******************
+Create a Folder
+ng new Test(Create a Project)
+ng serve (Run The Application)
+
+-- Always include the Selector in appComponenet.HTML
+
+--In line Template  
+-- Interpolation  --> from Class to Template
+--Event Binding
+--Template Reference Variables
+-- Component Interaction
+
+Practice Styles,Classes,Pipes and Read Services and Dependency Injection
+Creating a Service : ng g s employeeService,declare service in constructor and use it in ngOnInit() to call the Service
+
+Routing :
+---------
+Declaring the Components in App Module i.e in declarations Array and also in App Routing Module we are Duplicating.
+We have Same Import Statements in App Module and App Routing Module.
+
+Forms :
+*******
+To Add Bootstrap Classes to Our Project.
+https://getbootstrap.com/docs/4.3/getting-started/introduction/
+Copy The CSS URL and add in index.HTML
+
+To create a Model class in Angular ng generate class user 
+
+
+Angular Basics (Code Evolution) :
+---------------------------------
+
+
+Angular Basics (Java Brains) :
+------------------------------ 
+
+Angular Basics(Java Tech) Basics :
+----------------------------------
+
+Angular Basics(Codedamn) :
+--------------------------
+D:\Documents\Angular_Codedamn.txt
+
+Angular Basics(Saikat) :
+------------------------
+D:\Documents\Angular_Saiket.txt
+
+Angular Component Interaction (Code Evolution) :
+------------------------------------------------
+D:\Documents\Angular_ComponentInteraction.txt
+
+Angular Components in Depth (Java Brains) :
+-------------------------------------------
+
+Angular Routing,CLI (IntelliPath) :
+-----------------------------------
+
+

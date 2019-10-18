@@ -1,0 +1,56 @@
+Connection Pool :
+*****************
+Spring Boot – How to know which connection pool is used 
+https://www.mkyong.com/spring-boot/spring-boot-how-to-know-which-connection-pool-is-used/
+
+Actuator :
+**********
+
+Spring Boot Actuator Database Health Check 
+https://www.onlinetutorialspoint.com/spring-boot/spring-boot-actuator-database-health-check.html
+
+Custom Health Check in Spring Boot Actuator
+https://www.amitph.com/custom-health-check-spring-boot-actuator/
+
+Spring Boot Actuator Tutorial
+https://www.javacodegeeks.com/2018/11/spring-boot-actuator-tutorial.html
+
+Spring Boot Actuator A Complete Guide
+https://www.dineshonjava.com/spring-boot-actuator-complete-guide/
+
+Health check, Auditing, Metrics gathering and Monitoring
+https://www.callicoder.com/spring-boot-actuator/
+
+Spring Boot Production Monitoring and Management
+https://www.vojtechruzicka.com/spring-boot-actuator/
+
+How Spring Boot uses HikariCP connection pool
+https://developpaper.com/how-spring-boot-uses-hikaricp-connection-pool/
+
+get active connection on HikariDataSource
+https://stackoverflow.com/questions/24187891/get-active-connection-on-hikaridatasource
+https://github.com/brettwooldridge/HikariCP/wiki
+
+
+JMX :
+*****
+
+Deep Dive into Java Management Extensions (JMX)
+https://stackify.com/jmx/
+
+Basic Introduction to JMX
+https://www.baeldung.com/java-management-extensions
+
+How JMX works And Monitoring your Java Application Remotely
+http://www.cleantutorials.com/jconsole/how-jmx-works-monitoring-your-java-application-remotely
+
+An Overview of JMX
+https://dzone.com/articles/an-overview-of-jmx
+
+Micrometer: Spring Boot 2's new application metrics collector
+https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+
+Spring Boot Actuator: Production-ready features
+https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html
+
+

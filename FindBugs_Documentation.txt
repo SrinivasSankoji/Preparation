@@ -1,0 +1,11 @@
+FindBugs is an OpenSource Tool used to perform Statstical Analysis on Java Byte Code 
+to identify potential software Bugs.
+FindBugs Provide early feedback about potential errors in the Code.
+This Helps the Developer to Access these problems early in the Development Phase.
+
+FindBugs helps us to avoid Bad Code.
+
+FindBugs Started ranking Bugs with a Scale from 1 to 20 to measure the Severity of Bugs.
+
+Scariest : 1 to 4
+Scary    : 

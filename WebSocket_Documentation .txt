@@ -1,0 +1,43 @@
+Web sockets are defined as a two way communication between the server and client over a single TCP Connection.
+i.e both parties communicate with each other and exchange data at the same time.
+
+Web socket provides a full duplex communication from the ground.
+
+web socket works on the principle of HandShake and
+it is a process that ensures that server is in sync with its clients.
+
+Key points are true concurrency and optimization of Performance resulting in more responsive and
+rich web applications. 
+
+Web socket protocol is standardized and  a 
+web application can speed up with the help of this Protocol Technology.
+
+The Only requirement to use the web socket is , on the browser side we need to run a javascript library 
+that interrupts the web socket handshake , establish and maintain the web socket connection.
+
+Websocket first establishes a regular HTTP connection to the server  ant then converts it to a biderectional 
+web socket connection by sending an Upgrade Header.
+
+WebSocket Configuration :
+
+The First Step is to configure the WebSocket EndPoint and Message Broker.
+@EnableWebSocketMessageBroker is used to enable our Web Socket Server and we need to implement 
+WebSocketMessageBrokerConfigurer Interface.
+
+First We Need to register a websocket EndPoint that the client will use to Conneect to our WebSocket Server.
+Second We Need to Configure a Messaging Broker that will be used to route Messages from One Client To Another.
+
+WebSocket is A communication protocol and it does not define things like 
+How to Send a Message Only to Users who are subscribed to a Particular Topic,
+How to Send a Message to a Particular User.
+Here we Need STOMP(Simple Text Oriented Messaging Protocol).
+
+STOMP is a Messaging Protocol that defines the rules and format for data Exchange.
+
+
+
+
+
+
+
+

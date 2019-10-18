@@ -1,0 +1,194 @@
+References :
+************
+https://www.devglan.com/spring-cloud/spring-cloud-gateway
+
+https://www.devglan.com/spring-cloud/spring-cloud-gateway-example
+
+https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
+
+https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
+
+https://github.com/TechPrimers/spring-cloud-gateway-example-1
+
+
+1.Micro services Communication:Zuul API Gateway Dzone :
+*******************************************************
+The Crux of Micro Services Pattern is that create an Independent Service which has to be scaled and Deployed Independently.
+So In a Complex Business Domain,we Have More Than 50 to 100 Micro Services.
+Lets Image a System we Have to Implement a UI Which is a Kind of Dash Board,which calls these 50 to 100 Micro Services
+to fetch the Information and Show it to the UI.
+From a UI Developer Perspective,It has to call the 50 to 100 Micro Services and he Has to all the Details of Micro Services
+like URL,Port and Rest End Point.
+More over The Common Aspects of a Web Program are CORS,Authentication,Security and Monitoring  etc.
+Here Micro Service has to Develop all the Aspects on its Own and Same Code has to be Replicated over Fifty Micro Services.
+To Make it Robust,Code has to Be Changes in Such a Way that we have Only One Entry Point where all the Common Aspects of the Code is Written
+and Client Communicates with That Service.
+The Concept of ZuuL Comes into the Picture.
+
+ZUUL Acts as an API Gateway.It Receives all the Request Coming from the UI and then Delegates the Request to the Internal Micro Service.
+So we hAve to Create a Brand New Service which is Zuul Enabled and This Service Sits on Top of all Micro Services.
+It Acts as an Edge Service or Client Facing Service and it Should be Exposed to the Client UI.
+Client Calls this Service as a Proxy For an Internal Micro Service and the Service Delegates the Request to the Appropriate Service.
+We Can also Implement Routing Rules and Filter Implementation.
+
+We can also Perform Load Testing to the ZuuL Service as it is Independently Scalable and Deployable.
+
+Spring Netflix Zuul :
+*********************
+ZuuL Proxy Can be used to Route to Different Micro Services.
+When We have Multiple Micro Services Running and ZuuL Proxy does the Intelligent Routing based on Requested Resource.
+We can also perform some Filters to the requests and perform some operations before the execution of actual Request.
+
+API Gateway means Single Point of Entry for all the Classes.
+We have Single Interface Exposed on behalf of all the Micro Services Running.
+This gateway at run time will identify the correct service to be invoked.
+To achieve this Routing we will have Netflix ZuuL Proxy.
+ZuuL is and Edge Service that Provides Dynamic Routing,Monitoring,Resiliency,Security and So On.
+
+Zuul Filter Implementation :
+****************************
+Some Times it is Required to intercept the Request and Response that is Passed through the Gateway.
+Doing So We can add Some Validations or Modify Headers of Request Response.
+For This Zuul Provides Filter Implementation and this Filter Implementation Provides Full Control of How to Proceed with Request
+and Response.
+We Have 4 Types of Filters :
+PreFilter is Executed Before the Request is Routed.
+Route Filter To Direct the Request
+Post Filter that is Executed after the Request is Routed.
+We also have ErrorFilter that is executed when any error is occurred during Routing.
+
+
+Concepts :
+----------
+0.Introduction
+1.Blocking vs Non-Blocking Gateway
+2.Spring Cloud Gateway Architecture
+3.Handler Mapping
+4.Web Handler Filters
+5.Post Filters
+
+
+0.Introduction :
+----------------
+An API Gateway Provides a Single Point of Entry for all the Micro Services Running DownStream.
+There are Many Gateway Solutions Available Such as Zuul,Linkered,Nginix etc.
+Spring Cloud Gateway - a Reactive Gateway Built Upon Project Reactor,Spring WebFlux and Spring Boot 2.0
+
+1.Blocking vs Non-Blocking Gateway :
+------------------------------------
+Blocking Gateway Such as Zuul Requires Request Per Thread to handle the Requests that are Coming From API Gateway.
+Hence Lot of Resources Required to Handle these Requests.
+Any Extra Request Simply Sit in the Queue and will wait Until a Working Thread Complete its Execution.
+Where as In Case of Non Blocking ,A Main Thread will always will be Available to Serve the Request 
+and Other Multiple Threads will Process Those Request Asynchronously in the Background.
+Once The Request is Completely Processed The Response is Returned.
+Hence the Non Blocking Gateway Requires Less No of Resources to Serve the Same Amount of Requests
+Compared to Blocking Gateway.
+Spring Cloud Gateway is a Non Blocking Reactive Gateway Similar to Zuul2 But Spring Cloud Does Not Provide
+Any Out Of Box Integration with Zuul2.
+
+2.Spring Cloud Gateway Architecture  :
+--------------------------------------
+Once a Request Reaches to the Gateway,First Thing The Gateway Does is It Matches the Request with Each of the 
+Available Route Based on the Predicate Defined.
+Once The Request has been Matched,The Request Moves to the Web Handler and the Filters will be Applied to the Request.
+There are Many out of Box Filters Provided by the Gateway itself to Modify the Request Header as well as the Body.
+PreFilters are Applied Specifically to a Route Where as Global Filters can be applied to all the Route Requests.
+Global Filters can be applied to Perform Authentication and Authorization of all the Requests at one Place.
+Once the Response is Generated by the DownStream Service The Post Filter can be used to Modify the Response 
+such as to apply the Checksum in the Response Header to all the Responses 
+To Ensure Response is Not Tampered due to Middle Man Attack.
+
+
+Reverse Proxy :
+***************
+Reverse Proxy is Something That It is Making Requests on Behalf of Something Else.
+It Acts More Like Simple Routing.
+It can add Basic Security and Monitoring But Cannot do Some of the Advanced Things Like Mediation and Orchestration.
+Nginix is one of the Well Known Proxy Server.
+
+API Gateway :
+*************
+API Gateway is Enhanced Reverse Proxy with More Advanced Capabilities Like Mediation and Orchestration.
+Some of The Gateway are Netflix Zuul,Amazon API Gateway,Apigee,Spring Cloud Gateway.
+
+Spring Cloud Gateway :
+**********************
+Spring Cloud Gateway is an API Gateway Implemented By Spring Team on top of Spring Cloud Reactive Eco System.
+It Provides a Simple and Effective Way to Route Incoming Requests to The Appropriate Destination Using Gateway Handler Mapping.
+Spring Cloud Uses Netty Server to Provide Non Blocking Asynchronous Request Processing.
+
+Spring Cloud Gateway Consists of 3 Main Building Blocks 
+
+Route :
+-------
+Route is the Basic Building Block of API Gateway.It is Defined by an ID,Destination URI,
+Collection of Predicates and Collection of Filters etc.
+Based on Predicate Gateway Routes to a Particular Request.
+Spring Cloud Gateway Provides Many Built in Route Predicate Factories Such as Path,Host,Date/Time,Method,Header etc.
+
+Predicate :
+-----------
+Nothing But Condition to Match.Based on Condition it will Route to the 
+Particular Service.
+
+Filter :
+--------
+These are the Instances of Spring Framework Web Filter.
+This is the Place where we can Modify the Request or Response.
+
+Spring Cloud Gateway vs Zuul :
+******************************
+ZuuL 1.x is Not Reactive and it is Blocking.
+If We Want to Improve the Performance of MicroServices We can Use Spring Boot 2 With Reactor.
+We can use Zuul 2.0 which does Have Reactive Non Blocking Support with Netty.
+Spring Eco System Does Not Have In Built Support like Zuul 1.x.
+If we want to get The Features of Authentication and Other Security Features Use Spring Cloud Gateway.
+
+We can do Route Configuration in Spring Cloud Gateway Using Two Approaches :
+1.Programatically Using Spring Route Locater
+The Problem with Approach is that When we Update the Route We need Redeploy the hole Application.
+2.Using application.properties 
+
+
+Example (Tech Primers) :
+************************
+http://httpbin.org/get   Dummy Rest Service
+https://spring.io/guides/gs/gateway/   Gateway Configuration
+actuator/hystrix.stream  To Check Enable Hystrix Stream
+Hystrix DashBoard :  /hystrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+

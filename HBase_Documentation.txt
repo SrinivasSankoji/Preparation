@@ -1,0 +1,115 @@
+HBase Introduction :
+--------------------
+
+HBase is a Hadoop Database
+There are Two kinds of database 
+SQL and NO(Not Only) SQL DataBase.
+
+Because of Huge Velocity Of Data People Prefer HBase i.e No SQL DataBase.
+
+No SQl has Relaxed lot of Features Compared to SQL.
+
+NO SQL Relaxed Consistency, Validations.
+
+SQL works on Schema on Write where as No Sql Works on Schema on Read.
+
+While Writing the Data it wont perform any Schema on Write.
+
+As there is no Validation we can store Huge Velocity of DataBase.
+
+There are 125+  No Sql Databases are There.
+
+Hadoop is a File System i.e Hadoop is a Distributed File System and we need one DataBase 
+which can work on top of HDFS ,Here we Use HBase.
+
+Oracle is a Indexed Network File System Similarly HBase is a Indexed Network File System
+i.e Instead of Scanning the Whole File ,Sacns the Particular Data and Brings the Data.
+
+
+HBase uses a File System Called Inedexed File System.
+HBase is s Database on top of Haddop.
+
+Whenver we want to go fro batch processing we go for HDFS and
+Whenever we want to go for Real Time Processing we go For HBase.
+
+Comparison Between SQL(RDBMS) and HBase
+
+
+Create Table with Structure and Insert the Data where as 
+In HBase First Create the Table  and the Create the Structure While Inserting the Data.
+
+Id  Name      Age   Wife 
+1   Srinivas  31    Nandini
+2   Chary     0     Null
+
+
+In HBase If We dont have any value for particular Record,Store only the Record that Contains the Data.
+In Habse we dont see null values.
+
+Dynamically we are going to define Structure.
+
+While Creating the Table In HBase we should create Column Family(Atleast One).
+
+
+Column family Example :
+
+Id   Name   	Age  Wife  PhoneNo   OfficeName  OfficeAddress   OfficePhone
+
+
+When I Ask Personal Details I dont want to touch  Office Details  Similarly
+When I Ask Office Details I dont want to touch Personal Details.
+
+In case of RDBMS It Scans the whole Record and it is time taken..
+
+
+Here HBase Divides the data into Categories and we wiil give the Category Named based on 
+Grouped Column.Here Grouped Column Name is Called Column Family.
+
+While Creating the Table we have to create Atleast One Column Family.
+
+Syntax :  Create 'Employee' 'Personal' 'Official'
+
+HBase is only used for Aggregations.
+
+RDBMS will write the Data into Row Format Similarly Read wiil be in the for of Row format.
+
+In RDBMS if we want to perform some aggregation,it sacns the row and picks the column from each Row
+because it is row oriented  both Read and Write Operations.
+
+HBase is Column Oriented Database i.e It stores the Data in Column Oriented  and while Performing
+Read Operation it  follows Row Oriented Format.
+
+Chapter Two :
+-------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+Scala Features :
+----------------
+
+Functional Programming :
+------------------------
+
+Function has no Side Effects and 
+The Function does what it is meant for.
+
+Immutability:
+-------------
+If we have a variable in thousands of line of code and the variable has 
+initialized in some function,If the function is giving incoorect resluts
+then the problem would be incorrect value has been assigned to that variable in
+the function.
+We directly go to the instead of searching the whole code.
+
+Scala Highly Encourages Immutability.
+
+Composing Functions :
+---------------------
+Functions can be freely mixed with some other Functions to compose even more Functions.
+
+High Order Functions :
+----------------------
+In addition to the Lego Style for mixing in Functiions,Functions in scala are by design
+First Class Citizens.
+In Scala we can create Higher Order Function that takes Other Functions as Parameters.
+
+Pattern Matching :
+------------------
+No Functional Programming Language would be Complete without Pattern Matching.
+We Can also achieve without Functional Programming.
+In Big Data Processing 
+We Load the Data in Segments or Partitions
+We Filter for Some Entity
+We Perform Some Computations on Entity
+We again Filter Some More
+We output or save the Results to the Database.
+
+With Pattern Matching being a core Feature of Scala ,We can Pattern MAtch Pretty in Sacala.
+
+
+Asynchronous and Paralell Programming :
+---------------------------------------
+Asynchronous Operations are greatly Simploified with the Help of Futures.
+
+
+Dependency Injection:
+---------------------
+Dependency Injection in Scla can be acheived by Using Traits and Implicts.
+
+Extensible Language :
+---------------------
+Scala Comes in with Built in Features like Implicits,Operator Overloading and Macros etc which
+allows us to create other Domain Specific Language.
+
+Scala Eco Sysytem:
+------------------
+
+Fundementals :
+--------------
+Variables and DataTypes
+String Interpolation
+Type Reference
+If Else Statemenet
+For Comparison
+Range
+While and DoWhile
+Pattern Matching
+Tuples
+Option
+Class and Type Hierarchy
+Enumerations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

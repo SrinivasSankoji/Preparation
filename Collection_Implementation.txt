@@ -1,0 +1,144 @@
+
+									ArrayList Internal Implementation :
+								^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+									
+ArrayList is a Re sizable Array and it is one of the Implementations of ArrayList.
+ArrayList grows Dynamically When the Elements are Added to It.
+If the Size of the Current Element is Greater than Maximum Size,Then Increase the Size of the Array.
+New ArrayList is Created with initial Capacity of 10 and copies all the Old Elements into new Array.
+
+Code :
+******
+Internally ArrayList uses Object[] to add an Elements to the List.
+
+In Java7 or Previous :
+
+private transient object[] elementData;
+
+In Java 8 or Later :
+
+transient object[] elementData;
+In Java 8 private key is removed to provide access to nested Class.
+
+Empty List initialization with default capacity :
+*************************************************
+
+When an ArrayList Object is Created without Initial Capacity,Constructor of the ArrayList Class is invoked.
+
+ArrayList<String> list=new ArrayList<String>();
+
+In Java 8 or Later :
+
+private static final Object[] EMPTY_ELEMENTDATA={};
+
+private static final Object[] DEFAULT_CAPACITY_EMPTY_ELEMENTDATA={};
+
+public ArrayList()
+{
+  this.elementData=DEFAULT_CAPACITY_EMPTY_ELEMENTDATA;
+}
+
+Empty List initialization with initial capacity :
+*************************************************
+When the ArrayList Object is Created with initial Capacity,It internally invokes the Constructor 
+to create the internal Array.
+
+ArrayList<String> list=new ArrayList<String>(30);
+
+In Java 8 or Later : 
+
+public ArrayList(int initialCapacity)
+{
+	if(initialCapacity>0)
+	this.elementData=new Object[initialCapacity];
+	if(initialCapacity=0)
+	this.elementData=EMPTY_ELEMENTDATA;
+	if(initialCapacity<0)
+	throw new IllegalArgumentException("Illegal Capacity" +initialCapacity);
+}
+
+Non empty list containing the elements of a specified collection :
+******************************************************************
+An Object of ArrayList can be Created on Specific Collection i.e 
+
+ArrayList<String> list=new ArrayList<>(new LinkedList());
+
+public ArrayList(Collection <? extends E>)
+{
+	elementData=cotoArray();
+	int size=elementData.length;
+	
+	if(size!=0)
+	{
+	  if(elementData.getClass()!=Object[].class)
+	  {
+		elementData=Arrays.CopyOf(elementData,size,Object[].class);
+	  }
+	  else
+	  {
+	  this.elementData=EMPTY_ELEMENTDATA;
+	  }
+	}
+}
+
+How the size of ArrayList grows dynamically :
+*********************************************
+
+  public boolean add(Element e)
+  {
+	ensureCapacityInternal(size+1);
+	elementData[size++]=e;
+	return true;
+  }
+ 
+  private void ensureInternalCapacity(int initialCapacity)
+  {
+	if(elementData == DEFAULT_CAPACITY_EMPTY_ELEMENTDATA)
+	{
+		minCapacity=Math.max(DEFAULT_CAPACITY,minCapacity);
+	}
+	ensureExplicitCapacity(minCapacity);
+  }
+
+ 
+  private void ensureExplicitCapacity(int minCapacity)
+  {
+	modCount++;
+	if(minCapacity-elementData.length>0)
+	grow(minCapacity);
+  }
+  
+  private void grow(int initialCapacity)
+  {
+	int oldCapacity=elementData.length;
+	int newCapacity=oldCapacity + (oldCapacity >> 1);
+	if(newCapacity-minCapacity<0)
+	newCapacity=minCapacity;
+	if(newCapacity-MAX_ARRAY_SIZE>0)
+	newCapacity=hugeCapacity(minCapacity);
+	elementData=Arrays.CopyOf(elementData,newCapacity);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

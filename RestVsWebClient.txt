@@ -1,0 +1,63 @@
+It is a Common Requirement in Web Application to make HTTP call to Other Services and we need a Web Client.
+
+RestTemplate - Blocking Client :
+********************************
+Spring is Offering RestTemplate as a WebClient Abstraction.
+RestTemplate uses the Java Servlet API which is Thread per Request Based Model.
+This Means that Web Client is Blocked until the it receives the Response.
+Here the Thread is Blocked and and the Problem with Blocking Code is it Consumes Some amount of Memory and CPU.
+If More No of Requests Come to Particular Service and Each Request is Taking Time,At Certain Point of Time The 
+Application will Create Many Threads and for There is no Space for The New Request and the Performance of the Application is degraded.
+
+WebClient - Non Blocking Client :
+*********************************
+Web Client uses an Asynchronous Non Blocking Solution Provided By The Spring Reactive Framework.
+Rest Template Creates a New Thread For Each HTTP Call(Event) where as Web Client Creates a Task For Each Event.
+Behind The Scenes Reactive Framework will Queue those Tasks and Execute them only if the Appropriate Response is Available.
+Reactive Framework uses Event Driven Architecture.
+Web Client is a Part of Spring Web Flux Library.
+
+Comparison Example : Refer the  Reactive,RestTemplate,WebClient Projects.
+
+WebClient :
+***********
+
+WebClient is a Part of Spring 5 Reactive Web Framework Called Spring WebFlux.
+By Using WebClient We can Make Asynchronous/Non Blocking  HTTP call. 
+
+To Work With Web Client We Need to Know 
+1.Create an Instance
+2.Make a Requests
+3.Handle The Response
+
+Create a Web Client Instance :
+------------------------------
+
+WebClient webCliet=WebClient.create();
+
+WebClient webClient=WebClient.create("http://localhost:8080");
+
+WebClient webClient=WebClient.builder()
+					.baseUrl("http://localhost:8080")
+					.defaultCookie("cookieKey", "cookieValue")
+					.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+					.defaultUriVariables(Collections.singletonMap("url", "http://localhost:8080"))
+					.build();
+					
+Preparing a Request :
+---------------------
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
