@@ -4,8 +4,8 @@
 4.Spring Security Authentication						[17-OCT-2019]  (Done)
 5.Spring Security Authorization							[17-OCT-2019]  (Done)
 6.Internally Authentication Works   
-7.Jdbc Authentication  
-8.JPA Authentication    
+7.Spring Security Jdbc Authentication  
+8.Spring Security JPA Authentication    
 9.Json Web Token  
 
 1.Introduction:
@@ -239,6 +239,65 @@ We Use AntMatchers For the Paths.
 Spring Security has Log Out Page by Using logout.
 
 To Allow Any Kind Of Users We Use permitAll
+
+
+7.Spring Security Jdbc Authentication  :
+****************************************
+Here We Are Using In Memory Database H2 For Authentication.
+Here We Also Using JDBC API That Interacts with Database and Validates the Authentication Process.
+
+To Look up the User Details into the Database We Need to Configure the DataSource.
+We Need to @Autowire The Datasource and pass the DataSource to the Jdbc Authentication i.e 
+
+ authenticationManagerBuilder.jdbcAuthentication()
+		.dataSource(dataSource);
+		
+With This Line We Have Configured Spring Security to Point to the H2  Database.
+When We added an Embedded Database to Spring Boot Application,Spring Boot Internally Creates a Datasource For Us.
+Next Step is to Create The Schema in the H2 Database.
+Create The Users That are Populated in the Schema.
+Spring Security has Some Default Opinions Specifically about the User and Authorities Tables.
+If We Provide The Clean Database to Spring Security To Work With,Spring Security Creates the User and Authorities Tables For Us.
+
+	authenticationManagerBuilder.jdbcAuthentication()
+		.dataSource(dataSource)
+		.withDefaultSchema();
+
+Now H2 Database is Configured with Default Tables Like User and Authorities.	
+We Also Need to Add The Password Encoder to Avoid The Failure issue.
+We Need to Set Up Some Files That Populates Couple of Schema's and Tables.	
+And At The Time f Authentication We Would assume That Schema and Tables are Available and
+We Would Be Authenticating Using Database.
+
+https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#user-schema
+
+
+Create the Schema.sql  in the Resources File That Will Create the DDL Statements For The H2 Database.
+Create The data.sql to Populate The Data in The Database.
+
+authenticationManagerBuilder.jdbcAuthentication()
+		.dataSource(dataSource)
+		.withDefaultSchema()
+		.withUser(User.withUsername("user")
+				.password("pass")
+				.roles("USER"))
+		.withUser(User.withUsername("admin")
+				.password("pass")
+				.roles("ADMIN")
+		);
+
+Here We are Working with Default Schema.
+If There are Different Schema We Need to add these Methods to the Datasource.
+
+		authenticationManagerBuilder.jdbcAuthentication()
+		.dataSource(dataSource)
+		.usersByUsernameQuery("")
+		.authoritiesByUsernameQuery("");
+		
+These are The Default Return Types that Spring Security Expects and We can also Override the Above Queries.
+
+8.Spring Security JPA Authentication   :
+****************************************
 	
 
 
