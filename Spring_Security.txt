@@ -4,7 +4,7 @@
 4.Spring Security Authentication						[17-OCT-2019]  (Done)
 5.Spring Security Authorization							[17-OCT-2019]  (Done)
 6.Internally Authentication Works   
-7.Spring Security Jdbc Authentication  
+7.Spring Security Jdbc Authentication  					[21-OCT-2019]  (Done)
 8.Spring Security JPA Authentication    
 9.Json Web Token  
 
@@ -295,6 +295,8 @@ If There are Different Schema We Need to add these Methods to the Datasource.
 		.authoritiesByUsernameQuery("");
 		
 These are The Default Return Types that Spring Security Expects and We can also Override the Above Queries.
+
+If We Want to Connect to External Database Then Add The Dependency in pom.xml and Remove H2 Dependency.
 
 8.Spring Security JPA Authentication   :
 ****************************************

@@ -32,7 +32,7 @@ Connection Leak Spring Boot
 *************
 Zuul Implementation (devglan)                  			[10-OCT-2019]  (Done)    
 Gateway Introduction   (devglan) 						[10-OCT-2019]  (Done)
-Gateway Implementation   (devglan)  
+Gateway Implementation   (devglan)  					
 Config Server and Config Client (devglan)               [16-OCT-2019]  (Done)
 
 11-OCT-2019 :
@@ -84,8 +84,13 @@ Config Server Local File System
 @ResponseBodyAdvice									   [18-OCT-2019]  (Done)
 														
 Hikari Connection Pool									
-Logger Implementation									
-							    
+Logger Implementation	
+
+22-OCT-2019 :
+*************								
+Config Server Local File System	 					  					
+Spring Security JDBC Authentication					   [22-OCT-2019]  (Done)			
+Spring Security JPA Authentication					   [22-OCT-2019]  (Done)				    
 
 							   
 

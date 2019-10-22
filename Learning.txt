@@ -874,16 +874,16 @@ Functional and Traditional style API definition.  (devglan)
 
 Spring Security Java Brains :
 *****************************
-Introduction
-Security Concepts
-Sample Project
-Authentication
-Authorization
+Introduction									[15-OCT-2019]  (Done)
+Security Concepts								[15-OCT-2019]  (Done)
+Sample Project									[17-OCT-2019]  (Done)
+Authentication									[17-OCT-2019]  (Done)
+Authorization									[17-OCT-2019]  (Done)
 Internally Authentication Works
-Jdbc Authentication
-JPA Authentication
-Json Web Token
-Spring Boot LDAP
+Jdbc Authentication								[21-OCT-2019]  (Done)
+JPA Authentication								[22-OCT-2019]  (Done)
+Json Web Token									
+Spring Boot LDAP								
 
 Spring Security  Devglan :
 **************************
@@ -965,8 +965,8 @@ Spring Cloud Configuration - Externalize Application Configuration					[16-OCT-2
 Refresh Property Config at Runtime in Spring Cloud Config    						
 Spring Cloud Netflix Feign															[04-OCT-2019]  (Done)
 Updating Cloud Config Properties at Runtime											[16-OCT-2019]  (Partially) 
-Encrypting and Decrypting Sensitive Configuration     
-JDBC Back End Spring Cloud Config     
+Encrypting and Decrypting Sensitive Configuration     								
+JDBC Back End Spring Cloud Config     												
 
 Java 9:
 *******
