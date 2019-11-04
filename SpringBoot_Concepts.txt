@@ -13,34 +13,53 @@ http://www.mkjava.com/tutorial/filter-vs-interceptor/
 http://www.javabyexamples.com/quick-guide-to-responsebodyadvice-in-spring-mvc/
 
 
+https://thoughts-on-java.org/what-is-spring-data-jpa-and-why-should-you-use-it/
+https://www.javapedia.net/Spring-Data-Access/902
+https://bjoernkw.com/2017/08/13/using-spring-jdbctemplate-instead-of-object-relational-mapping/
+
+
 Annotation List :
 *****************
-@ExceptionHandler
-@Controller Advice
-@RestController
-@RequestBody							   [17-OCT-2019]  (Done)		
-@Response Body							   [17-OCT-2019]  (Done)
-@Interceptor                               [17-OCT-2019]  (Done)
-@Component								   
-@Service
-@Repository
-@Configuration
-@Bean
-@Controller
-@Value
+@Interceptor                                [17-OCT-2019]  (Done)
 @ConfigurationProperties
-@Autowired
-@Qualifier
-@Primary
-@Required
 @Conditional
 Service Locater Factory Bean			  
-@RequestBodyAdvice						  [18-OCT-2019]  (Done)
-@ResponseBodyAdvice						  [18-OCT-2019]  (Done)
 
 
-Spring Boot Implementation List (tuturself):
-********************************************
+Spring Core Annotations :
+*************************
+@Bean									    [31-OCT-2019]  (Done)
+@Value										[31-OCT-2019]  (Done)
+@Autowired									[31-OCT-2019]  (Done)
+@Qualifier									[31-OCT-2019]  (Done)
+@Primary									[31-OCT-2019]  (Done)
+@Required									[31-OCT-2019]  (Done)
+@Configuration								[31-OCT-2019]  (Done)
+
+Spring Web Annotations :
+************************
+@ExceptionHandler
+@Controller Advice
+@RequestBody							    [17-OCT-2019]  (Done)		
+@Response Body							    [17-OCT-2019]  (Done)
+@RestController
+@RequestBodyAdvice						    [18-OCT-2019]  (Done)
+@ResponseBodyAdvice						    [18-OCT-2019]  (Done)
+
+Spring Stereotype Annotations :
+*******************************
+@Component	
+@Controller
+@Service
+@Repository
+
+Spring Boot Annotations :
+*************************
+
+
+
+tuturself :
+***********
 Spring Boot Caching -- EHCache
 Spring Boot With Redis
 Spring Boot With Docker
@@ -49,15 +68,49 @@ How to handle retry with Spring-Retry
 Difference between @Component, @Repository & @Service annotations in Spring
 Spring Boot JDBC + MySQL + HikariCP example
 SpringBoot : How to Integrate a Filter in Spring Boot Application
-Project springsandwich | annotated, type-safe interceptors for Spring web controllers
+Project spring sandwich | annotated, type-safe interceptors for Spring web controllers
 Spring Boot Log back integration
 Spring Boot SSL [HTTPS] Integration
 Spring Boot 2 and Consul integration with Swagger 2.8.0
 Netflix Zuul: Setup and sample application
-Spring Boot Implementation List (tuturself):
+Spring Boot Implementation List (tuturself)
+SpringBoot : How to integrate a Filter in Spring Boot Application
 
-@Interceptor :
-**************
+
+Java By Examples :
+******************
+Logging with Request Correlation using MDC
+Using @RequestBody and @ResponseBody with Spring MVC
+Quick Guide to ResponseBodyAdvice in Spring MVC
+Quick Guide to RequestBodyAdvice in Spring MVC
+Log Incoming Requests using Spring MVC
+Quick Guide to Apache HttpClient 4
+Observer Pattern Java Support
+Observer Pattern in Java
+Decorator Pattern with Lombok @Delegate
+Forwarding Reusable Decorators
+Decorator Pattern in Java
+Task: Secure a Service Using Java Dynamic Proxy
+Securing a Service using Proxy Pattern
+Caching a Service using Proxy Pattern
+Proxy Pattern in Java
+Strategy Pattern, Stateless or Stateful?
+Strategy Pattern in Java
+Comparing Builder Pattern and Fluent Interface
+Adapter Pattern in Java
+Telescoping Constructor in Java
+Builder Pattern using Inheritance and Generics
+Builder Pattern in Java
+Singleton Pattern in Java
+Executors
+PausableExecutor – Executor Implementation
+SerialExecutor – Executor Implementation
+ThreadPerTaskExecutor – Executor Implementation
+DirectExecutor – Executor Implementation
+
+
+@Interceptor (springframework.guru):
+************************************
 In Spring When a Request is Sent to The Controller,
 It Will Have to Pass Through The Interceptors(Zero or More) Before Being Processed by The Controller.
 Spring Interceptor is a Concept Similar to Servlet Filter.
@@ -77,6 +130,8 @@ We Use Interceptors.
 Interceptors do Not Rely on the Servlet Container Where as Filter Depends on Servlet Container.
 HTTP Specification does not openly Prevent any HTTP Method For Having a Request Body But It It is Wise Not to Use Get Method.
 Because HTTP Servers and Proxy Servers May Discard the Request Body For GET Request and Fail in UnExpected Ways.
+
+**************************************   Spring Web Annotations  *****************************************************
 
 @RequestBody (springframework.guru):
 ************************************
@@ -113,13 +168,122 @@ Since We are Annotating The Controller with @RestController all the End Point Me
 @ResponseBody Annotation.
 As A Result Spring MVC will Write the Method Return Value to the Response.
 @ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
-
 ResponseBodyAdvice has Two Methods :
-
 Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
 Provides the Return Type and Converter Type.
 beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
 Here We Have The Chance Modify the Response Object.
+
+
+**************************************   Spring Core Annotations  *****************************************************
+@Configuration :
+****************
+@Configuration is Defined on Classes That Defines Beans.
+@Configuration is an Analog for XML File i.e It is a Configuration Using Java Class.
+Java Class Annotated With @Configuration is a Configuration By Itself and will Have Methods 
+to Instantiate the Configured Dependencies.
+
+@Qualifier :
+************
+By Using @Qualifier,We Can Define Which Beans we want to Use.
+Moreover Spring allows us to Create Custom Annotations For Qualifying the Beans.
+There May Be Scenarios Where We Create More than One Bean of the Same Type and Want to Wire them.
+Here We Use @Qualifier Annotation along with the Autowired Annotation.
+
+@Bean :
+*******
+@Bean is a Method Level Annotation and Supports Some of the Attributes such as init-method Using @Lazy,destroy-method,
+Auto wiring Using @Autowired and Bean Name Using @Qualifier.
+@Bean Annotation May Be Used on Any Class Directly or Indirectly Annotated with @Component.
+Method Annotated With @Bean can be Used ANy Where in the Application Using @Autowired Annotation.
+
+@Required :
+***********
+@Required Annotation is a Method Level Annotation and Applies to Setter Method of a Bean.
+This Annotation indicates that Setter Method Must be Configured to be Dependency Injected with a Value at Configuration Time.
+
+@value :
+********
+@value Annotation is used to Assign Default Values to the Variables and Method Arguments.
+We Can also Read Spring Environment Variables as well as System Variables Using @Value Annotation.
+Spring @Value Annotation also Supports Spring Expression Language.
+@Value Annotation Argument Can be String Only But Spring Tries to Convert into Specified Type.
+
+@DependsOn :
+************
+By Using @DependsOn Annotation We Can Force Spring IOC Container to Initialize One or More Beans 
+Before The Bean Which is Annotated With @DependOn
+@DependsOn Annotation May Be Used on Any Class Directly or InDirectly Which has Annotated With @Component or
+Methods Annotated With @Bean.
+
+@Lazy :
+*******
+By Default Spring Container Creates and Initializes all Singleton Beans at the Time of Application Start Up.
+We Can Prevent this PreInitialization of Singleton Bean By Using @Lazy Annotation.
+@Lazy Annotation May Be Used on Any Class Directly or Indirectly Annotated with @Component or on Methods 
+Which are Annotated with @Bean.
+
+@Lookup :
+*********
+
+
+@Primary :
+**********
+@Primary Annotation Can be Used to Give High Preference to a Bean When There are Multiple Beans of The Same Type.
+
+@Scope :
+********
+@Scope Annotation Can be Applied to Define The Scope of a Class Annotated With @Component or a Method Annotated With @Bean.
+Here Scope Can be Singleton,Prototype,Request,Session,Global Session or Some Custom Type.
+
+@Profile :
+**********
+By Default Spring Beans are Loaded at the Time of Application Start Up.
+Here Class Can be Annotated with @Component or Method Can be Annotated With @Bean.
+Here The Requirement is Spring Has to Load the Particular @Component Class or @Bean Method when the Particular 
+Profile is Active then We Use @Profile.
+We Can Configure The Name of The Profile with the Value Argument of the Annotation.
+
+@Import :
+*********
+By Using @Import Annotation We Can Import One or More @Configuration Classes.
+Here The @Beans are Loaded From One Configuration Class to Another Configuration Class i.e 
+To Load The Bean Definitions From One Configuration Class to Another Configuration Class We Use @Import Annotation.
+
+@ImportResource :
+*****************
+@ImportResource Annotation can be Used to Load The Beans Which are Defined Inside application-context.xml 
+into ApplicationContext.
+
+@PropertySource :
+*****************
+@PropertySource Annotation Provides a Convenient and Declarative Mechanism For Adding Properties File
+To The Spring Environment.
+It has to be Used in Conjunction with @Configuration Class.
+By Default Spring Identifies the application.properties and If We Want Spring to Identify the User Defined Properties File
+We Use @PropertySource Annotation That Accepts the Location of The Properties File.
+
+@PropertySources :
+******************
+If We Want to Identify Multiple User Defined Properties File By Spring,We Use @PropertySources Annotation.
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

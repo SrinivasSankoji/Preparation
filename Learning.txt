@@ -852,7 +852,7 @@ https://callistaenterprise.se/blogg/teknik/2017/05/12/building-microservices-par
 https://dzone.com/articles/dynamic-configuration-management-in-microservice-a
 
 
------------------------------------------ October(Angular,VertX) ---------------------------------------------------------
+----------------------------------------- October(Micro Services,Spring Security,Spring AOP) ---------------------------------
 CORS
 Routing Rules 
 Filter Implementation 
@@ -955,11 +955,11 @@ Spring Cloud Tutorial - Distributed Log Tracing using Sleuth and Zipkin Example
 
 Devglan :
 *********
-Introduction to Microservices 
+Introduction to Micro services 
 Spring Cloud NetFlix Eureka  
 Spring Netflix Zuul																    [10-OCT-2019]  (Done)
 Spring Cloud Gateway		 														[10-OCT-2019]  (Done)			
-Spring Cloud Gateway Example     
+Spring Cloud Gateway Example     													[01-NOV-2019]  (Done)
 Spring Cloud Hystrix Example		 												[11-OCT-2019]  (Done)
 Spring Cloud Configuration - Externalize Application Configuration					[16-OCT-2019]  (Done)  
 Refresh Property Config at Runtime in Spring Cloud Config    						
@@ -972,6 +972,26 @@ Java 9:
 *******
 Modules in Java 9
 
+
+
+
+----------------------------------------- November(Micro Services,Angular) ----------------------------------------------
+Proxy vs Reverse Proxy
+CORS
+Load Balancer
+Session
+@Scheduler
+
+Spring Security :
+-----------------
+LDAP Service
+JWT Implementation
+
+Micro Services :
+----------------
+Consul Service Discovery
+Consul Configuration
+Spring Cloud Gateway Filters
 
 
 

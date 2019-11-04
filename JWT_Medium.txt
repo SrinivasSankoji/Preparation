@@ -1,0 +1,203 @@
+1.What is JWT
+2.When Should We Use JWT
+3.JWT Structure
+4.How JWT Works
+5.JWT Authentication Summary
+6.JWT Implementation
+
+
+1.What is JWT :
+***************
+JWT is an Open Standard (RFC 7519) that Defines a Compact and Self Contained Way For Securely Transmitting Information Between 
+Parties as Json Object.
+This Information Can Be Verified and Trusted Because It Is Digitally Signed.
+JWT's Can be Signed Using a Secret(With HMAC Algorithm) or public/private key Using RSA.
+
+Compact :
+---------
+Because of Their Smaller Size,JWT's Can Be Sent Through URL,POST Parameter or inside HTTP Header.
+Additionally The Smaller Size Means Transmission is Fast.
+
+Self-Contained :
+----------------
+The PayLoad Contains all the Information about the User,avoiding the need to Query the Database More Than Once.
+
+When Should We Use JWT :
+************************
+Authentication :
+----------------
+This is The Most Common Scenario For Using JWT.
+Once The User is Logged In Each SubSequent Request will include the JWT along with the User to Access Routes,Services and
+Resources that are Permitted with The Token.
+Single Sign on Is a Feature Widely Used Now a Days Using JWT Because of its Small OverHead and its ability to be
+Easily Used across Different Domains.
+
+Information Exchange :
+----------------------
+JWT are Good Way of Securely Transmitting the Information Between the Parties Because they are Signed
+Using Public/Private Key Pairs.
+Additionally The Signature is Calculated Using Header and PayLoad We Can also Verify The Content is Not Tampered With.
+
+
+3.JWT Structure :
+*****************
+Json Web Token Consists of 3 Parts Which are Separated by Dots.
+
+1.Header
+2.PayLoad
+3.Signature
+
+Typically JWT Looks Like xxxxxx.yyyyyyy.zzzzzzzzz
+
+1.Header :
+----------
+Typically Header Consists of Two Parts.
+Type of the Token i.e jwt and Hashing Algorithm to be Used which can be HMAC SHA256 or RSA.
+
+Example :
+
+	{
+		"typ":"JWT",
+		"alg":"HS256"
+	}
+
+Then This Json is Base64Url Encoded to form the First Part of The JWT.
+
+2.PayLoad :
+-----------
+Second Part of the Token is Payload Which Contains the Claims.
+Claims are Statements about an Entity (Typically the User) and MetaData.
+There are 3 Types of Claims Reserved,Public and Private 
+
+1.Reserved :
+------------
+These are Set pf Predefined Claims Which are Not Mandatory But Recommended to Use
+To Provide Set of Useful InterOperable Claims.
+Some of them are iss(Issue),exp(expiration time),sub(subject),aud(audience) etc.
+
+Here Claims are only 3 Characters long as JWT is Meant to be Compact.
+
+2.public :
+----------
+
+
+3.private :
+-----------
+
+
+An Example of Complete Payload Would be 
+
+		{
+		  "sub": "1234567890",
+		  "name": "John Doe",
+		  "admin": true
+		}
+
+The PayLoad is then Base64Url Encoded to Form the Second Part of the JWT.
+
+Signature :
+-----------
+To Create The Signature Part We Have to Take the Encoded Header,Encoded Payload,Secret and the Algorithm Specified in the Header
+and Sign That.
+
+For Example If We Want to Use HMAC SHA256 algorithm,Then the Signature will be
+
+hMACSHA256(
+base64UrlEncode(header) + "." +
+base64UrlEncode(payload),
+secret
+)
+
+The Signature of the JWT is used to verify that the Sender of the JWT is Who it says it is and
+Ensure that the Message was not Changed along the Way.
+The Output of 3 Base64 Strings is Separated by Dots that can Be Easily Passed in HTML and HTTP Environments.
+
+
+4.How Does JWT Work :
+*********************
+In Authentication When the User Successfully Log in Using Their Credentials,
+A JWT will be Returned and Must be Saved Locally (Typically in Local Storage or a Cookie Can Also be Used)
+In The Traditional Approach We Create a Session in the Server and Return the Cookie.
+When The User Wants to Access the Protected Route or Resource,User Agent Should Send the JWT in the Authorization Header
+Using Bearer Schema.
+
+Authorization : Bearer <Token>
+
+Using JWT is Stateless Authentication Mechanism Where The User State is Never Saved in the Server Memory.
+The Server's Protected Resources will Check For a Valid JWT in the Authorization Header
+Once JWT is Present and Validated,will be allowed to Access the Protected Resources.
+AS JWT are Self Contained.All the Necessary Information is Present,Reducing the Need to Query the Database Multiple Times.
+
+
+
+5.JWT Authentication Summary :
+******************************
+Token Based Authentication has become very Popular in Recent Times as they Provide Important Benefits When Compared to 
+Session or Cookie.
+
+CORS
+No Need For csrf Protection
+Better Integration with Mobile
+Reduced Load on Authorization Server
+No Need Of Distributed Session Store.
+
+
+JWT Authentication Flow :
+-------------------------
+User Obtains Access Token by Providing Credentials to the Authorization Server.
+User Sends Access Token to Each Request to Access Protected API Resource.
+Access Token is Signed,Contains User Identity and Authorization Claims.
+
+
+JWT Implementation Details :
+****************************
+
+A.JWTTokenFilter :
+--------------------
+JWTTokenFilter is Applied to Each API i.e "/**" with the Exception of SignIn and SignOut End Point.
+JWTTokenFilter has the Following Responsibilities.
+Checks For The Access Token in the Authorization Header.If The Access Token is Found in the Authorization Header
+Delegates the Authentication to JWTTokenProvider otherwise throws Authentication Exception.
+Invokes Success or Failure Strategies based on the Outcome of the Authentication Process Performed by the 
+JWTTokenProvider.
+Invoke chain.doFilter(request, response) on successful Authentication Because 
+Last Filter i.e FilterSecurityInterceptor is Responsible to call the Actual Controller
+that is Handling Actual API Resource.
+
+B.JwtTokenFilterConfigurer :
+----------------------------
+Adds the JWTTokenFilter To the DefaultSecurityFilter Chain of Spring Boot Security.
+
+C.JwtTokenProvider :
+--------------------
+The JWTTokenProvider has the Following Responsibilities.
+
+Verify The Access Token's Signature.
+Extract Identity and Authorization Claims form Access Token and uses them to Create UserContext.
+If the Access Token is Malformed,Expired or Token is not Signed with the Appropriate Sign in Key then
+Authentication Exception will be Thrown.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

@@ -110,11 +110,11 @@ resilience4j
 
 Cloud Config :
 --------------
-Config Client								[26-OCT-2019]  (Done)
-Config Server								[02-OCT-2019]  (Done)
+Spring Cloud Config Client					[26-OCT-2019]  (Done)
+Spring Cloud Config Server					[02-OCT-2019]  (Done)
 Vault Configuration
-Apache Zookeeper Configuration
-Consul Configuration
+Apache Zookeeper Configuration							
+Consul Configuration									
 
 Cloud Discovery :
 -----------------
@@ -133,7 +133,7 @@ Reactive Cloud Stream
 Cloud Routing :
 ---------------
 Zuul										[10-OCT-2019]  (Done)
-Gateway										
+Spring Cloud Gateway						[01-NOV-2019]  (Done)				
 Ribbon										
 Open Feign              					[07-OCT-2019]  (Done)
 Other Gateway are Linkered,Nginix

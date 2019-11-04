@@ -1,3 +1,14 @@
+References :
+------------
+
+http://www.mkjava.com/tutorial/spring-session/
+https://www.javadevjournal.com/spring/spring-session/
+https://www.journaldev.com/21748/spring-session-management-spring-session-jdbc
+https://sivalabs.in/2018/02/session-management-using-spring-session-jdbc-datastore/
+https://www.javainuse.com/spring/springboot_session
+
+
+
 1.Building a Horizontally Scalable Cloud Native Application :
 
  Cloud Native Application Architecture assumes that application will be scaled by 
@@ -125,6 +136,10 @@
   
   In order to create a new Session Per Browser 
   call the request.getSession()
+  
+  
+
+  
   
 	
   

@@ -1,15 +1,10 @@
 References :
 ************
 https://www.devglan.com/spring-cloud/spring-cloud-gateway
-
 https://www.devglan.com/spring-cloud/spring-cloud-gateway-example
-
 https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
-
 https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
-
 https://github.com/TechPrimers/spring-cloud-gateway-example-1
-
 
 1.Micro services Communication:Zuul API Gateway Dzone :
 *******************************************************
@@ -105,7 +100,7 @@ Reverse Proxy :
 Reverse Proxy is Something That It is Making Requests on Behalf of Something Else.
 It Acts More Like Simple Routing.
 It can add Basic Security and Monitoring But Cannot do Some of the Advanced Things Like Mediation and Orchestration.
-Nginix is one of the Well Known Proxy Server.
+Nginix is one of the Well Known Reverse Proxy Server.
 
 API Gateway :
 *************
@@ -151,12 +146,66 @@ The Problem with Approach is that When we Update the Route We need Redeploy the 
 2.Using application.properties 
 
 
-Example (Tech Primers) :
-************************
+Spring Cloud Gateway Example (Tech Primers) :
+*********************************************
 http://httpbin.org/get   Dummy Rest Service
 https://spring.io/guides/gs/gateway/   Gateway Configuration
 actuator/hystrix.stream  To Check Enable Hystrix Stream
 Hystrix DashBoard :  /hystrix
+
+Routing Information We add in the Gateway Configuration File.
+We can also add Routing Information Using yml Configuration File.
+Use the Example in the Spring Cloud Guide and Copy in the Configuration File.
+
+URL For Jokes Service :
+https://rapidapi.com/LemmoTresto/api/joke3
+
+Here We are Hard Coding the URL of the Services Instead of that 
+We Can use Service Discovery to identify the Services along with the Gateway.
+Now the Two Services i.e Countries Service and Jokes Service are Working Fine Now.
+Now We Need to Enable Hystrix Service.
+For That We Need to Add the Actuator Dependency and run With the End Point 
+actuator/hystrix.stream
+ i.e http://localhost:9031/actuator/hystrix.stream
+ 
+For this to Work we need to add the Below Property in  the Application.properties 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+		
+		
+How Long can I Wait Before I Time Out i.e 
+
+If I Enable Hystrix on Particular Service i.e COuntries Service and If the Countries Service Takes More Than 5 Seconds
+Then It Should Fail.
+By Default Hystrix Takes One Second and It Fails Here.
+Here We need To Mention it in the Properties File.
+
+Now Start the Hystrix DashBoard Service 
+and Run With The URL  http://localhost:9032/hystrix
+
+To The DashBoard We Need to Give The URL Of The Stream which Connects to any Hystrix Stream.
+We can Have a Central Hystrix DashBoard that Plug in Different Gateway Services which we have in our Project.
+Now Add the URL Of The Service With Stream i.e http://localhost:9031/actuator/hystrix.stream to the Hystrix DashBoard and Monitor It.
+Now To Work This Add the Hystrix COnfiguration to the Gateway Using Filters.
+The Hit The Countries Service and Refresh The DashBoard.
+We Can also Have FallBack Mechanism in the Gateway Configuration.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

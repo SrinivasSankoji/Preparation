@@ -300,7 +300,10 @@ If We Want to Connect to External Database Then Add The Dependency in pom.xml an
 
 8.Spring Security JPA Authentication   :
 ****************************************
-	
+
+Add @EnableJpaRepositories  to The Spring Boot Application
+
+
 
 
 
