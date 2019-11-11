@@ -26,4 +26,32 @@ Redis Hash Operations Example
 Redis AtomicLong Example
 
 
+Installing Redis on Windows (Automation Step By Step):
+------------------------------------------------------
+
+https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100
+
+UnZip the Zip File 
+
+In The Folder We Have redis-cli and redis-server Executable Files Will be There.
+Run the Command redis-server
+It will Run on the Port 6379
+Run the Command redis-cli
+This is the Redis Client that Interacts with Redis-Server
+To Check Whether It Connects to the Redis-Server or Not Just Run the Command Ping "Hello BHaumik"
+To Exit the Redis Server Run the Command ctrl+c
+
+
+Redis as Message Broker (Simple Learning):
+------------------------------------------
+
+
+Redis as Cache(Simple Learning) :
+---------------------------------
+
+
+
+
+
+
 

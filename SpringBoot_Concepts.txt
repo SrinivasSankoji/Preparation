@@ -195,7 +195,7 @@ Here We Use @Qualifier Annotation along with the Autowired Annotation.
 @Bean is a Method Level Annotation and Supports Some of the Attributes such as init-method Using @Lazy,destroy-method,
 Auto wiring Using @Autowired and Bean Name Using @Qualifier.
 @Bean Annotation May Be Used on Any Class Directly or Indirectly Annotated with @Component.
-Method Annotated With @Bean can be Used ANy Where in the Application Using @Autowired Annotation.
+Method Annotated With @Bean can be Used Any Where in the Application Using @Autowired Annotation.
 
 @Required :
 ***********
@@ -239,7 +239,7 @@ Here Scope Can be Singleton,Prototype,Request,Session,Global Session or Some Cus
 @Profile :
 **********
 By Default Spring Beans are Loaded at the Time of Application Start Up.
-Here Class Can be Annotated with @Component or Method Can be Annotated With @Bean.
+Here Class Can be Annotated with @Component or a Method Can be Annotated With @Bean.
 Here The Requirement is Spring Has to Load the Particular @Component Class or @Bean Method when the Particular 
 Profile is Active then We Use @Profile.
 We Can Configure The Name of The Profile with the Value Argument of the Annotation.
@@ -265,12 +265,38 @@ We Use @PropertySource Annotation That Accepts the Location of The Properties Fi
 
 @PropertySources :
 ******************
-If We Want to Identify Multiple User Defined Properties File By Spring,We Use @PropertySources Annotation.
+If We Want to Identify Multiple User Defined Properties Files By Spring,We Use @PropertySources Annotation.
 
 
-
-
+**************************************   Spring Stereotype Annotations  *****************************************************
  
+@Component :
+************
+This Annotation is Used on Classes to Indicate that it is a Spring Component or Spring Class as a Bean.
+By Adding @Component Annotation to the Class Component Scanning Mechanism of Spring Can add into the Application Context.
+
+@Controller :
+*************
+@Controller Annotation is Used to Indicate the Class is a Spring Controller.
+This Annotation is Used to Identify Controllers For Spring MVC or Spring Web Flux.
+
+@Service :
+**********
+This Annotation is Used on Class.
+@Service Marks a Java Class that Performs a Service Such as Executes The Business Logic,Perform Calculations and
+Call External API's.
+This Annotation is a Specialized Form of @Component Annotation intended to be Used in the Service Layer.
+
+@Repository :
+*************
+This Annotation is Used on Classes Which Directly Access the Database.
+@Repository Annotation Automatic Translation Feature.
+For Example When an Exception Occurs in the @Repository,
+There is a Handler For That Exception and there is no Need to Add Try Catch Block.
+Here We Can Use DataAccessException or ExceptionTranslator to Handle The Exceptions Irrespective pf JPA Vendor.
+
+
+
 
 
 

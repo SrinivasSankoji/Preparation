@@ -6,62 +6,51 @@
 6.Internally Authentication Works   
 7.Spring Security Jdbc Authentication  					[21-OCT-2019]  (Done)
 8.Spring Security JPA Authentication    
-9.Json Web Token  
+9.J son Web Token  
 
 1.Introduction:
 ***************
-We cannot Put up One Layer of Defense in Web Application.
-When we Want to Secure a System Like Web Application We Have to Put Lot of Thought Build into It Like Multiple Layers of Security.
+Whenever We Want to Secure a System Like Web Application,We Have to put Lot of Thought Build into It Like Multiple Layers of Security.
 We Even Anticipate Some of them Might Get Hacked.
 Here Spring Security Comes into the Picture.
-
-Application Security is Not Fun.
-Security is Often an After Thought.
+Application Security is Not Fun and Security is Often an After Thought.
 Security Potentially Causes User Frustration.
-Here Web Server has Security Built In and Why Should I as an Application Developer Deal With Security.
-All the Operating SystemLevel Security,JVM Level Security,App Server Security is Already Taken Care.
+Here Web Server has Built In Security and Why Should I Deal With Security as an Application Developer.
+All the Operating System Level Security,JVM Level Security,App Server Level Security is Already Taken Care.
 
 Here We are Talking about Application Level Security.
 For Most of The Cases We Need to Implement Security at Application Level .
-
-In The Context of Application Level Security,What the Functionality you Want to allow and to Whom.
+In The Context of Application Level Security,What Functionalities you Want to allow and to Whom you Want To Allow.
 What the Data You Want to Expose and to Whom.
-
 The Biggest Thing That the Security Makes the Challenge is Security Threats are Constantly Evolving and Morphing.
-
-Spring Security is Like Security Gard That Examines the Application For Each and Every Request.
+Spring Security is Like Security Gard That Examines an Application For Each and Every Request.
 And Every Time It asks Who are You and What do You Want.
-
 Spring Security is an Application Framework that Provides Application Level Security.
 
-Spring Security Provides
-
+Spring Security Provides :
 Login and Logout Functionality
 Allow/Block access to URL's Logged in Users
 Allow/Block access to URL's Logged in Users But With Certain Roles
 
-
 The Above Things can be Done By Using Configuration.
 Spring Security Lets us to Configure Based on Application Needs.
+Spring Security has been Built In a Very Flexible and Customizable Way.
+Spring Security Can Handle Common Security Vulnerabilities out of Box Like 
 
-Spring Security has been Built Very Flexible and Customizable.
-Spring Security Can Handle Common Security Vulnerabilities out of Box Like Session Fixation,ClickJacking,Click Site Request Forgery etc.
+Session Fixation,ClickJacking,Click Site Request Forgery etc.
+
 Spring Security has Widely Adapted and People are Constantly Trying to Find Vulnerabilities in it.
-
 However Even If The Vulnerability is Found,It Is Immediately Patched.
 We Cannot Achieve Security Based on Secrecy or Hiding the Vulnerabilities.
 We Get Effective Security By Removing the Vulnerabilities.
 
-By Using Spring Security We Can Implement 
-
+By Using Spring Security We Can Implement :
 UserName and Password Authentication
 Single Sign on Stuff Like SSO/OKTA/LDAP
 App Level Authorization
 Intra App Authorization Like OAuth
 Micro Service Security Using Tokens,JWT
 Method Level Security
-
-
 
 2.Five Spring Security Concepts :
 *********************************	
@@ -74,15 +63,11 @@ Method Level Security
 1.Authentication :
 ------------------
 Lets Imagine Spring Security is Like Security Gard In Front of the Web Application and Stopping Every Request Going In.
-
-Who are You is Called Authentication.
-And What do You Want.
-
+Who are You is Called Authentication And What do You Want.
 Most Web Application Have Some Representation of Id Like Face Book,Linked In etc.
 These Sites will Have Id's in their System That Uniquely Corresponding to Us.
 After Identifying the Id ,Should Prove That It is Yourself. 
 Common Way It is Done By Using Password.
-
 This Kind of Authentication is Called Knowledge Based Authentication.
 Here Authentication is Done Based on Knowledge We Have Like Password,Pin Code or Answer to a Particular Question.
 Here The Advantage is It is Simple and it is Easy to Use.
@@ -92,24 +77,21 @@ There are Some Other Authentication Like Possession Based Authentication
 Phone/Text Messages
 Key Cards and Badges
 Access Token Device
-
 Some Applications Uses Both Knowledge Based and Possession Based Authentication and Called as Multi Factor Authentication.
-
 
 Authorization :
 ---------------
-It is Nothing But Can the User Do What He is Supposed to Do.
+It is Nothing But What Can the User Do What He is Supposed to Do.
 It is Like Yes or No.
 Once the User is Successfully Authenticated,What the User Can do Depends on Who the User is Called Authorization.
-
 Authentication and Authorization are Widely Used in the Software Development.
 
 Principal :
 -----------
-Authentication is the Process of Identifying the Person Trying to Access the Application and
+Authentication is the Process of Identifying the Person Who is Trying to Access the Application and
 Principal is the Person That we Have Identified Through The Process of Authentication.
 Principle is the Currently Logged In User.
-Once We Authenticate With Any Application By Giving User Name and Password The Application Establishes The Principal and It Remembers It.
+Once We Have Authenticated To Any Application By Giving User Name and Password,The Application Establishes The Principal and It Remembers It.
 This is The Only Reason We Authenticate With The Application Only Once.
 And No Need to Enter The Id and Password For Every Request on Page Load.
 There May Not be a One To One Mapping Between User,Human Being and Principal.
@@ -118,8 +100,8 @@ If the User Switches From One Account to Another Account,The Principal Will be T
 
 Granted Authority :
 -------------------
-How Does the Application Decide Whether or Not to Allow a Particular Access.
-Here The Application Owner or Maintainer Should Have Handled Before .
+How Does the Application Decide Whether to Allow or Decline For a Particular Access(API).
+In This Case Application Owner or Maintainer Should Have Handled Before Access.
 If the User is X and He Has Access to Only Some Actions in The Application.
 This Concept of Permission is Called Authorization.
 Granted Authority are Fine Grained Permissions That a User Can Do.
@@ -127,8 +109,7 @@ Granted Authority are Fine Grained Permissions That a User Can Do.
 Roles :
 -------
 Role is Nothing But Group of Authorities That are Usually Assigned Together.
-Roles are More Fine Grained Permissions Than Authority.
-
+Roles are More Fine Grained Permissions Than Granted Authority.
 
 3.Adding Spring Security To Spring Boot Project :
 *************************************************
@@ -149,18 +130,18 @@ Spring Security by Default Does Some of The Things :
 3.It Handles Login Error
 4.Spring Boot By Default Comes with Error Page
 
-When We Add The Spring Security in The Class Path By Default It Creates a Default User and Password By Default.
+When We Add The Spring Security in The Class Path By Default It Creates a Default User Called user and Password in the Console By Default.
 We Can also Customize The Default User and Password By Declaring It In The Properties File.
 
 4.Spring Security Authentication :
 **********************************
 Here We Will Be Creating In Memory Authentication For The Spring Boot Application.
 Spring Security Authentication Should be Done Based on The Bunch of Users We Have.
-Here Users We Get From Database or LDAP etc.
+Here  We Get Users From Database or LDAP etc.
 Here We Create Bunch of Users as Hard Coded and Save Them in Memory.
 The Way to Configure Authentication in Spring Security is by Using Authentication Manager.
 Authentication Manager Manages the Authentication in The Spring Security Application.
-It has the Method Called authenticate()	and It Returns Successful Authentication and It Throws and Exception.
+It has the Method Called configure() and It Returns Successful Authentication and It Throws and Exception.
 The Way To Effect Authentication Manger is Not By Creating Our Own Authentication Manager 
 and is To Configure What Authentication Manager Does By Using Builder Pattern.
 We Don't work with AuthenticationManager Directly Most of The Times and We Use Builder Class Called AuthenticationManagerBuilder.
@@ -192,42 +173,34 @@ Add The Annotation @EnableWebSecurity to the SecurityConfiguration.
 When We Are Dealing With Passwords We Don't Want to Work With Clear Text.
 Clear Text is Saving The Password as String.
 Always Deal With Hashed Passwords.
-Spring Security Enforces the Password Encoding.Here We Need To Create A Bean With PasswordEncoder.
+Spring Security Enforces the Password Encoding.
+Here We Need To Create A Bean With PasswordEncoder.
 NoOpPasswordEncoder is considered as a String By Default.
 If we Want To Configure Bunch Of Users We Use and() 
 
 4.Spring Security Authorization :
 *********************************
-
 Starting Point To Perform Spring Security Authorization is a Basic Spring Boot Application With Spring Security Added
 and It Has In Memory Authentication.
-
 Here Authentication Can Be In Memory or Database or OAuth Users and So On.
-
 All We Need a Couple Of Users With Certain Roles So That We Can Configure Certain API To Be Accessed By One Role and So On.
-
 Here We are Using In Memory Authentication For Learning Purpose.
-
 Default Behavior of Spring Security is It Immediately Adds The Authentication to all The API's 
 and Authorizes all The API's.
-
 Here Default Behavior is API Needs Authentication and We Want Different API's HAs Different Access Requirements or
 Different Level of Access Controls.
-
-Here The Requirement is 
+Here The Requirement is :
 
 / has to be Accessed By all The Users
 /user has to Accessed By all The ROle USER and ADMIN
 /admin  has to Accessed By all The Role ADMIN
 
 
-If We Want To Configure This Kind of Authorization is By Using an Object of HttpSecurity.
-
-
+If We Want To Configure This Kind of Authorization We Use an Object of HttpSecurity.
 Here We Need to Create A Configuration Class and That Should Extends WebSecurityConfigurerAdapter
 and Override The Default Method 
 
-		@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception 
 	{
 		http.authorizeRequests();
@@ -235,25 +208,21 @@ and Override The Default Method
 
 Here Use Builder Methods to Configure The Authorizations.
 We Use AntMatchers For the Paths.
-
 Spring Security has Log Out Page by Using logout.
-
 To Allow Any Kind Of Users We Use permitAll
-
 
 7.Spring Security Jdbc Authentication  :
 ****************************************
 Here We Are Using In Memory Database H2 For Authentication.
-Here We Also Using JDBC API That Interacts with Database and Validates the Authentication Process.
-
+Here We Can Also Use JDBC API That Interacts with Database and Validates the Authentication Process.
 To Look up the User Details into the Database We Need to Configure the DataSource.
-We Need to @Autowire The Datasource and pass the DataSource to the Jdbc Authentication i.e 
+We Need to @Autowired The Data source and pass the DataSource to the Jdbc Authentication i.e 
 
  authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource);
 		
 With This Line We Have Configured Spring Security to Point to the H2  Database.
-When We added an Embedded Database to Spring Boot Application,Spring Boot Internally Creates a Datasource For Us.
+When We added an Embedded Database to Spring Boot Application,Spring Boot Internally Creates a Data source For Us.
 Next Step is to Create The Schema in the H2 Database.
 Create The Users That are Populated in the Schema.
 Spring Security has Some Default Opinions Specifically about the User and Authorities Tables.
@@ -266,11 +235,10 @@ If We Provide The Clean Database to Spring Security To Work With,Spring Security
 Now H2 Database is Configured with Default Tables Like User and Authorities.	
 We Also Need to Add The Password Encoder to Avoid The Failure issue.
 We Need to Set Up Some Files That Populates Couple of Schema's and Tables.	
-And At The Time f Authentication We Would assume That Schema and Tables are Available and
+And At The Time Of Authentication We Would assume That Schema and Tables are Available and
 We Would Be Authenticating Using Database.
 
 https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#user-schema
-
 
 Create the Schema.sql  in the Resources File That Will Create the DDL Statements For The H2 Database.
 Create The data.sql to Populate The Data in The Database.
@@ -287,15 +255,14 @@ authenticationManagerBuilder.jdbcAuthentication()
 		);
 
 Here We are Working with Default Schema.
-If There are Different Schema We Need to add these Methods to the Datasource.
+If There are Different Schema We Need to add these Methods to the Data source.
 
-		authenticationManagerBuilder.jdbcAuthentication()
+		 authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery("")
 		.authoritiesByUsernameQuery("");
 		
 These are The Default Return Types that Spring Security Expects and We can also Override the Above Queries.
-
 If We Want to Connect to External Database Then Add The Dependency in pom.xml and Remove H2 Dependency.
 
 8.Spring Security JPA Authentication   :

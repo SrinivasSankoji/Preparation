@@ -1,0 +1,107 @@
+1.Spring Batch Introduction
+2.How Batch Programming Works
+3.Spring Batch Features and Advantages
+4.SpringBatch Architecture
+5.Sample Spring Batch Application
+6.Read CSV File and Insert into DataBase
+7.Read CSV File and Insert into DataBase Using Custom Writer
+8.Read Data Form DB and Write Into CSV File
+9.Task Executor
+10.Multi Steps
+11.Execution COntext
+12.FaultTolerance Using Skip Policy
+13.Listener Introduction
+14.Job Listener
+15.Step Listener Introduction
+16.ItemRead Listener
+17.ItemProcess Listener
+18.ItemWrite Listener
+19.Skip First Line and Read First Line
+20.Read Fixed Length File
+21.Tasklet Introduction
+22.Resource Clean Up
+23.Generate Summary / Report
+24.Significance Of Spring Batch Tables
+
+1.Spring Batch Introduction :
+*****************************
+In Banking Batch Programming Being USed a Lot.
+If The Customer Does the Credit Card Transaction and 
+If He Opens the Account The The Transactional Details will Not Reflect Immediately.
+It Takes Some Time To Reflect There Because These Transactional Details Being Saved or Stored in Some Other Application.
+All Together Belongs to Different Systems.
+Coming To Customer Account It Has Its Own Application and Its Own Databases.
+In Order to Get the Data From Another Application to Customer Application There Will be a Batch Processing.
+We Retrieve Some SMS,Mails Regarding Fee Due Date ,Holiday ,Results,Mark Sheet Generation etc By Using Batch Processing.
+Any System That Does Not Communicate With Another System Database Directly and Even They Cannot Use Web Service Often
+To Get the Data Form One Application to Another Application.
+As This Data is Huge and Frequently Being Used Every Time We Cannot Get the Data From Another Place.
+Here the Data Must be There in their Place So That They Can Perform Any Operations on that Data.
+They Can Also Load The Data in the Cache Because This is One Time Activity.
+Here Reports Get Generated Either at The End of The Day,Week or a Month.
+All these Scenarios Will be Done By Using Batch Processing.
+Batch Processing is Nothing But With Minimal Human Interception or Without Human Interception 
+If Some Thin Happens Behind The Scenes is Called Batch Processing.
+
+2.How Batch Programming Works :
+*******************************
+In Banking We Need Data From Source System to Target System.
+Their Might Be Some Use Case Where We Have Some File.
+Read File and Insert into DB.
+We Also Need to Process the Data Before Saving it into the Database.
+Here Processing is Called Transformation.
+We Also get The Requirement To Read The Data From  Database and Write it to the File.
+There Might Be Also the Requirement Where We Can Send Emails,SMS to the Users.
+This is The Way Batch Programming Works.
+We Can Achieve it By USing Unix Script,Python Script,Java Programming etc.
+
+3.Spring Batch Features and Advantages :
+****************************************
+Spring Batch Provides Lot of In Built Features Compared to Another Batch Programming Technologies.
+Here Developers Can Concentrate Only on Implementation Rather Than Infrastructure and Other Configuration Part.
+We Need Not Worry About How To Read The File,How To Persist,How To Handle The Exception etc Will be Taken Care By Spring Batch.
+Decoupling Between Different Layers i.e Spring Batch has Different Layers Readers,Writers,Processor,Listeners etc.
+These are Independent and Out of The Application.
+There is No Coupling Between Business Logic Code and Configuration Code.
+Spring Batch Provides Separation Between Infrastructure and Application.
+SpringBatch Provides 17 Item Readers and 15 Item Writer Implementations.
+Spring Batch Provides Default In Built Reader Writer.
+With Minimal Configuration We Can Add Any Custom Reader or Custom Writer.
+In Traditional Batch Processing Approach,If Something Goes Wrong While Processing the Data,
+Again We Have to Rerun Everything.
+If We Have Millions of Records and AFter Some Time If Some Thing Goes Wrong 
+and If We Run the Batch Again then There Will be Duplication.
+Here The Business User Will Not allow to do this.
+In Spring Batch There is A Facility to Restart the Job.
+Here It Wont Process All the Records and Starts form the Failed Records.
+Here Spring Batch has the Ability to Start/Stop/Restart Jobs and Maintain State Between Executions.
+We Can Achieve this By Using Configuration.
+Spring Batch has the Ability to Skip the Record By Using Some Configuration.
+In Case of Traditional Approach We Need to Write the Logic and it is Very Coupled.
+Spring Batch Can be Configured By Using XML or Annotation Based.
+Spring Batch also Maintains Some Statistical Information about the Job in the Database.
+
+
+4.SpringBatch Architecture :
+****************************
+
+
+12.FaultTolerance Using Skip Policy :
+*************************************
+Skip Policy is Very Important In Order to Deal With Huge Amount of Data.
+Usually We Read The Data Form the File,Process It and Write it INto the Database.
+There Might be a Situation Where We Process the Entire File and At the End of the File If Any Error Occurs
+The Entire Job Will Fail Due To Some Exception Like Bad Record,Bad Processing Logic or We Forgot To Handle Some Exceptions etc.
+Here the Entire Job Will Get Failed and We Can Ignore that By Using Skip Policy.
+This is Fault Tolerance  Mechanism Can be Achieved By Using Skip Policy.
+Spring Batch Has Provided One Interface and We Need To Override the Method shouldSkip().
+Here We Need to Define Set of Rules.
+While Reading the Record We Identify The Bad Record.
+There May Be a Scenario Where We Get More Bad Records than Good Records,
+In This Scenario We Can Define a Threshold to Identify the Failed Records and Make he Job Fail.
+In Case of Spring Batch Failed dCOunt Starts With Zero.
+
+
+
+
+

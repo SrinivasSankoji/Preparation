@@ -1,141 +1,214 @@
 References :
 ------------
-
 http://www.mkjava.com/tutorial/spring-session/
 https://www.javadevjournal.com/spring/spring-session/
 https://www.journaldev.com/21748/spring-session-management-spring-session-jdbc
 https://sivalabs.in/2018/02/session-management-using-spring-session-jdbc-datastore/
 https://www.javainuse.com/spring/springboot_session
-
-
+http://websystique.com/spring/spring-4-cacheable-cacheput-cacheevict-caching-cacheconfig-enablecaching-tutorial/
+https://howtodoinjava.com/spring-boot2/spring-boot-cache-example/
+https://javabeat.net/caching-in-spring/
 
 1.Building a Horizontally Scalable Cloud Native Application :
+-------------------------------------------------------------
+https://www.infoq.com/articles/Next-Generation-Session-Management-with-Spring-Session/
 
- Cloud Native Application Architecture assumes that application will be scaled by 
- running more no of Instances of the Application in the Linux Containers on a Large
- Pool Of Virtual Machines.
- For Example It Is easy to deploy a War File to Tomacton Cloud Foundry or Heroku and then Sacale 
- to 100 app instances with 1 GB Ram per Instance in a few Seconds.
- We Can Also increase the Cloud Platform to Increase or decrease the Number of 
- Application Based on Our Demand.
- 
- Many Application Servers Store Http Session State in the Same JVM That is running the
- Application Code Sinc it Is Easy and Fast to Implement.
- When an New App Server Joins or Leaves the Cluster then Http Sessions are Rebalanced over the
- Remaining App Server Instances.
- In a Elastic Cloud Environment Where we are Running Hundreds of App Server Instances and 
- there may be chance adding or deleting the New App Server Instances and there would be adding
- Problem.
- 
- Rebalancing Http Session Can become a performance bottleNeck.
- Large HeapSize needed for String Large Number of Sessions and can cause to Garbage Collector.
- TCP Multicast is Usually Prohibited by Cloud Infrastructure and these are Used by  Http Session 
- to identify which new App Server Instances are Joined or Left From the Cluster.
- 
- Therefore it is more efficient to store the Http Session state in a Data Store Outside the JVM Running 
- the Application Code.
- For Example 100 Instances of Tomcat Can be Configured to Redis For Storing the Session data and
- If the Number of Instances in the Tomacat Increased or Decreased the Session in Redis are Unaffected.
- 
- For Open Source Servers Like Tomcat It Is easy to find Alternative Implementation Of Session Manager
- that uses data store like Redis and MemCached.
- However the Configuration Process is Compleax and Is Specific to each Application Server.
- For Closed Source Products such as WebLogic and WebSphere finding an Alternative For Session Managers
- is not only Difficult but also Impossible.
- 
- Spring Session Provides an Application Independent way to configure Pluggable Data Store 
- Within the bounds of the Servlet Specification and Without having any rely on Application Server
- API's.
- This Means That Spring Session works with all App Servers that Implement The Servlet 
- Specification and is very easy to Cofigure on the Applivation Servers.
- We also get to choose whatevre External Data Store we want to Choose.
- 
- 2.Multiple Accounts per user :
- 
- When We Use Http Session to Track Application State,Such as Currently Logged In User 
- And If I Wnat to switch from one Application to Another Application we need to Log out and then Log In.
- With Spring Session it is trivial to configure Multiple Http Sessions Per User ,enabling the
- User to Switch Between the Multiple Acccounts without need of Logout and Log In.
- 
- 3.Multi-level Security Preview :
- Typical Web Application stores the Identity of the Current User and their roles in the Http Session.
- Since Web Application Can Have Only One Session Per Logged in User We wont be able to switch from One Account 
- to Another Account.
- With Spring Session We Can Easily Create Multiple Sessions per Logged In User and Each of those Session 
- Is completely Independent of the other Session.
- So Preview Functionality for Multiple users Can be Easily Acheived.
- 
- 4.Staying Logged In While Using Web Sockets :
-  According to Servlet Specification Requests arriving over Web Socket Cant Make the Http Session Alive.
-  When the user Starts Chatting,Session CountDown Timer Starts and When the  Http Session Expires then 
-  the Web Socket Connection is also Closed.
-  With Spring Session We Can Eventually Make Sure That both Web Socket Request and Regular Http Requests 
-  keep Http Session alive for our users.
-  
-  5.Accessing Session Data for non web requests :
-  
-  We Can Access the Spring Session from Any Non Web Application as Long as we know the Session Id.
-  Spring Session has More Rich API Then Regular Servlet Http Session API.
-  So we Can Retrieve Very Specific Session Just by Knowing The Session ID.
-  
-  6.Spring Session Architecture :
-  
-  While Implementing Session Manager Two Key Problems Must be Solved.
-  How to Create a Clustered High Availaibility Session that can Store Data Reliably and Efficiently.
-  How to determine 	which Session Instance is Associated with which request i.e whether the request is Http,
-  WebSocket,AMQP or some other Protocol.
-  
-  i.e How the Session ID Is Transmitted over the Protocol That is used for Making The Request.
-  
-  For The First Problem i.e Storing Data in a High Availaibility Scalable Cluster is already well Solved by
-  Various Data Stores Like Redis,GemFire,APache Geode etc.
-  Spring Session has Defined standard Set of Interfaces that has to be implemeneted by various data stores
-  to mediate Acces to the Data Store.
-  Interfaces Are
-  
-  Session  Interface
-  ExpiringSession Interface
-  SessionRepository Interface
-  
-  
-  Spring Session Assumes that the problem of Associating a request to specific Instance is protocol Specific
-  because the client and the server need to agree on a way to transmitt the sessiod over 
-  the request and response Cycle.
-  
-  If the Request are arriving over Http then Session can be associated with a request by using 
-  Http Headers or Http Cookies.
-  If the Request are Arriving Over HttpS then the Session can be associated with a request by using 
-  SSL SessionId.
-  If JMS is Used the JMS Header Can be used to store the sesson Id Between the Request and Response.
+Cloud Native Application Architecture assumes that application will be scaled by 
+Running more no of Instances of the Application in the Linux Containers on a Large Pool Of Virtual Machines.
+For Example It Is easy to deploy a War File(Tomcat) on Cloud Foundry or Heroku and 
+Then Scale to 100 APP instances with 1 GB Ram per Instance in a Few Seconds.
+We Can Also Increase or decrease the Number of Applications Based on Our Demand.
 
-  For Http Protocol Spring Session Defines HttpSessionStrategy Interface With two Default Implementations :
-  CookieHttpSessionStrategy which uses HttpCookie to Associate a Request with Session Id.
-  HeaderHttpSessionStrategy which use HttpHeaders to associate a request with Session Id.
+Many Application Servers Store HTTP Session State in the Same JVM That is running the Application 
+Since it Is Easy and Fast to Implement.
+When an New App Server Joins or Leaves the Cluster Then HTTP Sessions are Rebalanced over the Remaining App Server Instances.
+In a Elastic Cloud Environment Where we Have Hundreds of App Server Instances Running and 
+There may be chance adding or deleting the New App Server Instances and there would be a Problem.
+
+Re balancing HTTP Session Can become a performance bottleNeck.
+Large HeapSize is needed for Storing Large Number of Sessions and can cause to Garbage Collector.
+TCP Multi cast is Usually Prohibited by Cloud Infrastructure.
+To identify which new Application Server Instances are Joined or Left From the Cluster.
+
+Therefore It is more efficient to store the HTTP Session state in a Data Store Outside the JVM Running The Application Code.
+For Example 100 Instances of Tomcat are Configured to Redis For Storing the Session data and
+If the Number of Instances in the Tomcat Increased or Decreased the Session in Redis are Unaffected.
+
+For Open Source Servers Like Tomcat It Is easy to find Alternative Implementation Of Session Manager
+that uses Data store like Redis and MemCached.
+However the Configuration Process is Complex and is Specific to Application Server.
+For Closed Source Products such as WebLogic and WebSphere finding an Alternative For Session Managers
+is not only Difficult but also Impossible.
+
+Spring Session Provides an Application Independent way to configure Pluggable Data Store Within the bounds of the Servlet Specification and Without having any rely on Application Server API's.
+This Means That Spring Session works with all App Servers that Implement The Servlet Specification 
+and is very easy to Configure on the Application Servers.
+We also get to choose whatever External Data Store we want to Choose.
+
+2.Multiple Accounts per user :
+------------------------------
+When We Use HTTP Session to Track Application State,Such as Currently Logged In User 
+And If I Want to switch from one Application to Another Application we need to Log out and then Log In.
+With Spring Session it is trivial to configure Multiple HTTP Sessions Per User ,enabling the
+User to Switch Between the Multiple Accounts without need of Logout and Log In.
+
+3.Multi-level Security Preview :
+--------------------------------
+Typical Web Application stores the Identity of the Current User and their roles in the HTTP Session.
+Since Web Application Can Have Only One Session Per Logged in User We wont be able to switch from One Account 
+to Another Account.
+With Spring Session We Can Easily Create Multiple Sessions per Logged In User and Each of those Session 
+Is completely Independent of the other Session.
+So Preview Functionality for Multiple users Can be Easily Achieved.
+
+4.Staying Logged In While Using Web Sockets :
+---------------------------------------------
+According to Servlet Specification,Requests arriving Over Web Socket Cant Make the HTTP Session Alive.
+When the user Starts Chatting,Session CountDown Timer Starts and When the  HTTP Session Expires then 
+the Web Socket Connection is also Closed.
+With Spring Session We Can Eventually Make Sure That both Web Socket Request and Regular Http Requests 
+keep HTTP Session alive for our users.
+
+5.Accessing Session Data for non web requests :
+-----------------------------------------------
+We Can Access the Spring Session from Any Non Web Application as Long as we know the Session Id.
+Spring Session has More Rich API Than Regular Servlet HTTP Session API.
+So we Can Retrieve Very Specific Session Just by Knowing The Session ID.
+
+6.Spring Session Architecture :
+-------------------------------
+While Implementing Session Manager Two Key Problems Must be Solved.
+How to Create a Cluster With High Availability Session that can Store Data Reliably and Efficiently.
+How to Determine which Session Instance is Associated with which request i.e whether the request is HTTP,WebSocket,AMQP or some other Protocol.
+
+i.e How the Session ID Is Transmitted over the Protocol That is used for Making The Request.
+
+For The First Problem i.e Storing Data in a High Availability Scalable Cluster is already well Solved by
+Various Data Stores Like Redis,GemFire,APache Geode etc.
+Spring Session has Defined standard Set of Interfaces that has to be implemented by various data stores to mediate Access to the Data Store.
+Various Interfaces Are :
+Session  Interface
+ExpiringSession Interface
+SessionRepository Interface
+
+Spring Session Assumes that the problem of Associating a request to specific Instance is protocol Specific
+because the client and the server need to agree on a way to transmit the session id over 
+the request and response Cycle.
+
+If the Request are arriving over HTTP then Session can be associated with a request by using 
+HTTP Headers or HTTP Cookies.
+If the Request are Arriving Over HTTPS then the Session can be associated with a request by using 
+SSL SessionId.
+If JMS is Used the JMS Header Can be used to store the Session Id Between the Request and Response.
+
+For HTTP Protocol Spring Session Defines HttpSessionStrategy Interface With two Default Implementations :
+CookieHttpSessionStrategy which uses HttpCookie to Associate a Request with Session Id.
+HeaderHttpSessionStrategy which use HttpHeaders to associate a request with Session Id.
+
+Spring Session Over HTTP :
+--------------------------
+Spring Session Ships with Built in Support For Redis.
+Tc Configure Spring Session in Spring Boot We need to add two Dependencies :
+spring-session and
+spring-boot-starter-redis.
+
+Configuring Connectivity From Spring Session to Redis can be done by Adding Properties 
+in th application.properties file.
+By Default Spring Session Uses HttpCookie to Store the Session Id and we can also Configure Spring Session 
+to use a Custom HTTP Header Such As x-auth-token.
+
+Multiple Sessions Per Browser :
+Spring Session Keeps Track of Multiple Users By Using  Session Alias Parameter i.e _s Parameter.
+If The Request has no _s Parameter then Spring Session treats that as the Default Session.
+In order to create a new Session Per Browser 
+call the request.getSession()
+
+  
+**************************************************** Simple Learning (EhCache) ****************************************************
+Introduction :
+--------------
+There are Different Cache Mechanisms Available in the Market Like EHCache,Redis,HazleCast,CouchBase,GemFire etc.
+Spring Also Have In Built Cache Manager.
+We Can Configure Multiple Caches By Using Cache Manager and We Can Also Set Expiry For Them.
+Here We Are Using EhCahe For Java Configuration.
+
+Cookie is Used to Store User Details Where Cache is USed to Store The Information and will Be Helpful to Render The Page Faster.
+Cookies Often Tracks The Information Like How Frequently The User Visits and What is the Time Of The Visit,Button Clicked By The User,
+Product Clicked By The User,What are The Items in the Shopping Cart etc.
+For Example In YouTube or Face Book They Show The Adds Based  on the Information Available in the Browser Cookie.
+If You Shop For Shoes in Amazon.com and Open up the Face Book Page,We Would Immediately Notice That Face Book Will Show the 
+Adds Related to Shoes in their Page With The Help OF Cookies.
+
+When We Open a Page With Large Pictures,Videos or Audios or a Page With Huge Data like Some Historical Data
+and We Are Rendering the Data to the End User and This May Take Time to Render In Front of The User.
+Here We Use Cache to Store the Site Contents Like The Images,Videos,Audios or These Huge Data etc on the User Computer.
+So that When We Load the Data For The Next Time It Will be Loaded Much Faster.
+Here Both Cookie and Cache Has Expiry Limits But it Depends on Business Needs.
+
+Create The Spring Boot Project With Sprig In Built Cache.
+In The Service,Wait For 5 Seconds Using Thread.sleep(5000);
+
+Make the Method Annotated With @Cacheable Means We Are Setting the Cache.
+@CacheEvict Means Removing the Cache
+@CachePut Means Updating the Cache.
+
+
+@Cacheable(value = "student-cache",key = "'student-cache'+#studentId")
+Here Key is Important Because Here We Are Storing the Student Cache Based on Student Id.
+Here We are Using Spring Expression Language to Define the Key.
+The Entire Data Returned For The Student Id Is Stored in the Particular Key.
+Key Variable Should Match The Method Signature i.e Method Variable.
+
+We Can also Set The Condition for the Cache Like,
+Only When the Parameter is True i.e Using @Request Parameter
+If The Result is Not Null Then Cache It i.e Use unless Option in @Cacheable 
+Remove the Data From the Cache When the Method invocation bu Using beforeInvocation.
+
+We Must USe Conditional Caching So That We Have an Idea of When to Put The Data in the Cache,When to Update the Data in the Cache
+and When to Remove The Data in the Cache.
+
+
+EHCache Configuration Example :
+*******************************
+Create The Configuration and Extends CachingConfigurerSupport Class
+Override The Cache Manager Because it is Provided By Spring Framework and Implement Our Own Cache Manager.
+In the CacheManger Create the Configuration which Serves as the Configuration For Our Cache.
+We Can Set The Name of The Cache Using Configuration.
+We Can also Set The Memory Store EvictionPolicy i.e How Cache is Replaced in our Memory.
+When The Cache is Full We Need To Decide the Element to be Evict.
+There are Different Algorithms Like LRU,FIFO,LFU and so on.
+By Default Eviction Policy is LRU.
+
+We Can also set the MAx Entries by Using in Local Heap.
+i.e Maximum Number of Cache Entries in the Local Heap Memory.
+When We Set The Cache Manager Local Pool  will be Available to the Cache under the Cache Manger.
+We Can also Set the Timeout For The Cache.
+We Can also Set The Request Parameter For Cacheable like isCacheable.
+We Can Remove The Cache By Suing @CachEvict
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
   
   
-  Spring Session Over Http :
-  
-  Spring Session Ships with Built in Support For Redis.
-  
-  Tc Configure Spring Session in Spring Boot We need to add two Dependencies.
-  
-  spring-session and
-  spring-boot-starter-redis.
-  
-  Configuring Connectivity From Spring Session to Redis can be done by Adding Properties 
-  in th application.properties file.
-  
-  By Default Spring Session Uses HttpCookie to Store the Session Id and we can also Configure Spring Session 
-  to use a Custom Http Header Such As x-auth-token.
-  
-  
-  Multiple Sessions Per Browser :
-  
-  Spring Session Keeps Track of Multiple Users By Using  Session Alias Parameter i.e _s Paramter.
-  If The Request has no _s Parameter then Spring Session treats that as the Default Session.
-  
-  In order to create a new Session Per Browser 
-  call the request.getSession()
   
   
 

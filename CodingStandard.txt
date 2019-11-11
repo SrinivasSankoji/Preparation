@@ -1,0 +1,50 @@
+
+Controller :
+------------
+Swagger
+@RequestBody Advice
+@ResponseBody Advice
+Java Validation
+
+Service :
+---------
+Use Transactional
+Java8
+
+Repository :
+------------
+Spring JBDC 
+Database Connection
+Dynamic Query
+Spring Batch
+
+Admin :
+-------
+Actuator
+Connection Pooling
+Actuator
+Metrics
+Admin
+
+Logger :
+--------
+LogTracing
+Id
+Spring AOP
+
+Model :
+-------
+Use Builder
+Lombok
+
+Session Implementation
+----------------------
+EHCache
+Redis
+
+Spring Security :
+-----------------
+LDAP
+JWT
+OAuth
+

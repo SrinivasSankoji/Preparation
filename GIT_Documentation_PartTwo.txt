@@ -3,7 +3,7 @@ Topics :
 
 #Creating a Spring Boot Project and add it to Git Hub in Multiple Ways
 #Git and GitHub Introduction and Why to Use Git
-#Sending Email form GitHub
+#Sending Email from GitHub
 #
 1.Installing Git on Windows [11-06-2019][DONE]
 2.Branching and Merging [11-06-2019][DONE]
@@ -13,15 +13,23 @@ Topics :
 6.Undoing/Reverting/Resetting  Code  [13-06-2019][DONE]
 7.HEAD 
 8.gitIgnoreFile [13-06-2019][DONE] 
-9.Diff and Merge Using Meld   [13-06-2019][DONE] 
+9.Difference and Merge Using Meld   [13-06-2019][DONE] 
 10.GitHub 
 11.Pull Request 
 12.Git MERGE vs REBASE 
 13.Stash Command 
-14.Resolve Merge Conflicts in GIT Using Egit
+14.Resolve Merge Conflicts in GIT Using EGIT
 15.GIT Merge Tool [15-06-2019][DONE]
 16.Remote Git Server and Merging 
 17.Git Tags -- What,why,when and How 
+18.Introduction and Basics  (academind.com)
+19.Adding a Project, Creating Feature Branch, Merging With Master  (ChargeAhead)
+20.Stash Command (academind.com)
+21.Merge vs ReBase (academind.com)
+22.Pull Request 
+23.Merge Form One Branch to Another Branch
+24.Compare Local Repository With Git Hub Repository
+25.Check out To Previous Version
 
 ************************************* Scenarios  **************************************************************
 
@@ -61,7 +69,7 @@ Branch to Branch
 **********************************  Installing Git on Windows  *************************************************
 
 			1. Check If Git is already Installed
-			2.Download nd Install Git
+			2.Download And Install Git
 			3.Add the Project to Git
 			4.To add user name and Password of Git Hub use the Below Commands :
 
@@ -69,7 +77,7 @@ Branch to Branch
 			git config --global user.name srinivassankoji   
 			   
 			5 .Commands :  
-			git init to initialisze Check in Folder and Files	
+			git init to initialize Check in Folder and Files	
 		    git add  to add the file to the GIT(Created Folder)
 		    git status to check the status of the File
 		    git commit -m ""   to commit the Code in Git
@@ -101,153 +109,145 @@ Add Folder/Project to The Git :
 
 How to Use Git Bash :
 *********************
+Open the GitBash from Executable Jar File or 
+Right Click on the Git Folder and enter the Option Git Bash
+Open The Git Hub and Create a new Repository and copy the URL:
 
-		Open the GitBash from Executable Jar File or 
-		Right Click on the Git Folder and enter the Option Git Bash
-		Open The Git Hub and Create a new Repository and copy the URL:
+https://github.com/SrinivasSankoji/Test.git
 
-		https://github.com/SrinivasSankoji/Test.git
-
-		and use the Command in the git bash :  git remote add origin https://github.com/SrinivasSankoji/Test.git
-		Still it will not show our changes in Git Hub.
-		We need to push using the Command : git push -u origin master
-		Here master is the Name of the Branch and we can use any other Branch.
+and use the Command in the git bash :  git remote add origin https://github.com/SrinivasSankoji/Test.git
+Still it will not show our changes in Git Hub.
+We need to push using the Command : git push -u origin master
+Here master is the Name of the Branch and we can use any other Branch.
 		
 ******************************** Copying a GitHub Repository to Your Local Computer  and From Eclipse ***************************
 
-		Reference URL --> https://www.youtube.com/watch?v=O72FWNeO-xY
-		We use the Command  : git clone "Repository URL"	
+Reference URL --> https://www.youtube.com/watch?v=O72FWNeO-xY
+We use the Command  : git clone "Repository URL"	
 
-		Window --> show View -- > Git Repository --> Clone a Git Repository --> copy the Git Repository URL --> Finish.
-		In The Git Repositories -->  Right Click on The Project --> Select import Maven Project --> Then Project will be Added to the 
-		Project Explorer.	
+Window --> show View -- > Git Repository --> Clone a Git Repository --> copy the Git Repository URL --> Finish.
+In The Git Repositories -->  Right Click on The Project --> Select import Maven Project --> Then Project will be Added to the 
+Project Explorer.	
 
-		Generate the SSH Key from GitBash using the Command available in GitLab.
+Generate the SSH Key from GitBash using the Command available in GitLab.
 		
 ********************************  Branching and Merging *******************************************************
 
-		To Create a Branch use the Command : 
-		------------------------------------
-		git branch "Branch Name" and enter the command  : git status
-		Still we are pointing to the Master Branch,and if wee want to work on the newly created branch 
-		we need to check out and we use the Command git checkout "Branch Name"
-		it will not reflect in the Git Hub.
-		Add new File in The Folder test2.text and To Add a Text File in the Git Bash 
-		use the command : touch  test3.txt
+To Create a Branch use the Command : 
+------------------------------------
+git branch "Branch Name" and enter the command  : git status
+Still we are pointing to the Master Branch,and if wee want to work on the newly created branch 
+we need to check out and we use the Command git checkout "Branch Name"
+it will not reflect in the Git Hub.
+Add new File in The Folder test2.text and To Add a Text File in the Git Bash 
+use the command : touch  test3.txt
 
-		Merging the Branch :
-		--------------------
-		To merge a new Branch in Master Branch we use the Command git merger "BranchName"
-		Note : When we are Merging to Master Branch we need to check out the Master Branch and Merge the Branch
-		Then run the Command Commit and Push to reflect it in GitHub.
+Merging the Branch :
+--------------------
+To merge a new Branch in Master Branch we use the Command git merger "BranchName"
+Note : When we are Merging to Master Branch we need to check out the Master Branch and Merge the Branch
+Then run the Command Commit and Push to reflect it in GitHub.
 
-		Deleting the Branch :
-		---------------------
-		To delete the Branch we use the Command git branch -d  "Branch Name"
-		It will delete the Branch locally and not in Git Hub.
-		To delete the Branch form Git Hub we use the Command
-		git push origin --delete "BranchName"
+Deleting the Branch :
+---------------------
+To delete the Branch we use the Command git branch -d  "Branch Name"
+It will delete the Branch locally and not in Git Hub.
+To delete the Branch form Git Hub we use the Command
+git push origin --delete "BranchName"
 
 ********************************  Adding Project to GitHub  *******************************************************
 
 Steps :  How to Create a GitHub Repository
-		 How to CLone Repository In Eclipse
+		 How to Clone Repository In Eclipse
 		 How to add Eclipse Project to GitHub Repository
 		 How to Commit ,Push and Pull The Changes
 		 
 		 
 Creating a GitHub Repository :
 ------------------------------
+Create an Account in GitHub
+Starting  a Project in GitHub is Creating a Repository in GitHub.
+After Creating a Repository in GitHub,Copy thE URL.
 
-		Create an Account in GitHub
-		Starting  a Project in GitHub is Creating a Repository in GitHub.
-		After Creating a Repository in GitHub,Copy thE URL.
+i.e https://github.com/SrinivasSankoji/GitDemo.git
 
-		i.e https://github.com/SrinivasSankoji/GitDemo.git
-
-
-
-		In Eclipse Open the Git Perspective and Choose the Option 
-
-		Clone a Git Repository
-
-		After Clicking on Clone a Git Repository Add the URL which get after creating a repository in GitHub.
+In Eclipse Open the Git Perspective and Choose the Option 
+Clone a Git Repository
+After Clicking on Clone a Git Repository Add the URL which get after creating a repository in GitHub.
 
 Creating a Project and Add it to GitHub Repository  Using Eclipse :
 -------------------------------------------------------------------
+Create a Project and Right Click -> Team -> Share -> select the Repository in the Drop Down -> Finish.
+Now the Project will be shown with Git Changes.
+then Right Click on the Project --> Team --> 
+here we will get all the Options once we Clone the Repository
+--> Commit and Push --> Add all The Files to the Repository.
 
-		Create a Project and Right Click -> Team -> Share -> select the Repository in the Drop Down -> Finish.
-		Now the Project will be shown with Git Changes.
-		then Right Click on the Project --> Team --> 
-		here we will get all the Options once we Clone the Repository
-		--> Commit and Push --> Add all The Files to the Repository.
-		
-		Before that Add the User in GitHub
-		Right Click --> import -> Existing Maven Project from SCM -->  Choose the WorkSpace --> Install.
+Before that Add the User in GitHub
+Right Click --> import -> Existing Maven Project from SCM -->  Choose the WorkSpace --> Install.
 		
 ********************  Add Existing Project on GitHUb Using GitBash *************************************
+Copy The Repository URL from the GitHub.
+Open The GitBash Command in the Project Folder and 
 
-		Copy The Repository URL from the GitHub.
-		Open The GitBash Command in the Project Folder and 
-
-		git init
-		git status
-		git add .
-		git commit -m "Message"
-		git remote add origin https://github.com/SrinivasSankoji/GitDemo.git
+git init
+git status
+git add .
+git commit -m "Message"
+git remote add origin https://github.com/SrinivasSankoji/GitDemo.git
 
 
 ********************* Undoing/Reverting/Resetting *************************************
 
-		Undoing Uncommitted Changes :
-		-----------------------------
-		First Clone the Project using the Command 
+Undoing Uncommitted Changes :
+-----------------------------
+First Clone the Project using the Command 
 
-		git clone Repository URL
+git clone Repository URL
 
-		do Some Changes in the Working Directory/Any File and after that run the Command git Status
-		Then it will show the changed File
+do Some Changes in the Working Directory/Any File and after that run the Command git Status
+Then it will show the changed File
 
-		we use the Command git checkout -- FileName
-		 it will Revert back the Changes
-		 
-		If there are Changes in Multiple Files then We use the Command
+we use the Command git checkout -- FileName
+ it will Revert back the Changes
+ 
+If there are Changes in Multiple Files then We use the Command
 
-		git checkout -- .
+git checkout -- .
 
-		Undo Committed Changes using Revert  :
-		--------------------------------------
-		
-		We can know the Committed Changes using the Command
+Undo Committed Changes using Revert  :
+--------------------------------------
 
-		git log
+We can know the Committed Changes using the Command
 
-		After Committing the Code and If We wnat to revert back the Changes we use the Command revert with Committed Id
+git log
 
-		git revert committedI
+After Committing the Code and If We wnat to revert back the Changes we use the Command revert with Committed Id
 
-		and after that to come out from the Console we use 
+git revert committedI
 
-		:q
+and after that to come out from the Console we use 
 
-		--> When We run the Command It Directly Committed The Changes
-		If i Dont Want to Directly run the Changes and I want to Explicitly Commit the Changes
-		we use the Command 
+:q
 
-		git revert -n commitId
+--> When We run the Command It Directly Committed The Changes
+If i Don't Want to Directly run the Changes and I want to Explicitly Commit the Changes
+we use the Command 
 
-		and the run the Command git status to see the Changes
-		after that run the command git commit -m "Message" 
+git revert -n commitId
+
+and the run the Command git status to see the Changes
+after that run the command git commit -m "Message" 
 
 
-		Resetting Changes Using Reset :
-		-------------------------------
+Resetting Changes Using Reset :
+-------------------------------
 
-		When we run the Command git log
-		It shows all the History of the Commited Changes
-		If i want to go back to the Particular History we use the Command Reset
+When we run the Command git log
+It shows all the History of the Committed Changes
+If i want to go back to the Particular History we use the Command Reset
 
-		i.e  git reset --hard CommittedId
+i.e  git reset --hard CommittedId
 
 
 *********************  HEAD in GIT  *************************************
@@ -256,74 +256,78 @@ Creating a Project and Add it to GitHub Repository  Using Eclipse :
 
 *********************  GIT IGNORE  *************************************
 
-		When we run the Command git status in the Git Folder,It Shows all the Files that has not been committed.
-		If we want to igonore some of the Files in the Git Foldder we use the command 
-		git revert
+When we run the Command git status in the Git Folder,It Shows all the Files that has not been committed.
+If we want to igonore some of the Files in the Git Foldder we use the command 
+git revert
+Before that create the ignore file using command 
 
+touch .gitignore
 
-		befror that create the ignore file using command 
+and in the created file add the file we want to ignore
+and then run the command git status
+we don't see the file again..
 
-		touch .gitignore
-
-		and in the created file add the file we want to ignore
-		and then run the command git status
-		we dont see the file again..
-
-
-		If we want to ignore particular file then add the file in .gitignore
-		We can also ignore the Files with Extension by adding *.exe in the >gitignore File 
+If we want to ignore particular file then add the file in .gitignore
+We can also ignore the Files with Extension by adding *.exe in the >gitignore File 
 
 *********************  Diff and Merge using Meld  Tool in GIT *************************************
 
-		To see the Difference between local file and GitHUb File we use the Command : git difftool origin/master i.e 
-		git difftool shows the changes between UnCommitted Code in the Local Changes and the Head(GitHub).
-		Then it will show the difference between two Files in the Form of Command Prompt.
-		
-		To see the Difference in Another Format we need to Install Meld.
-		
-		--> Install Meld --> https://meldmerge.org/ --> Click on Meld Installer --> Click on Download --> Run the Executable File --> Install
+To see the Difference between local file and GitHUb File we use the Command : git difftool origin/master i.e 
+git difftool shows the changes between UnCommitted Code in the Local Changes and the Head(GitHub).
+Then it will show the difference between two Files in the Form of Command Prompt.
 
-		Here we have installed the Meld and to make use of this we need to configure the Meld i.e 
-		Go the the Directory where the Meld is installed Example :  	C:\Users\Bhaumik Chary\.gitconfig
-		Edit the .gitconfig File and add the below lines 
-		
-		We use the Command git pull to see the Changes in the GitHub.
+To see the Difference in Another Format we need to Install Meld.
 
-		[diff]
-			tool = meld
-		[difftool "meld"]
-			path = C:/Program Files (x86)/Meld/meld/meld.exe
-		[difftool]
-			prompt = false	
-		[merge]
-			tool = meld
-		[mergetool "meld"]
-			path = C:/Program Files (x86)/Meld/meld/meld.exe
-		[mergetool]
-			keepBackup = false
-			
-		add the above line in the GitConfig file
-		
-		To launch any kind of difftool we use the Below Commands :  
-		git difftool -t vimdiff(To Open in vimdiff)
-		git difftool -t meld (to Open in Meld)
+--> Install Meld --> https://meldmerge.org/ --> Click on Meld Installer --> Click on Download --> Run the Executable File --> Install
 
-		To Resolve and Merge Conflicts First We need to add and Commit in the Staging Area.
-		git add.
-		git commit -m "Message"
-		
-		After that If nay one made the Changes in the Master we will get Conflict.
-		Before pushing the Changes we always need to run the Command : git pull
-		Then it will show the Merge Conflicts
-		
-		To run the merge tool we use the Command :
-		git mergetool
+Here we have installed the Meld and to make use of this we need to configure the Meld i.e 
+Go the the Directory where the Meld is installed Example :  	C:\Users\Bhaumik Chary\.gitconfig
+Edit the .gitconfig File and add the below lines 
+
+We use the Command git pull to see the Changes in the GitHub.
+
+[diff]
+	tool = meld
+[difftool "meld"]
+	path = C:/Program Files (x86)/Meld/meld/meld.exe
+[difftool]
+	prompt = false	
+[merge]
+	tool = meld
+[mergetool "meld"]
+	path = C:/Program Files (x86)/Meld/meld/meld.exe
+[mergetool]
+	keepBackup = false
+	
+add the above line in the GitConfig file
+
+To launch any kind of difftool we use the Below Commands :  
+git difftool -t vimdiff(To Open in vimdiff)
+git difftool -t meld (to Open in Meld)
+
+To Resolve and Merge Conflicts First We need to add and Commit in the Staging Area.
+git add.
+git commit -m "Message"
+
+After that If Any one made the Changes in the Master we will get Conflict.
+Before pushing the Changes we always need to run the Command : git pull
+Then it will show the Merge Conflicts
+
+To run the merge tool we use the Command :
+git mergetool
 		
 *********************  Pull Request  *************************************
 
 
 
 *********************  Forking a GitHub Repository  *************************************
+
+
+
+Adding a Project, Creating Feature Branch, Merging With Master
+***************************************************************
+
+
 
 
 

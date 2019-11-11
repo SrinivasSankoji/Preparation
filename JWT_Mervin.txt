@@ -1,49 +1,42 @@
-Builder Lombok
-Configuration Properties -- Model Class -- Autowired
 
+Use Builder Lombok instead of Using New Operator.
 
+Configuration Properties -- Model Class -- Autowired i.e 
+Define the JWT Related Configuration in Properties File and Create the Model That is Annotated With
+@ConfigurationProperties and Autowire The Model.
+
+Source Code Link :
 https://github.com/SrinivasSankoji/Security
-
-
 
 Video One :
 ***********
 Create a Spring Boot Project with Spring Security and JWT.
-
 Add the JWT Dependency
 Add The Database Connection Details
 Add The JWT Properties File
 Create The Model Class For the JWT Properties in properties Package
-
 @EnableConfigurationProperties to the Spring Boot Application
-
 Create The Entities Person and Role that has to be Created in the Database.
 
 Video Two :
 ***********
 Here We are Going to Implement UserDetailService,Repository and Database Services.
-
 This is a Cookie Based Implementation of JWT.
 With Cookie Based We Have Security Against Cross Scripting.
 When It is a Cookie,It is Accessible only by Browser and not any Script.
-
 The Only Thing we have to do is We Have to Implement CSRF Security and that can be Handled by Spring Security.
-
 The Next thing is the Insertion of Data and We Have a Class OnStartServer that implements ApplicationListener<ContextRefreshedEvent>
-
 Implemented Exception Classes and Every Thing For JWT.
-
 If AnyThing We Want to Pass to JWT Token We Need to pass it in CustomUserDetails.
-
 Example Person Object.
 
 Video Three :
 *************
-
 Cookies are Domain Based.
 Every Time Browser Sends the Request to API,Browser Attaches the Cookie to the Request API.
 We Don't Have any Cross Origin Issues while Using Cookies.
 JWT is Not Accessed by Script.
+
 
 
 
