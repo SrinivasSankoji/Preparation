@@ -1,27 +1,36 @@
-1.Spring Batch Introduction
-2.How Batch Programming Works
-3.Spring Batch Features and Advantages
-4.SpringBatch Architecture
-5.Sample Spring Batch Application
-6.Read CSV File and Insert into DataBase
-7.Read CSV File and Insert into DataBase Using Custom Writer
-8.Read Data Form DB and Write Into CSV File
-9.Task Executor
-10.Multi Steps
-11.Execution COntext
-12.FaultTolerance Using Skip Policy
-13.Listener Introduction
-14.Job Listener
-15.Step Listener Introduction
-16.ItemRead Listener
-17.ItemProcess Listener
-18.ItemWrite Listener
-19.Skip First Line and Read First Line
-20.Read Fixed Length File
-21.Tasklet Introduction
-22.Resource Clean Up
-23.Generate Summary / Report
-24.Significance Of Spring Batch Tables
+1.Spring Batch Introduction												[10-NOV-2019]  (Done)
+2.How Batch Programming Works											[10-NOV-2019]  (Done)
+3.Spring Batch Features and Advantages									[10-NOV-2019]  (Done)
+4.SpringBatch Architecture												[05-NOV-2019]  
+5.Sample Spring Batch Application										[10-NOV-2019]  (Done)
+6.Read CSV File and Insert into DataBase								[10-NOV-2019]  (Done)  
+7.Read CSV File and Insert into DataBase Using Custom Writer			[10-NOV-2019]  (Done)
+8.Read Data Form DB and Write Into CSV File								[05-NOV-2019]  
+9.Task Executor															[05-NOV-2019]  
+10.Multi Steps															[05-NOV-2019]  
+11.Execution Context													[12-NOV-2019]  (Done)
+12.FaultTolerance Using Skip Policy										[11-NOV-2019]  (Done)
+13.Listener Introduction												[12-NOV-2019]  (Done) 
+14.Job Listener															[12-NOV-2019]	
+15.Step Listener Introduction											[12-NOV-2019]  (Done)
+16.ItemRead Listener													[12-NOV-2019]  (Done)
+17.ItemProcess Listener													[12-NOV-2019]	
+18.ItemWrite Listener													[12-NOV-2019]	
+19.Skip First Line and Read First Line									[10-NOV-2019]  
+20.Read Fixed Length File												[05-NOV-2019]	
+21.Tasklet Introduction													[05-NOV-2019]	
+22.Resource Clean Up													[05-NOV-2019]	
+23.Generate Summary / Report											[05-NOV-2019]	
+24.Significance Of Spring Batch Tables									[05-NOV-2019]	
+
+Scenarios :
+-----------
+How To Maintain Error Records
+Execute the Next Batch Only For Error Records
+Failed Count
+Success Count
+
+
 
 1.Spring Batch Introduction :
 *****************************
@@ -85,6 +94,25 @@ Spring Batch also Maintains Some Statistical Information about the Job in the Da
 4.SpringBatch Architecture :
 ****************************
 
+9.Task Executor	 :
+******************
+
+10.Multi Steps :
+****************
+
+11.Execution Context :
+**********************
+It Is Similar to HttpRequest Object or Session Object Where We ARe Keeping Data in Key Value Pair Format
+and Can Use in Our Application or through out the Request Scope or Session.
+Similarly in the Job Execution if We put Something in the Execution Context We Can use it through out the Job Execution.
+Here We are Reading the File,Processing the File and Saving it into the Database or Vice Versa.
+There Might Some Situation We Have to Access Some Information While Processing Layer  Which we are Not Getting From
+Processing Layer.
+If We Want Read Such Kind of Data Then We Use ExecutionContext.
+If the Job is Being Launched,It Maintains Some State of Object.
+If We Keep Information in the ExecutionContext Then it Will be Availaible to all the Steps of the Object.
+If Want to Append FileName in Every Id While Processing the Data We Use Execution Context.
+For That We Need to Auto wire the ExecutionContext to the JobRunner and use in Processing Time.
 
 12.FaultTolerance Using Skip Policy :
 *************************************
@@ -99,9 +127,113 @@ Here We Need to Define Set of Rules.
 While Reading the Record We Identify The Bad Record.
 There May Be a Scenario Where We Get More Bad Records than Good Records,
 In This Scenario We Can Define a Threshold to Identify the Failed Records and Make he Job Fail.
-In Case of Spring Batch Failed dCOunt Starts With Zero.
+In Case of Spring Batch Failed COunt Starts With Zero.
+To Achieve Skip Policy We Need to Add Fault Tolerant to The Step and Add The JobSkipPolicy Implementation.
+
+13.Listener Introduction :
+**************************
+We Have an Idea of Servlet Filter and Interceptors in MVC.
+Listener in Spring Batch is More About Interceptor and Filters.
+We Want to Perform Some Operation Before and AFter the Job Execution We Use Listener.
+We Have JobListener and StepListener.
+In Case of Step Listener We Have Before,After and OnError() Stages.
+
+14.Job Listener :
+*****************
+
+
+15.Step Listener Introduction :
+*******************************
+By Using Job Listener We Can Do Two Things.i.e BeforeJob or AfterJob.
+Step is a Combination of Reading,Processing and Writing.
+Here Anything Can be Possible.
+If We Want to Perform Any Operation Before the Execution of The Step i.e Before Reading the File (One Step)
+If We Are Reading Something Then It Goes To Processor.
+While Reading If Something Goes Wrong either Bad Record or Some Exception and The Job Gets Failed.
+By Using Skip Policy We Can Avoid These Failures.
+If We Want to Track How Many Records Got Failed and Due to What Reason While Reading We Need to Write the Code.
+If We Register the Listener to the Step Similar to Registering the Job With The Listener.
+
+16.ItemReadListener in Spring Batch :
+*************************************
+ItemReaderListener is Similar to Listener and Will be Executed Before the Step and After The Step.
+It Also Contains the onError() to Handle The Errors.
+While Reading the Input If Any Error Occurs,Then The Entire String Will be Stored Inside FlatFileException getInput().
+If We Want to Track the Bad Records then add the getInput() to the ExecutionContext
+and After Completing the Job Return the Bad Records to the End User.
+
+17.ItemProcess Listener :
+*************************
+ItemProcessorListener is Similar to ItemReaderListener.
+In ItemReaderListner We Track the Bad Records Before and After Reading the Records.
+Once The Reader Done The Activity then it will give the Result as an Input to the Processor.
+While Processing the Record If Some Thing Goes Wrong Then It Will Be Handled in OnError() Method of ItemProcessorListener.
+
+18.ItemWrite Listener :
+***********************
+Similar to the ItemReaderListener and ItemProcessorListener.
+
+19.Skip First Line and Read First Line :
+****************************************
+
+
+20.Read Fixed Length File :
+***************************
+
+
+21.Tasklet Introduction	 :
+**************************
+So Far We Have Done is Chunk BAsed Approaches Like Piece by Piece we are Reading <Processing and Writing based on Chunk Size.
+In Case of Tasklet We Read the Data as Whole and Perform Some Operation on the Whole Data.
+
+
+22.Resource Clean Up :
+**********************
+
+
+
+23.Generate Summary / Report :
+******************************
+
+
+
+24.Significance Of Spring Batch Tables :
+****************************************
 
 
 
 
+Json Array Input :
+******************
 
+[
+  ["E102","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E103","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E104","Sohan","Kumar","sohan.singh@gmail.com",45  ],
+  ["E105","Sachin","Tendulkar","sachin.tendulkar@gmail.com",35  ],
+  ["E106","James","Gosling","james@gmail.com",39  ],
+  ["E107","Java","CodingSkills","javacodingskills@gmail.com",45  ],
+  ["E108","Spring","Batch","spring.batch@gmail.com",35  ],
+  ["E109","Spring","Boot","springboot@gmail.com",39  ],
+  ["E1010","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1011","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1012","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1013","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1014","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1015","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1016","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1017","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1018","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1019","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1020","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1021","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1022","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1023","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1024","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1025","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1026","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1027","Mohan","Reddy","mohan.reddy@gmail.com",39  ],
+  ["E1028","Ram","Singh","ram.singh@gmail.com",45  ],
+  ["E1029","Shyam","Singh","shyam.singh@gmail.com",35  ],
+  ["E1030","Mohan","Reddy","mohan.reddy@gmail.com",39  ]
+]

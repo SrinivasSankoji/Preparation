@@ -1,0 +1,205 @@
+1.Introduction to SOAP Web Services                       (30-NOV-2019) (DONE)
+2.Web Services Jargon									  (30-NOV-2019) (DONE)
+3.Stub Generation										  (30-NOV-2019) (DONE)
+4.Calling the Service										
+5.Setting Up												
+6.Eclipse Set Up											
+7.Code and Deploy											
+8.Adding Input Arguments									
+9.Service First and Contract Web Services				  (02-DEC-2019) (DONE)
+10.Understanding WSDL																		
+11.Customizing The WSDL											
+12.Schema Types and Binding Styles							
+13.Service Interface and Custom Types						
+14.JAXB Annotations Part 1									
+15.JAXB Annotations Part 2									
+16.Handling Faults											
+17.SOAP UI													
+18.Using Web Service Explorer									
+19.Using End Point											
+20.WS Import Revisited										
+
+
+1.Introduction to SOAP Web Services :
+*************************************
+There are Two Types of Web Services SOAP and REST.
+In Java there are two Specifications.For SOAP The Specification is JAX-WS
+and For Rest Specification is JAX-RS.
+Web Service is Nothing But a Service that is Made available to the Network and is Accessible over the Network.
+Example Social Media Applications ,ECommerce Applications are Nothing But Web Sites.
+Here Web Sites are Used For Human Consumption where are Web Service are Used For Code Consumption or Application Level Consumption.
+Example We HAve  Written Web Service For Getting List of Products and Deployed on Application Server.
+All the Other Services Which are Deployed in the Same Application Server are Free To Call the Products List Web Service.
+In The Application Server We Have an MVC Module That Calls Products List Service to Show The Products List to The User
+By Calling the URL.
+If Other User has Different Application Server and He Wants To Access the Products List Service.
+To Do That Products List Service Code has to Be Converted into Jar and Deployed in the Other User Application Server.
+Here It Wont Work Because Product List Server has Hosted in Different Application Server.
+The Second Disadvantage is If There Is  Change in the Product List Then The Other User has to Redeploy the Jar in his Application Server.
+The Ideal Solution is Other User has to Directly Call the Product List Which is Deployed in Other Application Server.
+In This Case Product List Get Always the Updated Data.
+By Using Web Service Two Different Applications Which are Running on Two Different Servers can Communicate With Each Other.
+The Other Advantage of Using Web Service is it uses a Standard Technology and Not Specific to Any Language.
+By Using Web Service We Achieve InterOperability i.e Java Piece of Code Can BE Accessed By Using .Net Piece of Code.
+By Using Web Service We Can Pick and Choose Different Technologies to Implement Business Service and Expose it as a Web Service.
+
+
+2.Web Services Jargon :
+***********************
+I Have Implemented  Java Service Implementation Class and Want to Share The Implementation to the Other Developers of the Project.
+The Best Way to Share The Implementation Class is By Using Interface .
+Any Consumer Consumes the Service Implementation By USing Interface.
+Consumer Knows the What are the Arguments of the Service,Method NAme and Return type of The Service Implementation By USing Interface.
+An Interface is a Standard Way to Share the Contract to the Consumer.
+In The Case of Web Service How  We Can Share the Details to the Consumer ?
+Here Interface Wont Work Because We Don't Know Which Technology The Consumer is Using.
+Here The Contract that has to Share With Consumer Should be Technology Independent.
+Here The Standard Format To Share the Contract About the Web Service to the Consumer is XML and is Called WSDL.
+Web Service Description Language or Web Service Definition Language.
+WSDL Contains the Contract to the Web Service.
+When We Create The Web Service Create the WSDL Document of the Web Service and Share to the Consumer.
+There are Tools That Generates the WSDL For the Web Service.
+Here Contents of The Web Service are Similar to Interface i.e Methods ,arguments and return type.
+
+For Example We HAve a Client Application that has to call the Web Service.
+We Know that One Way to get The information about Web Service is the WSDL i.e interface to the Web Service.
+How do We Get the Hold of the WSDL.
+There are Directories of the Web Services where we can Query and get the Web Service.
+Directory is called UDDI i.e Universal Discovery Description and Integration.
+It is A Registry Where We CAn Register the Web Services here.
+
+Now the Client Got The WSDL Document and He Has to Call the Web Service.
+For Example The CLient Code is Written in JAva Language and The Web Service Accepts String Parameter that is Written in C++.
+Here Java String Can Be Different From C++ String.
+Here Exchange of Information Can Be Done Irrespective of Technology i.e XML.
+This Exchange is Nothing But Protocol and is Called SOAP.
+SOAP is a Protocol In Which Different Applications Can Access Data. 
+
+Here Java Object is COnverted into SOAP Message is Done By SEI (Service EndPoint Interface) and SEI is Interpreted at The Other End.
+SEI Acts as an Interface to the Web Service End Point.
+We Have an Interface at Client Application to the Service End Point Which Translates the Web Service Call to a SOAP Message.
+So that Web Service End Point Can Understand the Request.
+
+SEI Can BE Generated Automatically For Us.
+
+When We are Making a Web Service Call We Don't Worry About Where the Web Service is and Where We Need to Call.
+All We Need to HAve is Service End Point is Getting Generated and Then Call The Method of The Service End Point Interface.
+The Good Thing ABout Service ENd Point Interface is We Can Have An Interface Specific to What We are Developing.
+If We are Developing Java Application We Can Have Service End Point Related to Java and It Knows How to Convert 
+Java Object into SOAP Message.
+
+SEI Can Be Generated Out of WSDL.
+
+3.Stub Generation 
+******************
+Here We are Going to Write Java Application that Consumes the Web Service.
+I.e We Are Writing a Web Service Client.
+There are Few Web Services that Are Free For On line
+
+http://www.webservicex.net/geoipservice.asmx?WSDL
+
+Create A Java Project That Locates the Country Based on IP.
+In Case of Normal Java Application We Have an Interface and We Call the Method of the Interface
+To get The Country Based On IP.
+
+Since we are Calling a Remote Web Service We Need To Have a SEI to Call the Web Service.
+To Call The Web Service Stub has to BE Generated Locally and Based on Stub We Call the Web Service.
+We Generate the Stub using the Java Tools and Stub Internally Calls the Web Service.
+Copy the Source Code that is Getting Generate Form the WSDL and Paste it Into The Project Structure.
+
+Use The Command wsimport WSDL(File Name)
+
+4.Calling the Service :
+***********************
+
+
+
+
+
+
+9.Service First and Contract Web Services :
+*******************************************
+By Adding @WebServie We are Making the Service as Web Service andThis is a Simple Scenario.
+There will be Scenarios Where @WebService will Not be Enough.
+When We Write Any Service Do We Write Interface First or Implementation First ?
+For Example We Have an Interface and Its Implementation Class and also Client to Call the Web Service.
+Most of the Times We Write an Interface First and Then Write The Implementation.
+The Reason Behind This We Can Change The Implementation if The Business Logic Changes and The Interface Remains Same.
+Interface in Web Service Technology is WSDL.
+Client Code Refers to the WSDL to Find Out What The Web Service is Providing.
+i.e What are The Input Parameters,Return Type and Method Name.
+We Need to Lock The WSDL Because It Will Be Called By Many Clients and There will Not be Any Impact.
+We Can Change the Implementation Based on Requirement.
+When Ever we are Using @WebService to the Implementation Class The WSDL Is Getting Generated. Form the Implementation.
+This Scenario is Called Service First.
+Here We are Going Through the Opposite Way i.e Writing the Implementation First.
+and Auto Generating the Web Service.
+If I change The Parameters of Implementation then WSDL also Impacted Here.
+Here The Problem is WSDl is Not Locked.
+Here The Solution is write the WSDL First and Generate the Implementation From the WSDL.
+This Scenarios is Called Contract First.
+
+
+10.Understanding WSDL :
+***********************
+ 
+ 
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

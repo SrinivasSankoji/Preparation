@@ -1,0 +1,41 @@
+
+Spring Mail Romanian Coder :
+****************************
+
+We Need To Add The Mail Configuration Details in Properties File.
+Here We Are Going to Use MailTrap for Sending Mails.
+MailTrap is a Service That Helps to test Emails Very Easily.
+
+URL: http://localhost:8083/sendingEmail
+
+Request Format :
+----------------
+{
+	"name":"Srinivas",
+	"to":"Srinivaschary.chary@gmail.com",
+	"from":"Srinivaschary.chary@gmail.com",
+	"subject":"Testing FreeMarker Email"
+}
+
+</dependency>
+			<dependency>  
+   			<groupId>commons-codec</groupId>  
+   			<artifactId>commons-codec</artifactId>  
+   			<version>1.10</version>  
+		</dependency>
+
+
+  Request Format :
+  ----------------
+  {
+	"userName":"Srinivas.Sankoji",
+	"jsonData":[
+  ["SECURITYEXCEPTIONID","EXCEPTIONAGAINST","REQUESTER","REQUESTERSHOD","APPLICATION","PLATFORM","OVERALLSTATUS","EXCEPTIONEXPIRYDATE","SUBMISSIONDATE","NUMBEROFEXTENSIONS","DAYSTOEXPIRATION","BUSINESSRELFORSECURITYEXCEP","TECHNICALLIMITATION","FINDINGID","FINDING","RISKDESCRIPTION","SEVERITY","BUSINESSUNIT","DOMAIN","PLATFORMINAPPMATERS","APPLICATIONINAPPMATERS","STATUS","POLICYSTATEMENTID","POLICYSTATEMENT","DESCRIPTION","EXCEPTIONSUBCATEGORY","APPLICATIONOWNER","BUSINESSUNITOWNER","DOMAINOWNER","PLATFORMOWNER"  ],
+  ["EXC-1183061","Findings","Mahapatra, Asit","Singhal, Rajeev","DEG","","Business Review in Progress","","11/6/2019","0","","we have encountered 3 issue after DEG upgrade and ","Please help to approve the exception for 1 Month and we will close this on this time period only.","FND-1182917","IMSI is being sent over network.\n\n  \n\n HTTPS REQUEST ------>\n\n GET https://degappsit.jio.com:9014/DEGDROIDInterface/?app=CompanionDevice&imsi=405862888891486&terminal_id=*************** Accept: application/xml, text/xml                                                       User-Agent: RMX1921 Galaxy Watch PlugIn 2.2.05.19082641N Android9                       Accept-Language: en-US,en;q=0.5                                                         Cookie: DEGCNCID=SrbDi3+uEINidasJ1ytopmY8aCQ=                                          \n\n HTTPS RESPONSE -----> 200 https://degappsit.jio.com:9014/DEGDROIDInterface/?app=CompanionDevice&imsi=405862888891486&terminal_id=*************** (400ms) Connection: close                                                                                    Retry-After: 0                                                                                     \n\n  \n\n TOKEN\n\n +++++++++\n\n CHECK ELIGIBILITY REQUEST -----> \n\n GET https://degappsit.jio.com:9014/DEGDROIDInterface/?app=CompanionDevice&notif_token=************************************&companion_terminal_vendor=Samsung&companion_terminal_sw_version=R815FXXU1ESF2&vers=1&notif_client=com.samsung.android.subscriptionManager&notif_action=2&terminal_vendor=realme&companion_custom_name=Galaxy Watch (05CA)&token=****************************&terminal_model=RMX1921&companion_terminal_id=***************&companion_terminal_model=SM-R815F&terminal_sw_version=9&IMSI=************************************************************************&operation=CheckEligibility&terminal_id=*************** Accept: application/xml, text/xml User-Agent: RMX1921 Galaxy Watch PlugIn 2.2.05.19082641N Android9 Accept-Language: en-US,en;q=0.5 Cookie:       ","IMSI is critical information and shouldn't be sent over network. ","High (3)","","","","","Open","","","","","TUSHAR.RAY","","",""  ],
+  ["EXC-1182220","Findings","Gulve, Tushar","Verma, Gaurav","Jio Track","","Approved","1/23/2020","10/23/2019","0","76","Absolute path of the server is exposed in JioPulse Web Application","The development team will look into the issue and resolve accordingly.","FND-1182156","Absolute Internal Path Disclosure: The absolute path of the server was being exposed.\n\n https://jiopulse.st.ril.com/map/?map= ( https://jiopulse.st.ril.com/map/?map=D:/apps/JioPulse/map/JPWMSServices.map&LAYERS=JioPulseWms&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&FORMAT=image/png&SRS=EPSG:900913&BBOX=boundryBox&WIDTH=256&HEIGHT=256&key=RJ_INTRACITY_LINK_ID&value='MUMB_0242','MUMB_1586','MUMB_5043' ) D:/apps/JioPulse/map/JPWMSServices.map&LAYERS=JioPulseWms&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&FORMAT=image/png&SRS=EPSG:900913&BBOX=boundryBox&WIDTH=256&HEIGHT=256&key=RJ_INTRACITY_LINK_ID&value='MUMB_0242','MUMB_1586','MUMB_5043'\"\n\n  \n\n Note : Same finding is already reported in JioPulse FND-1045456. Hence as per discussion with Vineet reducing the severity from High to Medium.","An attacker can use this information to identify file structure and craft targeted attacks. ","Medium (2)","","","","","Open","","","","","ABHINAV6.SHARMA","","",""  ],
+  ["EXC-1181901","Findings","Sharma, Tarun","Abbas, Mohsin","Jio.com","","Approved","11/29/2019","10/17/2019","0","21","Current feature is planned to be enabled in Production as per Diwali offer for jio Phone. ","Insecure cookie issue has been fixed and being validated by Appsec Team.","FND-1181741","The jio authenticate, common-servlet & vouchermanagement APIs are vulnerable to Misconfigured Cross Origin Resource Sharing policy.  The APIs accept requests of any arbitrary origin such as http://test.com ( http://test.com/ )  ( http://test.com/ ). An HTML5 cross-origin resource sharing (CORS) policy controls whether and how content running on other domains can perform two-way interaction with the domain that publishes the policy. The policy is fine-grained and can apply access controls per-request based on the URL and other features of the request.","Trusting arbitrary origins effectively disables the same-origin policy, ","High (3)","","","","","Open","","","","","CHETAN.SAKPAL","","",""  ],
+  ["EXC-1181749","Findings","Karnati, Rajesh\n\nKhamar, Kintu","Mehra, Manish","Passive Mediation","","Closed","","10/31/2019","0","","We have created jailed environment for \"ftpidfc\" user and we will use same user to configure jar file.","Jailed environment created.","FND-1181728","Jailed environment is not created for SFTP user created for IDFC bank for the file share utility.","Lack of jailed enviornment for the SFTP user may result in shell access to the SFTP user created","High (3)","","","","","Closed","","","","","KINTU.KHAMAR","","",""  ],
+  ["EXC-1181043","Findings","Chinthagumpala, Krishna","Mandavilli, Srinivas","Jio Chat","","Approved","1/16/2020","10/16/2019","0","69","Apache Cassandra V3.11.4 is the latest and it dosent support audit logging,","Apache Cassandra V3.11.4 is the latest one, version 4.0 is not yet released.","FND-1163366","Audit & logging is not enabled for Cassandra\n\n Description: Cassandra DB is used to store the data for Message DB. Access to Cassandra DB for DDL & DCL statements are not logged.","Without proper logging, any malicious activity related to Cassandra administration ","High (3)","","","","","Open","","","","","ABHINAV.MINDA","","",""  ],
+  ["EXC-1179287","Findings","Bedi, Shikha","Aggarwal, Puneet","Jio TV Headend","","Approved","11/27/2019","9/20/2019","0","12","These default pages are blocked by authentication. Can be accessed only using credentials","This is controlled by the Jitsi library that we have used to do video calling.","FND-1179081","Default/test pages of \"JITSI\" library's exist on server.\n\n URL- https://securitymeet.healthhub.net.in ( https://securitymeet.healthhub.net.in/ ) \n\n  \n\n  ","Some time default pages could have some unknown vulnerablity, which may ","High (3)","","","","","Open","","","","","DHRUVA.CHAUDHARI","","",""  ]
+]
+}

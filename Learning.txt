@@ -980,25 +980,45 @@ Modules in Java 9
 ----------------------------------------- November(Micro Services,Angular) ----------------------------------------------
 Concepts :
 ----------
-Proxy vs Reverse Proxy
-CORS
-Load Balancer
-@Scheduler
+Proxy vs Reverse Proxy							
+CORS											
+Load Balancer									
+@Scheduler											
 
 Spring Security :
 -----------------
-Internal Implementation
-LDAP Service
+Internal Implementation							
+LDAP Service									
 
 JWT :
 -----
 JWT Java Brains									[04-NOV-2019] (Done)
 JWT Tech Primers								
-JWT Mervin										
+JWT Mervin										[04-NOV-2019] (Done)								
 JWT Romanian Coder								
 JWT CaliCoder																
-JWT Murraco										
+JWT Murraco										[04-NOV-2019] (Done)										
 JWT Hnatsy										
+
+Maven :
+-------
+
+Java 8 :
+--------
+
+
+Spring Batch :
+--------------
+Bulk Upload												[20-NOV-2019] (Done)										
+Bulk Processing											[20-NOV-2019] (Done)
+Header Position											[20-NOV-2019] (Done)
+
+Sonar Cube :
+------------
+
+
+
+----------------------------------------- December(Micro Services,Angular) ----------------------------------------------
 
 Micro Services :
 ----------------
@@ -1006,17 +1026,16 @@ Consul Service Discovery
 Consul Configuration
 Spring Cloud Gateway Filters
 
-Spring Session :
-----------------
-
+Spring Session And Redis :
+--------------------------
+String Redis Example 				   (02-DEC-2019) (DONE)
 
 
 Angular :
 ---------
 
-
-GIT :
------
+GIT And Jenkins Automation :
+----------------------------
 Introduction and Basics
 Adding a Project, Creating Feature Branch, Merging With Master
 Stash Command
@@ -1025,20 +1044,22 @@ Pull Request
 Merge Form One Branch to Another Branch
 Compare Local Repository With Git Hub Repository
 Check out To Previous Version
+Resolving Merge Conflicts Using EGit
 
-Maven :
--------
-
-
-
-Redis :
--------
+SOAP :
+******
 
 
+Java 8 :
+********
+Java Stream  winterbe.com
+Java Stream  concretepage
+Java Stream  logicbig
+Java Stream  journaldev
 
 
-
------------------------------------------ December(Micro Services,Angular) ----------------------------------------------
+Spring Scheduler :
+******************
 
 
 

@@ -18,9 +18,6 @@ Optional Class
 CopyonWriteArrayList
 Sort in Java 8
 
-
-
-
 1. Default and Static Methods in Interface :
 ********************************************
 
@@ -117,8 +114,7 @@ Sort in Java 8
 	
 3.Stream API for Bulk Data Operations on Collections :
 ******************************************************
-Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations
-with Collection.
+Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations with Collection.
 Stream API allows Sequential as well as Parallel Execution.
 Collection Interface has been extended with stream() and paralellStream() default methods to get
 the stream for Sequential and Parallel Execution.
