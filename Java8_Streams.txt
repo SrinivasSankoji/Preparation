@@ -1,0 +1,61 @@
+WINTERBE :
+**********
+Streams are Monads thus Playing a Big Part in Bringing Functional Programming to Java.
+Stream Represents a Sequence of Elements and Supports Different Kind of Operations to Perform Computation on Those Elements.
+Stream Operations are Either Intermediate or Terminal.
+Intermediate Operations Return a Stream So that We Can Chain Multiple Intermediate Operations Without Using Semi Colon.
+Where as Terminal Operations Either Return Void or Non Stream Result.
+Filter,Map and Sorted are Intermediate Operation Where as ForEach is Terminal Operations.
+Most Stream Operations accept some kind of Lambda Expression Parameter,
+A Functional Interface Specifying the Exact Behavior of the Operation.
+Most of these Operations must be Non Interfering ans stateless.
+
+Non Interfering :
+-----------------
+
+
+Stateless :
+-----------
+
+
+
+Different kind of streams :
+---------------------------
+Streams Can be Created Form Various Sources Like Collection.
+List and Set supports new Methods Like stream() and paralellStream() to Create Sequential Stream and Parallel Stream.
+Parallel Streams are Capable of Operating on Multiple Threads.
+We Have Special Kind of Streams to work with Primitive Data Types like int,long,double.
+Those are IntStream,LongStream and DoubleStream.
+Primitive Streams support the Additional Aggregation Operations like average() and sum().
+SomeTimes it is useful to transform a Regular Object Stream to Primitive Stream or vice Versa.
+Here we use mapToInt,mapToLong,mapToDouble.
+
+Processing Order In Streams :
+-----------------------------
+
+
+
+
+STACKIFY :
+**********
+
+Map :
+-----
+Map Produces a New Stream After Applying Each Function to Each Element of The Original Stream.
+Here The Stream Could be of Any Type.
+
+collect :
+---------
+It is One Of The Common Way to get the Stuff Out Of The Stream Once we are Done with all the Processing.
+
+
+
+
+
+
+
+
+
+
+
+

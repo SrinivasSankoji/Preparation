@@ -1,0 +1,713 @@
+1.Introduction Part One 
+2.Introduction Part Two
+
+
+
+1.Introduction Part One  :
+**************************
+PL SQL Stands For Procedural Language using SQL.
+SQL is a structured query language.
+Procedure is nothing but a program and Using PL/SQL We Develop the Database Programs.
+For Example I want to purchase a mobile Either through on line or Outlet.
+Employee Within the Outlet will enter the product details as well as Customer Details in the company web page.
+Product and Customer information will be saved in the Back end database server.
+Remember in the Back End Database whatever the information Retailer has written on the web page that will be saved.
+Advantage of Saving The Details is in future if User needs any assistance from the business,
+User will get that Details about related to product who
+aren t is your product damaged any kind
+of issues are there then in future they
+will identify you according to the
+already saved information first point
+next one next one is yes I want to
+purchase a mobile in online how can I
+purchase yes simply I can type the URL
+address of business it opens a web page
+in the web page I will find out my
+product and then I will select the
+product next step is I need to make the
+payment and finally after some duration
+I will get the product here also once
+you enter your details selected the
+particular information
+the details are saved under back-end
+database server okay who is taking that
+data in the backend database server and
+the business outlet employee is giving
+the information as a customer in online
+purchase you are submitting some
+information in both the cases the
+information of you and the other
+selected product both will be saved
+under back-end database server who is
+the person who is taking your data in
+the backend database server yes there is
+a program there is a pl/sql programs
+that were developed according to
+business requirement that were developed
+by developers according to PLC here
+according to customer requirements or
+client requirements and they are
+permanently available from database
+server in the front end web page
+whatever you are doing the back end
+response you are getting from database
+server okay about product information or
+registration of the customer or any
+warranty details or seller details or
+business details any kind of information
+is provided to you from back-end
+database server who is there who is the
+person providing all these things or who
+is the person receiving data into him
+that person is called as a programs
+pl/sql procedures they are already
+stored in the database server what is
+the responsibility of PL sequel objects
+PL sequel objects responsibility is if
+you make some action in the web page the
+respect to result will be coming from
+back-end database server remember this
+okay
+now coming into the technical point of
+view what is PL sequel PL SQL is known
+as procedural language in the procedures
+you are also using SQL queries so PL
+sequel is a collection of programming
+statements plus SQL queries yeah pl/sql
+is a collection of programming
+statements plus SQL queries
+okay then generally what is pl/sql is we
+can write like this pl/sql is an
+extension pl/sql is an extension to SQL
+part it is an advanced departmental SQL
+part why it is advanced and suppose in
+SQL if I write a query SQL query I am
+getting data from the database okay fine
+every day I want to get same kind of
+information every day I want to get same
+kind of information then every day we
+need to write the queries okay so as a
+technical developer you are able to
+write the query but as a client he isn't
+he don't know what is what I kill so but
+he need the information about one item
+how he will get you should provide that
+using programs means see SQL queries are
+saved in the form of programs inside
+programs remember that
+SQL queries are written in the programs
+and the programs are saved inside
+database and these programs are linked
+up with front-end web page options
+front-end web page options if you click
+on front-end button then respect to
+action is coming from database server
+okay now you are unable to perform some
+kind of things in SQL some kind of
+actions you are unable to perform in SQL
+what are they what are the things I am
+unable to do in SQL and what are the
+advantages of pl/sql see let me check
+out
+see a Titan how many number of queries
+you can execute at a time only one query
+is executed at a time only one query is
+executed in SQL this is one point and
+next one each execution hit database
+engine each query hits database if
+number of hits are increasing if number
+of hits are increasing then database
+performance will be decreasing okay next
+time queries are not saved queries are
+not saved in database you are not saving
+the queries so you have to rewrite the
+curry's according to your requirement we
+need to rewrite queries again and again
+again and again this is the problem okay
+so but I don't want to rewrite the
+quarry's again and again every day I
+want to perform some tasks so so every
+day I don't want to write the query
+every day I don't want to write the
+query instead of that if I save the
+query in database in future if I need
+that if I want to do the same process
+just I will execute the query how can I
+execute the query how can I save the
+query in the database in the database
+you can save the query in the form of
+pl/sql object pl/sql object and in SQL
+there are no programming statements
+there is no programming constructs
+programming constructs like
+conditional statements are not there
+loops are not existed and branching
+statements are not there these are all
+the problems branching statements are
+not existed in SQL not existed these
+concepts are not available in SQL okay
+so all these facilities are available in
+pl/sql what is this simply I will write
+one more point here PL sequel is used to
+automate business activities used to
+automate your business activities
+automate business activities remember
+this
+what is automating simple these concepts
+in SQL you are not able to perform these
+things that things will be provided by
+PL Sigma if you do something in the
+front-end web page then respect to
+response is coming from database
+programs remember from the database
+server and furthermore from the database
+server what is the database server it's
+a collection of programs data and
+programs
+remember the programs will be responded
+and they can be existed they can be
+executed on the database tables and you
+are getting the information in the front
+end web page this is what happening in
+pl/sql now how can i define PL sequel
+what is the definition of SQL SQL is a
+collection of predefined objects tables
+views indexes and it moreover it's a
+language so language is a collection of
+something alphabets or their statement
+constructs are their syntactical rules
+grammatical rules are there similarly
+SQL is a collection of predefined
+objects like tables views
+sequence of synonyms indexes clusters
+whereas pl/sql is a collection of
+predefined no sorry pl/sql is a
+collection of user-defined objects it is
+a collection of user-defined objects
+remember user-defined objects so
+according to user requirements the
+objects will be designed and developed
+according to user requirement the
+objects will be designed and a developer
+user requirement means according to
+client requirement let us see so now
+what are the advantages of pl/sql yes we
+have some set of advantages are there so
+every day you are you want to perform a
+task or otherwise let us see I went to
+one ATM swipe my card I make some with
+the toil so whenever I make the
+withdrawal immediately my balance from
+my balance the amount will be deducted
+detected and finally it is displaying
+some after birth with royal what was the
+total amount right who is making this
+process who is updating my balance in
+the database server yes there is a
+pl/sql program there is a pl signal
+program inside the database okay so
+that's why your business activities are
+automated by using pl/sql objects first
+point you can execute to multiple
+queries you can execute to multiple
+queries yes see executing multiple
+queries
+multiple queries so in the form of
+programs in the form of programs
+remember this next reduces number of
+hits reduces number of hits to the
+database engine to database and it
+reduces number of hits means
+automatically improve database
+performance database performance and
+also it is improving network performance
+also how it is improving network
+performance network performance is
+improved if there is a less usage of
+network lines less usage of Network
+lines means each query using one network
+line you are executing 100 worries then
+hundred lines it is used it is using 100
+number of network lines or 100 number of
+times the same line will be used instead
+of that if you place all row furry's
+inside a program and you are executing
+the program the program with any number
+of statements don't worry about how many
+number of queries in the program so the
+program will use only one what network
+line so instead of using 100 number of
+network lines just it is using one
+network line next the major advantages
+here I'm highlighting
+enhance ability
+and reusability and final one modularity
+what is enhance ability enhance ability
+means suppose you have developed at one
+program according to today's requirement
+in future I need old requirement
+I want old process and also a new
+process then no need to develop the
+program complete program just use the
+old program and just change the logic
+existing logic I am changing to support
+new requirement then what is happening
+it will perform older tasks as well as
+new tasks means existing programs are
+enhance ability quirements that is
+called as enhance ability making changes
+to the older no scissors reusability you
+have created one procedure you can read
+you can execute it any number of times
+let us see suppose one banking business
+is there so when if you want to check
+your balance you are clicking on balance
+you are just you're touching balance
+option whenever you are touching balance
+option immediately it is getting the
+balance so to get the balance there is a
+procedure or there is a function one PL
+sequel object is there so what is the
+responsibility of that program or
+procedure or function so the object is
+taking account number from you or cod
+number from you so using the cod number
+it is getting the balance from your
+account okay fine so only you are only
+one person who is seeking the balance
+like you so many people are there
+thousands of people even hundred
+thousands of people will check the
+balance at the same time for each one
+there is only one program the
+responsibility of the object is taking
+the cod number or account number and get
+the balance and display to the client
+okay
+so means you can reuse it any number of
+reusability any number of users and any
+number of times
+what is modularity modularity suppose if
+you have a complicated task so you are
+unable to perform it at a time then
+simply divide it into subtasks simply
+divide it into subtasks and if you feel
+sub task is also so complicated if it is
+having more number of functionalities
+again divided into further subtasks so
+you need to divide you need to continue
+this dividing process until each a sub
+task is very simple then develop a
+program for each sub task that is called
+as modularity this is known as the
+dividing process is called as modular
+additional criteria remember yeah these
+are the advantages of pl/sql so whatever
+the things you are unable to perform in
+SQL or through SQL that thinks you can
+perform by using pl/sql and you can save
+the SQL queries in the form of PL sequel
+objects inside the database server now
+so what are pl/sql objects pl/sql
+objects yeah let me write PL sequel
+objects what are they
+so generally we have PL sequel objects
+are divided into no categories there are
+two categories remember what are they
+one is programs programs are also called
+as anonymous blocks anonymous blocks and
+another one is procedures procedures and
+somebody can say functions procedures
+and functions these two are called as
+sub programs okay so reminding
+everything is programming constructs
+like arrays cursors okay
+arrays cursors all these things types
+yeah now what are the general categories
+here creating it under this category you
+are also having trigger packages
+types okay so these are called as real
+signal objects now first let me discuss
+about programs programs again divided
+into two types programs divided into two
+types okay what is the first one what is
+the second one here
+static programs static and second one
+dynamic programs static moguls and
+dynamic programs what is a static
+program what is dynamic see if a program
+accepting runtime input values if a
+program accepting runtime input values
+it is called as a dynamic if it is not
+accepting then it is called as a static
+static programs will not accept a
+runtime input values dynamic programs
+will accept runtime input values this is
+what about programs before going to
+discuss about types of programs let me
+discuss about what is the structure of
+pl/sql program what is the structure of
+pl/sql program
+
+
+
+2.Introduction Part Two :
+*************************
+they program how can i define it it is a
+collection of statements to perform user
+required tasks it is a collection of
+statements programming statements and
+queries it is a collection of statements
+programming statements and queries to
+perform to perform set of tasks are a
+single task that depends on client
+requirement yeah then what is the nature
+of program program should not save it in
+the database program not save it in the
+database remember that not save it in
+database programs are always temporary
+okay yeah now let me discuss about
+structure of any pl/sql program what is
+the structure
+here the structure starting from declare
+keyword declare and you are having some
+statements next begin block then here
+what you are having assignment
+statements data processing statements
+data processing in the sense quarries
+and last one output statements and
+finally exception block
+exception block it contains error
+handling statements error handling
+statements and the program is closed
+with and the program is terminated with
+end keyword here what is each and every
+one responsibility I will explain just
+see declare it is optional if you want
+to declare variables then only use
+declare block otherwise you can skip
+begin its mandatory compulsory it's
+mandatory
+remember exception block if you want to
+handle errors use exception block
+otherwise don't use exception block so
+this is also optional end keyword it's
+compulsory it's mandatory so program in
+the sense there should be at least begin
+and end program in the sense there
+should be at least begin and end without
+begin and end there is no program at all
+remember dates now let me discuss about
+what is this each and every block
+what is the use of each and every block
+let us see
+so let me explain about declare block
+declare block
+what is the use of declare block declare
+block contains declaration statements
+what it contains declaration statements
+declaration statements what is the
+meaning of declaration statement see I
+am writing a program to perform a task
+to perform the task I need two values I
+need two values the values should be
+saved under program the values first of
+all should be saved under program and in
+the program processing I will perform
+the action means I will perform some
+process I will apply some calculations
+on the values so finally I will display
+the result this is the target of my
+program what is my aim of the program
+the program is using two values and on
+these values I will apply some
+calculations and finally I will display
+the result this is the target of your
+program so to reach the target of the
+program we need two values first so the
+values whatever the values you are going
+to use in the program the values should
+be saved under variables the values
+should be saved under variables so what
+is a variable it is a name under that
+name you are saving some value so values
+we need variables you are saying to
+store the programmers so under variable
+we need a memory space each variable
+need a memory space how much memory it
+needs are you storing character value or
+take value or some other number type
+value what type of value you want to
+store how much memory you need
+see so generally variable name and here
+data type and size of the data type
+whatever the data types we have
+discussed in SQL part same data types
+you can use see this is the syntax of
+declaration statement what is this this
+is a variable name what is your variable
+name variable name is acts as a
+reference to your value you are storing
+one value in the temporary memory area
+in the program area right so in the
+program area means it is a memory space
+so how can I take the value from the
+memory by using a reference that
+reference name is nothing but variable
+the reference name is nothing but
+variable so first you need to declare a
+variable if you declare a variable it
+will get memory space into that memory
+space you can store value which is
+called as declaring a variable remember
+now what is the example for this so X
+yes integer type of variable next one
+variable E name I want to store worker
+to type of value its worker 2 of 10 so
+for this variable how much memory
+required to store integer that much
+memory assigned it to X into this
+variable it will assign a memory which
+is able to store 10 character length
+string type value 10 character length
+character data type value ok now this
+variable is getting some memory space
+and this variable is also getting some
+memory space ok now next block
+what is the use of declare its block to
+declare variables next block begin block
+under begin block you are having three
+types of statements first one assignment
+statements what is assignment assignment
+statements assignment statements used to
+store value in the variable assignment
+statements or user to store value in
+variable
+what is the use it is used to store
+value in variable remember so storing
+value in your variable again two methods
+are there storing value in your variable
+having two methods what are they so the
+two methods are like this by using
+assignment operator this is called as
+assignment operator and by using select
+query with into keyword select query
+with into keyword remember that okay
+yeah now see actually we need to specify
+like this select some kind of columns
+into some kind of variables remember
+this two methods of saving values in two
+variables what is the syntax by using
+assignment operator the syntax by using
+assignment operator is like this
+variable name assignment operator and
+after that value or expression or
+expression you can also write a function
+calling statement procedure calling
+statement anything no issues you can
+also write function calling statement
+also okay now what is the example for
+this see X already declared a variable 7
+6 5 4 what it is 7 6 5 4 so it is an
+integer value that is save attender
+X so into this location what is the
+value it will store 7 6 5 4 remember
+next how can I store a value by using
+select query say select what is the use
+of select select command is selecting
+value or values or records from the
+tables you are writing select query in
+the program ok select query is taking
+some value from table and the value is
+coming into program so if you have or if
+you want to use any values within the
+program definitely we have to save it
+inside a variable so select is coming
+excellent is taking a value from the
+table the value is coming into the
+program so inside the program you must
+save that value in a variable remember
+now what is the example for this
+so let me write select I am selecting
+the value from a name column and that
+should be saved into ve name what is the
+variable V a name ok from would stable
+you are taking from EMP what is the
+condition here where employee number is
+equal to X employee number is equal to X
+what is the value of X already saver
+here 7 6 5 4 so where class is checking
+the condition if employee number is
+equal to 7 6 5 4
+then from the match record select is
+selecting employee name that name is
+saved into variable E name that name is
+saved into variable a name now you have
+two values in your program one is X
+you and one value is a saber tender ve
+name now what is the next type of
+statement under begin block say data
+processing statements what is your data
+processing statement so data processing
+statement in the sense any SQL query
+data processing statement in the sense
+any SQL query you are using in the
+program is called as data processing
+statement and the next one what is the
+next type of statement under begin block
+here output statements output statement
+so what is meant by output statement
+output statement is used to display
+output from the program yeah
+user to display output from the program
+user to display output from program or
+procedure remember this okay so is there
+any output functions yes to display
+output from the program were actually is
+providing one predefined function
+vertical is providing one predefined
+function okay so that is called as DBMS
+underscore output dot put underscore
+line DBMS underscore output dot put
+underscore line here you can display a
+direct message or you can also use a
+variable name so here if it is a normal
+message then you should put it in single
+quotes if it is a
+variablename don't put it in single
+quotes if it is a normal message put it
+in single quotes if it is a variable
+name
+don't enclose it in single quotes okay
+yeah so output statements are useful to
+display output from the program okay to
+display the output we have a predefined
+function is there what I kill is
+providing predefined function what is
+the function name DBMS underscore output
+dot put underscore line so here it is
+useful to display normal messages and
+also values of variables it is useful to
+display normal messages and also values
+of variables okay what is the example
+let us assume bbm s underscore output
+dot put underscore line put underscore
+line okay
+Here I am writing EMP ID in the next
+line same function EMP ID I have saved
+under X it will display value of x in
+the first line it will display EMP ID in
+the next line it will display X value
+means seven six five four in the next
+slide here name of employee name of a
+and P in the next line I will display
+the name of the employee V underscore a
+name V underscore a name then in the
+last line you will get whatever the
+value selected from the table and that
+is the same would enter ve name that
+value will be displayed here so this is
+about a begin block now let me discuss
+about exception block is exception
+for the time being I am saying exception
+is exception block is used to write
+error handling statements error handling
+statements so it is a big topic not a
+simple one so we need to discuss a huge
+information about exception so for the
+time being just I am saying introducing
+what is exception exception is nothing
+but error in your program or in your
+procedure if you have a problem okay if
+you have a problem then by default error
+information generated by Oracle engine
+that information at some times you are
+unable to understand if you want to
+display user friendly messages instead
+of technical error information I want to
+display user friendly information to the
+client exact fetch returns more than
+requested number of rows how many people
+will understand this the client can re
+is unable to understand it
+instead of that getting data from
+multiple records so use explicit cursor
+if I display like that that should be a
+developer friendly suppose client
+friendly how can I post a message to the
+client invalid employee ID or otherwise
+duplicate employee ID so anybody can
+easily understand ok employee ID
+duplicated customer ID duplicated
+already existed customer ID is there so
+use different customer ID so if you
+display these kind of user friendly
+messages the client can easily
+understand it so to display such kind of
+user friendly error messages we will use
+exception block and last one end keyword
+what is ended end keyword represents end
+of the program
+it is the termination point of program
+remember
+okay once I finish the writing of
+program once I finish the writing of the
+program how can I execute it yeah in
+case of SQL queries or in case of
+programs before execution of a query or
+program first query or program should be
+compiled so how can I compile it compile
+the program and how to execute it it
+should be done by using slash just a
+moment I will tell you so any program
+how can I compile and execute it compile
+and execute it so at your SQL prompt you
+are starting the program from declare
+assume that you have completed all the
+statements at the end in the new line
+just type in the keyword semicolon
+coming to new line in the new line use
+slash use slash and hit enter
+automatically the program will be
+compiled and executed and one more point
+you need to remember once the program
+compiled and executed no errors are
+there but still you are not getting any
+output from the program but it is
+showing a message PL sequel procedure
+successfully completed PL sequel
+procedure successfully completed
+you are getting this message but you are
+not getting output while yes C sequel
+developer like SQL Star Plus window
+anywhere any database client tool sequel
+Star Plus window sequel developer PL
+sequel developer told any kind of tool
+by default the tool is able to display
+output from the query execution again by
+default the tool is enabled to display
+output from SQL query execution output
+but the programs or any PL sequel object
+is unable to display output from the
+programs okay
+the tool is not enabled to display
+output from the programmer procedure in
+such cases in your current user login
+session or once you connected to
+database in that session use this
+command once set server output on
+set server out put on what is this sec
+server output on it will enable the
+respective tool or it will enable the
+client tool to display output from the
+program to display output from the
+program okay this is the overall
+explanation of PL sequel programs and in
+the next video you can see what is a
+static program
+what is a dynamic program before that
+let me finish the hands-on part related
+to this one
+you
+
+

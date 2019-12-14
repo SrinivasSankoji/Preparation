@@ -1,0 +1,176 @@
+1.Introduction 
+2.Setting Up
+3.Understanding Archetypes and pom.xml
+4.Maven Build Phases
+5.Adding Dependency
+6.Web Application Using Maven
+7.Compiler Plug In
+8.Jetty Plug In
+9.Eclipse Plug In
+10.Maven Project in Eclipse
+
+
+1.Introduction and Setting Up :
+-------------------------------
+hi and welcome to this tutorial this tutorial is a brief introduction to maven we will look at 
+what maven is and we'll also learn how to set up maven on your development environment 
+so what is maven to answer that question in a single sentence is not possible because 
+even as a lot of things put into one so the most of the common usages of maven is to use 
+it as a build tool it is it is similar to add in this case for example and it helps us in 
+building iron code in our development environment the other rule that maven does is of a project management 
+tool it helps to generate reports it helps in dependency management and things like that in that tutorial 
+we're going to focus only on using maven as a build tool we are not going to be looking at how it can
+ be used as a product project management tool to look at what maven does for us as a build tool let's 
+ look at some of the common problems and some of the common activities that we perform while developing applications 
+ and we need to build them the first thing is the problem of multiple jars let's say I'm using a 
+ couple of frameworks in my code and I will take the example of say spring or hibernate 
+ now in order to use the hibernate framework in my application I need to include all the required jars in my application 
+ I need to make them available let's say I'm developing a web application I need to make sure those jars are available during compile time 
+ I need to bundle them in my distribution when I'm deploying it I need to know what those jars are that's 
+ a common problem that we face sometimes sometimes we miss out on some of the jars we don't know what 
+ the jars are and this is something that maven helps it helps to solve a second common problem as 
+ dependencies say I have a particular job and that has a dependency on another jar I need to make 
+ sure that all my dependencies are closed I need to make sure I have supplied all the dependent 
+ jars for you know the jars that I already have there is a related problem here which is because
+ of the versions the dependencies could differ there could be lot of instances where we need to
+ make sure that we are matching the right versions of chars in our dependencies the third common 
+ activity we do is to set up the project structure a simple example is of a web application 
+ we need to make the project structure proper we need to have the proper directories web-inf 
+ the libraries the fourth common activity is build to publish and to deploy if you are using
+ and you would write all these targets and you would execute those targets whenever you wanted 
+ to build publish and deploy so these are four of the common activities and some of them are 
+ actually problems here that we face when we are you know writing code and we want to build 
+ and publish them so maven helps us in these four activities and it has a very elegant solution 
+ for each of them so we will have a look at how even helps us but before we start let's set up 
+ maven on our desktop so we first head over to the maven website even as an Apache project 
+ so the you know the URL is maven dot apache dot org here you will have a download link it's 
+ currently on 303 release this might be different depending on when you are viewing 
+ this tutorial but just go ahead and download one of these I'm going to download the the binary 
+ zip file okay now I have downloaded the zip file and I've extracted it here I open it here is the 
+ latest maven release now all that's left to do is set a couple of environment variables so open up 
+ the command prompt or if you're in Windows you need to change the environment variables in the system 
+ properties now the first environment variable we need to set is m2 home so 
+ if you are on UNIX or Linux you do a m2 and score o equals and but very of extracted maven 
+ the second variable we need to set is the path variable the reason we do this is so that you 
+ can trigger the maven executable from anywhere in your command prompt and it will point to the
+ right maven executable which is in the it's in the bin folder here so we need to pass this path
+ to the path variable and of course I'll also have to append it with the existing path values so 
+ that it does not override it and they go you're all set now let's test out that maven is working
+ fine by executing the maven command the simple command from a Venus mvn and let's pass the 
+ version flag to check what the version is yeah we have maven setup this is one more thing you 
+ know I was telling you that maven helps us in creating the project structure it helps us in managing 
+ dependencies downloading dependencies and things like that to all this you know intelligence
+ that maven has comes from what is called as repositories there are repositories available 
+ online and maven talks to those repositories and gets the information and that's how maven 
+ helps us in all these activities so one thing we need to make sure is that your machine is 
+ connected to the Internet because maven needs to go online and get all this information get 
+ connected to the Internet we are here all set now we can actually start using maven now let's 
+ look at the first advantage that maven provides for us regarding the project structure and the 
+ directory structure let me just make a directory called my app I'll go to that directory and I 
+ will use a command called maven archetype : generate when you run this for the first time maven 
+ will download all the required maven plug ins and it takes a while okay now after a whole lot of 
+ downloading this is where we are now maven has a prompt displayed for me and it says choose a number
+ and 1:06 is the default now what is this number you see here there are there is a list of different 
+ archetypes here what an archetype means is is it's a it's a model as to how you want your project to 
+ be structured all these are the predefined art types so they come with information about the application 
+ itself now say I want to create a spring JSF JPA application then I would use the spring J's of JP archetype 
+ or give this number 286 so all these are different types of applications that you would want to create 
+ and if we choose one number then maven will create a blank application with all the dependencies and 
+ all the jars and it will have it ready for us so let me go with the default as of now the default 
+ is 1:06 so if I just press enter it's going to take 1:06 now I can choose the versions the versions 
+ are you know the versions of the archetype itself so I'll choose the latest version which is 6 now 
+ it's going to download more plug ins which are related to the SAP type and after that now it's going 
+ to ask me for a few properties the first property is the group ID this would be similar to a package 
+ name that you would create for some of your components I'll just give the package name that I would 
+ use the next is the artifact ID so this would be this is analogous to a class name while group IDs 
+ analogous to a package name but note that here what we are defining is for the complete application 
+ itself the you know the application that you're creating now the artifact ID that I want to use here 
+ is let's say maven test app this is the name of the jar or the word that I'm creating by building and 
+ deploying this application that I'm planning to write version number version number by default is 1.0
+ snapshot which is fine for now so I'll just leave that define the value for the property package it's 
+ stick in the group ID itself which is fine it asks for confirmation for the inputs that I've entered 
+ everything is fine so I just say yes and now it's finished then what is me even done now let's see now 
+ it's created a directory called maven test app what's inside that directory so there is a folder called SRC 
+ and there's an XML called Pym dot XML let's check that out ok so now at the top you see the entries that 
+ we have entered we have the group ID which is you know the package name that we have entered the artefact ID 
+ which is the name of our application and the version number and the packaging it's taken this is a default 
+ it has made the packaging as a jar which means that the application that we are trying to write here will 
+ be built and packaged as a jar file there is a name node which means that this is going to be the name of 
+ the application this can be different from the artifact ID and what happens if it's different is our application 
+ will be called by this name but when we are actually saving this application compelled application 
+ in the repository the artifact ID for this will be this name you can ignore the properties the dependency 
+ is where are you know the other part of maven comes into play which is managing dependencies we'll get back
+ to this in a minute now let's have a look at the SRC folder now it has created two folders here one is the 
+ main and one is the test which is very convenient because we can keep all our Java classes in the main method 
+ it has even organized our package and it has created a simple dot Java file and we can also use the test folder 
+ in order to save our j-unit test cases so all this is ready for us we already have a app tester job it's already 
+ created a test Java class now maven has done all this it has created all the folder structure it has created all 
+ the required package directly and it has also created something called as a p1 dot XML which has information about 
+ the application itself and what the dependencies are now let's have a look at the dependencies so dependencies 
+ is mentioned in this palm load XML and there's only one dependency mentioned here which is the j-unit the group 
+ ID of this dependency is gene unit the artifact ID is je unit it has specified the version and it is also specified 
+ what is called a scope which we'll come to in a minute but but look at these three look at these three items here 
+ so it has mentioned that this project is dependent on J unit and it is dependent on version number three dot a dot
+ one now if J unit were to be dependent on some other jar then we won't have to worry about mentioning 
+ it here you know maven takes care of getting all the related dependencies so we need we just need 
+ to include the jars that we need as the first entry point and all the related dependencies will be 
+ taken care of by maven since now that this is done let's try to compile this code
+ 
+ 2.Setting Up :
+ --------------
+ let's try to compile this code Using Maven
+ Go To the Java class that maven has built and It Contains a main method.
+ In order to compile our maven application we first need to go to the directory in which we have the pom.xml
+ We Use The command mvn compile 
+ Here maven takes care of downloading all the related dependencies that we mentioned in pom.xml 
+ Maven Compiles all java classes in our application directory.
+ 
+ I need to package this so again I use a mvn package command now it's going to package this into 
+ a jar file might download more plugins in the process okay now the packaging is done at and you 
+ can see here at building jar it has created the jar in the target folder and it's maven desktop 
+ and the version dart jar what this is actually also done is it has also run our JUnit test cases 
+ say for example in this SRC test see I had test cases for all my code in the SRC main folder then 
+ maven would run all those test cases as well every time it has a compile so we don't have to worry 
+ about manually running the test cases ourselves so it's done automatically now we have the jar ready 
+ let's execute it it's an target jar name and don't remember the class name let's look that up tap 
+ well you see the hello world so this class is executed and you will see the hello world message 
+ there's a lot of things that maven has done for us in the background so let's have a quick overview 
+ of what maven has of all the things that me one has done for us okay to give a very broad outline 
+ of what happened we installed maven in our development environment now as I told you before maven 
+ gets all its knowledge from the maven repository and the main repository has two types of information 
+ the archetype information and the dependency information the archetype information has details about 
+ different types of projects that you want to create and the folder structure and all the required 
+ information about creating a new project of that particular type and the dependency information is 
+ a list of all the jar files that you normally use and the other jars that are dependent on the jar 
+ that you need so the first thing that we did was we used the archetype : generate command and what 
+ that did was so you know maven went to the archetype information repository over here and it got all 
+ the required information about the type of project that we are doing we mentioned the default selection 
+ and that just created a simple you know simple application class and it was just one class with a 
+ related test class along with it now once we issued that command may even knew that this is the kind 
+ of application that I was trying to develop and it got all the related information and created the 
+ directory structure based on that particular application and now I'd also given what is called as the 
+ group ID and the artifact ID now the group ID you know informs me when that this particular project 
+ belongs to this group and it is analogous to what we use as packages developing classes and if you 
+ also mention the artifact ID which is the ID of the artifact that we're going to generate out of 
+ building the application that we are planning to write in that case it is a simple jar file because
+ we just used a archetype for you know that had only a class now after the generate command 
+ was issued you know may even got the directory structure information and it also created what 
+ is the called as the pom file so the pom dot XML has information about the project that we are
+ trying to create including the group ID and the artifact ID and it also has information about 
+ dependencies if you want to add more dependencies in your application you would add that to the 
+ pound or XML now by default since we have created a simple application it had only g-unit has the 
+ dependency so that dependency was entered into pom dot XML by default and that was made available 
+ now once this is ready all we did was we did a compile and package now when we did a compile in the 
+ package may even realizes that form dot XML has this j-unit dependency and now it goes to the dependency 
+ information in the maven repository and checks what are the other dependent jars that it needs to 
+ get say I had depend higher dependencies on five different jars and I had mentioned it in the palm 
+ read XML maven is going to check for dependencies for all those five jars so first it's going to 
+ download those jars and since we also mentioned the version of the jars in the pom load XML it's 
+ going to get the right version and it's also going to look for dependencies off for that version 
+ of the jars and it's going to download them and make them available over here and then once this 
+ is done it's going to compile and generate the class files and if you do a package command it's 
+ going to generate the base package in which in our case there's a jar file so maven is doing all 
+ this in the background and since we have selected the archetype it has information about what the 
+ build commands are and what the jars are so we can override the default behaviors by specifying a 
+ different archetype or patching by taking the default our type itself and specifying different 
+ dependencies are different you know application related data in the form of XML.
