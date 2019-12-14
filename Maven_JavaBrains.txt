@@ -1,17 +1,35 @@
-1.Introduction 
-2.Setting Up
-3.Understanding Archetypes and pom.xml
-4.Maven Build Phases
-5.Adding Dependency
-6.Web Application Using Maven
-7.Compiler Plug In
-8.Jetty Plug In
-9.Eclipse Plug In
-10.Maven Project in Eclipse
+1.Introduction                               14-DEC-2019 (Done)
+2.Setting Up								 14-DEC-2019 ()
+3.Understanding Archetypes and pom.xml		 14-DEC-2019 ()
+4.Maven Build Phases						 14-DEC-2019 ()
+5.Adding Dependency							 14-DEC-2019 ()
+6.Web Application Using Maven				 14-DEC-2019 ()
+7.Compiler Plug In							 14-DEC-2019 ()
+8.Jetty Plug In								 14-DEC-2019 ()
+9.Eclipse Plug In							 14-DEC-2019 ()
+10.Maven Project in Eclipse					 14-DEC-2019 ()
 
 
-1.Introduction and Setting Up :
--------------------------------
+1.Introduction :
+----------------
+Maven is mostly commonly is used as a Build Tool i.e Helps to Build the Code in Development Environment.
+Maven Can also be Used for Project Management Tool i.e Generate Reports,Dependency Management etc.
+Most Common Problems and Activities While Developing the Application are
+
+Multiple Jars
+Dependency and Versions
+Project Structure
+Build,Publish and Deploy
+
+Maven Helps in Resolving the Above Activities by Using Maven Repository.
+To check the Maven has Installed or Not Use The Command mvn --version.
+To Create the Application using Maven We Use the command mvn archetype:generate and 
+choose a Number i.e What Kind of Application Want to be Created by Maven
+choose version 
+choose group Id i.e Package structure
+choose artifact Id  i.e Application Name
+
+Here Maven has Created a Folder Structure along with pom.xml
 
 2.Setting Up :
 --------------
@@ -22,7 +40,6 @@ The First Thing Maven Does for us is Creating a Source Code Template called  Fol
 Second Maven Does is Build i.e compile the Code and package the Application into a Jar File.
 Here We are Generating the Source Code Structure by using the Command 	maven archetype: generate 
 and the output of this is the Folder Structure and pom.xml 
-
 
 4.Maven Build Phases :
 ----------------------
