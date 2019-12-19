@@ -51,15 +51,19 @@ We Have to Create a Stream Supplier to Construct a New Stream with all Intermedi
 
 collect :
 ---------
-
-
+Collect is an Extremely Useful Terminal Operation to Transform the Elements of the Stream into Differnet Kind of Result.
+Collect accepts Four different Operations i.e Supplier,accumulator,combiner and Finisher.
+collect accepts Collectors or three arguments as supplier,accumulator and combiner.
+collect is used to Perform Many Operations Like Summation,Grouping,Joining etc.
 
 FlatMap :
 ---------
 
 
+
 Reduce :
 --------
+
 
 
 

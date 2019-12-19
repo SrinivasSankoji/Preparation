@@ -1,0 +1,27 @@
+
+Collect :
+*********
+Collect is an Extremely USeful Terminal Operation to Transform the Elements of the Stream into Different Kind Of ResultSet.
+collect accepts Collectors or three arguments as supplier,accumulator and combiner.
+collect is used to Perform Many Operations Like Summation,Grouping,Joining etc.
+
+Basic Collect
+Collect summarizingInt
+Collect joining
+Collect averagingInt
+Collect to Map
+Grouping By
+
+
+Grouping By Example :
+*********************
+Grouping By Does the Grouping of all the Elements based on Key and Returns the Collectors.
+
+
+
+
+
+
+
+
+
