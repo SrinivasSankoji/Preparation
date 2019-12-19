@@ -1,0 +1,9 @@
+Map :
+-----
+Map Produces a New Stream after applying each function to each element of the original Stream.
+Here The Stream Could be of Any Type.
+
+collect :
+---------
+It is One Of The Common Way to get the Stuff Out Of The Stream 
+Once we are Done with all the Processing.
