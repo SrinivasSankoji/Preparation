@@ -58,11 +58,43 @@ collect is used to Perform Many Operations Like Summation,Grouping,Joining etc.
 
 FlatMap :
 ---------
-
-
+Map Can Be Used to Transform the Objects of a Stream into another Type Of Objects.
+Map is Limited Because Because Object Can Only Be Mapped to exactly Another Object.
+We USe FlatMap to Transform One Object into Multiple Others or None at All.
+FaltMap Transforms Each Element of The Stream into a Stream of Other Objects.
 
 Reduce :
 --------
+Reduce Operation Combines all the Elements of The Stream into a Single Result i.e 
+Reducing all the ELements of The Stream to Exactly One.
+
+Java 8 Supports 3 Different Kind of Reduce() Methods.
+
+First :
+First Reduce Method accepts a Binary Operator Accumulator Function i.e BiFunction where Both Operands Share The Same Type.
+BiFunctions are Like Functions But Accept Two Arguments.
+
+Second :
+Second Reduce Method accepts Both an Identity Value and a Binary Operator Accumulator.
+This Way Can be Used to Construct a New Object from the Other Objects of the Stream.
+
+Third:
+Third Reduce Method Accepts Three Parameters i.e Combiner Type Binary Operator,Identity Operator
+and Binary Operator Accumulator Function.
+Here Identity Value Type is Not Restricted to Particular Object.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
