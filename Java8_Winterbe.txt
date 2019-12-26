@@ -67,6 +67,9 @@ Reduce :
 --------
 Reduce Operation Combines all the Elements of The Stream into a Single Result i.e 
 Reducing all the ELements of The Stream to Exactly One.
+Reduce Method Performs Reduction on the Elements of The Stream.
+Reduce can be Used to get the Sum of Numbers Stored in the Collection,
+Concatenate the String with the Separator.
 
 Java 8 Supports 3 Different Kind of Reduce() Methods.
 
@@ -82,31 +85,4 @@ Third:
 Third Reduce Method Accepts Three Parameters i.e Combiner Type Binary Operator,Identity Operator
 and Binary Operator Accumulator Function.
 Here Identity Value Type is Not Restricted to Particular Object.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

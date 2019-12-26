@@ -1,0 +1,47 @@
+1.Resolving Merge Conflicts Using EGit
+2.Introduction and Basics Academid
+3.Adding a Project, Creating Feature Branch, Merging With Master
+4.Stash Command
+5.Merge vs ReBase
+6.Pull Request
+7.Merge Form One Branch to Another Branch
+8.Compare Local Repository With Git Hub Repository
+9.Check out To Previous Version
+10.Switch Form One Branch to Another Branch
+
+1.Resolving Merge Conflicts Using EGit :
+****************************************
+If Some One Has Done The Changes and Committed The Code in the Central Repository
+and From our Local Repository If We are Trying to Commit The Code We Get an Error 
+
+		Rejected -Non FastForward.
+		
+Although Code is Committed in the Local Repository,Here the Push is Rejected.
+We Get The Up Symbol in the Eclipse.
+To Resolve The Issue We Need to Pull From the Repository.
+It Will Merge The Repository Changes into the Local Repository
+and Then Commit The Merged Changes into the Repository.
+If Both The Developers have done The Changes in the Same Line and Committed into the Local Repository 
+and Then Trying to Push the Central Repository Then We Get the Error 
+
+		Rejected -Non FastForward.
+		
+If We Try to Pull The Changes Then The Code will be Pulled into the Local Repository and Conflict Arises.
+To Resolve The Conflict We Need to do the Changes Manually.
+After Resolving Conflict  We Need to Add the Resource to Index and then Commit into the Repository.
+If we Add to the Index We Get The Default Commit Message.
+
+
+
+2.Git Basics :
+**************
+Git is a Version Control System where as  Git Hub is Hosting Provider.
+We Can Push Git Repository to Git Hub.
+We Can also Work Locally with Git.
+
+Common Terminologies are Repositories,Branches and Commits.
+The Location Where We Store our Code is Called Repository.
+Branch is Nothing But a Folder Within the Repository Containing Commits.
+Commits is the Different Stages of Our Code inside the Branch.
+
+

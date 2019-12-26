@@ -151,41 +151,66 @@ Maximum Number of Consumers in group is  Total Number of Partitions in the Topic
 Kafka Does not Allow More Than 2 Consumers to Read the Data From the Same Partition Simultaneously.
 This Restriction is Necessary to Avoid Double Reading of Records.
 
+5.Installing Kafka In Windows :
+*******************************
+PreRequisite are 
+JDK 1.8
+Single Node Kafka Cluster
+Build Tool Like Maven3
+IDE Such as Eclipse or IntelliJ
 
+Download Single Node Kafka Cluster
 
+http://mirrors.estointernet.in/apache/kafka/2.4.0/kafka_2.12-2.4.0.tgz
 
- 
+Copy the Kafka Folder 
 
+D:\Software\kafka_2.12-2.4.0 and Make it as Kafka Home
 
+Create a Zookeper DOrectory and change in the zookeeper.properties 
 
+dataDir=D:\Software\kafka_2.12-2.4.0\zookeeper_data
 
+Kafka Server Configuration i.e Open the server.properties File and Change The Path of Log Files.
 
+log.dirs=D:\KafkaLogs
 
+The Other Configuration in server.properties are 
 
+offsets.topic.num.partitions=1
+min.insync.replicas=1
+default.replication.factor=1
 
+To Run the Single Node Cluster on Windows copy the Path in Environment Variable i.e 
 
+D:\Software\kafka_2.12-2.4.0\bin\windows in System variable Path
 
+To Run the Kafka,Kafka First We Need to Start the Zookeeper 
 
+--> zookeeper-server-start.bat D:\Software\kafka_2.12-2.4.0\config\zookeeper.properties
 
+To Start the Kafka Server 
 
+--> kafka-server-start.bat D:\Software\kafka_2.12-2.4.0\config\server.properties
 
+Now the Zookeeper and Kafka are Running on Separate Windows.
+If We Want to Shut Down ctrl+c 
+To test the Kafka Server Start the New Window.
+Execute The Zookeeper Shell and ask them for the List of Broker Ids
 
- 
+--> zookeeper-shell.bat localhost:2181 ls /brokers/ids
 
+To Create a Kafka Topic in Windows :
 
+--> kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 
+To Create a Producer 
 
+--> kafka-console-producer.bat --broker-list localhost:9092 --topic test
 
+Enter the Messages
 
+To Create a Consumer 
 
-
-
-
-
-
-
-
-
-
-
+--> kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from beginning
 
