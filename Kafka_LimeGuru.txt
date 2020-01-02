@@ -1,0 +1,145 @@
+1.Introduction              (27-DEC-2019) (DONE)
+2.Topics and Partitions		(27-DEC-2019) ()
+3.Producer					(27-DEC-2019) ()
+4.Consumer					(27-DEC-2019) ()
+
+
+1.Introduction :
+****************
+Kafka is a Messaging System.
+There are some Sources which are Producing the Data and Publishes the Data to the Messaging System.
+There are Some Systems Which Consumes the Data.
+Sources which Produces the Data are Called Producers.
+System which Takes the Data are Called Brokers.
+System Which Consumes the Data is Called Consumers.
+The System Which Produces the Data Can be Any Application Like Web Site,Back End Application etc.
+We Can Pass the Data to Another Application Which Can be a Consumer and Here The Communication is One To One.
+If The Data Needs to Be Consumed By Multiple Consumers Then Producer has to Take The Responsibility
+Of Providing the Data to Multiple Consumers.
+Here Producer Can be Any Application Like Web Site,Back End Application etc and Cannot Handle This Scenario.
+Here Comes the Messaging System which acts as a Broker Between Producer and Consumer.
+Messaging System allows the Producer to Push the Data  
+and Messaging System is Responsible to Provide the Data to the Consumers.
+Here Messaging System also Stores the Data in The Messaging System.
+In Any Messaging System There are Producers,Consumers and Brokers.
+Messaging System is also Called as Broker.
+The Other Messaging Systems are JMS,RabitMQ,Active MQ etc and are Not Distributed.
+These Messaging Systems are Single Point of Failure.
+Kafka Provides Some Features Which are Not Available in Other Messaging System.
+
+Distributed :
+-------------
+We Have The Provision to Start the Multiple Kafka Servers(Cluster) and That Acts as a Single Messaging System i.e
+We Have The Flexibility to Create a Cluster and That Contains Multiple Brokers.
+Whenever any Producer is Publishing The Data to the Kafka Messaging System,
+Kafka Internally Handles the Distribution of Data
+and Stores the Data into Multiple Brokers inside the Kafka Cluster.
+Here The Consumer Can Access the Data From Multiple Brokers inside the Kafka.
+
+Message Storage System :
+------------------------
+Whenever Any Producer is Publishing the Data into the Messaging System,Kafka Internally Stores the Data in the 
+Messaging System Until We Explicitly Mention the Retention Period.
+Here Multiple Consumers can Still Access the Data From the Kafka.
+In Other Messaging System as There is No Concept of Message Storage System,
+The Other Consumers Cannot Access The Past Data.
+
+Fault Tolerance :
+-----------------
+It is Related To High Availability.
+Kafka Has Multiple Brokers Which Takes Care of Consuming the Data From Producers 
+and Providing the Data To The Consumers.
+Here Multiple Brokers are Responsible To Process and Store The Data.
+If Any of The Node Goes Down,Other Nodes Will Take Care of Processing The Data.
+
+Real Time Streaming Messaging System :
+--------------------------------------
+For Example We Have Continuous Message Data Coming From the Producer System as Kafka is Highly Available,
+Distributed and Multiple Nodes inside the Cluster.
+Kafka also has the Capability  of Storing the Data into The System.
+Kafka also Helps to Process the Real Time Data.
+Whenever any Message Comes to Kafka System,Kafka Helps to Transform the Data  and Then Provide the Data to The Consumer.
+
+UseCases of Kafka :
+-------------------
+In E Commerce Application Multiple Users are Browsing the Application.
+If We Want to Improve the User Experience We Need to Provide the Solution Based on Experience Instantly.
+We Need to Stream the User Navigation and Publish the Data to The Messaging System.
+Based on Events We Can Provide the Solution to the User.
+We Can also Store The Data in Other System Like Big Data,Database or Another Kafka Topic.
+RealTime Solutions are Helpful in Improving the Business.
+
+2.Topics and Partitions :
+*************************
+Producer System will Publish the Messages to the Kafka Broker and Consumer System will Consume the Messages form Kafka.
+Kafka Internally has a Mechanism to Create a Topic and Every Producer System will Publish the Messages to the Kafka Topic.
+Here Multiple Producers can Publish the Messages to a Single or Multiple Topic.
+Similarly Consumer System will consume the Messages from Multiple Topics.
+
+Partitions :
+------------
+Here Kafka is a Distributed System.
+The Messages are stored in a Distributed Manner and Distribution cam be ACheived by Using Partitions.
+Whenever Multiple Messages are Coming to the Kafka Topic and these Messages are Distributed among Kafka Broker.
+Here Distributed can be ACheived by Using Partitions.
+Whenever we Create a Topic We Need to Create a Partitions for that Topic as Per Requirement.
+
+For Example We Have Created 4 Partitions for a Single Topic.
+Topic 0 and 1 Sits in Broker1
+Topic 2 Sits in Broker2
+Topic 3 Sits in Broker3
+
+Whenever we Create a Kafka Cluster it Internally Contains Kafka Servers in the Kafka Cluster.
+Here Kafka Servers is Nothing But Kafka Brokers and Each Broker Contains Different Partitions.
+In this Case For a Single Topic we Have 3 Kafka Servers in the Kafka Cluster with Different Partitions.
+Kafka Internally Looks For the Availability For The Creation of Partitions Based on Physical Storage.
+and Also It Will Make Sure The Distribution is Highly Achievable.
+Here Each Partition Sits in the Different Broker for Highly Availability.
+
+Here Multiple Messages are Coming to the Topic and How the Data is Stored Internally inside the Each Partition of the Topic.
+
+Message M1 sits in the Partition 1
+Message M2 sits in the Partition 2
+Message M3 sits in the Partition 3
+Message M4 sits in the Partition 4
+Message M5 sits in the Partition 1
+and so on.
+
+Producer will just Publish the Data to the Topic 
+and Kafka Internally Distributes the Messages among Different Partitions.
+
+Message Storing in Partition :
+------------------------------
+Consider We Have 4 Partitions For a Single Topic and Multiple Messages are Coming for a Single Topic.
+Kafka Internally Creates a Log File in the Physical Storage For Each Partition 
+and all the Messages Which are Coming for a Particular Topic will be Committed in the Particular Log File.
+Kafka Manages the Sequencing of the Messages in the Log File For the Particular Partition Using Off Set.
+Off Set is aUnique Identifier for the Particular Message.
+Offset Numbers Helps in Identifying The Messages Read by Consumer Program.
+Once The Message is read by Consumer Program it will Mark as read and It wont read the Message again.
+This Can be achieved by using Offset Number.
+Here Multiple Consumers can Read the Messages from Different Partitions of the Topic Because Messages are Stored inside Log File.
+
+Replication :
+-------------
+For Example Message M1 is Stored in the Partition 0 with and OffSet Number.
+Replication says whichever Partition Gets The First Message To Store is Called Leader Partition for that Particular Message M1.
+Similarly Message M5,M8,M9,M11,M15 will sits into the Partition 0.
+Here Kafka Replicates these Messages into Other Partitions also.
+For Example We Have Configured a Replication Factor as 3,Whenever any New Message is Coming to the Particular Partition,
+Then That Partition will become the Leader Partition and Based on the Replication Factor,Same Message will also be Stored inside
+Other Partition.
+The Other Partitions which are Storing the Same Messages is called Follower Partitions.
+Advantage of Follower Partition is If Particular Partition goes Down or Kafka Broker that Contains the Particular Partition
+goes down,Then Kafka will COnvert the Follower Partition as Leader Partition.
+These Partitions will Provide the Data to the Consumers.
+This is How High Availability and Fault Tolerance Can Be ACheived in Kafka.
+
+
+
+
+
+
+
+ 
+

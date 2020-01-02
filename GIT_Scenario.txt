@@ -31,8 +31,6 @@ To Resolve The Conflict We Need to do the Changes Manually.
 After Resolving Conflict  We Need to Add the Resource to Index and then Commit into the Repository.
 If we Add to the Index We Get The Default Commit Message.
 
-
-
 2.Git Basics :
 **************
 Git is a Version Control System where as  Git Hub is Hosting Provider.
@@ -44,4 +42,11 @@ The Location Where We Store our Code is Called Repository.
 Branch is Nothing But a Folder Within the Repository Containing Commits.
 Commits is the Different Stages of Our Code inside the Branch.
 
+
+--To Checkout Particular Directory
+git checkout HEAD path/to/your/dir/or/file
+
+
+-- To Undo the Modified Files
+git reset --hard HEAD
 

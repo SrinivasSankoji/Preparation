@@ -102,7 +102,7 @@ Add Folder/Project to The Git :
 		It will Open the Command Prompt with That Folder
 		Enter the Command git init and It will create a folder .git
 		Our Git is Tracking this Folder.
-		Now the Enter The Command git status then it will show the Message Nothing to Commit
+		Now Enter The Command git status Then it will show the Message Nothing to Commit
 		To Add a Text File in the Command Prompt 
 		dir > test1.txt
 		And run the Command git status it will show the Untracked Files
@@ -135,6 +135,10 @@ Generate the SSH Key from GitBash using the Command available in GitLab.
 
 To Create a Branch use the Command : 
 ------------------------------------
+
+git branch "Branch Name" 
+git checkout "Branch Name"
+
 git branch "Branch Name" and enter the command  : git status
 Still we are pointing to the Master Branch,and if wee want to work on the newly created branch 
 we need to check out and we use the Command git checkout "Branch Name"
@@ -144,12 +148,17 @@ use the command : touch  test3.txt
 
 Merging the Branch :
 --------------------
+git merger "BranchName"
+
 To merge a new Branch in Master Branch we use the Command git merger "BranchName"
 Note : When we are Merging to Master Branch we need to check out the Master Branch and Merge the Branch
 Then run the Command Commit and Push to reflect it in GitHub.
 
 Deleting the Branch :
 ---------------------
+git branch -d  "Branch Name"
+git push origin --delete "BranchName"
+
 To delete the Branch we use the Command git branch -d  "Branch Name"
 It will delete the Branch locally and not in Git Hub.
 To delete the Branch form Git Hub we use the Command
@@ -326,60 +335,6 @@ git mergetool
 
 Adding a Project, Creating Feature Branch, Merging With Master
 ***************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

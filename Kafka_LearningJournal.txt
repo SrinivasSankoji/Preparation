@@ -2,8 +2,8 @@
 2.Kafka 1.0 Update						(2 Minutes )	 (06-DEC-2019)
 3.Introduction							(7 Minutes )	 (06-DEC-2019)
 4.Core Concepts							(13 Minutes)	 (08-DEC-2019)    (Done)
-5.Installing Kafka In Windows			(6 Minutes )	 (06-DEC-2019)
-6.Kafka Demo							(9 Minutes )	 (06-DEC-2019)
+5.Installing Kafka In Windows			(6 Minutes )	 (26-DEC-2019)	  (Done)
+6.Kafka Demo							(9 Minutes )	 (06-DEC-2019)	  
 7.Fault Tolerance						(12 Minutes)	 (07-DEC-2019)
 8.Broker Configuration					(6 Minutes )	 (07-DEC-2019)
 9.Compile Kafka Code					(4 Minutes )	 (07-DEC-2019)
@@ -45,7 +45,7 @@ Similarly If I want to Send all The Records of a Table I will Send Each Row as M
 If I Want to Send The Result of a Query to Kafka ,I Will CReate a Producer Application and 
 Fire a Query Against Database,Collect The Result and Start Sending each Row as a MEssage.
 While Working with Kafka and  If We want to Send Some Data We Have to Create a Producer Application 
-We Also get a Ready MAde Producer That Fits our Purpose.
+We Also get a Ready Made Producer That Fits our Purpose.
 
 Consumer :
 ----------
@@ -53,10 +53,10 @@ Consumer is again an Application that Receives Data.
 If Producers are Sending Data They are Sending Data to Some One.
 Consumers are the Recipient.
 Producers don't Send the Data to The  Recipient Address and Sends the Data to The Kafka Server.
-Any One Who is Interested din this Data Can Come Forward and Get The Data Form the Kafka Server.
+Any One Who is Interested in this Data Can Come Forward and Get The Data Form the Kafka Server.
 An Application that Request Data Form a Kafka Server is a Consumer.
-Consumer Can Request Data Sent By Any Producer Provided That have Permissions to Read It.
-Consumer Application will Receive Some Lines Form the Kafka Server.
+Consumer Can Request Data Sent By Any Producer Provided That They have Permissions to Read It.
+Consumer Application will Receive Some Lines From the Kafka Server.
 It Will Process them and Again Keep Requesting For Some More Data.
 Here Kafka Will Give New Messages to The Consumer as Long as New Messages are Coming from 
 the Kafka Producer.
@@ -71,7 +71,7 @@ Cluster :
 ---------
 Cluster is a Group of Systems acting together For a Common Purpose.
 Since Kafka is a Distributed System Cluster has a Same Meaning For Kafka.
-Cluster is a Group of Computers Each Executing One INstance of Kafka Broker.
+Cluster is a Group of Computers Each Executing One Instance of Kafka Broker.
 
 Topic :
 -------
@@ -96,9 +96,9 @@ Consumers interested in Order can Subscribe the Same Topic i.e Global Orders.
 Partitions :
 ------------
 Broker Stores the Data in a Topic.
-If he Data is Huge and It may be Larger than the Storage Capacity of Single Computer.
+If The Data is Huge and It may be Larger than the Storage Capacity of Single Computer,
 In that Case Broker May have a Challenge of Storing  the Data.
-One of the Solution is to Break the Data and Distribute it to MUltiple Computers.
+One of the Solution is to Break the Data and Distribute it to Multiple Computers.
 Kafka is a Distributed System that Runs on Cluster of Computers.
 Kafka Can Break the Topic into Partitions and Store One Partition in One Computer.
 How Kafka Will Decide the Number of Partitions.
@@ -111,7 +111,7 @@ Every Partition Sits on a Single Machine.
 OffSet :
 --------
 It is A Sequence Number of a Message in a Partition.
-This Number is assigned as a Message Arrives in the Partition.
+This Number is assigned to a Message as Soon as Message Arrives in the Partition.
 These Numbers Once assigned They Never Change. i.e They are Immutable.
 Kafka Stores the Message in the Order of Arrival within the Partition.
 First Message gets an Offset 0,Next Message gets an Offset 1 and  so on.
@@ -129,7 +129,7 @@ So We Create a Group and Members of the Group Can Share the Work.
 For Example We Have a Retail Chain and In Every Store They are Few Billing Counters.
 We Want to Bring all of the Invoices from Every Billing Counter to the Data Center.
 We Use Kafka to Transport Data From Billing Location to the Data Center.
-First Thing We Need to Do is Create a Producer at EVery Billing Location.
+First Thing We Need to Do is Create a Producer at Every Billing Location.
 These Producers Will Sent Bills as a Message to Kafka Topic.
 The Next Thing We Might want to Create a Consumer.
 Consumer Will Read the Data From Kafka Topic and Write Them into Data Center.
@@ -158,7 +158,6 @@ JDK 1.8
 Single Node Kafka Cluster
 Build Tool Like Maven3
 IDE Such as Eclipse or IntelliJ
-
 Download Single Node Kafka Cluster
 
 http://mirrors.estointernet.in/apache/kafka/2.4.0/kafka_2.12-2.4.0.tgz
@@ -168,49 +167,33 @@ Copy the Kafka Folder
 D:\Software\kafka_2.12-2.4.0 and Make it as Kafka Home
 
 Create a Zookeper DOrectory and change in the zookeeper.properties 
-
 dataDir=D:\Software\kafka_2.12-2.4.0\zookeeper_data
 
 Kafka Server Configuration i.e Open the server.properties File and Change The Path of Log Files.
-
 log.dirs=D:\KafkaLogs
 
 The Other Configuration in server.properties are 
-
 offsets.topic.num.partitions=1
 min.insync.replicas=1
 default.replication.factor=1
 
 To Run the Single Node Cluster on Windows copy the Path in Environment Variable i.e 
-
 D:\Software\kafka_2.12-2.4.0\bin\windows in System variable Path
-
 To Run the Kafka,Kafka First We Need to Start the Zookeeper 
-
 --> zookeeper-server-start.bat D:\Software\kafka_2.12-2.4.0\config\zookeeper.properties
-
 To Start the Kafka Server 
-
 --> kafka-server-start.bat D:\Software\kafka_2.12-2.4.0\config\server.properties
 
 Now the Zookeeper and Kafka are Running on Separate Windows.
 If We Want to Shut Down ctrl+c 
 To test the Kafka Server Start the New Window.
 Execute The Zookeeper Shell and ask them for the List of Broker Ids
-
 --> zookeeper-shell.bat localhost:2181 ls /brokers/ids
-
 To Create a Kafka Topic in Windows :
-
 --> kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
-
 To Create a Producer 
-
 --> kafka-console-producer.bat --broker-list localhost:9092 --topic test
-
 Enter the Messages
-
 To Create a Consumer 
-
 --> kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from beginning
 
