@@ -3,10 +3,11 @@
 3.Adding Spring Security To Spring Boot Project			[17-OCT-2019]  (Done)
 4.Spring Security Authentication						[17-OCT-2019]  (Done)
 5.Spring Security Authorization							[17-OCT-2019]  (Done)
-6.Internally Authentication Works   
-7.Spring Security Jdbc Authentication  					[21-OCT-2019]  (Done)
+6.Internally Authentication Works   					
+7.Spring Security JDBC Authentication  					[21-OCT-2019]  (Done)
 8.Spring Security JPA Authentication    
-9.J son Web Token  
+9.JSON Web Token 
+10. 			
 
 1.Introduction:
 ***************
@@ -47,8 +48,8 @@ We Get Effective Security By Removing the Vulnerabilities.
 By Using Spring Security We Can Implement :
 UserName and Password Authentication
 Single Sign on Stuff Like SSO/OKTA/LDAP
-App Level Authorization
-Intra App Authorization Like OAuth
+Application Level Authorization
+Intra Application Authorization Like OAuth
 Micro Service Security Using Tokens,JWT
 Method Level Security
 
@@ -267,7 +268,6 @@ If We Want to Connect to External Database Then Add The Dependency in pom.xml an
 
 8.Spring Security JPA Authentication   :
 ****************************************
-
 Add @EnableJpaRepositories  to The Spring Boot Application
 
 
