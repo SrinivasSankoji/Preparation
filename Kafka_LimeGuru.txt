@@ -1,7 +1,7 @@
 1.Introduction              (27-DEC-2019) (DONE)
 2.Topics and Partitions		(02-JAN-2020) (DONE)
-3.Producer					(27-JAN-2020) ()
-4.Consumer					(27-JAN-2020) ()
+3.Producer					(05-JAN-2020) (DONE)
+4.Consumer					(20-JAN-2020) ()
 
 
 1.Introduction :
@@ -136,10 +136,80 @@ These Partitions will Provide the Data to the Consumers.
 This is How High Availability and Fault Tolerance Can Be ACheived in Kafka.
 
 
+3.Producer	:
+*************
+Here We See How We Can Optimize the Producer Program So That We Send the Messages in the Correct Way.
+There are Some Configurations for The Producer Application to Optimize.
+
+A.Reliability :
+---------------
+Reliability is the Most Important Factor While Publishing the Messages to the Kafka Broker.
+Here We Don't want Any Message to be Loss into the Middle.
+This Reliability Can be Achieved by Using ACK Configuration.
 
 
+ACK 0 
+ACK 1
+ACK ALL or -1
+
+ACK 0 :
+-------
+Whenever Any Producer Application is Publishing the Messages to the Topic (Kafka Cluster),
+Here Producer Application won't Check Whether The Messages are Successfully Written to the Topic or Not.
+It is Completely Dependent on Stability of the Kafka Cluster.
+Here Producer Application won't accept the Acknowledgment from the Kafka Server.
+This kind of Acknowledgment is used when there is a Need of Low Latency and is Very Fast.
+Here Many of Messages Might be Loss.
+
+ACK 1 :
+-------
+Whenever any Message is Published to the Topic,Message goes to the Leader Partition and
+Leader Partition will Replicate the Messages to the Follower Partition based on Replication Factor.
+In case of ACK 1 Leader Partition will Acknowledge he Messages to the Producer Application that the Message 
+has been Reached to the Leader Partition.
+In this Case Messages are Not Replicated to the Follower Partitions.
+
+ACK ALL or ACK -1 :
+-------------------
+Whenever We want the Highest Level of Assurance that the Messages has been Reached to the Kafka System we use ACK ALL.
+Whenever any Message is Published to the Topic,Message goes to the Leader Partition and
+Leader Partition will Replicate the Messages to the Follower Partition based on Replication Factor.
+Once the Replication has been done,Kafka Server will acknowledge the Producer Application that the Message has been Received.
+Here Messages are Placed at Both Places i.e Leader and Follower.
+
+B.Retry :
+---------
+Whenever Producer Application is Sending any Message M1 to the Kafka Server i.e Topic
+and M1 is Getting Failed While Publishing the Message,we Can Retry The Message Based on Retry Configuration.
+
+C.Throughput :
+--------------
+Throughput Ca be Configured By Using batch.size and batch size is in terms of Bytes.
+Throughput can be Used to Publish the Number of Messages in a Particular Amount of Time.
+Whenever Producer Application is Sending the Message One by One to the Topic It will Take Time.
+Configure the Batch size and Send the Messages to the Kafka Topic.
+Producer Application will wait till the Batch Size Reaches and Will Publish the Messages to the Kafka Topic.
+
+The Problem with this Approach is If the Throughput is low i.e Message Flow is Slow in that Case it Won't Reach the Batch Size and 
+Producer Application will not Publish any Message to the Kafka Topic.
+
+D.Latency :
+-----------
+Latency is Configured by Using linger.ms
+If the Message flow is Low for the Producer Application and We have Configured the Batch Size,
+In this Case Producer Application will Publish the Messages to the Kafka Server once it Reaches the Latency Time and Will not wait
+for the Batch Size to be Reached.
+
+E.Synchronous vs Asynchronous :
+-------------------------------
+Whenever we are Providing Any Producer Application with any Technology,Kafka Provides an API or Functions 
+that can Send the Messages in Synchronous Way or Asynchronous Way.
+In case of Synchronous Communication It Will wait until the Response has been Sent and it is a Blocking State.
+Where as In Asynchronous Communication,Request will be Sent in Background and it Will Not Wait for the Response.
 
 
+4.Consumer :
+************
 
- 
+
 
