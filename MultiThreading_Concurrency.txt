@@ -1,0 +1,154 @@
+Defog Tech :
+************
+1.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
+2.Java Memory Model									[05-JAN-2020]  ()
+3.Volatile vs Atomic Integer						[05-JAN-2020]  ()
+4.Adder and Accumulator Classes						[05-JAN-2020]  ()
+5.Fork JoinPool										[05-JAN-2020]  ()
+6.Synchronous Queue									[05-JAN-2020]  ()
+7.ThreadLocal										[05-JAN-2020]  ()
+8.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
+9.Java Asynchronous Programming						[05-JAN-2020]  ()
+10.Lock Condition Class								[05-JAN-2020]  ()
+11.Semaphore in Java Concurrency					[05-JAN-2020]  ()
+12.Reentrant Lock									[05-JAN-2020]  ()
+13.ReadWrite Lock									[05-JAN-2020]  ()
+14.Exchanger Class									[05-JAN-2020]  ()
+15.Guava Library									[05-JAN-2020]  ()
+
+
+1.Concurrency vs Parallelism :
+******************************
+
+Parallelism :
+-------------
+Let us Consider an Example
+Here Two Threads are Executing In Parallel and One Method.
+
+	public static void main(String[] args) 
+	{
+		
+		new Thread(new Runnable() {
+			public void run() {				--> Task One
+				processTax();
+			}
+		}) {
+		}.start();
+		
+		
+		new Thread(new Runnable() {
+			public void run() {				--> Task Two
+				processTax();
+			}
+		}) {
+		}.start();
+
+		hevayCalculations();				--> Task Three
+	}
+
+Here Task One and Task Two runs on Different Threads and Task Three runs on the Main Thread.
+If we Run this Program on a Quad Core Processor i.e there are 4 Cores in a Processor,
+Then we can Run These Tasks in Parallel.
+In OS We have a Component Called Scheduler which is Responsible to Schedule the Threads on to these CPU Processor.
+
+Task One  Runs on Core 1
+Task Two  Runs on Core 2
+Task Three  Runs on Core 3
+Task Four  Runs on Core 4
+
+Here All these Task will Run in Separate Cores in Parallel.
+Parallelism is about doing lot of things at once so that we can speed up Performance.
+
+We can also Change the Above Code by Using ExecutorService.
+Using ExecutorService Fixed Thread Pool.
+
+		ExecutorService executorService=Executors.newFixedThreadPool(4);
+		executorService.submit(()-> processTax());
+		executorService.submit(()-> processTax());
+		
+In Java To Enable Parallelism We Can Use Raw Threads or We can use The Concept of Thread Pool.
+Even in Thread Pool It Can be 
+
+1.ExecutorService
+2.ForkJoin Pool
+3.Custom Thread Pools (Used By Web Servers)
+
+We Need to Ensure that the CPU has More than One Core So that We can run the Threads In Parallel.
+
+
+Concurrency :
+-------------
+Consider he Scenario for Booking a Ticket.
+
+		new Thread(() -> {
+			if(ticketsAvailale>0)
+			{
+				bookTicket();				-->  Task Accessing Shared Variable
+				ticketsAvailale--;
+			}
+			
+		}).start();
+		
+		new Thread(() -> {
+			if(ticketsAvailale>0)
+			{
+				bookTicket();			 	-->  Task Accessing Shared Variable
+				ticketsAvailale--;
+			}
+			
+		}).start();
+		
+		Thread.sleep(500);
+		
+Here Each Tasks Shares the Common Resource.
+After Starting Two Thread Put The Main Thread For Two Seconds.
+Let us Assume we have a Single Core Processor in CPU and Scheduler is assigning the Threads to the Processor.
+Since CPU has Single Core Processor,Scheduler has to do Time Sharing Between The Threads.
+Here The Scheduler Will Schedule the Thread 1 for Few Milli Seconds and Pick Thread 1 out and Keep Thread 1 For Few Mill Seconds.
+This Concept is Called Interleaving of Threads.
+How Much Time Scheduler Assigns to the Thread is Non Deterministic and Depends on Many Factors.
+Here it Might Possible That Thread One Accomplishes all the Task within Time.
+In Worst Scenario If The Thread has Not Accomplished the Task then there is Mismatch in Processing.
+This is also the Case with MultiCore Processor.
+
+To resolve the Issue we use the Concept Called Lock.
+Thread One will Acquire the Lock,Completes the Task and Updates the Shared Variable and Release the Task.
+Here Multiple Threads are Coordinating Between Each Other Using a Single Lock.
+This Scenario is Called Concurrency.
+
+Concurrency is about Dealing lot of things Once.
+Concurrency is Applied When we Have a Shared Resource that has to be Accessed or Updated
+or Multiple Threads need to Coordinate
+
+In Java we Have Lot of Tools to Deal With Concurrency.
+
+1.Locks /Synchronized
+2.Atomic Classes
+3.Concurrent Data Structures (ConcurrentHashMap.Blocking Queue)
+4.Completable Future
+5.CountDownLatch / Phaser / CyclicBinder / Semaphore etc.
+
+Concurrency  + Parallelism  :
+-----------------------------
+Split he Sequential Flow into Independent Components 
+Use Thread / Thread Pool to Parallelize these Components
+Whenever a Shared Resource has to be Updated or Multiple Threads needs to be Coordinate Use Concurrency Tools to Manage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

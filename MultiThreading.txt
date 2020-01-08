@@ -32,30 +32,28 @@ Java 8 Concurrency Utilities  :
 30.AtomicReferenceArray
 
 Java Asynchronous Programming					[05-JAN-2020]  ()
-Completable Future								[05-JAN-2020]  ()
 Callable Controller                           	[05-JAN-2020]  (Done)
 Async in Spring Boot							[05-JAN-2020]  ()
 Spring Web Flux									[05-JAN-2020]  ()
 Reactive Programming							[05-JAN-2020]  ()
 Reactive System with Eclipse Vert.X
-  
 														
 ************************************************************  Thread Pool Executor   *********************************************************************
 
 Java Thread Pool Manages the Pool of Worker Threads.
-It Contains a Queue(Runnable Threads) that keeps tasks waiting to get Executed.
+It Contains a Queue(Runnable Threads) that contains tasks waiting to get Executed.
 We Can also Use ThreadPoolExecutor to create a Thread Pool in Java.
 Worker Threads execute the Runnable Threads from the Queue.
-Executors is a Utility Class that Provides useful methods to work with Executor Service,Scheduled Executor Service,Thread Factory and
+Executors is a Utility Class that Provides useful methods to work with ExecutorService,ScheduledExecutorService,ThreadFactory and
 Callable Classes through various Factory Methods.
-
 
 ExecutorService :
 *****************
-We Can Create a Fixed Thread Pool Using Executors Framework i.e 
-
+We Can Create a Fixed Thread Pool By Using Executors Framework i.e 
 ExecutorService executor = Executors.newFixedThreadPool(5);
-We Can Execute The fixed Thread Pool Using execute(runnable).
+
+We Can Execute The fixed Thread Pool Using execute Method
+execute(runnable).
 
 Executors Class Provide the Simple Implementation of ExecutorService using ThreadPoolExecutor.
 ThreadPoolExecutor Provides much more feature than ExecutorService.
@@ -67,14 +65,15 @@ that can be used to handle the Threads that Cannot Fit in the Worker Queue.
 
 rejectedExecution(Runnable r, ThreadPoolExecutor executor) 
 
-ThreadPoolExecutor have Several Methods that can be used to find out the Current State of the Executor,Active pool Size,Thread Count ,Task Count and so on.
-
+ThreadPoolExecutor have Several Methods that can be used to find out the Current State of the Executor,
+Active pool Size,Thread Count ,Task Count and so on.
 ExecutorService Provides an Asynchronous Mechanism which is capable of Executing Tasks Simultaneously in the BackGround.
 
 
 Creation of Executor Service :
 ------------------------------
 ExecutorService executorService=Executors.newFixedThreadPool(5);
+
 The Above Statement Creates a Fixed Thread Pool Size of 5.
 Here Each Thread acts as a Worker Threads that accepts Runnable Implementation.
 
@@ -100,7 +99,7 @@ There is no way of obtaining the result of the executed Runnable.We Have to Use 
 2.submit(Runnable) :
 --------------------
 submit() accepts the Runnable Object similar to execute() but returns the Future Object.
-By Using Future Object we ca check whether Runnable has Finished the Execution or Not.
+By Using Future Object we can check whether Runnable has Finished the Execution or Not.
 If the Task has Finished Successfully Then it returns null.
 
 3.submit(Callable) :
@@ -149,7 +148,7 @@ All the Executing Tasks will e Closed Immediately and there is no Guarantee of E
 												
 ****************************************************  Java Callable Interface  *****************************************************************
 
-Callable Interface Represents a Asynchronous Task Which will be executed  on a Separate Thread or Java ExecutorService.
+Callable Interface Represents a Asynchronous Task Which will be executed on a Separate Thread or Java ExecutorService.
 It Contains a Single Method 
 
 interface Callable 
@@ -164,7 +163,7 @@ public MyCallable implements Callable<String>
 {
 	public String call() throws Exception
 	{
-	return String.valueOf(System.currentTimeMilliSeconds());
+		return String.valueOf(System.currentTimeMilliSeconds());
 	}
 }
 
@@ -176,8 +175,6 @@ Java ExecutorService returns the Java Future Object with some of their Methods.
 
 boolean cancel(boolean mayInterruptIfRunning) :
 -----------------------------------------------
-
-
 
 V  get():
 ---------
@@ -196,7 +193,6 @@ If the Asynchronous task has exceeded the Passed time then it will throw TimeOut
 boolean isCancelled() :
 -----------------------
 we can check if the Task is Canceled By Using isCancelled()
-
 if(!future.isCancelled())
 {
   Object result=future.get();
@@ -205,7 +201,6 @@ if(!future.isCancelled())
 boolean isDone():
 -----------------
 we can check if the Task is done By Using isDone()
-
 if(future.isDone())
 {
   Object result=future.get();
@@ -221,6 +216,8 @@ if(future.isDone())
 *******************************************************  Java Memory Model  ***************************************************************************
 
 
+Spring Web Flux and its Usage  :
+********************************
 
 
 

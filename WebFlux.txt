@@ -1,0 +1,155 @@
+1.Why Reactive Programming Part One						[08-JAN-2020]  (Done)
+2.Why Reactive Programming Part Two						[08-JAN-2020]  (Done)
+3.What is Reactive Programming							[08-JAN-2020]  (Done)
+4.Reactive Specification								[08-JAN-2020]  ()
+5.Libraries												[08-JAN-2020]  ()
+6.Project Reactor										[08-JAN-2020]  ()
+7.Reactor Types 										[08-JAN-2020]  ()
+8.Project Setup											[08-JAN-2020]  ()
+9.Flux													[08-JAN-2020]  ()
+10.
+11.Mono													[08-JAN-2020]  ()
+12.
+13.Sample Example										[08-JAN-2020]  ()
+14.
+15.
+16.
+17.
+18.Handler and Routines									[08-JAN-2020]  ()
+19.
+
+
+
+Notes :
+-------
+Configuration --> GetConnection --> 
+
+
+1.Why Reactive Programming Part One :
+*************************************
+In The Past we Build Monolith Applications and runs on Application Server.
+This Model does not Support Distributed System at All.
+Today We Build Micro Services and uses the Cloud InfraStructure and it Supports the Distributed System.
+The Application we build is spitted into Micro Applications and Interact with Each Other For Business Needs.
+
+The Expectations of The Application Now a Days are 
+1.Scale Based on Load
+If the Number of Users Increase than the Expected Value Then The Application Should Scale its Resources to Handle the Load
+and there should not be any downtime.
+2.Use the Resources Efficiently
+When we make a call to the Database or an External API,we have to wait for the Response.
+Waiting on some thing is not an effective Resource Utilization.
+3.Latency 
+Response Time Should be Fast to Meet The User Requirement.
+
+In Case of Spring MVC or any Web Application,Request Comes to the Servlet Container and For Each HTTP Request it Creates a Thread.
+This Model is called Thread Per Model. 
+Here The Back end can be an External API ,Database or Both.
+
+Handling Concurrent Requests :
+------------------------------
+In Case of Thread Per Request Model,Threads Can be Extend to a Value of N(200 For Tomcat)
+Thread Pool Size Defines the Number of Concurrent Users can access at any given point of Time.
+We Can increase or decrease the Thread Pool Size by Using the Property in application.properties File
+server.tomcat.max-threads=300
+
+Increase in Thread Pool Size is not an Ideal Solution.
+
+Each Thread Takes Some Memory.
+Common Stack Size is 1 MB.
+Higher the Thread Pool Size Higher the Memory Consumption.
+If we have a Larger Thread Pool,Leaves very Less memory for the Application Processing which 
+eventually means The Application will perform very Poor.
+
+There are Many ways to Handle the Load the Application.One of them is Horizontal Scaling i.e
+Spin Up More Instances of the Application based on Load.
+If The Load Balancer Expects 3 Times More than the expected Value,Then It Spin Ups the Application 3 Times.
+This Solution can be Achieved in Kubernetes or Some Container Orchestration.
+Spinning Up More Instances of the Application Leads to Increase in Cost of The Application.
+Most of the Cases we have a Limitation on Handling Many Concurrent Users.
+Move away from Thread Per Request Model is the Ideal Solution.
+
+2.Why Reactive Programming Part Two :
+*************************************
+In Traditional API,We Write The Code in Imperative Style.
+Execution goes from Top Down Approach.
+Imperative Style is Synchronous and Blocking.
+After We Make the Call to the database,It Goes into Blocking State and we have to wait for the Response.
+Imperative Style of Coding Leads to Inefficient use of Resources.
+
+We Need to Make These Calls Asynchronous and in java we have two Options.
+Callbacks
+Futures
+
+In case of Future It is Hard to Compose Multiple Asynchronous Operations.
+Another Option to achieve Asynchronous Operations is Completable Future.
+If we get the Huge Number of Records In Traditional API,then there is delay in Response.
+There is No Control on Result from the Data.
+Back Pressure Support Can be Achieved by Using Reactive API.
+
+Better API Design is :
+
+Asynchronous and Non Blocking
+Move Away from thread Per Request Model
+Use Fewer Threads
+Back Pressure Compatibility
+
+3.What is Reactive Programming :
+********************************
+
+New Programming Paradigm
+Asynchronous and Non Blocking
+Data Flow as an Event/Message Driven Stream
+Functional Programming
+Supports Back Pressure on Event Driven Data Streams
+
+In Case of Reactive Programming Data is Flown as an Event or Message for every Result from a DataSource.
+Here DataSource Can be 
+Database
+External Service
+File etc
+
+Once all the Data is event out to the Caller Then We are Going to receive the Completion Event.
+If there is an Error while Receiving the Data we get Completion Error Event.
+
+Scenarios In DataFlow from Database :
+1.Invokes the Database and the Result is Flown as Stream and Once Complete Data is Sent it Will Send OnComplete Event.
+2.In case of Any Error While Reading the Data form Database,Here It Will Send the Error Event and Handle this Error Event.
+3.In case of Empty Result It Will Send the OnComplete Event.
+4.In Case of Save,If it is Successful It Will Send the OnComplete Event and in Case Of Failure It Will Send the OnComplete Error Event.
+
+
+3 Things to be Considered in Reactive Programming
+1.OnNext(Item)
+2.OnComplete()
+3.OnError()
+
+
+4.Reactive Specification :
+**************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
