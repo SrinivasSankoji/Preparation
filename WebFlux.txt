@@ -1,13 +1,13 @@
 1.Why Reactive Programming Part One						[08-JAN-2020]  (Done)
 2.Why Reactive Programming Part Two						[08-JAN-2020]  (Done)
 3.What is Reactive Programming							[08-JAN-2020]  (Done)
-4.Reactive Specification								[08-JAN-2020]  ()
-5.Libraries												[08-JAN-2020]  ()
-6.Project Reactor										[08-JAN-2020]  ()
-7.Reactor Types 										[08-JAN-2020]  ()
-8.Project Setup											[08-JAN-2020]  ()
-9.Flux													[08-JAN-2020]  ()
-10.
+4.Reactive Stream Specification							[15-JAN-2020]  (Done)
+5.Reactive Libraries									[15-JAN-2020]  (Done)
+6.Project Reactor										[15-JAN-2020]  (Done)
+7.Reactor Types 										[15-JAN-2020]  (Done)
+8.Project Setup											[15-JAN-2020]  (Done)
+9.Flux How it Works										[15-JAN-2020]  (Done)
+10.Flux Junit											[15-JAN-2020]  (Done)
 11.Mono													[08-JAN-2020]  ()
 12.
 13.Sample Example										[08-JAN-2020]  ()
@@ -25,108 +25,271 @@ Notes :
 Configuration --> GetConnection --> 
 
 
-1.Why Reactive Programming Part One :
-*************************************
-In The Past we Build Monolith Applications and runs on Application Server.
+**************************************************** 1.Why Reactive Programming Part One : ****************************************************
+
+In The Past we Build Monolith Applications and it runs on Application Server.
 This Model does not Support Distributed System at All.
-Today We Build Micro Services and uses the Cloud InfraStructure and it Supports the Distributed System.
+Today We Build Micro Services and using the Cloud InfraStructure and it Supports the Distributed System.
 The Application we build is spitted into Micro Applications and Interact with Each Other For Business Needs.
 
 The Expectations of The Application Now a Days are 
 1.Scale Based on Load
-If the Number of Users Increase than the Expected Value Then The Application Should Scale its Resources to Handle the Load
+If the Number of Users are Increased than the Expected Value Then The Application Should Scale its Resources to Handle the Load
 and there should not be any downtime.
 2.Use the Resources Efficiently
 When we make a call to the Database or an External API,we have to wait for the Response.
-Waiting on some thing is not an effective Resource Utilization.
+Waiting For some thing is not an effective Resource Utilization.
 3.Latency 
 Response Time Should be Fast to Meet The User Requirement.
 
 In Case of Spring MVC or any Web Application,Request Comes to the Servlet Container and For Each HTTP Request it Creates a Thread.
-This Model is called Thread Per Model. 
-Here The Back end can be an External API ,Database or Both.
+This Model is called Thread Per Request Model. 
+Here The Back End can be an External API ,Database or Can be Both.
 
 Handling Concurrent Requests :
 ------------------------------
-In Case of Thread Per Request Model,Threads Can be Extend to a Value of N(200 For Tomcat)
+In Case of Thread Per Request Model,Threads Can be Extended to a Value of N(200 For Tomcat)
 Thread Pool Size Defines the Number of Concurrent Users can access at any given point of Time.
 We Can increase or decrease the Thread Pool Size by Using the Property in application.properties File
 server.tomcat.max-threads=300
 
 Increase in Thread Pool Size is not an Ideal Solution.
-
 Each Thread Takes Some Memory.
 Common Stack Size is 1 MB.
 Higher the Thread Pool Size Higher the Memory Consumption.
 If we have a Larger Thread Pool,Leaves very Less memory for the Application Processing which 
 eventually means The Application will perform very Poor.
 
-There are Many ways to Handle the Load the Application.One of them is Horizontal Scaling i.e
+There are Many ways to Handle the Load of the Application.One of them is Horizontal Scaling i.e
 Spin Up More Instances of the Application based on Load.
 If The Load Balancer Expects 3 Times More than the expected Value,Then It Spin Ups the Application 3 Times.
 This Solution can be Achieved in Kubernetes or Some Container Orchestration.
 Spinning Up More Instances of the Application Leads to Increase in Cost of The Application.
 Most of the Cases we have a Limitation on Handling Many Concurrent Users.
-Move away from Thread Per Request Model is the Ideal Solution.
+Ideal Solution is to Move away from Thread Per Request Model.
 
-2.Why Reactive Programming Part Two :
-*************************************
+**************************************************** Why Reactive Programming Part Two ****************************************************
+
 In Traditional API,We Write The Code in Imperative Style.
 Execution goes from Top Down Approach.
 Imperative Style is Synchronous and Blocking.
 After We Make the Call to the database,It Goes into Blocking State and we have to wait for the Response.
 Imperative Style of Coding Leads to Inefficient use of Resources.
 
-We Need to Make These Calls Asynchronous and in java we have two Options.
+We Need to Make These Calls Asynchronous and in Java we have two Options.
 Callbacks
 Futures
-
 In case of Future It is Hard to Compose Multiple Asynchronous Operations.
 Another Option to achieve Asynchronous Operations is Completable Future.
+
 If we get the Huge Number of Records In Traditional API,then there is delay in Response.
 There is No Control on Result from the Data.
 Back Pressure Support Can be Achieved by Using Reactive API.
 
 Better API Design is :
-
 Asynchronous and Non Blocking
 Move Away from thread Per Request Model
 Use Fewer Threads
 Back Pressure Compatibility
 
-3.What is Reactive Programming :
-********************************
+**************************************************** 3.What is Reactive Programming ****************************************************
 
 New Programming Paradigm
 Asynchronous and Non Blocking
-Data Flow as an Event/Message Driven Stream
+Data Flow in the form of Event/Message Driven Stream
 Functional Programming
 Supports Back Pressure on Event Driven Data Streams
 
 In Case of Reactive Programming Data is Flown as an Event or Message for every Result from a DataSource.
-Here DataSource Can be 
+Here DataSource Can be :
 Database
 External Service
 File etc
 
 Once all the Data is event out to the Caller Then We are Going to receive the Completion Event.
-If there is an Error while Receiving the Data we get Completion Error Event.
+If there is an Error while Receiving the Data we get Error Event.
 
 Scenarios In DataFlow from Database :
 1.Invokes the Database and the Result is Flown as Stream and Once Complete Data is Sent it Will Send OnComplete Event.
 2.In case of Any Error While Reading the Data form Database,Here It Will Send the Error Event and Handle this Error Event.
 3.In case of Empty Result It Will Send the OnComplete Event.
-4.In Case of Save,If it is Successful It Will Send the OnComplete Event and in Case Of Failure It Will Send the OnComplete Error Event.
+4.In Case of Save,If it is Successful It Will Send the OnComplete Event and in Case Of Failure It Will Send the Error Event.
 
-
-3 Things to be Considered in Reactive Programming
+Three Things to be Considered in Reactive Programming are
 1.OnNext(Item)
 2.OnComplete()
 3.OnError()
 
 
-4.Reactive Specification :
-**************************
+****************************************************  4.Reactive Stream Specification ****************************************************
+
+Reactive Stream Specification is Nothing but Specification or Rules for a Reactive Stream.
+Specification is created by Pivotal,Netflix,LghtBend,twitter etc.
+Reactive Specifications Defines 4 Interfaces and all of these Interfaces Communicate with Each Other for the Whole Stream to Flow.
+
+1.Publisher
+2.Subscriber
+3.Subscription
+4.Processor
+
+1.Publisher :
+-------------
+Publisher is the Data Producer or Data Emitter.
+This Interface Contains One Method that Accepts the Subscriber.
+
+		public interface Publisher<T>
+		{
+			public void subscribe(Subscriber<? super T> subscriber);
+		}
+
+By Making this call Subscriber subscribes the Publisher.
+Here Subscriber can be any Database or an External Service
+
+2.Subscriber :
+--------------
+Subscriber Reads the Data From the Publisher and is Synonymous to Consumer.
+This Interface Contains 4 Methods 
+
+
+		public interface Subscriber<T>
+		{
+			public void onSubscribe(Subscription subscription);
+			public void onNext(T t);
+			public void onError(Throwable t);
+			public void onComplete();
+		}
+
+OnNext() is nothing but the Data stream
+OnComplete is Signal for No More Data
+OnError is a Signal that Error has Occurred.
+
+
+3.Subscription :
+----------------
+This Interface defines two Methods 
+
+		public interface Subscription
+		{
+			public void request(long n);
+			public void cancel();
+		}
+		
+4.Processor  :
+--------------
+This Interface is a Combination of Both Publisher and Subscriber and it Does not have any Methods.
+
+
+From The Above 3 Interfaces Flow will be like below :
+
+
+Step 1 : Subscriber invokes the subscribe() of the Publisher by Passing the Instance of the Subscriber as an Input.
+Step 2 : Publisher Sends the Subscription Object to the Subscriber Saying that Subscription has been Done.
+
+Step 3 :
+Subscription interface has two Methods  request() and cancel()
+By Default request() Requests for all the Data from the Publisher.
+Consider the Publisher is the Database and It is Going to return 100 Records.
+In this Case there will be 100 onNext() Events with each Representing a Row.
+Once all the Events are Done,It will Call the OnComplete Event and Send to the Subscriber.
+There is an Option for the Subscriber to provide a Number to the Subscriber asking for the Specific Number of Data.
+request(number) and this Scenario is Called Back Pressure.
+Subscriber has a Control on how much Data It Needs From the Publisher.
+If there is any Error in the Work flow we will Receive an OnError Event.
+
+
+Step 4: 
+Subscriber calls the Publisher using the subscribe() of the Publisher.
+Publisher then Sends the Subscription object to the Subscriber Saying that Subscription has been Done.
+Here Subscription Interface has two Methods i.e request() and cancel()
+Publisher uses the request() to Connect to the Subscriber.
+Subscriber has an Option to call the cancel() in the Subscription that is Received form the Publisher.
+Once the cancel() has been Called,Then Publisher doesn't Send any Event to the Subscriber.
+
+
+  
+**************************************************** 5.Reactive Libraries **************************************************** 
+
+Reactive Libraries is Nothing but an Implementation of Reactive Stream Specification i.e Implementation of Below Interfaces.
+Publisher
+Subscriber
+Subscription
+Processor
+
+Different Kind of Reactive Libraries are :
+Rx Java
+Reactor or Project Reactor
+Flow Class in JDK 9
+
+Here We are Going to Use Reactor or Project Reactor and is Maintained by Pivotal.
+Recommended Library to Work with Spring Boot and Comes in Built with Spring Boot.
+  
+**************************************************** 6.Project Reactor	****************************************************
+
+Different Modules that are Available in the Project Reactor are 
+Reactor Core 
+Reactor Test
+Reactor Netty and so on.
+
+These 3 Modules are Necessary to Built Non Blocking Reactive Restful API.
+
+
+****************************************************  7.Reactor Types  ****************************************************
+
+Reactor Core is a Core Library for Project Reactor
+It has an Implementation of Reactive Stream Specification
+Supported Version is Java 8
+Flux and Mono are the Two Classes which are Implementation of Reactive Stream Specification.
+Flux and Mono are the Reactor Types for the Project Reactor.
+Flux Represents 0 to N Elements.
+Mono Represents 0 to 1 Element.
+
+
+Flux :
+------
+Consider the Scenario where we have Stream of Integers i.e from 1 t 100.
+Here the Data is Flown from Left to Right 1,2,3,4 ..... 100.
+When We Use Flux to read the Data,It Streams the Data one by one.
+Stream the Number 1 and Pass it to the Operation.
+Here Operation is a kind of Transformation on Data.
+and Transformed Data is Sent as a Response. 
+Streaming is done for all the ELements and Once it is Done It Sends OnComplete Event.
+While Streaming the Data ,If there is any Error,It Sends OnError Event.
+
+Example :
+---------
+Flux.just("Spring","Spring Boot","Reactive Spring Boot").map(s->s.concat("flux")).subscribe(System.out::println);
+In Practical We Get the Data form Database.
+Here all the Elements are Sent one by one.
+
+https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
+Will Contains all the Methods Defined by the Flux.
+
+
+Mono :
+------
+Mono Represents 0 to 1 Element.
+When ever we Get Only One Object as Response then we use Mono.
+
+Example :
+---------
+ Mono.just("Spring Boot").map(s -> s.concat("flux")).subscribe(System.out::println);
+
+**************************************************** 8.Project Setup	****************************************************
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+	
+
 
 
 
