@@ -1,6 +1,7 @@
 1.Why Reactive Programming Part One						[08-JAN-2020]  (Done)
 2.Why Reactive Programming Part Two						[08-JAN-2020]  (Done)
 3.What is Reactive Programming							[08-JAN-2020]  (Done)
+
 4.Reactive Stream Specification							[15-JAN-2020]  (Done)
 5.Reactive Libraries									[15-JAN-2020]  (Done)
 6.Project Reactor										[15-JAN-2020]  (Done)
@@ -8,15 +9,16 @@
 8.Project Setup											[15-JAN-2020]  (Done)
 9.Flux How it Works										[15-JAN-2020]  (Done)
 10.Flux Junit											[15-JAN-2020]  (Done)
-11.Mono													[08-JAN-2020]  ()
-12.
-13.Sample Example										[08-JAN-2020]  ()
-14.
-15.
-16.
-17.
+11.Mono	Junit											[08-JAN-2020]  (Done)
+
+12.Spring Boot 2										[08-JAN-2020]  ()
+13.Non Blocking API Flux								[08-JAN-2020]  ()
+14.WebTest Client										[08-JAN-2020]  ()
+15.Infinite Non Blocking WebTest Client					[08-JAN-2020]  ()
+16.Non Blocking API Mono								[08-JAN-2020]  ()
+17.Functional Web										[08-JAN-2020]  ()
 18.Handler and Routines									[08-JAN-2020]  ()
-19.
+19.Functional EndPoint using WebTestClient				[08-JAN-2020]  ()
 
 
 
@@ -274,7 +276,93 @@ Example :
 ---------
  Mono.just("Spring Boot").map(s -> s.concat("flux")).subscribe(System.out::println);
 
-**************************************************** 8.Project Setup	****************************************************
+**************************************************** 8.Project Setup And 9.Flux How it Works  ****************************************************
+
+Use the Dependencies Reactive Web,Embedded Mongo DB and Reactive Mongo Database.
+Write the Test Case to Implement Flux.
+
+		Flux<String> stringFlux=Flux.just("Spring","Spring Boot","MicroServices");
+
+The Only way to access the elements of the Flux is Subscribing.
+when we subscribe the Flux i.e actively attaching the Subscriber to read the Elements of the Flux and Publisher Starts emitting all the 
+Elements of the Flux.
+Subscriber Requests the Publisher for the Unbounded Value i.e Max Value of the Publisher.
+
+		stringFlux.log().subscribe(System.out::println);
+
+In Case of Error subscribe() has an overload Version that accepts the Exception.
+In this case add the Error Method with Flux.
+Once the Error has occurred,Flux does not Emmit the Elements to the Subscriber.
+
+		Flux<String> stringFlux=Flux.just("Spring","Spring Boot","MicroServices")
+				.concatWith(Flux.error(new RuntimeException("Error Occurred")));
+				
+		stringFlux.log().subscribe(System.out::println,(e)-> System.err.println(e));
+
+
+In Case of Success subscribe() has an overload Version that accepts the OnComplete Event.
+
+		stringFlux.log().subscribe(System.out::println,(e)-> System.err.println(e),(e)-> System.out.println("Completed"));
+
+**************************************************** 10.Flux Junit	****************************************************
+
+To Test the Elements inside the Flux and the order in which the Elements are subscribing to the Subscriber 
+we use the Project Reactor Test.
+Reactor Test has a Class StepVerifier.
+Create an Instance of StepVerifier by passing the Flux as Parameter i.e StepVerifier.create(stringFlux);
+
+			Flux<String> stringFlux = Flux.just("Spring", "Spring Boot", "MicroServices").log();
+			StepVerifier.create(stringFlux)
+			.expectNext("Spring")
+			.expectNext("Spring Boot")
+			.expectNext("MicroServices")
+			.verifyComplete();
+			
+Since onComplete Event will be the Last Event we need to use verifyComplete(). 
+If we Change the Order of expectNext() the the Test Case Fails.
+Flux does not pass the Elements until we call verifyComplete().
+When we call the verifyComplete() on StepVerifier then the Data Flows From Flux to the Subscriber.
+verifyComplete() works similar to subscribe()
+
+
+		Flux<String> stringFlux = Flux.just("Spring", "Spring Boot", "MicroServices")
+		.concatWith(Flux.error(new RuntimeException("Error Occured")))
+		.log();
+		
+		StepVerifier.create(stringFlux)
+		.expectNext("Spring")
+		.expectNext("Spring Boot")
+		.expectNext("MicroServices")
+		.expectError(RuntimeException.class)
+		.verify();
+
+Since onError Event will be the Last Event we need to use verify()
+There will be an overloaded version of expectError().
+
+If we want to Validate the Number of Elements that the Flux Emmit we use expectNextCount(number)
+
+		Flux<String> stringFlux = Flux.just("Spring", "Spring Boot", "MicroServices")
+		.log();
+		
+		StepVerifier.create(stringFlux)
+		.expectNextCount(3)
+		.verifyComplete();
+
+**************************************************** 11.Mono Junit	****************************************************
+
+		Mono<String> stringMono=Mono.just("Spring");
+		StepVerifier.create(stringMono.log())
+		.expectNext("Spring")
+		.verifyComplete();
+		
+		StepVerifier.create(Mono.error(new RuntimeException("Exception Occured")).log())
+		.expectError(RuntimeException.class)
+		.verify();
+
+*********************************** 12.Spring Boot 2 -- 13.Non Blocking API Flux -- 16.Non Blocking API Mono ************
+
+
+
 
 
 
