@@ -1,10 +1,10 @@
 Defog Tech :
 ************
 1.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
-2.Java Memory Model									[05-JAN-2020]  ()
+2.Java Memory Model									[15-JAN-2020]  (Done)
 3.Volatile vs Atomic Integer						[05-JAN-2020]  ()
 4.Adder and Accumulator Classes						[05-JAN-2020]  ()
-5.Fork JoinPool										[05-JAN-2020]  ()
+5.Fork JoinPool										[15-JAN-2020]  ()
 6.Synchronous Queue									[05-JAN-2020]  ()
 7.ThreadLocal										[05-JAN-2020]  ()
 8.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
@@ -15,10 +15,12 @@ Defog Tech :
 13.ReadWrite Lock									[05-JAN-2020]  ()
 14.Exchanger Class									[05-JAN-2020]  ()
 15.Guava Library									[05-JAN-2020]  ()
+16.Completable Future								[05-JAN-2020]  ()
+17.ExecutorService									[05-JAN-2020]  ()
 
 
-1.Concurrency vs Parallelism :
-******************************
+******************************************** 1.Concurrency vs Parallelism ************************************************************
+
 
 Parallelism :
 -------------
@@ -135,12 +137,94 @@ Use Thread / Thread Pool to Parallelize these Components
 Whenever a Shared Resource has to be Updated or Multiple Threads needs to be Coordinate Use Concurrency Tools to Manage.
 
 
+******************************************** 2.Java Memory Model ************************************************************
+Java Memory Model is a Specification which Guarantees the Visibility of Fields 
+when we have Re Ordering of Instructions.
+Java Memory Model Enforces that all the JVM has to implement these set of Rules 
+so that Program Runs in the Same Manner. 
 
+1.Out of Order Execution
+2.Field Visibility
+3.Happens Before
 
+1.Out of Order Execution :
+--------------------------
+When we Write a Program and in General it is a Series of Statements.
+We Expect that It will Run in the Same order as we have Written.
+But is Completely Possible that the Compiler or JVM or CPU will Change the Order of Instructions to Drive Some 
+Performance out of it.
+This is Done in a Way that the Program Semantics Remains Same and Output will Not Change.
 
+Consider the Scenario 
 
+a=3;
+b=1;
+a=+1;
 
+Actual Conversion look Like 
 
+Load a
+Set to 3
+Store about
+
+Load b
+Set to 1
+Store b
+
+Load a
+Set to 4
+Store a
+
+Here we are Loading a Twice and 
+one Performance Improvement could be incrementing the Value would be before setting the Value.
+
+Load a
+set to 3
+set to 4
+Store a
+
+Load b
+Set to 1
+Store b
+
+ 
+2.Field Visibility :
+--------------------
+Field Visibility is Only Applicable in terms of MultiThreaded Applications also Called Concurrent Programming.
+
+A.If we have a Quad Core Processor Machine Generally that have 4 Cores and each core has Set of Registers.
+B.Registers are Nothing but a Memory Area which is very Small and is within the Core,
+  Stores the Value in the Register and Faster to retrieve from the Register.
+C.we Have L1 Cache for each Core i.e Nothing but Memory Area Set a Side For Each Core.
+D.We Have L2 Cache which could be Shared between Shared L1 Cache.
+E.We Have L3 Cache which could be Shared between Shared L2 Cache.
+F.We Have RAM which could be Shared across Cores.
+
+Consider the Example :
+
+			int x=0;
+	
+			public void writerThread()
+			{
+				x=1;
+			}
+			
+			public void readerThread()
+			{
+				int reader=x;
+			}			
+
+Here Initially the Value is Stored in the Shared Cache.
+Consider Thread T1 Calls the WriterThread() and Thread T2 Calls the ReaderThread().
+Thread T1 sits into the Core 1 and Thread T2 Sits into the Core 2.
+When the Thread T1  Executes the writerThread(), Value is incremented and updated in the Local Cache of Thread T1.
+Similarly When the Thread T2 executes the readerThread(),It Wont get the Updated Value because it is not Updated in the Shared Cache.
+It is Completely Possible that x=1 is Never Pushed into the Shared Cache.
+This issue is Called Field Visibility Issue.
+
+We Can Resolve the Issue by Using Volatile Key Word.
+If the Variable is Volatile,then JVM Ensures that Changes in the Local Cache will be Flushed to the Shared Cache 
+so that the Remaining Threads will get The Updated Value.
 
 
 
