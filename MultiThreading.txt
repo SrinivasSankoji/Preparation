@@ -42,7 +42,7 @@ Reactive System with Eclipse Vert.X
 Java Thread Pool Manages the Pool of Worker Threads.
 It Contains a Queue(Runnable Threads) that contains tasks waiting to get Executed.
 We Can also Use ThreadPoolExecutor to create a Thread Pool in Java.
-Worker Threads execute the Runnable Threads from the Queue.
+Threads will execute the Runnable Threads from the Queue.
 Executors is a Utility Class that Provides useful methods to work with ExecutorService,ScheduledExecutorService,ThreadFactory and
 Callable Classes through various Factory Methods.
 
@@ -66,7 +66,7 @@ rejectedExecution(Runnable r, ThreadPoolExecutor executor)
 
 ThreadPoolExecutor have Several Methods that can be used to find out the Current State of the Executor,
 Active pool Size,Thread Count ,Task Count and so on.
-ExecutorService Provides an Asynchronous Mechanism which is capable of Executing Tasks Simultaneously in the BackGround.
+ExecutorService Provides an Asynchronous Mechanism which is capable of Executing Tasks Simultaneously in the Background.
 
 
 Creation of Executor Service :
@@ -127,7 +127,7 @@ public interface Callable
 }
 
 The Difference here is Callable Interface call() returns an Object and throws an Exception.
-If we Submit a Task to the Java ExecutorService and Expect the Result form the Task,then we need to Implement Callable Interface.
+If we Submit a Task to the Java ExecutorService and expecting the Result form the Task,then we need to Implement Callable Interface.
 
 shutdown() :
 -------------
@@ -206,17 +206,6 @@ if(future.isDone())
 }
 
 
-*******************************************************  Java Fork and Join using ForkJoinPool  *******************************************************
-
-
-
-
-
-*******************************************************  Java Memory Model  ***************************************************************************
-
-
-Spring Web Flux and its Usage  :
-********************************
 
 
 

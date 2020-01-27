@@ -1065,13 +1065,13 @@ Kafka Sivakumar Bachupalli
 Kafka Karunakar Goud
 
 
------------------------------------------ January(Micro Services,Kafka,WebFlux) ----------------------------------------------
+----------------------------------------- January(Kafka,WebFlux,MultiThreading) ----------------------------------------------
 Kafka :
 *******
-Basics                      
-Topic and Partition			
-Producer							
-Consumer 								
+Basics        					(Done)              
+Topic and Partition				(Done)	
+Producer						(Done)				
+Consumer 						()			
 
 Spring Security :						
 *****************							
@@ -1084,8 +1084,8 @@ Java 8 :
 Completable Future						
 Future									
 Callable in Java 8
-Executor Service
-Concurrency
+Executor Service                 (Done)
+Concurrency						 (Done)
 
 PL SQL :
 ********
@@ -1094,8 +1094,19 @@ Decode
 
 WebFlux :
 *********
+Rate Limiter
 
------------------------------------------ February() ----------------------------------------------
+
+----------------------------------------- February(Actuator,Prometheus,Graph) ----------------------------------------------
+
+Collectors.joining
+Collectors.Grouping
+FlatMap
+Reduce
+
+Grouping Exception By Application
+
+
 
 
 

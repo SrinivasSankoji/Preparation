@@ -43,10 +43,30 @@ Branch is Nothing But a Folder Within the Repository Containing Commits.
 Commits is the Different Stages of Our Code inside the Branch.
 
 
+
+
+
+
+
+
+
+
+
+
+****************************************** Use Case ******************************************************************************
+
 --To Checkout Particular Directory
 git checkout HEAD path/to/your/dir/or/file
 
-
 -- To Undo the Modified Files
 git reset --hard HEAD
+
+--Switch One Branch to Another Branch
+git checkout replica
+
+
+
+
+
+
 

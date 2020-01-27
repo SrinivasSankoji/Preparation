@@ -1,0 +1,189 @@
+
+1.Actuator Introduction  											(Tech Primers)				[26-JAN-2020]  (Done)
+2.Spring Boot: Health Check Using Actuators  						(ChargeAhead)				[26-JAN-2020]  (Done)
+3.Custom Health Check Using Actuator		 						(ChargeAhead)				[26-JAN-2020]  (Done)
+4.Micro services with Spring Boot Actuator One        				(Green Learner)				[26-JAN-2020]  (Done)
+5.Micro services with Spring Boot Actuator Two        				(Green Learner)				[26-JAN-2020]  (Done)
+6.Spring Boot 2 x Actuator											(JavaTechie)				[26-JAN-2020]  (Done)
+7.Spring Boot - Actuator in Spring Boot 2.0 and 1.0 				(Melardev)					[26-JAN-2020]  (Done)
+
+
+1.Actuator Introduction  Tech Primers  (Tech Primers)	:
+*********************************************************
+Actuators is the Concept Created by Spring Boot to Monitor the Production Application.
+Monitoring the Process,Check the Health,Whether the Application is up or Not,
+Database Connection is Up or Not,database Connection is Successful inside the Process or Not,Heap Size i.e Space in the Particular JVM.
+All these are Taken Care by Actuator.
+Spring Boot Internally is a Web Application.
+Spring Boot has Created a Library which Exposes Some Rest End Points so that Different Monitoring Tools use Those Rest End Points and
+get the Data out of those Rest End Points.
+By Default Spring Boot Actuator is Security  Based and they have Some Security Restrictions.
+We can Disable them by Using 
+		
+		#management.security.enabled=false   and is Deprecated Method
+		
+By Default Health and Info Actuators are Enabled
+
+Health :
+
+	`	http://localhost:9876/actuator/health
+	
+We can also Implement Custom Health Indicator By Using  HealthIndicator Interface .
+	
+Info :
+	
+		http://localhost:9876/actuator/info
+		
+Info Provides Information about The Application.
+Health Provides the Health of the Application.
+
+All the Actuators are Disabled By Default and we Need to Enable Them By Using 
+
+		management.endpoints.web.exposure.include=*
+		
+To Get The Complete Information of the Health Actuator we need to define the Property
+	
+		management.endpoint.health.show-details=always
+
+env :
+-----
+Displays the Sensitive Information of the Application.
+System Properties,Server Port,System Management and also the Properties we Defined inside the Properties File.
+
+
+metrics :
+---------
+Displays Information about the Processor ,Thread State,Heap State,Garbage Collector and So On.
+
+
+Trace :
+-------
+Displays the Information about the Rest End Point that has been Accessed By The User.
+
+Heap Dump :
+-----------
+
+Thread Dump :
+-------------
+
+http.server.requests :
+----------------------
+If We Want to implement and Custom Actuator then we Need to Implement HealthIndicator Interface and we Need to Override the Method.
+
+Creating Custom End Point inside Actuator Using @EndPoint :
+-----------------------------------------------------------
+We Can also Create a Custom End Point By Using @EndPoint Annotation apart from Spring Boot Provided and we Can Monitor that Particular End Point.
+
+
+2.Spring Boot: Health Check Using Actuators  (ChargeAhead) :
+************************************************************
+
+To See all the Actuator End Points 
+
+		https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html
+		
+
+3.Custom Health Check Using Actuator (ChargeAhead) :
+****************************************************
+Health Actuator is Used to Check the Status of the Application.
+If the Application is accessing any Third Part Application and 
+If we want to Check whether the Applications is Up or Not We need to Implement Custom Health End Point.
+
+		try {
+		URL url=new URL("https://www.google.com");
+			HttpURLConnection connection=(HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.connect();
+			int code=connection.getResponseCode();
+			if(code==200)
+			{
+				return Health.up().build();
+			}
+			else
+			{
+				return Health.down().withDetail("Error", "Service is Down").build();
+			}
+		} catch (IOException e) {
+			return Health.down().withDetail("Error", "Service UnAvailable").build();
+		}
+
+4.Micro services with Spring Boot Actuator One :
+************************************************
+Actuator End Points Monitor and Interact with our Application.
+By Default Health and Info are Enabled.
+
+To get The Complete Information of Info,Add the Below Properties.
+		
+		info.app.encoding=UTF-8
+		info.app.java.source=1.8
+		info.app.java.target=1.8
+		info.name.of.app=NextGenOps
+
+If we Want to Change the Context Path of Spring Boot Given Actuator,Then Define the Property
+
+		management.endpoints.web.base-path=/nextgenops
+
+By Default all the End Points are Enabled except shutDown.
+To Enable or Disable the Particular End Point we use
+
+		management.endpoint.metrics.enabled=true
+		
+To Disable all the End Points,We use the Property
+		management.endpoints.enabled-by-default=false
+
+Some of the End Points Contain Sensitive Information and Careful Consideration Should be Given About When to expose them.
+To Include which End Points are Exposed Use the Following Property.
+		
+		management.endpoints.web.exposure.include=health,Info
+		
+To Exclude which End Points are Not be Exposed Use the Following Property.
+
+		management.endpoints.web.exposure.exclude=beans,metrics
+		
+To Expose all the End Points,Use *
+	
+		management.endpoints.web.exposure.include=*
+	
+Note :
+End Points Automatically Cache the Response which don't take any Parameter.
+We Can Refresh the Cache by Using
+			
+		management.endpoint.health.cache.time-to-live=10
+
+		
+5.Micro services with Spring Boot Actuator Two : 
+************************************************
+We Can write our own End Points in two Ways 
+
+1.@EndPoint
+2.Rest Controller End Point
+
+
+To Enable or Disable all the Spring Boot Given Health Indicators we use the Property
+
+	management.health.defaults.enabled=false
+
+Securing End Points :
+---------------------
+Secure the Rest End Points in the Same Way we do with any other Spring Boot Provided URL.
+If Spring Security is added as Dependency in the Class Path then all the endPoints except /health and info are Secured.
+
+Spring Security works with Default Context Path Provided by Spring Boot i.e actuator and 
+we need to remove the custom End Point Defined inside configuration File.
+
+
+6.Spring Boot 2 x Actuator (JavaTechie) :
+*****************************************
+
+
+
+
+
+
+
+
+
+
+
+
+

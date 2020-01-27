@@ -1,38 +1,98 @@
-Web sockets are defined as a two way communication between the server and client over a single TCP Connection.
+1.Web Socket Basics 					 							(Tutorials Point)				[27-JAN-2020]  (Done)
+2.Web Socket Different from HTTP 		 							(Tech Primers)					[27-JAN-2020]  (Done)
+3.Configuring WebSocket Support on the Server Side					(packtpub.com)					[27-JAN-2020]  (Done)	 
+4.Drawbacks of Web Socket											
+5.Advantages of Server Sent Events															
+
+
+********************************************************* 1.Web Socket Basics   *********************************************************
+
+Web sockets are defined as a Two way communication between the server and client over a single TCP Connection.
 i.e both parties communicate with each other and exchange data at the same time.
-
 Web socket provides a full duplex communication from the ground.
-
 web socket works on the principle of HandShake and
-it is a process that ensures that server is in sync with its clients.
-
-Key points are true concurrency and optimization of Performance resulting in more responsive and
-rich web applications. 
-
+It is a process that ensures that server is in sync with its clients.
+Key points are true concurrency and optimization of Performance resulting in more responsive and rich web applications. 
 Web socket protocol is standardized and  a 
 web application can speed up with the help of this Protocol Technology.
-
-The Only requirement to use the web socket is , on the browser side we need to run a javascript library 
+The Only requirement to use the web socket is , on the browser side we need to run a Java script library 
 that interrupts the web socket handshake , establish and maintain the web socket connection.
-
-Websocket first establishes a regular HTTP connection to the server  ant then converts it to a biderectional 
-web socket connection by sending an Upgrade Header.
+Web socket first establishes a regular HTTP connection to the server and then converts it to a bidirectional web socket connection 
+by sending an Upgrade Header.
 
 WebSocket Configuration :
-
 The First Step is to configure the WebSocket EndPoint and Message Broker.
 @EnableWebSocketMessageBroker is used to enable our Web Socket Server and we need to implement 
 WebSocketMessageBrokerConfigurer Interface.
-
-First We Need to register a websocket EndPoint that the client will use to Conneect to our WebSocket Server.
+First We Need to register a web socket EndPoint that the client will use to Connect to our WebSocket Server.
 Second We Need to Configure a Messaging Broker that will be used to route Messages from One Client To Another.
-
-WebSocket is A communication protocol and it does not define things like 
+WebSocket is A communication protocol and it does not define things like :
+ 
 How to Send a Message Only to Users who are subscribed to a Particular Topic,
 How to Send a Message to a Particular User.
-Here we Need STOMP(Simple Text Oriented Messaging Protocol).
 
+Here we Need STOMP(Simple Text Oriented Messaging Protocol).
 STOMP is a Messaging Protocol that defines the rules and format for data Exchange.
+
+********************************************************* 2.Web Socket Different from HTTP  *********************************************************
+
+Let us understand how HTTP Works :
+
+Whenever we Send any Request to the Server,there will be a TCP Connection Between Client and Server.
+Once the Response is Returned from the Server,this Connection will be Closed.
+Same Process for every Request and Response.
+Rest API Works Similar to HTTP Connection.
+
+What are Web Sockets :
+----------------------
+Whenever there is any Web Socket.there will be Client and Server.
+There will be a Bidirectional Communication between Web Sockets.
+
+Web Sockets are Create Using  ws://ww.google.com  or   wss://www.google.com 
+
+HTTP are UniDirectional where Sender has to Request Every Time to Get The Response.
+Web Sockets are Bi Directional i.e Sender can Send the Data and also Receiver Can also Send the Data.
+Web Socket Does not Close the Connection which they have Opened.
+
+Consider the Client and the Server Application.
+Whenever Client Sends the Request to the Server and Connection is Opened at Server Side and Hand Shake is Made Between Client and Server.
+Once the Communication is Open then Communication Happens in terms of Bi Directional Message Processing.
+From any of the Side Connection is Closed then Communication Breaks between Client and Server.
+
+When Should we Use Web Socket :
+--------------------------------
+Real Time Applications
+Gaming Applications
+Chat Applications
+
+RealTime Web Socket Implementation :
+------------------------------------
+www.gdax.com/trade/BTC_USD
+https://socket.io/demos/chat/
+
+When Not to Use Web Socket :
+----------------------------
+Whenever we want to Retrieve Old Information then Web Socket is Not Required.
+Web Socket Create a Socket and Keeps it alive until we close the Connection.
+
+
+
+********************************************************* 3.Configuring WebSocket Support on the Server Side ******************************************************
+
+To Add Web Socket Support for the Back end
+
+1.Add Web Socket Support to our APP and Configure a Web Socket Broker
+2.Define Web Socket Events
+
+Create a Web Socket Configuration Class
+ 	
+
+
+
+
+
+
+
 
 
 

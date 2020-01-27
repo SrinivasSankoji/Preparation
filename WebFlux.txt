@@ -9,16 +9,19 @@
 8.Project Setup											[15-JAN-2020]  (Done)
 9.Flux How it Works										[15-JAN-2020]  (Done)
 10.Flux Junit											[15-JAN-2020]  (Done)
-11.Mono	Junit											[08-JAN-2020]  (Done)
+11.Mono	Junit											[15-JAN-2020]  (Done)
+12.Spring Boot 2										[23-JAN-2020]  (Done)
+13.Non Blocking API Flux								[23-JAN-2020]  (Done)
+14.Non Blocking API Mono								[23-JAN-2020]  (Done)
 
-12.Spring Boot 2										[08-JAN-2020]  ()
-13.Non Blocking API Flux								[08-JAN-2020]  ()
-14.WebTest Client										[08-JAN-2020]  ()
-15.Infinite Non Blocking WebTest Client					[08-JAN-2020]  ()
-16.Non Blocking API Mono								[08-JAN-2020]  ()
-17.Functional Web										[08-JAN-2020]  ()
-18.Handler and Routines									[08-JAN-2020]  ()
-19.Functional EndPoint using WebTestClient				[08-JAN-2020]  ()
+15.Functional Web										[08-JAN-2020]  ()
+16.Handler and Routines									[08-JAN-2020]  ()
+17.Functional EndPoint using WebTestClient				[08-JAN-2020]  ()
+18.WebTest Client										[08-JAN-2020]  ()
+19.Infinite Non Blocking WebTest Client					[08-JAN-2020]  ()
+
+20.What is Spring Web Flux and When to Use It
+
 
 
 
@@ -31,12 +34,12 @@ Configuration --> GetConnection -->
 
 In The Past we Build Monolith Applications and it runs on Application Server.
 This Model does not Support Distributed System at All.
-Today We Build Micro Services and using the Cloud InfraStructure and it Supports the Distributed System.
+Today We Build Micro Services using the Cloud InfraStructure and it Supports the Distributed System.
 The Application we build is spitted into Micro Applications and Interact with Each Other For Business Needs.
 
 The Expectations of The Application Now a Days are 
 1.Scale Based on Load
-If the Number of Users are Increased than the Expected Value Then The Application Should Scale its Resources to Handle the Load
+If the Number of Users are Increased than the Expected Value,Then The Application Should Scale its Resources to Handle the Load
 and there should not be any downtime.
 2.Use the Resources Efficiently
 When we make a call to the Database or an External API,we have to wait for the Response.
@@ -98,7 +101,7 @@ Back Pressure Compatibility
 
 New Programming Paradigm
 Asynchronous and Non Blocking
-Data Flow in the form of Event/Message Driven Stream
+Data is Flown in the form of Event/Message Driven Stream
 Functional Programming
 Supports Back Pressure on Event Driven Data Streams
 
@@ -125,9 +128,9 @@ Three Things to be Considered in Reactive Programming are
 
 ****************************************************  4.Reactive Stream Specification ****************************************************
 
-Reactive Stream Specification is Nothing but Specification or Rules for a Reactive Stream.
+Reactive Stream Specification is Nothing but Rules for a Reactive Stream.
 Specification is created by Pivotal,Netflix,LghtBend,twitter etc.
-Reactive Specifications Defines 4 Interfaces and all of these Interfaces Communicate with Each Other for the Whole Stream to Flow.
+Reactive Specification Defines 4 Interfaces and all of these Interfaces Communicate with Each Other for the Whole Stream to Flow.
 
 1.Publisher
 2.Subscriber
@@ -136,7 +139,7 @@ Reactive Specifications Defines 4 Interfaces and all of these Interfaces Communi
 
 1.Publisher :
 -------------
-Publisher is the Data Producer or Data Emitter.
+Publisher is the Data Producer or Data Emitter.For Example Database or Any File System.
 This Interface Contains One Method that Accepts the Subscriber.
 
 		public interface Publisher<T>
@@ -145,12 +148,13 @@ This Interface Contains One Method that Accepts the Subscriber.
 		}
 
 By Making this call Subscriber subscribes the Publisher.
-Here Subscriber can be any Database or an External Service
+Here Subscriber can be any Database or an External Service.
+Publisher is Synonymous to Producer.
 
 2.Subscriber :
 --------------
 Subscriber Reads the Data From the Publisher and is Synonymous to Consumer.
-This Interface Contains 4 Methods 
+This Interface Contains 4 Methods. 
 
 
 		public interface Subscriber<T>
@@ -161,14 +165,14 @@ This Interface Contains 4 Methods
 			public void onComplete();
 		}
 
-OnNext() is nothing but the Data stream
-OnComplete is Signal for No More Data
-OnError is a Signal that Error has Occurred.
+OnNext() is nothing but the Data stream.
+OnComplete() is Signal for No More Data.
+OnError() is a Signal that Error has Occurred.
 
 
 3.Subscription :
 ----------------
-This Interface defines two Methods 
+This Interface defines two Methods.
 
 		public interface Subscription
 		{
@@ -179,26 +183,20 @@ This Interface defines two Methods
 4.Processor  :
 --------------
 This Interface is a Combination of Both Publisher and Subscriber and it Does not have any Methods.
-
-
 From The Above 3 Interfaces Flow will be like below :
-
 
 Step 1 : Subscriber invokes the subscribe() of the Publisher by Passing the Instance of the Subscriber as an Input.
 Step 2 : Publisher Sends the Subscription Object to the Subscriber Saying that Subscription has been Done.
-
 Step 3 :
-Subscription interface has two Methods  request() and cancel()
+Subscription interface has two Methods  request() and cancel().
 By Default request() Requests for all the Data from the Publisher.
-Consider the Publisher is the Database and It is Going to return 100 Records.
+Consider Publisher is the Database and It is Going to return 100 Records.
 In this Case there will be 100 onNext() Events with each Representing a Row.
 Once all the Events are Done,It will Call the OnComplete Event and Send to the Subscriber.
 There is an Option for the Subscriber to provide a Number to the Subscriber asking for the Specific Number of Data.
 request(number) and this Scenario is Called Back Pressure.
 Subscriber has a Control on how much Data It Needs From the Publisher.
 If there is any Error in the Work flow we will Receive an OnError Event.
-
-
 Step 4: 
 Subscriber calls the Publisher using the subscribe() of the Publisher.
 Publisher then Sends the Subscription object to the Subscriber Saying that Subscription has been Done.
@@ -207,11 +205,11 @@ Publisher uses the request() to Connect to the Subscriber.
 Subscriber has an Option to call the cancel() in the Subscription that is Received form the Publisher.
 Once the cancel() has been Called,Then Publisher doesn't Send any Event to the Subscriber.
 
-
   
 **************************************************** 5.Reactive Libraries **************************************************** 
 
 Reactive Libraries is Nothing but an Implementation of Reactive Stream Specification i.e Implementation of Below Interfaces.
+
 Publisher
 Subscriber
 Subscription
@@ -238,9 +236,9 @@ These 3 Modules are Necessary to Built Non Blocking Reactive Restful API.
 ****************************************************  7.Reactor Types  ****************************************************
 
 Reactor Core is a Core Library for Project Reactor
-It has an Implementation of Reactive Stream Specification
+It has an Implementation of Reactive Stream Specification.
 Supported Version is Java 8
-Flux and Mono are the Two Classes which are Implementation of Reactive Stream Specification.
+Flux and Mono are the Two Classes which are the Implementation of Reactive Stream Specification.
 Flux and Mono are the Reactor Types for the Project Reactor.
 Flux Represents 0 to N Elements.
 Mono Represents 0 to 1 Element.
@@ -264,6 +262,7 @@ In Practical We Get the Data form Database.
 Here all the Elements are Sent one by one.
 
 https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
+
 Will Contains all the Methods Defined by the Flux.
 
 
@@ -283,8 +282,8 @@ Write the Test Case to Implement Flux.
 
 		Flux<String> stringFlux=Flux.just("Spring","Spring Boot","MicroServices");
 
-The Only way to access the elements of the Flux is Subscribing.
-when we subscribe the Flux i.e actively attaching the Subscriber to read the Elements of the Flux and Publisher Starts emitting all the 
+The Only way to access the elements of the Flux is by Subscribing.
+when we subscribe the Flux i.e actually attaching the Subscriber to read the Elements of the Flux and Publisher Starts emitting all the 
 Elements of the Flux.
 Subscriber Requests the Publisher for the Unbounded Value i.e Max Value of the Publisher.
 
@@ -355,52 +354,47 @@ If we want to Validate the Number of Elements that the Flux Emmit we use expectN
 		.expectNext("Spring")
 		.verifyComplete();
 		
-		StepVerifier.create(Mono.error(new RuntimeException("Exception Occured")).log())
+		StepVerifier.create(Mono.error(new RuntimeException("Exception Occurred")).log())
 		.expectError(RuntimeException.class)
 		.verify();
 
 *********************************** 12.Spring Boot 2 -- 13.Non Blocking API Flux -- 16.Non Blocking API Mono ************
 
+In Spring Boot 2.0 We Have Reactive Stack and Servlet Stack.
+Spring Web Flux is a Non Blocking Web .
+Non Blocking Web Refers to the Non Blocking Way of Communication Over the Network.
+To Facilitating this we Need Non Blocking Servers Such as Netty ,Servlet 3.1 or Above Containers.
+
+In Reactive Stack There is No Place For Servlet Because We are Going to Have Non Blocking Interactions over the Network.
+We are Going to Use Reactive Stream Adapters.
+Even the Security Layer Should be Reactive.
+We Have Spring Web Flux which has Annotated Controller and the Functional Web End Points to Handle the HTTP Requests.
+In Order to Interact with Databases in a Non Blocking Way we Have Dedicated Reactive Modules For Mongo,Cassandra,Redis and Couch base.
 
 
+		https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#spring-webflux
+		
+We Can Build Non Blocking API in two ways i.e by Using Rest Controller or Functional Web.
 
-
-
-
-
- 
-
-
-
-
-
-
-
+	@GetMapping("/returnFlux")
+	public Flux<IntStream> returnFlux()
+	{
+		return Flux.just(IntStream.range(1, 100));
+	}
 	
+Spring Web Flux Internally Uses Netty as Default Server to achieve Non Blocking Communication.
+In Order to Differentiate the Response We need Delay for Some Seconds.
+Here Response will be Returned as J son and Browser will wait Until all the Elements are Returned and Displays the Result.
+By Default Browser is a Blocking Client and it does not care about Flux or Mono.
+To get the Data as Stream we use MediaType.APPLICATION_STREAM_JSON_VALUE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	@GetMapping(value = "/returnFluxStream",produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	public Flux<Integer> returnFluxStream()
+	{
+		return Flux.just(1,2,3,4)
+				.delayElements(Duration.ofSeconds(3))
+				.log();
+	}
 
 
 
