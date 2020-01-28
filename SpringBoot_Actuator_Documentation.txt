@@ -4,12 +4,12 @@
 3.Custom Health Check Using Actuator		 						(ChargeAhead)				[26-JAN-2020]  (Done)
 4.Micro services with Spring Boot Actuator One        				(Green Learner)				[26-JAN-2020]  (Done)
 5.Micro services with Spring Boot Actuator Two        				(Green Learner)				[26-JAN-2020]  (Done)
-6.Spring Boot 2 x Actuator											(JavaTechie)				[26-JAN-2020]  (Done)
-7.Spring Boot - Actuator in Spring Boot 2.0 and 1.0 				(Melardev)					[26-JAN-2020]  (Done)
+6.Spring Boot 2 x Actuator											(JavaTechie)				[26-JAN-2020]  ()
+7.Spring Boot - Actuator in Spring Boot 2.0 and 1.0 				(Melardev)					[26-JAN-2020]  ()
 
 
-1.Actuator Introduction  Tech Primers  (Tech Primers)	:
-*********************************************************
+********************************************************* 1.Actuator Introduction  Tech Primers  (Tech Primers)	*********************************
+
 Actuators is the Concept Created by Spring Boot to Monitor the Production Application.
 Monitoring the Process,Check the Health,Whether the Application is up or Not,
 Database Connection is Up or Not,database Connection is Successful inside the Process or Not,Heap Size i.e Space in the Particular JVM.
@@ -75,16 +75,16 @@ Creating Custom End Point inside Actuator Using @EndPoint :
 We Can also Create a Custom End Point By Using @EndPoint Annotation apart from Spring Boot Provided and we Can Monitor that Particular End Point.
 
 
-2.Spring Boot: Health Check Using Actuators  (ChargeAhead) :
-************************************************************
+************************************************* 2.Spring Boot: Health Check Using Actuators  (ChargeAhead) *********************************************
+
 
 To See all the Actuator End Points 
 
 		https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html
 		
 
-3.Custom Health Check Using Actuator (ChargeAhead) :
-****************************************************
+************************************************* 3.Custom Health Check Using Actuator (ChargeAhead) *************************************************
+
 Health Actuator is Used to Check the Status of the Application.
 If the Application is accessing any Third Part Application and 
 If we want to Check whether the Applications is Up or Not We need to Implement Custom Health End Point.
@@ -107,8 +107,8 @@ If we want to Check whether the Applications is Up or Not We need to Implement C
 			return Health.down().withDetail("Error", "Service UnAvailable").build();
 		}
 
-4.Micro services with Spring Boot Actuator One :
-************************************************
+************************************************* 4.Micro services with Spring Boot Actuator One (Green Learner) ********************************************
+
 Actuator End Points Monitor and Interact with our Application.
 By Default Health and Info are Enabled.
 
@@ -151,8 +151,8 @@ We Can Refresh the Cache by Using
 		management.endpoint.health.cache.time-to-live=10
 
 		
-5.Micro services with Spring Boot Actuator Two : 
-************************************************
+************************************************* 5.Micro services with Spring Boot Actuator Two  (Green Learner)****************************************
+
 We Can write our own End Points in two Ways 
 
 1.@EndPoint
@@ -172,8 +172,8 @@ Spring Security works with Default Context Path Provided by Spring Boot i.e actu
 we need to remove the custom End Point Defined inside configuration File.
 
 
-6.Spring Boot 2 x Actuator (JavaTechie) :
-*****************************************
+***************************************** 6.Spring Boot 2 x Actuator (JavaTechie) ***************************************************************
+
 
 
 
