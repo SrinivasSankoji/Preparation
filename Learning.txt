@@ -1081,32 +1081,49 @@ Revise
 
 Java 8 :								
 ********								
-Completable Future						
-Future									
-Callable in Java 8
+Completable Future				 (Done)					
+Future							 (Done)		
+Callable in Java 8				 (Done)
 Executor Service                 (Done)
 Concurrency						 (Done)
-
-PL SQL :
-********
-Index
-Decode
 
 WebFlux :
 *********
 Rate Limiter
+Emitter
 
 
------------------------------------------ February(Actuator,Prometheus,Graph) ----------------------------------------------
+
+----------------------------------------- February(Actuator,Prometheus,Graphana,MicroMeter) ----------------------------------------------
 
 Collectors.joining
 Collectors.Grouping
 FlatMap
 Reduce
+User Group Mapping Scenario (Fork Join Pool)
+ExceptionByApplication Grouping  
 
-Grouping Exception By Application
+Modifying Variables Inside Lambdas 
+https://dzone.com/articles/modifying-variable-inside-lambda?edition=565304&utm_source=Zone%20Newsletter&utm_medium=email&utm_campaign=java%202020-01-27
 
+Your Guide to Java 8 Optional
+https://dzone.com/articles/java-8-optional-1?edition=565304&utm_source=Zone%20Newsletter&utm_medium=email&utm_campaign=java%202020-01-27
 
+Auto-comparison magic in Spring Boot
+
+Java 8 Concepts: FP, Streams, and Lambda Expressions
+https://dzone.com/articles/java-8-concepts-fp-lambda-expressions-and-streams
+
+A Guide to Streams: In-Depth Tutorial With Examples
+https://dzone.com/articles/a-guide-to-streams-in-java-8-in-depth-tutorial-wit
+
+SseEmitter
+
+Actuator EndPoints :
+--------------------
+
+MicroMeter :
+------------
 
 
 

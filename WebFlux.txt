@@ -1,7 +1,6 @@
 1.Why Reactive Programming Part One						[08-JAN-2020]  (Done)
 2.Why Reactive Programming Part Two						[08-JAN-2020]  (Done)
 3.What is Reactive Programming							[08-JAN-2020]  (Done)
-
 4.Reactive Stream Specification							[15-JAN-2020]  (Done)
 5.Reactive Libraries									[15-JAN-2020]  (Done)
 6.Project Reactor										[15-JAN-2020]  (Done)
@@ -13,14 +12,14 @@
 12.Spring Boot 2										[23-JAN-2020]  (Done)
 13.Non Blocking API Flux								[23-JAN-2020]  (Done)
 14.Non Blocking API Mono								[23-JAN-2020]  (Done)
+15.Functional Web										[28-JAN-2020]  (Done)
+16.Handler and Routines									[28-JAN-2020]  (Done)
 
-15.Functional Web										[08-JAN-2020]  ()
-16.Handler and Routines									[08-JAN-2020]  ()
-17.Functional EndPoint using WebTestClient				[08-JAN-2020]  ()
-18.WebTest Client										[08-JAN-2020]  ()
-19.Infinite Non Blocking WebTest Client					[08-JAN-2020]  ()
+17.Test Reactive API Using WebTest Client				[28-JAN-2020]  ()
+18.Infinite Non Blocking WebTest Client					[28-JAN-2020]  ()
+19.Junit For Functional EndPoint using WebTestClient	[28-JAN-2020]  ()
 
-20.What is Spring Web Flux and When to Use It
+20.What is Spring Web Flux and When to Use It			[28-JAN-2020]  (Done)
 
 
 
@@ -395,6 +394,159 @@ To get the Data as Stream we use MediaType.APPLICATION_STREAM_JSON_VALUE
 				.delayElements(Duration.ofSeconds(3))
 				.log();
 	}
+
+****************************************************  15.Functional Web & 16.Handler and Routines **************************************************** 	
+
+The Idea behind the Functional Web is functions to handle the Incoming Request and Response.
+Functional Web Consists of Two Modules i.e Router Function and Handler Function.
+
+Client Sent the Request to the Server and Server Forwards the Request to the Router Function.
+If the Router Function has an Appropriate Mapping then it Forwards the Request to the Handler Mapping.
+Handler Function is the which performs the Complete Processing of Reading the Request,
+Processing the Request and Sending the Response back to the Server.
+
+Router Function is used to Route the Incoming Request.
+Router Function is Similar to @RequestMapping Annotation.
+
+Handler Function Handles the Request and Response.
+Handler Function is Similar to the Body of @RequestMapping Annotation.
+Handler Function has two New Classes i.e ServerRequest and ServerResponse
+
+ServerRequest represents the HttpRequest and the ServerResponse represents the HTTPResponse.
+
+Create the HandlerController Class and Annotate with @Component.
+Here We are not Using Traditional @RestController
+	
+		public Mono<ServerResponse> handlerFlux(ServerRequest serverRequest)
+		{
+		return ServerResponse.OK().body(Flux.just(1,2,3,4).log(),Integer.class);
+		}
+
+
+Create a RouterConfiguration Class and Annotate with @Configuration so that it behaves as a Router Configuration.
+Define a Bean with that Accepts the HandlerFicntion and Returns the RouterFunction with ServerResponse as Type.
+
+
+		@Bean
+		public RouterFunction<ServerResponse> route(HandlerController handlerController)
+		{
+			return RouterFunctions
+					.route(RequestPredicates.GET("/functional/handlerFlux")
+					.and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), handlerController::handlerFlux);
+		}
+
+
+**************************************************** 20.What is Spring Web Flux and When to Use It ****************************************************
+
+The Below Code is Compared in two Perspective i.e Thread and Code Perspective.
+
+		@RestController
+		public Class MyRestController 
+		{
+			@Autowired
+			private UserRepository userRepository;
+			
+			@getMapping("/get/user/{id}")
+			public User getUser(@PathVariable String id)
+			{
+				return userRepository.findByUser(id);
+			}
+		}
+		
+Thread Perspective :
+--------------------
+Here Database call is an I/O Operation between our Web Server and Database.
+During this Period Thread goes into Waiting State until Database Driver Fetches the Data from Database and return the data back to the Thread.
+Similar is the Process for Another Request.
+Consider there are Concurrent Requests for the Application and if we are Using Server Like Tomcat there would be a Thread Pool Size of 200.
+After Some Period of Time there wont be any Threads to Handle the Request.
+
+Ideal Solution is Whenever Any Request is Sent to the Server,
+Thread is assigned to the Request,performs some Processing and 
+Instead of Waiting for the I/O Operation to Complete and will ask the Database Driver saying that will not Wait for the Database Operation 
+to be Completed and Instead what i Want to do is Call me Once the Data is Ready.
+Here Thread goes Back and Start Serving the Next Request i.e Thread is Immediately Freed.
+
+Once the Database Driver is Ready and Fetches the Data from the Database it will make the Call Back.
+Here Same Thread or Another Thread which is Free will Send the Data Back to the User as a Response.
+This is the Mechanism where we are going to use Thread into Waiting State or Blocking State.
+
+
+Here Thread Calling to a Database is an Event and this Mechanism is Called Event Based Mechanism.
+Thread Sent an Event to a Database Driver to Provide the Data and Database driver sent an Event Back saying that Data is Ready.
+
+In Event Based Mechanism None of the Threads Goes into Blocking State.
+More Efficient of CPU and can Handle More Number of Concurrent Requests.
+
+In Case of Traditional Web Application If we have a Quad Core Processor,
+Each request is Treated as One Thread and once the processing is Done 
+and Response is returned back to the User then Thread will be Removed form the Thread Pool. 
+In case if the Request is taking Time,Thread goes into Waiting State and at the Same Time Operating System Scheduler Schedules Another Thread on it.
+Here Switching of Threads is done by Thread Scheduler.
+
+In case of Event Loop Mechanism and If we have 4 Cores where each thread Running on One Core all the Time and No Thread is Blocking.
+Her it use Events and the Underlying Framework has to deal with which I/O has to Sent to which Request/User adds a Layer of Complexity to our Framework.
+This Scales More Concurrent Requests and Less Number of Threads.
+Here the Complexity is Handled by Spring Web Flux.
+
+Spring Web Flux is a Project which Handles End to End Reactive or Event Loop Based Mechanism so that we Have Less Number of Threads,Higher CPU Usage and
+Higher Scalability.
+
+Spring Web Flux Achieves this by Using 
+
+Servlet 3.0 and 3.1
+Java NIO
+MongoDB,Cassandra,Redis and CouchBase.(Repositories for the Database Drivers)
+
+It is Important that During the Data Flow Everything is Non Blocking.
+To Enable this Non Blocking for the Entire Flow,Project Spring Web Flux takes care of Every thing that is Non Blocking about Servlet.
+Spring Team also Implemented Some Reactive Repositories for Back End for the Entire Flow to be Non Blocking.
+
+Code Perspective :
+------------------
+	
+	userRepository.findByUser(id);
+	
+The Above Code is A Blocking Call because we are Waiting for the User to Retrieve from the Database.
+For this to be Non Blocking we May Change the Return Type to Future<User>.
+In this case Also if the Data is Not Present then future.get() will also goes into Blocking State.
+Better Option is to Use CompletableFuture.
+CompletableFuture in Java 8 allows us to Use Truly Asynchronous Operations and use thenApply()
+
+In Spring WebFlux Similar to Completable Future is Flux and Mono.
+This Type of Feature Cab be used as a Live Source of Data.
+ 
+The Other Components of Spring Web Flux are 
+@Controller
+Functional API
+Combinators
+WebClient
+BackPressure
+Schedulers
+
+We Can Use Spring WebFlux when we want to Achieve
+Scalability
+Efficient CPU Utilization
+Streaming Use cases
+Back Pressure
+
+To Achieve Spring Web Flux
+Different Programming Model
+End to End Reactive Required
+Not Too Useful for CPU Bound Flows
+Hard to Debug
+Hard to Write Test Case
+
+Different Log Mechanism For Event Based Architecture.
+
+
+
+
+
+
+
+
+
 
 
 

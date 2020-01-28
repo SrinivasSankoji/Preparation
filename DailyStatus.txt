@@ -500,30 +500,28 @@ MultiThreading Revise
 
 27-JAN-2020 :
 *************
-Executor Service Callable  					(Done) 
-Fork Join Pool								(Done) 											 
-Web Socket Introduction						(Done)
-Configuring WebSocket						(Done)	
-Web Socket R&D								(Done)					
+Executor Service Callable  						(Done) 
+Fork Join Pool									(Done) 											 
+Web Socket Introduction							(Done)
+Configuring WebSocket							(Done)	
+Web Socket R&D									(Done)					
 
 28-JAN-2020 :
-*************
-MultiThreading Revise 
-Java Asynchronous Programming 
-Completable Future	 
-
-Web Flux Revise 
-What is Spring Web Flux and When to Use It 
-Functional Web			 									
-Handler and Routines 						
-Functional EndPoint using WebTestClient 
-
-Drawbacks of Web Socket		 									
-Advantages of Server Sent Events 
-Server Sent Events Implementation 
-
+************* 								
+Java Asynchronous Programming					 				 						  									
+Completable Future								 						 							 								 							
+What is Spring Web Flux and When to Use It 		(Done)
+Functional Web									(Done)	 									
+Handler and Routines 							(Done)					
+Functional EndPoint using WebTestClient 	     	
+	 									
 29-JAN-2020 :
 *************
+Web Flux Revise
+Java Asynchronous Programming
+Java Memory Model	
+Server Sent Events Implementation
+
 
 30-JAN-2020 :
 *************
