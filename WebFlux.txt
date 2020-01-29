@@ -18,11 +18,13 @@
 17.Test Reactive API Using WebTest Client				[28-JAN-2020]  ()
 18.Infinite Non Blocking WebTest Client					[28-JAN-2020]  ()
 19.Junit For Functional EndPoint using WebTestClient	[28-JAN-2020]  ()
-
 20.What is Spring Web Flux and When to Use It			[28-JAN-2020]  (Done)
 
 
-
+Examples :
+----------
+21.Create non-blocking REST API with Spring Web flux
+22.
 
 Notes :
 -------
@@ -81,8 +83,10 @@ After We Make the Call to the database,It Goes into Blocking State and we have t
 Imperative Style of Coding Leads to Inefficient use of Resources.
 
 We Need to Make These Calls Asynchronous and in Java we have two Options.
-Callbacks
-Futures
+
+Callbacks  i.e Back Pressure using Non Blocking Client and Drivers.
+Futures   i.e submit the Task in ExecutorService using Callable Interface.
+
 In case of Future It is Hard to Compose Multiple Asynchronous Operations.
 Another Option to achieve Asynchronous Operations is Completable Future.
 
@@ -147,7 +151,7 @@ This Interface Contains One Method that Accepts the Subscriber.
 		}
 
 By Making this call Subscriber subscribes the Publisher.
-Here Subscriber can be any Database or an External Service.
+Here Subscriber is Synonymous to Consumer.
 Publisher is Synonymous to Producer.
 
 2.Subscriber :
@@ -251,7 +255,7 @@ When We Use Flux to read the Data,It Streams the Data one by one.
 Stream the Number 1 and Pass it to the Operation.
 Here Operation is a kind of Transformation on Data.
 and Transformed Data is Sent as a Response. 
-Streaming is done for all the ELements and Once it is Done It Sends OnComplete Event.
+Streaming is done for all the Elements and Once it is Done It Sends OnComplete Event.
 While Streaming the Data ,If there is any Error,It Sends OnError Event.
 
 Example :
@@ -260,7 +264,7 @@ Flux.just("Spring","Spring Boot","Reactive Spring Boot").map(s->s.concat("flux")
 In Practical We Get the Data form Database.
 Here all the Elements are Sent one by one.
 
-https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
+				https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
 
 Will Contains all the Methods Defined by the Flux.
 
@@ -281,8 +285,8 @@ Write the Test Case to Implement Flux.
 
 		Flux<String> stringFlux=Flux.just("Spring","Spring Boot","MicroServices");
 
-The Only way to access the elements of the Flux is by Subscribing.
-when we subscribe the Flux i.e actually attaching the Subscriber to read the Elements of the Flux and Publisher Starts emitting all the 
+The only way to access the elements of the Flux is by Subscribing.
+when we subscribe the Flux i.e actually attaching the Subscriber to read the Elements inside the Publisher and Publisher Starts emitting all the 
 Elements of the Flux.
 Subscriber Requests the Publisher for the Unbounded Value i.e Max Value of the Publisher.
 
@@ -317,7 +321,7 @@ Create an Instance of StepVerifier by passing the Flux as Parameter i.e StepVeri
 			.verifyComplete();
 			
 Since onComplete Event will be the Last Event we need to use verifyComplete(). 
-If we Change the Order of expectNext() the the Test Case Fails.
+If we Change the Order of expectNext() then the Test Case Fails.
 Flux does not pass the Elements until we call verifyComplete().
 When we call the verifyComplete() on StepVerifier then the Data Flows From Flux to the Subscriber.
 verifyComplete() works similar to subscribe()
@@ -373,7 +377,7 @@ In Order to Interact with Databases in a Non Blocking Way we Have Dedicated Reac
 
 		https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#spring-webflux
 		
-We Can Build Non Blocking API in two ways i.e by Using Rest Controller or Functional Web.
+We Can Build Non Blocking API using Spring WebFlux in two ways i.e by Using Rest Controller and Functional Web.
 
 	@GetMapping("/returnFlux")
 	public Flux<IntStream> returnFlux()
@@ -397,12 +401,12 @@ To get the Data as Stream we use MediaType.APPLICATION_STREAM_JSON_VALUE
 
 ****************************************************  15.Functional Web & 16.Handler and Routines **************************************************** 	
 
-The Idea behind the Functional Web is functions to handle the Incoming Request and Response.
+The Idea behind the Functional Web is Functions to handle the Incoming Request and Response.
 Functional Web Consists of Two Modules i.e Router Function and Handler Function.
 
 Client Sent the Request to the Server and Server Forwards the Request to the Router Function.
-If the Router Function has an Appropriate Mapping then it Forwards the Request to the Handler Mapping.
-Handler Function is the which performs the Complete Processing of Reading the Request,
+If the Router Function has an Appropriate Mapping then it Forwards the Request to the Handler Function.
+Handler Function is the one which performs Complete Processing i.e  Reading the Request,
 Processing the Request and Sending the Response back to the Server.
 
 Router Function is used to Route the Incoming Request.
@@ -424,7 +428,7 @@ Here We are not Using Traditional @RestController
 
 
 Create a RouterConfiguration Class and Annotate with @Configuration so that it behaves as a Router Configuration.
-Define a Bean with that Accepts the HandlerFicntion and Returns the RouterFunction with ServerResponse as Type.
+Define a Bean that Accepts the HandlerFicntion and Returns the RouterFunction with ServerResponse as Type.
 
 
 		@Bean
@@ -434,6 +438,16 @@ Define a Bean with that Accepts the HandlerFicntion and Returns the RouterFuncti
 					.route(RequestPredicates.GET("/functional/handlerFlux")
 					.and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), handlerController::handlerFlux);
 		}
+
+
+****************************************************  17.Test Reactive API Using WebTest Client *******************************************************
+
+
+**************************************************** 18.Infinite Non Blocking WebTest Client	*******************************************************
+
+
+****************************************************  19.Junit For Functional EndPoint using WebTestClient ********************************************
+
 
 
 **************************************************** 20.What is Spring Web Flux and When to Use It ****************************************************
@@ -537,10 +551,10 @@ Not Too Useful for CPU Bound Flows
 Hard to Debug
 Hard to Write Test Case
 
-Different Log Mechanism For Event Based Architecture.
+There will be a Different Log Mechanism For Event Based Architecture.
 
 
-
+******************************************************************************************************************************************************
 
 
 

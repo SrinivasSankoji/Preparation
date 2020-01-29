@@ -8,7 +8,7 @@ Defog Tech :
 3.ExecutorService Callable/Future					[27-JAN-2020]  (Done)
 4.Fork JoinPool										[27-JAN-2020]  (Done)
 5.Java Asynchronous Programming						[28-JAN-2020]  ()
-6.Completable Future								[28-JAN-2020]  ()
+6.Completable Future								[28-JAN-2020]  (Done)
 
 7.Lock Condition Class								[05-JAN-2020]  ()
 8.Reentrant Lock									[05-JAN-2020]  ()
@@ -518,10 +518,73 @@ Use Cases of Fork Join Pool are
 4.Tree Traversal
 
 
-******************************************************** 5.Java Asynchronous Programming	*********************************************************************
+******************************************************** 5.Java Asynchronous Programming	*******************************************************
 
  
 
+
+
+******************************************************** 6.Completable Future *************************************************************
+
+Completable Future is Used to Perform Possible Asynchronous Computation and Trigger its Dependent Computations which could also be Asynchronous.
+
+In Java To Perform Non Blocking Operation is Always Easy i.e Create Runnable and run it in Separate Thread.
+Once Runnable calls the run() and after the Execution of run() Thread is Destroyed.
+If The Task is Expecting the Return Value,then We Use the Callable Interface.
+We Typically do this by Using ExecutorService.
+Here the Task return the Future Object and when we Call get() on the Future Object then Main Thread goes into Blocking State.
+Here the Problem gets More Difficult when we have Multiple Tasks.
+Consider the Scenario where we have submitted 4 Tasks to the ExecutorService.
+Immediately It will return a Future Value with the Place Holders.
+Task 3 and Task 4 are Executed Successfully and Task 1 and Task 2 are Still Waiting for the Response because 
+Thread Pool does not Guarantee that order of Execution of Tasks.
+If we call future.get() and we don't have value for the Task 1 the Main Thread goes into Waiting State.
+Here the Problem is even though many Task were Completed and we are Using For Loop to get the Future Object
+and For Loop Starts its Iteration with First Element.
+Since we don't have value for Task 1 then Main Thread goes into Waiting State.
+
+Consider the Use case :
+
+Fetching Order
+Enriching Order
+Payment
+Dispatch
+Send Email
+
+For Order Flow we Have 5 Different Tasks.
+
+If we Use the ExecutorService then we have to Create 5 Tasks and Using Callable and submit it to the ExecutorService.
+Here Each Task is Dependent on Another Task and we use future.get() to get the Result and it goes into Blocking State.
+If we have For Loop Over the Orders an to Create On Order2,Order3,Order4 Until the Completion of Order1.
+Here Main Thread will not Scale Much Further and It is almost Sequential Operation order1 has to be complete before order2.
+
+There are Dependency on order of Execution.
+It is Completely Possible that a Thread can do a Payment Process for One Order while Other Thread Performing Enrichment for Another Order.
+
+We have N Number of Threads all doing processing of One Particular Flow.
+Within One Flow Tasks are Dependent on Each Other But One Flow is not Dependent on Another Flow.
+
+If We Convert int an Algorithm i.e for N Number of Orders We want to run the Task Once the Particular Task is Completed,run its Dependent Task and so on.
+This has to be Done Completely Independent for Every Task that we Submit.
+Don't Care about Thread Pool is Going to Execute those Tasks Internally and here Main Thread does not goes into Blocking State.
+This is Exactly Completable Future was Designed for.
+Completable Future Provides a Function called supplyAsync() that accepts a Task and has to be executed Asynchronously.
+Once the Task has been Executed Successfully give the output to another Task using thenApply()
+There is also an Overloaded Method thenApplyAsysnc().In This Case the Thread which is Performing supplyAsync() 
+and other Thread will perform the subsequent Operations.
+thenApplyAsysnc() can be used if we define our own Thread Pool.
+One Thread does not Belongs to Two Different ExecutorService and in This case we use overloaded method of thanApply().
+If we don't use any Executor Service Internally it Uses Fork Join Pool to run all the Tasks.
+If any of the Operation is Failed exceptionally will be called as a Catch Block.
+For Complex Use cases Completable Future is Not Recommended and Prefer RX Java which is Stable and Much More Readable.
+
+ 
+
+
+
+  
+
+ 
 
 
 

@@ -500,29 +500,32 @@ MultiThreading Revise
 
 27-JAN-2020 :
 *************
-Executor Service Callable  						(Done) 
-Fork Join Pool									(Done) 											 
-Web Socket Introduction							(Done)
-Configuring WebSocket							(Done)	
-Web Socket R&D									(Done)					
+Executor Service Callable  								(Done) 
+Fork Join Pool											(Done) 											 
+Web Socket Introduction									(Done)
+Configuring WebSocket									(Done)	
+Web Socket R&D											(Done)					
 
 28-JAN-2020 :
-************* 								
-Java Asynchronous Programming					 				 						  									
-Completable Future								 						 							 								 							
-What is Spring Web Flux and When to Use It 		(Done)
-Functional Web									(Done)	 									
-Handler and Routines 							(Done)					
-Functional EndPoint using WebTestClient 	     	
+************* 													 				 						  									
+Completable Future										(Done)			 						 							 								 							
+What is Spring Web Flux and When to Use It 				(Done)
+Functional Web											(Done)	 									
+Handler and Routines 									(Done)					
+Functional EndPoint using WebTestClient 					     	
 	 									
 29-JAN-2020 :
 *************
-Web Flux Revise
-Java Asynchronous Programming
-Java Memory Model	
-Server Sent Events Implementation
+Web Flux Revise	and Remaining Topics							 			
+Server Sent Events Implementation 																			
+Java Asynchronous Programming												
+Java Memory Model											
 
-
+Non Blocking Data Access Layer Using Flux				
+Create non-blocking REST API with Spring Web flux		
+Reactive SQL Data Access with Spring Data R2DBC			
+R2DBC Postgrees Flux									
+							
 30-JAN-2020 :
 *************
 
