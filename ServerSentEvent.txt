@@ -1,21 +1,47 @@
-1.Advantages of Server Sent Event
-2.
 
-
-
+1.Server Sent Event (https://rfvallina.com/blog/2017/06/26/server-sent-events-with-spring-framework-part-I.html)
+2.Stream Updates with Server-Sent Events (https://www.html5rocks.com/en/tutorials/eventsource/basics/)
+3.Server-Sent Events in Spring (https://www.baeldung.com/spring-server-sent-events)
+4.Spring Boot: Server-Sent Events(https://dzone.com/articles/spring-boot-server-sent-events-tutorial)
+5.Polling vs SSE vs WebSocket (https://codeburst.io/polling-vs-sse-vs-websocket-how-to-choose-the-right-one-1859e4e13bd9)
+6.Using SSE Instead Of WebSockets (https://www.smashingmagazine.com/2018/02/sse-websockets-data-flow-http2/)
+7.WebSockets vs Long Polling (https://www.ably.io/blog/websockets-vs-long-polling/)
+8.What are WebSockets and why we use them (https://www.nexocode.com/blog/posts/websockets-friend-or-foe/?utm_source=medium)
 
 
 Examples :
 ----------
-
 https://www.callicoder.com/reactive-rest-apis-spring-webflux-reactive-mongo/
-
 https://dzone.com/articles/spring-boot-server-sent-events-tutorial
-
 https://howtodoinjava.com/spring-boot2/rest/spring-async-controller-sseemitter/
-
 https://rfvallina.com/blog/2017/06/26/server-sent-events-with-spring-framework-part-I.html
-
 https://www.baeldung.com/spring-server-sent-events
-
 https://blogs.windows.com/windowsdeveloper/2016/03/14/when-to-use-a-http-call-instead-of-a-websocket-or-http-2-0/
+https://www.html5rocks.com/en/tutorials/eventsource/basics/
+
+
+****************************************************** 3.Server-Sent Events in Spring  ******************************************************
+
+Server Sent Events i.e SSE is an HTTP Standard that allows a Web Application to Handle UniDirectional Event Stream and 
+receive Updates when ever Server Emmit Data.
+
+SSE is a Specification adopted by Most Browsers to allow Streaming Events in UniDirectional at Any Time.
+These events are Just a Stream of UTF-8 Encoded Text Data that Follow the Format Defined by The Specification.
+The Format Consists of a Series of key Value Elements Like Id,Name and Event.
+
+SSE Specification Does NotRestrict the PayLoad Format and Can Use a Simple String,Complex JSON or XML Structure.
+The Main Difference Between Web Socket and SSE is Web Socket Offers a Full Duplex Communication Between the Server and Client Where as
+SSE Provides UniDirectional Communication i.e Server to Client.
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+

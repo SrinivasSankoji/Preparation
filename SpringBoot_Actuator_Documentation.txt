@@ -17,30 +17,38 @@ All these are Taken Care by Actuator.
 Spring Boot Internally is a Web Application.
 Spring Boot has Created a Library which Exposes Some Rest End Points so that Different Monitoring Tools use Those Rest End Points and
 get the Data out of those Rest End Points.
-By Default Spring Boot Actuator is Security  Based and they have Some Security Restrictions.
+By Default Spring Boot Actuator is Security Based and they have Some Security Restrictions.
 We can Disable them by Using 
 		
 		#management.security.enabled=false   and is Deprecated Method
 		
-By Default Health and Info Actuators are Enabled
+By Default Health and Info Actuators are Enabled.
+All the Actuators are Disabled By Default and we Need to Enable Them By Using 
+
+	management.endpoints.web.exposure.include=*
+	
+If we want to Map End Points with a Different Path We Use
+
+	management.endpoints.web.base-path=/
+	management.endpoints.web.path-mapping.health=healthcheck
 
 Health :
+--------
 
 	`	http://localhost:9876/actuator/health
 	
+Health Provides the Health of the Application.	
 We can also Implement Custom Health Indicator By Using  HealthIndicator Interface .
+To Enable or Disable all the Spring Boot Given Health Indicators we use the Property
+
+	management.health.defaults.enabled=false
 	
 Info :
+------
 	
 		http://localhost:9876/actuator/info
 		
-Info Provides Information about The Application.
-Health Provides the Health of the Application.
-
-All the Actuators are Disabled By Default and we Need to Enable Them By Using 
-
-		management.endpoints.web.exposure.include=*
-		
+Info Provides Information about The Application.		
 To Get The Complete Information of the Health Actuator we need to define the Property
 	
 		management.endpoint.health.show-details=always
@@ -50,11 +58,9 @@ env :
 Displays the Sensitive Information of the Application.
 System Properties,Server Port,System Management and also the Properties we Defined inside the Properties File.
 
-
 metrics :
 ---------
 Displays Information about the Processor ,Thread State,Heap State,Garbage Collector and So On.
-
 
 Trace :
 -------
@@ -68,15 +74,20 @@ Thread Dump :
 
 http.server.requests :
 ----------------------
-If We Want to implement and Custom Actuator then we Need to Implement HealthIndicator Interface and we Need to Override the Method.
+If We Want to implement a Custom Actuator then we Need to Implement HealthIndicator Interface and we Need to Override the Method.
 
 Creating Custom End Point inside Actuator Using @EndPoint :
 -----------------------------------------------------------
-We Can also Create a Custom End Point By Using @EndPoint Annotation apart from Spring Boot Provided and we Can Monitor that Particular End Point.
+We Can also Create a Custom End Point By Using @EndPoint Annotation apart from Spring Boot Provided End Points
+and we Can also Monitor that Particular End Point.
+
+
+Hibernate Metrics :
+-------------------
+spring.jpa.properties.hibernate.generate_statistics=true
 
 
 ************************************************* 2.Spring Boot: Health Check Using Actuators  (ChargeAhead) *********************************************
-
 
 To See all the Actuator End Points 
 
@@ -86,7 +97,7 @@ To See all the Actuator End Points
 ************************************************* 3.Custom Health Check Using Actuator (ChargeAhead) *************************************************
 
 Health Actuator is Used to Check the Status of the Application.
-If the Application is accessing any Third Part Application and 
+Consider the Scenario If the Application is accessing any Third Party Application and 
 If we want to Check whether the Applications is Up or Not We need to Implement Custom Health End Point.
 
 		try {
@@ -112,7 +123,7 @@ If we want to Check whether the Applications is Up or Not We need to Implement C
 Actuator End Points Monitor and Interact with our Application.
 By Default Health and Info are Enabled.
 
-To get The Complete Information of Info,Add the Below Properties.
+To get The Complete Information of Info End Point,Add the Below Properties.
 		
 		info.app.encoding=UTF-8
 		info.app.java.source=1.8
@@ -153,15 +164,31 @@ We Can Refresh the Cache by Using
 		
 ************************************************* 5.Micro services with Spring Boot Actuator Two  (Green Learner)****************************************
 
-We Can write our own End Points in two Ways 
+There are Number of End Points Provided  by Spring Boot However We Can write our own End Points in two Ways.
 
-1.@EndPoint
-2.Rest Controller End Point
+1.@EndPoint(id = "custom-endpoint")
+2.@RestControllerEndpoint(id = "rest-controller-endpoint")
 
+A Class Annotated with @EndPoint and its  Methods Annotated with @ReadOperation,@WriteOperation and @DeleteOperation
+are Automatically Exposed over JMX and Web Application.
+We Can also have Technology Specific End Points i.e @JmxEndPoint and @WebEndPoint.
+If we Want to access Web Framework Specific Functionality,We Can Implement @Controller or @RestController End Point.
 
-To Enable or Disable all the Spring Boot Given Health Indicators we use the Property
+		@Component
+		@Endpoint(id = "custom-endpoint")
+		public class CustomEndPoint
+		{
+			private final AtomicLong counter=new AtomicLong();
+			
+			@ReadOperation
+			public Greeting customEndPoint(@RequestParam(defaultValue = "Bhaumik") String name)
+			{
+				return new Greeting(counter.incrementAndGet(),"Hello "+name);
+			}
+		}
 
-	management.health.defaults.enabled=false
+We Can also Implement the Custom End Point By Using @RestControllerEndpoint(id = "rest-controller-endpoint")
+
 
 Securing End Points :
 ---------------------
@@ -169,7 +196,9 @@ Secure the Rest End Points in the Same Way we do with any other Spring Boot Prov
 If Spring Security is added as Dependency in the Class Path then all the endPoints except /health and info are Secured.
 
 Spring Security works with Default Context Path Provided by Spring Boot i.e actuator and 
-we need to remove the custom End Point Defined inside configuration File.
+we need to remove the custom End Point Defined inside configuration File i.e 
+
+	management.endpoints.web.base-path=/nextgenops
 
 
 ***************************************** 6.Spring Boot 2 x Actuator (JavaTechie) ***************************************************************

@@ -1,13 +1,13 @@
 Defog Tech :
 ************
 1.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
-2.Java Memory Model									[15-JAN-2020]  (Done)
+2.Java Memory Model									[15-JAN-2020]  (Happens Before Pending)
 3.ExecutorService Introduction						[20-JAN-2020]  (Done)
-3.ExecutorService Pool Types						[21-JAN-2020]  (Done)
+3.ExecutorService Pool Types						[21-JAN-2020]  (Single ThreadExecutor Pending)
 3.ExecutorService LIfe Cycle						[21-JAN-2020]  (Done)
 3.ExecutorService Callable/Future					[27-JAN-2020]  (Done)
 4.Fork JoinPool										[27-JAN-2020]  (Done)
-5.Java Asynchronous Programming						[28-JAN-2020]  ()
+5.Java Asynchronous Programming						[28-JAN-2020]  (Done)
 6.Completable Future								[28-JAN-2020]  (Done)
 
 7.Lock Condition Class								[05-JAN-2020]  ()
@@ -56,7 +56,7 @@ Here Two Threads are Executing In Parallel and One Method.
 Here Task One and Task Two runs on Two Different Threads and Task Three runs on the Main Thread.
 If we Run this Program on a Quad Core Processor i.e there are 4 Cores in a Processor,
 Then we can Run These Tasks in Parallel.
-In OS We have a Component Called Scheduler which is Responsible to Schedule the Threads on to these CPU Processor.
+In OS We have a Component Called Scheduler which is Responsible to Schedule these Threads on to these CPU Processor.
 
 Task One  Runs on Core 1
 Task Two  Runs on Core 2
@@ -80,7 +80,7 @@ Even in Thread Pool It Can be
 2.ForkJoin Pool
 3.Custom Thread Pools (Used By Web Servers)
 
-We Need to Ensure that the CPU has More than One Core So that We can run the Threads In Parallel.
+Here We Need to Ensure that the CPU has More than One Core So that We can run the Threads In Parallel.
 
 Concurrency :
 -------------
@@ -107,8 +107,8 @@ Consider the Scenario for Booking a Ticket.
 		Thread.sleep(500);
 		
 Here Each Tasks Shares the Common Resource i.e ticketsAvailale Variable.
-After Starting Two Thread Put The Main Thread in Sleep For Two Seconds.
-Let us Assume we have a Single Core Processor in CPU and Scheduler is Responsible for assigning the Threads to the Processor.
+After Starting Two Threads Put The Main Thread in Sleep For Two Seconds.
+Let us Assume that we have a Single Core Processor in CPU and OS Scheduler is Responsible for assigning these Threads to the Processor.
 Since CPU has Single Core Processor,Scheduler has to do Time Sharing Between The Threads.
 Here The Scheduler Will Schedule the Thread 1 for Few Milli Seconds and Pick Thread 1 out and Keep Thread 1 For Few Mill Seconds.
 This Concept is Called Interleaving of Threads.
@@ -123,8 +123,7 @@ Here Multiple Threads are Coordinating Between Each Other Using a Single Lock.
 This Scenario is Called Concurrency.
 
 Concurrency is about Dealing lot of things Once.
-Concurrency is Applied When we Have a Shared Resource that has to be Accessed or Updated
-or Multiple Threads need to Coordinate
+Concurrency is Applied When we Have a Shared Resource that has to be Accessed or Updated or Multiple Threads needs to Coordinate.
 
 In Java we Have Lot of Tools to Deal With Concurrency.
 
@@ -148,7 +147,7 @@ when we have Re Ordering of Instructions.
 Java Memory Model Enforces that all the JVM has to implement these set of Rules 
 so that Program Runs in the Same Manner. 
 
-1.Out of Order Execution
+1.Order of Execution
 2.Field Visibility
 3.Happens Before
 
@@ -170,7 +169,7 @@ Actual Conversion look Like
 
 Load a
 Set to 3
-Store about
+Store a
 
 Load b
 Set to 1
@@ -195,7 +194,7 @@ Store b
  
 2.Field Visibility :
 --------------------
-Field Visibility is Only Applicable in terms of MultiThreaded Applications also Called Concurrent Programming.
+Field Visibility is Only Applicable in terms of MultiThreaded Applications and also Called Concurrent Programming.
 
 A.If we have a Quad Core Processor Machine Generally that have 4 Cores and each core has Set of Registers.
 B.Registers are Nothing but a Memory Area which is very Small and is within the Core,
@@ -231,6 +230,8 @@ We Can Resolve the Issue by Using Volatile Key Word.
 If the Variable is Volatile,then JVM Ensures that Changes in the Local Cache will be Flushed to the Shared Cache 
 so that the Remaining Threads will get The Updated Value.
 
+3.Happens Before :
+------------------
 
 
 
@@ -239,10 +240,9 @@ so that the Remaining Threads will get The Updated Value.
 
 Introduction :
 --------------
-In Java it is Easy to run a Piece of Code or Method Asynchronously bu using Threads.
+In Java it is Easy to run a Piece of Code or Method Asynchronously by using Threads.
 Consider we have a Main Method which runs on Main Thread and we can run the Task on the Separate Thread.
-The Code will be Create a Task Which implements Runnable Interface and override its run() and keep the Task that we want to execute its code
-Asynchronously.
+Create a Task and the Task has to implement Runnable Interface and override its run() and keep the Method that we want to execute Asynchronously.
 
 				public static void main(String[] args) 
 				{
@@ -274,15 +274,15 @@ Consider the Scenario where we want to execute 10 Tasks and in this Case we need
 				System.out.println(Thread.currentThread().getName());
 			}
 
-Here Each Time it will Create a New Thread with the New Instance of the Task and that will be executed independently.
+Here Each Time It will Create a New Thread with the New Instance of the Task and that will be executed independently.
 Here the Flow starts from Main Thread and after Certain Point of time For Loop is getting executed.
 Here Each time new Thread is being created and will be executed asynchronously.
 once the task is executed successfully thread will be killed automatically.
 
-Problem with this Scenarios is in Java One Thread is equal to One Operating System Thread.
+Problem with this Scenario is in Java One Thread is equal to One Operating System Thread.
 If we run the For loop 1000 Times it will Create 1000 Threads and Creating a Thread is an Extensive Operation.
 
-If we want the Fixed Number of Threads to be Created upfront or can be Called as Thread Pool and submit the Task to the Thread.
+If we want Fixed Number of Threads to be Created upfront or can be Called as Thread Pool and submit the Task to the Thread Pool
 Then we use ExecutorService.
 
 			ExecutorService executorService=Executors.newFixedThreadPool(10);
@@ -291,7 +291,7 @@ Then we use ExecutorService.
 				executorService.execute(new Task());
 			}
 
-Here Instead of Creating new Threads every time we are creating thread upfront and submitting the task to the threads which are created already.
+Here Instead of Creating new Threads every time,Here We are creating threads upfront and submitting the task to the threads which are created already.
 Thread Pool Internally uses Blocking Queue and Keeps Storing all the Tasks which are Submitted.
 Threads in the Thread Pool will perform Two Steps i.e fetch the Next Task from the Queue and execute it.
 Since all the 10 Threads are executing Simultaneously to get the Task from the Queue,
@@ -300,7 +300,7 @@ To Resolve this Queue in the Thread Pool is Implemented using Blocking Queue.
 
 Ideal Pool Size :
 -----------------
-If we have Created More Number of Threads i.e 1000 ,these Threads will be executed based on Time Slicing.
+If we have Created More Number of Threads i.e 1000 ,These Threads will be executed based on Time Slicing.
 Solution is depends on the Type of Task we want to execute.
 
 If the Task is CPU Intensive Operation i.e if the Task is Taking time to Execute 
@@ -315,12 +315,12 @@ Consider the Scenario where other applications are running on the CPU and Mostly
 				executorService.execute(new CPUProcessor());
 			}
 			
-If The Task is I/O Operation i.e It May be call to the database or call to an External Service then we need to create a Thread Pool with maximum Size.
-Because if any of the Thread is time Consuming after  certain time No Threads will be available to pick the Task from the Queue.
-Here Pool Size will be Same as the Number of Tasks we are Submitting.
+If The Task is an I/O Operation i.e It May be a call to the database or call to an External Service then we need to create a Thread Pool with maximum Size.
+Because If any of the Thread is time Consuming and After Certain time No Threads will be available to pick the Task from the Queue.
+Here Pool Size will be the Same as the Number of Tasks we are Submitting.
 Too Many Threads will increase the Memory Consumption  too.
  
-			ExecutorService execService=Executors.newFixedThreadPool(10);
+			ExecutorService execService=Executors.newFixedThreadPool(1000);
 			for(int i=0;i<=1000;i++)
 			{
 				executorService.execute(new CPUProcessor());
@@ -328,7 +328,7 @@ Too Many Threads will increase the Memory Consumption  too.
 			
 Fixed Thread Pool :
 -------------------
-HereFixed Number of Threads will be Created upfront and keep Submitting the Task to Execute.
+Here Fixed Number of Threads will be Created upfront and keep Submitting the Task to Execute.
 All the Task we Submit are Stored inside the Particular Queue and the Queue is Blocking Queue to Handle Concurrent Operations
 All these Threads will fetch the Task from the Queue one after the Another.
    
@@ -340,11 +340,11 @@ All these Threads will fetch the Task from the Queue one after the Another.
 			
 Cached Thread Pool :
 --------------------
-Here we don't have fixed Number of Thread Pool and we also don't have Queue that holds the Task that we Submit.
+Here we don't have Fixed Number of Thread Pool and we also Don't have Queue that holds the Task that we Submit.
 Here Queue is Replaced by Synchronous Queue and has Space for Only Single Item.
 When we Submit the Task,Task Will be Stored inside the Synchronous Queue and Search for the Thread which is already Created 
-or which is available.
-If No Such Thread is available it Will Create a Thread,add it to the Pool and will execute the Task.
+or which Thread is available.
+If No Such Thread is available it Will Create a New Thread,add it to the Pool and Newly added Thread will execute the Task.
 Cached Thread Pool has  a Mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
 
 			ExecutorService cachedPool=Executors.newCachedThreadPool();
@@ -357,7 +357,7 @@ Scheduled Thread Pool :
 -----------------------
 1.scheduledPool.schedule() :
 ----------------------------
-This can be used for the Tasks to be executed after a Certain Delay.
+scheduledPool can be used for the Tasks to be executed after a Certain Delay.
 
 ExecutorService scheduledPool=Executors.newscheduledThreadPool();
 scheduledPool.schedule();
@@ -370,7 +370,7 @@ Here Tasks Keep on executing for every 10 Seconds.
 ExecutorService scheduledPool=Executors.newscheduledThreadPool();
 scheduledPool.scheduleAtFixedRate(10);
 
-Here It will store all the Tasks in the Queue and this Queue is a Delayed Queue.
+Here It will store all the Tasks in the Queue and This Queue is a Delayed Queue.
 In Delayed Queue where Tasks Might not be in Sequence.
 The Tasks will be Distributed based on when the Task needs to be Executed i.e Time Interval.
 
@@ -400,7 +400,7 @@ To Check whether the shutDown has initiated or Not we use isShutDown().
 
 isTerminated() :
 To Check whether the shutDown has Completed we use isTerminated().
-This will return true If all the Tasks are Completed which are stored inside  the Blocking Queue.
+This will return true If all the Tasks are Completed which are stored inside the Blocking Queue.
 
 awaitTerminattion(10,milliseconds) :
 SomeTimes we don't want to wait till all the Tasks to get Completed.
@@ -408,7 +408,7 @@ Terminate the Thread Pool until all the Tasks being Completed or wait until thes
 Once the Time is reached Terminate the Thread Pool.
 
 shutDownNow():
-will Complete all Tasks which Running the Threads and it will not Initiate for the Task to get Execute.
+will Complete all Tasks which are Running by these Threads and it will not Initiate for the Task to get Execute.
 It will Return all those Task which are Stored inside the Blocking Queue.
 
 
@@ -462,8 +462,6 @@ Thread Pool Immediately cancels the task before Thread Pool has Started Working 
 If The Task has Started in one or More Thread then cancel() has No Impact.
 We Can also Check the Current Status of the Task using isCancelled() and isDone() of ExecutorService.
  
- 
- 
 
 ******************************************** 4.Fork JoinPool ****************************************************************************************
 
@@ -472,7 +470,7 @@ ExecutorService Stores the Task in the Queue and These Task are Executed by the 
 These Thread Takes the Task from the Blocking Queue and executes it until all the Tasks are Completed in the Blocking Queue.
 
 1.Fork Join Pool Deals with Task and Produces its own Task.
-Optimize the Problem of Task and Task can Produce More Sub Tasks.
+Optimize the Problem of Task by Producing Sub Tasks for the Task.
 
 Let us Consider a Task and that is Big Task.
 Break down the Task into 3 Sub Tasks and each of them Computed or solved Independently.
@@ -484,7 +482,7 @@ Fibonacci Number is a Sequence where every Number in the Sequence is a Multiple 
 
 2.Per Thread Queuing  
 In case of Fork Join Pool Each Thread has its own Queue and this type of Queue is called Double Ended Queue.
-Consider a Thread is executing a Particular Task and when we do Fork i.e split the Task into Multiple Sub Tasks and all those Tasks are Not Stored in the 
+Consider a Thread is executing a Particular Task and when we do Fork i.e split the Task into Multiple Sub Tasks and all those Sub Tasks are Not Stored in the 
 Common Queue and they are Stored in its own Double Ended Queue Locally.
 Now for the Thread which is Executing the Main Task,It is Easier to Pick the Task which is Stored inside the Double Ended Queue.
 
@@ -502,7 +500,7 @@ In this Case Thread2 Picks the Task form Thread1 using the Other End of the Queu
 Thread 1 Picks the Task from Front where as Thread 2 Picks the Task from Back.
 
 
-To Execute The Fork Join Pool to be Effective
+To Execute The Fork Join Pool in an Effective Way
 1.Avoid Synchronization
 2.Do Not Use Any Shared Variables
 3.Do Not Perform any Blocking Operations
@@ -520,9 +518,81 @@ Use Cases of Fork Join Pool are
 
 ******************************************************** 5.Java Asynchronous Programming	*******************************************************
 
- 
+Most of the Computers Today we have More than 1 Core Processor.
+Typically a Desktop Computer have 4 Cores and Server may Contain 16 Cores or 32 cores or More.
+To take Advantage of these cores we create Multiple Threads in our Application.
+We can do that by Using 
 
+new Thread().start()
+Thread Pool
+Fork join Pool and so on.
 
+Creating too Many Threads in Parallel May cause Some Problems and that is because of How Java Works.
+In Java Every Thread we Create is an Operating System Thread or Native Thread or Kernel Thread.
+Java itself has Variables For every Thread Like Program Counter,Java Stacks,StackFrames and so on.
+
+For Every Thread,there will be a Corresponding OS Thread and that will consumes lot of Memory and 
+that Limits the Number of Parallel Threads or Active Threads in JVM(Application that runs on JVM).
+We Cannot have thousands of Threads in our Application and that will throw out of Memory Exception and the Program will Shut Down.
+
+Once we have Too Many Threads there are Other Problems that may come out.
+Consider we have lot of Threads and in CPU we have 2 Cores.
+Every Core will have some Local Cache and Consider Core1 is running the Thread 1.
+Local Cache has all the Data which is Required by Thread 1.
+If there are Lot of Threads and we need to Schedule some other Threads at Some Point of Time.
+
+If we want to Schedule Thread 3 and for that we Need to Flush the Local Cache which Contains the data related to Thread 1
+and Place the Data Related to Thread 3 in the Local Cache.
+Here Core 1 will Start executing the Thread 3.
+
+Again If there is Context Switch,Flush the Old Thread Data and add The New Thread Data.
+This Scenario is Called ###########Data Locality#########.
+
+If there are lot of Threads,OS or JVM has to manage the Scheduling of Threads which itself takes lot of Time.
+The Issue of Having too Many Threads is even More Heighten when  we are Dealing with I/O Operations.
+
+Consider the Main Thread which is performing I/O Operation.
+I/O Operation may be a Call to Another MicroService or Database Operation.
+
+When Main Thread Triggers that Particular I/O Operation,then Main Thread will goes into Blocking State
+Until The I/O Operation is Completed and Main Thread cannot do anything  else and goes into Waiting State.
+Here CPU Cycles are Wasted.
+Once the Data is Returned from the I/O Operation Main thread goes into Runnable State and Performs the Remaining Process.
+
+The Problem of Having a Blocking Thread Means It will not perform any Other Operations while the operation is being Completed.
+
+The Ideal Solution is Non Blocking I/O.
+Main Thread Trigger the I/O Operation and Immediately Comeback without Taking the Result.
+Once the Data is Ready from I/O Operation,then call the Callback Method will be called using another Thread.
+Here Main Thread keep on Performing Subsequent Operations.
+
+For Loop with Task Defined using ExecutorService will always goes into Blocking State.
+Here For Loop goes into Waiting State.
+
+Creating lot Number of  Threads becomes Expensive and Blocking I/O Operations makes limit to Scale the Application.
+Here the Solution is Non Blocking I/O and Instead of Synchronous API we Need Asynchronous API.
+
+Asynchronous API is Nothing But Callback and can be achieved by using Completable Future in Java 8.  
+For Non Blocking API Java 7 Introduced the Concept of Java NIO and also called as NIO Package.
+Servlet 3.1 Onwards the Web Request Becomes Non Blocking.
+Spring Web Flux is a Non Blocking API and comes with Push Operation where as Future is a get Operation.
+
+Advantages of Using Asynchronous Programming :  
+Efficient CPU Utilization  
+Scalability and High Throughput  
+No Issue of Data Locality and Less Context Switches 
+Reactive  
+Live Values 	
+Back Pressure  
+
+Issues in Asynchronous Programming :
+Hard to Write and Reason About	
+CPU Bound Flows	
+Hard to Debug and Stack Trace	
+Hard to Write Test Cases	
+End to End Asynchronous / Non Blocking  Required	
+
+To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming project Coming Soon i.e Java Fibers or Project Loom.
 
 ******************************************************** 6.Completable Future *************************************************************
 
@@ -564,7 +634,7 @@ It is Completely Possible that a Thread can do a Payment Process for One Order w
 We have N Number of Threads all doing processing of One Particular Flow.
 Within One Flow Tasks are Dependent on Each Other But One Flow is not Dependent on Another Flow.
 
-If We Convert int an Algorithm i.e for N Number of Orders We want to run the Task Once the Particular Task is Completed,run its Dependent Task and so on.
+If We Convert int an Algorithm i.e for N Number of Orders We want to run the Task Once and once Particular Task is Completed,run its Dependent Task and so on.
 This has to be Done Completely Independent for Every Task that we Submit.
 Don't Care about Thread Pool is Going to Execute those Tasks Internally and here Main Thread does not goes into Blocking State.
 This is Exactly Completable Future was Designed for.
@@ -578,7 +648,7 @@ If we don't use any Executor Service Internally it Uses Fork Join Pool to run al
 If any of the Operation is Failed exceptionally will be called as a Catch Block.
 For Complex Use cases Completable Future is Not Recommended and Prefer RX Java which is Stable and Much More Readable.
 
- 
+*********************************************************************************************************************************************************
 
 
 

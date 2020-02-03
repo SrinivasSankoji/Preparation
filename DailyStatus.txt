@@ -489,7 +489,6 @@ MultiThreading Revise
 WebFlux Revise              (Done)              
 Web Flux Documentation
 
-
 26-JAN-2020 :
 *************
 Spring Boot Actuator Tech Primers
@@ -498,7 +497,7 @@ Executors Callable
 Java Memory Model
 MultiThreading Revise
 
-27-JAN-2020 :
+27-JAN-2020 (Leave):
 *************
 Executor Service Callable  								(Done) 
 Fork Join Pool											(Done) 											 
@@ -506,7 +505,7 @@ Web Socket Introduction									(Done)
 Configuring WebSocket									(Done)	
 Web Socket R&D											(Done)					
 
-28-JAN-2020 :
+28-JAN-2020 (Leave):
 ************* 													 				 						  									
 Completable Future										(Done)			 						 							 								 							
 What is Spring Web Flux and When to Use It 				(Done)
@@ -514,26 +513,56 @@ Functional Web											(Done)
 Handler and Routines 									(Done)					
 Functional EndPoint using WebTestClient 					     	
 	 									
-29-JAN-2020 :
+29-JAN-2020 (Leave):
 *************
-Web Flux Revise	and Remaining Topics							 			
-Server Sent Events Implementation 																			
-Java Asynchronous Programming												
-Java Memory Model											
-
-Non Blocking Data Access Layer Using Flux				
-Create non-blocking REST API with Spring Web flux		
-Reactive SQL Data Access with Spring Data R2DBC			
-R2DBC Postgrees Flux									
-							
+Web Flux Revise	and Remaining Topics																 																									
+Java Asynchronous Programming							(Done)												
+Java Memory Model										
+MultiThreading Revise																																		
+														
 30-JAN-2020 :
 *************
+MultiThreading Revise
+Executor Service Pool Types
+WebFlux Revise
+Server Sent Event Example 
+RxJava Connection Pooling
+WebSocket vs Server Sent Event
 
 31-JAN-2020 :
 *************
+MultiThreading Revise   								
+Web Socket Revise										
+Server Sent Event Internal
+Server Sent Events Implementation						
+Actuator Revise
+
+
+******************************************************   February  ***********************************************************
+
+03-FEB-2020 :
+*************
+Actuator Revise											(Done)																				
+Asynchronous and Completable Future Revise  			(Done)
+Server Sent Events and Connection Pooling				()
+Scheduler												(Done)							
+Creating Custom End Point Actuator						(Done)
+
+04-FEB-2020 :
+*************
 
 
 
+05-FEB-2020 :
+*************
 
+
+06-FEB-2020 :
+*************
+
+
+
+07-FEB-2020 :
+*************
 
 

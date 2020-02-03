@@ -1,0 +1,91 @@
+1.interval 
+2.ServerSentEvent Element
+3.SseEmitter
+4.
+
+
+1.interval  :
+-------------
+This Method can be used to sent the Flux at a Particular Interval of Time.
+Streams are Sent Continuously at Particular Interval.
+When we Close the Browser,Connection between Client and Server is Closed and Stream Flow will be Stopped.
+
+	@GetMapping(value = "/flux",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<String> streamFlux()
+	{
+		return Flux.interval(Duration.ofSeconds(5)).log()
+				.map(sequence -> "Flux -" + LocalTime.now().toString());
+
+	}
+			
+2.ServerSentEvent Element :
+---------------------------
+The Same Flux Interval i.e Streaming of Elements at Particular Interval can be Achieved by Using
+ServerSentEvent.
+There are couple of Benefits Using Server Sent Event entity.
+We can Handle the Events MetaData i.e which we Require in Real world Application.
+We Can Ignore "text/Event Stream" Media Type Declaration.
+
+	@GetMapping("/eventStream")
+	public Flux<ServerSentEvent<String>> eventStream()
+	{
+		return Flux.interval(Duration.ofSeconds(2)).log()
+		.map(sequence -> ServerSentEvent.<String>builder()
+				.id(String.valueOf(sequence))
+				.event("Periodic-Event")
+				.data("SSE -" + LocalTime.now().toString())
+				.build());
+	}
+
+3.SseEmitter :
+--------------
+We Can also Implement the Server Sent Events Using SSEEmitter Class along with ExecutorService.
+Here We need to Define an ExecutorService,a Thread Where SSEEmitter will do its work of Pushing the Data
+and return the Emitter Instance and keep the Connection Open.
+
+	@GetMapping("/manualStream")
+	public SseEmitter sseEmitterStream()
+	{
+		SseEmitter emitter=new SseEmitter();
+		ExecutorService executorService=Executors.newSingleThreadExecutor();
+		executorService.execute(() -> {
+			try {
+			for(int i=0;true;i++)
+			{
+				SseEventBuilder event=SseEmitter.event()
+						.id(String.valueOf(i))
+						.name("Manual_Event")
+						.data("Manual-"+LocalTime.now().toString());
+				emitter.send(event);
+				} 
+			}
+			catch (IOException e) {
+				emitter.completeWithError(e);
+			}
+		});
+		return emitter;
+	}
+
+Crete the SseEmitter Class.
+Create the ExecutorService by Using SingleThreadExecutor.
+Create the Event Using  SseEventBuilder Interface.
+Send the Event Using emitter with the Delay.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
