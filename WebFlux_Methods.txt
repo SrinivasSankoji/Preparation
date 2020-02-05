@@ -6,8 +6,8 @@
 
 1.interval  :
 -------------
-This Method can be used to sent the Flux at a Particular Interval of Time.
-Streams are Sent Continuously at Particular Interval.
+This Method can be used to sent the Flux of Streams at a Particular Interval of Time.
+i.e Stream Data is Sent continuously at Particular Interval.
 When we Close the Browser,Connection between Client and Server is Closed and Stream Flow will be Stopped.
 
 	@GetMapping(value = "/flux",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -15,16 +15,15 @@ When we Close the Browser,Connection between Client and Server is Closed and Str
 	{
 		return Flux.interval(Duration.ofSeconds(5)).log()
 				.map(sequence -> "Flux -" + LocalTime.now().toString());
-
 	}
 			
 2.ServerSentEvent Element :
 ---------------------------
-The Same Flux Interval i.e Streaming of Elements at Particular Interval can be Achieved by Using
+The Same Flux i.e Streaming of Elements at Particular Interval can be Achieved by Using
 ServerSentEvent.
 There are couple of Benefits Using Server Sent Event entity.
 We can Handle the Events MetaData i.e which we Require in Real world Application.
-We Can Ignore "text/Event Stream" Media Type Declaration.
+Here We Can Ignore "text/Event Stream" Media Type Declaration.
 
 	@GetMapping("/eventStream")
 	public Flux<ServerSentEvent<String>> eventStream()

@@ -9,8 +9,10 @@
 9.Miscellaneous Core API Improvements
 10.Method References
 
-Java 8 Implementation :
-----------------------
+Java 8 Concepts :
+-----------------
+Functional Programming
+Lambda Expression
 Stream
 ParalellStream
 Time API
@@ -18,7 +20,7 @@ Optional Class
 CopyonWriteArrayList
 Sort in Java 8
 
-1. Default and Static Methods in Interface :
+2. Default and Static Methods in Interface :
 ********************************************
 
    Before Java8 Interface can have only public and Abstract Methods.
@@ -55,10 +57,10 @@ Sort in Java 8
 	}
    }
    
-   Default Methods are declared in the Interfaces using default keyword and can be overridde and Accessible by the 
+   Default Methods are declared in the Interfaces using default keyword and can be overridden and Accessible by the 
    instances of the implementation classes.
    
-2.Functional Interface and Lambda Expressions :
+3.Functional Interface and Lambda Expressions :
 ***********************************************
    
    Functional Interfaces are new Concept Introduced in Java8.
@@ -98,8 +100,8 @@ Sort in Java 8
 	i1.void("Hello");
 	
 	Finally Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces Easily.
-	To use Lambda Expressions in java, we need to create our own functional interfaces or use the predefinded
-	Functional Interfaces provided by java.
+	To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded
+	Functional Interfaces provided by Java.
 	Mark the Predefined Functional Interface bu using @FunctionalInterface Annotation.
 	@FunctionalInterface is introduced in Java 8.
 	
@@ -112,12 +114,152 @@ Sort in Java 8
 	MyFunctioanlInterface myFunctioanlInterface=(a,b)->a+b;
 	System.out.println("Result :"+myFunctioanlInterface.addMethod(12, 100));
 	
-3.Stream API for Bulk Data Operations on Collections :
+4.Stream API for Bulk Data Operations on Collections :
 ******************************************************
 Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations with Collection.
 Stream API allows Sequential as well as Parallel Execution.
 Collection Interface has been extended with stream() and paralellStream() default methods to get
 the stream for Sequential and Parallel Execution.
+
+Stream does not store the Data.Stream is not a DataStructure and it never Modifies the underlying Data source.
+java.util.stream supports functional style of Operations on Stream of Elements like Map,Reduce and so on.
+Stream has three Parts Data Source ,Zero or More Intermediate Operation and Zero or More Terminal Operation.
+Intermediate Operations get the Elements one by one and process them.
+All Intermediate Operations are Lazy and as a Result No Operations will be Effective until the PipelIne Start to work.
+Terminal Operation Means end of the Stream Life Cycle.
+
+forEach() is a Terminal Operation and it loops over the Stream of Elements calling the Supplied Function.
+After the Operation s being performed,Stream pipeline is Considered to be Consumed and No Longer Used.
+Map produces a new Stream after applying a Function to each element of the  other Stream.
+Here New Steam can be Different Type.
+collect() is one of the common way to get the stuff out from the stream once done with the processing.
+findFirst() is used to return the First object from the Stream other wise it returns null.
+
+If we want to get an Array form the Stream of Elements we use toArray(Employee[]::new)
+
+FlatMap :
+---------
+A Stream can Hold Complex Data Structures Like Stream<List<String>>.
+FlaMap helps us to Flatten the DataStructure to Simplify Further Operations.
+
+For Each is a Terminal Operation and Some times we need to perform multiple operations on each element 
+of the Stream before the Terminal Operation is Applied.
+In this case peek() can be Used.
+
+
+Peek :
+------
+peek() performs specified Operation on each Element of the Stream and returns a New Stream which can be used Further.
+peek() is an Intermediate Operation.
+peek() can be useful in Visualizing how Stream Operations behave and understanding the complex of intermediate Stream Operations.
+peek() is Mainly used for debugging where we want to see the Elements of the Stream as they flow in the pipeline.
+peek() can also be used to alter the inner state of the element.
+
+Comparison Based Stream Operations :
+------------------------------------
+we use sorted on stream of elements.
+
+allMatch, anyMatch, and noneMatch :
+-----------------------------------
+allMatch() returns true if all the elements of the stream satisfies the condition.
+It returns false as soon as it does not match the predicate.
+anyMatch()  return true if it Matches any one of the element in the Stream.
+nonMatch() returns true if none of the element in stream matches the Predicate.
+
+Stream Specializations :
+------------------------
+We can also create IntStream,LongStream and DoubleStream respectively for int,long and double.
+The Most common way of creating IntStream is to call mapToInt().
+
+Specialized Operations :
+------------------------
+Specialized Streams provide the Additional Operations as compared to the Standard Streams and
+which are quite convenient when dealing with Numbers.
+
+	employeeList.stream()
+	.mapToDouble(Employee::getSalary)
+	.average();
+	
+The other specialized operations are sum(),range().
+
+Reduction Operations :
+----------------------
+Reduce Operation (also called as fold) takes a Sequence of input elements and combines them into a Single Result 
+by Repeatedly applying a combining Operation.
+
+	T reduce(T identity,BinaryOperator<T> accumulator)
+	
+Key concepts in Reduce Operation are Identity,Accumulator and Combiner.
+
+Identity : An Element that is the initial Value of the reduction Operation and is the Default result if the Stream is Empty.
+Accumulator : Function that takes two Parameters i.e Partial Result of the Reduction Operation and the Next Element of the Stream.
+
+
+	employeeList.stream()
+	.map(Employee::getSalary)
+	.reduce(0.0, Double::sum);
+	
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+		int result = numbers.stream()
+				.reduce(0,(total,element)->total+element);
+		System.out.println(result);
+		
+Here (total,element)->total+element is the accumulator Since it takes the Partial sum of the Integer value 
+and next element of the Stream.
+
+Combiner : When a Stream is executed in Parallel,Java Runtime Split the Stream into Multiple Sub Streams and 
+in that case we need to use function to combine the result of sub streams into a Single one.
+
+	List<Employee> employees = Arrays.asList(new Employee(1, "Srinivas", 22000.00), new Employee(2, "Nandini", 27000.00));
+	System.out.println(employees.stream()
+	.reduce(0.0, (salary,element)->salary+element.getSalary() , Double::sum));
+ 
+
+Advanced collect :
+------------------
+
+partitioningBy : We can Partition a Stream into two based on whether the elements satisfy the certain criteria or Not.
+
+	List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
+	Map<Boolean,List<Integer>> resultMap=intList.stream().collect(Collectors.partitioningBy(i-> i%2 ==0));
+	resultMap.forEach((key,value)-> System.out.println(key +""+value));
+	 
+groupingBy :
+groupingBy Offers advanced Partitioning compared to partitioning.
+we can partition the stream into more than two groups.
+It takes the Classification Function as Parameter and applied to each element of the Stream.
+
+	   Map<Character, List<Employee>> groupByAlphabet = empList.stream().collect(
+      Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
+	  
+	    Map<Character, List<Integer>> idGroupedByAlphabet = empList.stream().collect(
+      Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
+        Collectors.mapping(Employee::getId, Collectors.toList())));
+
+
+Parallel Streams :
+------------------
+
+Infinite Streams :
+------------------
+
+File Operations :
+-----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 

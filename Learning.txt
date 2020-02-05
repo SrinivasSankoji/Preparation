@@ -1121,9 +1121,11 @@ https://dzone.com/articles/a-guide-to-streams-in-java-8-in-depth-tutorial-wit
 Actuator EndPoints :
 --------------------
 
+
 WebSocket :
 -----------
 SseEmitter
+
 
 
 Reactive Programming :
@@ -1134,7 +1136,6 @@ Handler and Routines Web Flux
 Actuator
 Health Check
 Web Socket vs Server Sent Events
-
 
 Scenarios :
 -----------
