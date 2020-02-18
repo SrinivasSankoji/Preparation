@@ -147,6 +147,8 @@ of the Stream before the Terminal Operation is Applied.
 In this case peek() can be Used.
 
 
+
+
 Peek :
 ------
 peek() performs specified Operation on each Element of the Stream and returns a New Stream which can be used Further.
@@ -218,13 +220,16 @@ in that case we need to use function to combine the result of sub streams into a
 Advanced collect :
 ------------------
 
-partitioningBy : We can Partition a Stream into two based on whether the elements satisfy the certain criteria or Not.
+partitioningBy :
+----------------
+We can Partition a Stream into two based on whether the elements satisfy the certain criteria or Not.
 
 	List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
 	Map<Boolean,List<Integer>> resultMap=intList.stream().collect(Collectors.partitioningBy(i-> i%2 ==0));
 	resultMap.forEach((key,value)-> System.out.println(key +""+value));
 	 
 groupingBy :
+------------
 groupingBy Offers advanced Partitioning compared to partitioning.
 we can partition the stream into more than two groups.
 It takes the Classification Function as Parameter and applied to each element of the Stream.
@@ -235,7 +240,16 @@ It takes the Classification Function as Parameter and applied to each element of
 	    Map<Character, List<Integer>> idGroupedByAlphabet = empList.stream().collect(
       Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
         Collectors.mapping(Employee::getId, Collectors.toList())));
-
+		
+collectors.mapping :
+--------------------
+ List<String> employeeNames = employeeList
+        .stream()
+        .collect(Collectors.mapping(Employee::getName, Collectors.toList()));
+    System.out.println("List of employee names:" + employeeNames);
+	
+collectingAndThen :
+-------------------
 
 Parallel Streams :
 ------------------
@@ -245,6 +259,12 @@ Infinite Streams :
 
 File Operations :
 -----------------
+
+
+
+
+
+
 
 
 

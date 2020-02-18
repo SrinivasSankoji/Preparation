@@ -1,7 +1,17 @@
 1.interval 
 2.ServerSentEvent Element
 3.SseEmitter
-4.
+4.Filter
+5.Map 
+6.FlatMap
+7.window
+8.subscribeOn
+9.Merge
+10.Concat
+11.Zip
+12.onErrorResume
+13.onErrorMap
+
 
 
 1.interval  :
@@ -69,6 +79,70 @@ Crete the SseEmitter Class.
 Create the ExecutorService by Using SingleThreadExecutor.
 Create the Event Using  SseEventBuilder Interface.
 Send the Event Using emitter with the Delay.
+
+
+4.Filter :
+**********
+fromIterable() accepts a List and Returns a Flux.
+
+List<String> cities=Arrays.asList("Mumbai","Hyderabad","Pune","Andhra Pradesh");
+		Flux<String> fluxCities=Flux.fromIterable(cities).log().filter(city -> city.length()>6);
+		StepVerifier.create(fluxCities)
+		.expectNextCount(2)
+		.verifyComplete();
+
+5.Map :
+*******
+Map Operator can be USed to Transform the Stream into Another Kind of Stream.
+In case of WebFlux,Map Transforms the Data Sequentially.
+Map can return the Same Stream or Different Stream.
+To Display all the Elements of the Flux we need to Subscribe and Print.
+
+		Flux.range(1, 5)
+		.map(mapper -> mapper*mapper)
+		.subscribe(System.out::println);
+		
+6.FlatMap :
+***********
+FlatMap flats the Elements Asynchronously into Publishers and Flattens the Inner Publisher into a Single Flux
+through Merging.
+We use FlatMap for Asynchronous Operations.
+
+		Flux.range(0, 3)
+		.flatMap(mapper -> getEmployee(mapper))
+		.subscribe(System.out::println);
+		
+		private Mono<Employee> getEmployee(int id)
+		{
+		List<Employee> employeeList=Arrays.asList(new Employee(1,"Srinivas",22000),
+				new Employee(2,"Nandini",27000),
+				new Employee(3,"Bhaumik",23000));
+		return Mono.just(employeeList.get(id));
+		}
+		
+Here it is Executing Sequentially.To get the Better Performance we use the window() Function.
+In case of FlatMap order is Not Maintained.
+If we want to Maintain the Order we need to use concatMap.
+concatMap takes time to Execute.
+To Improve the Performance we need to use flatMapSequential that will improve the Performance and maintains the Order.
+
+
+7.window :
+**********
+In case of Window we need to Specify the Size so that it can wait for the Stream to reach the Size and 
+it passes to the Next Event.
+
+8.subscribeOn()
+***************
+It is a Scheduler that accepts the Scheduler Type and it runs on Multiple Threads. 
+
+9.Merge :
+*********
+
+
+
+
+
 
 
 

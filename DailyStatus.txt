@@ -547,31 +547,102 @@ Asynchronous and Completable Future Revise  			(Done)
 Scheduler												(Done)							
 Creating Custom End Point Actuator						(Done)
 WebFlux Methods Revise 									(Done)
-Server Sent Events and Connection Pooling				()
+Server Sent Events and Connection Pooling				(Pending)
 
 04-FEB-2020 :
 *************
 WebFlux with Database									(Done)
 WebFlux with Non Blocking								(Done)
-Server Sent Events and Connection Pooling
+Server Sent Events and Connection Pooling				(Pending)
 
 
 05-FEB-2020 :
 *************
 Java 8 Concepts: FP, Streams, and Lambda Expressions	(Done)
 A Guide to Streams: In-Depth Tutorial With Examples		(Done)	(Grouping By Pending)
-Spring Security Revise									()
-Web Flux Methods 										()
-WebSocket vs SSE										()
-
+Spring Security Revise									(Pending)
+Web Flux Methods 										(Pending)
+WebSocket vs SSE										(Pending)
 
 06-FEB-2020 :
-*************
-
-
-
-
+*************												
+Security Implementation									(Done)
+Spring Session Revise									(Pending)															
+						
 07-FEB-2020 :
 *************
+JWT Revise												(Done)	
+AOP Revise												(Pending)									
+Token Implementation									(Done)
+																																																
+10-FEB-2020 :
+*************
+Exception Grouping Issue								(Done)
+Exception Mail Format									(Pending)
+Token Refresh Implementation							(Pending)
+
+11-FEB-2020 :
+*************
+Exception Management Issues								(Done)
+Token Implementation Logic								(Done)
+
+12-FEB-2020 :
+*************
+Firmware Implementation									(Done)
+
+13-FEB-2020 :
+*************
+Firmware Implementation									(Done)	
+
+14-FEB-2020 :
+*************
+Firmware Implementation									(Done)
+
+16-FEB-2020 :
+*************
+Design Patterns (Facade,Inversion,DTO)					(Done)
+Angular Revise											()
+Angular Routing 										()
+FlatMap Scenario 										(Done)
+Modifying Variables in Lambda							()
+Lambda Expressions										()
+
+17-FEB-2020 :
+*************
+Mail In Exception										()									
+Angular Routing											(Done)									
+Facade 													()												
+Inversion Of Control									()																																	
+Data Transfer Object									(Done)																			
+
+18-FEB-2020 :
+*************
+Firmware Scheduler
+
+
+
+19-FEB-2020 :
+*************
+
+
+20-FEB-2020 :
+*************
+
+
+21-FEB-2020 :
+*************
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -12,6 +12,69 @@ Coding Practice :
 *****************
 https://hackernoon.com/		
 
+
+----------------------- Preparation ---------------------------
+OOPS
+Exception Handling
+MultiThreading
+Lang Package
+Interfaces and Modifiers
+Collections
+Serialization and Externalization
+Generics
+Inner Classes
+Garbage Collector
+Enumeration
+Files
+Java 8 Features
+Servlet
+JSP
+Spring IOC
+Spring MVC
+MicroServices Architecture
+Spring RestRestful Web services
+Hibernate
+Struts2
+HBase
+SQl
+PL/SQL
+HashMap Internal Implementation
+ArrayList Internal Implementation
+Java Basics : Java papers.com
+
+---------------------------  On line Preparation Topics  ----------------------------------------
+
+Java Basics : Java papers.com
+Internal vs. External Iteration
+Stream 
+Boxed Stream
+Lambda Expression
+Functional Interface
+Method References
+Java Class path
+System.out.println
+Java Array
+Java Primitive
+Java Variable
+Java Pass By Value and Pass By Reference
+Access Modifiers In Java
+Java Static
+Java Static Import
+Java Final Keyword
+Java Abstract Class and Methods
+Java Cast and Conversions
+Java Numeric Promotion
+Java This
+Java Weak Reference
+Java Clone, Shallow Copy and Deep Copy
+Java Marker Interface
+Java null and NullPointerException
+Java Annotations
+Java Variable Arguments
+Java Integer Cache
+Java Double Brace Initialization
+Java JSON Conversion Tutorial
+Java Method Reference ::
  
 													
 Germany :
@@ -195,68 +258,7 @@ LoadBalancer
 Topic : API Gateway Advantages:Authentication, monitoring, load balancing, Caching, 
 Request shaping and management and static Response handling
 
------------------------ Preparation ---------------------------
-OOPS
-Exception Handling
-MultiThreading
-Lang Package
-Interfaces and Modifiers
-Collections
-Serialization and Externalization
-Generics
-Inner Classes
-Garbage Collector
-Enumeration
-Files
-Java 8 Features
-Servlet
-JSP
-Spring IOC
-Spring MVC
-MicroServices Architecture
-Spring RestRestful Web services
-Hibernate
-Struts2
-HBase
-SQl
-PL/SQL
-HashMap Internal Implementation
-ArrayList Internal Implementation
-Java Basics : Java papers.com
 
----------------------------  On line Preparation Topics  ----------------------------------------
-
-Java Basics : Java papers.com
-Internal vs. External Iteration
-Stream 
-Boxed Stream
-Lambda Expression
-Functional Interface
-Method References
-Java Class path
-System.out.println
-Java Array
-Java Primitive
-Java Variable
-Java Pass By Value and Pass By Reference
-Access Modifiers In Java
-Java Static
-Java Static Import
-Java Final Keyword
-Java Abstract Class and Methods
-Java Cast and Conversions
-Java Numeric Promotion
-Java This
-Java Weak Reference
-Java Clone, Shallow Copy and Deep Copy
-Java Marker Interface
-Java null and NullPointerException
-Java Annotations
-Java Variable Arguments
-Java Integer Cache
-Java Double Brace Initialization
-Java JSON Conversion Tutorial
-Java Method Reference ::
 
 ============== Elastic Search ============================
 
@@ -1094,14 +1096,15 @@ Emitter
 
 
 
------------------------------------------ February(Web Flux,Server Sent Events,Web Socket,Reactive Programming) -----------------------------------
+----------------------------------------- February(Web Flux,Server Sent Events,Web Socket,Reactive Programming) -------------------------------
 
 Collectors.joining
 Collectors.Grouping
+Collectors.Mapping
 FlatMap
 Reduce
 User Group Mapping Scenario (Fork Join Pool)
-ExceptionByApplication Grouping  
+ExceptionByApplication Grouping    (Done)
 
 Modifying Variables Inside Lambdas 
 https://dzone.com/articles/modifying-variable-inside-lambda?edition=565304&utm_source=Zone%20Newsletter&utm_medium=email&utm_campaign=java%202020-01-27
@@ -1126,8 +1129,6 @@ WebSocket :
 -----------
 SseEmitter
 
-
-
 Reactive Programming :
 ----------------------
 Web Flux Controller
@@ -1145,5 +1146,43 @@ Error Handling
 Combine Flux Results
 Get Object from Flux
 
+Design Patterns :
+-----------------
 
------------------------------------------ March(Actuator,Prometheus,Graphana,MicroMeter) ----------------------------------------------
+
+
+Session Implementation in NGO :
+-------------------------------
+Logged In User
+LDAP + Security
+JWT + Secret Key
+Every Request
+Session Code
+Testing
+
+Spring Security							
+AOP												
+EHCache 
+Password Generation
+Request Format
+Response Format
+Token Expiration
+Role Based Authentication
+
+Active Users
+Number of Hits For an API
+List OF Tokens
+
+
+----------------------------------------- March(Java Script,Angular) --------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+

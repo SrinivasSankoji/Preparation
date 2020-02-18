@@ -27,14 +27,14 @@ When Should We Use JWT :
 Authentication :
 ----------------
 This is The Most Common Scenario For Using JWT.
-Once The User is Logged In Each SubSequent Request will include the JWT along with the User to Access Routes,Services and
+Once The User is Logged In and For Each SubSequent Request will include the JWT along with the User to Access Routes,Services and
 Resources that are Permitted with The Token.
 Single Sign on Is a Feature Widely Used Now a Days Using JWT Because of its Small OverHead and its ability to be
 Easily Used across Different Domains.
 
 Information Exchange :
 ----------------------
-JWT are Good Way of Securely Transmitting the Information Between the Parties Because they are Signed
+JWT is Good Way of Securely Transmitting the Information Between the Parties Because they are Signed
 Using Public/Private Key Pairs.
 Additionally The Signature is Calculated Using Header and PayLoad We Can also Verify The Content is Not Tampered With.
 
@@ -71,10 +71,8 @@ There are 3 Types of Claims Reserved,Public and Private
 
 1.Reserved :
 ------------
-These are Set pf Predefined Claims Which are Not Mandatory But Recommended to Use
-To Provide Set of Useful InterOperable Claims.
+These are Set of Predefined Claims Which are Not Mandatory But Recommended to Use to Provide Set of Useful InterOperable Claims.
 Some of them are iss(Issue),exp(expiration time),sub(subject),aud(audience) etc.
-
 Here Claims are only 3 Characters long as JWT is Meant to be Compact.
 
 2.public :
@@ -115,7 +113,7 @@ The Output of 3 Base64 Strings is Separated by Dots that can Be Easily Passed in
 
 4.How Does JWT Work :
 *********************
-In Authentication When the User Successfully Log in Using Their Credentials,
+In Authentication When the User Successfully Logged in Using Their Credentials,
 A JWT will be Returned and Must be Saved Locally (Typically in Local Storage or a Cookie Can Also be Used)
 In The Traditional Approach We Create a Session in the Server and Return the Cookie.
 When The User Wants to Access the Protected Route or Resource,User Agent Should Send the JWT in the Authorization Header
@@ -173,7 +171,7 @@ C.JwtTokenProvider :
 The JWTTokenProvider has the Following Responsibilities.
 
 Verify The Access Token's Signature.
-Extract Identity and Authorization Claims form Access Token and uses them to Create UserContext.
+Extract Identity and Authorization Claims from Access Token and uses them to Create UserContext.
 If the Access Token is Malformed,Expired or Token is not Signed with the Appropriate Sign in Key then
 Authentication Exception will be Thrown.
 

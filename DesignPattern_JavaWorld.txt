@@ -1,0 +1,183 @@
+1.Introduction 
+2.Facade
+3.Inversion of Control
+4.Data Transfer Object
+5.Adapter
+6.Decorator
+7.Bridge
+8.Composite
+9.Proxy
+10.FlyWeight
+
+
+
+************************************************ 1.Introduction ****************************************************************
+
+Business Analyst Will create the System Design.
+Before Creating the System Design He will Review the Requirement,Identify the Problems in each of the Requirement and for Each Problem
+he will Design the Solution.
+
+Here For Every Requirement the Common thing is identify the Problem and Design the Solution.
+Each Pattern describes a Problem which occurs over and over again and then	 describes the core of the solution to that Problem.
+
+Main four Elements of a Design Pattern are :
+1.Name
+2.Problem
+3.Solution
+4.Consequences
+
+Design Pattern Name  :
+1.Improved Design
+2.Team Communication because Every one Talks about the Same Concepts
+3.Name to Describe the Design Problem
+4.Increase Abstraction in Design
+
+Design Pattern Problem :
+When the Pattern can be Applied
+What is the Context i.e Problem with Current Design
+
+
+Design Pattern Solution :
+Define Elements that Compose the Design.
+How Elements are Related to Each Other
+Element Responsibility
+Element Functionality
+Element Collaboration
+Here template will be Fully Reusable and Language Agnostic.
+
+Design Pattern Consequences :
+Is the Pattern Right Choice
+Can Include Language and Implementation Issues.
+Choose the Correct Pattern by Understanding the Consequences.
+
+By Using Design Pattern Certain Level of Abstraction is Required and 
+its Not About HashMap,List and Arrays.
+Design Pattern is Not for Entire Application and it is For Specific Problem.
+Patterns are Not Primitive Building Blocks.
+Don't Fit Every Thing in One Pattern.
+
+
+Delegation Design Pattern :
+---------------------------
+Here One Object Delegates the Functionality to another Element.
+Here the Benefit is it Promotes Re usability.
+
+Delegator -----------------  Delegate
+
+Delegate Object can be Reused Later.
+We can also Limit the Number of Class Definitions by Bundle all the Delegates in One Class.
+We can also Reduce Inheritance.
+
+Interface :
+-----------
+Service Definition is Bundled into one Interface.
+Loose Coupling between Client ans Service Implementation.
+
+
+Immutable Definition :
+----------------------
+Immutable Object is an Object defined with Certain State and State is Initialized During the Start Up.
+Afterwards State does not change any More.
+State is Passed through Object Creation as Reference.
+
+
+
+Design Pattern Catalog is Large Catalog of Design Patterns  and we Need to Identify the Pattern.
+Design Patterns are Categorized into 3 Parts
+
+1.Creation  Pattern
+2.Structural Pattern 
+3.Behavioral Pattern
+
+Design Patterns can be Created by Using either Class Definition or Object Creation.
+
+
+1.Creation  Pattern :
+Factory Method					(Class)
+Abstract Factory Method			(Object)
+Builder							(Object)
+Prototype						(Object)
+Singleton						(Object)
+
+2.Behavioral Pattern
+Interpreter 					(Class)
+Template						(Class)
+Chain of Responsibility			(Object)
+Command							(Object)
+Iterator						(Object)
+Mediator						(Object)
+Memento							(Object)
+Observer						(Object)
+State							(Object)
+Strategy						(Object)
+Visitor							(Object)
+
+Structural :
+Adapter							(Class)
+Adapter							(Object)
+Bridge							(Object)
+Composite						(Object)
+Decorator						(Object)
+Facade							(Object)
+FlyWeight						(Object)
+Proxy							(Object)
+
+Inversion of Control
+Data Transfer Object
+
+
+
+****************************************   2.Facade Pattern  **************************************** 
+
+It can be used as an Interface for Complex Sub Systems.
+Facade Provides a Unified interface to a Set of Interfaces in a Sub System.
+Facade Defines a High Level Interface that makes the Subsystem Easier to Use.
+Whenever we want to Decouple Client from Other Sub Systems.
+Provide Simple Interface to Client.
+Sub System Layering
+Facade Acts as Access Point to the System and it knows the Entire Sub System and Delegates to Sub System.
+Here the Functionality is Implemented Only in Sub System.
+Client Calls the Facade and Facade Delegates to the Sub System.
+Facade Needs to Translate the Request into Sub System Specific Objects.
+Client don't have to access the Sub System there by Providing Loose Coupling.
+
+Advantages :
+Sub System is Easier to Use.
+Client Does not Require Specific Knowledge.
+Loose Coupling
+Sub System can also be Used Directly.
+Abstract Complex System from Client
+
+Drawback :
+An Extra Programming Layer.
+
+****************************************   3.Inversion of Control  **************************************** 
+
+
+
+**************************************** 4.Data Transfer Object    ****************************************
+
+DTO Design pattern can be used to Transfer the Object Across the Network.
+Domain Objects are Tightly Coupled with Database and it May contain Sensitive Information.
+We can also avoid sensitive Data or can Create new Property based on the Existing Columns.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
