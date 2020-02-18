@@ -1,2 +1,221 @@
 Angular Basics Code Evolution :
 *******************************
+1.Introduction														[18-FEB-2019]  (Done)										
+2.Getting Started													[18-FEB-2019]  (Done)							
+3.Hello World														[15-FEB-2019]  ()
+4.Components														[15-FEB-2019]  ()
+5.Interpolation														[15-FEB-2019]  ()
+6.Property Binding													[15-FEB-2019]  ()
+7.Class Binding														[15-FEB-2019]  ()
+8.Style Binding														[15-FEB-2019]  ()
+9.Event Binding														[15-FEB-2019]  ()
+10.Template Reference Variables										[15-FEB-2019]  ()
+11.Two Way Binding													[15-FEB-2019]  ()
+12.ngIf																[15-FEB-2019]  ()
+13.ngSwitch															[15-FEB-2019]  ()
+14.ngFor															[15-FEB-2019]  ()
+15.Component Interaction											[15-FEB-2019]  ()
+16.Pipes															[15-FEB-2019]  ()
+17.Services															[15-FEB-2019]  ()
+18.Dependency Injection												[15-FEB-2019]  ()
+19.Using Service													[15-FEB-2019]  ()
+20.HTTP and Observables												[15-FEB-2019]  ()
+21.Fetch Data Using HTTP											[15-FEB-2019]  ()
+22.HTTP Error Handling												[15-FEB-2019]  ()
+23.Routing and Navigation											[15-FEB-2019]  ()
+24.Wild Card Route and Redirecting Routes							[15-FEB-2019]  ()
+25.Route Parameters													[15-FEB-2019]  ()
+26.ParamMap Observable												[15-FEB-2019]  ()
+27.Optional Route Parameters										[15-FEB-2019]  ()
+28.Relative Navigation												[15-FEB-2019]  ()
+29.Child Routes														[15-FEB-2019]  ()
+30.Angular 6 Features												[15-FEB-2019]  ()
+
+
+1.Introduction	:
+*****************
+It is a JavsScript Framework used to Build Client Side Applications.
+Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
+Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
+By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
+Angular has so Many Features Like Validation Routing which Makes Development Quicker and Faster.
+Angular Even Provides Support For Unit Testing.
+Angular is From Google and uses MicroSoft Typescript Language.
+
+2.Getting Started :
+*******************
+PreRequisite For Angular are Basics of HTML,CSS and JavaScript.
+We need to Set Up Development Environment i.e  Install
+
+	Node
+	Npm
+	Angular CLI
+	Visual Studio Code
+
+Install Node JS and when we Install Node,NPM (Node Package Manager will also be Installed)
+Once the Node is Installed,In the Command Prompt run the Command 
+	
+	node -v
+	npm -v
+	
+Install the Angular CLI i.e COmmand Line Interface.
+Angular CLI generates the Building Block of Angular Application by Typing the Commands.
+Angular CLI makes the Development Quicker and Easier by Following Best Practices.
+To Install Angular CLI 
+
+	npm install -g @angular/cli
+	
+To Check Whether the Angular CLI is Installed or Not Run the Command
+
+	ng - v
+
+	
+3.Hello World :
+***************
+
+
+
+4.Components :
+**************
+
+
+
+5.Interpolation :
+*****************
+
+
+6.Property Binding :
+********************
+
+
+7.Class Binding :
+*****************
+
+
+8.Style Binding :
+*****************
+
+9.Event Binding :
+*****************
+
+
+10.Template Reference Variables :
+*********************************
+
+
+
+11.Two Way Binding :
+********************
+
+
+12.ngIf :
+*********
+
+
+13.ngSwitch :
+*************
+
+
+14.ngFor :
+**********
+
+15.Component Interaction :
+**************************
+
+16.Pipes :
+**********
+
+17.Services :
+*************
+
+18.Dependency Injection :
+*************************
+
+
+19.Using Service :
+******************
+
+20.HTTP and Observables :
+*************************
+
+
+21.Fetch Data Using HTTP :
+**************************
+
+
+22.HTTP Error Handling :
+************************
+
+
+23.Routing and Navigation :
+***************************
+
+
+
+24.Wild Card Route and Redirecting Routes :
+*******************************************
+So far we Have Created 2 Routes in Our Application. i.e Departments and Employees.
+The Problem is User tries to Navigate to the Route and is Not Configured then the Application throws an Error.
+
+  localhost:4200/test and in the Console we get "Cannot Match Any Route"
+  
+Better Way to Handle Invalid URL is using Wild Card Route.
+By Making use of Wild Card Routes we can Navigate the User to the Page Not Found Component for INvalid URL's.
+
+Wild Card Route should be the Last Route in the Configuration.
+Here Router Tries to Match the Pattern from the Top.
+
+
+The Problem with Wild Card Route is that Once We Configure the Wild Card Route then By Default  localhost:4200 will Navigate to 
+Page Not Found Component.
+This is Because URL is Not Matched to Any of the Configured Routes and as a Result Router falls through Wild Card Route and Displays 
+Page Not Found Component.
+
+Here Requirement is our Application Needs Default Route.
+In Case of Empty Path Redirect to Another Route ad that Can be Directed by Using pathMatch parameter with Value "prefix" or "Full".
+pathMatch parameter with Value "prefix" will not Work because any URL will be Empty by Default.
+
+
+25.Route Parameters :
+*********************
+
+
+26.ParamMap Observable :
+************************
+
+27.Optional Route Parameters :
+******************************
+
+
+
+28.Relative Navigation :
+************************
+
+
+
+29.Child Routes :
+*****************
+
+
+
+
+
+
+
+30.Angular 6 Features :
+***********************
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+ 
