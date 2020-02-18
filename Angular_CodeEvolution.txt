@@ -1,9 +1,7 @@
-Angular Basics Code Evolution :
-*******************************
 1.Introduction														[18-FEB-2019]  (Done)										
 2.Getting Started													[18-FEB-2019]  (Done)							
-3.Hello World														[18-FEB-2019]  ()
-4.Components														[15-FEB-2019]  ()
+3.Hello World														[18-FEB-2019]  (Done)
+4.Components														[15-FEB-2019]  (Done)
 5.Interpolation														[15-FEB-2019]  ()
 6.Property Binding													[15-FEB-2019]  ()
 7.Class Binding														[15-FEB-2019]  ()
@@ -32,8 +30,8 @@ Angular Basics Code Evolution :
 30.Angular 6 Features												[15-FEB-2019]  ()
 
 
-1.Introduction	:
-*****************
+################################################### 1.Introduction	####################################################################
+
 It is a JavsScript Framework used to Build Client Side Applications.
 Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
 Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
@@ -42,8 +40,8 @@ Angular has so Many Features Like Validation Routing which Makes Development Qui
 Angular Even Provides Support For Unit Testing.
 Angular is From Google and uses MicroSoft Typescript Language.
 
-2.Getting Started :
-*******************
+######################################################### 2.Getting Started #########################################################
+
 PreRequisite For Angular are Basics of HTML,CSS and JavaScript.
 We need to Set Up Development Environment i.e  Install
 
@@ -70,90 +68,239 @@ To Check Whether the Angular CLI is Installed or Not Run the Command
 	ng - v
 
 	
-3.Hello World :
-***************
+############################################# 3.Hello World #############################################
+
+To Create Hello World Angular Application we Make use of Angular CLI.
+In Visual Studio Code we have an Integrated Terminal where we can run the Commands.
+
+	View -> Terminal -> 	Make Sure we are Inside the Angular Folder.
+	
+To Create a New Angular Project use the Command 
+	
+	ng new Helloworld
+
+Here the Above Command takes time to run and once it is Completed it Will Create the Folder Helloworld.
+Now Change the Application to Helloworld
+	cd Helloworld
+
+To run the Application run the Command 
+
+	ng serve
+
+To Check the Application run the command
+
+	localhost:4200
+	
+Flow of Execution :
+-------------------
+Angular apps are Modular in Nature i.e Angular Application is a Collection of Many Individual Modules.
+Every Module represents the Feature area in the Application and Angular Modules are Imported and exported.
+
+	user Module 
+	Admin Module
+	
+Every Angular Application has One Module which is the Root Module & By Naming Convention it is App Module.
+Each Module in turn consists of Components and Services.
+Component controls a Portion of the view in the Browser.
+
+						
+				********************************
+				Component 1   -->   Navigation Bar
+					
+				***							
+				***
+	-->			***   		Main Component
+	Side Bar	***			Component 3
+	Component 2	***
+				
+Every Angular Application has One Component which is the Root Component of the Application and is Called
+App Component.
+All Other Components will be nested inside the App Component.
+Each Component have HTML Template and Class.
+HTML Template to represent the view in the Browser and Class that Contains the Logic of that Particular View.
+
+Modules can also have Services i.e a Class that Contains the Business Logic of an Application.
+In Addition to Components and Services,Module can also have Few more Pieces of the Angular Application.
+Modules can be exported and Imported as and when required and  render the view to the Browser.
+
+
+File Structure :
+----------------
+package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules 
+which are required for an Angular Application to Work.
+
+Packages listed in the development dependencies are installed when we run the command ng new Helloworld.
+All the Packages are get installed in the Node Modules.
+We also have some of the Scripts used to run the Application
+	
+		ng serve
+		
+src Folder :
+------------
+In the src Folder we have 	main.ts which is the Entry Point for an Angular Application.
+we also have app Folder inside src folder.
+app Folder contains app.module.ts which is the Root Module for an Angular Application.
+app Folder contains app.component.ts Root Component for an Angular Application.
+
+
+Flow of Execution :
+-------------------
+When we run the Command ng serve to start the an Angular Application,Execution starts from main.ts.
+In main.ts it Bootstrap the App Module and App Module in turn BootStrap the App Component.
+App Component has two Things 
+HTML template to represent the view in the Browser and Class to Control the Logic of that Particular view.
+
+  import {Component } from '@angular/core'
+  @Component({
+  selector:'app-root',
+  templateUrl:'./app.component.html',
+  styleUrl:'./app.component.css'
+  }
+  )
+  export class AppComponent
+  {
+	title ='Helloworld';
+  }
+  
+At Runtime HTML Property gets Replaced by Class Property.
+Whenever we Change the Value in the Class it Will Automatically Reflect in the Browser.
+
+Note :
+Component renders Different Portions of the View in the Browser.
+
+######################################################## 4.Components  ######################################################################
+
+
+	Template   +  Class  + Meta Data
+	
+Template Represents the View and is Created by Using HTML.
+Template will be the User Interface for the Application.
+
+Class supports the view in the Browser and is Created by Using TypeScript.
+Class in Angular is Similar to any other Programming Language Class that Contains Properties and Methods 
+to Control the Logic of the View.
+
+Example :
+We Have a Class that Contains a Method to Show or Hide Element based on the Value of the Property.
+
+A Component can also have Meta Data Attached to it.
+This is the Information that the Angular needs to decide whether Particular Class is a a Angular Component or Not.
+Meta Data is Defined Using Decorator and is a Feature in TypeScript.
+
+Decorator is an Annotation that Provides information about the Class Attached to it.
+For Component we use Component Decorator.
+
+Example :
+---------
+In the app.component.ts we have one Class Named AppComponent and it Contains one Data Property
+
+	export class AppComponent
+	{
+		title='Code Evolution';
+	}
+
+To the Above Class we have Attached the Meta Data in the form of Component Decorator.
+@Component tells the Angular that this is not the Plain Class and is a Angular Component.
+
+@Component attaches the  Meta Data to the Class Right Below it.
+Component Decorator Pattern Contains both the Meta Data and the Template Which Represents the View.
+As Part of Meta Data We Have 
+
+Selector 
+TemplateUrl
+StyleUrls
+
+Selector  :
+-----------
+Selector is a Custom HTML Tag that can be used in HTML to Represent that this is Angular Component.
+When we Specify the Selector in the HTML, Angular Renders the Component Template in its View.
+
+	<Body>
+	<app-root></app-root>
+	</Body>
+
+But what Exactly Here is the Template for this Component and can be Specified by Using TemplateUrl.
+TemplateUrl Points to the HTML File that Represents the Component.
+In app.component.html we have title and title is the Property in the Class app.component.ts
 
 
 
-4.Components :
-**************
+
+################################################### 5.Interpolation ####################################################################
 
 
 
-5.Interpolation :
-*****************
-
-
-6.Property Binding :
-********************
-
-
-7.Class Binding :
-*****************
-
-
-8.Style Binding :
-*****************
-
-9.Event Binding :
-*****************
-
-
-10.Template Reference Variables :
-*********************************
+################################################### 6.Property Binding ####################################################################
 
 
 
-11.Two Way Binding :
-********************
+################################################### 7.Class Binding ####################################################################
 
 
-12.ngIf :
-*********
+
+################################################### 8.Style Binding ####################################################################
 
 
-13.ngSwitch :
-*************
+################################################### 9.Event Binding ####################################################################
 
 
-14.ngFor :
-**********
 
-15.Component Interaction :
-**************************
-
-16.Pipes :
-**********
-
-17.Services :
-*************
-
-18.Dependency Injection :
-*************************
+################################################### 10.Template Reference Variables ###################################################
 
 
-19.Using Service :
-******************
-
-20.HTTP and Observables :
-*************************
 
 
-21.Fetch Data Using HTTP :
-**************************
+################################################### 11.Two Way Binding ####################################################################
 
 
-22.HTTP Error Handling :
-************************
+
+################################################### 12.ngIf #####################################################################################
 
 
-23.Routing and Navigation :
-***************************
+
+################################################### 13.ngSwitch ####################################################################################
+
+
+
+################################################### 14.ngFor #####################################################################################
+
+
+################################################### 15.Component Interaction ####################################################################
+
+
+################################################### 16.Pipes #####################################################################################
+
+
+################################################### 17.Services #####################################################################################
+
+
+################################################### 18.Dependency Injection ####################################################################
+
+
+
+################################################### 19.Using Service #################################################################################
+
+
+################################################### 20.HTTP and Observables ####################################################################
+
+
+
+################################################### 21.Fetch Data Using HTTP ####################################################################
+
+
+
+################################################### 22.HTTP Error Handling ####################################################################
+
+
+
+################################################### 23.Routing and Navigation ####################################################################
+
 
 
 
 24.Wild Card Route and Redirecting Routes :
-*******************************************
+###########################################
+
 So far we Have Created 2 Routes in Our Application. i.e Departments and Employees.
 The Problem is User tries to Navigate to the Route and is Not Configured then the Application throws an Error.
 
@@ -176,34 +323,31 @@ In Case of Empty Path Redirect to Another Route ad that Can be Directed by Using
 pathMatch parameter with Value "prefix" will not Work because any URL will be Empty by Default.
 
 
-25.Route Parameters :
-*********************
-
-
-26.ParamMap Observable :
-************************
-
-27.Optional Route Parameters :
-******************************
+################################################### 25.Route Parameters ####################################################################
 
 
 
-28.Relative Navigation :
-************************
+################################################### 26.ParamMap Observable ####################################################################
+
+
+################################################### 27.Optional Route Parameters ##############################################################
 
 
 
-29.Child Routes :
-*****************
+
+################################################### 28.Relative Navigation ####################################################################
 
 
+
+
+################################################### 29.Child Routes ###########################################################################
 
 
 
 
 
-30.Angular 6 Features :
-***********************
+################################################### 30.Angular 6 Features ####################################################################
+
 
   
 
