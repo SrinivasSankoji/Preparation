@@ -64,6 +64,9 @@ git reset --hard HEAD
 --Switch One Branch to Another Branch
 git checkout replica
 
+-- Force Push
+git push -f git@heroku.com:<heroku repo name>.git
+
 
 
 

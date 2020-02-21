@@ -1,25 +1,32 @@
 1.Introduction														[18-FEB-2019]  (Done)										
 2.Getting Started													[18-FEB-2019]  (Done)							
 3.Hello World														[18-FEB-2019]  (Done)
-4.Components														[15-FEB-2019]  (Done)
-5.Interpolation														[15-FEB-2019]  ()
-6.Property Binding													[15-FEB-2019]  ()
+
+4.Components Detail													[19-FEB-2019]  (Done)
+5.Interpolation														[19-FEB-2019]  (Done)
+6.Property Binding													[19-FEB-2019]  (Done)
+
 7.Class Binding														[15-FEB-2019]  ()
 8.Style Binding														[15-FEB-2019]  ()
-9.Event Binding														[15-FEB-2019]  ()
-10.Template Reference Variables										[15-FEB-2019]  ()
-11.Two Way Binding													[15-FEB-2019]  ()
-12.ngIf																[15-FEB-2019]  ()
-13.ngSwitch															[15-FEB-2019]  ()
-14.ngFor															[15-FEB-2019]  ()
-15.Component Interaction											[15-FEB-2019]  ()
-16.Pipes															[15-FEB-2019]  ()
-17.Services															[15-FEB-2019]  ()
-18.Dependency Injection												[15-FEB-2019]  ()
-19.Using Service													[15-FEB-2019]  ()
-20.HTTP and Observables												[15-FEB-2019]  ()
-21.Fetch Data Using HTTP											[15-FEB-2019]  ()
-22.HTTP Error Handling												[15-FEB-2019]  ()
+
+9.Event Binding														[20-FEB-2019]  (Done)
+10.Template Reference Variables										[20-FEB-2019]  (Done)
+11.Two Way Binding													[20-FEB-2019]  (Done)
+
+12.ngIf																[19-FEB-2019]  ()
+13.ngSwitch															[19-FEB-2019]  ()
+14.ngFor															[19-FEB-2019]  ()
+
+15.Component Interaction											[21-FEB-2019]  (Done)
+16.Pipes															[21-FEB-2019]  ()
+
+17.Services															[21-FEB-2019]  (Done)
+18.Dependency Injection												[21-FEB-2019]  ()
+19.Using Service													[21-FEB-2019]  ()
+20.HTTP and Observables												[21-FEB-2019]  ()
+21.Fetch Data Using HTTP											[21-FEB-2019]  ()
+22.HTTP Error Handling												[21-FEB-2019]  ()
+
 23.Routing and Navigation											[15-FEB-2019]  ()
 24.Wild Card Route and Redirecting Routes							[15-FEB-2019]  ()
 25.Route Parameters													[15-FEB-2019]  ()
@@ -36,7 +43,7 @@ It is a JavsScript Framework used to Build Client Side Applications.
 Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
 Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
 By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
-Angular has so Many Features Like Validation Routing which Makes Development Quicker and Faster.
+Angular has so Many Features Like Routing which Makes Development Quicker and Faster.
 Angular Even Provides Support For Unit Testing.
 Angular is From Google and uses MicroSoft Typescript Language.
 
@@ -56,7 +63,7 @@ Once the Node is Installed,In the Command Prompt run the Command
 	node -v
 	npm -v
 	
-Install the Angular CLI i.e COmmand Line Interface.
+Install the Angular CLI i.e Command Line Interface.
 Angular CLI generates the Building Block of Angular Application by Typing the Commands.
 Angular CLI makes the Development Quicker and Easier by Following Best Practices.
 To Install Angular CLI 
@@ -94,7 +101,7 @@ To Check the Application run the command
 Flow of Execution :
 -------------------
 Angular apps are Modular in Nature i.e Angular Application is a Collection of Many Individual Modules.
-Every Module represents the Feature area in the Application and Angular Modules are Imported and exported.
+Every Module represents the Feature area in the Application and also Angular Modules are Imported and exported.
 
 	user Module 
 	Admin Module
@@ -109,7 +116,7 @@ Component controls a Portion of the view in the Browser.
 					
 				***							
 				***
-	-->			***   		Main Component
+	-->			***   		Main Board
 	Side Bar	***			Component 3
 	Component 2	***
 				
@@ -123,13 +130,12 @@ Modules can also have Services i.e a Class that Contains the Business Logic of a
 In Addition to Components and Services,Module can also have Few more Pieces of the Angular Application.
 Modules can be exported and Imported as and when required and  render the view to the Browser.
 
-
 File Structure :
 ----------------
 package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules 
 which are required for an Angular Application to Work.
 
-Packages listed in the development dependencies are installed when we run the command ng new Helloworld.
+Packages listed in the development dependencies are installed when we run the command ng new Helloworld.(While Creating an Angular Application)
 All the Packages are get installed in the Node Modules.
 We also have some of the Scripts used to run the Application
 	
@@ -137,15 +143,15 @@ We also have some of the Scripts used to run the Application
 		
 src Folder :
 ------------
-In the src Folder we have 	main.ts which is the Entry Point for an Angular Application.
+In the src Folder we have main.ts which is the Entry Point for an Angular Application.
 we also have app Folder inside src folder.
 app Folder contains app.module.ts which is the Root Module for an Angular Application.
-app Folder contains app.component.ts Root Component for an Angular Application.
+app Folder also contains app.component.ts which is the Root Component for an Angular Application.
 
 
 Flow of Execution :
 -------------------
-When we run the Command ng serve to start the an Angular Application,Execution starts from main.ts.
+When we run the Command i.e ng serve to start an Angular Application,Execution starts from main.ts.
 In main.ts it Bootstrap the App Module and App Module in turn BootStrap the App Component.
 App Component has two Things 
 HTML template to represent the view in the Browser and Class to Control the Logic of that Particular view.
@@ -168,12 +174,12 @@ Whenever we Change the Value in the Class it Will Automatically Reflect in the B
 Note :
 Component renders Different Portions of the View in the Browser.
 
-######################################################## 4.Components  ######################################################################
+######################################################## 4.Component Detail  ######################################################################
 
 
 	Template   +  Class  + Meta Data
 	
-Template Represents the View and is Created by Using HTML.
+Template to Represent the View in the Browser and is Created by Using HTML.
 Template will be the User Interface for the Application.
 
 Class supports the view in the Browser and is Created by Using TypeScript.
@@ -203,7 +209,7 @@ To the Above Class we have Attached the Meta Data in the form of Component Decor
 @Component tells the Angular that this is not the Plain Class and is a Angular Component.
 
 @Component attaches the  Meta Data to the Class Right Below it.
-Component Decorator Pattern Contains both the Meta Data and the Template Which Represents the View.
+Component Decorator Pattern Contains both the Meta Data and the Class Supports the View.
 As Part of Meta Data We Have 
 
 Selector 
@@ -212,7 +218,7 @@ StyleUrls
 
 Selector  :
 -----------
-Selector is a Custom HTML Tag that can be used in HTML to Represent that this is Angular Component.
+Selector is a Custom HTML Tag that can be used in HTML to Represent that this is an Angular Component.
 When we Specify the Selector in the HTML, Angular Renders the Component Template in its View.
 
 	<Body>
@@ -223,15 +229,208 @@ But what Exactly Here is the Template for this Component and can be Specified by
 TemplateUrl Points to the HTML File that Represents the Component.
 In app.component.html we have title and title is the Property in the Class app.component.ts
 
+To Create a New Component from Angular CLI we use the Command
 
+	ng g c Helloworld
+	
+When we run the above Command,New Files will be Created and it will Update the App Module.
+In the app Folder,Hellworld Folder has been Created and it Contains HTML,CSS,TS and spec.ts Files.
+When we Create a Any Component,Angular Should aware of this i.e In the App Module import the Helloworld Component 
+and add it to the Declarations Array.
 
+Declaration Array Contains all the Components used by the Application.
+To include this Component in the HTML,Just add Custom HTML tag that Represents the Selector in app.component.html
+
+	<app-helloworld></app-helloworld>
+
+Changes that can be made to any of the Component are selector and templateUrl.
+There are 3 ways to Specify the Selector :
+
+1.selector:'app-test'
+
+	It can be Used as a Custom HTML Tag.
+	<app-test></app-test>
+
+2.selector : '.app-test'
+	
+	Begin the Selector with . and that can be used as a Class Name in Custom HTML Tag.
+	<div class="app-test">
+	</div>
+	
+3.selector:'[app-test]'
+	We can also have the Selector between the Square Brackets.
+	This can be Used as an Attribute in custom HTML Tag.
+	<div app-test>
+	</div>
+	
+Template :
+----------
+We have a TemplateUrl Property in the Component Decorator that Points to the File that Contains the HTML.
+
+Case 1 :
+--------
+In Any Component it is Possible to Specify the Template InLine i.e in the Same Type Script File.
+For that Purpose we use template Property.
+
+	template : '<div>InLine Template</div>'
+	
+case 2: 
+-------
+Some Times our In line Template Might Span Couple of Lines and For that We Make use of ` Symbol.
+
+	template:	`
+				<div>
+				InLine Template
+				</div>
+				`
+Similar is the Case with Styles.
 
 ################################################### 5.Interpolation ####################################################################
 
+Generate the Component Named Interpolation
 
+In the Interpolation Component Use the In line Template  i.e
+
+  @Component({
+  selector: 'app-interpolation',
+  template: `
+  <h2>
+  Welcome Interpolation
+  </h2>            
+  `,
+  styleUrls: ['./interpolation.component.css']
+  })
+  
+ 
+Change the app.component.html i.e add the interpolation Selector in app.component.html.
+The Problem here is Interpolation is Dynamic.
+Here Interpolation May Come From Web Service or Web API and Value may Change at any Point of Time.
+To Make the Value Dynamic,we Create the New Property in the Class.
+
+  public name ="Interpolation by Srinivas";
+  
+we get the Value into HTML Template by Using Interpolation i.e {{}}
+
+  Welcome {{name}}
+  
+By Using Interpolation we are asking Angular to evaluate the Content inside the curly braces and display the Value
+when the Content is rendered to the Browser.
+
+Consider the Scenario {{2+2}}
+Angular Evaluates the Expression and Displays the Result in the Browser. i.e 4
+
+Consider the Scenario  {{"Welcome " + name}} Here it Performs String Concatenation.
+
+Consider the Scenario where we are Using Java Script Properties and Methods in the Curly Braces.
+	<h2>{{name.length}}</h2> 
+
+	 <h2>{{name.toUpperCase()}}</h2> 
+	 
+Apart from Built in Java Script Methods we can also use User Defined Methods defined in Component Class.
+	
+  <h2>{{greetUser()}}</h2>  
+  greetUser()
+  {
+    return "Hello " +this.name;
+  }
+
+Drawback of Interpolation :
+---------------------------
+
+We cannot Assign expression to a Variable using Interpolation i.e  
+	
+	 <h2>{{a=2+2}}</h2> 
+
+and in the Browser we get Compile Time Error saying Template Parsing Error.
+
+Another Drawback of Interpolation is access to Global Variables like Window,Screen and so on.
+
+	<h2>{{window.location.href}}</h2>
+	
+Here Template is Not aware of Global Java Script Variables.
+To access the Global Variable,Create the Local Variable and assign the Global Variable to it.
+	public siteUrl=window.location.href;
+	<h2>{{siteUrl}}</h2>
 
 ################################################### 6.Property Binding ####################################################################
 
+Before Understanding Property Binding it is Important to understand the Difference Between HTML Attribute and DOM Property.
+
+	@Component({
+  selector: 'propertybinding',
+  template: `
+  <h2> welcome {{topicName}}
+  <input type="text" value="vishwas"></input>
+  `,
+  styleUrls: ['./propertybinding.component.css']
+	})
+
+Inspect the Element in the Browser then 
+
+$0.getAttribute('value') --> Vishwas
+$0.value --> Vishwas
+
+If I Change the Text from Vishwas to CodeEvolution in the Input Element of the Browser 
+
+$0.getAttribute('value') --> Vishwas
+$0.value --> CodeEvolution
+
+Attribute Property Wont Change where as the Value Property Changes.
+
+Points To Remember :
+--------------------
+Attributes and Property Both are Not Same.
+Attributes are Defined by Using HTML where as Property are Defined by Using Document Object Model.
+Attributes initialize DOM Properties and they are Done and Attribute Value Cannot Change Once they are Initialized.
+Property Value However Can Change.
+With Property Binding It Looks Like we are Binding the Property to the HTML Property But Actually In Angular We are Binding the Property to the DOM Element.
+
+Consider the Example :
+Create a Property in the Class i.e 
+	
+	public myId="TestId";
+	
+We need to bind this myId to the id Property of the HTML input Element.
+If we inspect the Element id is set to TestId which is the Value of the myId Property.
+	
+We can also use Interpolation for Property Binding.
+
+	<input id="{{myId}}" type="text" value="vishwas">
+	
+Problem with Interpolation is that it Only works with String Elements.
+There are Some HTML Properties that we may need to bind to.
+Consider an Example of disabled attribute of an HTML Element and by Default it is set to False.
+
+	  <input disabled="true" id="{{myId}}" type="text" value="vishwas">
+Then the Value in the Text Box is disabled.
+
+	<input disabled="false" id="{{myId}}" type="text" value="vishwas">
+	Here Setting the Value to false has No Effect and Still Value in the Text Box is disabled.
+	
+Here the Problem is disabled attribute expects the boolean value and it is getting the String Value.
+Even Interpolation does not work here.
+
+	<input disabled="{{false}}" id="{{myId}}" type="text" value="vishwas">
+	
+Solution here is to use Property Binding.
+
+	<input [disabled]="false" id="{{myId}}" type="text" value="vishwas">
+	Now the Value in the Text Box is Enabled.
+	
+from the Above cases Hard Coding true or false is Not Recommended and use the Property Variable.
+Declare the Variable 
+
+	public isDisabled=false;
+
+	<input [disabled]="isDisabled" id="{{myId}}" type="text" value="vishwas">
+	
+	
+There is an Alternate Syntax for Property Binding instead of []
+We can also use bind-attributeName
+
+Example :
+
+	 <input bind-disabled="isDisabled" id="{{myId}}" type="text" value="Srinivas">
 
 
 ################################################### 7.Class Binding ####################################################################
@@ -243,18 +442,132 @@ In app.component.html we have title and title is the Property in the Class app.c
 
 ################################################### 9.Event Binding ####################################################################
 
+Till Now we Have seen the Data Flow from Component Class to HTML Template.
+Any Update to the Class Property will Reflect the HTML Template.
+Sometimes to respond to User Events Like Mouse Click ,Key Board Events We Need the Data Flow in the Other Direction as Well i.e 
+From HTML Template to Component Class.
+To Capture Events we Use Event Binding.
+
+	<button>Greet</button>
+
+When the User Clicks on the Button we want to Display Hello User in the Console.
+Here we need to Listen to the Click event on the Button.
+events in Angular are enclosed within ()
+
+	<button (click)="onclick()">Greet</button>
+	 
+	onclick()
+	{
+    console.log("Welcome Event Binding");
+	}
+	
+It is also Possible to set the Properties to the Events i.e Click Events.
+
+	Declare the Variable with Default Value
+	public name ="";
+	 
+	Define the Function 
+	onclick()
+    {
+    this.name="Srinivas Event Binding";
+    }
+	
+	In the HTML Template 
+	{{name}}
+	
+Some times we may also want to know the information about the event itself.
+For example Information about the Click Event.
+For that Simply Send the Parameter in the Event Handler. i.e $event and is a Special Variable for Angular.
+
+	 <button (click)="greetEvent($event)">Greet</button>
+	 
+	greetEvent(event)
+	{
+		console.log(event)
+	}
+	
+In the Console It displays all the Information About the Event.
+Finally Some times when we are Working with Event Binding,Separate Event Handler May Not Be Necessary.
+In the Above Example Method Body is Very Small.
+We can have this as Template Statement in the HTML itself.
+
+<button (click)="name ='Template Statement'">Greet</button> {{name}}
+
+Event Binding Captures Some Event and Displays the Information about the Event.
 
 
 ################################################### 10.Template Reference Variables ###################################################
 
+When there is a User Interaction We Might Want Some Data to be Flown form View to the Class to Perform Some Operation.
+We May Require a Value from input Field to Perform validations.
+To Easily Access DOM Elements and their Properties Angular Provides Template Reference Variables.
+  
+Consider the Scenario
 
+  <input type="text">
+  <button>Log</button>
+  
+What we want to achieve here is what ever the User Enters the Text we need to Display it into the Console.
+For that we Need to bind Click Event to the Button.
+Declare the Event for Click and Pass the Value that User has Entered.
+The way we pass the User Entered Text is by Using Template Reference Variables.
 
+	<input #userInput type="text">
+	
+	<button (click)="logMessage(userInput.value)">Log</button> {{input}}
+
+	public logMessage(value)
+	{
+    this.input=value;
+	}
+
+Case : When we pass only userInput then input Element is Passed.
 
 ################################################### 11.Two Way Binding ####################################################################
 
+When ever we Want to Work with Angular Forms,Model and View are in Sync.Otherwise Data Might not be Consistent.
+	Consider 	View has User name and Password.
+				Class Has User name and Password.
+Whenever User Updates input Controls  Model and Property Should Automatically Receive those Values.
+Similarly When there is an Update in the Model or Property Value,View Should Automatically Reflect the Updated Value.
+This Can be Achieved by Using Two Way Binding.
+Two Way Binding allows us to Update the Property and at the Same Time Display the Value of the Property.
+We can achieve two way Binding by Using ngModel Directive.
 
+	<input type="text">
+	{{name}}
+	
+	public name="";
+	
+Here Whenever User Enters Some Text in the Text Box,Automatically it has to be Displayed in the Browser.
+From the Above Code Does Not Work and we need to use ngModel Directive.
+Angular is Not Aware of ngModel Directive because it is in Separate module Called Forms Module.
+
+
+Add Forms Module in app.module.ts 
+
+	import { FormsModule} from '@angular/forms'
+
+and add it to the imports Array 
+	
+	FormsModule
+
+	<input [(ngModel)]="name" type="text">  {{name}}
+	
 
 ################################################### 12.ngIf #####################################################################################
+
+Structural Directives can bu Used to add or Remove HTML Elements from the DOM.
+3 Common Built in Structural Directives are 
+
+	ngIf
+	ngSwitch
+	ngFor
+	
+ngIf and ngSwitch can be Used to Conditionally render the HTML Elements.
+ngFor is used to render the List of Elements.
+
+
 
 
 
@@ -267,14 +580,131 @@ In app.component.html we have title and title is the Property in the Class app.c
 
 ################################################### 15.Component Interaction ####################################################################
 
+From the Last few Examples we are Working on Some Component and that Component is Nested inside app Component.
+Here app Component is the Parent Component and the Other Component is the Child Component.
+Some times we may get a Requirement of Two Components need to Interact with Each Other.
+Parent Component might Send some data to the Child Component similarly Child Component send some data to the Parent Component.
+Here Components interact with each other using @Input and @Output Decorator.
+Using @Input Decorator Child Component will accept input from the Parent Component.
+Similarly Using @Output Decorator Parent Component will accept the data from the Child Component.
+Using @Output Decorator Child will send some events to the Parent Component to indicate Something.
+
+Consider the Scenario :
+
+Case 1 :
+--------
+Parent Component Send some data to the Child Component i.e name 
+and in the Child Component display the name Send by the Parent Component.
+To Send the Data from Parent Component to Child Component i.e app Component to parentchild Component.
+
+Create Variable in the app Component i.e 
+	
+		public name="Srinivas Sankoji";
+
+In the app.component.html where we bind the Child Component i.e 
+we include the Child Component Selector in the Parent Component HTML.
+
+	 <parentchild [parentDate]="name"></parentchild>
+	 
+Now Declare the Same Variable in the Child Component that we Have Declared in the Parent Component.
+
+Here In the Child Component We Need to Provide Information that the Variable is Not a Normal Variable
+and We are Receiving it from the Parent Property.
+This can be Done by Using @Input Decorator.
+
+		 @Input() public parentData;
+		 
+		 <div>
+		 <h2>{{"Hello "+parentData}}</h2>
+		 </div>
+	
+Some times we have a Requirement of Using Different Name which is Coming from Parent Component.
+In this Case we Use alias Name of @Input Decorator.
+
+		 @Input('parentData') public name;
+
+Case 2: 
+-------
+Child Component Send some Data to Parent Component.
+
+In Case of Parent to Child Component Interaction,Parent Component HTML have the Child Component Selector 
+So that we Can Easily Bind the Parent Component Data to the Child Component.
+Where as In the Child Component HTML We Don't have Parent Component Selector.
+The Way a Child Component Sends the Data to the Parent Component is by Using Events.
+
+Create an Event by Using EventEmitter Class so that We Can send an Event to the Parent.
+
+	 public childEvent= new EventEmitter(); 
+	 
+To Send the Child Component Data to the Parent Component we use @Output Decorator.
+
+	@Output() public childEvent= new EventEmitter();
+
+Now We have Added an Event and Fire this Event on Button Click.
+
+	<button (click)="sendEvent()">Send Event</button>
+	
+	sendEvent()
+	{
+    this.childEvent.emit("Hi Parent From Child");
+	}
+
+Now the Event is Emitted from the Child Component.
+We Need to Capture in the Parent Component.
+
+	<parentchild (childEvent)="message=$event" [parentData]="name"></parentchild>
+
+Also Declare the Variable in the Parent Component i.e public message="";
+
 
 ################################################### 16.Pipes #####################################################################################
+
+Pipes allows us to Transform the Data before Displaying it to the View.
+
+
+
 
 
 ################################################### 17.Services #####################################################################################
 
+Lets Create a Employee List and Employee Detail Component and include it in the app.component.html.
+In Employee List Component we have an Array of Employees.
+	
+	public employees=[
+    {"id":22,"name":"srinivas","salary":22000.00},
+    {"id":27,"name":"Nandini","salary":27000.00},
+    {"id":23,"name":"Bhaumik","salary":23000.00}
+  ]
+
+In the Employee List Component to render the Name of Employees  
+
+	<ul *ngFor ="let employee of employees" >
+      <li>{{employee.name}}</li>
+    </ul>
+	
+To get the Employee name in the Employee Detail Component We have to Write the Same Code Again.
+Here we are Violating the Principle of  DRY Principle i.e Do Not Repeat Your Self and Single Responsibility Principle.
+Here Component Class Should have Only One Responsibility i.e To Control the View Logic.
+In Our Case It is also Responsible For Creating and Employee Array in Employee List and Employee Detail Component.
+
+The Solution is Service and Advantage of Services are
+Class with Specific Service
+To Share the Data Across the Multiple Components
+To Implement Business Logic
+To Connect with Database.
+
+We Can Implement Services by Using Dependency Injection.
 
 ################################################### 18.Dependency Injection ####################################################################
+
+Dependency Injection can be Implemented in 3 Ways
+
+1.Code Without DI and its drawbacks
+2.DI as Design Pattern
+3.DI as Framework
+
+1.Code Without DI and its drawbacks :
+-------------------------------------
 
 
 
