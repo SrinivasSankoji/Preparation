@@ -1,53 +1,149 @@
-1.Introduction														[18-FEB-2019]  ()
-2.Unit Introduction													[18-FEB-2019]  ()
-3.What is Java Script                                               [18-FEB-2019]  ()
-4.Java Script as Scripting Language                                 [18-FEB-2019]  ()
-5.Why Java Script                                                   [18-FEB-2019]  ()
-6.Thoughts on Java Script                                           [18-FEB-2019]  ()
-7.History Of Java Script                                            [18-FEB-2019]  ()
-8.Setting up Java Script                                            [18-FEB-2019]  ()
-9.Variable Declaration                                              [18-FEB-2019]  ()
-10.Number Primitive Type                                            [18-FEB-2019]  ()
-11.String and Boolean                                               [18-FEB-2019]  ()
-12.Understanding Undefined                                          [18-FEB-2019]  ()
-13.understanding null                                               [18-FEB-2019]  ()
-14.Difference Undefined and null                                    [18-FEB-2019]  ()
-15.Types Summary                                                    [18-FEB-2019]  ()
-16.typeof Operator                                                  [18-FEB-2019]  ()
-17.Type Coercion and == Operator                                    [18-FEB-2019]  ()
-18.Type Coercion Summary                                            [18-FEB-2019]  ()
-19.Objects                                                          [18-FEB-2019]  ()
-20.Object Literal                                                   [18-FEB-2019]  ()
-21.Object Characteristics Summary                                   [18-FEB-2019]  ()
-22.Dot and Bracket Notations                                        [18-FEB-2019]  ()
-23.Difference Dot and Bracket                                       [18-FEB-2019]  ()
-24.Nested Objects                                                   [18-FEB-2019]  ()
-25.Revisiting == For Objects                                        [18-FEB-2019]  ()
-26.Revisiting Undefined vs null                                     [18-FEB-2019]  ()
-27.Deleting Properties                                              [18-FEB-2019]  ()
-28.Introducing Arrays                                               [18-FEB-2019]  ()
-29.Java Script Arrays                                               [18-FEB-2019]  ()
-30.Wrapper Objects                                                  [18-FEB-2019]  ()
-31.Functions                                                        [18-FEB-2019]  ()
-32.Argument Counts                                                  [18-FEB-2019]  ()
-33.Return Values                                                    [18-FEB-2019]  ()
-34.Function Expressions                                             [18-FEB-2019]  ()
-35.Anonymous Functions                                              [18-FEB-2019]  ()
-36.Function as Arguments                                            [18-FEB-2019]  ()
-37.Function on Objects                                              [18-FEB-2019]  ()
-38.this Keyword                                                     [18-FEB-2019]  ()
-39.Code Exercise                                                    [18-FEB-2019]  ()
-40.Exercise Solution                                                [18-FEB-2019]  ()
-41.Default Function Arguments                                       [18-FEB-2019]  ()
-42.Unit Summary                                                     [18-FEB-2019]  ()
-43.Array Methods                                                    [18-FEB-2019]  ()
-44.Array For each Method                                            [18-FEB-2019]  ()
-45.Reading Assignment                                               [18-FEB-2019]  ()
-46.Next Steps                                                       [18-FEB-2019]  ()
+1.What is Java Script                                               [21-FEB-2019]  (Done)
+2.Why Java Script                                                   [21-FEB-2019]  (Done)
+3.Setting up Java Script                                            [21-FEB-2019]  (Done)
+
+4.Variable Declaration                                              [18-FEB-2019]  ()
+5.Number Primitive Type                                            	[18-FEB-2019]  ()
+6.String and Boolean                                               	[18-FEB-2019]  ()
+7.Understanding Undefined                                          	[18-FEB-2019]  ()
+8.understanding null                                               	[18-FEB-2019]  ()
+9.Difference Undefined and null                                    	[18-FEB-2019]  ()
+10.Types Summary                                                    [18-FEB-2019]  ()
+11.typeof Operator                                                  [18-FEB-2019]  ()
+12.Type Coercion and == Operator                                    [18-FEB-2019]  ()
+13.Type Coercion Summary                                            [18-FEB-2019]  ()
+14.Objects                                                          [18-FEB-2019]  ()
+15.Object Literal                                                   [18-FEB-2019]  ()
+16.Object Characteristics Summary                                   [18-FEB-2019]  ()
+17.Dot and Bracket Notations                                        [18-FEB-2019]  ()
+18.Difference Dot and Bracket                                       [18-FEB-2019]  ()
+19.Nested Objects                                                   [18-FEB-2019]  ()
+20.Revisiting == For Objects                                        [18-FEB-2019]  ()
+21.Revisiting Undefined vs null                                     [18-FEB-2019]  ()
+22.Deleting Properties                                              [18-FEB-2019]  ()
+23.Introducing Arrays                                               [18-FEB-2019]  ()
+24.Java Script Arrays                                               [18-FEB-2019]  ()
+25.Wrapper Objects                                                  [18-FEB-2019]  ()
+26.Functions                                                        [18-FEB-2019]  ()
+27.Argument Counts                                                  [18-FEB-2019]  ()
+28.Return Values                                                    [18-FEB-2019]  ()
+29.Function Expressions                                             [18-FEB-2019]  ()
+30.Anonymous Functions                                              [18-FEB-2019]  ()
+31.Function as Arguments                                            [18-FEB-2019]  ()
+32.Function on Objects                                              [18-FEB-2019]  ()
+33.this Keyword                                                     [18-FEB-2019]  ()
+34.Code Exercise                                                    [18-FEB-2019]  ()
+35.Exercise Solution                                                [18-FEB-2019]  ()
+36.Default Function Arguments                                       [18-FEB-2019]  ()
+37.Unit Summary                                                     [18-FEB-2019]  ()
+38.Array Methods                                                    [18-FEB-2019]  ()
+39.Array For each Method                                            [18-FEB-2019]  ()
+40.Reading Assignment                                               [18-FEB-2019]  ()
+41.Next Steps                                                       [18-FEB-2019]  ()
 
 
-1.Introduction :
-****************
+****************************************** 1.What is Java Script	***************************************************
+
+JavaScript is a Light weight,Interpreted,Object Oriented Language with First Class Functions and is best known as Scripting Language for Web Pages.
+But it is used in Many Non Browser Environment as Well.
+
+Light Weight :
+--------------
+Light Weight Language is Nothing But Easy to Implement and a Small Memory Foot Print.
+
+Interpreted :
+-------------
+Interpreted Means No Compilation and Instructions are executed Directly.
+JavaScript Compilation is Different from other Programming Languages Compilation.
+In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run that Code.
+In C++ Object Binary got Generated where as In case of Java Byte Code got Generated.
+We execute that Generated Code.
+In Case of JavaScript there is no Intermediate File and the Code will be Executed Directly.
+
+Java Script is Object Oriented :
+--------------------------------
+When we write the Code we Model the Code around Objects.
+What are the Steps needed to Solve the Problem.
+When we think about a Problem we Break it into the Objects with data and Functionality.
+
+First Class Functions :
+-----------------------
+Functions can be used as Values.
+We can Assign Function to a Variable.
+We can pass Function as Parameters to Method Calls.
+
+Java Script as Scripting Language :
+-----------------------------------
+In Scripting Language instructions are Written for a runtime Environment.
+Best Example of Scripting Language is Shell Script.
+We have Commands that we can run on Runtime Environment.
+Here Runtime Environment Means Operating System.
+
+We can also Bundle the Command and make them Execute as a File.
+This becomes a Script that the Shell Executes at Runtime.
+
+Here Runtime Environment is Browser.
+Browser renders the HTML and runs the JavaScript.
+
+When we make any Request to the Web Application Browser makes the Request to the Web Server.
+Server Responds with Some HTML Content.
+HTML we get as Response travels over HTTP and receives as Piece of Text.
+Browser examines the Text and Convert them into Objects.
+Here Each Tag becomes an Object Tree.
+Tree Object refers to a DOM Tree.
+Browser Builds the DOM Tree and renders the View to the Browser. 
+
+Here HTML is a Static Language.
+However HTML Comes with JavaScript and JavaScript is a Dynamic Language.
+JavaScript has the ability to Manipulate the DOM Tree i.e
+
+New Nodes can be added to the DOM Tree,
+Removed form the DOM Tree or 
+Update the Existing DOM Tree etc.
+Browser Reflects the view based on the DOM Tree.
+JavaScript is a way to execute Dynamic Functionality on Browser.
+
+****************************************** 2.Why Java Script	***************************************************************
+
+JavaScript can be Used For :
+
+Client Side Web Development Because JavaScript is very Often used on Browser.
+Native JavaScript
+JQuery Library lets us Modify the DOM Tree on the Client Side.
+Advanced Client Side Application Framework Like Angular,React,Ember,Backbone etc.
+We can also Implement Server Side Web Development by Using NodeJs,Express .
+
+We Can also build Browser extensions with JavaScript For Example Plug Ins.
+There are Some Frameworks that allows to Build Desktop and Mobile Applications with JavaScript.
+JavaScript is gaining Popularity with IOT Applications.
+
+JavaScript is Standardized as ECMAScript.
+
+****************************************** 3.Setting up Java Script  **********************************************************
+
+Web Browser is a Runtime Environment for the JavaScript.
+Recommended to use FireFox with ScratchPad Development Tool.
+
+Install bebel 6 Plug In Visual Studio Code and run the Java Script as node hello.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

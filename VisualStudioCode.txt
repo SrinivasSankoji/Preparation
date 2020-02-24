@@ -1,0 +1,40 @@
+
+1.Adding Java Extension to VIsual Studio Code :
+
+	Language Support For Java by Red Hat and 
+	Debugger For Java
+
+	Instead of the above two Micro Soft has BUndled Java Extension Pack.
+
+
+2.To set Up the Environment Variable For Java 
+
+	If is already in Class path By Default it will get in the Visual Code Terminal.
+	java -version
+
+3.Run the Java Application
+
+   javac Hello.java
+   java Hello
+   
+4.Debug the Java Application
+  
+  Select the BreakPoint
+  Select Debug on Left Hand Side and Select Debug
+  
+5.Setting Up Maven to Visual Studio Code
+
+  Add the Maven Configuration to ClassPath.
+  run the Command mvn -version in Terminal
+  
+6.Add the Lombok Dependency to Visual Studio Code
+  
+	
+ 
+  
+  
+ 
+  
+
+
+ 

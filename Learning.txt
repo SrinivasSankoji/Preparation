@@ -2,23 +2,30 @@
 
 				YEE MANISHIKI EE MAJILI OO... PAI VAADU CHUPISTAADU....NUVVU KORUKUNTE MAATRAM ...DORIKEDHE KAADU ANTAADU.....
 								
-bhaumik@23
-nandini@27   HDFC
-srinu@36     JIO	
+bhaumik@23 Laptop
+Chary@36   HDFC
+chary@36     JIO	
 
 022629255555 ion Internet
 
+MVN Command :
+-----------
+mvn install:install-file -Dfile=D:\\Software\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
+
 Santosh :
 *********
-
 Spring Boot
 JSF
 Tiles
 
 Coding Practice :
 *****************
-https://hackernoon.com/		
+https://hackernoon.com/	
 
+Quick Start
+Videos
+Book
+Project	
 
 ----------------------- Preparation ---------------------------
 OOPS												[]()
@@ -1186,9 +1193,11 @@ Generics
 Java Script
 Lambda Expressions
 Functional Interface
+Design Patterns
 System Design
 
 
+Reactive Programming
 Spring Boot Retry
 Ehcache
 Database Last Operation

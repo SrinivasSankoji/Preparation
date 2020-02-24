@@ -21,10 +21,10 @@
 16.Pipes															[21-FEB-2019]  ()
 
 17.Services															[21-FEB-2019]  (Done)
-18.Dependency Injection												[21-FEB-2019]  ()
-19.Using Service													[21-FEB-2019]  ()
-20.HTTP and Observables												[21-FEB-2019]  ()
-21.Fetch Data Using HTTP											[21-FEB-2019]  ()
+18.Dependency Injection												[21-FEB-2019]  (Done)
+19.Using Service													[21-FEB-2019]  (Done)
+20.HTTP and Observables												[21-FEB-2019]  (Done)
+21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
 22.HTTP Error Handling												[21-FEB-2019]  ()
 
 23.Routing and Navigation											[15-FEB-2019]  ()
@@ -39,7 +39,7 @@
 
 ################################################### 1.Introduction	####################################################################
 
-It is a JavsScript Framework used to Build Client Side Applications.
+It is a JavsScript Framework and used to Build Client Side Applications.
 Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
 Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
 By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
@@ -70,7 +70,7 @@ To Install Angular CLI
 
 	npm install -g @angular/cli
 	
-To Check Whether the Angular CLI is Installed or Not Run the Command
+To Check Whether the Angular CLI is Installed or Not,Run the Command
 
 	ng - v
 
@@ -84,11 +84,11 @@ In Visual Studio Code we have an Integrated Terminal where we can run the Comman
 	
 To Create a New Angular Project use the Command 
 	
-	ng new Helloworld
+	ng new Angular
 
-Here the Above Command takes time to run and once it is Completed it Will Create the Folder Helloworld.
-Now Change the Application to Helloworld
-	cd Helloworld
+Here the Above Command takes time to run and once it is Completed it Will Create the Folder Angular.
+Now Change the Application to Angular
+	cd Angular
 
 To run the Application run the Command 
 
@@ -135,15 +135,18 @@ File Structure :
 package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules 
 which are required for an Angular Application to Work.
 
-Packages listed in the development dependencies are installed when we run the command ng new Helloworld.(While Creating an Angular Application)
-All the Packages are get installed in the Node Modules.
-We also have some of the Scripts used to run the Application
+Packages listed in the development dependencies are installed when we run the command 
+
+	ng new Helloworld (While Creating an Angular Application)
+	
+All the Packages are installed in the Node Modules.
+We also have some of the Scripts that can be used to run the Application
 	
 		ng serve
 		
 src Folder :
 ------------
-In the src Folder we have main.ts which is the Entry Point for an Angular Application.
+In the src Folder we have main.ts which is an Entry Point for an Angular Application.
 we also have app Folder inside src folder.
 app Folder contains app.module.ts which is the Root Module for an Angular Application.
 app Folder also contains app.component.ts which is the Root Component for an Angular Application.
@@ -151,10 +154,14 @@ app Folder also contains app.component.ts which is the Root Component for an Ang
 
 Flow of Execution :
 -------------------
-When we run the Command i.e ng serve to start an Angular Application,Execution starts from main.ts.
-In main.ts it Bootstrap the App Module and App Module in turn BootStrap the App Component.
+When we run the Command i.e 
+
+	ng serve 
+
+to start an Angular Application,Execution starts from main.ts.
+main.ts Bootstrap the App Module and App Module in turn BootStrap the App Component.
 App Component has two Things 
-HTML template to represent the view in the Browser and Class to Control the Logic of that Particular view.
+HTML template to represent the view in the Browser and Class that Controls the Logic of that Particular view.
 
   import {Component } from '@angular/core'
   @Component({
@@ -179,7 +186,7 @@ Component renders Different Portions of the View in the Browser.
 
 	Template   +  Class  + Meta Data
 	
-Template to Represent the View in the Browser and is Created by Using HTML.
+Template represents the View in the Browser and is Created by Using HTML.
 Template will be the User Interface for the Application.
 
 Class supports the view in the Browser and is Created by Using TypeScript.
@@ -191,7 +198,7 @@ We Have a Class that Contains a Method to Show or Hide Element based on the Valu
 
 A Component can also have Meta Data Attached to it.
 This is the Information that the Angular needs to decide whether Particular Class is a a Angular Component or Not.
-Meta Data is Defined Using Decorator and is a Feature in TypeScript.
+Meta Data is defined Using Decorator and is a Feature in TypeScript.
 
 Decorator is an Annotation that Provides information about the Class Attached to it.
 For Component we use Component Decorator.
@@ -557,7 +564,7 @@ and add it to the imports Array
 
 ################################################### 12.ngIf #####################################################################################
 
-Structural Directives can bu Used to add or Remove HTML Elements from the DOM.
+Structural Directives can be Used to add or Remove HTML Elements from the DOM.
 3 Common Built in Structural Directives are 
 
 	ngIf
@@ -604,7 +611,7 @@ Create Variable in the app Component i.e
 In the app.component.html where we bind the Child Component i.e 
 we include the Child Component Selector in the Parent Component HTML.
 
-	 <parentchild [parentDate]="name"></parentchild>
+	 <parentchild [parentData]="name"></parentchild>
 	 
 Now Declare the Same Variable in the Child Component that we Have Declared in the Parent Component.
 
@@ -667,7 +674,7 @@ Pipes allows us to Transform the Data before Displaying it to the View.
 
 ################################################### 17.Services #####################################################################################
 
-Lets Create a Employee List and Employee Detail Component and include it in the app.component.html.
+Lets Create a Employee List Component and Employee Detail Component and include it in the app.component.html.
 In Employee List Component we have an Array of Employees.
 	
 	public employees=[
@@ -687,8 +694,8 @@ Here we are Violating the Principle of  DRY Principle i.e Do Not Repeat Your Sel
 Here Component Class Should have Only One Responsibility i.e To Control the View Logic.
 In Our Case It is also Responsible For Creating and Employee Array in Employee List and Employee Detail Component.
 
-The Solution is Service and Advantage of Services are
-Class with Specific Service
+The Solution is Service and Advantage of Services are :
+A Class with Specific Service
 To Share the Data Across the Multiple Components
 To Implement Business Logic
 To Connect with Database.
@@ -706,22 +713,241 @@ Dependency Injection can be Implemented in 3 Ways
 1.Code Without DI and its drawbacks :
 -------------------------------------
 
+	Class Engine 
+	{
+		constructor(parameter)
+	}
+	
+	Class Tyree 
+	{
+		constructor(parameter)
+	}
+	
+	Class Car 
+	{
+		Engine;
+		Tyree;
+		constructor()
+		{
+			this.Engine=new Engine();
+			this.Tyree=new Tyree();
+		}
+	}
 
+To Create an Object of Car We need to pass the Parameter of Engine Type.	
+The Problem with this Approach is If Engine has Extra Parameter then Car wont Create the Object.
+Similar is the Case with Tyree.
+Here the Code is Not Flexible because If Dependencies has Changed Dependent has to be Changed.
+Also we get the Same kind of Object every Time.
 
-################################################### 19.Using Service #################################################################################
+2.DI as Design Pattern :
+-----------------------
+In Case of DI as Design Pattern a Class receives its Dependencies from external resources rather than craeting itself.
+
+	Class Car 
+	{
+		Engine;
+		Tyree;
+		constructor(Engine engine,Tyree tyree)
+		{
+			this.Engine=engine;
+			this.Tyree=tyree;
+		}
+	}
+	
+Problem with Dependency Injection as a Design Pattern is as a Developer We Have to Manually Create the 
+Dependency and Dependent Objects.
+If the Number of Objects increases,Maintenance will be Difficult for the Developer.
+Solution is DI as a Framework.
+
+3.DI as Framework :
+-------------------
+DI Framework has Something Called Injector which registers all the Dependencies.
+Injector acts like a Container for all the Dependencies.
+DI Framework Manages all the Dependencies and makes the Developer Job More Simple.
+
+If the Component Depends on Number of Services,We Register all the Services with Injector.
+When the Component is Initialized all the Dependencies will be initialized Automatically.
+
+Create Employee Service Class
+Register with Injector
+Declare as a Dependency in Employee List and Employee Detail Component.
+
+################################################### 19.Using Service ###########################################################################
+
+Define Employee Service 
+
+Step 1 :
+To generate the Service run the Command 
+
+	ng g s employee
+
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class EmployeeService 
+	{
+	  constructor() { }
+	}
+	
+This Service is Responsible to Provide Employee Data.
+
+	 getEmployees()
+	{
+    return
+      [
+      {"id":22,"name":"srinivas","salary":22000.00},
+      {"id":27,"name":"Nandini","salary":27000.00},
+      {"id":23,"name":"Bhaumik","salary":23000.00}
+      ]
+	}
+	
+To use this Service in the Component Declare as an Array i.e 
+
+	public employees =[];
+	
+Step 2 :
+Now Register the Service with Angular.
+If we don't register the Service,then service is Like Regular Class in Angular.
+There are Multiple places where we can register the Service and is Important because 
+Angular has Hierarchical Dependency Injection System.
+
+If we Register in Employee List Component then it is applicable to Employee List Component and its Dependent Components.
+If We Register in app Component it is applicable to its dependent Components and Not applicable for other Modules.
+Here Each Module is a Feature area in our Application.
+It is better to register the Service in app Module.
+
+If we Register the Service in app Module,Components under the App Module can use the Service.
+To Register the Service we use the Provider Meta Data.
+
+	add the Service to the Providers Meta Data.
+	 providers: [EmployeeService]
+	
+import the Employee Service 
+	
+	import {EmployeeService} from './employee.service';
+
+Step 3:
+Declare as Dependency in the Employee List and Employee Detail Component.
+Dependency is specified in the Constructor.
+
+	constructor(private _employeeservice: EmployeeService) 
+	{ 
+	}
+	
+and we are going to use EmployeeService in ngOnInit().
+It is a Life Cycle Method and will be Called when Component has been initialized.
+
+	 ngOnInit() {
+    this.employees=this._employeeservice.getEmployees();
+	}
+	
+@Injectable Decorator :
+-----------------------
+Injectable tells Angular that this Service might itself has Injected Dependencies.
+So If we want to inject service into another Service Injectable Decorator is Must.
+
+Right Now Employee Service does  not have any Dependencies and Injectable Decorator is not Necessary.
+But Employee Service Might have Dependencies in the Future and in that Case Injector is Mandatory.
+It is Recommended to add Injectable Decorator as soon as When we create the Service.
+
+Here we are Not Using Injectable Decorator in Employee List and Employee Detail Classes and 
+these Class Still Makes use of the Employee Service.
+This is because of Component Decorator and it tells Angular that It May or May not Use Dependency Injection System.
+But For Service We don't have Component Decorator.
+If we remove Injectable then the Service becomes plain typescript Class.
+Injectable is required Only for Service and Not For Component.
 
 
 ################################################### 20.HTTP and Observables ####################################################################
 
+In Real World Application we need to fetch the data from the Web Server / Web Service.
+We make an HTTP request to the API.
+The Response we get from the HTTP is Observable.
 
+Here Employee Service makes an HTTP Request to the API and we get the Observable as Response.
+We need to cast an Observable into Array of Employees and return the same to the Component.
+
+Observable is Nothing but Sequence of Items that arrive Asynchronously Over Time.
+But from HTTP call we get Single Item instead of Sequence of Item.
+Here Single item is nothing But HTTP Response.
+
+An Observable is Nothing But an HTTP Response that arrives Asynchronously.
+Observable is not in format that we can use Readily in our Application.
+Once we receive the Observable we need to convert into an Employee Array.
+After Conversion the data is ready to Provide for the Component.
+We Only Provide the data for the Component that Subscribe the Service.
 
 ################################################### 21.Fetch Data Using HTTP ####################################################################
 
+Steps to Fetch the Data Using HTTP 
 
+1.Get Request from Employee Service
+2.Receive the Observable and Cast it into Employee Array
+3.Subscribe to the Observable from the Component
+4.Assign the Employee to the Local Variable
+
+Step 1:
+-------
+Till Angular 4 we are Using HTTP Module But from Angular 5 we are Using HTTPClient Module.
+In the app Module Add the HTTP Client Module and it to the Import Statement
+By Importing HTTP Client Module we are also Registering the HTTP Service with Angular Injector.
+
+Here we don't have Web Service Now.Lets Create a New Folder named Data inside assets and add the Employee JSON.
+We call the data from this File Instead of Actual Service.
+
+To use the HTTP Service in the Employee Service,Declare the Dependency in the Employee Service Constructor.
+
+	constructor(private http:HttpClient) { }
+	
+	 getEmployees()
+	{
+    return this.http.get(this.url);
+	}
+	
+Step 2:
+-------	
+Here get() returns an Observable and For Our Application Observable needs to be cast into Format that Represents an Employee Array.
+For that we need to Create an Employee Interface.
+In the app Folder create a New File employee.ts and then add the code for an Employee Interface		
+	
+	app -> employee.ts
+	
+	export interface IEmployee
+	{
+    id:number,
+    name:string,
+    salary:number
+	}
+	
+Then in the Service Change the return type of Service.
+
+	 getEmployees():Observable<IEmployee[]>
+	{
+    return this.http.get<IEmployee[]>(this.url);
+	}
+	
+Step 3 :
+--------
+Subscribe the Observable from the Component and assign them to a Local Variable.
+
+	public employees=[];
+	
+	constructor(private employeeservice:EmployeeService) { }
+
+	ngOnInit(): void {
+    this.employeeservice.getEmployees().subscribe(data =>this.employees=data);
+	}
 
 ################################################### 22.HTTP Error Handling ####################################################################
 
+As we know that Observable returns an HTTP Response and we need to Handle the Error returned by the Observable.
+Here we make use of Catch Operator.
 
+We need to import catch Operator and catch Operator takes Method as an Argument.
+
+	import 'rxjs/add/operator/catch';
+	
 
 ################################################### 23.Routing and Navigation ####################################################################
 
