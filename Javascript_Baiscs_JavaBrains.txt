@@ -1,17 +1,18 @@
 1.What is Java Script                                               [21-FEB-2019]  (Done)
 2.Why Java Script                                                   [21-FEB-2019]  (Done)
 3.Setting up Java Script                                            [21-FEB-2019]  (Done)
+4.Variable Declaration                                              [24-FEB-2019]  (Done)
+5.Number Primitive Type                                            	[24-FEB-2019]  (Done)
+6.String and Boolean                                               	[24-FEB-2019]  (Done)
 
-4.Variable Declaration                                              [18-FEB-2019]  ()
-5.Number Primitive Type                                            	[18-FEB-2019]  ()
-6.String and Boolean                                               	[18-FEB-2019]  ()
-7.Understanding Undefined                                          	[18-FEB-2019]  ()
-8.understanding null                                               	[18-FEB-2019]  ()
-9.Difference Undefined and null                                    	[18-FEB-2019]  ()
-10.Types Summary                                                    [18-FEB-2019]  ()
-11.typeof Operator                                                  [18-FEB-2019]  ()
-12.Type Coercion and == Operator                                    [18-FEB-2019]  ()
-13.Type Coercion Summary                                            [18-FEB-2019]  ()
+7.Understanding Undefined                                          	[25-FEB-2019]  (Done)
+8.understanding null                                               	[25-FEB-2019]  (Done)
+9.Difference Undefined and null                                    	[25-FEB-2019]  (Done)
+10.Types Summary                                                    [25-FEB-2019]  (Done)
+11.typeof Operator                                                  [25-FEB-2019]  (Done)
+12.Type Coercion and === Operator                                   [25-FEB-2019]  (Done)
+13.Type Coercion Summary                                            [25-FEB-2019]  (Done)
+
 14.Objects                                                          [18-FEB-2019]  ()
 15.Object Literal                                                   [18-FEB-2019]  ()
 16.Object Characteristics Summary                                   [18-FEB-2019]  ()
@@ -21,6 +22,8 @@
 20.Revisiting == For Objects                                        [18-FEB-2019]  ()
 21.Revisiting Undefined vs null                                     [18-FEB-2019]  ()
 22.Deleting Properties                                              [18-FEB-2019]  ()
+
+
 23.Introducing Arrays                                               [18-FEB-2019]  ()
 24.Java Script Arrays                                               [18-FEB-2019]  ()
 25.Wrapper Objects                                                  [18-FEB-2019]  ()
@@ -53,9 +56,9 @@ Light Weight Language is Nothing But Easy to Implement and a Small Memory Foot P
 
 Interpreted :
 -------------
-Interpreted Means No Compilation and Instructions are executed Directly.
+Interpreted Means No Compilation is required and Instructions are executed Directly.
 JavaScript Compilation is Different from other Programming Languages Compilation.
-In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run that Code.
+In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run Execute the Generated Code.
 In C++ Object Binary got Generated where as In case of Java Byte Code got Generated.
 We execute that Generated Code.
 In Case of JavaScript there is no Intermediate File and the Code will be Executed Directly.
@@ -87,7 +90,7 @@ Browser renders the HTML and runs the JavaScript.
 
 When we make any Request to the Web Application Browser makes the Request to the Web Server.
 Server Responds with Some HTML Content.
-HTML we get as Response travels over HTTP and receives as Piece of Text.
+HTML we get as Response travels over HTTP and receives as Piece of HTML Text.
 Browser examines the Text and Convert them into Objects.
 Here Each Tag becomes an Object Tree.
 Tree Object refers to a DOM Tree.
@@ -107,7 +110,7 @@ JavaScript is a way to execute Dynamic Functionality on Browser.
 
 JavaScript can be Used For :
 
-Client Side Web Development Because JavaScript is very Often used on Browser.
+Client Side Web Development Because JavaScript is very often used on Browser.
 Native JavaScript
 JQuery Library lets us Modify the DOM Tree on the Client Side.
 Advanced Client Side Application Framework Like Angular,React,Ember,Backbone etc.
@@ -124,7 +127,221 @@ JavaScript is Standardized as ECMAScript.
 Web Browser is a Runtime Environment for the JavaScript.
 Recommended to use FireFox with ScratchPad Development Tool.
 
-Install bebel 6 Plug In Visual Studio Code and run the Java Script as node hello.js
+Install bebel 6 Plug In Visual Studio Code and run the Java Script as 
+
+	node hello.js
+
+****************************************** 4.Variable Declaration ******************************************
+
+In Any Language when we need to hold a Variable we need to declare that Variable.
+In JavaScript we declare the Variable by using var keyword.
+
+	var value1=42;
+	var value2="JavaScript";
+	var value3=true;
+	
+In JavaScript we don't have information about the type of the Variable.
+There is no PreDeclaration of Type Required in order to Create a Variable.
+
+	var value1;
+	value1="JavaScript";
+	
+******************************************	5.Number Primitive Type ******************************************
+
+Once we declare the Variable we can assign Primitive Types in JavaScript.
+Primitive Types in JavaScript are
+
+	Number
+	String 
+	Boolean
+	undefined
+	null
+	
+Number in JavaScript are Double Precision 64 Bit Format IEEE 754 Values.
+We don't have Integer,Long Data Types in JavaScript.
+
+	var a=10.2;
+	console.log(a);
+
+	var b="Welcome JavaScript";
+	console.log(b);
+
+	var c=true;
+	console.log(c);
+	
+****************************************** 6.String and Boolean ******************************************
+
+String are Sequence of Unicode 16 Bit Characters in JavaScript.
+There is no Character keyword in JavaScript.
+Everything in JavaScript is a String with a Sequence of Character.
+
+Boolean Value Can be Either True or False.
+
+	var d="Hello"+c;
+	console.log(d);// Hellotrue
+	
+There is no Type Information associated with JavaScript.
+
+	a="Hello Java";
+	
+In Another Language It is Going to give Compile Time Error saying Assigning Variable to Another Type.
+A Variable can Hold any Value at any Point of Time.
+This Behavior in JavaScript is Called Loose Typing.
+
+****************************************** 7.Understanding Undefined   ******************************************
+
+When we want a New Variable we Declare the Variable.
+
+	var value;  --> 1
+	
+Definition is Nothing But assigning a value to the Variable.
+
+	value="Hello";  -->2
+	
+	var value="Hello";  -->3
+	
+The value between Declaration and Definition is undefined.
+If we don't define any value to the Variable then by default it is undefined.
+JavaScript has defined Separate Type Called Undefined for Variables that has been not defined.
+                                      	
+****************************************** 8.understanding null   ***********************************************
+
+null is another Data Type in JavaScript that Contains one Possible Value i.e null.
+
+	var value=null;
+	
+Until we assign a Value to the Variable Default Value is Undefined.
+If we assign a null Value to the Variable the it Displays the Value as null.
+
+****************************************** 9.Difference Undefined and null    ******************************************  
+
+In Some cases we get the Requirement of Default Value for Property Should be null or NA instead of undefined.
+For Example MiddleName Should be null or NA instead of undefined 
+Age can be undefined instead of null Value.
+    
+****************************************** 10.Types Summary ***********************************************************    
+
+No Need to Declare Variable Type
+Same Variable Can be assigned to Value of Different Types
+No Scoping Information in the Variable Declaration
+
+	In Java we have default --> private --> protected --> public which binds with the Class.
+	
+variables and values can be Interrogated.
+                            
+****************************************** 11.typeof Operator  ********************************************************   
+
+variables and values can be Interrogated i.e 
+
+In Java or any other language a Variable can Contain only one Type and we can identify by Looking into the Declaration.
+But In case of JavaScript we cannot identify the Type of Variable till Runtime.
+It is Important to identify the type of Variable using typeof operator.
+
+	console.log(typeof d);
+	                     
+****************************************** 12.Type Coercion and == Operator  ******************************************   
+
+Type Coercion in JavaScript is Similar to Typecasting in JavaScript.
+Consider the Variable has defined with a Value and some times interpreter has to do the Automatic Type Conversion for us
+in order to make the Operation Work.
+
+This is Usually Called Type Coercion.
+
+	var e=123+"4"; // 1234 in the form of String
+
+Here JavaScript performs the Type Coercion internally and Converts into String.
+
+
+== Operator :
+-------------
+
+Single = performs an assignment Operation
+
+== performs Comparison Operator.
+
+It Performs an Operation Similar to any other Programming Language.
+
+	var f=10;
+	var g="10";
+
+	if(f===g)
+	{
+		console.log(true);
+	}
+	else
+	{
+		console.log(false);  
+	}
+
+In case of == Operator If any of the Value is capable of Type Coercion then it will perform the Type Coercion and Compares the Values.
+If both the Values are same after conversion then it returns the result.
+
+=== Operator :
+--------------
+
+=== Operator will not perform the Type Coercion and compares the Values.
+Then in this case it returns false.
+                          
+****************************************** 13.Type Coercion Summary ***************************************************
+
+We can pass a Value to the if Condition in JavaScript i.e 
+
+	var f=10;
+	if(f)
+	{
+    console.log(true);
+	}
+	
+The above code won't work in java because a has to be Boolean.
+Here if a has non zero value it returns true otherwise returns false.
+In case of  String if the value is not null and not empty then it returns true otherwise returns false.
+
+JavaScript is Flexible with Typing
+Values of all types has an associated boolean Value
+Always use === Operator for Precise Check.
+
+
+******************************************  14.Objects     ***********************************************************    
+                                                 
+
+****************************************** 15.Object Literal *********************************************************
+
+                                                   
+****************************************** 16.Object Characteristics Summary   ***************************************  
+
+                            
+****************************************** 17.Dot and Bracket Notations      *****************************************
+
+                                
+****************************************** 18.Difference Dot and Bracket    ******************************************
+
+                                   
+****************************************** 19.Nested Objects      ****************************************************
+
+                                             
+****************************************** 20.Revisiting == For Objects    *******************************************
+
+                                   
+****************************************** 21.Revisiting Undefined vs null   *****************************************
+
+                                  
+****************************************** 22.Deleting Properties         ********************************************   
+                                
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
 
 
 

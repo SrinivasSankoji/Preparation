@@ -1,4 +1,14 @@
 
+Shortcut Keys :
+
+ Ctrl + Shift P  			Search
+ Ctrl+P 					Open the File
+ Ctrl+Shift K 				Delete the Line
+ 
+
+
+
+
 1.Adding Java Extension to VIsual Studio Code :
 
 	Language Support For Java by Red Hat and 
@@ -28,6 +38,25 @@
   run the Command mvn -version in Terminal
   
 6.Add the Lombok Dependency to Visual Studio Code
+
+7.Creating Spring Boot Application in Visual Studio Code
+
+  Ctrl + Shift P  ()
+  Select Maven Project
+  Select GroupId
+  Select ArtifactId
+  Add Dependencies
+  
+  Ctrl+P to Open the File
+  
+To run the Spring Boot Application
+	
+  In the Left Corner We Have Spring Boot DashBoard
+  Right Click on the Project
+  Start or Debug
+  
+  
+  
   
 	
  
