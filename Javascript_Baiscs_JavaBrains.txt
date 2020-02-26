@@ -4,7 +4,6 @@
 4.Variable Declaration                                              [24-FEB-2019]  (Done)
 5.Number Primitive Type                                            	[24-FEB-2019]  (Done)
 6.String and Boolean                                               	[24-FEB-2019]  (Done)
-
 7.Understanding Undefined                                          	[25-FEB-2019]  (Done)
 8.understanding null                                               	[25-FEB-2019]  (Done)
 9.Difference Undefined and null                                    	[25-FEB-2019]  (Done)
@@ -12,21 +11,19 @@
 11.typeof Operator                                                  [25-FEB-2019]  (Done)
 12.Type Coercion and === Operator                                   [25-FEB-2019]  (Done)
 13.Type Coercion Summary                                            [25-FEB-2019]  (Done)
+14.Objects                                                          [26-FEB-2019]  (Done)
+15.Object Literal                                                   [26-FEB-2019]  (Done)
+16.Object Characteristics Summary                                   [26-FEB-2019]  (Done)
+17.Dot and Bracket Notations                                        [26-FEB-2019]  (Done)
+18.Difference Dot and Bracket                                       [26-FEB-2019]  (Done)
+19.Nested Objects                                                   [26-FEB-2019]  (Done)
+20.Revisiting == For Objects                                        [26-FEB-2019]  (Done)
+21.Revisiting Undefined vs null                                     [26-FEB-2019]  (Done)
+22.Deleting Properties                                              [26-FEB-2019]  (Done)
+23.Introducing Arrays                                               [26-FEB-2019]  (Done)
+24.Java Script Arrays                                               [26-FEB-2019]  (Done)
+25.Wrapper Objects                                                  [26-FEB-2019]  (Done)
 
-14.Objects                                                          [18-FEB-2019]  ()
-15.Object Literal                                                   [18-FEB-2019]  ()
-16.Object Characteristics Summary                                   [18-FEB-2019]  ()
-17.Dot and Bracket Notations                                        [18-FEB-2019]  ()
-18.Difference Dot and Bracket                                       [18-FEB-2019]  ()
-19.Nested Objects                                                   [18-FEB-2019]  ()
-20.Revisiting == For Objects                                        [18-FEB-2019]  ()
-21.Revisiting Undefined vs null                                     [18-FEB-2019]  ()
-22.Deleting Properties                                              [18-FEB-2019]  ()
-
-
-23.Introducing Arrays                                               [18-FEB-2019]  ()
-24.Java Script Arrays                                               [18-FEB-2019]  ()
-25.Wrapper Objects                                                  [18-FEB-2019]  ()
 26.Functions                                                        [18-FEB-2019]  ()
 27.Argument Counts                                                  [18-FEB-2019]  ()
 28.Return Values                                                    [18-FEB-2019]  ()
@@ -301,32 +298,205 @@ Values of all types has an associated boolean Value
 Always use === Operator for Precise Check.
 
 
-******************************************  14.Objects     ***********************************************************    
-                                                 
+******************************************  14.Objects     ***********************************************************  
+
+We can write Code and Model the Programming Structure using Objects.
+But JavaScript it is Not Class Based Object Oriented Programming Language.
+In Java We Need a Class to define an Object,Class Forms the Template and all the Objects forms the Copies of the Template.
+JavaScript Objects are free form and they are not bound to any Class.
+we can create an Object in JavaScript in Multiple Ways :
+
+Creating an Object InLine :
+---------------------------
+
+	var myObject={};
+	console.log(myObject);
+	
+We can add or remove properties at any Point of Time because JavaScript does not have ant Structure.
+An Object typically Consists of Data and Functionality.
+Data is Referred to as Properties and Functionality is referred to as Methods.
+To add a new Property to the myObject i.e 
+
+	myObject.property1="Hello";
+	
+To access the Property inside the Object
+
+	console.log(myObject.property1);
+	
+We can also access the Object Property Using [] i.e
+
+	console.log(myObject["property1"]);
+	
 
 ****************************************** 15.Object Literal *********************************************************
 
+Creating an Object Using Literal :
+----------------------------------
+Another way of Defining Objects is by Using Object Literal.
+Instead of Creating Object in line We can create the Object upfront.
+
+	var myObject2={
+        "property1":"Welcome",
+        "property2":36
+		};
+
+In JavaScript there are no Accessor Limitations unlike Java.
+If we access the Property which does not Exist then we get undefined as Response.
                                                    
 ****************************************** 16.Object Characteristics Summary   ***************************************  
 
-                            
+Objects in JavaScript are free form and they are Not Bound to a Class.
+Object Literal Notation i.e {} to create an Object.
+Object Properties can be Accessed Directly and there is No Concept of Scoped Variables in JavaScript.
+New Properties can be added or removed to the Object Directly.
+Object can have Methods.
+                           
 ****************************************** 17.Dot and Bracket Notations      *****************************************
 
+Dot Notation can be used to access the Property of an Object.
+We can also access the property of an Object by Using Bracket Notation i.e [].
+	
+	console.log(myObject2["property2"]);
                                 
 ****************************************** 18.Difference Dot and Bracket    ******************************************
 
-                                   
+Bracket Notation is used in Certain Scenarios where Dot Notation does not work.
+If the Property name is a reserved word or invalid identifier(Property Name Starts with Number),Property Name is Dynamic().
+
+	var myObject2={
+        "property1":"Welcome",
+        "property2":36,
+        "1":"Number"
+	};
+
+	console.log(myObject2.1);// Give Compile Time Error and we use Bracket Notation.
+
+Always Variable name should start with String and Not a Number or Special Character.
+If the Property name is Dynamic i.e while writing the code We have no Idea what the Property is then in this case we use Bracket Notation.
+
+When we have the Bracket Notation it reduces the Opportunity for the Engine to Optimize.
+When we have the Dot Notation Engine knows the code upfront and it knows what the Variable is .
+                                 
 ****************************************** 19.Nested Objects      ****************************************************
 
-                                             
+In Most Programming Languages an Object is a reference to the Memory Location of the Heap.
+
+	var myObject3={};
+	
+myObject3 points to the Memory Location of the Browsers Memory of the Heap.
+we can have another Variable that points to the same Object.
+We can also have a property in an Object that contains an Object.
+
+	var myObject2={
+        "property1":"Java",
+        "property2":36,
+        "property3":"JavaScript",
+        "custom":{
+            "property4":"Angular",
+            "property5":"SpringBoot",
+            "property6":"TypeScript"
+        }
+	};
+	
+To Access the Property of an Inner Object we use Dot Notation.
+
+	console.log(myObject2.custom.property4);
+	
+To create a New Property inside the Inner Object 
+
+	myObject2.custom.property7="Design Patterns";
+	
+we can also Bracket Operator to get the Inner Object Property.
+
+	console.log(myObject2.custom["property4"]);
+
+	
 ****************************************** 20.Revisiting == For Objects    *******************************************
+
+=== Operator is the more Precise way of Checking the Equality when they are Primitives.
+	
+	var myObj4=myObject3;
+	
+	console.log(myObj4==myObject3);
+	
+Also Object Variables are equal when they point to the Same Memory.
 
                                    
 ****************************************** 21.Revisiting Undefined vs null   *****************************************
 
+undefined is when the value is not set for a Property where as null is when an empty value set for the Property.
+when we are referring to a Property that does not exist then we get the result as undefined.
                                   
 ****************************************** 22.Deleting Properties         ********************************************   
+
+To remove the Property of an Object 
+
+	myObject2.custom.property6=undefined;
+	
+But if we try to access the Object we get the property6 as undefined.
+
+	{ property1: 'Java',
+  property2: 36,
+  property3: 'JavaScript',
+  custom:
+   { property4: 'Angular',
+     property5: 'SpringBoot',
+     property6: undefined } }
+	 
+To remove the Property of an Object we use the keyword delete.
+
+	delete myObject2.custom.property6;
+	 
+	{ property1: 'Java',
+	  property2: 36,
+	  property3: 'JavaScript',
+	  custom: { property4: 'Angular', property5: 'SpringBoot' } }
+
                                 
+****************************************** 23.Introducing Arrays     *************************************************
+
+when we have Sequence of Values that we have to access in index based we use Arrays.
+Arrays in JavaScript can be defined as 
+
+	var myArray=[100,200,300];
+	
+Here an Array is Define InLine by using []
+To Access the Element of the Array are 
+	
+	console.log(myArray[0]);
+
+When we access the element in an Array where the index is not present we get the Result as undefined.
+
+	console.log(myArray[3]);
+	
+To add an Element to the Array 
+
+	myArray[3]=400;
+	
+                                 
+****************************************** 24.Java Script Arrays Internal    ******************************************
+
+If we want to find out the length of an Array we use length property 
+	
+	console.log(myArray.length);
+
+An Array is actually an Object.
+when we are accessing the length of an Array Actually we are Accessing the length Property of an Array Object.
+Arrays in JavaScript are stored as key value pair  where Array index are Keys and Array Values are the Values.
+Here Dot Notation will not work because If the key is Number the Dot Notation wont work and we have to use Bracket Notation.
+We Access the Array Elements by Using Bracket Notation.
+
+Here we are Not Passing String to a Bracket Notation and Passing Only Number.
+This is Because JavaScript will Perform the Type Coercion Automatically i.e converts the Number to String.
+There is No Limitation in adding the Element with any Index i.e 
+
+	myArray[300]=400;
+	
+length Property counts the index of the Array i.e Max Element of the Index and returns 401.
+We can also add any Value to the Array as an Index but Here length Property won't Change.
+                                          
+****************************************** 25.Wrapper Objects       ******************************************                                           								
+
 
 
 
