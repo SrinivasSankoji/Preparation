@@ -2,7 +2,351 @@ Modifying Variable Inside Lambda :
 ----------------------------------
 When we try to Modify the Variable inside Lambda Expression we get Compile Time Error Saying
 A Variable inside Lambda Must be Final or Effective Final.
-
 A Keyword before a Variable Makes it Final and 
 No Final Keyword Before a Variable Makes it Effectively Final Provided we Never Change the Value.
+
+
+1.Introduction 													[27-FEB-2019]  (Done)
+2.Why Lambdas													[27-FEB-2019]  (Done)
+3.Functional vs Object Oriented Programming						[27-FEB-2019]  (Done)
+4.Passing Behavior in OOP										[27-FEB-2019]  (Done)
+5.Introducing Lambda Expressions								[27-FEB-2019]  (Done)
+6.Lambda Expressions Examples									[27-FEB-2019]  (Done)
+7.Interface Type												[27-FEB-2019]  (Done)
+8.Interface Implementation										[27-FEB-2019]  (Done)
+9.Type Inference												[27-FEB-2019]  (Done)
+10.Runnable using Lambdas										[27-FEB-2019]  (Done)
+11.Functional Interface											[27-FEB-2019]  (Done)
+
+12.Lambda Exercise												[27-FEB-2019]  ()
+13.Lambda Solution												[27-FEB-2019]  ()
+14.Using Function Interfaces									[27-FEB-2019]  ()
+15.More Function Interfaces										[27-FEB-2019]  ()
+16.Exception Handling in Lambda									[27-FEB-2019]  ()
+17..Exception Handling Approach									[27-FEB-2019]  ()
+18.Closures														[27-FEB-2019]  ()
+19.this															[27-FEB-2019]  ()
+20.Method References											[27-FEB-2019]  ()
+21.For Each Iteration											[27-FEB-2019]  ()
+22.Streams Introduction											[27-FEB-2019]  ()
+23.More About Streams											[27-FEB-2019]  ()
+24.Lambda Basics												[27-FEB-2019]  ()
+
+
+*************************************************    1.Introduction ******************************************************************
+
+Understanding Lambdas
+Using Lambdas
+Functional Interfaces
+Method References
+Collections Improvement
+
+************************************************* 2.Why Lambdas  *********************************************************************
+
+Lambdas Enables us to write Functional Programming.
+We get Readable and CoIncise Code.
+Easier to use API's and Libraries
+Enable Support For Parallel Processing.
+
+************************************************* 3.Functional vs Object Oriented Programming *****************************************
+
+Functional Programming enables us to write the Same Code as we do in Object Oriented Programming.
+Functional Programming makes the Code more Readable and Maintainable.
+Functional Programming can be used in certain Scenarios where we make the code more Readable.
+
+
+************************************************* 4.Passing Behavior in OOP	 **********************************************************
+
+Some of the Problems in Object Oriented Programming are 
+
+Everything is an Object and we cannot have piece of Code or Logic that exists in Isolation.
+It has to be a Part of object associated with it.
+While Developing the Code we need to think about Problems and Each Problem is associated with an Object.
+Consider the Scenario we need a function that returns a user name.
+To achieve this we need a class and Create an Object of that Class and then add the Function to it.
+
+Before Java 8
+	
+	public void greet()
+	{
+		System.out.println("Welcome Lambda");
+	}
+	
+To be More Generic Create an Interface 
+	
+	
+	public interface Greeting 
+	{
+	public void perform();
+	}
+	
+	@Override
+	public void perform() 
+	{
+		System.out.println("From Greeting Implementation");
+	}
+
+Now to call the greet Method we are Passing the Behavior to the greet Method.
+Here we can also call the greet() by creating an Object GreetingImpl.
+If we do the same every time it calls the Same GreetingImpl Implementation.
+	
+	public static void main(String[] args) 
+	{
+		GreetingDemo greetingDemo=new GreetingDemo();
+		GreetingImpl greetingImpl=new GreetingImpl();
+		greetingDemo.greet(greetingImpl);
+	}
+
+************************************************* 5.Introducing Lambda Expressions *************************************************
+
+From the above Scenario we are Passing the Behavior to call the Method.
+Here we are doing the extra work i.e we are passing the thing that has as a Behavior.
+Possible Solution is we can directly pass an Action rather than Class that Implements an Action.
+
+	public void greet(action)
+	{
+		action();
+	}
+	
+Lambdas allows us to create Functions which does not belong to any Class.
+Functions exists in isolation.
+These functions can be Treated as Values.
+
+Functions as Values :
+---------------------
+
+We can define a String in line i.e 
+
+	String name ="Srinivas";
+	
+when the above line got executed name Variable contains the Value Srinivas.
+Question is can we assign a block of code to a Variable and the value is block of code and not the actual Value.
+Wherever the variable has to be executed the piece of code has to be executed.
+We write the block of code in java using methods usually.
+Using Lambda we can pass function as a Value to a Variable and use that variable wherever it is Required.
+
+	
+	String name = public void perform() 
+				  { 
+					System.out.println("From Greeting Implementation");
+				  }
+
+Here the code does some extra things when a function is a part of class.
+whether the function is globally accessible or not.
+But if the function exists in isolation it does not make sense to declare it as public.
+public is not required because the function is accessible whoever has the variable.
+
+
+	String name = void perform() 
+				  { 
+					System.out.println("From Greeting Implementation");
+				  }
+
+when we assign a function to a Variable we can access that function using name of that variable.
+Method name is not required.
+
+	String name = void() 
+				  { 
+					System.out.println("From Greeting Implementation");
+				  }
+				  
+Java Compiler is smart enough that it identifies the return type by looking into the code.
+Here Return Type is Not Required.
+ 
+	String name = () -> 
+					  { 
+						System.out.println("From Greeting Implementation");
+					  }
+
+The above code is required in order to define the Lambda Expression but with an extra symbol.
+Now the Lambda Expression can be assigned to a Variable.
+If the Body of the Expression is just one Line we can remove the curly braces.
+
+	String name = () -> System.out.println("From Greeting Implementation");
+					  
+	
+*************************************************  6.Lambda Expressions Examples	************************************************* 
+
+	name = () -> System.out.println("Welcome Lambda Expression");
+
+Above Lambda Expression can be passed to a Method i.e 
+
+	greeting(name); 
+
+Here Lambda Expression can also be in line i.e 
+
+	greeting(() -> System.out.println("Welcome Lambda Expression"));
+	
+Functions are always not an Empty Parameters and it might contain Parameters,
+Consider the Example 
+
+	multipleby2 = public int multipleFunction(int a)
+				  {
+					return a*a;
+				  }
+	
+	//Remove Modifier
+	multipleby2 = int multipleFunction(int a)
+				  {
+					return a*a;
+				  }
+	//Remove Method Name			  
+	multipleby2 = int (int a)
+				  {
+					return a*a;
+				  }
+	//Remove Return Type			  
+	multipleby2 = (int a)
+				  {
+					return a*a;
+				  }
+	//Place the arrow Symbol
+	multipleby2 = (int a) -> return a*a;
+	
+If the body of the expression is just one line it removes the return statement.
+	
+	multipleby2 = (int a) -> a*a;
+	
+Lambda Expression to add two Numbers is  :
+	
+	addFunction =(int a,int b) -> (a+b);
+	
+Lambda Expression for divide Numbers is  :
+
+	safeDivideFunction=(int a,int b) -> a /b;
+	
+Here if the number is divided by zero then return zero.
+For this we need to add an if block and functions grown to more than one line.
+we can add curly braces.
+	
+	safeDivideFunction=(int a,int b) -> {
+	if(b==0) return 0;
+	a /b;
+	}
+	
+Lambda Expression for String length count is :
+
+	stringCountFunction = (String name) -> name.length();
+	
+								
+*************************************************  7.Interface Type	  *************************************************************** 
+
+public static void main(String[] args) 
+	{
+		GreetingDemo greetingDemo=new GreetingDemo();
+		GreetingImpl greetingImpl=new GreetingImpl();
+		greetingDemo.greet(greetingImpl);
+	}
+
+	greetingDemo.greet(greetingImpl); 
+	
+Change the above call to Functional Interface i.e 
+
+	myLambda = () -> System.out.println("From Greeting Implementation");
+	
+myLambda is a Variable that contains Lambda Expression and what is the return type of that.
+If the Function Type is executed then we need to provide the input type and return type for that function type.
+Here the solution is to create an interface for the Lambda Expression and
+create the same signature that the Lambda Expression Has.
+Lambda that accepts no argument and return type is void and we can give any name to the function.
+
+	interface myLambda
+	{
+		public void test();
+	}
+	
+	MyLambda myLambdaFunction = () -> System.out.println("From Greeting Implementation");
+	
+Here the Above Code Works and we wont get any compile time error.
+If we pass any parameter to the Lambda Expression or an Interface has Changed then it will give Compile Time Error.
+Here Name of the Interface and Method Name of the Interface does not Matter.
+What Matters here is If we define the Interface with some Name then we have to use that Name for the Variable Type for Lambda Expression.
+Method Signature of an Interface Method Should Match with Lambda Expression.
+We have Seen that an Interface that contains only One Method with No Parameters and return type is void.
+If we add one more method then Compiler gives an Error.
+Here Interface should contain only Method.
+
+											
+*************************************************  8.Lambdas vs Interface Implementation	***************************************************** 
+
+	Greeting greetingImpl=new GreetingImpl();  -> 1
+	
+	Greeting myLambdaFunction = () -> System.out.println("From Greeting Implementation");  --> 2
+	
+What is the difference between the above two Implementation.
+
+Step 1 Creates an Implementation of Greeting Interface and calls the Method.
+In Step 2 Lambda Expression behaves like an Implementation of Interface But actually we are having Function in line and not required 
+to have an Implementation Class to define the Function.
+
+In Step 1 it is not required to Create an Implementation Class for the Greeting and we can create an Anonymous Inner Class.
+
+	Greeting anonymousGreeting=new Greeting()
+									{
+										@Override
+										public void perform() {
+										System.out.println("From Greeting Implementation");
+										}
+									};
+	anonymousGreeting.perform();
+	
+Now Lambda Expression is Most of Like Creating Anonymous Inner Class in a Short cut way.
+But there are things which Inner class does which is different from Lambda Expressions.
+
+									
+*************************************************   9.Type Inference	************************************************************* 
+
+With Lambdas Java Compiler is doing some Type Inference which is very important in order to figure out what kind data that Lambda deals with.
+
+	StringLengthLambda stringLengthLambda = (String parameter) -> parameter.length(); 
+	System.out.println(stringLengthLambda.getLength("Bhaumik Sankoji"));
+	
+	interface StringLengthLambda
+	{
+		int getLength(String parameter);
+	}
+
+Here in the above case Compiler Matches the Lambda Expression with the Method parameter of the Interface.
+This Scenario is called Type Inference.
+
+Here Compiler also has more Information of the Interface.
+If we are Using Interface as the return type for the Lambda Expression then it is not required to pass the Type in the Lambda Expression.
+
+	StringLengthLambda stringLengthLambda = (parameter) -> parameter.length(); 
+
+If we have only one parameter and using interface as return type then it is not required to use Parenthesis.
+
+	StringLengthLambda stringLengthLambda = parameter -> parameter.length(); 
+
+											
+*************************************************  10.Runnable using Lambdas   ************************************************* ****
+
+There are no New Function Type for the Lambda Expression to refer and we use the Interface as the return type for the Lambda.
+If there is a new Function Type then we have to rewrite all the Places wherever the Inner Class is used.
+We can replace Anonymous Inner Class with Lambda Expression.
+In order to create a New Thread we have to create a new instance of Runnable and override the run().
+
+	Runnable runnable =() ->System.out.println("Anonymous Runnable");
+	runnable.run();
+	
+*************************************************  11.Functional Interface	************************************************* *******
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
