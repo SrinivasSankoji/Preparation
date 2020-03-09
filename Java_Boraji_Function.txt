@@ -1,0 +1,60 @@
+
+Lambdas and Functional Interfaces :
+***********************************
+Functional Interfaces
+Lambda Expressions
+Functional Descriptors
+Method References
+Constructor References
+
+Function Package :
+******************
+1.Function Package 
+2.Predicate Interface
+3.Consumer Interface
+4.Function Interface
+5.Supplier Interface
+
+Stream API :
+************
+Overview
+Filtering and Slicing
+Map and FlatMap
+Matching
+Find
+Infinite Streams
+Reducing with Streams
+
+Default Methods :
+*****************
+Overview
+Multiple Inheritance
+Multi Inheritance and Conflict
+Diamond Pattern
+Static vs Default Methods
+
+Collectors :
+************
+Collector Fundementals
+Grouping with Collectors
+Partitioning with Collectors
+Counting with Collectors
+Max/Min with Collectors
+Joining with Collectors
+
+Collection Enhancements :
+*************************
+Iterable.forEach and iterator.remove
+Collection.removeIf
+List.Sort and List.replaceAll
+MultiValue Map Methods
+
+Java 8 Comparators :
+********************
+
+
+
+
+
+
+

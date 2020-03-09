@@ -3,7 +3,7 @@ Modifying Variable Inside Lambda :
 When we try to Modify the Variable inside Lambda Expression we get Compile Time Error Saying
 A Variable inside Lambda Must be Final or Effective Final.
 A Keyword before a Variable Makes it Final and 
-No Final Keyword Before a Variable Makes it Effectively Final Provided we Never Change the Value.
+No Final Keyword Before a Variable Makes it Effectively Final Provided we never Change the Value.
 
 
 1.Introduction 													[27-FEB-2019]  (Done)
@@ -16,21 +16,22 @@ No Final Keyword Before a Variable Makes it Effectively Final Provided we Never 
 8.Interface Implementation										[27-FEB-2019]  (Done)
 9.Type Inference												[27-FEB-2019]  (Done)
 10.Runnable using Lambdas										[27-FEB-2019]  (Done)
-11.Functional Interface											[27-FEB-2019]  (Done)
+11.Functional Interface											[08-MAR-2019]  (Done)
+12.Lambda Exercise												[08-MAR-2019]  (Done)
+13.Lambda Solution												[08-MAR-2019]  (Done)
+14.Using Function Interfaces									[09-MAR-2019]  (Done)
+15.More Function Interfaces										[09-MAR-2019]  (Done)
 
-12.Lambda Exercise												[27-FEB-2019]  ()
-13.Lambda Solution												[27-FEB-2019]  ()
-14.Using Function Interfaces									[27-FEB-2019]  ()
-15.More Function Interfaces										[27-FEB-2019]  ()
 16.Exception Handling in Lambda									[27-FEB-2019]  ()
 17..Exception Handling Approach									[27-FEB-2019]  ()
-18.Closures														[27-FEB-2019]  ()
-19.this															[27-FEB-2019]  ()
-20.Method References											[27-FEB-2019]  ()
-21.For Each Iteration											[27-FEB-2019]  ()
-22.Streams Introduction											[27-FEB-2019]  ()
-23.More About Streams											[27-FEB-2019]  ()
-24.Lambda Basics												[27-FEB-2019]  ()
+
+18.Closures														[09-FEB-2019]  (Done)
+19.this															[09-FEB-2019]  ()
+20.Method References											[09-FEB-2019]  ()
+21.For Each Iteration											[09-FEB-2019]  ()
+22.Streams Introduction											[09-FEB-2019]  ()
+23.More About Streams											[09-FEB-2019]  ()
+24.Lambda Basics												[09-FEB-2019]  ()
 
 
 *************************************************    1.Introduction ******************************************************************
@@ -44,7 +45,7 @@ Collections Improvement
 ************************************************* 2.Why Lambdas  *********************************************************************
 
 Lambdas Enables us to write Functional Programming.
-We get Readable and CoIncise Code.
+We get Readable and Coincise Code.
 Easier to use API's and Libraries
 Enable Support For Parallel Processing.
 
@@ -62,10 +63,10 @@ Some of the Problems in Object Oriented Programming are
 Everything is an Object and we cannot have piece of Code or Logic that exists in Isolation.
 It has to be a Part of object associated with it.
 While Developing the Code we need to think about Problems and Each Problem is associated with an Object.
-Consider the Scenario we need a function that returns a user name.
-To achieve this we need a class and Create an Object of that Class and then add the Function to it.
+Consider the Scenario where we need a function that returns a user name.
+To achieve this we need a Class and Create an Object of that Class and then add the Function to it.
 
-Before Java 8
+Before Java 8 :
 	
 	public void greet()
 	{
@@ -73,7 +74,6 @@ Before Java 8
 	}
 	
 To be More Generic Create an Interface 
-	
 	
 	public interface Greeting 
 	{
@@ -131,7 +131,7 @@ Using Lambda we can pass function as a Value to a Variable and use that variable
 					System.out.println("From Greeting Implementation");
 				  }
 
-Here the code does some extra things when a function is a part of class.
+Here the avove code does some extra things when a function is a part of class.
 whether the function is globally accessible or not.
 But if the function exists in isolation it does not make sense to declare it as public.
 public is not required because the function is accessible whoever has the variable.
@@ -250,7 +250,7 @@ Here the solution is to create an interface for the Lambda Expression and
 create the same signature that the Lambda Expression Has.
 Lambda that accepts no argument and return type is void and we can give any name to the function.
 
-	interface myLambda
+	interface MyLambda
 	{
 		public void test();
 	}
@@ -329,13 +329,160 @@ In order to create a New Thread we have to create a new instance of Runnable and
 	Runnable runnable =() ->System.out.println("Anonymous Runnable");
 	runnable.run();
 	
-*************************************************  11.Functional Interface	************************************************* *******
+*************************************************  11.Functional Interface	*********************************************************
+
+An Interface has to be declared as a Type for Lambda Expression and it should have one Abstract Method.
+But in Java 8 we can have Method Implementation in the Interface Itself.
+An Interface that has only one abstract Method is called Functional Interface.
+If some one adds an Abstract Method in an Interface then it will be No Longer a Functional Interface.
+To avoid this we can mark the interface as Functional Interface by using @FunctionalInterface
 
 
+************************************************* 12.Lambda Exercise	************************************************************
+Create a Person Model
+Create List of Person
+
+Now the Requirement is to 
+
+1.Sort the List by Name
+2.Print all the Elements of the List
+3.Display People Name that begins with C
+
+Here the Methods have to accept the Behavior instead of Hard Coding them.
+Pass in Behavior to Find a Person Name begins with C.
+											
+************************************************* 13.Lambda Solution	************************************************************	
+
+//Sort by Last Name 
+Collections.sort(people,(p1,p2) -> p1.getLastName().compareTo(p2.getLastName()));
+
+//Print all the Elements of the List Using Pass by Behavior
+printConditionally(people,p -> true);
+
+//Display Last Name that Begins with C Using Pass by Behavior
+printConditionally(people, p -> p.getLastName().startsWith("C"));
+
+	private static void printConditionally(List<Person> people,Condition condition) 
+	{
+		for (Person person : people) {
+			if(condition.test(person)) {
+			System.out.println(person);
+			}
+		}
+	}
+										
+************************************************* 14.Using Function Interfaces	****************************************************	
+
+Form the above Code we have created an extra Interface to test.
+Here the Interface accepts the Parameter and returns boolean.
+Here it seems Like extra work .
+Here Interface Name and Method Name inside the Interface doe not Matters.
+
+Java 8 does not have a Function Type and They hace Created out of Box Interfaces to address some of these Common Scenarios.
+Here the Scenario is Accept an Object and return boolean.
+
+	private static void printConditionally(List<Person> people,Predicate<Person> predicate) 
+	{
+		for (Person person : people) {
+			if(predicate.test(person)) {
+			System.out.println(person);
+			}
+		}
+	}
+
+Lambda Expression only checks the Signature of the Interface.
+Supplier Interface does not take any input and Returns an Object.
+Function Interface accepts an Input and returns an Object.
 
 
+Steps to Create a Lambda Expresssion :
+
+1.Define an Interface
+2.Define a Method inside an Interface which has the Same Signature that Lambda Expression Has.
 
 
+The Above Steps can be Overridden by Predefined Methods inside Function Package.
+
+							
+************************************************* 15.More Function Interfaces	****************************************************		
+
+From the Above Code we are Displaying the Person Details in the Console.
+We can make it as Pass in Behavior.
+
+Lambda Expression for System.out.println will be p -> System.out.println(p)
+Interface that Accepts an Argument and returns void.
+
+	private static void performConditionally(List<Person> people,Predicate<Person> predicate,Consumer<Person> consumer) 
+	{
+		for (Person person : people) {
+			if(predicate.test(person)) {
+				consumer.accept(person);
+			}
+		}
+	}
+
+Here we can change the Behavior while Calling.
+
+	performConditionally(people, p -> p.getLastName().startsWith("C"),p -> System.out.println(p.getLastName()));
+
+************************************************* 18.Closures	************************************************************************	
+
+	int a=10;
+	int b=20;
+	
+	doProcess(a,new Process()
+		{
+		@Override
+		public void process(int i) {
+		System.out.println(i+b);	
+		}
+	});
+	}
+	
+	private static void doProcess(int i,Process process) 
+	{
+		process.process(i);
+	}
+	
+	interface Process
+	{
+		void process(int i);
+	}
+	
+Here Compiler Assumes that Variable b has the Value.
+doProcess() is not executed inside the Main Method and is executed inside the doProcess().
+doProcess() executes the Implementation of process Method.
+
+doProcess() keeps track of the Varable b.
+If we change the Value of the Variable b we get Compile Time Error Saying
+
+	Local variable b defined in an enclosing scope must be final or effectively final
+	
+Befor Java 8 we have to declare the Variable as Final.
+
+	final int b=20;
+	
+In Java 8 Variable is defined as effectively Final.
+Whenever we are using Lambda Expression and Using Some Variable defined in the Scope then 
+Java Compiler Freeze the Value of the Variable alon wih Lambda Expression.
+
+										
+************************************************* 19.this	************************************************************************	
+
+												
+************************************************* 20.Method References	************************************************************************	
+
+									
+************************************************* 21.For Each Iteration		************************************************************************	
+
+									
+************************************************* 22.Streams Introduction	************************************************************************	
+
+									
+************************************************* 23.More About Streams	 **********************************************************************	
+
+								
+************************************************* 24.Lambda Basics	************************************************************************										
 
 
 
