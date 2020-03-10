@@ -391,8 +391,10 @@ Here the Scenario is Accept an Object and return boolean.
 	}
 
 Lambda Expression only checks the Signature of the Interface.
-Supplier Interface does not take any input and Returns an Object.
-Function Interface accepts an Input and returns an Object.
+Supplier Interface does not accept any argument and Returns an Object.  Abstract Method is get().
+Function Interface accepts an argument and returns an Object.			Abstract Method is apply(). 
+Predicate Interface accepts an argument and returns boolean.			Abstract Method is test().
+Consumer Interface accepts an argument and returns void.				Abstract Method is accept().
 
 
 Steps to Create a Lambda Expresssion :

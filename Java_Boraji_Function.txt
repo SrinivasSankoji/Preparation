@@ -1,56 +1,90 @@
 
 Lambdas and Functional Interfaces :
 ***********************************
-Functional Interfaces
-Lambda Expressions
-Functional Descriptors
-Method References
-Constructor References
+1.Functional Interfaces
+2.Lambda Expressions
+3.Functional Descriptors
+4.Method References
+5.Constructor References
 
 Function Package :
 ******************
-1.Function Package 
-2.Predicate Interface
-3.Consumer Interface
-4.Function Interface
-5.Supplier Interface
+6.Function Package 
+7.Predicate Interface
+8.Consumer Interface
+9.Function Interface
+10.Supplier Interface
 
 Stream API :
 ************
-Overview
-Filtering and Slicing
-Map and FlatMap
-Matching
-Find
-Infinite Streams
-Reducing with Streams
+11.Overview
+12.Filtering and Slicing
+13.Map and FlatMap
+14.Matching
+15.Find
+16.Infinite Streams
+17.Reducing with Streams
 
 Default Methods :
 *****************
-Overview
-Multiple Inheritance
-Multi Inheritance and Conflict
-Diamond Pattern
-Static vs Default Methods
+18.Overview
+19.Multiple Inheritance
+20.Multi Inheritance and Conflict
+21.Diamond Pattern
+22.Static vs Default Methods
 
 Collectors :
 ************
-Collector Fundementals
-Grouping with Collectors
-Partitioning with Collectors
-Counting with Collectors
-Max/Min with Collectors
-Joining with Collectors
+23.Collector Fundementals
+24.Grouping with Collectors
+25.Partitioning with Collectors
+26.Counting with Collectors
+27.Max/Min with Collectors
+28.Joining with Collectors
 
 Collection Enhancements :
 *************************
-Iterable.forEach and iterator.remove
-Collection.removeIf
-List.Sort and List.replaceAll
-MultiValue Map Methods
+29.Iterable.forEach and iterator.remove
+30.Collection.removeIf
+31.List.Sort and List.replaceAll
+32.MultiValue Map Methods
 
 Java 8 Comparators :
 ********************
+
+
+
+*************************************************** 9.Function Interface  *******************************************************************
+
+Function<T,R> is a in built Functional Inteface Introduced in Java 8.
+Primary Purpose for which Functional Interface has been created for Mapping Scenarios i.e when an Objet of a Type is taken as Input and is Converted 
+into Another Type.
+Common usage of Function is in Streams where in Map Function of a Stream accepts an Instance of a Function to Convert the Stream of One Type to Another Type.
+
+Function<T,R> Function Descriptor's is T -> R.
+This Means an Object of Type T is Input to the Lambda and an Object of Type R is Obtained as a Return Value.
+
+Advantage of Function Interface is where in an Object of Particular Type is Passed as Input,Performs an Operation on it and 
+an Object of another Type is returned as an Output.
+The in Built Functional Interface can be Used with out the need of defining a New Functional Interface Every Time.
+
+apply() is the Primary abstract functional Method of Function Interface.
+It takes Input as a Parameter of Type T and returns an Object of Type R.
+ 
+
+andThen() Method Combines the Current Function Instance with another one and returns a Combined Function which applies to the Fucntion in a Sequence
+with Function Passed as a Parameter and being invoked after the current Function.
+
+compose() Method Combines the Current Function Instance with another one and returns a Combined Function which applies to the Fucntion in a Sequence
+with Function Passed as a Parameter and being invoked before the current Function.
+
+identity() returns back the Parameter which it gets as an Input.
+
+
+
+
+
+
 
 
 

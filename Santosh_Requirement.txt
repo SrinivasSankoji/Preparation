@@ -1,0 +1,49 @@
+
+
+Login Authentication :
+----------------------
+
+User Authenticate
+isPriviliged
+OTP 6 Random Digit Numbers For Normal Users  --> Scenario > 2 Minutes and Less than 2 Minutes 
+OTP 3 Times Validation
+Validate OTP 
+
+
+Table Schema :
+--------------
+
+user --> role --> userRole
+role --> Function --> RoleFunction
+LoginOTP --> OTP Details
+Audit Log
+
+
+
+Repository / Dao :
+------------------
+Database Configuration
+Model 
+Dao / Repository
+Service
+Controller
+Util
+Exception
+Advice
+
+Technologies :
+--------------
+Spring Data JPA
+Spring JdbcTemplate
+
+
+
+
+
+
+
+
+
+
+
+
