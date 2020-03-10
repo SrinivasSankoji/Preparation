@@ -36,6 +36,8 @@ Technologies :
 Spring Data JPA
 Spring JdbcTemplate
 
+CREATE SEQUENCE audit_log__seq;
+
 
 
 
