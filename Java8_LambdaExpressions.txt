@@ -21,15 +21,14 @@ No Final Keyword Before a Variable Makes it Effectively Final Provided we never 
 13.Lambda Solution												[08-MAR-2019]  (Done)
 14.Using Function Interfaces									[09-MAR-2019]  (Done)
 15.More Function Interfaces										[09-MAR-2019]  (Done)
-
 16.Exception Handling in Lambda									[27-FEB-2019]  ()
 17..Exception Handling Approach									[27-FEB-2019]  ()
-
 18.Closures														[09-FEB-2019]  (Done)
 19.this															[09-FEB-2019]  ()
-20.Method References											[09-FEB-2019]  ()
-21.For Each Iteration											[09-FEB-2019]  ()
-22.Streams Introduction											[09-FEB-2019]  ()
+
+20.Method References											[11-FEB-2019]  (Done)
+21.For Each Iteration											[11-FEB-2019]  (Done)
+22.Streams Introduction											[11-FEB-2019]  (Done)
 23.More About Streams											[09-FEB-2019]  ()
 24.Lambda Basics												[09-FEB-2019]  ()
 
@@ -474,13 +473,86 @@ Java Compiler Freeze the Value of the Variable alon wih Lambda Expression.
 												
 ************************************************* 20.Method References	************************************************************************	
 
-									
+Method Syntax is an Alternative way of Writing Lambda Expression and is very Readable.
+
+	public static void main(String[] args) 
+	{
+		Thread thread= new Thread(()  -> printMessage());
+		thread.start();
+	}
+	
+Here the Above Lambda Expression does not have any argument and executing a Method.
+i.e Here it is doing Method Execution with No Parameters.
+We may also get Method Execution with Certain Parameters.
+The above case can be Replaced by Method References.
+
+Rules for defining Method References are 
+Case 1 :
+--------
+Lambda Expression that does  not accept any argument and executing a Method then
+pass the Class Name with Method Name followed by ::
+
+	public static void main(String[] args) 
+	{
+		Thread thread= new Thread(MethodReferneceDemo::printMessage);
+		thread.start();
+	}
+
+Case 2 :
+--------
+	
+	performConditionally(people,p -> true ,p -> System.out.println(p));
+	
+Here Lambda Expression that is accepting input parameter and executing a Method with that Input Parameter.
+Here we have to take the Instance with Method Name Followed by ::
+
+	performConditionally(people,p -> true ,System.out::println);
+	
+If the Method that is taking Place of any Consumer that accepts an argument and returns void
+then it should be replaced by Consumer.
+
+							
 ************************************************* 21.For Each Iteration		************************************************************************	
 
-									
-************************************************* 22.Streams Introduction	************************************************************************	
+There are Multiple ways to iterate over Collection Prior to Java 8.
 
-									
+Standard For Loop
+	
+	for (int i = 0; i < people.size(); i++)
+	{
+		System.out.println(people.get(i));
+	}
+
+Java 7 For Each Loop
+
+	for (Person person : people) {
+		System.out.println(person);
+	}
+From the Above Code we are Performing the Iteration Manually and is Called External Iteration.
+We are Instructing the Compiler to Perfrom the Iteration Manually.
+
+The Advantage of Using Java 8 For Each Loop is that we can For Each Combine with Lambda.
+Java8 For Each is an Internal Iteration and the Iteration depends on Runtime.We don't have any Control on It.
+
+	people.forEach(System.out::println);
+	
+Java 8 forEach Accepts a Consumer that accepts an argument and returns void.
+Java 8 For Each Makes the Code execution in Parallel when we have Multi Core Processor.
+
+								
+************************************************* 22.Streams Introduction	*******************************************************************
+
+Lambdas work with Streams in order to make the API More Elegeant.
+Stream is a Sequence of Elements Supporting Sequential and Parallel Aggregate Operations.
+
+Let us Consider the Collection of Elements.
+If we want to access the elements of the Collection we need to Iterate over the Collection Every Time.
+Here we have to go through all the elements of the Collection.
+Consider the case where we need to access only Particular element of the Collection Instead of Complete Iteration  then
+that is not Possible in case of Collection.
+Possible Solution is to convert the Collection into Stream of Elements so that we can perform Paralell Operations.
+
+								
 ************************************************* 23.More About Streams	 **********************************************************************	
 
 								

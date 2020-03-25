@@ -18,8 +18,6 @@ role --> Function --> RoleFunction
 LoginOTP --> OTP Details
 Audit Log
 
-
-
 Repository / Dao :
 ------------------
 Database Configuration
@@ -37,6 +35,12 @@ Spring Data JPA
 Spring JdbcTemplate
 
 CREATE SEQUENCE audit_log__seq;
+
+
+Requirement :
+-------------
+
+
 
 
 

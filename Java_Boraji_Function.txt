@@ -9,11 +9,11 @@ Lambdas and Functional Interfaces :
 
 Function Package :
 ******************
-6.Function Package 
-7.Predicate Interface
-8.Consumer Interface
-9.Function Interface
-10.Supplier Interface
+6.Function Package 								[09-MAR-2019]  ()
+7.Predicate Interface							[12-MAR-2019]  (Done)
+8.Consumer Interface							[12-MAR-2019]  (Done)
+9.Function Interface							[12-MAR-2019]  (Done)
+10.Supplier Interface							[12-MAR-2019]  (Done)
 
 Stream API :
 ************
@@ -53,22 +53,34 @@ Java 8 Comparators :
 ********************
 
 
+*************************************************** 7.Predicate Interface	 **********************************************************************************
 
-*************************************************** 9.Function Interface  *******************************************************************
+Predicate Interface can be used in all the contexts where an object needs to be evaluated for a given test Condition and
+boolean value needs to be returned based on whether the condition was successfully met or not.
+Whenever an Object needs to be evaluated and a boolean value needs to be returned then Predicate Function INterface can be used.
+
+***************************************************  8.Consumer Interface  ************************************************************************************
+
+Consumer Interface can be used in all the Context where an Object needs to be Consumed.
+Consumer takes some input,performs some Operation on the input without returning any result.
+
+Function Descriptor for Consumer Interface is (T) -> ().
+
+*************************************************** 9.Function Interface  *************************************************************************************
 
 Function<T,R> is a in built Functional Inteface Introduced in Java 8.
-Primary Purpose for which Functional Interface has been created for Mapping Scenarios i.e when an Objet of a Type is taken as Input and is Converted 
+Primary Purpose for which Functional Interface has been created is for Mapping Scenarios i.e when an Objet of a Type is taken as Input and is Converted 
 into Another Type.
 Common usage of Function is in Streams where in Map Function of a Stream accepts an Instance of a Function to Convert the Stream of One Type to Another Type.
 
 Function<T,R> Function Descriptor's is T -> R.
 This Means an Object of Type T is Input to the Lambda and an Object of Type R is Obtained as a Return Value.
 
-Advantage of Function Interface is where in an Object of Particular Type is Passed as Input,Performs an Operation on it and 
+Advantage of Function Interface is where in an Object of Particular Type is passed as an Input,Performs an Operation on it and 
 an Object of another Type is returned as an Output.
-The in Built Functional Interface can be Used with out the need of defining a New Functional Interface Every Time.
+The in Built Functional Interface can be Used with out the need of defining a new Functional Interface every Time.
 
-apply() is the Primary abstract functional Method of Function Interface.
+apply() is the primary abstract functional Method of Function Interface.
 It takes Input as a Parameter of Type T and returns an Object of Type R.
  
 
@@ -79,6 +91,21 @@ compose() Method Combines the Current Function Instance with another one and ret
 with Function Passed as a Parameter and being invoked before the current Function.
 
 identity() returns back the Parameter which it gets as an Input.
+
+
+*************************************************** 10.Supplier Interface **************************************************************************************
+
+Supplier is used in all the Context where there is no Input and returns an Output.
+Supplier Interface can be accessd by using get().
+
+Function Descriptor of Supplier Interface is () -> R.
+get() is the Primary abstract Method of Supplier Interface.
+
+
+
+
+
+
 
 
 

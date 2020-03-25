@@ -140,14 +140,17 @@ If we want to get an Array form the Stream of Elements we use toArray(Employee[]
 FlatMap :
 ---------
 A Stream can Hold Complex Data Structures Like Stream<List<String>>.
-FlaMap helps us to Flatten the DataStructure to Simplify Further Operations.
+FlaMap helps us to Flatten the dataStructure to Simplify Further Operations.
+FlatMap can be used for Asynchronous Operations.
 
+	.flatMap(employeeId -> getEmployeeDetails(employeeId))
+	.collect(Collectors.toList());
+
+For Each :
+----------
 For Each is a Terminal Operation and Some times we need to perform multiple operations on each element 
 of the Stream before the Terminal Operation is Applied.
 In this case peek() can be Used.
-
-
-
 
 Peek :
 ------

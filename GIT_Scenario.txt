@@ -43,8 +43,6 @@ Branch is Nothing But a Folder Within the Repository Containing Commits.
 Commits is the Different Stages of Our Code inside the Branch.
 
 
-
-
 ****************************************** Use Case ******************************************************************************
 
 --To Checkout Particular Directory
@@ -58,6 +56,9 @@ git checkout replica
 
 -- Force Push
 git push -f git@heroku.com:<heroku repo name>.git
+
+
+
 
 
 

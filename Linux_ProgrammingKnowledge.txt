@@ -1,0 +1,499 @@
+1.Introduction								[17-MAR-2020]  (Done)
+2.ls 										[17-MAR-2020]  (Done)
+3.cd 										[17-MAR-2020]  (Done)
+4.cat 										[21-MAR-2020]  (Done)
+5.I/O Redirection							[21-MAR-2020]  (Done)
+6.mkdir 									[21-MAR-2020]  (Done)
+7.rm adn rmdir 								[21-MAR-2020]  (Done)
+8.cp 										[21-MAR-2020]  (Done)
+9.mv 										[24-MAR-2020]  (Done)
+10.less 									[24-MAR-2020]  (Done)
+
+11.touch									[25-MAR-2020]  ()
+12.nano										[25-MAR-2020]  ()
+13.sudo										[25-MAR-2020]  ()
+14.top										[25-MAR-2020]  ()
+15.kill										[25-MAR-2020]  ()
+
+16.echo										[24-MAR-2020]  ()
+17.file Permissions							[24-MAR-2020]  ()
+18.Diretory Permissions						[24-MAR-2020]  ()
+
+19.Octal and Numeric Permissions			[17-MAR-2020]  ()
+20.Introduction to Bash Scripting			[17-MAR-2020]  ()
+21.which and whatis							[17-MAR-2020]  ()
+22.useradd									[17-MAR-2020]  ()
+23.userdel									[17-MAR-2020]  ()
+24.Group Management							[17-MAR-2020]  ()
+25..bashrc File								[17-MAR-2020]  ()
+26.Viewing Resources						[17-MAR-2020]  ()
+27.watch                                    [17-MAR-2020]  ()
+28.Head and Tail                            [17-MAR-2020]  ()
+29.find                                     [17-MAR-2020]  ()
+30.wc                                       [17-MAR-2020]  ()
+31.cal                                      [17-MAR-2020]  ()
+32.date                                     [17-MAR-2020]  ()
+33.Run Multiple Terminal                    [17-MAR-2020]  ()
+34.apt-get                                  [17-MAR-2020]  ()
+35.ifconfig                                 [17-MAR-2020]  ()
+36.tar                                      [17-MAR-2020]  ()
+37.grep                                     [17-MAR-2020]  ()
+38.netstat                                  [17-MAR-2020]  ()
+39.enable SSH                               [17-MAR-2020]  ()
+40.scp                                      [17-MAR-2020]  ()
+41.Atom Editor                              [17-MAR-2020]  ()
+42.Install Postgree Sql                     [17-MAR-2020]  ()
+
+
+***************************************************************  1.Introduction   **************************************************************
+
+Command Line based is much Faster than Graphicl User Interface.
+When it comes to Programming we are able to know about the background details of a Program.
+The Two Main terms in Linux are Terminal and shell.
+
+Shell is a Program that takes commands from the keyboard and pass it to the Operating System to Perform.
+Shell is also known as Command Line Interface.
+Terminal is a Tool using which we can pass Shell Commands.
+This a Program that opens in window and lets you interact with Shell.
+
+To Open a Terminal in ubuntu 
+	
+	Search for Terminal or
+	CTRL+ALT+T
+	
+The Files on Linux System are arranged on Hierarchical Directory Structure.
+Directory may contains files or other directories also.
+Main Directory in Linux is root directory and all the directories resides in these Folders.
+
+	Files -> Computer --> This is the Root Directory
+
+Root Folder starts from /
+Now the First Command under Linux is 
+
+	pwd  --> Present Working Directory.
+	
+If we want to go to the Root Command
+	
+	cd / --> Change Directory
+	
+To List all the Files in the Present Working Directory we use the Command
+
+	ls 
+
+
+*************************************************************** 2.ls Command  ***************************************************************
+
+ls is a Linucx Shell Command that List all the Directories and Files in the present Working Directory.
+Advanced Version of ls Command is 
+
+	ls [option] [fd]
+	
+Whenver we open the Terminal we are in the  Home Directory.
+
+	ls 
+	
+If we want to see the contents of Particukar Directory i.e Documents
+	
+	ls Documents/
+	
+
+If we want to see all the Contents of the Root Folder 
+
+	ls / or ls - or ls /home/Computer
+	
+If we want to go One Folder back we use the command
+
+	ls ..
+	ls ../..  (Two Folder Back)
+	
+If we want to see the Files in Long Format we use the Command
+	
+	ls -l
+
+The above command will show the Details of the File i.e 
+Permissions,Cretaed Time ,Size and  so on.
+
+drwxr means 	--> directory read write execute read
+-xr            --> execute and read
+
+
+If we want to see the Hidden Files in the Directory we use the Command 
+
+	ls -a
+	Hidden Files starts with .
+
+If we want to see the hidden Files and Long List in the Directory we use the Command 
+
+	ls -al
+	
+If we want to sort the Diretory based on Size we use the Command
+
+	ls -ls
+
+If we want to get Partcular Type of Document inside the Directory we use the Command
+
+	ls Documents/*.html
+	
+If we want to get the Sub Directory along with Parent Directory we use the Command
+
+	ls Documents/*.*
+	
+If we want to save the History of the ls Command in the Terminal to Output File 
+
+	ls -lS > out.text
+	
+If we want to see only the Directories  we use the Command 
+
+	ls -d */
+	
+If we want to Know More About any Command we use the Command 
+
+	man ls
+	
+Ifwe want to quit the Terminal we use the Command
+
+	q
+	
+	
+*************************************************************** 3.cd  Command ***************************************************************
+
+cd Command is Changed to the Current Working Directory in Linux.
+
+	cd [dir]
+	
+Whenever we Open the Treminal it Opens the Current Home Directory.
+If we want to go to the Root Directory we se the Command
+
+	cd /
+	
+To See in which Direcyory we are in,we use the Command 
+
+	pwd
+	
+If we want to go to the Home Directory we use the Command 
+
+	cd ~
+	
+If we want to go to the Parent Directory of the Current Working Diretory we use the Command
+
+	cd ..
+	
+We can go to the Next Directory by Using Absolute Path or Home Directory
+
+	cd Documents / (or) cd home/Documents
+	
+If we have Space in Folder Name then we cannot Navigate to the Directory from the Command Prompt.
+To access this we iuse the Command
+
+	cd My\ Books or cd "My Books" or cd 'My Books'
+	
+
+*************************************************************** 4.cat 	***************************************************************
+
+Cat is one of the Most Frequently used Command in Linux.
+It 	has 3 different Functionalities with Regards to Text Files.
+
+1.Displaying the Text File 
+2.Combining Copies of the Text File  
+3.Create a New Text File 
+
+Command to use the cat Command is 
+
+	cat [option] (fileName)
+	
+Consider the example 
+
+	cat Hellowrold 
+	
+Then it displays the smae Helloworld in the Terminal.It is Similar to echo command.
+
+	echo Helloworld
+	
+To Comeout from the echo command we use CTRL+D
+To see the Content of the File in the Terminal we use the Command
+
+	cat filename
+	
+To see the Content of Multiple Files we use the Command
+
+	cat filename1,filename2
+	
+To show the Line Number along with the Content of the File
+
+	cat -b filename
+	
+If the Text File Contains Multiple Space and to convert them into a single space for each Line we use the Command.
+Cat Command Dispalys the Content in the Required Format and it does not effect the 
+
+	cat s filename
+	
+If we want to identify the end of each line in the Text File we use the below Command.
+It appends $ to the End of Each Line.
+
+	cat -E fileName
+	
+
+***************************************************************  5.I/O Redirection  ***************************************************************
+
+Redirection Means Capturing Output of a File or Command or Program and  passing the Result as an Input to File or Command or Program.
+Syntax would be 
+
+	output -> File
+
+To Create the New Text File 
+
+	cat -> test.txt
+	Line 1
+	Line 2
+	Line 3
+	CTRL + D
+	
+and whatever we enter here after the Command that will be written to the Text File.
+To exit from the Cat Command use CTRL+D
+
+To Check the Content inside the Text File 
+
+	cat test.txt
+
+If we do the same thing again i.e 
+
+	cat -> test.txt  
+	Line 4
+	Line 5
+	Line 6
+	CTRL + D
+	
+and Enter Some Text then Old Data will be Overridden by the New Data.
+To Append the Data to the File we use the Command 
+
+	cat >> test.txt
+	Line 4
+	Line 5
+	Line 6
+	CTRL + D
+	
+If we want to Transfer the Contect of Two Files to the New File then we use the Command
+
+	cat file1.txt file2.txt > file3.txt
+	
+To Transfer the Content of One File to another File we use the Command
+
+	cat file1.txt >> file2.txt
+	
+We can also redirect another Commands Like 
+
+	cat ls -al > out.txt
+
+This will redirect all the ls Commands in the Text File.
+
+
+***************************************************************  6.mkdir  ***************************************************************
+
+mkdir can be used to create Directories in Linux.
+
+	mkdir image
+	
+To cretae s Sub Directory inside the Directory which is Present
+
+	mkdir image/pics
+	
+To create a Directory Structure
+
+	mkdir -p names/Mark
+	
+To Create Several Directories in the Parent Directory
+
+	mkdir -p names{John,Tom,Bob}
+	
+To see the Directory Structure 
+
+	ls -R
+
+***************************************************************  7.rm adn rmdir  *********************************************************
+
+rmdir can be used to remove the Directory or Directory Structures.
+
+	rmdir -options
+	
+To remove the Directory or Directory Structure
+
+	rmdir filename or rmdir a/b/c/d/e
+	
+Here It removes only the Top Level Directory
+To remove the whole Directory Structure
+
+	rmdir -p a/b/c/d/e
+	
+verbose gives the extended Information about the Command.
+
+	rmdir -pv a/b/c/d/e
+	
+Create text file inside the Folder b i.e cat > abc.txt
+If we use thecommad rmdir to remove the Directory Structure then it gives an Error.
+If the Directory Contains a File then rmdir command does not work.
+Here the Directory upto c will be Deleted.
+To remove both Directory and Files
+
+	rm -rv a/b or rm -r a
+	
+	
+***************************************************************  8.cp 	*******************************************************************************
+
+cp command is used to copy files and Directories in Linux.
+
+	cp options source destination
+	
+To Copy the Content of the file1 into file2 
+
+	cp file1.txt file2.txt
+	
+Here Copies file1.txt and creates new File file2.txt If Not Present and Inserts into file2.txt
+To copy a File to a Directory we use the Comand
+
+	cp file1.txt filename
+	
+To copy Multiple Files 
+
+	cp file1.txt,file2.txt dir2
+	
+The above Command overrides the file1.txt.
+If we don't want to override the File 
+
+	cp -i file1.txt,file2.txt dir2
+	
+Then it gives an alert prompt to override or Not
+To copy the Folder from another Directory 
+
+	cp ../file1.txt ../file2.txt .
+	
+Here . Means the Current Directory
+If we want to copy a dir1 which contains some files  to dir3 which does not exist we use the command
+
+	cp -R dir1 dir3
+	
+If the folder already exists then above command will transfer the source diretory.
+
+
+***************************************************************  9.mv 	******************************************************************************
+
+mv can be used to move the file from one Location to another Location.
+Options for mv Command are
+	
+	mv options source destination
+	
+To move the text from file1 to file 2 
+
+	mv file1.txt file2.txt
+	
+In the above case file1.txt is be replaced by file2.txt.
+If the file does not exist then it will create a new File.
+
+to move the filename to the directory 
+
+	mv file1.txt filename/
+	
+while moving the file from one location to another location and if the file exists
+then it will override the existing data.
+To append the data instead of overriding we use the command
+
+	mv -i file1.txt filename\
+
+-i stands for intercative mode.
+If we want to transfer the directory1 into directory2
+
+	mv dir1 dir2
+	
+Here the directory1 content is also moved to the directory2
+when we are moving the directory and the directory does not exist then
+source directory will be moved.
+
+	mv dir1 dir3
+	
+To see the stack trace of the mv command 
+
+	mv -v file1.txt dir3
+	
+
+***************************************************************  10.less 	************************************************************************** 
+
+less commad can be used to read the file using patterns.
+If the text file is a large file then Terminal does not allow to go to the First Line.
+To overcome this we use less command.
+
+	less file1.txt
+	
+Displays the Text file in the Termianl with Starting Point and 
+allows the Up and Down Approah.
+If we want the data to be displayed in page wise we use space Button. 
+
+B to up the Page 
+D to dwon the Page.
+
+SHIFT + G  or 1g then it will browse to the end of the File.
+1G  then it will browse to the Starting of the File.
+
+If we want to search for the Particular text in the File we use
+
+	/book   used n for top approach and use n for next line.
+	?book  used for bottom approach and use  n for next line.
+	
+to quit the less command
+
+	:q
+	
+
+***************************************************************  11.touch	***************************************************************		
+
+						
+***************************************************************  12.nano	***************************************************************		
+
+							
+***************************************************************  13.sudo	***************************************************************
+
+									
+***************************************************************  14.top		***************************************************************
+
+								
+***************************************************************  15.kill	***************************************************************										
+
+
+	
+	
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+	
+
+
+		
+	
+	
+
+
+
+
+
