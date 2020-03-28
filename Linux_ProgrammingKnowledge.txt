@@ -8,18 +8,17 @@
 8.cp 										[21-MAR-2020]  (Done)
 9.mv 										[24-MAR-2020]  (Done)
 10.less 									[24-MAR-2020]  (Done)
+11.touch									[26-MAR-2020]  (Done)
 
-11.touch									[25-MAR-2020]  ()
-12.nano										[25-MAR-2020]  ()
-13.sudo										[25-MAR-2020]  ()
-14.top										[25-MAR-2020]  ()
-15.kill										[25-MAR-2020]  ()
+12.nano										[28-MAR-2020]  (Done)
+13.sudo										[28-MAR-2020]  ()
+14.top										[28-MAR-2020]  ()
+15.kill										[28-MAR-2020]  ()
+16.echo										[28-MAR-2020]  ()
+17.file Permissions							[28-MAR-2020]  ()
+18.Diretory Permissions						[28-MAR-2020]  ()
+19.Octal and Numeric Permissions			[28-MAR-2020]  ()
 
-16.echo										[24-MAR-2020]  ()
-17.file Permissions							[24-MAR-2020]  ()
-18.Diretory Permissions						[24-MAR-2020]  ()
-
-19.Octal and Numeric Permissions			[17-MAR-2020]  ()
 20.Introduction to Bash Scripting			[17-MAR-2020]  ()
 21.which and whatis							[17-MAR-2020]  ()
 22.useradd									[17-MAR-2020]  ()
@@ -441,11 +440,26 @@ to quit the less command
 
 	:q
 	
+***************************************************************  11.touch	***************************************************************	
 
-***************************************************************  11.touch	***************************************************************		
+Touch command can be used to create a new Empty Files in Linux.
+It is also used to change the existing timestamp of these Files or directories.
+To create a new Empty File
 
-						
-***************************************************************  12.nano	***************************************************************		
+	touch file6
+	
+we can alsogive the file extension to the touch command
+
+	touch file7.txt
+	
+To change the Timestamp of the existing File using touch Command
+
+	touch file6
+	
+	
+***************************************************************  12.nano	*******************************************************************
+
+		
 
 							
 ***************************************************************  13.sudo	***************************************************************
