@@ -1,5 +1,6 @@
 									Angular Component Interaction Code Evolution:
 								   **********************************************
+								   
 1.Introduction    					[04-AUG-2019]  (Done)
 2.Class and Template 				[04-AUG-2019]  (Done)
 3.Binding 							[04-AUG-2019]  (Done)
@@ -8,12 +9,12 @@
 6.View Child Decorator				[05-AUG-2019]  (Done)
 7.Parent and Child					[06-AUG-2019]  (Done)
 8.Input Decorator					[06-AUG-2019]  (Done)
-9.Getters and Setters
-10.ngOnChanges
-11.Template Reference Variables
-12.View Child Decorator
-13.Output Decorator
-14.Using a Service
+9.Getters and Setters						
+10.ngOnChanges						
+11.Template Reference Variables		
+12.View Child Decorator				
+13.Output Decorator					
+14.Using a Service					
 
 
 1.Introduction : 
@@ -53,12 +54,9 @@ Event Binding : Represent By ()
 This is One Way Data Binding form the HTML Template to the Component Class.
 With Event Binding we can Execute Handlers on User Interactions.
 
-
 Two Way Binding : Represented By [()]
 Two Way Binding Combines Property and Event Binding in a Single Notation.
 It Ensure Model and View are always in  Sync.
-
-
 
 Practical : 
 -----------

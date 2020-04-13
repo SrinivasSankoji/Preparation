@@ -1,0 +1,86 @@
+1.Forms										[14-APR-2020]  (Done)
+2.Template Driven Forms                     [14-APR-2020]  (Done)
+
+3.Setting Up Project                        [14-APR-2020]  ()
+4.Adding Form to HTML                       [14-APR-2020]  ()
+5.Binding Data with ngForm                  [14-APR-2020]  ()
+6.Binding Data to Model                     [14-APR-2020]  ()
+7.Tracking State and Validity               [14-APR-2020]  ()
+8.Validation with Visual Feedback           [14-APR-2020]  ()
+9.Displaying Error Messages                 [14-APR-2020]  ()
+10.Select Control validation                [14-APR-2020]  ()
+11.Form Validation                          [14-APR-2020]  ()
+12.Submitting Form Data                     [14-APR-2020]  ()
+13.Express Server to recieve Form Data      [14-APR-2020]  ()
+14.Error Handling                           [14-APR-2020]  ()
+15.TDF andReactive Approach                 [14-APR-2020]  ()
+
+
+
+
+***********************************************   1.Forms	******************************************************************************************
+
+Forms are Vital part of any Business Application.
+We use forms to Register,Login,Submit a Request,Place an Order,Schedule an Appointment and perform other Countless Tasks.
+While Designing Forms it is Important to create an Experience that guides the User Efficiently and Effectively trough out the Workflow.
+As a Developer we need to Handle Data Binding,Change Tracking,Validation,Visual Feedback,Error Messages and Form Submission.
+The Component Template Contains the HTML to Collect the User Data.
+The Component Class Handles Data Binding.
+The Collected Data is sent to the Server using Service.
+To achieve this Angular Provides Two Ways.
+
+1.Template Driven
+2.Reactive Forms
+
+In Template Driven Most of the Code is Written in HTML Template where as In Case of Reactive Forms or Model Driven Forms
+Most of the Code is written in Component Class.
+
+
+***********************************************  2.Template Driven Forms	******************************************************************************************
+
+As the name Indicates Most of the Code is written inside HTML Template.
+Easy to use and is Similar to Angular JS Forms.
+In This Approach we Heavily rely on Two Way Data Binding i.e ngModel.
+We dont have to keep track of the Input Field values and react to the Change in Input Field Values.
+Angular Takes care of this by Using ngModel Directive.
+As a Result we have Bulky HTML Code and Minimal Component Code.
+In Template Driven Form Approach Angular also Provides ngForm Directive along with ngModel Directive which keeps track the Form and 
+Form Elements State and Validity.
+
+Drawback of Template Driven Approach is when it comes to Unit Testing.
+Form Validation Logic cannot be Unit Tested.
+The Only way to perform and End to End Test is by Using Browser.
+Another drawback is in case of Handling Complex Forms.
+As we add More and More Validations to a Field then Readablity of the Form Decreases to a Great Extent.
+We should go For Template Driven Forms
+
+1.Simple Form with Unit Testing that can be Handled through Browser.
+2.For Complex Forms with Complex Validation where Unit Testig is Mandatory Then go For Reactive Forms.
+
+Concepts in Template Driven Form Appraoch are
+
+Genarate the Project
+Add Form to the HTML
+Binding the Data
+Tracking State and Validity
+Providing Visual Feedback
+Display Error Messages
+Submitting the Data to the Server
+
+
+***********************************************   3.Setting Up Project	******************************************************************************************
+
+
+
+***********************************************  4.Adding Form to HTML	******************************************************************************************
+
+
+
+***********************************************   5.Binding Data with ngForm	******************************************************************************************
+
+
+***********************************************  6.Binding Data to Model	******************************************************************************************
+
+
+
+***********************************************  7.Tracking State and Validity  	******************************************************************************************

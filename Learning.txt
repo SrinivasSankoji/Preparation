@@ -643,7 +643,7 @@ Define Comparator Using Lambda Expression [28-MAY-2019]  (Done)
 Comparator with Stream Sorted [28-MAY-2019]  (Done)
 Comparator with Collections.sort [28-MAY-2019]  (Done)
 
------------------------------------------ JUNE(Angular => Git => Jenkins => On line Preparation) -------------------------------------------------- 
+----------------------------------------- JUNE-2019 (Angular => Git => Jenkins => On line Preparation) -------------------------------------------------- 
 
 Angular Forms :
 ***************
@@ -695,7 +695,7 @@ MicroServices Level 2(Fault Tolerance and Resilience)  [15-JUL-2019 TO 21-JUL-20
 Maven  [22-JUL-2019 TO 28-JUL-2019] 
 Jenkins 
 
------------------------------------------ August(Angular)  -----------------------------------------
+----------------------------------------- August-2019 (Angular)  -----------------------------------------
 Topics :
 ********
 Reactive Programming :
@@ -730,7 +730,7 @@ Docker Introduction [26-AUG-2019] (Done)
 Docker File and Docker Image [26-AUG-2019] (Done) 
 Docker Architecture  [27-AUG-2019] (Done) 
  
------------------------------------------ September(Angular,Micro Services) -------------------------------------------------------
+----------------------------------------- September-2019 (Angular,Micro Services) -------------------------------------------------------
 
 Debugging in Angular 					
 Routing 						
@@ -861,7 +861,7 @@ https://callistaenterprise.se/blogg/teknik/2017/05/12/building-microservices-par
 https://dzone.com/articles/dynamic-configuration-management-in-microservice-a
 
 
------------------------------------------ October(Micro Services,Spring Security,Spring AOP) ---------------------------------
+----------------------------------------- October-2019 (Micro Services,Spring Security,Spring AOP) ---------------------------------
 CORS
 Routing Rules 
 Filter Implementation 
@@ -984,7 +984,7 @@ Modules in Java 9
 
 
 
------------------------------------------ November(Micro Services,Angular) ----------------------------------------------
+----------------------------------------- November-2019 (Micro Services,Angular) ----------------------------------------------
 Concepts :
 ----------
 Proxy vs Reverse Proxy							
@@ -1025,7 +1025,7 @@ Sonar Cube :
 
 
 
------------------------------------------ December(Micro Services,Angular) ----------------------------------------------
+----------------------------------------- December-2019 (Micro Services,Angular) ----------------------------------------------
 
 Micro Services :
 ----------------
@@ -1079,7 +1079,7 @@ Kafka Sivakumar Bachupalli
 Kafka Karunakar Goud
 
 
------------------------------------------ January(Kafka,WebFlux,MultiThreading) ----------------------------------------------
+----------------------------------------- January-2020 (Kafka,WebFlux,MultiThreading) ----------------------------------------------
 Kafka :
 *******
 Basics        					(Done)              
@@ -1108,7 +1108,7 @@ Emitter
 
 
 
------------------------------------------ February(Web Flux,Server Sent Events,Web Socket,Reactive Programming,Angular,Design Patterns) -------------------
+----------------------------------------- February-2020 (Web Flux,Server Sent Events,Web Socket,Reactive Programming,Angular,Design Patterns) -------------------
 
 Collectors.joining
 Collectors.Grouping
@@ -1186,7 +1186,7 @@ Number of Hits For an API
 List OF Tokens
 
 
------------------------------------------ March(Java Script,Angular) --------------------------------------------------------------
+----------------------------------------- March-2020(Java Script,Angular) --------------------------------------------------------------
 
 Spring Boot Basics												()		
 Spring Boot CLI 												()									
@@ -1206,9 +1206,9 @@ Convert Map to Object											()
 Convert List of Map to List of Object							()
 Convert List of one Object to List of Another Object			()
 Modifying Variable inside Lambda								()
-Lambda Expressions 												()
-Functional Interface 											()
-Predicates														()
+Lambda Expressions 												(Done)
+Functional Interface 											(Done)
+Predicates														(Done)
 OOPS															()
 Inheritance														()
 Encapsulation													()
@@ -1227,7 +1227,7 @@ Components in Depth Code Evolution								()
 TypeScript Series												()
 
 Design Pattern													()
-Articles
+Articles														()
 Web Socket														()
 Server Sent Events												()
 
@@ -1241,7 +1241,29 @@ One To Many Annotations											()
 Spring Data Postgree											()
 
 
------------------------------------------ April(Java Script,Angular) --------------------------------------------------------------
+-----------------------------------------   April 2020 (Java Script,Angular,Micro Services,Linux and Shell Scripting)   ------------------------
+
+Angular Basics Revise and Complete Code Evolution
+Angular Components Interaction Code Evolution 
+Angular Forms Code Evolution 
+Angular Java Techie Full Stack
+Java Script Java Brains  
+
+Almight Java Collection Framework
+Techprimeres Microservice Architecture Suggestion AWS Spring Boot Microservices
+MicroService Series Java Techie
+
+Elasticsearch Programming Knowledge
+Elasticsearch devnav
+
+Linux Basic Commands Revise and Complete Programming Knowledge
+Shell Scripting Complete Programming Knowledge
+
+
+-----------------------------------------   May  ----------------------------------------------------
+
+
+
 
 
 

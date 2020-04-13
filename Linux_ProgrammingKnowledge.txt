@@ -9,27 +9,27 @@
 9.mv 										[24-MAR-2020]  (Done)
 10.less 									[24-MAR-2020]  (Done)
 11.touch									[26-MAR-2020]  (Done)
+12.nano										[29-MAR-2020]  (Done)
+13.sudo										[29-MAR-2020]  (Done)
+14.top										[29-MAR-2020]  (Done)
+15.kill										[29-MAR-2020]  (Done)
+16.echo										[29-MAR-2020]  (Done)
+17.file Permissions							[30-MAR-2020]  (Done)
+18.Diretory Permissions						[30-MAR-2020]  ()
+19.Octal and Numeric Permissions			[30-MAR-2020]  ()
+20.Introduction to Bash Scripting			[30-MAR-2020]  (Done)
+21.which and whatis							[30-MAR-2020]  (Done)
 
-12.nano										[28-MAR-2020]  (Done)
-13.sudo										[28-MAR-2020]  ()
-14.top										[28-MAR-2020]  ()
-15.kill										[28-MAR-2020]  ()
-16.echo										[28-MAR-2020]  ()
-17.file Permissions							[28-MAR-2020]  ()
-18.Diretory Permissions						[28-MAR-2020]  ()
-19.Octal and Numeric Permissions			[28-MAR-2020]  ()
+22.useradd									[31-MAR-2020]  ()
+23.userdel									[31-MAR-2020]  ()
+24.Group Management							[31-MAR-2020]  ()
+25..bashrc File								[31-MAR-2020]  ()
+26.Viewing Resources						[31-MAR-2020]  ()
+27.watch                                    [31-MAR-2020]  ()
+28.Head and Tail                            [31-MAR-2020]  ()
+29.find                                     [31-MAR-2020]  ()
+30.wc                                       [31-MAR-2020]  ()
 
-20.Introduction to Bash Scripting			[17-MAR-2020]  ()
-21.which and whatis							[17-MAR-2020]  ()
-22.useradd									[17-MAR-2020]  ()
-23.userdel									[17-MAR-2020]  ()
-24.Group Management							[17-MAR-2020]  ()
-25..bashrc File								[17-MAR-2020]  ()
-26.Viewing Resources						[17-MAR-2020]  ()
-27.watch                                    [17-MAR-2020]  ()
-28.Head and Tail                            [17-MAR-2020]  ()
-29.find                                     [17-MAR-2020]  ()
-30.wc                                       [17-MAR-2020]  ()
 31.cal                                      [17-MAR-2020]  ()
 32.date                                     [17-MAR-2020]  ()
 33.Run Multiple Terminal                    [17-MAR-2020]  ()
@@ -42,6 +42,11 @@
 40.scp                                      [17-MAR-2020]  ()
 41.Atom Editor                              [17-MAR-2020]  ()
 42.Install Postgree Sql                     [17-MAR-2020]  ()
+
+
+*************************************************************** Change Location from SSD to Hard Disk ******************************************
+
+
 
 
 ***************************************************************  1.Introduction   **************************************************************
@@ -457,18 +462,282 @@ To change the Timestamp of the existing File using touch Command
 	touch file6
 	
 	
-***************************************************************  12.nano	*******************************************************************
+***************************************************************  12.nano	*********************************************************************
 
-		
+nano is small and friendly text editor.
+nano has many features like intercative search,replace,go to Line Number and indentation of the File.
+nano can also be used to create a new File.
 
-							
-***************************************************************  13.sudo	***************************************************************
+	nano file1.txt 
+	
+Here it will be opened in the terminal and won't e saved.
+Enter the Text and to save the file use the command 
 
-									
-***************************************************************  14.top		***************************************************************
+	CTRL + O
+
+use CTRl + K to come out from the nano Command.
+use CTRL + U to Paste the Data.
+
+nano also highlight the code related to language specific file.
+
+						
+***************************************************************  13.sudo	********************************************************************
+
+sudo is a command which rules them all.
+sudo stands for super user do.
+sudo user allows us to perform some extra priviliges as an administrator or super user.
+
+To find the List of directories in the root directory
+
+	ls /
+	
+To create a directory 
+
+	mkdir Folder1
+	
+Here we get the Permission Denied Error.
+In Ubuntu Linux Operating System If we open the Terminal It doesnot have the administrator or root Priviliges.
+Here we need to use the sudo command in order to tell the Terminal that the command has to be executed as Administrator.
+
+	sudo mkdir Folder1
+	
+Here it asks the passwrod whixh is same as sysytem password.
+password is applicable for same session in the Terminal.
+when ever we are installing any third party softwares in ubuntu it will ask for the super user access.
+and the command to install any third party software is 
+
+	apt-get install library
+	
+To change the Terminal into super user mode
+	
+	sudo -s
+	
+	
+***************************************************************  14.top		********************************************************************
+
+top command provides a dynamic real time view of running system.
+If we want to know which process is taking most cpu,
+which program is takig more memory we use top command.
+
+	top 
+	
+It will show the list of application with cpu percentage and process id.
+In Linux every program has its own process Id.
+By default it will refresh for every 3 seconds.
+If we want to change the refresh interval then Enter s and change the time Interval.
+If we Enter i then it will filter out the idle process.
+If we want to kill the process Enter k and enter the process Id.
+
+To come out from the top Command Enter q.
 
 								
-***************************************************************  15.kill	***************************************************************										
+***************************************************************  15.kill	********************************************************************
+
+Open the System Setting and open it.
+Commad to kill the process is
+
+	kill -flags processId
+
+Here we need to know the process Id of the Program.
+Command to know the process Id program is 
+
+	pidof unity-control-center
+	
+To Kill the Program
+
+	kill 3286
+	
+If the kill command is not able to kill the Process some how then use the command
+
+	kill -KILL 3286
+	
+Another Command to kill the process is 
+
+	kill -9 3286
+	
+Some times if we do not know the name about the process and to find the process Id
+along with program name we use the command 
+
+	ps -ux
+	
+ps -ux will ive the current user process and if we want to get the detais of all the users
+
+	ps -aux
+	
+If we want to know the Programs run by the particular user we use the command
+
+	ps -U username
+	
+If we want to know the process Id of a Particular Program and its dependent Progream Process Id 
+
+	ps -C genoyme -terminal
+	
+***************************************************************   16.echo	*************************************************************************************
+
+echo command will display the text that is enterd by the user.
+It also allows us to declare the variables.
+echo becomes more useful when we write any bash scripting.
+
+	echo Hllo World
+	
+It is a good practice to use "" around the text.
+To declare the variable var="Bhaumik"
+To display the value of the variable 
+
+	echo $var
+	
+Here the varibale is valid only for current session.
+If we want to escape something in the echo command
+	
+	echo -e 'some \ttext '
+
+when ever we use -e we can perform some interpretation of text.
+
+
+
+*************************************************************** 17.file Permissions		***********************************************************************
+
+we want to see the compliete information about the file we use the command
+
+	ls -l
+	
+In the First Line 
+If it is normal - then it is a Normal file
+If it is normal d then it is a Directory
+If it is normal c then it is a Character Special  file
+If it is normal b then it is a Binary Special file
+
+Next 3 Elements represets the Owner of the File.
+Next 3 Elements represets the Group of the File.
+Last 3 Elements represents the Permission of the File.
+
+last Character 1 represents the symbolic links of the File.
+name represents the Owner of the File 
+group represents the group of the File.
+Number represents the Size of the File.
+Date on which file is Created.
+Finalyy name of the File.
+
+we use the utility chmod to change the permission of the File.
+
+For any kind of file basically we have 3 types of Permissions.
+
+read
+write 
+executable
+
+	chmod o+x file
+	
+Here others will have the Permission of executing the File.
+
+For Group to add the Permissions 
+
+	chmod g+x file
+	
+Here + is for adding the permission , - is for reducing the permission and
+= is for granting the permission
+We can also use user and group both at the same time.
+
+	chmod ugo=rwx file or chmod a -rwx file
+	
+Here a represents all i.e user,group and other.
+
+If we want to give the seperate permissions to user group and others 
+
+	chmod u+rw,g+rw,o+rwx file
+	
+
+*************************************************************** 18.Diretory Permissions	 **************************************************************************
+
+
+
+*************************************************************** 19.Octal and Numeric Permissions	***************************************************************
+
+
+
+*************************************************************** 20.Introduction to Bash Scripting   ***************************************************************
+
+Script is a text File that contains sequence of commands for a Linux based Operating System.
+To create a Script we use the Command
+
+	nano myscript.sh
+	
+First Line we write inside the Script is 
+
+	#!/bin/bash
+	
+	ls -l
+	
+	
+	
+we need to find the Location of the bash using the command
+
+	which bash
+	
+results the output  /bin/bash.
+
+To save the bash file use CTRL+O and to exit from the Script File CTRL+X
+Berfore executing the script we nedd to provide the executable permission to the Script File
+otherwise it gives the Permission Denied Error.
+
+	chmod +x myscript.sh
+
+To execute the Script
+
+	./myscript.sh
+	
+
+*************************************************************** 21.which and whatis		***************************************************************************
+
+which command is used to return the path name of the  file or path of the command.
+
+	which ls
+	
+returns the location of the ls command executable location.
+which command is more helpful while writing the bash scripting.
+
+whatis command shows the manual page description of the command.
+
+	whatis ls
+	
+***************************************************************  22.useradd	  **********************************************************************
+
+
+								
+***************************************************************  23.userdel	 ***********************************************************************
+
+
+								
+*************************************************************** 24.Group Management	 ***************************************************************
+
+
+						
+***************************************************************  25..bashrc File  *****************************************************************
+
+
+								
+***************************************************************  26.Viewing Resources  ************************************************************
+
+
+						
+***************************************************************  27.watch   ***********************************************************************
+
+
+                                 
+***************************************************************  28.Head and Tail  ****************************************************************
+
+
+                          
+***************************************************************  29.find  *************************************************************************
+
+
+                                   
+***************************************************************  30.wc    *************************************************************************   
+
+                                
+
+
+
 
 
 	

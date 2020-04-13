@@ -1,45 +1,39 @@
 1.Introduction														[18-FEB-2019]  (Done)										
 2.Getting Started													[18-FEB-2019]  (Done)							
 3.Hello World														[18-FEB-2019]  (Done)
-
 4.Components Detail													[19-FEB-2019]  (Done)
 5.Interpolation														[19-FEB-2019]  (Done)
 6.Property Binding													[19-FEB-2019]  (Done)
-
 7.Class Binding														[15-FEB-2019]  ()
 8.Style Binding														[15-FEB-2019]  ()
-
 9.Event Binding														[20-FEB-2019]  (Done)
 10.Template Reference Variables										[20-FEB-2019]  (Done)
 11.Two Way Binding													[20-FEB-2019]  (Done)
-
 12.ngIf																[19-FEB-2019]  ()
 13.ngSwitch															[19-FEB-2019]  ()
 14.ngFor															[19-FEB-2019]  ()
-
 15.Component Interaction											[21-FEB-2019]  (Done)
 16.Pipes															[21-FEB-2019]  ()
-
 17.Services															[21-FEB-2019]  (Done)
 18.Dependency Injection												[21-FEB-2019]  (Done)
 19.Using Service													[21-FEB-2019]  (Done)
 20.HTTP and Observables												[21-FEB-2019]  (Done)
 21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
 22.HTTP Error Handling												[21-FEB-2019]  ()
+23.Routing and Navigation											[06-APR-2020]  (Done)
+24.Wild Card Route and Redirecting Routes							[06-APR-2020]  (Done)
+25.Route Parameters													[12-APR-2020]  (Done)
+26.ParamMap Observable												[12-APR-2020]  (Done)
 
-23.Routing and Navigation											[15-FEB-2019]  ()
-24.Wild Card Route and Redirecting Routes							[15-FEB-2019]  ()
-25.Route Parameters													[15-FEB-2019]  ()
-26.ParamMap Observable												[15-FEB-2019]  ()
-27.Optional Route Parameters										[15-FEB-2019]  ()
-28.Relative Navigation												[15-FEB-2019]  ()
-29.Child Routes														[15-FEB-2019]  ()
-30.Angular 6 Features												[15-FEB-2019]  ()
+27.Optional Route Parameters										[12-APR-2019]  (Done)
+28.Relative Navigation												[13-APR-2020]  (Done)
+29.Child Routes														[13-APR-2020]  (Done)
+30.Angular 6 Features												[13-APR-2020]  ()
 
 
 ################################################### 1.Introduction	####################################################################
 
-It is a JavsScript Framework and used to Build Client Side Applications.
+It is a JavsScript Framework and is used to Build Client Side Applications.
 Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
 Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
 By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
@@ -609,11 +603,11 @@ Create Variable in the app Component i.e
 		public name="Srinivas Sankoji";
 
 In the app.component.html where we bind the Child Component i.e 
-we include the Child Component Selector in the Parent Component HTML.
+where we include the Child Component Selector in the Parent Component HTML.
 
 	 <parentchild [parentData]="name"></parentchild>
 	 
-Now Declare the Same Variable in the Child Component that we Have Declared in the Parent Component.
+Now declare the Same Variable in the Child Component that we Have declared in the Parent Component.
 
 Here In the Child Component We Need to Provide Information that the Variable is Not a Normal Variable
 and We are Receiving it from the Parent Property.
@@ -632,7 +626,7 @@ In this Case we Use alias Name of @Input Decorator.
 
 Case 2: 
 -------
-Child Component Send some Data to Parent Component.
+Child Component Sending  some Data to Parent Component.
 
 In Case of Parent to Child Component Interaction,Parent Component HTML have the Child Component Selector 
 So that we Can Easily Bind the Parent Component Data to the Child Component.
@@ -866,7 +860,7 @@ We make an HTTP request to the API.
 The Response we get from the HTTP is Observable.
 
 Here Employee Service makes an HTTP Request to the API and we get the Observable as Response.
-We need to cast an Observable into Array of Employees and return the same to the Component.
+We need to cast an Observable into an Array of Employees and return the same to the Component.
 
 Observable is Nothing but Sequence of Items that arrive Asynchronously Over Time.
 But from HTTP call we get Single Item instead of Sequence of Item.
@@ -893,10 +887,10 @@ Till Angular 4 we are Using HTTP Module But from Angular 5 we are Using HTTPClie
 In the app Module Add the HTTP Client Module and it to the Import Statement
 By Importing HTTP Client Module we are also Registering the HTTP Service with Angular Injector.
 
-Here we don't have Web Service Now.Lets Create a New Folder named Data inside assets and add the Employee JSON.
+Here we don't have Web Service Now.Lets Create a New Folder named data inside assets and add the Employee JSON.
 We call the data from this File Instead of Actual Service.
 
-To use the HTTP Service in the Employee Service,Declare the Dependency in the Employee Service Constructor.
+To use the HTTP Service in the Employee Service,declare as a Dependency in the Employee Service Constructor.
 
 	constructor(private http:HttpClient) { }
 	
@@ -941,7 +935,7 @@ Subscribe the Observable from the Component and assign them to a Local Variable.
 
 ################################################### 22.HTTP Error Handling ####################################################################
 
-As we know that Observable returns an HTTP Response and we need to Handle the Error returned by the Observable.
+As we know that Observable returns an HTTP Response and we need to handle the error returned by the Observable.
 Here we make use of Catch Operator.
 
 We need to import catch Operator and catch Operator takes Method as an Argument.
@@ -951,11 +945,93 @@ We need to import catch Operator and catch Operator takes Method as an Argument.
 
 ################################################### 23.Routing and Navigation ####################################################################
 
+Any Angular Application we build have Multiple Componenets and each Component has its own View.
+We need to navigate between these two Components as and when user performs the action.
+Here we make use of Angular Router.
+
+Consider the Scenario where we need to navigate between two different views based on Button Click.
+
+		Departmet Employee
+		
+If we Click on Department it has to Show Department List similarly
+If we Click on Employee List it has to Show Employee List.
+
+Steps for the above Requirement are 
+1.Generate the Project with Routing Options using Angular CLI.
+2.Generate the Department List and Employee List Component.
+3.Configure the Routes i.e allows us to navigate the Routes from the URL.
+4.Add Buttons and use directives to navigate the Configured Routes.
+
+we might not generate the project always with Routing Option andwe may want to add the Routing to an existing application as well.
+If we want the Routing Application does then Replicate the Same code in the Existing Application.
+
+Step 1: 
+
+include the base tag in the index.html
+
+	<base href="/">
+	
+This is Required because the Application knows how to construct the url while Navigating.
+
+Step 2 :
+
+In the App Folder create the File 
+
+	app-routing.module.ts
+	
+This is the File were we configure the Different Routes.
+
+Step 3 :
+
+import app.routing.module.ts in the app module and add it to the Declarations Array.
+
+Step 4 :
+Generate the Department and Employee List Component that we will be navigating to.
+
+Step 5 :
+Configure the Routes and that we will do in the app-routing.module.ts
+
+	const routes : Routes = [];
+	
+Here routes is Strongly typed to the Route from the Router Package.
+Here we define all Possible Routes for our Application and each Route is nothing but an Object.
+Object contains a Path which is reflected in the URL and Component that has to be Rendered when we are Navigating to the Corresponding URL.
 
 
+	const : routes : Routes = [
+	{ path:'departements',component:Department-component},
+	{path:'employees',component:Employee-component}
+	];
 
-24.Wild Card Route and Redirecting Routes :
-###########################################
+But by doing so we are duplicating the import statement in the app module and app-routing Module.
+Possible Solution is to create an Array of all Routing Components in app-routing module and  import in the app module.
+in app-routing module 
+
+	export const routingComponents =[Department-component,Employee-component];
+	
+and in app-module import it.
+remove the Routing in the declarations Array and any time if we want to add the Routing Components then add it to  the app-routing .module.ts
+
+In the app-component.html we have 
+
+	<router-outlet></router-outlet>
+	
+Here we are Specifying where the components have to be Displayed using router outlet Directive.
+
+Finally Add the Buttons to Navigate from one Component to another Component in app.component.html
+
+	<nav>
+	<a>Department</a>
+	<a>Employee</a>
+	</nav>
+	
+To Make Router Possible for these Anchor Tags we use two Special Directives from the Router Package.
+
+routerLink Directive Specifies the Path to which we want to navigate to.
+routerLinkActive Specifies one or more css Classes that will be Applied when corresponding Router Link is Active.	
+ 
+
+###########################################  24.Wild Card Route ################################################################################
 
 So far we Have Created 2 Routes in Our Application. i.e Departments and Employees.
 The Problem is User tries to Navigate to the Route and is Not Configured then the Application throws an Error.
@@ -963,41 +1039,220 @@ The Problem is User tries to Navigate to the Route and is Not Configured then th
   localhost:4200/test and in the Console we get "Cannot Match Any Route"
   
 Better Way to Handle Invalid URL is using Wild Card Route.
-By Making use of Wild Card Routes we can Navigate the User to the Page Not Found Component for INvalid URL's.
+By Making use of Wild Card Routes we can Navigate the User to the Page Not Found Component for Invalid URL's.
 
-Wild Card Route should be the Last Route in the Configuration.
-Here Router Tries to Match the Pattern from the Top.
+Wild Card Route should be the Last Route in the Configuration in the app-routing.module .
+Here Router Tries to Match the Pattern from the Top then add the pagenotfound componenet at the bottom.
 
-
+ {path:"**",component:PagenotfoundComponent}
+ 
+and add it to the List of Routing Components.
 The Problem with Wild Card Route is that Once We Configure the Wild Card Route then By Default  localhost:4200 will Navigate to 
 Page Not Found Component.
 This is Because URL is Not Matched to Any of the Configured Routes and as a Result Router falls through Wild Card Route and Displays 
 Page Not Found Component.
 
 Here Requirement is our Application Needs Default Route.
-In Case of Empty Path Redirect to Another Route ad that Can be Directed by Using pathMatch parameter with Value "prefix" or "Full".
+In Case of Empty Path Redirect to Another Route i.e 
+
+		{path:'',component:DepartmentlistComponent}
+  
+Redirection can also be done by Using redirect Attribute along with pathMatch parameter with Value "prefix" or "Full".
+Path Match Attribute tells the Router that how to Match the URL Segment with the Configured Routes.
+If the Path is the Prefix of the URL then Redirect to the Departments i.e path:''
 pathMatch parameter with Value "prefix" will not Work because any URL will be Empty by Default.
 
+		{path:'',redirectTo :'/departments',pathMatch:'prefix'}
 
-################################################### 25.Route Parameters ####################################################################
+Here it always redirect to the DepartmentList Component.
+pathMatch Parameter with Full URL will Work.
 
+		{path:'',redirectTo :'/departments',pathMatch:'full'}
+		
+i.e redirect only if the Full URL is Empty.
+
+
+################################################### 25.Route Parameters #######################################################################
+
+In the Department Component we have list of Departments i.e 
+
+	Angular 
+	Node
+	MongoDB
+	Ruby
+	Bootstrap
+	
+If we Click on Department Navigate to the Department Detail Component by passing id of the Department as Route Parameter.
+In the Department Detail Component we will read the id Parameter and display the id in the Department Detail Component.
+If we Click on Angular then in the Department Detail Component Display "Selected Department with id 1"
+To achieve the above add the code in the DepartmentList Component.
+
+	departments = [
+    {"id":"1","name":"Angular"},
+    {"id":"2","name":"Node"},
+    {"id":"3","name":"MongoDB"},
+    {"id":"4","name":"Ruby"},
+    {"id":"5","name":"Bootstrap"}
+  ];
+ 
+Iterate the Department List in the Template.
+
+  <ul class="items">
+  <li *ngFor="let department of departments">
+  <span class="badge">{{department.id}}</span>{{department.name}}
+  </li>
+  </ul>
+
+Now the equirement is when we click on Angular,URL should change to departments/1 and should be presented to DepartmentDetailComponent View 
+with the Messae "Selected Department with id 1".
+Generate the DepartmentDetail Component ,add it to the app-routing.module const and Configure the Route i.e 
+
+	 {path:'departments/:id',component:DepartmentDetailComponent},
+
+Here :id is a place Holder for a Route Parameter
+
+Next Step is to Navigate to the Route when we Click on the Department.
+In the DepartmentList Component bind the Click event on Each Department.
+
+	<li (click)=onSelect(department) *ngFor="let department of departments">
+	
+From the onSelect Method Navigate to the New Route.
+To Navigate from Code we make use of Routers Service i.e import Router from angular/route and Inject in to the Constructor.
+Argument to the navigate Method is Link Parameter Array and it needs all the Information to COnstruct the URL.
+The Path we want to navigate to and the other one is Route Parameter.
+
+	onSelect(department)
+	{
+      this.router.navigate(['/departments',department.id]);
+	}
+	
+Now we are able pass the Parameter to the URl.
+The other part is to read the Parameter and Display the Parameter.
+For this we make use of activated Route Service.impprt and Inject it to the Constructor.
+Then in the ngOnInt() we read the Route Parameter.
+Here activatedRoute gives the snapShot of the Current Route.
+From the SnapShot we use paramMap APi which helps us to read the parameter of the URL.
+
+	 ngOnInit(): void {
+    let id=parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+	}
 
 
 ################################################### 26.ParamMap Observable ####################################################################
 
+To Read thr Route Parameter we used the snapshot of the Activated Route.
+But this Sceanrio has drawback.
+Here we are navigating Department Details Component  from DepartmentList Component .
+Consider the Scenario where we add the Previous and Net Button in the Department Detail Component and Go back and forth Between Different Departments.
+
+	template:`
+  <h3>Selected Department is {{departmentId}}<h3>
+  <a>Previous</a>
+  <a>Next</a>
+  `
+  
+To Navigate from Previous and Next we make use of Router Component.
+
+	 constructor(private activatedRoute:ActivatedRoute,private router:Router) 
+	 { 
+
+	 }
+	 
+Here the Problem is in the URL id Value is Updated and in the View it is not Updated.
+This is the drawback of snapshot Approach.
+when we are navingating from one Component to the same Component snapsot approach will not work.
+Angular is going to find out whether it needs to initalize the new Component or reuse the same Component.
+When we are navigating back to the Same Component Angular re uses the same Component.
+Here ngOnInit() is not called Here.
+Possible Solution is to use param Map Observable.
+
+paramMap returns an Observable and we get the data only when we subscribe.
+argument to the subscribe() is an arrow Fucntion.
+Observable provides the paramMap which we Strongly type to the params.
+
+	ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params :ParamMap) => {
+      let id=parseInt(params.get('id'));
+      this.departmentId=id;
+    });
+  }
+
+Here ANy Time Parameter Value Changes even when Navigating back to the Same Component 
+ParamMap Observable can detect and read It.
+
 
 ################################################### 27.Optional Route Parameters ##############################################################
 
+In the Department Detail Component we need to add the navigate Button and when we Click on the Back Button,Previously Selected 
+Department has to be highlighted.
+This can be Achieved by Using Optional Route Parameter.
+Here we need to assign the Handler to the Button Click.
 
+	<div>
+		<button (clcik)="goToDepartment()"></button>
+	</div>
+	
+Now capture the DepartmentId and store inside the variable SelectedId.
+Then SelectedId becomes currentdepartmentId.
+once we have selectedId we can Navigate back to the DepartmentList View by Passing it as an Optional Parameter to the Link Parameter Array.
+
+	public goToDepartment()
+    {
+    let selectedId = this.departmentId ? this.departmentId : null;
+    this.router.navigate(['/departments', {id:selectedId}]);
+    }
+	
+When we click on Back Button the Parameter will be passed to the URL as an Optional Parameter.
+It is Optional because its existence does not effect the View.
+Optional Parameter can be used to apply some Logic to the View.
+Here we are going to read the id Parameter and compare with the List of Departments and if the Id Matches then we Highlight the Department.
+
+In the DepartmentList Component read the id Parameter.
+To do this import the ActivatedRoute and Inject it.
+Then in the ngOnInit() we are going to retreive the id Parameter by Using paramMap Observable.
+	
+	ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params:ParamMap) => {
+      let id=parseInt(params.get('id'));
+      this.selectedId=id;
+    });
+  }
+  
+Now Compare the selectedId with the DepartmentId and if it Matches then Highlight the Department.
+
+	isSelected(department)
+	{
+    return department===this.selectedId;
+	}
+	
+Optional Parameter does not require a Place Holder like any Other Parameter.
+We can also pass Multiple Parameters to the Optional Parameter.
 
 
 ################################################### 28.Relative Navigation ####################################################################
 
+So Far we have used absolute paths for Navigation and can be Identified by Using /.
+In the Department List Component we are using /departments to navigate to the DepartmentDetail Component.
+And in the DepartmentDetail Component we used /departments to navigate back to the DepartmentList Component.
+When we use absolute path,then there will be a lack of Flexibility using Routes.
+If we want to change the URL in the route Module we need to change it in the app-routing.module.ts and its affected Components.
+To add little more Flexibility to the Routing Module we use Relative Navigation.
 
+Here we will add Link Parameter Array with two arguments.
+parameter and the relativeTo i.e to the Current path Add the Parameter.
+
+	this.router.navigate([department.id],{relativeTo:this.activatedRoute});
 
 
 ################################################### 29.Child Routes ###########################################################################
 
+In an Angular Application Some Routes may only be viewed within other Routes.
+In such Scenario we create Child Routes.
+Consider the Scenario In the Department Detail Component We want to show only overview and contact info.
+overview and  contact info are Features of each Department and these should be viewable only when we navigate to the Department Detail Component.
+This can be achieved by Using Child Routes.
+
+Generate the Two Components ie Contact Info Component and Overview Component.
 
 
 
