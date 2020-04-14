@@ -57,6 +57,11 @@ git checkout replica
 -- Force Push
 git push -f git@heroku.com:<heroku repo name>.git
 
+To Undo the Last Commit
+git reset HEAD~   or  git reset --hard <sha1-commit-id>
+
+
+
 
 
 

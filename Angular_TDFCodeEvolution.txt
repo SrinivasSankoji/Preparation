@@ -1,11 +1,11 @@
 1.Forms										[14-APR-2020]  (Done)
 2.Template Driven Forms                     [14-APR-2020]  (Done)
+3.Setting Up Project                        [14-APR-2020]  (Done)
+4.Adding Form to HTML                       [14-APR-2020]  (Done)
+5.Binding Data with ngForm                  [14-APR-2020]  (Done)
+6.Binding Data to Model                     [14-APR-2020]  (Done)
+7.Tracking State and Validity               [14-APR-2020]  (Done)
 
-3.Setting Up Project                        [14-APR-2020]  ()
-4.Adding Form to HTML                       [14-APR-2020]  ()
-5.Binding Data with ngForm                  [14-APR-2020]  ()
-6.Binding Data to Model                     [14-APR-2020]  ()
-7.Tracking State and Validity               [14-APR-2020]  ()
 8.Validation with Visual Feedback           [14-APR-2020]  ()
 9.Displaying Error Messages                 [14-APR-2020]  ()
 10.Select Control validation                [14-APR-2020]  ()
@@ -68,19 +68,211 @@ Display Error Messages
 Submitting the Data to the Server
 
 
-***********************************************   3.Setting Up Project	******************************************************************************************
+***********************************************   3.Setting Up Project	*******************************************************************************************
+
+To Check the Version
+
+	ng -v 
+	
+To Install Angular CLI
+
+	npm install -g @angular/cli@latest
+	
+To Update the Version of angular CLI
+
+	npm install -g @angular/cli@latest
+	
+	npm cache verify
+	
+	npm cache clean
+	
+	npm install -g @angular/cli@latestx
+	
+To Generate the Project
+	
+	ng new TemplateForm
+	
+To run the Project
+
+	ng serve
+	
+First Step is to add Bootstrap Styling to our Project.
+Bootstrap is a CSS Framework that gives a Variety of Classes that can be Applied to Make our HTML Better.
+To add Bootstrap CSS
+
+https://getbootstrap.com/  --> Click on Get Started -->  and Copy the CSS Path.
+
+Add the Path in index.html at the End of the <HEAD>.
 
 
+***********************************************  4.Adding Form to HTML	**********************************************************************************************
 
-***********************************************  4.Adding Form to HTML	******************************************************************************************
+		<div class="form-group">
+           <label>Name</label> 
+           <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Email</label> 
+            <input type="email" class="form-control">
+         </div>
+         <div class="form-group">
+            <label>Phone</label> 
+            <input type="tel" class="form-control">
+         </div>
+		 
+To create a Dropdown Create the Array of Elements in test.component.ts.
 
+	topics =['Angular','Javascript','Forms'];
+	
+	 <div class="form-group">
+            <select class="custom-select">
+                <option selected>Iam Interested In </option>
+                <option *ngFor="let topic of topics">{{topic}}</option>
+            </select>
+         </div>
 
+ <button class="btn btn-primary" type="submit">Submit</button>
 
-***********************************************   5.Binding Data with ngForm	******************************************************************************************
+***********************************************   5.Binding Data with ngForm	**************************************************************************************
+
+The First Step to work with Anguar Form is to import Forms Modules in the import Array.
+In app.module.ts 
+
+	import {FormsModule} from '@angular/forms'
+	
+After adding it to the import Array and Anytime we use the <Form> ,Angular attaches <ng-form> directive  to <Form>
+which gives the valuable information about the <form>
+It Tells what the values of different form-control are and whether the values are valid or not.
+We get the Reference of the whole <form> using Template Reference Variable.
+	
+	<form #userForm="ngForm">
+	
+Here ngForm directive exports itself as String ngForm and by assigning it to a Template Reference Variable,
+we have reference to the directive itself.
+ngForm Directive gives us Access to the value of the Form-Control by using value property.
+
+Here Angular does not track the value fo Form Control on its own.
+we need to tell angular which of the form control has to be tracked. i.e done by using ngModel directive.
+Place ngModel directive to each of the Form Control and ngModel works only with name attribute.
+In Addition to ngModel,Angular also provides ngModelGroup directive If we would like to group together or creat a subgroup in the Form.
+Consider the case of Address and address can contain street,city,state and Postal Code.
+We can group all of those into an address object using ngModelGroup directive.
+In Template Driven Forms we have 3 directives i.e ngForm,ngModel,ngModelGroup
+
+Here We are binding the data using ngModel directive and we can send the data to the server using userForm.value.
+Although it works Fine The better approach is to bind the data to the Model and send the Model to Save.
 
 
 ***********************************************  6.Binding Data to Model	******************************************************************************************
 
+To creat a Model 
+
+	ng g clsss user
+	
+	export class User 
+	{
+    constructor(
+        public userName:string,
+        public email:string,
+        public phone:string,
+        public topic:string,
+        public timePreference:string,
+        public subscribe:string
+    ){}
+	}
+	
+Next step is to creat an insatnce of the Model in test.component.ts.
+
+	 userModel=new User('Bhaumik','bcs@gmail.com','7718973681','','Morning',true);
+	 
+After having this data it is Possible to bind the userModel data to the enrollment Form.
+Consider the Scenario of editing or updating the data that is already saved.
+When we have the requiremnet of form to be prefilled to update with the existing data.
+We need to bind the userModel to the Enrollment Form and that can be done by using property binding.
+
+	 {{userModel |json}}
+	 
+
+		<div class="form-group">
+           <label>Name</label> 
+           <input type="text" class="form-control" name="userName" [ngModel]="userModel.userName">
+        </div>
+		
+Here Angular Form Module is now same as User Module.
+But when we change the value in the Text Angular Form will get the Update Value where as userModel is not Updating and
+Still Contains the Old Value.
+The Reason is we are using Property Data Binding which is one way Data Binding i.e
+Data is flown form the View to the Class but Not from the Class to the View.
+When we are working with forms we need to have Two way Data Binding.
 
 
-***********************************************  7.Tracking State and Validity  	******************************************************************************************
+***********************************************  7.Tracking State and Validity  	**********************************************************************************
+
+Before Sending the Data to the Server we need to perform Client Side Validation and Provide the Visual Feedback to the User.
+Angular helps us to perform the Form Validation by tracking the state of the Form Control by applying Appropriate Classes.
+What Class is applied to form control bassed on its state and validity.
+At any point of Time Angular applies 3 classes to th Form Control based on its state and Validity.
+
+1.User has visited the Form Control or Not 
+when we load the class for the First Time Angular Applies the Class ng-untouched
+If we click on the Form Control Either By Switching or Tab Out Angular Applies the Class ng-touched
+Here the key point is that class will change only on Blur and we have to navigate away from the Form Control.
+
+2.Form Control Value has Changed or Not
+For the First Time Angular Aplies the Class ng-pristine
+If the Form Control value has Changed Then Angular Applies the Class ng-dirty
+
+3.Form Control Value is Valid or Not
+If the Form Control Value is Valid then Angular applies the Class ng-valid 
+or else Applies the Class ng-invalid
+For Example If the Input Field Contain a required Attribute It Implies that a Value has to be Entered.
+If the Values is Missing ng-invalid is going to be Applied.
+
+
+	<div class="form-group">
+           <label>Name</label> 
+           <input type="text" #name class="form-control" name="userName" [(ngModel)]="userModel.userName">
+        </div>
+	
+    {{name.className}}
+	
+To test the ng-valid we need to add the required attribute to the input Element.
+Although These Classes helps us to Provide the Visual Feedback Angular also provides an Alternative.
+For each of the Classes Angular Provides its associated Property on ngModel Directive.
+The properties are the same but with the removal of ng.
+
+we can acces the properties of the ngModel directive by creating the reference of the ngModel Directive.
+#name Template refernec variable points to the Input Element in the DOM.
+By assigning a Value of ngModel reference variable to name ,Now name points to the ngModel of this Particular Form Control.
+
+	#name="ngModel"
+	
+	{{name.untouched}}
+	
+
+***********************************************  8.Validation with Visual Feedback   	**************************************************************************
+
+
+***********************************************  9.Displaying Error Messages   	**********************************************************************************
+
+
+***********************************************  10.Select Control validation  	**********************************************************************************
+
+
+***********************************************  11.Form Validation   	******************************************************************************************
+
+***********************************************  12.Submitting Form Data   	**************************************************************************************
+
+
+***********************************************  13.Express Server to recieve Form Data   	**********************************************************************
+
+
+***********************************************  14.Error Handling  	******************************************************************************************
+
+
+
+***********************************************  15.TDF andReactive Approach   	**********************************************************************************
+
+
+
+
