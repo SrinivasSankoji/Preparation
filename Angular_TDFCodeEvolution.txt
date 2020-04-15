@@ -5,17 +5,15 @@
 5.Binding Data with ngForm                  [14-APR-2020]  (Done)
 6.Binding Data to Model                     [14-APR-2020]  (Done)
 7.Tracking State and Validity               [14-APR-2020]  (Done)
+8.Validation with Visual Feedback           [15-APR-2020]  (Done)
+9.Displaying Error Messages                 [15-APR-2020]  (Done)
+10.Select Control validation                [15-APR-2020]  (Done)
+11.Form Validation                          [15-APR-2020]  (Done)
+12.Submitting Form Data                     [15-APR-2020]  (Done)
 
-8.Validation with Visual Feedback           [14-APR-2020]  ()
-9.Displaying Error Messages                 [14-APR-2020]  ()
-10.Select Control validation                [14-APR-2020]  ()
-11.Form Validation                          [14-APR-2020]  ()
-12.Submitting Form Data                     [14-APR-2020]  ()
-13.Express Server to recieve Form Data      [14-APR-2020]  ()
-14.Error Handling                           [14-APR-2020]  ()
-15.TDF andReactive Approach                 [14-APR-2020]  ()
-
-
+13.Express Server to recieve Form Data      [16-APR-2020]  ()
+14.Error Handling                           [16-APR-2020]  ()
+15.TDF andReactive Approach                 [16-APR-2020]  ()
 
 
 ***********************************************   1.Forms	******************************************************************************************
@@ -252,16 +250,175 @@ By assigning a Value of ngModel reference variable to name ,Now name points to t
 
 ***********************************************  8.Validation with Visual Feedback   	**************************************************************************
 
+A Good User Experience when filling out forms is to visually indicate to the user,If a Form Field is invalid as and when they enter the Details.
+In Angular we apply validation to the Form Fields by applying some of the Classes to Visually indicate the User that the Form is invalid.
+There are Two approaches .
+We can use the own Class with the Necessary Styles that has to be applied to the Form Control or
+We can use the Validation Classes that has been provided by CSS Framework.
+For invalid state the Class provided by Bootstrap is isInvalid.
+We have to apply the Class Conditionally i.e only when the Form Control is invalid.
+The Class provided by the Bootstrap for invalid state is isInvalid.
+
+	input type="text" #name="ngModel"  required class="form-control is-invalid" name="userName" [(ngModel)]="userModel.userName">    
+
+But it will be applied on the page Load itself.	
+we have to make this when the form is invalid.
+For that we make use of ngModel properties coupled with class binding.
+
+	[class.is-invalid]="name.is-invalid"
+	
+	<input type="text" required #name="ngModel" [class.is-invalid]="name.invalid"  class="form-control" name="userName" [(ngModel)]="userModel.userName">
+
+apply the Class is-invalied when the name form control is invalid.
+
+Consider the Case where the Form is Not Prefilled with Data.
+In this Case On Page load itself It wiil perform validation on the page Load itself.
+In addition to check whether the form controlis invalid we also need to check whether the user has visited the form or not.
+
+	[class.is-invalid]="name.invalid && name.touched"
+	
+we can also perform the pattern matching validation for the form fields.
+we can add any basic regular expression we want to add to and create a pattern that the form field must satisfy.
+Consider password must be between 8 to 15 Characters with one Special Character.
+Pin Code,Phone Number in Specific format and so on.
+
+We appl the Regular Expression for the Phone Number.
+First thing is to get the reference to the ngModel directive.
+Then add the Pattern attribute with the Regular Expression.
+
+<input type="tel" #phone="ngModel" pattern="^\d{10}$"  [class.is-invalid]="phone.invalid && phone.touched"
+            class="form-control" name="phone" [(ngModel)]="userModel.phone">
+
+However when the from field is invalid we need to display an appropriate Error Message.
 
 ***********************************************  9.Displaying Error Messages   	**********************************************************************************
+
+Here we are going to display the Error Messages when the Form Field is invalid.
+In the Test.component.html add the small Tag.
+
+	 <small>Name is required</small>
+	 
+This Message has to be Displayed only when the Form Field is invalid.
+Here we can use Either ngIf or Class Binding.
+For Class Binding we will use the class d-none which is a Bootstrap Class for setting the display property to None.
+
+	<small [class.d-none]="name.valid || name.untouched">Name is required</small>
+	
+Do Not Show the Error Message when the Name Form Control is valid or untouched.
+To Make the Message appaear like an Error Message we use the Class text-danger
+
+	<small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+	
+we might getthe scenario where we have more than one validation for the same Field.
+
+	<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone Number is required and Should Have 10 Digits</small>
+	
+We can also display the Error Messages based on error Properties of the ngModel.
+Comment the existing Error Messages.
+Add the <div> and this <div> will be conditionally rendered based on whether the phone Number is valid or Not.
+Here we use ngIf Directive along with ngModel Properties.
+
+	<div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+            <small class="text-danger" *ngIf="phone.errors.required">Phone Number is Required</small>
+            <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number Must be 10 Digits</small>
+    </div> 
 
 
 ***********************************************  10.Select Control validation  	**********************************************************************************
 
+Here we perform Validation on Select Control Field.
+Topic Should be Any other Value except Iam Interested in.
+
+If the User Intercats with Select Control and Leaves the Option then we should provide an Error Message Please Choose the Topic.
+Simpleset way to perform select Control Validation is make use of required attribute.
+Create a reference of ngModel so that we can make use of ngModel Properties to appply a Class to the Select Element and also display the Error Messages. 
+
+	<small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please Choose the Topic</small>
+	
+This works only when the Value is Empty i.e 
+
+	 <option value="">Iam Interested In </option>
+	 
+If we have the Default Value then the Validation Fails.
+Here we need to provide the custom Validation for the Select Control.
+we listen to the blur event and change event of the select Control and In the Event Handler we are going to check the value.
+If the value is the default value then set an Error Flag to true.
+we use this error flag to conditionally apply the Classes.
+
+	(blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)"
+	
+passing the Selected value to the events.
+
+	 [class.is-invalid]="topicHasError && topic.touched"
+	 
+If the topicHasError and is touched then Display the Error Message.
+
+	[class.d-none]="!topicHasError || topic.untouched">
+	
+If there is No Error and Topic has not Touched then Display the None class to the Error Message.
+
+Finally remove the Required attribute to work with the Functionlaity.
 
 ***********************************************  11.Form Validation   	******************************************************************************************
 
+So Far we have seen individual Form Control.
+Angular also helps us to do the Form Level Validation.
+whenever we use the <form> element in the HTML Angular automatically attaches the ngForm Directive to the Form Tag.
+we can get the reference of the ngForm Tag with the Template Reference Variable.
+Like wise we have properties on ngModel Directive we have the same properties on ngForm Directive.
+
+	{{userForm.form.valid}}
+	
+This can be used to disable the Submit Button untill the Form is valid.
+To the Button add the disabled Property and bind it to the invalid state of the Form.
+
+	<button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Submit</button>
+	
+This works fine if we dont have any custom validations that ngForm is not Tracking.
+But in our Case we have custom select validation and If we click on submit Button check the value of the Selected Field
+and then proceed with submitting the form.
+To the Disbaled property of Button add one more condition.
+
+	<button [disabled]="userForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit</button>
+	
+Button gets disabled when the form is invalid or Topic has Error.
+
 ***********************************************  12.Submitting Form Data   	**************************************************************************************
+
+Here we are going to submit the Form data to the Server.
+First step is to add the novalidate attribute to the form tag.
+This will prevent Browser validation kicking in when we Click on Submit Button.
+
+	<form #userForm="ngForm" novalidate>
+	
+
+Next Step is to bind the ngSubmit Event which gets emitted when we click on submit Button.
+
+	 <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+	 
+Now to send the Data to the Service we need to create a Service.
+
+	ng g s enrollment
+	
+Then import the HttpClient and inject it to the constructor.
+we also need to add the HttpClient in the imports Array.
+Now we are in a Position to make Http Request.
+create a Method enrollment that accepts the user and submit the Post Request with url and User.
+
+	 public enroll(user:User)
+	{
+    this._http.post<any>(this._url,user);
+	}
+
+Call the enroll Srevice from the onSubmit() in test.component.ts
+
+	public onSubmit()
+	{
+    this.enrollmentService.enroll(this.userModel)
+    .subscribe(data => console.log('Success!',data),
+               error => console.log('Error!',error)
+    );
+	}
 
 
 ***********************************************  13.Express Server to recieve Form Data   	**********************************************************************
