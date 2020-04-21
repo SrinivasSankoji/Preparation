@@ -1,0 +1,301 @@
+
+Spring Rest and Angular Samba Media :
+*************************************
+
+1.Spring Boot Backend								[20-APR-2020]  (Done)
+2.Angular Routing                                   [20-APR-2020]  (Done)
+3.Angular Service                                   [20-APR-2020]  (Done)
+4.Angular Cross Origin and Display Data             [20-APR-2020]  (Done)
+5.Delete Operation                                  [21-APR-2020]  (Done)
+6.Create and Update                                 [21-APR-2020]  ()
+
+
+*****************************************  2.Angular Routing     ***************************************** 
+
+                             
+Create the New Project 
+Create the New Class
+
+	ng g class user
+	
+Benerate the Two New Components in the components Folder
+
+	listuser
+	userForm
+
+import  Route Module to the app.module.ts and declare it in the declarations Array.
+
+	import {RouterModule,Routes} from '@angular/router'
+	
+	imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes)
+	],
+	
+Instead of Declaring the Routes in the Declaration Array Create the Route Constant and export it wherever it is Required.
+
+	const appRoutes:Routes=[
+	{path:'',component:ListuserComponent},
+	{path:'óp',component:UserformComponent}
+	];
+	
+Declare the Default Route in the Routes Constant.
+
+Change the Default Code in the app.component.html
+	
+	<div class="container">
+		<router-outlet>/</router-outlet>
+	</div>
+	
+
+*****************************************  2.Angular Service    ******************************************
+
+In Angular Service is an Injectable Class that defines common data that can be shared across Components.
+To Create a New Service 
+
+	ng g s crusservice/service
+	
+Whenever we create any Service we need to add it to the app-modules.ts in the Providers Array.
+
+	  providers: [UserService]
+	  
+Service is going to make use of HTTP Request to send the Request to the Server.
+Import HTTP HttpClient in the app-module.ts and add it to the imports Array.
+
+	import {HttpClient} from '@angular/common/http';
+	
+	imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClient,
+    RouterModule.forRoot(appRoutes)
+	]
+
+In the Service Class import the HTTP,Response,Headers from '@angular/http'
+
+	import {HttpClient,HttpResponse,HttpHeaders} from '@angular/common/http';
+	
+Define the Base URL 
+
+	 private baseURL:String='http://localhost:1234/api';
+	 
+Inject the HttpClient in the Constructor.
+
+	constructor(private http:HttpClient) { }
+	 
+We also define the Headers that we are Going to Communicate.
+
+	const httpOptions = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+	
+	};
+	
+Define the Very First Get API that rturns all the Users and 
+As the HTTP returns an Observable we need to cast it into User[].
+
+	getUsers()
+   {
+    return this.http.get<User[]>(this.baseURL+'users')
+   }
+   
+Similar is the Case for create,delete,Update.
+
+
+*****************************************  4.Angular Cross Origin and Display Data   *****************************************
+
+import { HttpClientModule } from '@angular/common/http';
+Use the above Module instead of HttpClient.
+
+
+Inject the Service Class into the UserList Component so that we can access the Methods of the Service Class.
+Add the Service to the Constructor.
+
+	constructor(private userService:UserService) { }
+	
+Also declare the User Array
+	
+	private users:User[];
+	
+
+ ngOnInit(): void 
+  {
+    this.userService.getUsers().subscribe((users)=>{
+      console.log(users);
+      this.users=users;
+    },(error)=>{
+      console.log(error);
+    });
+  }
+  
+Now we are successfully getting the Users from the Back End.
+We need to convert it into Table in List User Component.
+
+
+	<table>
+    <thead>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.fname}}</td>
+            <td>{{user.lname}}</td>
+        </tr>
+    </tbody>
+	</table>
+	
+Use the Bootstrap to Style the HTML.
+
+	<div class="container">
+	Place the Table Code Here
+	</div>
+	
+
+***************************************** 5.Delete Operation  *****************************************
+
+To Delete the User we add the deleteUser() event in the HTML and the same has to be defined inside Component Class.
+
+	<button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+	
+From the Component Class call the Delete Method of the Service Class.
+After Calling the Service remove the deleted User from the users Array.
+
+	public deleteUser(user)
+   {
+      this.userService.deleteUser(user.id).subscribe((data) =>{
+        this.users.splice(this.users.indexOf(user),1);
+      })
+   }
+
+***************************************** 6.Create and Update *****************************************
+
+Here user Componenet form is an HTML Form and we bind this form to User Object.
+When we click on Edit Button we pass the user information to the User Object and New form is prepopulated with User Data.
+Similarly when we Click on New User we populate the Empty Form which later on fill the Data and bind it to the User Object.
+	
+Since we are working wit forms we need to import FormsModule in the app-module.ts.
+
+	import {FormsModule} from '@angular/forms'; and add it to the imports Array.
+	
+Add the User Object to the userform Component.ts.
+
+	public user:User;
+
+Create a Table in UserForm HTML.
+
+		<div class="container">
+		<form >
+			<div class="form-group">
+				<label>Id</label>
+				<input type="text" name="id" class="form-control" [(ngModel)]="user.id">
+			</div>
+			<div class="form-group">
+				<label>First Name</label>
+				<input type="text" name="id" class="form-control" [(ngModel)]="user.fname">
+			</div>
+			<div class="form-group">
+				<label>Last Name</label>
+				<input type="text" name="id" class="form-control" [(ngModel)]="user.lname">
+			</div>
+			<button class="btn btn-primary">Save User</button>
+		</form>
+		</div>
+		
+Now we need to pass the User data from ListComponent to the UserForm Component.
+Here we naeed to add events to the Edit Button and Save Button.
+
+Add the User Object in the Service to set the User.
+
+	public user:User;
+	
+	setter(user:User)
+    {
+    this.user=user;
+    }
+
+	getter()
+	{
+    return this.user;
+	}
+	
+When we Click on the Edit Button in the ListComponent we want to set the user to the UserService Setter Method and 
+Navigate to the UserForm Component.
+To Navigate we need to Import the Router and inject it into the List Component.
+
+	import {Router} from '@angular/router';
+	
+	constructor(private userService:UserService,
+    private router:Router) { }
+
+	 public updateUser(user)
+     {
+     this.userService.setter(user);
+     this._router.navigate(['/op']);
+     }
+	
+Whenwe Click on Save User It should navigate to UserForm Component with Empty Form.
+
+	 public createUser()
+     {
+      let user=new User();
+      this.userService.setter(user);
+      this._router.navigate(['/op']);
+     }
+	 
+In the UserForm Component we need to call the Service and access the getter Method.
+To Do this we need to Inject the Service and Also inject the Router.
+
+	ngOnInit(): void {
+    this.user=this._userService.getter();
+  }
+
+Now we need to Submit the Form.
+
+	<form (ngSubmit)="processUser()">
+	
+Define the Method in UserComponent.ts
+Here we need to check whether the id is undefined then create the User or else update the User.
+
+	public processUser()
+    {
+    if(this.user.id==undefined)
+    {
+      this._userService.createeUser(this.user).subscribe((user) =>{
+        console.log(user);
+        this._router.navigate(['/']);
+      },(error) =>{
+        console.log(error);
+      })
+    }
+    else{
+      this._userService.updateUser(this.user).subscribe((user) =>{
+        console.log(user);
+        this._router.navigate(['/']);
+      },(error) =>{
+        console.log(error);
+      })
+    }
+  }
+  
+To resolve the Proxy Issue Create proxy.config.json and edit the start script in package.json.
+
+	{
+    "/api/*": {
+      "target": "http://localhost:1234",
+      "secure": false
+    }
+  }
+  
+In package.json  
+
+	 "start": "ng serve --proxy-config proxy.config.json"
+	 
+After these Changes npm start to run the Angular Application.
+
+
+*******************************************************************************END OF CRUD OPERATION  *************************************************************
+
+	

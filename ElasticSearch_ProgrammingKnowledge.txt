@@ -1,0 +1,47 @@
+1.Installation								[20-APR-2020]  ()
+2.Import CSV File using LogStash            [20-APR-2020]  ()
+3.Introduction                              [20-APR-2020]  ()
+4.Rest API -Search                          [20-APR-2020]  ()
+5.Installing LogStash                       [20-APR-2020]  ()
+6.Basics of Search                          [20-APR-2020]  ()
+7.Query and Filter Context                  [20-APR-2020]  ()
+8.Our Own Queries                           [20-APR-2020]  ()
+
+
+
+**************************************************************   1.Installation  ************************************************************** 
+
+
+https://www.elastic.co/downloads/
+
+Download Elastic Search ,Kibana and LogStash and Extract into Folder.
+
+To Install Elastic Search :
+---------------------------
+
+D:\Software\elasticsearch-7.6.2-windows-x86_64\elasticsearch-7.6.2\bin
+Then run the command elasticsearch.bat
+
+To check whether the Elastic Search is running or not we need to check it in the Browser.
+
+	http://localhost:9200/
+	
+
+To Install Kibana :
+-------------------
+
+D:\Software\kibana-7.6.2-windows-x86_64\bin 
+Then run the Command kibana.bat
+
+To check whether the Elastic Search is running or not we need to check it in the Browser.
+
+	http://localhost:5601
+	
+To Install Logstash :
+---------------------
+
+
+
+
+
+

@@ -52,6 +52,7 @@ git checkout HEAD path/to/your/dir/or/file
 git reset --hard HEAD
 
 --Switch From One Branch to Another Branch
+git branch "Branch Name" 
 git checkout replica
 
 -- Force Push
@@ -59,6 +60,19 @@ git push -f git@heroku.com:<heroku repo name>.git
 
 To Undo the Last Commit
 git reset HEAD~   or  git reset --hard <sha1-commit-id>
+
+
+refusing to merge unrelated histories git pull Issue :
+git pull origin master --allow-unrelated-histories
+
+TO Delete the Branch Name Locally:
+
+git branch -d branch_name
+git branch -D branch_name
+
+To Delete the Branch Remotely :
+git push origin --delete "BranchName"
+
 
 
 

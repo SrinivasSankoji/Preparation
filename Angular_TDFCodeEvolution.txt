@@ -6,11 +6,11 @@
 6.Binding Data to Model                     [14-APR-2020]  (Done)
 7.Tracking State and Validity               [14-APR-2020]  (Done)
 8.Validation with Visual Feedback           [15-APR-2020]  (Done)
+
 9.Displaying Error Messages                 [15-APR-2020]  (Done)
 10.Select Control validation                [15-APR-2020]  (Done)
 11.Form Validation                          [15-APR-2020]  (Done)
 12.Submitting Form Data                     [15-APR-2020]  (Done)
-
 13.Express Server to recieve Form Data      [16-APR-2020]  ()
 14.Error Handling                           [16-APR-2020]  ()
 15.TDF andReactive Approach                 [16-APR-2020]  ()
@@ -18,9 +18,9 @@
 
 ***********************************************   1.Forms	******************************************************************************************
 
-Forms are Vital part of any Business Application.
+Forms are vital part of any Business Application.
 We use forms to Register,Login,Submit a Request,Place an Order,Schedule an Appointment and perform other Countless Tasks.
-While Designing Forms it is Important to create an Experience that guides the User Efficiently and Effectively trough out the Workflow.
+While Designing Forms it is Important to create an experience that guides the User Efficiently and Effectively trough out the Workflow.
 As a Developer we need to Handle Data Binding,Change Tracking,Validation,Visual Feedback,Error Messages and Form Submission.
 The Component Template Contains the HTML to Collect the User Data.
 The Component Class Handles Data Binding.
@@ -38,7 +38,7 @@ Most of the Code is written in Component Class.
 
 As the name Indicates Most of the Code is written inside HTML Template.
 Easy to use and is Similar to Angular JS Forms.
-In This Approach we Heavily rely on Two Way Data Binding i.e ngModel.
+In This Approach we heavily rely on Two Way Data Binding i.e ngModel.
 We dont have to keep track of the Input Field values and react to the Change in Input Field Values.
 Angular Takes care of this by Using ngModel Directive.
 As a Result we have Bulky HTML Code and Minimal Component Code.
@@ -149,7 +149,7 @@ Here ngForm directive exports itself as String ngForm and by assigning it to a T
 we have reference to the directive itself.
 ngForm Directive gives us Access to the value of the Form-Control by using value property.
 
-Here Angular does not track the value fo Form Control on its own.
+Here Angular does not track the value of Form Control on its own.
 we need to tell angular which of the form control has to be tracked. i.e done by using ngModel directive.
 Place ngModel directive to each of the Form Control and ngModel works only with name attribute.
 In Addition to ngModel,Angular also provides ngModelGroup directive If we would like to group together or creat a subgroup in the Form.
@@ -209,7 +209,7 @@ When we are working with forms we need to have Two way Data Binding.
 Before Sending the Data to the Server we need to perform Client Side Validation and Provide the Visual Feedback to the User.
 Angular helps us to perform the Form Validation by tracking the state of the Form Control by applying Appropriate Classes.
 What Class is applied to form control bassed on its state and validity.
-At any point of Time Angular applies 3 classes to th Form Control based on its state and Validity.
+At any point of Time Angular applies 3 classes to the Form Control based on its state and Validity.
 
 1.User has visited the Form Control or Not 
 when we load the class for the First Time Angular Applies the Class ng-untouched
@@ -253,11 +253,11 @@ By assigning a Value of ngModel reference variable to name ,Now name points to t
 A Good User Experience when filling out forms is to visually indicate to the user,If a Form Field is invalid as and when they enter the Details.
 In Angular we apply validation to the Form Fields by applying some of the Classes to Visually indicate the User that the Form is invalid.
 There are Two approaches .
-We can use the own Class with the Necessary Styles that has to be applied to the Form Control or
+We can use own Class with the Necessary Styles that has to be applied to the Form Control or
 We can use the Validation Classes that has been provided by CSS Framework.
-For invalid state the Class provided by Bootstrap is isInvalid.
+For invalid state the Class provided by Bootstrap is is-Invalid.
 We have to apply the Class Conditionally i.e only when the Form Control is invalid.
-The Class provided by the Bootstrap for invalid state is isInvalid.
+The Class provided by the Bootstrap for invalid state is is-Invalid.
 
 	input type="text" #name="ngModel"  required class="form-control is-invalid" name="userName" [(ngModel)]="userModel.userName">    
 
@@ -282,7 +282,7 @@ we can add any basic regular expression we want to add to and create a pattern t
 Consider password must be between 8 to 15 Characters with one Special Character.
 Pin Code,Phone Number in Specific format and so on.
 
-We appl the Regular Expression for the Phone Number.
+We apply the Regular Expression for the Phone Number.
 First thing is to get the reference to the ngModel directive.
 Then add the Pattern attribute with the Regular Expression.
 
@@ -290,6 +290,7 @@ Then add the Pattern attribute with the Regular Expression.
             class="form-control" name="phone" [(ngModel)]="userModel.phone">
 
 However when the from field is invalid we need to display an appropriate Error Message.
+
 
 ***********************************************  9.Displaying Error Messages   	**********************************************************************************
 
@@ -423,12 +424,96 @@ Call the enroll Srevice from the onSubmit() in test.component.ts
 
 ***********************************************  13.Express Server to recieve Form Data   	**********************************************************************
 
+Here we are goint to set up a basic express server that is going to recieve form Data.
+Create a Folder named server in the Folder Angular.
+Open the Folder server in the command Prompt
+
+	npm init --yes
+	npm install --save express body-parser cors
+	
+Express is a Web Server
+Body Parser is a Middleware to handle form Data.
+cors is a package to make request across different ports.
+
+Now the Dependencies are installed in the server Folder i.e package.json
+
+	"dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+	}
+	
+Now craete a New File named server.js and within this File begin with the packages that we have installed.
+
+	const express = require('express');
+	const bodyParser = require('body-parser');
+	const cors = require('cors');
+	
+Create a Port that the express server will run on.
+
+	const PORT=3000;
+	
+create an instance of an express 
+
+	const app=express();
+	
+Specify the body parser to handle json Data
+
+	app.use(bodyParser.json);
+	
+Also specify the cors package
+	
+	app.use(cors());
+
+Now add the Code to Test a Get Request
+
+	app.get('/',function(req,res)
+	{
+    res.send('Hello from Server');
+	});
+	
+Finally we listen to the Request on the Specified Port.
+
+	app.listen(PORT,function()
+	{
+    console.log("Server Running on Local Host : "+PORT);
+	});
+	
+Now the basic Express Server is Ready.
+
+
+
+
+
 
 ***********************************************  14.Error Handling  	******************************************************************************************
 
+When we submit the Form and if some thing goes wrong and the Server will respond with an Error.
+Here we need to handle the errors after the Form Submission.
+
+In the Enrollment Service we will be catching the error from the Server and throwing it to the subscribed Component.
+we need the help of rx js.
 
 
-***********************************************  15.TDF andReactive Approach   	**********************************************************************************
+***********************************************  15.TDF and Reactive Approach   	******************************************************************************
+
+In case of Template Driven Form approach ngForm Directive gives the entire information about the enrollment Form.
+To the ngSubmit event pass the reference variabe of the ngForm as parameter.
+
+	 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+	 
+	public onSubmit(userForm)
+	{
+    console.log(userForm);
+	}
+	
+If we see the log in the console an object ngForm is Displayed.
+we see lot of properties of ngForm.
+value property contains the values of the different form fields.
+
+
+
+
 
 
 
