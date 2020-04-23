@@ -73,6 +73,9 @@ git branch -D branch_name
 To Delete the Branch Remotely :
 git push origin --delete "BranchName"
 
+To CLone a Particular Folder from GIT :
+git clone git@github.com:whatever folder-name
+
 
 
 

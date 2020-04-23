@@ -20,6 +20,7 @@
 20.HTTP and Observables												[21-FEB-2019]  (Done)
 21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
 22.HTTP Error Handling												[21-FEB-2019]  ()
+
 23.Routing and Navigation											[06-APR-2020]  (Done)
 24.Wild Card Route and Redirecting Routes							[06-APR-2020]  (Done)
 25.Route Parameters													[12-APR-2020]  (Done)
@@ -946,7 +947,7 @@ We need to import catch Operator and catch Operator takes Method as an Argument.
 ################################################### 23.Routing and Navigation ####################################################################
 
 Any Angular Application we build have Multiple Componenets and each Component has its own View.
-We need to navigate between these two Components as and when user performs the action.
+We need to navigate between these Components as and when user performs the action.
 Here we make use of Angular Router.
 
 Consider the Scenario where we need to navigate between two different views based on Button Click.
@@ -962,8 +963,8 @@ Steps for the above Requirement are
 3.Configure the Routes i.e allows us to navigate the Routes from the URL.
 4.Add Buttons and use directives to navigate the Configured Routes.
 
-we might not generate the project always with Routing Option andwe may want to add the Routing to an existing application as well.
-If we want the Routing Application does then Replicate the Same code in the Existing Application.
+we might not generate the project always with Routing Option and we may want to add the Routing to an existing application as well.
+If we want what the Routing Application does then Replicate the Same code in the Existing Application.
 
 Step 1: 
 
@@ -983,7 +984,7 @@ This is the File were we configure the Different Routes.
 
 Step 3 :
 
-import app.routing.module.ts in the app module and add it to the Declarations Array.
+import app-routing.module.ts in the app module and add it to the Declarations Array.
 
 Step 4 :
 Generate the Department and Employee List Component that we will be navigating to.
@@ -1004,8 +1005,8 @@ Object contains a Path which is reflected in the URL and Component that has to b
 	];
 
 But by doing so we are duplicating the import statement in the app module and app-routing Module.
-Possible Solution is to create an Array of all Routing Components in app-routing module and  import in the app module.
-in app-routing module 
+Possible Solution is to create an Array of all Routing Components in app-routing module and  import it in the app module.
+In app-routing module 
 
 	export const routingComponents =[Department-component,Employee-component];
 	
@@ -1017,7 +1018,6 @@ In the app-component.html we have
 	<router-outlet></router-outlet>
 	
 Here we are Specifying where the components have to be Displayed using router outlet Directive.
-
 Finally Add the Buttons to Navigate from one Component to another Component in app.component.html
 
 	<nav>
@@ -1027,8 +1027,13 @@ Finally Add the Buttons to Navigate from one Component to another Component in a
 	
 To Make Router Possible for these Anchor Tags we use two Special Directives from the Router Package.
 
+	<nav>
+	   <a  routerLink='/departmentlist'>Departmet</a><br>
+	   <a  routerLink='/employees'>Employee</a>
+	</nav>
+
 routerLink Directive Specifies the Path to which we want to navigate to.
-routerLinkActive Specifies one or more css Classes that will be Applied when corresponding Router Link is Active.	
+routerLinkActive Specifies one or more css Classes that will be Applied to the Component when corresponding Router Link is Active.	
  
 
 ###########################################  24.Wild Card Route ################################################################################
@@ -1038,7 +1043,7 @@ The Problem is User tries to Navigate to the Route and is Not Configured then th
 
   localhost:4200/test and in the Console we get "Cannot Match Any Route"
   
-Better Way to Handle Invalid URL is using Wild Card Route.
+Better Way to Handle Invalid URL is by using Wild Card Route.
 By Making use of Wild Card Routes we can Navigate the User to the Page Not Found Component for Invalid URL's.
 
 Wild Card Route should be the Last Route in the Configuration in the app-routing.module .
@@ -1046,18 +1051,18 @@ Here Router Tries to Match the Pattern from the Top then add the pagenotfound co
 
  {path:"**",component:PagenotfoundComponent}
  
-and add it to the List of Routing Components.
-The Problem with Wild Card Route is that Once We Configure the Wild Card Route then By Default  localhost:4200 will Navigate to 
+Add it to the List of Routing Components.
+The Problem with Wild Card Route is that Once We Configure the Wild Card Route then By Default localhost:4200 will Navigate to 
 Page Not Found Component.
-This is Because URL is Not Matched to Any of the Configured Routes and as a Result Router falls through Wild Card Route and Displays 
-Page Not Found Component.
+This is Because URL is Not Matched to Any of the Configured Routes 
+and as a Result Router falls through Wild Card Route and Displays Page Not Found Component.
 
 Here Requirement is our Application Needs Default Route.
 In Case of Empty Path Redirect to Another Route i.e 
 
 		{path:'',component:DepartmentlistComponent}
   
-Redirection can also be done by Using redirect Attribute along with pathMatch parameter with Value "prefix" or "Full".
+Redirection can also be done by Using redirectTo Attribute along with pathMatch parameter with Value "prefix" or "Full".
 Path Match Attribute tells the Router that how to Match the URL Segment with the Configured Routes.
 If the Path is the Prefix of the URL then Redirect to the Departments i.e path:''
 pathMatch parameter with Value "prefix" will not Work because any URL will be Empty by Default.
@@ -1103,7 +1108,7 @@ Iterate the Department List in the Template.
   </li>
   </ul>
 
-Now the equirement is when we click on Angular,URL should change to departments/1 and should be presented to DepartmentDetailComponent View 
+Now the requirement is when we click on Angular,URL should change to departments/1 and should be redirected to DepartmentDetailComponent View 
 with the Messae "Selected Department with id 1".
 Generate the DepartmentDetail Component ,add it to the app-routing.module const and Configure the Route i.e 
 
@@ -1126,12 +1131,13 @@ The Path we want to navigate to and the other one is Route Parameter.
       this.router.navigate(['/departments',department.id]);
 	}
 	
-Now we are able pass the Parameter to the URl.
+Now we are able pass the Parameter to the URL.
 The other part is to read the Parameter and Display the Parameter.
-For this we make use of activated Route Service.impprt and Inject it to the Constructor.
-Then in the ngOnInt() we read the Route Parameter.
+For this we make use of activated Route Service.
+impprt and Inject it to the Constructor in Department Detail Component.
+Then in the ngOnInt() of Department Detail Component,we read the Route Parameter.
 Here activatedRoute gives the snapShot of the Current Route.
-From the SnapShot we use paramMap APi which helps us to read the parameter of the URL.
+From the SnapShot we use paramMap API which helps us to read the parameter of the URL.
 
 	 ngOnInit(): void {
     let id=parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -1140,10 +1146,10 @@ From the SnapShot we use paramMap APi which helps us to read the parameter of th
 
 ################################################### 26.ParamMap Observable ####################################################################
 
-To Read thr Route Parameter we used the snapshot of the Activated Route.
+To Read the Route Parameter we used the snapshot of the activatedRoute.
 But this Sceanrio has drawback.
-Here we are navigating Department Details Component  from DepartmentList Component .
-Consider the Scenario where we add the Previous and Net Button in the Department Detail Component and Go back and forth Between Different Departments.
+Here we are navigating from from DepartmentList Component to DepartmentDetails Component  
+Consider the Scenario where we add the Previous and Next Button in the DepartmentDetail Component and Go back and forth Between Different Departments.
 
 	template:`
   <h3>Selected Department is {{departmentId}}<h3>
@@ -1160,12 +1166,11 @@ To Navigate from Previous and Next we make use of Router Component.
 	 
 Here the Problem is in the URL id Value is Updated and in the View it is not Updated.
 This is the drawback of snapshot Approach.
-when we are navingating from one Component to the same Component snapsot approach will not work.
+whenever we are navingating from one Component to another Component and  back to the same Component snapshot approach will not work.
 Angular is going to find out whether it needs to initalize the new Component or reuse the same Component.
-When we are navigating back to the Same Component Angular re uses the same Component.
-Here ngOnInit() is not called Here.
-Possible Solution is to use param Map Observable.
+When we are navigating back to the Same Component Angular re uses the same Component and here ngOnInit() is not called Here.
 
+Possible Solution is to use paramMap Observable.
 paramMap returns an Observable and we get the data only when we subscribe.
 argument to the subscribe() is an arrow Fucntion.
 Observable provides the paramMap which we Strongly type to the params.
@@ -1177,8 +1182,7 @@ Observable provides the paramMap which we Strongly type to the params.
     });
   }
 
-Here ANy Time Parameter Value Changes even when Navigating back to the Same Component 
-ParamMap Observable can detect and read It.
+Here Any Time Parameter Value Changes even when Navigating back to the Same Component,ParamMap Observable can detect and read It.
 
 
 ################################################### 27.Optional Route Parameters ##############################################################

@@ -1,0 +1,120 @@
+Logging in Spring Boot Java Brains			[22-APR-2020]  (Done)
+Custom Logging in Spring Boot				[22-APR-2020]  ()
+Logging Using Elastic Search				[22-APR-2020]  ()
+Logging Best Practices						[22-APR-2020]  (Done)
+SL4J ,Log4J and Logback						[22-APR-2020]  ()
+Logging Properties							[22-APR-2020]  ()
+Execution Time Request						[22-APR-2020]  ()
+
+*************************************  Logging in Spring Boot Java Brains ***************************************************
+
+Logging Framework allows us to configure the behavior rather than doing the things in one way.
+we can set the Log Level,store the Logs into a File,Database etc.
+Spring Boot comes with its own Logging framework when we add the starter dependency.
+Logging is Built in with Many Starter Dependencies.
+Basic  way to add the Logger is to use the LoggerFactory and it has the Method Called getLogger that accepts the Class as an argument.
+SLF4J is the standard Logging Framework that Spring Boot Internally Uses.
+
+	Logger logger=LoggerFactory.getLogger(LoggingController.class);
+	
+Spring Boot By default Provides the SLF4J Interface For Logging and the Default Implementation is Logback.
+When we add spring-bbot-starter-web by Default It adds spring-bbot-starter-logging.
+spring-bbot-starter-logging depends on spring-jcl(Spring Commons Logging Bridge)
+Logback is a Framework and is a Kind of Successor to the Log4J Framework.
+Here we are Calling the Logging API Using SLF4J and SLF4J delegating the work to Logback for Logging.
+
+We can Configure the Log Levels and the default log Level is info.
+we can customize the Log level by configuring at the property Level.
+
+	logging.level.root=trace
+	
+Here even the Spring Framework logs will be displayed.
+We can restrict to package level Logging by configuring the property.
+
+we have to specify lot of properties in application.properties  for Logging. 
+To avoid the usage of more configuration in properties file we can also use the xml configuration.
+Spring Boot looks for certain XML Files in the Classpath.
+
+	logback-spring.xml
+	logback.xml
+	
+logback.xml is the standard way of configuring the Logback for Logging Framework.
+Here we can also restrict the complex XML by inheriting.
+
+
+*************************************  Logging Best Practices  Brandan Jones ***************************************************
+
+Logging provides the ability to go back and Investigate.
+Best Practice is to use the Log Levels appropriately.
+we can log things at different Levels.
+
+TRACE --> DEBUG --> INFO --> WARN --> ERROR
+
+We can also implement some custon Logging Levels.
+It is Important we are logging at the Right Level.
+Some thing that is a common occurence and normal and expected should not be logged.
+ERROR Should not be logged as INFO Similarly INFO Should not be Logged as ERROR.
+Use the Severity Levels to help us Shift through Logs and Find Out What actually Important and what caused the Issue.
+
+Shifting through Logs is an Important Skill.
+An ERROR will not be logged very Frequently in the Application where as TRACE and DEBUG are very Verbose.
+
+We can have the General Log File that Contains Everthing.
+We can also have the Log File that is specific to Severity and helps to narrow down the Issue.
+If we have a Try Catch Block or an Exception always should have a Log Statement in that even we dont need it.
+Dont Show the DEtailed Exception to the Users.
+
+ERROR :
+-------
+Use this only when we have a try catch block .
+
+WARN :
+------
+Gives a Warning like getting the empty List is a WARN. 
+
+INFO :
+------
+It is Like every day Occurence and gives the General Information.
+
+DEBUG :
+-------
+DEBUG will give the More Granular Level and is used only in Development.
+
+TRACE :
+-------
+TRACE is Very Fine Grained level which shows entry and Exit.
+
+By Default Spring Boot logs to the Console.
+If we want to log to the File or Multiple Files we use the Configuration.
+
+	Logger logger=LoggerFactory.getLogger(LoggingController.class);
+	
+
+***************************************************************************************************************  
+
+
+
+
+
+
+
+ 
+
+
+
+	
+
+
+
+
+
+
+
+	
+	
+
+
+		
+
+
+

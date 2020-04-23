@@ -1,16 +1,23 @@
-1.Angular Architecture              [12-AUG-2019]  (Done)
-2.Decorators
-3.Life Cycle Hooks					[12-AUG-2019]  (Done)
-4.Services and Http Requests		
-5.Configure Proxy API Calls
-6.Routing
-7.Login Application
-8.Registration Application
-9.Sessions
-10.Pipes and Custom Pipes
-11.Directives and Custom Directives
-12.Redux and Concepts
-13.Deploying Angular Application
+1.Angular Architecture              		[22-APR-2020]  ()
+2.Decorators                                [22-APR-2020]  ()
+3.Life Cycle Hooks							[22-APR-2020]  ()
+4.Components                                [22-APR-2020]  ()
+5.Interpolation and Expressionss            [22-APR-2020]  ()
+6.One Way Data Binding                      [22-APR-2020]  ()
+7.Two Way Data Binding                      [22-APR-2020]  ()
+8.Looping                                   [22-APR-2020]  ()
+9.Services                                  [22-APR-2020]  ()
+10.Http Requests		                    [22-APR-2020]  ()
+11.Configure Proxy API Calls                [22-APR-2020]  ()
+12.Routing                                  [22-APR-2020]  ()
+13.Login Application      (Six Parts)	    [22-APR-2020]  ()
+14.Sessions                                 [22-APR-2020]  ()
+15.Pipes                                    [22-APR-2020]  ()
+16.Custom Pipes                             [22-APR-2020]  ()
+17.Directives                               [22-APR-2020]  ()
+18.Custom Directives                        [22-APR-2020]  ()
+19.Redux and Concepts    (Five Parts)
+
 
 1.Angular Architecture :
 ************************
@@ -23,7 +30,7 @@ Architecture of Angular is Mainly Divided into three Parts :
 
 1.Modules :
 -----------
-Angular Follows Modular Approach i.e Application in Angular is defined by Modules.
+Angular Follows Modular Approach i.e Application we build in Angular is defined by Modules.
 Every Angular Application has at least one ngModule i.e appModule and all other Modules are nested inside app Module.
 ngModule is the basic Module that enables bootStrpping.
 ngModule Maintains the group of Components,Services and all other Modules.

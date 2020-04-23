@@ -7,7 +7,7 @@ Spring Rest and Angular Samba Media :
 3.Angular Service                                   [20-APR-2020]  (Done)
 4.Angular Cross Origin and Display Data             [20-APR-2020]  (Done)
 5.Delete Operation                                  [21-APR-2020]  (Done)
-6.Create and Update                                 [21-APR-2020]  ()
+6.Create and Update                                 [21-APR-2020]  (Done)
 
 
 *****************************************  2.Angular Routing     ***************************************** 
@@ -37,7 +37,7 @@ Instead of Declaring the Routes in the Declaration Array Create the Route Consta
 
 	const appRoutes:Routes=[
 	{path:'',component:ListuserComponent},
-	{path:'óp',component:UserformComponent}
+	{path:'op',component:UserformComponent}
 	];
 	
 Declare the Default Route in the Routes Constant.
@@ -61,14 +61,14 @@ Whenever we create any Service we need to add it to the app-modules.ts in the Pr
 	  providers: [UserService]
 	  
 Service is going to make use of HTTP Request to send the Request to the Server.
-Import HTTP HttpClient in the app-module.ts and add it to the imports Array.
+Import HttpClientModule in the app-module.ts and add it to the imports Array.
 
 	import {HttpClient} from '@angular/common/http';
 	
 	imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClient,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
 	]
 
@@ -84,20 +84,20 @@ Inject the HttpClient in the Constructor.
 
 	constructor(private http:HttpClient) { }
 	 
-We also define the Headers that we are Going to Communicate.
+We can also define the Headers that we are Going to Communicate.
 
 	const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	
 	};
 	
-Define the Very First Get API that rturns all the Users and 
+Define the very first Get API that rturns all the Users. 
 As the HTTP returns an Observable we need to cast it into User[].
 
 	getUsers()
-   {
-    return this.http.get<User[]>(this.baseURL+'users')
-   }
+    {
+    return this.http.get<User[]>(this.baseURL+'/users')
+    }
    
 Similar is the Case for create,delete,Update.
 
@@ -111,7 +111,7 @@ Use the above Module instead of HttpClient.
 Inject the Service Class into the UserList Component so that we can access the Methods of the Service Class.
 Add the Service to the Constructor.
 
-	constructor(private userService:UserService) { }
+	constructor(private _userService:UserService) { }
 	
 Also declare the User Array
 	
@@ -120,7 +120,7 @@ Also declare the User Array
 
  ngOnInit(): void 
   {
-    this.userService.getUsers().subscribe((users)=>{
+    this._userService.getUsers().subscribe((users)=>{
       console.log(users);
       this.users=users;
     },(error)=>{
@@ -130,7 +130,6 @@ Also declare the User Array
   
 Now we are successfully getting the Users from the Back End.
 We need to convert it into Table in List User Component.
-
 
 	<table>
     <thead>
@@ -156,11 +155,11 @@ Use the Bootstrap to Style the HTML.
 
 ***************************************** 5.Delete Operation  *****************************************
 
-To Delete the User we add the deleteUser() event in the HTML and the same has to be defined inside Component Class.
+To Delete the User we need to add the deleteUser() event in the HTML and the same has to be defined inside Component Class.
 
 	<button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
 	
-From the Component Class call the Delete Method of the Service Class.
+From the Component Class call the delete() Method of the Service Class.
 After Calling the Service remove the deleted User from the users Array.
 
 	public deleteUser(user)
@@ -174,9 +173,9 @@ After Calling the Service remove the deleted User from the users Array.
 
 Here user Componenet form is an HTML Form and we bind this form to User Object.
 When we click on Edit Button we pass the user information to the User Object and New form is prepopulated with User Data.
-Similarly when we Click on New User we populate the Empty Form which later on fill the Data and bind it to the User Object.
+Similarly when we Click on New User we populate the Empty Form,later on fill the Data and bind it to the User Object.
 	
-Since we are working wit forms we need to import FormsModule in the app-module.ts.
+Since we are working with forms we need to import FormsModule in the app-module.ts.
 
 	import {FormsModule} from '@angular/forms'; and add it to the imports Array.
 	
@@ -246,7 +245,7 @@ Whenwe Click on Save User It should navigate to UserForm Component with Empty Fo
      }
 	 
 In the UserForm Component we need to call the Service and access the getter Method.
-To Do this we need to Inject the Service and Also inject the Router.
+To do this we need to Inject the Service and Also inject the Router.
 
 	ngOnInit(): void {
     this.user=this._userService.getter();

@@ -6,13 +6,14 @@
 6.Binding Data to Model                     [14-APR-2020]  (Done)
 7.Tracking State and Validity               [14-APR-2020]  (Done)
 8.Validation with Visual Feedback           [15-APR-2020]  (Done)
-
 9.Displaying Error Messages                 [15-APR-2020]  (Done)
 10.Select Control validation                [15-APR-2020]  (Done)
 11.Form Validation                          [15-APR-2020]  (Done)
 12.Submitting Form Data                     [15-APR-2020]  (Done)
+
 13.Express Server to recieve Form Data      [16-APR-2020]  ()
 14.Error Handling                           [16-APR-2020]  ()
+
 15.TDF andReactive Approach                 [16-APR-2020]  ()
 
 
@@ -21,7 +22,15 @@
 Forms are vital part of any Business Application.
 We use forms to Register,Login,Submit a Request,Place an Order,Schedule an Appointment and perform other Countless Tasks.
 While Designing Forms it is Important to create an experience that guides the User Efficiently and Effectively trough out the Workflow.
-As a Developer we need to Handle Data Binding,Change Tracking,Validation,Visual Feedback,Error Messages and Form Submission.
+As a Developer we need to Handle 
+
+Data Binding,
+Change Tracking,
+Validation,
+Visual Feedback,
+Error Messages and 
+Form Submission.
+
 The Component Template Contains the HTML to Collect the User Data.
 The Component Class Handles Data Binding.
 The Collected Data is sent to the Server using Service.
@@ -95,7 +104,7 @@ To run the Project
 	ng serve
 	
 First Step is to add Bootstrap Styling to our Project.
-Bootstrap is a CSS Framework that gives a Variety of Classes that can be Applied to Make our HTML Better.
+Bootstrap is a CSS Framework that gives a Variety of Classes that can be Applied to Make the HTML Better.
 To add Bootstrap CSS
 
 https://getbootstrap.com/  --> Click on Get Started -->  and Copy the CSS Path.
@@ -133,20 +142,18 @@ To create a Dropdown Create the Array of Elements in test.component.ts.
 
 ***********************************************   5.Binding Data with ngForm	**************************************************************************************
 
-The First Step to work with Anguar Form is to import Forms Modules in the import Array.
+The First Step to work with Anguar Form is to import Forms Modules and add it to the import Array.
 In app.module.ts 
 
 	import {FormsModule} from '@angular/forms'
 	
-After adding it to the import Array and Anytime we use the <Form> ,Angular attaches <ng-form> directive  to <Form>
-which gives the valuable information about the <form>
+Anytime If we use the <Form> ,Angular attaches <ng-form> directive  to <Form> which gives the valuable information about the <form>
 It Tells what the values of different form-control are and whether the values are valid or not.
 We get the Reference of the whole <form> using Template Reference Variable.
 	
 	<form #userForm="ngForm">
 	
-Here ngForm directive exports itself as String ngForm and by assigning it to a Template Reference Variable,
-we have reference to the directive itself.
+Here ngForm directive exports itself as String ngForm and by assigning it to a Template Reference Variable and we have reference to the directive itself.
 ngForm Directive gives us Access to the value of the Form-Control by using value property.
 
 Here Angular does not track the value of Form Control on its own.
@@ -197,8 +204,7 @@ We need to bind the userModel to the Enrollment Form and that can be done by usi
         </div>
 		
 Here Angular Form Module is now same as User Module.
-But when we change the value in the Text Angular Form will get the Update Value where as userModel is not Updating and
-Still Contains the Old Value.
+But when we change the value in the Text Angular Form will get the Update Value where as userModel is not Updating and Still Contains the Old Value.
 The Reason is we are using Property Data Binding which is one way Data Binding i.e
 Data is flown form the View to the Class but Not from the Class to the View.
 When we are working with forms we need to have Two way Data Binding.
@@ -392,7 +398,6 @@ This will prevent Browser validation kicking in when we Click on Submit Button.
 
 	<form #userForm="ngForm" novalidate>
 	
-
 Next Step is to bind the ngSubmit Event which gets emitted when we click on submit Button.
 
 	 <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
