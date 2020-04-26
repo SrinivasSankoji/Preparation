@@ -1,12 +1,13 @@
-1.Angular Architecture						[22-APR-2020]  ()
-2.Create an Angular Application             [22-APR-2020]  ()
-3.Add Bootstrap                             [22-APR-2020]  ()
-4.Angular Folder Structure                  [22-APR-2020]  ()
-5.Component Basics                          [22-APR-2020]  ()
-6.Routing                                   [22-APR-2020]  ()
-7.Angular Forms Data Binding                [22-APR-2020]  ()
-8.Form Validation                           [22-APR-2020]  ()
-9.Debugging Angular Application             [22-APR-2020]  ()
+1.Angular Architecture						[25-APR-2020]  (Done)
+2.Create an Angular Application             [25-APR-2020]  (Done)
+3.Add Bootstrap                             [25-APR-2020]  (Done)
+4.Angular Folder Structure                  [26-APR-2020]  (Done)
+5.Component Basics                          [26-APR-2020]  (Done)
+6.Routing                                   [26-APR-2020]  (Done)
+
+7.Angular Forms Data Binding                [26-APR-2020]  ()
+8.Form Validation                           [26-APR-2020]  ()
+9.Debugging Angular Application             [26-APR-2020]  ()
 10.Fetch Data                               [22-APR-2020]  ()
 11.Angular Service                          [22-APR-2020]  ()
 12.All Together (Two Parts)                 [22-APR-2020]  ()
@@ -14,5 +15,182 @@
 14.Component Communication                  [22-APR-2020]  ()
 15.Pipes                                    [22-APR-2020]  ()
 16.Custom Pipes                             [22-APR-2020]  ()
+
+
+******************************************************  1.Angular Architecture	******************************************************
+
+There is a Clear Separation of Concern regarding to End Points that can be allowed through Application.
+Clean Code and Maintainability.
+Well Suited For Large Applications or Application with Complex Client Side Interactions.
+Much Easier to Manage and Maintain.
+
+We should use Angular when our Application is Complex enough to Justify It.
+When we want to Test Client Side as Well.
+Don't use Angular for Simple Applications that just do the HTTP POST/GET.
+	
+****************************************************** 2.Create an Angular Application   *********************************************
+
+ng new romanian
+ng build 
+ng serve
+
+****************************************************** 3.Add Bootstrap  **************************************************************
+
+In order to add Bootstrap and Font Awesome Dependencies we need to use npm.
+we need to register the downloaded css and Javascript Files in angular.json File.
+To Install Bootstrap and font-awesome in an Angular Application
+
+	npm install bootstrap font-awesome --save
+
+Here the Files will be Installed in the Local Node Modules.
+If we want these dependencies to be available to every body,register them in the packages.json File and is registered by default.
+In order to use the bootstrap and font-awesome register it in the styles.css.
+
+	@import url(~node_modules/bootstrap/dist/css/bootstrap.min.css);
+	@import url(~node_modules/font-awesome/css/font-awesome.css);
+
+******************************************************  4.Angular Folder Structure  **************************************************
+
+e2e :
+-----
+Stands for end to end and refers to the ene to end Testing of our Application.
+It Contains Scripts that can be used to Simulate User Actions and Behavior.
+If we want to write end to end Integration Test for an Angular Project we need to write the Scripts Here.
+
+node_modules :
+--------------
+Folder Contains the Libraries that we have downloaded using npm install Command.
+when we create a new Angular Project Some Dependencies are added Here.
+This Folder should not be included under source Control.
+It is a Local Folder and the Packages are installed Locally.
+If some one wants to import the Project just import the source code remove the node_modules Folder and then run the Command npm install.
+npm install will look into the packages.json and download the required dependencies.
+
+src :
+-----
+This is the root Folder where we keep our Applications Internal Code.
+
+app :
+-----
+When we create a new Angular Application by Default it comes with default app Module and default app component.
+If we want to create more modules and more Components we can create inside app Folder.
+
+assets :
+--------
+It stores all the Images ,Fonts ,Music Files  etc.
+Every Static Content can be Placed Here and will be globally available to the Application.
+
+
+favicon.ico :
+-------------
+This is a Small icon that we can see in the browser.
+This is the icon that is displayed on most of the Browsers.
+
+index.html :
+------------
+It is a root view of the Application and is a Simple HTML File.
+It does not contain any css and any Script.Those will be added after the Build Process.
+It Contains the Title of the Application,base href.
+By default all the Application runs under root.
+App Componenet is included inside this HTML.
+This is the Default Angular Template that we see when we create an Application.
+ 
+main.ts :
+---------
+It is an Entry Point for an Angular Application.
+It bootstraps the app Module which in turn bootstarps the App Component.
+
+karma-config.js :
+-----------------
+It is a Configuration File for Karma.
+If we wan to run the Unit Test Cases for an Angular Project,This is the Place  where we run karma Test Runner.
+
+polyfill.ts :
+-------------
+This is the Place where we can make an Application Compatible with Various Browsers.
+If we want to target an Older Version of IE ,Then include the polyfill  that support the desired version.
+
+styles.css :
+------------
+It is a Global Style Sheet for an Application.
+It can be used to import other Stylesheet here like Bootstrap ad Font-awesome.
+we can define globally available css styles that an be reused across the Application.
+Each Component has its own Style Sheet which applies only to that Component.
+
+angular.json :
+--------------
+It as a Configuration of the Angular Workspace.
+Conatins 
+
+Package Manager
+Global Styles
+Global Javascripts
+App Prefix i.e By Default Root Module for an Angular Application is app and we can change Here.
+
+package.json :
+--------------
+It describes all the npm dependencies of an Application.
+when  we install any dependency those references are included in the package.json File.
+
+
+******************************************************  5.Component Basics *****************************************************************************
+
+Component is a Logical Structure that Contains a Portion of the View in the Browser.
+A Typical Web Application contains N Number of Components.
+Component Encapsulates View,Logic and Styles.
+Every Angular Application has  atleast one Component and By Default it is App Component.
+In Angular Entire Application is a Component Tree.
+
+******************************************************  6.Routing **************************************************************************************
+
+Routing Enables our Application to navigate from one View to another View based on User Input i.e Button CLick,URL change etc.
+To Configure the Router we need to import the Router Module and add it to the imports Array app.module.ts.
+
+	const appRoutes: Routes = [
+  {path:'notes',component:NotesComponent},
+  {path:'feedback',component:FeedbackComponent},
+  {path:'',component:NotesComponent,pathMatch:'full'},
+  {path:'**',component:NotfoundComponent}
+	];
+
+  export const routingComponents =[NotesComponent,
+  FeedbackComponent,
+  NotfoundComponent
+  ];
+  
+In app.module.ts 
+
+	 @NgModule({
+	declarations: [
+    AppComponent,
+    NavigationComponent,
+    routingComponents
+   ],
+
+When we Configure the Routes we can pass Some additional Information i.e 
+
+	  imports: [RouterModule.forRoot(appRoutes,{enableTracing:true})],
+	  
+
+******************************************************  7.Angular Forms Data Binding	******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
 
 

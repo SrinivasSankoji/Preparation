@@ -69,6 +69,11 @@ To Check Whether the Angular CLI is Installed or Not,Run the Command
 
 	ng - v
 
+To Install the Latest Version of Angular 
+
+	npm install --no-save @angular/cli@^8.3.15
+	
+	ng update @angular/cli @angular/core --next
 	
 ############################################# 3.Hello World #############################################
 
