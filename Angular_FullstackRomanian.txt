@@ -4,13 +4,13 @@
 4.Angular Folder Structure                  [26-APR-2020]  (Done)
 5.Component Basics                          [26-APR-2020]  (Done)
 6.Routing                                   [26-APR-2020]  (Done)
+7.Angular Forms Data Binding                [26-APR-2020]  (Done)
+8.Form Validation                           [27-APR-2020]  (Done)
+9.Debugging Angular Application             [27-APR-2020]  ()
+10.Fetch Data using HTTP                    [28-APR-2020]  (Done)
+11.Angular Service                          [28-APR-2020]  (Done)
+12.All Together (Two Parts)                 [29-APR-2020]  (Done)
 
-7.Angular Forms Data Binding                [26-APR-2020]  ()
-8.Form Validation                           [26-APR-2020]  ()
-9.Debugging Angular Application             [26-APR-2020]  ()
-10.Fetch Data                               [22-APR-2020]  ()
-11.Angular Service                          [22-APR-2020]  ()
-12.All Together (Two Parts)                 [22-APR-2020]  ()
 13.Complex Angular Component                [22-APR-2020]  ()
 14.Component Communication                  [22-APR-2020]  ()
 15.Pipes                                    [22-APR-2020]  ()
@@ -174,6 +174,175 @@ When we Configure the Routes we can pass Some additional Information i.e
 
 ******************************************************  7.Angular Forms Data Binding	******************************************************************************
 
+Forms are the Heart of Many Enterprise Applications.
+By Default Forms are disabled in Angular.
+There are two types of Forms
+
+1.Template Driven Forms
+2.Reactive Forms (Model Driven Approach)
+
+We need to import the FormsModules and add it to the IMports Array in app.module.ts
+
+	import {FormsModule} from '@angular/forms';
+	
+Creaate the Model for the Feedback Form.
+	
+	export interface FeedbackViewModel
+	{
+	  name:string,
+	  email:string,
+	  feedback:string
+	}
+	
+Then declare the model Variable 
+
+	model:FeedbackViewModel ={
+    name:'',
+    email:'',
+    feedback:''
+	};
+	
+To send the Data to the Server we need to import HttpCLientModule and  add it to the imports Array.
+
+	import {HttpClientModule} from '@angular/common/http';
+	
+Inject the HttpCLient in the Feedback Component Class and then Submit the Data to the Server.
+
+
+****************************************************** 8.Form Validation  ******************************************************************************************
+
+Here we enable Field Validation like required,mail,minlength etc not to send the invalid data to the server.
+In case of Template Driven Forms most of the Validation logic is written inside the HTML Template.
+
+	 [class.is-invalid]="name.touched && name.invalid"
+	 
+To Display the Error Messages
+
+	<small [class.d-none]="name.valid && name.touched">Name is Required</small>
+	
+	
+****************************************************** 9.Debugging Angular Application  *****************************************************************************
+
+Angular uses typeScript by Default which prevents many of the bugs that javascript Applications.
+It allows us to write JavaScript Code with static typing as opposed to dynamic typing.
+we can define the data types and properties of the object befor we use in the code.
+
+
+To debug Angular Application we use Debugger statement from JavaScript.
+Debugger statement will stop the execution of JavaScript that allows us to pause the Application at any Point.
+
+We can also inspect the data inside the HTML using JSon Pipe.
+
+we also have Angular Built in Debugging Tools.
+To enable debugging Tools we need to change the main.ts File.
+
+
+****************************************************** 10.Fetch Data Using HTTP  **************************************************************************************
+
+HttpClient executes the HTTPRequest and returns Observables.
+If we don't subscribe the observables then nothing will happen.
+HttpClient returns the Typed Observables and we can have control on it.
+If we subscribe multiple times to these observables then Multiple HttpRequest willbe Triggered.
+
+Here we are going to Build the NoteBookList Component.
+To get the Details we need to call the Http API.
+Create the Model of Notebook.
+
+	export interface Notebook {
+    id:string,
+    name:string,
+    nbNotes:number
+	}
+
+Inject the HttpClient into NoteComponent Class.
+
+	constructor(private _htttp:HttpClient) { }
+
+	public getAllNoteBooks()
+	{
+    let url="http://localhost:1235//api/notebooks/all";
+    this._htttp.get<Notebook[]>(url).subscribe(res =>{
+     this.notebooks = res;
+    },error =>{
+      alert("Error has Occured");
+    });
+	}
+	
+
+****************************************************** 11.Angular Service *********************************************************************************************
+
+Service Contains the business Logic that can be reused across Components.
+As per the Angular Component Should not fetch or save data directly.
+Component should only focus on presenting Data and delegating the data access and logic to the Service.
+Angular Services are Injectable Classes.
+we can leverage Angular Dependency Resolution to use them in other Components.
+Each Service sholud be Testable and Tested.
+When we create a Service from Angular CLI then by Default it will be Singleton.
+
+To Create the Service we use the command
+
+	ng g s noteservice
+	
+Inject the HttpClient into the Service.
+	
+	  constructor(private _http:HttpClient) { }
+
+
+	public getAllNoteBooks():Observable<Notebook[]>
+    {
+    return this._http.get<Notebook[]>(this.baseurl+'notebooks/all');
+    }
+
+  public postFeedback(feedback:FeedbackViewModel):Observable<any>{
+    return this._http.post<any>(this.baseurl+'feedback',feedback);
+  }
+
+In the Feedback Component Class call the Service API to Submit the Feedback.
+
+	submitFeedback():void
+   {
+    this._notesService.postFeedback(this.model).subscribe(
+      res => {
+        location.reload();
+      },
+      error => {
+        alert("Error Occured");
+      }
+    );
+    console.log(this.model.name);
+   }
+   
+
+****************************************************** 12.All Together (Two Parts) *****************************************************************************
+
+Edit the NoteComponenet.html.
+HTML Page Consists of Note Menu and Note Content.
+Note Menu Consists of two Menus and Buttons For create and Update the Notes.
+Note Content consists of Notebook Menu and Notes Panel.
+Notebook Menu which will display List of availaible NoteBooks and Notes Panel will have associated Notes for each Notebook.
+
+In the NoteComponent.ts we have getAllNoteBooks() that will get all the Notes when the Component is initialized.
+
+	  public getAllNoteBooks()
+	  {
+		let url="http://localhost:1235//api/notebooks/all";
+		this._notesService.getAllNoteBooks().subscribe(
+		  (response) =>{
+			this.notebooks=response;
+		},(error) =>{
+    });
+	
+Here we Create the Service For Creating,Updating and Deleting the Notebook.
+
+In the Part Two we Focus on Displaying the Note List.
+When the Application Loads for the First Time It has to Display all the Notes along with Note Details.
+Similarly when The User Clicks on Particular Notebook,It has to Display only the Particular Notes List.
+
+Create a Fucntion in the NotesComponent to get all the Notes to call it from the Service.
+Create the Note Entity and then create the API to get all the Notes.
+
+
+******************************************************  13.Complex Angular Component  **************************************************************************
 
 
 

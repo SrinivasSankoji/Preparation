@@ -1,0 +1,189 @@
+1.Introduction								[30-APR-2020]  (Done)
+2.Color                                     [30-APR-2020]  (Done)
+3.Background                                [30-APR-2020]  (Done)
+4.Fonts                                     [30-APR-2020]  (Done)
+5.Text Formatting                           [30-APR-2020]  (Done)
+
+6.Links                                     [01-MAY-2020]  ()
+7.Border                                    [01-MAY-2020]  ()
+8.Padding                                   [01-MAY-2020]  ()
+9.Margin                                    [01-MAY-2020]  ()
+10.Tables                                   [01-MAY-2020]  ()
+11.Span and Div                             [01-MAY-2020]  ()										
+12.Selectors                                [01-MAY-2020]  ()
+13.More Selectors                           [01-MAY-2020]  ()
+14.Relative Positioning                     [01-MAY-2020]  ()
+15.Absolute Positioning                     [01-MAY-2020]  ()
+16.Fixed Positioning                        [01-MAY-2020]  ()
+17.Style Sheet Levels                       [01-MAY-2020]  ()
+18.Style Sheet Priority                     [01-MAY-2020]  ()
+
+
+********************************************************************   1.Introduction   ********************************************************************
+
+HTML is like Skeleton System of Web Pages.
+To Make the HTML Attractive we use CSS.
+CSS Stands for Cascading Style Sheets.
+CSS describes how HTML Elements are to be displayed on the Screen.
+For Example <HEAD> Tag should  have a Color,
+<P> Shoud have a Background Color etc.
+
+Whenever we work with CSS we always use the <HEAD> Section of the Document.
+To Specify we use the <Style> in the <HEAD> with type as "text/css".
+Whatever we write in the <Style> that can be Applied to the Web Page.
+Syntax of CSS is made up of 3 Parts.
+
+Selector
+Property
+Value
+
+Selector is nothin but an HTML Tag to which we want to apply the Style.
+Proerty is nothing but an Attribute for an HTML Tag i.e fontSize,Background Color etc.
+Value is the Value for the Property.
+
+********************************************************************  2.Color  ********************************************************************
+
+To Specify the Color to an HTML Element we use color Property.
+
+	p{
+			color: red;
+	}
+	
+We can alsospecify the Color using HExaDecimal Value followed by #.
+Also We can have any Combination of Values for Color.
+
+	##ff0000 (RGB)
+	
+We can also Specify the Color using rgb vale property.
+
+	color: rgb(100,255,100);
+	
+
+******************************************************************** 3.Background  ********************************************************************
+
+To assign a Background to an HTML <Body> element we use 
+
+	body{
+			background: lightgreen
+		}
+		
+	p{
+			background-color: red
+		}
+		
+To sepcify the Background Image we use 
+
+	background-image: url("D:\\Personal\\Bablu pics\\01.jpg");
+	
+If the Image is Smaller in Size then it repeats the Image in Both X and Y Direction.
+We can avoid the repetiotion of the Image in any One Diretion or not to repeat.
+
+	background-repeat: no-repeat;
+	
+We can also specify the BAckground Position of the Image by Specifying left and Right Position.
+
+	background-position: 50px 100px;
+	
+If we want the background Image to be Fixed we use 
+
+	background-attachment: fixed;
+	
+
+******************************************************************** 4.Fonts   ********************************************************************
+
+To Specify a Font we need to use the Font Family of CSS.
+If we want to change the Font of Paragraph Tag we use font-family Property.
+
+		p{
+			font-family: serif;
+		}
+		
+Generally it is better to define Multiple Fonts and If Some one is Unable to Find then it relies on the Other Font i.e from Left to Right.
+
+		font-family: Georgia,verdana,sesrif;
+		
+font-style can be used to make the Font Style Italic etc.
+
+	font-style: italic;
+	
+To Set the Size of the Font we use font-size Property.
+
+	font-size:24px;
+	
+If we want to Specify the thickness of the individual Values we use font-weight Property.
+
+	font-weight: bolder;
+	
+
+******************************************************************** 5.Text Formatting  ********************************************************************
+
+Whenever we want the text to be alligned left,right,center etc we use text-allign property.
+
+		h1{
+			color:red;
+			text-align: left;
+		}
+		
+		<head>
+			<title>Text Formatting</title>
+			<style type="text/css">
+				h1{
+					color:red;
+					text-align: left;
+				}
+				h2{
+					text-align: right;
+				}
+				h3{
+					text-align: center;
+				}
+			</style>
+		</head>
+		<body>
+			<h1>Tet Format 1</h1>
+			<h2>Tet Format 1</h2>
+			<h3>Tet Format 1</h3>
+		</body>
+
+justify takes each element and It Specifies that Each element of the Line is of the Same Width.
+
+		p{
+			text-align: justify;
+		}
+		
+Here Each Line Starts at the Same Position and Ends at the Same Position.
+If we wat to specify the space between Letters we use the Property letter-spacing.
+
+	letter-spacing:5px;
+	
+Similarly we also have word Spacing.
+If we want to Specify the Space between the Lines we use the property line-height.
+
+	line-height: 20px;
+	
+
+******************************************************************** 6.Links  ***************************************************************************************
+
+
+
+	
+
+ 
+	
+		
+
+
+
+
+	
+
+ 
+
+
+
+
+
+
+
+
+

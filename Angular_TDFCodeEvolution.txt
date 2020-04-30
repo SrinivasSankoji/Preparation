@@ -4,6 +4,7 @@
 4.Adding Form to HTML                       [14-APR-2020]  (Done)
 5.Binding Data with ngForm                  [14-APR-2020]  (Done)
 6.Binding Data to Model                     [14-APR-2020]  (Done)
+
 7.Tracking State and Validity               [14-APR-2020]  (Done)
 8.Validation with Visual Feedback           [15-APR-2020]  (Done)
 9.Displaying Error Messages                 [15-APR-2020]  (Done)
@@ -409,7 +410,7 @@ Now to send the Data to the Service we need to create a Service.
 Then import the HttpClient and inject it to the constructor.
 we also need to add the HttpClient in the imports Array.
 Now we are in a Position to make Http Request.
-create a Method enrollment that accepts the user and submit the Post Request with url and User.
+create a Method in enrollment service that accepts the user and submit the Post Request with url and User.
 
 	 public enroll(user:User)
 	{
