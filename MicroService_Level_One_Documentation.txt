@@ -22,7 +22,7 @@
 20.Discovering Service Through Eureka  						[13-JUL-2019]  (Done)
 21.Client Side Load Balancing								PENDING
 22.Recap of Micro Services Level 1							PENDING
-23.Creating Multiple Instances
+23.Creating Multiple Instances								PENDING
 
 Search More :
 *************
@@ -66,7 +66,7 @@ Hystrix Implements  Circuit Breaker  Pattern.
 
 3.Micro Service and Service Oriented Architecture :
 ***************************************************
-Service Discovery is a Pattern i.e when we have an Application Broken into Micro Services and how to Communicate within each Other
+Service Discovery is a Pattern i.e when we have an Application Broken into Micro Services and how Microservice Communicate within each Other
 and also How to Discover among them to Communicate With.
 Eureka is One of the Technology that Implements Service Discovery Pattern.
 Whenever we are Implementing Service Oriented Architecture,We are Building a Service for Re Usability and we don't know where the Service 
@@ -192,7 +192,7 @@ Here the Problem is the Service is Returning List.
 
 15.Avoiding Returning List In API  :
 ************************************
-Here If The Root Node is List and Not an Object and Consumer  does not Which Object He has to Use.
+Here If The Root Node is List and Not an Object then Consumer  does not know Which Object He has to Use.
 We can also Know the List of Object contains what kind of Object it is.
 
 De Serialization is on of the Problem.
@@ -200,7 +200,7 @@ If we want to Enhance the Object i.e for Example add on new Variable/Field
 we can do that without breaking the Consumers and they don't care about the Extra Field and ignore it.
 Similarly If we want to add a new Variable , then in case of Returning List We Cannot add any more and 
 we have to change the Entire Structure and breaking the Contract between consumer.
-To Resolve This Create an Object and Add The Object to The List and return The Object.
+To Resolve This Create an Object and Add The List to an Object and return The Object.
 
 Questions and Answers :
 -----------------------
@@ -247,7 +247,7 @@ This way of Calling is Called Client Side Discovery.
 
 Server Side Discovery Server :
 ------------------------------
-In Case of Server Side Discovery,Client Says to the Discovery Server to Call the Service.
+In Case of Server Side,Discovery Client Says to the Discovery Server to Call the Service.
 Here Discovery Server is responsible to call Service and Provide Response to The Client.
 Spring Cloud Uses Client Side Discovery Server.
 

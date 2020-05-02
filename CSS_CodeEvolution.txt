@@ -3,20 +3,19 @@
 3.Background                                [30-APR-2020]  (Done)
 4.Fonts                                     [30-APR-2020]  (Done)
 5.Text Formatting                           [30-APR-2020]  (Done)
-
-6.Links                                     [01-MAY-2020]  ()
-7.Border                                    [01-MAY-2020]  ()
-8.Padding                                   [01-MAY-2020]  ()
-9.Margin                                    [01-MAY-2020]  ()
-10.Tables                                   [01-MAY-2020]  ()
-11.Span and Div                             [01-MAY-2020]  ()										
-12.Selectors                                [01-MAY-2020]  ()
-13.More Selectors                           [01-MAY-2020]  ()
-14.Relative Positioning                     [01-MAY-2020]  ()
-15.Absolute Positioning                     [01-MAY-2020]  ()
-16.Fixed Positioning                        [01-MAY-2020]  ()
-17.Style Sheet Levels                       [01-MAY-2020]  ()
-18.Style Sheet Priority                     [01-MAY-2020]  ()
+6.Links                                     [01-MAY-2020]  (Done)
+7.Border                                    [01-MAY-2020]  (Done)
+8.Padding                                   [01-MAY-2020]  (Done)
+9.Margin                                    [01-MAY-2020]  (Done)
+10.Tables                                   [01-MAY-2020]  (Done)
+11.Span and Div                             [01-MAY-2020]  (Done)					
+12.Selectors                                [02-MAY-2020]  (Done)
+13.More Selectors                           [02-MAY-2020]  (Done)
+14.Relative Positioning                     [02-MAY-2020]  (Done)
+15.Absolute Positioning                     [02-MAY-2020]  (Done)
+16.Fixed Positioning                        [02-MAY-2020]  (Done)
+17.Style Sheet Levels                       [03-MAY-2020]  ()
+18.Style Sheet Priority                     [03-MAY-2020]  ()
 
 
 ********************************************************************   1.Introduction   ********************************************************************
@@ -164,6 +163,282 @@ If we want to Specify the Space between the Lines we use the property line-heigh
 
 ******************************************************************** 6.Links  ***************************************************************************************
 
+Link is some sort of Text or Image that will take you to another Location when we Click on it.
+Linke in HTMl has 4 States and we can assign Style to each of these 4 States.
+
+When we open the Webpage for the First Time and it has a Link and what style has to be applied is defined by using 
+
+	a:link{
+			color: red;
+		}
+		
+When we move the Mouse hover the Link and what style has to be Applied is defined by using
+	
+	a:hover{
+		color:green;
+	}
+	
+when we click on the Particular Link and what style has to be Applied is defined by using
+
+	a:active{
+		color: blue;
+	}
+	
+If we click on the Link and it is redirected to another site and If we again open the Page then waht style has to be defined by using
+	
+	a:visited{
+		color:orange;
+	}
+	
+	<h2><a href="https://www.devglan.com">Click here For Fullstack Developer</a></h2>
+	
+
+******************************************************************** 7.Border  ********************************************************************
+
+Every HTML Element is considered as a Box.
+This box has 4 Parts
+
+Content
+Padding
+Border 
+Margin
+
+Content is the Text inside the Tag
+Padding is the Space between the Content and the Borde rof an Element.
+Border is the Boreder for the HTML Tag.
+Margin is the Space between  the Element.
+
+
+Property for the Border are 
+
+	border-style: dotted;
+	border-width: 10px;  (Thickness of the Border)
+	border-color: lightgreen;
+	
+We can also the Specify the Border Individually i.e left,right,top,bottom.
+Short hand Annotation of the Border Property i.e width,style and color at one time.
+
+	border: 5px solid red;
+	
+********************************************************************  8.Padding    ********************************************************************
+
+Padding is the Space between the Content and the Border of an Element.
+To Specify padding we use the property Called padding.
+
+	padding: 25px;
+	
+Provides the space of 25px in the Border of each Side.
+We can also specify the padding for any of the side individually.
+
+
+******************************************************************** 9.Margin  *************************************************************************
+
+Whenever we want the Space around the element i.e space between the tag and the Browser we make use of Margin property.
+
+	margin: 50px;
+
+We can also specify the margin to each side of the Broweser i.e left,right,top and bottom.
+We can also specify the Negative Margin.
+
+********************************************************************  10.Tables  ***********************************************************************
+
+Table Consists of Rows.
+Table Rows Consists of Table Head and Table Body.
+To Specify the CSS Prperty we use the selector table.
+To Specify the Border 
+
+	border: 2px solid black;
+	
+we can also specify the selector for tr,th and td.
+If there is a property defined for tr Tag then td Tag is going to inherit the Property along with its Properties.
+
+
+******************************************************************** 11.Span and Div  *********************************************************************
+
+Consider the Case we have a Paragraph.
+We can apply the Style on Paragraph by using pre Selector.
+If we want to apply the Style on a Portion of the Tag we use <span> Tag.
+
+	<p>Started Working on <span>HTML5,CSS3<span></p>
+	
+	span{
+			color:blue;
+		}
+		
+we also have the <div> that stands for Division.
+It is used to group the Elements Together.
+
+	<div>
+	<h1>This is Header One</h1>
+	<h2>This is Header One</h2>
+	<p>Started Working on <span>HTML5,CSS3<span></p>
+	</div>
+
+We Can apply the Style to a Group of Tags using <div>.
+<div> is Mainly used to structure the Layout of a Webpage.
+Consider the Scenario wher <div> is used for navigation,Header Footer and Main Content of the WebPage.
+	
+	
+********************************************************************  12.Selectors   *******************************************************************************
+
+Selector is used to apply the Style to the HTML Elements.
+There are different Selectors to apply the Style to the HTML Elements.
+
+1.Element Selector
+2.Id Selector
+3.Class Selector
+4.Universal Selector
+5.Descendat Selector
+6.Child Selector
+
+
+Element Selector :
+------------------
+If we want to apply the Style to the Paragraph we apply the paragraph Element Selector.
+
+	<p>Element Selector</p>
+
+	p{
+		color : red;
+	}
+	
+2.Id Selector :
+---------------
+Consider the Case we have Multiple Paragraphs.
+W ehave the Requirement of 1st Paragrapgh is in Blue Color,2nd Paragraph is in Green Color,3rd Paragraph is in yello Color.
+If we apply the Element Selector then all the Paragraph have the Same Color.
+Here we use Id for Each HTML Element.
+
+	<p id="first">Id Selector 1</p>
+	
+	#first{
+		color: blue;
+	}
+	
+3.Class Selector :
+------------------
+If we want to apply the Same Style to Multiple HTML Elements we use the Class Selector.
+Class Selector is denoted by Using .
+
+	<p class="classpara">Class Selector 1</p>
+
+	.classpara{
+			color:yellow;
+
+		}
+		
+4.Universal Selector :
+----------------------
+If we want to apply a font family throughout the Document we use the Universal Selector.
+It is represented by Using *
+
+	*{
+		font-family:verdana;
+	}
+	
+
+********************************************************************  13.More Selectors   **************************************************************************  
+     
+5.Descendat Selector :
+----------------------
+If we want to apply a Style to an Element only when it is under the Particular Element we use Descendant Selector.
+Consider the case we hav a <div> and this Contaiins a <p>.
+
+	<div>
+		<p>Descendant Selector</p>
+	</div>
+	<p>Paragraph</p>
+	
+	div p {
+			color: red;
+		}
+
+6.Child Selector :
+------------------
+If we want to apply the Style which is a Child of another Tag we use child Selector.
+
+	<body>
+	<div>
+		<p>Descendant Selector</p>
+	</div>
+	<p>Paragraph</p>
+	</body>
+
+	body > p{
+			color:blue;
+		}
+
+********************************************************************  14.Relative Positioning   ********************************************************************  
+
+So Far we have been writing the Tags one below the Other and in the Browser they are appearing the Same.
+Using CSS it is Possible to Position the Elements according to their Liking.
+To Specify the Realtive Positioning we use the Class Selector.
+
+	<p class="relpos">Paragraph One</p>
+	<p >Paragraph Two</p>
+	
+	.relpos{
+			position: relative;
+			top: 100px;
+			left: 100px;
+		}
+		
+Here Paragraph One is Shifted 100 Pixcels  top and left from its Original Position.
+               
+			   
+********************************************************************  15.Absolute Positioning    *******************************************************************  
+      
+Absolute Positionong allows the element to be placed where we want to be.
+
+	<p class="abspos">Absolute Positioning</p>
+	
+	.abspos{
+			position: absolute;
+			top:  50px;
+			left: 80px;
+		}
+		
+Here Paragraph is Shifted from top 50 Pixcels and Left 80 Pixcels from the Browser.
+Absolute Positioning Shifts from the Top Corner of the Screen where as Relative Positioning Shifts from the 
+Position of the Element.
+
+We can also Combine Relative and Absolute Positioning.
+
+	<div>
+	<p class="abspos">Absolute Positioning</p>
+	</div>
+	
+	div{
+		position: relative;
+		border: 2px solid black;
+		height: 500px;
+		width: 500 px;
+	}
+	
+Here Paragraph Tag is Shifted 50 Pixcels from the Border of the Element that is defined inside the <div> 
+and not from Browser Top Position.
+
+********************************************************************  16.Fixed Positioning  ************************************************************************
+
+If we want the Element to be Placed at one Position fixed Irrespective of Scrolling we use Fixed Positioning.
+
+	<h1 class="fixpos">Fixed Position</h1>
+	<p>Paragraph One</p>
+	-----
+	<p>
+	
+	.fixpos{
+		position: fixed;
+		color: red;
+		top: 0px;
+		right: 0px;
+	}
+	
+******************************************************************** 17.Style Sheet Levels  ***********************************************************************
+
+
+
+********************************************************************  18.Style Sheet Priority  ********************************************************************
 
 
 	
