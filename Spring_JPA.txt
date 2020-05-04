@@ -1,0 +1,125 @@
+1.Spring Data REST and JPA example 									[03-MAY-2020]  (Done)
+2.Spring Boot integration with MySQL using Spring JPA               [03-MAY-2020]  (Done)
+3.OneToOne Techprimers                                              [03-MAY-2020]  (Done)
+
+4.OneToMany Techprimers                                             [04-MAY-2020]  (Done)
+5.OneToMany JavaTechie                                             	[25-MAY-2020]  ()
+6.ManyToOne Techprimers                                             [25-MAY-2020]  ()
+																	
+5.ManyToOne Demonstration Brandan                                   [25-MAY-2020]  ()
+6.Best Practices Thoughts On Java                                   [25-MAY-2020]  ()
+7.Spring Data JPA LaunchCode                                        [25-MAY-2020]  ()
+8.Hibernate collection,Embedded KK Tutorials 						[25-MAY-2020]  ()
+9.Hibernate Java Brains                                             [25-MAY-2020]  ()
+
+
+***************************************************   1.Spring Data REST and JPA example  *************************************************** 
+
+To Create a Table Automatically from the Databas e we use the property
+
+	#spring.jpa.generate-ddl=true
+	
+Model Will be 
+
+	@Data
+	@Entity
+	public class UserRelationship implements Serializable
+	{
+		private static final long serialVersionUID = 1L;
+		
+		@Id
+		@GeneratedValue
+		private Long id;
+		
+		private String name;
+		private String teamName;
+		private Integer salary;
+		
+	}
+	
+***************************************************  2.Spring Boot integration with MySQL using Spring JPA	 ***************************************************
+
+Define the Properties in application.properties
+
+	spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+	spring.datasource.username=system
+	spring.datasource.password=bhaumik23
+	spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+	
+
+*************************************************** 3.OneToOne Techprimers  *************************************************************************************
+
+Create the UsersContact Table and Linke the UsersContact Table with UserRelationship Table.
+This can be done by Using onetoone Mapping in Chil Table.
+
+	@OneToOne
+	@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
+	private UserRelationship userRelationship;
+	
+	
+Here we are Providing one to one Mapping Between the Tables.
+Here No need to Create the Id for the UsersConatct (Child Table)and use the id of the UserRelationship(Parent) Table.
+This can be done by using 
+
+	@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
+	
+Here name refers to the current(Child) Table and referencedColumnName refers to the UserRelationship(Parent) Table.
+Whenever we are trying to Update the UsersContact Then Update the UserRelationship as well.
+
+	@OneToOne(cascade = CascadeType.ALL)
+
+To get the Same Primary Ley in bothe the Tables use the below code in Child Table.
+
+	@Id
+	@GeneratedValue(generator="SharedPrimaryKeyGenerator")
+	@GenericGenerator(name="SharedPrimaryKeyGenerator",strategy="foreign",parameters =  @Parameter(name="property", value="userRelationship"))
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
+	private UserRelationship userRelationship;
+	
+
+***************************************************  4.OneToMany Techprimers	 ************************************************************************
+
+Create the New Entity UserLog.
+If we want to perform one to Many Relationship then we need to define it on Users Table i.e UserRelationship Model.
+Here we want to show the Logging Information of Each User.
+
+	private List<UserLog> userLogList;
+	
+If we have one Column to Join then we use @JoinColumn and for  Multiple Columns we use @JoinColumns
+
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	
+Here Mapping the id of UserRelationship Table to id of UserLog Table.
+we need to create id in UserLog Table.
+
+	@Column(name = "user_id")
+	private Integer userId;
+	
+Note :
+In case of OnetoOne Mapping @JoinColumn name parameter refers to the same Column id and referencedColumnName parameter refers to the Primary key of Parent Table.
+Similarly In case of OneToMany @JoinColumn name parameter refers to the same Column ID and referencedColumnName parameter to be created in the Child Table
+and  is same as Parent Column Primary Key.
+
+
+***************************************************   5.OneToMany JavaTechie   *******************************************************************************
+
+
+
+
+*************************************************** 6.ManyToOne Techprimers  *********************************************************************************
+
+
+	
+
+
+
+
+
+
+
+
+ 
