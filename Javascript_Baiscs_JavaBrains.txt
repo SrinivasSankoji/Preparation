@@ -1,55 +1,54 @@
-1.What is Java Script                                               [21-FEB-2019]  (Done)
-2.Why Java Script                                                   [21-FEB-2019]  (Done)
-3.Setting up Java Script                                            [21-FEB-2019]  (Done)
-4.Variable Declaration                                              [24-FEB-2019]  (Done)
-5.Number Primitive Type                                            	[24-FEB-2019]  (Done)
-6.String and Boolean                                               	[24-FEB-2019]  (Done)
-7.Understanding Undefined                                          	[25-FEB-2019]  (Done)
-8.understanding null                                               	[25-FEB-2019]  (Done)
-9.Difference Undefined and null                                    	[25-FEB-2019]  (Done)
-10.Types Summary                                                    [25-FEB-2019]  (Done)
-11.typeof Operator                                                  [25-FEB-2019]  (Done)
-12.Type Coercion and === Operator                                   [25-FEB-2019]  (Done)
-13.Type Coercion Summary                                            [25-FEB-2019]  (Done)
-14.Objects                                                          [26-FEB-2019]  (Done)
-15.Object Literal                                                   [26-FEB-2019]  (Done)
-16.Object Characteristics Summary                                   [26-FEB-2019]  (Done)
-17.Dot and Bracket Notations                                        [26-FEB-2019]  (Done)
-18.Difference Dot and Bracket                                       [26-FEB-2019]  (Done)
-19.Nested Objects                                                   [26-FEB-2019]  (Done)
-20.Revisiting == For Objects                                        [26-FEB-2019]  (Done)
-21.Revisiting Undefined vs null                                     [26-FEB-2019]  (Done)
-22.Deleting Properties                                              [26-FEB-2019]  (Done)
-23.Introducing Arrays                                               [26-FEB-2019]  (Done)
-24.Java Script Arrays                                               [26-FEB-2019]  (Done)
+1.What is Java Script                                               [21-FEB-2020]  (Done)
+2.Why Java Script                                                   [21-FEB-2020]  (Done)
+3.Setting up Java Script                                            [21-FEB-2020]  (Done)
+4.Variable Declaration                                              [24-FEB-2020]  (Done)
+5.Number Primitive Type                                            	[24-FEB-2020]  (Done)
+6.String and Boolean                                               	[24-FEB-2020]  (Done)
+7.Understanding Undefined                                          	[25-FEB-2020]  (Done)
+8.understanding null                                               	[25-FEB-2020]  (Done)
+9.Difference Undefined and null                                    	[25-FEB-2020]  (Done)
+10.Types Summary                                                    [25-FEB-2020]  (Done)
+11.typeof Operator                                                  [25-FEB-2020]  (Done)
+12.Type Coercion and === Operator                                   [25-FEB-2020]  (Done)
+13.Type Coercion Summary                                            [25-FEB-2020]  (Done)
+14.Objects                                                          [26-FEB-2020]  (Done)
+15.Object Literal                                                   [26-FEB-2020]  (Done)
+16.Object Characteristics Summary                                   [26-FEB-2020]  (Done)
+17.Dot and Bracket Notations                                        [26-FEB-2020]  (Done)
+18.Difference Dot and Bracket                                       [26-FEB-2020]  (Done)
+19.Nested Objects                                                   [26-FEB-2020]  (Done)
+20.Revisiting == For Objects                                        [26-FEB-2020]  (Done)
+21.Revisiting Undefined vs null                                     [26-FEB-2020]  (Done)
+22.Deleting Properties                                              [26-FEB-2020]  (Done)
+23.Introducing Arrays                                               [26-FEB-2020]  (Done)
+24.Secret Behind Java Script Arrays                                 [26-FEB-2020]  (Done)
+25.Wrapper Objects                                                  [07-MAY-2020]  (Done)
+26.Functions                                                        [07-MAY-2020]  (Done)
+27.Flexible Argument Counts                                         [07-MAY-2020]  (Done)
+28.Function Returning Values                                        [07-MAY-2020]  (Done)
+29.Function Expressions                                             [07-MAY-2020]  (Done)
+30.Anonymous Functions                                              [07-MAY-2020]  (Done)
+31.Function as Arguments                                            [07-MAY-2020]  (Done)
+32.Function on Objects                                              [07-MAY-2020]  (Done)
+33.this Keyword                                                     [08-MAY-2020]  ()
+34.Code Exercise                                                    [08-MAY-2020]  ()
+35.Exercise Solution                                                [08-MAY-2020]  ()
+36.Default Function Arguments                                       [08-MAY-2020]  ()
+37.Unit Summary                                                     [08-MAY-2020]  ()
+38.Array Methods                                                    [08-MAY-2020]  ()
+39.Array For each Method                                            [08-MAY-2020]  ()
+40.Reading Assignment                                               [08-MAY-2020]  ()
+41.Next Steps                                                       [08-MAY-2020]  ()
 
-25.Wrapper Objects                                                  [27-FEB-2019]  ()
-26.Functions                                                        [27-FEB-2019]  ()
-27.Argument Counts                                                  [27-FEB-2019]  ()
-28.Return Values                                                    [27-FEB-2019]  ()
-29.Function Expressions                                             [27-FEB-2019]  ()
-30.Anonymous Functions                                              [27-FEB-2019]  ()
-31.Function as Arguments                                            [27-FEB-2019]  ()
-32.Function on Objects                                              [27-FEB-2019]  ()
-33.this Keyword                                                     [28-FEB-2019]  ()
-34.Code Exercise                                                    [28-FEB-2019]  ()
-35.Exercise Solution                                                [28-FEB-2019]  ()
-36.Default Function Arguments                                       [28-FEB-2019]  ()
-37.Unit Summary                                                     [28-FEB-2019]  ()
-38.Array Methods                                                    [28-FEB-2019]  ()
-39.Array For each Method                                            [28-FEB-2019]  ()
-40.Reading Assignment                                               [28-FEB-2019]  ()
-41.Next Steps                                                       [28-FEB-2019]  ()
 
+****************************************** 1.What is Java Script and Java Script as Scripting Language	***************************************************
 
-****************************************** 1.What is Java Script	***************************************************
-
-JavaScript is a Light weight,Interpreted,Object Oriented Language with First Class Functions and is best known as Scripting Language for Web Pages.
+JavaScript is a Light weight,Interpreted,Object Oriented Language with first Class Functions and is best known as Scripting Language for Web Pages.
 But it is used in Many Non Browser Environment as Well.
 
 Light Weight :
 --------------
-Light Weight Language is Nothing But Easy to Implement and a Small Memory Foot Print.
+Light Weight Language is Nothing But easy to Implement and a Small Memory Foot Print.
 
 Interpreted :
 -------------
@@ -79,7 +78,7 @@ Best Example of Scripting Language is Shell Script.
 We have Commands that we can run on Runtime Environment.
 Here Runtime Environment Means Operating System.
 
-We can also Bundle the Command and make them Execute as a File.
+We can also Bundle the Command and make them to Execute as a File.
 This becomes a Script that the Shell Executes at Runtime.
 
 Here Runtime Environment is Browser.
@@ -238,7 +237,7 @@ It is Important to identify the type of Variable using typeof operator.
 	                     
 ****************************************** 12.Type Coercion and == Operator  ******************************************   
 
-Type Coercion in JavaScript is Similar to Typecasting in JavaScript.
+Type Coercion in JavaScript is Similar to Typecasting in Java.
 Consider the Variable has defined with a Value and some times interpreter has to do the Automatic Type Conversion for us
 in order to make the Operation Work.
 
@@ -283,8 +282,8 @@ Then in this case it returns false.
 
 We can pass a Value to the if Condition in JavaScript i.e 
 
-	var f=10;
-	if(f)
+	var a=10;
+	if(a)
 	{
     console.log(true);
 	}
@@ -301,7 +300,7 @@ Always use === Operator for Precise Check.
 ******************************************  14.Objects     ***********************************************************  
 
 We can write Code and Model the Programming Structure using Objects.
-But JavaScript it is Not Class Based Object Oriented Programming Language.
+But JavaScript is Not Class Based Object Oriented Programming Language.
 In Java We Need a Class to define an Object,Class Forms the Template and all the Objects forms the Copies of the Template.
 JavaScript Objects are free form and they are not bound to any Class.
 we can create an Object in JavaScript in Multiple Ways :
@@ -312,7 +311,7 @@ Creating an Object InLine :
 	var myObject={};
 	console.log(myObject);
 	
-We can add or remove properties at any Point of Time because JavaScript does not have ant Structure.
+We can add or remove properties at any Point of Time because JavaScript does not have any Structure.
 An Object typically Consists of Data and Functionality.
 Data is Referred to as Properties and Functionality is referred to as Methods.
 To add a new Property to the myObject i.e 
@@ -415,9 +414,9 @@ we can also Bracket Operator to get the Inner Object Property.
 
 === Operator is the more Precise way of Checking the Equality when they are Primitives.
 	
-	var myObj4=myObject3;
+	var myObj4=myObject3;  // Assigning to the Variable
 	
-	console.log(myObj4==myObject3);
+	console.log(myObj4==myObject3); //Checks for the Equality of Objects without Type Coercion
 	
 Also Object Variables are equal when they point to the Same Memory.
 
@@ -460,7 +459,7 @@ Arrays in JavaScript can be defined as
 
 	var myArray=[100,200,300];
 	
-Here an Array is Define InLine by using []
+Here an Array is Define InLine by using [] where Object are defined InLine Using {}.
 To Access the Element of the Array are 
 	
 	console.log(myArray[0]);
@@ -474,7 +473,7 @@ To add an Element to the Array
 	myArray[3]=400;
 	
                                  
-****************************************** 24.Java Script Arrays Internal    ******************************************
+****************************************** 24.Secret Behind Java Script Arrays   ******************************************
 
 If we want to find out the length of an Array we use length property 
 	
@@ -492,45 +491,309 @@ There is No Limitation in adding the Element with any Index i.e
 
 	myArray[300]=400;
 	
-length Property counts the index of the Array i.e Max Element of the Index and returns 401.
+length Property counts the index of the Array i.e Max Element of the Index and returns 301.
 We can also add any Value to the Array as an Index but Here length Property won't Change.
                                           
-****************************************** 25.Wrapper Objects       ******************************************                                           								
+****************************************** 25.Wrapper Objects    ******************************************                                           								
 
+Wrapper is a Concept that exists in Java and also exists in JavaScript.
+For Each Primitive Data type there will be a Corresponding Object Data Type.
 
-
-
+	var greeting ="Hello World";
+	console.log(greeting.length);
 	
+Here if greeting is a Primitive Type then How can we Access the length on the Primitive Type.
+When we are calling length on greeting variable,It creates the String Object and calls the length Method on that Object and destroys the Object
+once it is executed.
+Here if we check type of greeting then we get Primitive String as the Return Type.
+
+	console.log(typeof greeting);
+	
+Wrapper Objects in JavaScript are 
+
+String 
+Number
+Boolean 
+Symbol
+
+******************************************  26.Functions  ************************************************************************************
+
+Function is a peice of code which will be executed in isolation.
+Function can be defined by using
+
+	function sayHello()
+	{
+	}
+	
+We can call the Function by using
+	
+	sayHello();
+	
+we can also pass the parameter to the Function without the data type as compared to other Langyages.
+
+	function sayHello(name)
+	{
+    console.log(name);
+	}
+	
+we can also send Multiple Parameters using Comma Seperated.
+
+	function twoArguments(name,timeoftheDay)
+	{
+    console.log(timeoftheDay +' '+name);
+	}
+
+
+******************************************   27.Flexible Argument Counts     ************************************************************************************ 
+
+	function twoArguments(name,timeoftheDay)
+	{
+    console.log(timeoftheDay +' '+name);
+	}
+	
+If I call the Function with One Argument then in Other Language we get the Compile Time Error.
+But Here it will be executed with second value as undefined.
+If we add more Parameters then it will be ignored.
+Overloaded Functions are not Possible in JavaScript.
+
+   
+******************************************   28.Function Returning Values    ************************************************************************************      
+
+We can also have the Function that returns the Values.
+we can return the Function Value by Using return keyword.
+
+	function twoArguments(timeoftheDay,name)
+	{
+    return timeoftheDay +' '+name;
+	}
+	
+	var wish=twoArguments("Good Evening","Bhaumik");
+	console.log(wish);
+	
+return can be any data type and can also be  undefined if it does not return anything.
+
+******************************************   29.Function Expressions   ************************************************************************************
+
+Most of the Times we use Function Declaration and call the Function Definition when ever we execute the Function.
+There are two ways of Creating Function 
+1.Normal Approach
+2.Function Expressions
+
+Functions in JavaScript are First Class Functions i.e function itself is a Value to a Variable in JavaScript.
+
+	var demo=function funExp()
+	{
+    console.log("Function Expression");
+	};
+	
+To execute the above Function 
+
+	demo();
+
+
+******************************************  30.Anonymous Functions    ************************************************************************************
+
+Function Declaration :
+
+	function twoArguments(timeoftheDay,name)
+	{
+    return timeoftheDay +' '+name;
+	}
+	
+Function Expression i.e assigning the Function to a Variable is Called Function Expression.
+
+	var demo=function funExp()
+	{
+    console.log("Function Expression");
+	};
+	
+From the Function Expression we don't need really a Name to the Function.
+In case of Anonnymous Function we create a Inline Function and assign it to the Variable.
+If we reassign the Value of the  Variable then we get an Error.
+	
+	var demo=function ()
+	{
+    console.log("Function Expression");
+	};
+
+******************************************  31.Function as Arguments  ************************************************************************************
+
+We can assign Function to a Varaible and  to that Function we Pass an argument as a Fucntion and taht will execute.
+	
+	var f2 = function(fn)
+	{
+    fn();
+	};
+	
+	var f1=function ()
+	{
+    console.log("Function argument");
+	}
+
+	f2(f1);
+	
+Here we can also pass an argument to the Function i.e f2(f,"Bhaumik");
+
+******************************************  32.Function on Objects    ************************************************************************************
+
+Any thing we can assign to a Variable Similarly Anything we can assign to a Obejct Property.
+Object with Property would be a Function.
+	
+	var myObject={
+    "name":"Bhaumik Chary"
+	};
+
+	myObject.myMethod= function ()
+	{
+		console.log("Function Object");
+	};
+	
+******************************************  33.this Keyword     ******************************************************************************************      
+
+Common Usage of Methods in an Oject of a Class is Accessor Methods i.e setters and getters.
+Similarly we access the Method inside an Object in JavaScript by using this keyword.
+create the Person Object i.e  
+
+	var person ={
+	  "firstName":"Bhaumik",
+	  "lastName":"Chary",
+	  "fullName": function()
+	  {
+		  return person.firstName + " "+ person.lastName + " Sankoji";
+	  }  
+	};
+
+	var name=person.fullName();
+	console.log(name);
+	
+The drawback with this approach is accessing the person inside the initialization of the Person.
+return Statement will only be executed when we call the function on the person Obect.
+Here the Problem is we are depending on the name of the Object and if the object is reInitialized then we won't be able to access the Object.
+
+	var person2=person;
+	person={};
+	var name=person2.fullName();
+	console.log(name);
+	
+we get the output as undefined because the person object is empty Now.
+fullname function is hardcoded to the person variable and can reassign to any other obejct any time.
+Here the Solution is able to access the Object which it is part of i.e current object by using this keyword.
+
+
+	return this.firstName + " "+ this.lastName + " Sankoji";
+ 
+       	
+******************************************  34.Code Exercise     *****************************************************************************************  
+
+			var person ={
+			"firstName":"Bhaumik",
+			"middleName":"Chary",
+			"lastName":"Sankoji",
+			"address":{
+				"houseNo":"2-4-118/59/1",
+				"street":"Venkateswara Colony",
+				"city":"uppal",
+				"state":"Telangana"
+			},
+			"isFromState": function(state)
+			{
+				return this.address.state === 'TG';
+			}
+		};
+
+
+******************************************   35.Exercise Solution    *************************************************************************************   
+
+      console.log(person.isFromState("TS"));
+
+******************************************   36.Default Function Arguments    ****************************************************************************
+
+The arguments that are going to execute in the Function are that we pass in the Parenthesis of the Function.
+Here we also get the implicit arguments to the Function by Default.
+Consider the Case where the Function accepts two Arguments and we pass Multiple arguments.
+In case of JavaScript all the arguments are captured and the reamining are ignored.
+
+	function add (a,b)
+	{
+		console.log(arguments);
+		return a+b;
+	}
+
+	console.log(add(30,10,4,5,6,7));
+	
+Here the arguments are captured by using index starting with 0.
+arguments is the daefault that is available to every function in JavaScript.
+If we want to sum all the arguments 
+
+	function add (a,b)
+	{
+    var i,sum=0;
+    for(i=0;i<arguments.length;i++)
+    {
+        sum+=arguments[i];
+    }
+		return sum;
+	}
+	
+	console.log(add(30,10,4,5,6,7));
+	
+One thing to Note here that arguments is not an Array but it is an Object.
+
+******************************************  37.Unit Summary    *******************************************************************************************    
+
+Function Can be written in literal Form.
+Function is a Value that can be assigned to a Variable.
+Function can be called by Passing an argument.
+Functions are also Objects i.e  when we are assigning a Function to a Variable Actually creating an Object which happens to be a Function and assigned to a Variable.
+Function can have Flexible argument Count.
+Function overloading is not Possible in JavaScript.
+Function can have default argument.
+Function contains arguments argument.
+
+we can define the Function in
+
+Function Declaration
+Function Expression
+Anonymonous Function Expression
+Function as Object Property
+          
+
+******************************************  38.Array Methods     *****************************************************************************************    
+
+Some of the In Built Objects with JavaScript are Arrays.
+Arrays comes with some built in Functions like
+
+push():
+push() can be used to add an element to the array in the Last.
+
+pop():
+pop() can be used to take the last element from the array.
+
+unshift() and shift() can be used to add and remove the element from the front of the Array.
+
+
+******************************************  39.Array For each Method    **********************************************************************************   
 
 
 
 
+ 
+******************************************  40.Reading Assignment   **************************************************************************************        
+
+Follow the Mozilla site for 
+
+Math
+Date
+
+******************************************  41.Next Steps   **********************************************************************************************  
+
+Scopes and Closures
+Obects and Prototypes
+Asynchronous JavaScript - Callbacks and Promises
+Client Side Frameworks - Angular JS,JQuery,React,Backbone etc
+Server Side Framework  - Node JS ,Express etc
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+***************************************************        END     **************************************************************************************

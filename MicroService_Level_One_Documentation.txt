@@ -49,7 +49,7 @@ In Spring Cloud there are so Many Buzz Words/Features and also Design Patterns t
 
 2.Why So Many Technologies Involved in MicroServices :
 ******************************************************
-While Converting The Monolith Application in to Micro Services we are Solving Some Problems Like Scalability,Modularity of Deployment etc.
+While Converting The Monolith Application into Micro Services we are Solving Some Problems Like Scalability,Modularity of Deployment etc.
 While Developing Micro Services we have to check Modularity So that Release Process is Fine
 and we have to check Scalability So that there wont be Multiple Copies of Code.
 
@@ -319,6 +319,13 @@ We have hard coded the URL in movie-catalog-service to call the other Services.
 We can make Use of Rest Template or WebClient to call the Service that is registered in Discovery Server by Providing an Annotation
 @LoadBalanced (where we Configured the Rest Template)
 
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate()
+	{
+		return new RestTemplate();
+	}
+
 and change the http://localhost:8761/ to instance name in Service Discovery
 
 The Above code will do the Service Discovery in a Load Balanced Way.
@@ -328,8 +335,10 @@ Do the Same Steps for all The Services
 *******************************
 
 
+
 22.Recap of Micro Services Level 1 :
 ************************************
+
 
 23.Creating Multiple Instances :
 ********************************

@@ -1,16 +1,15 @@
 1.Spring Data REST and JPA example 									[03-MAY-2020]  (Done)
 2.Spring Boot integration with MySQL using Spring JPA               [03-MAY-2020]  (Done)
 3.OneToOne Techprimers                                              [03-MAY-2020]  (Done)
-
 4.OneToMany Techprimers                                             [04-MAY-2020]  (Done)
-5.OneToMany JavaTechie                                             	[25-MAY-2020]  ()
-6.ManyToOne Techprimers                                             [25-MAY-2020]  ()
-																	
-5.ManyToOne Demonstration Brandan                                   [25-MAY-2020]  ()
-6.Best Practices Thoughts On Java                                   [25-MAY-2020]  ()
-7.Spring Data JPA LaunchCode                                        [25-MAY-2020]  ()
-8.Hibernate collection,Embedded KK Tutorials 						[25-MAY-2020]  ()
-9.Hibernate Java Brains                                             [25-MAY-2020]  ()
+5.ManyToOne Techprimers                                             [04-MAY-2020]  (Done)
+6.OneToMany JavaTechie                                             	[25-MAY-2020]  ()	
+																
+7.ManyToOne Demonstration Brandan                                   [25-MAY-2020]  ()
+8.Best Practices Thoughts On Java                                   [25-MAY-2020]  ()
+9.Spring Data JPA LaunchCode                                        [25-MAY-2020]  ()
+10.Hibernate collection,Embedded KK Tutorials 						[25-MAY-2020]  ()
+11.Hibernate Java Brains                                            [25-MAY-2020]  ()
 
 
 ***************************************************   1.Spring Data REST and JPA example  *************************************************** 
@@ -105,12 +104,27 @@ Similarly In case of OneToMany @JoinColumn name parameter refers to the same Col
 and  is same as Parent Column Primary Key.
 
 
-***************************************************   5.OneToMany JavaTechie   *******************************************************************************
+*************************************************** 5.ManyToOne Techprimers  *********************************************************************************
+
+Here Many Users Log has to be assigned to One User.
+Here we perform Many To One Relationship.
+Map the User in the UserLog Model.
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id" ,referencedColumnName = "user_id")
+	private UserRelationship userRelationship;
+	
+Here the below Code is Not Required in UserLog because it is already Mentioned from ManyToOne Mapping.
+
+	@Column(name = "user_id")
+	private Integer userId;
+	
+In Case of ManyToOne name and referencedColumnName should be the Many Table primary Key.
 
 
+***************************************************   6.OneToMany JavaTechie   *******************************************************************************
 
 
-*************************************************** 6.ManyToOne Techprimers  *********************************************************************************
 
 
 	

@@ -14,8 +14,8 @@
 14.Relative Positioning                     [02-MAY-2020]  (Done)
 15.Absolute Positioning                     [02-MAY-2020]  (Done)
 16.Fixed Positioning                        [02-MAY-2020]  (Done)
-17.Style Sheet Levels                       [03-MAY-2020]  ()
-18.Style Sheet Priority                     [03-MAY-2020]  ()
+17.Style Sheet Levels                       [05-MAY-2020]  (Done)
+18.Style Sheet Priority                     [05-MAY-2020]  (Done)
 
 
 ********************************************************************   1.Introduction   ********************************************************************
@@ -436,29 +436,51 @@ If we want the Element to be Placed at one Position fixed Irrespective of Scroll
 	
 ******************************************************************** 17.Style Sheet Levels  ***********************************************************************
 
+There are 3 Different ways where we can Specify the Styles for the HTML.
 
+1.Inline Style Sheet
+2.Document Level Style Sheet
+3.External Style Sheet
+
+1.Inline Style Sheet :
+----------------------
+Inline Style Sheet applies to the only single ELement of the HTML.
+
+	<h2 style="color: green">Inline Style Sheet</h2>
+
+2.Document Level Style Sheet :
+------------------------------
+It has <Style> defined inside <HEAD>.
+When we define the Style using Document Level Style Tag ,It is applicable to that Particular Document.
+
+	<style type="text/css">
+	h1{
+		color: blue;
+	}	
+	</style>
+
+
+3.External Style Sheet :
+------------------------
+Conside the Case wehave 50 Pages in the Website.
+If we use Document Level Style Sheet and if there is any Change in the Style we have to change across all the Pages.
+Create the .ccs and include it in all the Pages.
+.css File can be Included by Using Link tag.
+
+	<link rel="stylesheet" type="text/css" href="CodeEvolution.css">
+	
+	h3{
+	color:red;
+	}
 
 ********************************************************************  18.Style Sheet Priority  ********************************************************************
 
+If we apply the Same Style in all the Style Sheet Levels then Priority will be 
 
+	Inline Style Sheet
+	Document Style Sheet
+	External Style Sheet
 	
 
- 
-	
-		
-
-
-
-
-	
-
- 
-
-
-
-
-
-
-
-
+********************************************************************  END  ********************************************************************
 

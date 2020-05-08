@@ -76,6 +76,10 @@ git push origin --delete "BranchName"
 To CLone a Particular Folder from GIT :
 git clone git@github.com:whatever folder-name
 
+Add all the Files Except One File :
+git add -u
+git reset -- main/dontcheckmein.txt
+
 
 
 

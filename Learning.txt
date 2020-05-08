@@ -12,12 +12,6 @@ MVN Command :
 -----------
 mvn install:install-file -Dfile=D:\\Software\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
 
-Santosh :
-*********
-Spring Boot
-JSF
-Tiles
-
 Coding Practice :
 *****************
 https://hackernoon.com/	
@@ -27,36 +21,40 @@ Videos
 Book
 Project	
 
------------------------ Preparation ---------------------------
-OOPS												[]()
-Exception Handling									[]()														
-MultiThreading										[]()										
-Lang Package										[]()									
-Interfaces and Modifiers							[]()						
-Collections											[]()
-Serialization and Externalization					[]()							
-Generics											[]()
-Inner Classes										[]()
-Garbage Collector									[]()
-Enumeration											[]()
-Files												[]()
-Java 8 Features										[]()
-Servlet												[]()
-JSP													[]()
-Spring IOC											[]()
-Spring MVC											[]()
-MicroServices Architecture							[]()
-Spring RestRestful Web services						[]()
-Hibernate											[]()
-Struts2												[]()
-HBase												[]()
-SQl													[]()
-PL/SQL												[]()
-HashMap Internal Implementation						[]()
-ArrayList Internal Implementation					[]()
-Java Basics : Java papers.com						[]()
+---------------------------- Priority   ---------------------------
+1.Job Related :
+---------------
+Redis 
+Elastic Search
+MicroService
+Angular
 
----------------------------  On line Preparation Topics  ----------------------------------------
+
+2.Office Related :
+------------------
+Spring Boot LDAP
+Spring JWT
+Spring AOP
+
+WebSocket
+Server Sent Events
+
+
+3.FreeLancer :
+--------------
+HTML
+CSS
+JaavScript
+ECMAScript
+TypeScript
+Angular
+Angular Material
+BootStrap
+CSS FlexBox
+React Series
+
+
+---------------------------  On line Preparation Topics  ----------
 
 Java Basics : Java papers.com						[]()
 Internal vs. External Iteration						[]()
@@ -90,24 +88,6 @@ Java Double Brace Initialization					[]()
 Java JSON Conversion Tutorial						[]()
 Java Method Reference ::							[]()
  
-													
-Germany :
-*********
-Java 8
-Spring Boot 
-Hibernate
-Spring Data JPA
-Micro Services
-RestFul Web Services
-SOAP
-PL SQL
-Angular
-Git
-Jenkins
-Docker
-Kubernetes
-Maven
-Sonar
 
 ***************************************  Developer    *****************************************
 
@@ -224,55 +204,9 @@ Emerging Technologies :
 Deeplearning4j
 Splunk
 JHipster
-
 OpenAPI Specification 3.0
 
-
------------------------ Tools and Technologies ---------------------------
-
-Devops
-Custom request in Swagger Implementation
-Jenkins(Build Tool)
-GIT(Repository) Git Pod
-LDAP Authentication
-Linux Commands
-Retrace (Code Analysis/Coverage, Profiling, Logging, and App Performance Tools)
-OverOps
-JRat (Java Runtime Analysis Toolkit)
-FindBugs Alternatives (PMD Eclipse Tutorial,Eclipse Check Style Tutorial,Eclipse Sonar Tutorial)
-Check Style
-Cobertura
-Plumber – Memory Leak Detection
-Java doc(Commercial)
-VisualVM	
-EHCache
-Spark
-JS-Beautify
-JMS
-Hadoop
-Single Page Application (SPA) project.
-LogBack Implementation
-WebSocket(Two Way Communication)
-DataGrip(SQL Tool)
-Spring Cloud
-Spring Foundry
-Bit Bucket
-uDeploy
-
----------------- MicroServices Architecture Related Technologies ------------------------------
-
-Spring Boot Eureka(Service Discovery Server)
-Netflix Zuul API Gateway.
-Spring Cloud Zuul Proxy as API Gateway
-Netflix
-Docker
-LoadBalancer
-Topic : API Gateway Advantages:Authentication, monitoring, load balancing, Caching, 
-Request shaping and management and static Response handling
-
-
-
-============== Elastic Search ============================
+-------------------------    Elastic Search   ---------------------------------------------------
 
 Query DSL(Conditions)
 Query DSL in SQL Format
@@ -302,28 +236,7 @@ Inner Hits
 Filed Collapsing
 Search After
 
------------------- Scala Preparation ------------------
-Traits
-Implicit Function(Practice)
-Implicit Import
-Companion Object
-Companion Class as Factory Class
-Type Aliasing vs Case Class(Confusing)
-Streams in Immutable Collections
-Implicit Function(High Usage)
-Implicit Class(High Usage)
-Package Objects
-
-
-Functions in Scala:
-------------------
-Map Function
-Partition Function
-mkString
-reduce
-
-
--------------------- Java 8 Features ----------------------------------
+--------------------   Java 8 Features   ----------------------------------
 
 Default and Static Method in Interfaces
 Functional Interfaces
@@ -347,31 +260,9 @@ Nashron Java script Engine
 Concurrent Accumulators
 PermGen Space Removed
 TLS SNI
---------------------------------------  Angular Preparation (December) ----------------------------------
 
-Introduction and Evolution
-Evolution of Angular
-Differences between AngularJS and Angular
-Angular Features 
-Building Blocks of Angular
-Modules
-Components
-Templates
-Meta data
-Property Binding
-Data Binding  
-Directives
-Services
-Dependency Injection
-Installing Angular4
 
-Defining Style Sheets
-Class Binding
-Style Binding
-Animation
-Deploying Our Own App
-
-----------------------------------------December 2018 ------------------------------------------------------
+--------------------------------------------------------  December 2018   ------------------------------------------------------
 
 Architecture
 Git and GitHub
@@ -394,7 +285,7 @@ Spring Boot + Spring Data + Elastic Search
 SearchQueryBuilder 
 Redis Server Scenarios(Hash,List.Set,String)
 
------------------------------------------ JANUARY 2019 ----------------------------------------------
+-----------------------------------------      JANUARY 2019       ----------------------------------------------
 
 Scala UDF's 
 Scala Basics and Spark SQL
@@ -1271,44 +1162,43 @@ Spring AOP 	Revise																			()
 -----------------------------------------   May  ----------------------------------------------------
 
 Routing Scenarios (Tamada )																	()
-HTML5 (Codedamn)                                                               				()
-CSS3  (Codedamn)                                                               				()
 HTML5 (Code Evolution)																		()
 CSS3 (Code Evolution)																		(Done)
+CSS Flexbox (Code Evolution)																()
+JavaScript Basics (Java Brains)																(Done)
 Bootstrap (Codedamn)                                                               			()
 npm (Code Evolution)                                                          				()
 Reactive Forms (Code Evolution)                                                          	()
 Angular Material (Code Evolution)                                                          	()
 
-
-
 Microservice Level 1 																		(Done)
-Microservice Level 2																		()
+
+Microservice Level 2																		(Done)
 Microservice Architecture																	()
-Techprimeres Microservice Architecture Suggestion AWS Spring Boot Microservices             ()
+Microservice Spring Cloud																	()
+Techprimeres Microservice Architecture Suggestion AWS Spring Boot 							()
 MicroService Series Java Techie                                                             ()
 
 Almight Java Collection Framework							                                ()
-Spring Data JPA Relationship																()
+Spring Data JPA Relationship																(Done)
+Freelancing Codedamn 
+OAuth
+SSO
+Hashing PAssword
+Redis Implementation
 
+React PreRequisite :
+--------------------
+HTML 	
+CSS 	
+JavaScript Fundementals  
+JavaScript Advance	 
+Javascript Object ProtoType 
+JavaScript ScopeAnd Closures 
+ES6	
+TypeScript	
 
-What Skills do Front End Developers Use :
-HTML/CSS
-JavaScript
-jQuery
-JavaScript Frameworks
-Front End Frameworks
-CSS Preprocessors
-RESTful Services/APIs
-Responsive/Mobile Design
-Cross-Browser Development
-Content Management Systems
-Testing/Debugging
-Git/Version Control
-Problem Solving
-What’s Next?
-
-
+-----------------------------------------   June  ----------------------------------------------------
 
 
 
