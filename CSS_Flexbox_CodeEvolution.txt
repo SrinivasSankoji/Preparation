@@ -1,0 +1,317 @@
+1.Introduction											[09-MAY-2020]  (Done)
+2.Terminology                                           [09-MAY-2020]  (Done)
+3.Flex Container Properties                             [09-MAY-2020]  (Done)
+4.Flex Dispaly                                          [09-MAY-2020]  (Done)
+5.Flex Direction                                        [09-MAY-2020]  (Done)
+6.Flex Wrap                                             [09-MAY-2020]  (Done)
+7.Flex Flow                                             [09-MAY-2020]  (Done)
+8.Justify Content                                       [09-MAY-2020]  (Done)
+9.Allign Items                                          [09-MAY-2020]  (Done)
+10.Allgn Content                                        [09-MAY-2020]  (Done)
+11.Flex Item Properties                                 [10-MAY-2020]  ()
+12.Order                                                [10-MAY-2020]  ()
+13.Flex Grow                                            [10-MAY-2020]  ()
+14.Flex Shrink                                          [10-MAY-2020]  ()
+15.Flex Basis                                           [10-MAY-2020]  ()
+16.Flex                                                 [10-MAY-2020]  ()
+17.Align Self                                           [10-MAY-2020]  ()
+18.Use Case                                             [10-MAY-2020]  ()
+19.Responsive Navbar                                    [10-MAY-2020]  ()
+20.Centering Item                                       [10-MAY-2020]  ()
+21.Variable Heights                                     [10-MAY-2020]  ()
+22.Holy Grail                                           [10-MAY-2020]  ()
+
+
+
+*************************************************        1.Introduction	   **************************************************************************************************
+
+CSS Flexible Box Module also simply known as One Dimensional Layout Module that makes 
+
+1.Easy to Design Flexible and Efficient Layouts
+2.Distribute spave among items
+3.Controls the allignment in a given Container
+
+Before Flexxbox there are 4 Layout Nodes
+
+1.Block i.e for Sections in a WebPage
+2.Inline for Text
+3.Table for two Dimensional Table data
+4.Positioned for explicit position of an element
+
+The above Layouts have not provided the enough Flexibility.
+Flex Layout on the other hand provides lot of Flexibility.
+With Flexbox we can arrange items Left to Right etc.Control the Spacing ,allignment and order of items in the Container.
+Bootstrap 4 is built on top of Flex Layout.
+
+Github Link :  https://github.com/gopinav/Flexbox-Tutorial
+
+
+*************************************************       2.Terminology  		**************************************************************************************************
+
+In Flexbox we mainly have Two Entities
+Parent Container which we term as Flex Container.
+Children Elements which we term as Items
+
+	<div class="container">
+		<div>Item 1</div>
+		<div>Item 2</div>
+		<div>Item 3</div>
+	</div>
+	
+Here div Container is the Flex Container and div item is the Flex Items.
+We also deal with two axis when dealing with Flexbox.
+
+Main Axis 
+Cross Axis
+
+Main Axis runs from Left to Right 
+where as Cross axis is perpendicular to Main axis and runs from Top to Bottom.
+Starting Point of Main axis is Main Start and Ending Point of Main Axis Main End.
+Length from Main Start to Main End is Main Length.
+Similar is the Case with Cross Axis.
+
+We can also Change the Direction of Main and Cross Axis.
+Understanding Flexbox is understanding the Properties associated with Flex Container and Flex Items.
+
+
+*************************************************     3.Flex Container Properties   *******************************************************************************************
+
+The Properties associated with Flex Container are 
+
+1.display
+This is what defines the Flex Container and mandatory to work with Flexbox.
+
+2.flex direction
+It defines the direction of the items placed inside the Container
+
+3.flex-wrap
+it is used to control wrapping of items inside the Container
+
+4.flex-flow
+it is a combination of Flex Flo and Flex Wrap
+
+5.justify Content
+it defines the allignment of the items along the Main Axis
+
+6.align-items 
+it defines the allignment of the items along the Cross Axis
+
+7.allign-content
+This is Similar to Justify Content but the difference is the allignment of items along Cross Axis.
+Also allign-content works only when there are Multiple rows inside the Flex Container.
+
+
+*************************************************     4.Flex Dispaly				****************************************************************
+
+To create a Flex Container we make use of display property and set the value to flex.
+
+	 display: flex;
+	 
+After addisng the diaply:flex It wiil create the Flex Container and all the items inside the div are arranged from left to right of Flex Container
+instead of traditional div.
+Here the Container has 100 % widht and is Similar to Block Level Element.
+If we don't want the Block Level Flex Container we use the property inline-flex to create a Inline Flex Container.
+
+	display: inline-flex;
+	
+Here Border wraps around the Flex Items.
+If we want to work with Flex Container display property is Mandatory.
+None of the Flex properties won't work without display Property.
+
+Display Property can be used to create either Block Level Flex Container or Inline Level Flex Container.
+Possible Values are 
+
+1.flex
+2.inline-flex
+
+*************************************************   5.Flex Direction 			*************************************************************************
+
+Flex direction establieshes the Main Axis and in turn decides how the Flex items are placed inside the Container.
+By Default Main Axis flows from Left to Right which is the Reason Items are Placed from Left to Right.
+
+	flex-direction: row;
+	
+Here row is the default value for flex-direction which moves the items from let to right.
+
+	flex-direction: row-reverse;
+	
+Here Items are placed from right to left inside the Flex Container.
+
+	flex-direction: column;
+	
+Here Items are palced from top to bottom inside the Flex Container.
+
+	flex-direction: column-reverse;
+
+Here Items are palced from bottom to top inside the Flex Container.
+
+Flex direction can be used to set the direction of the Main Axis there by controlling the items insdie the Conatiner.
+Possible Values of Flex Direction are 
+
+1.row
+2.row-reverse
+3.column
+4.column-reverse
+
+
+*************************************************  6.Flex Wrap  *********************************************************************************************
+
+By Default all the Items in the Flex Container fits into a Single Line.
+If there is not enough Space the items will Simply overflow.
+we can change this behavior by using Flex Wrap Property.
+
+	 flex-wrap: nowrap;
+	 
+This is the default property and makes the items in the Container to overflow.
+
+	flex-wrap: wrap;
+	
+If there is no Space for the item then item moves to the Next Row below the Main Row.
+
+	flex-wrap: wrap-reverse;
+
+If there is no Space for the item then item moves to the Next Row above the Main Row.
+
+Similar to Horizontal Wrapping we can also do the Verticl Wrapping.
+For that we need to change the Flex direction to Column and add height to the Flex Container.
+
+	flex-direction: column;
+    height: 400px;
+
+Flex wrap is used to control the wrapping of Flex Items inside the Flex Container.
+Possible Values of Flex-wrap are
+
+1.wrap
+2.wrap-reverse
+3.nowrap
+
+
+*************************************************  7.Flex Flow   ************************************************************************************************
+
+Flex flow is a Short hand for Flex Direction and Flex Wrap.
+By Default Flex flow property is set to row and nowrap.
+
+	flex-flow: row wrap;
+	
+
+*************************************************   8.Justify Content  *****************************************************************************************
+
+allignment Properties provided by the Flexbox on Flex Container are 
+
+1.justify-content
+2.allign-items
+
+justify-content defines the allignment of items  along the Main Axis.
+Default property of justify-content is flex-start which places the items at the begining of main axis i.e also known as Main Start.
+
+	justify-content: flex-start;
+	
+
+flex-end which places the items at the end of main axis i.e also known as Main End.
+
+	justify-content: flex-end;
+	
+center which places the items at the center of main axis i.e also known as Main End.
+	
+	justify-content: center;
+	
+Flexbox also provides the additional Values that can control how extra space has to be distributed inside the Flex Container.
+By Using space-between property for  the justify-content,extra space that is left between the items is evenly splitted among the items.
+
+	justify-content: space-between;
+	
+Sometimes we also want the space between the First Item and Last Item, we use space-around.
+In this Case If the Space between the Items is double the Space for the First and Last Item.
+
+	justify-content: space-around;
+	
+If we want the Same space to all the elements in the Flex Container we use space-evenly.
+If we set the flex direction to column then justify-content deals with vertical allignment.
+
+	border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: flex-start;
+	
+Here all the Items are pulled to the Top.
+
+
+justify-content alligns items and distribute any extra spacing in the parent container.
+Allignment is always along the Main Axis.
+Possible Values are 
+
+1.flex-start
+2.flex-end
+3.center
+4.space-around
+5.space-between
+6.space-evenly
+
+*************************************************  9.Allign Items   	*****************************************************************************************
+
+align-items defines the allignment of items  along the Cross Axis of the Container.
+default property of align-items is stretch which display all the items from top to bottom in cross axis.
+
+	align-items:stretch; 
+
+If we want all the items pushed from cross satrt to cross end we use flex-start;
+
+	align-items: flex-start
+	
+If we want all the items pushed from cross end to cross start we use flex-end;
+
+	align-items: flex-end
+	
+If we want all the items pushed to between the cross start and  cross end we use center;
+
+	align-items: center;
+	
+Another property of align-items is baseline.
+baseline is the line upon which most of the Letter Sits.
+
+	align-items: baseline;
+
+*************************************************  10.Allgn Content 	 *****************************************************************************************
+
+allign-content property alligns the lines of content along the cross axis.
+This is the mix of justify-content and align-items.
+It distributes additional space along the cross axis.
+Important note here is that Multiple rows needs to be exists in the Flex Container otherwise there is no Effect.
+Wrapping is required to force atleast into two Lines.
+Default value of allign-content is stretch.
+
+	 align-content: stretch;
+
+flex-start pulls the Line to the begining of the cross axis.
+Contents are wrapped from top to bottom  when we reduce the Browser Settings. 
+
+	align-content: flex-start;
+	
+flex-end pulls the Line to the end of the cross axis.
+Contents are wrapped from bottom to top  when we reduce the Browser Settings.
+
+	align-content: flex-end;
+	
+allign-content aligns the lines of content along the cross axis and distribute any extra spacing in the parent container.
+allign-content properties are 
+
+1.stretch
+2.flex-start
+3.flex-end
+4.space-around
+5.space-between
+6.center
+
+*************************************************   11.Flex Item Properties    *****************************************************************************************
+
+
+
+
+
+
+
+
+
+
+

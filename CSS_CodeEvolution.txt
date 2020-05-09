@@ -20,25 +20,22 @@
 
 ********************************************************************   1.Introduction   ********************************************************************
 
-HTML is like Skeleton System of Web Pages.
-To Make the HTML Attractive we use CSS.
+HTML is like Skeleton System of Web Pages and To Make the HTML attractive we use CSS.
 CSS Stands for Cascading Style Sheets.
-CSS describes how HTML Elements are to be displayed on the Screen.
-For Example <HEAD> Tag should  have a Color,
-<P> Shoud have a Background Color etc.
-
+CSS describes how HTML Elements has to be displayed on the Screen.
+For Example <HEAD> Tag should  have a Color,<P> Shoud have a Background Color etc.
 Whenever we work with CSS we always use the <HEAD> Section of the Document.
 To Specify we use the <Style> in the <HEAD> with type as "text/css".
-Whatever we write in the <Style> that can be Applied to the Web Page.
+Whatever we write in the <Style> that can be Applied to that Particular Web Page and also called as Document Level Style Sheet.
 Syntax of CSS is made up of 3 Parts.
 
-Selector
-Property
-Value
+1.Selector
+2.Property
+3.value
 
-Selector is nothin but an HTML Tag to which we want to apply the Style.
+Selector is nothing but an HTML Tag to which we want to apply the Style.
 Proerty is nothing but an Attribute for an HTML Tag i.e fontSize,Background Color etc.
-Value is the Value for the Property.
+Value is the value for the Property.
 
 ********************************************************************  2.Color  ********************************************************************
 
@@ -48,7 +45,7 @@ To Specify the Color to an HTML Element we use color Property.
 			color: red;
 	}
 	
-We can alsospecify the Color using HExaDecimal Value followed by #.
+We can also specify the Color using HexaDecimal value followed by #.
 Also We can have any Combination of Values for Color.
 
 	##ff0000 (RGB)
@@ -68,7 +65,7 @@ To assign a Background to an HTML <Body> element we use
 		
 	p{
 			background-color: red
-		}
+	}
 		
 To sepcify the Background Image we use 
 
@@ -79,7 +76,7 @@ We can avoid the repetiotion of the Image in any One Diretion or not to repeat.
 
 	background-repeat: no-repeat;
 	
-We can also specify the BAckground Position of the Image by Specifying left and Right Position.
+We can also specify the Background Position of the Image by Specifying left and Right Position.
 
 	background-position: 50px 100px;
 	
@@ -184,7 +181,7 @@ when we click on the Particular Link and what style has to be Applied is defined
 		color: blue;
 	}
 	
-If we click on the Link and it is redirected to another site and If we again open the Page then waht style has to be defined by using
+If we click on the Link and it is redirected to another site and If we again open the Page then what style has to be defined by using
 	
 	a:visited{
 		color:orange;
@@ -204,9 +201,9 @@ Border
 Margin
 
 Content is the Text inside the Tag
-Padding is the Space between the Content and the Borde rof an Element.
+Padding is the Space between the Content and the Border of an Element.
 Border is the Boreder for the HTML Tag.
-Margin is the Space between  the Element.
+Margin is the Space between  the Element and the Browser.
 
 
 Property for the Border are 
@@ -229,7 +226,6 @@ To Specify padding we use the property Called padding.
 	
 Provides the space of 25px in the Border of each Side.
 We can also specify the padding for any of the side individually.
-
 
 ******************************************************************** 9.Margin  *************************************************************************
 
@@ -256,7 +252,7 @@ If there is a property defined for tr Tag then td Tag is going to inherit the Pr
 ******************************************************************** 11.Span and Div  *********************************************************************
 
 Consider the Case we have a Paragraph.
-We can apply the Style on Paragraph by using pre Selector.
+We can apply the Style on Paragraph by using p Selector.
 If we want to apply the Style on a Portion of the Tag we use <span> Tag.
 
 	<p>Started Working on <span>HTML5,CSS3<span></p>
@@ -276,7 +272,7 @@ It is used to group the Elements Together.
 
 We Can apply the Style to a Group of Tags using <div>.
 <div> is Mainly used to structure the Layout of a Webpage.
-Consider the Scenario wher <div> is used for navigation,Header Footer and Main Content of the WebPage.
+Consider the Scenario where <div> is used for navigation,menu Bar,Header Footer and Main Content of the WebPage.
 	
 	
 ********************************************************************  12.Selectors   *******************************************************************************
@@ -305,7 +301,7 @@ If we want to apply the Style to the Paragraph we apply the paragraph Element Se
 2.Id Selector :
 ---------------
 Consider the Case we have Multiple Paragraphs.
-W ehave the Requirement of 1st Paragrapgh is in Blue Color,2nd Paragraph is in Green Color,3rd Paragraph is in yello Color.
+We have the Requirement of 1st Paragrapgh is in Blue Color,2nd Paragraph is in Green Color,3rd Paragraph is in yello Color.
 If we apply the Element Selector then all the Paragraph have the Same Color.
 Here we use Id for Each HTML Element.
 
@@ -399,8 +395,7 @@ Absolute Positionong allows the element to be placed where we want to be.
 		}
 		
 Here Paragraph is Shifted from top 50 Pixcels and Left 80 Pixcels from the Browser.
-Absolute Positioning Shifts from the Top Corner of the Screen where as Relative Positioning Shifts from the 
-Position of the Element.
+Absolute Positioning Shifts from the Top Corner of the Screen where as Relative Positioning Shifts from the Position of the Element.
 
 We can also Combine Relative and Absolute Positioning.
 
