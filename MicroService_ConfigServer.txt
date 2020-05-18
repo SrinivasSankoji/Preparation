@@ -22,18 +22,14 @@ http://javaonfly.blogspot.com/2017/06/microservice-access-properties-from.html
 
 Introduction :
 **************
-With Micro Services we Make a Central Config Server where all the Configurable parameters of Micro Services 
-are Written and Version Controlled.
-Advantage of Central Config Server is that If we Change any of The Parameters for a Particular Micro Service,
-Then it will Reflect on the Fly Without Re Deploying the Application.
-Before Micro Services,We Create a Properties File where we Maintain all the Configurable Parameters.
-If we Change any of the Configurable Parameters,then we need to Redeploy the Application.
-Moreover If we Have Multiple Environments,then we have to Maintain multiple Properties File and 
-based on Environment we have to choose the Right Properties File.
-Spring Provides a Concept Called Profiles where based on Profile it Loads the Appropriate Environment Related 
-Properties File.
-But the Problem with this Approach is that it is Statically Packaged and Any Changes in the Properties File Means
-Redeploy the Application which is the Violation of Micro Services.
+With Micro Services we can Make a Central Config Server where all the Configurable parameters of Micro Services are Written and Version Controlled.
+Advantage of Central Config Server is that If we Change any of The Parameters for a Particular Micro Service,it will Reflect on the fly Without redeploying the Application.
+
+Before Micro Services,We Create a properties File where we Maintain all the Configurable Parameters.
+If we Change any of the Configurable Parameters,then we need to redeploy the Application.
+Moreover If we Have Multiple environments,then we have to Maintain multiple Properties File and based on Environment we have to choose the right Properties File.
+Spring Provides a Concept Called Profiles where based on Profile it Loads the Appropriate environment related properties File.
+But the problem with this Approach is that it is Statically packaged and any Changes in the Properties File Means redeploy the Application which is the Violation of Micro Services.
 
                        Build Just Once and Deploy it Any Environment
 					   
@@ -44,19 +40,19 @@ It will pick up the Changes and Reflect them Automatically without Rebuild or Re
 Spring Cloud Config Server Architecture :
 -----------------------------------------
 Some Important Components of the Config Server are 
-Repository Area
-Rest EndPoint
-Actuator
-Cloud Bus
-Load Balancer
 
-Repository Area :
------------------
+1.Repository Area
+2.Rest EndPoint
+3.Actuator
+4.Cloud Bus
+5.Load Balancer
+
+1.Repository Area :
+-------------------
 Config Server Stores all the Micro Service Related Property Files in a Version Control System and It Can Be Either GIT or SVN.
 We Can Also Store It in Local File System and In This Case Profile Should be Native.
 Config Server Stores Each Micro Service based on Service ID.
-We Can Configure the Micro Service Service ID by giving a Unique value of spring.application.name property in the 
-bootstrap.properties for that Micro Service.
+We Can Configure the MicroService ServiceID by giving a Unique value of spring.application.name property in the bootstrap.properties for that Micro Service.
 Example I Have an Employee Service and I Can Create a Service ID in Employee Service bootstrap.properties File.
 
 spring.application.name=EmployeePayroll
@@ -69,33 +65,31 @@ All Above Properties are based on Profile Value.
 All The properties File Should be in the Following Format i.e {ServiceID}-{ProfileName}.properties
 If we Don't Give the Profile Name in the Properties File,Then It is Considered as Default.
 
-Rest EndPoint :
----------------
-Every Micro Service Needs to Communicate with Config Server So That it resolves all the Properties which are Stored inside 
-Configuration Server.
+2.Rest EndPoint :
+-----------------
+Every Micro Service needs to Communicate with Config Server So that it resolves all the Properties which are Stored inside Configuration Server.
 Config Server Also Publishes a Rest End Point through which we can see all the Properties in a Browser.
 
-Actuator :
-----------
-If Any Property of a Micro Service has been Changed,It has to be Refreshed and That can be done by Using Refresh Actuator.
+3.Actuator :
+------------
+If Any Property of a Micro Service has been Changed,It has to be Refreshed and That can be done by using Refresh Actuator.
 By Doing This Micro Service Will Get Updated without Rebuilding and ReDeploying the Application.
 
-Cloud Bus :
------------
-If the Property of The Particular Micro Service has been Changed in Config Server and To Update the Property 
-We need to refresh the Actuator End Point Manually.
+4.Cloud Bus :
+-------------
+If the Property of The Particular Micro Service has been Changed in Config Server and To update the property We need to refresh the Actuator End Point Manually.
 If There are Many Micro Services,Then This would be a Hectic Task.
 Cloud Bus Helps us to Push the Updated Properties to all its Micro Services.
 But to do This,We Need to Manually Refresh At least One Micro Service End Point.
 
-Load Balancer :
----------------
+5.Load Balancer :
+-----------------
 The Config Server Should be Highly Available and If We Mention One Config Server Then It Would be a Single Point of Failure.
 Config Server Should be Load Balanced so that we Can Run Multiple Instances of Config Servers.
 Load Balancer Pool Should have One Public Address where Every Micro Service Communicates.
 
-Spring Cloud Config Server :
-****************************
+********************************************************  Spring Cloud Config Server **************************************************************************************
+
 Create A Spring Boot Project and add the Annotation @EnableConfigServer
 Add the Port and configurable file location in the application.properties file i.e 
 
@@ -105,35 +99,33 @@ eureka.instance.instance-id=${spring.application.name}:${spring.application.inst
 Then in the application.properties mention the git repository url i.e
 spring.cloud.config.server.git.uri= ?
 
-Spring Cloud Config Client :
-****************************
-By Using Spring Config Client we can get The Configuration Information that is being Managed by a
-Configuration Server.
+********************************************************      Spring Cloud Config Client  *********************************************************************************
+
+By Using Spring Config Client we can get The Configuration Information that is being Managed by a Configuration Server.
 For this we have to define bootstrap.properties along with application.properties File.
 In the bootstrap.properties File define the application Name and Location of the Config Server Service URL.
 Create the Controller to Show all the properties defined inside the Repository.
 
 Updating Cloud Config Properties at Runtime :
-*********************************************
-This is one of The Feature Provided By Spring Cloud To Update The Configuration Properties at Runtime
-Without Restarting and ReDeploying the Application.
-
-For Example We Have Changed The Log Level and To Update Cloud Configuration at RunTime We Change The Configuration
-Properties in the Git Project and Push to The Repository.
-
+---------------------------------------------
+This is one of The Feature Provided By Spring Cloud To Update The Configuration Properties at Runtime Without restarting and reDeploying the Application.
+For Example We Have Changed The Log Level and To Update Cloud Configuration at RunTime We Change The Configuration Properties in the Git Project and Push to The Repository.
 Here We Have to Use Spring Boot Refresh Actuator 
-But This will not Update the Properties that are Annotated with @Value or @Bean 
-Because these are initialized at the Time of Application Start Up.
-
-/refresh EndPoint Only Refreshes Those Properties Annotated with @ConfigurationProperties.
-Means It Does Not Refresh Those Properties Which are Initialized During Application Initialization.
+But This will not Update the Properties that are Annotated with @Value or @Bean because these are initialized at the Time of Application Start Up.
+/refresh EndPoint refreshes only those Properties that are Annotated with @ConfigurationProperties.
+Means It Does Not Refresh Those Properties Which are Initialized during Application Startup.
 
 To Refresh These Properties we use @RefreshScope Annotation.
 
 Refresh Property Config at Runtime in Spring Cloud Config :
-***********************************************************
+-----------------------------------------------------------
 
 
+To Call the API using Eureka discovery Client 
+Click on Eureka discovery URL and add the application name along with property file name.
+
+	http://host.docker.internal:60910/spring-cloud-config-server/application.properties
+	
 
 
 

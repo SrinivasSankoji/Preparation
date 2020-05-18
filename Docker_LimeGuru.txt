@@ -14,7 +14,8 @@ When ever we Start Any Application we First Design the Application.
 After Designing the Application we need to Resolve/Define the Dependencies 
 and Here Dependencies Means The Technologies used to Develop the Applications.
 Once the Technologies are Defined then we Start the Development.
-Once the Development is Done is done in Local Environment and then Code is Moved to Development and Production Environment.
+Once the Development is Done is done in Local Environment and then Code is Moved to Development and to 
+Production Environment.
 The Dependencies we Defined during the Local Development Phase Should be Available in all Phases of the Environment.
 If Any Dependency is Missed in any of the Environment then the Application Might Not Work 
 and Here The Dependencies May be Java ,Servers,Frameworks etc.
@@ -28,8 +29,7 @@ Add the Dependencies to the Docker and Docker will Take care of availability of 
 
 How Docker Works :
 ------------------
-Docker Solves the Problems of Managing all the Dependencies like Tools,Libraries,Frameworks,Set up etc by Using Containers
-and will make it available to the Software Program.
+Docker Solves the Problems of Managing all the Dependencies like Tools,Libraries,Frameworks,Set up etc by Using Containers and will make it available to the Software Program.
 Docker is a Containerized Execution i.e 
 For Example we have Java,HttpServer and Tomcat Server are the Three Dependencies to run the Application.
 Define these 3  Dependencies as a part of Meta Data and Docker will create a Container inside the Local Server and it will install 
@@ -40,19 +40,16 @@ Now We have Another Server for Testing Environment.
 Here Docker Will Create the Container in the Testing Server with all the Dependencies 
 and on top of that the Application Code will be moved to Testing Environment.
 we need to Ensure that we have Defined the Meta Data Correctly.
-Here the Whole Process is Automated i.e Creating The Container,Setting up The Dependencies,Taking it to The Container and Making it 
-Available to Every One.
+Here the Whole Process is Automated i.e Creating The Container,Setting up The Dependencies,Taking it to The Container and Making it Available to Every One.
 Once the Code is Available to the Container,
 It Will Execute the Application because the Required Dependencies are Available inside the Container.
 Docker is a Containerized Execution. i.e Every Thing In Docker is Containerized.
 For Example We have the Whole Server and there is Only One Container.
-We Can Use Some Part of The Configuration to Create Multiple Containers within the Same Server.
-Here Each Container Runs Independently.
+We Can Use Some Part of The Configuration to Create Multiple Containers within the Same Server.Here Each Container Runs Independently.
 There is No Intra Dependency against the Containers and Each Container is Isolated.
 Each Container has its Own Piece of Code,Has its Own Set Up.
 This is Very Efficient Way of Utilizing the Server Resources and Managing The Dependencies.
-For Example We Have 8 GB Of Server Then Some Part of The Server is used By One Container 
-and Some Part of The Server is Used By Another Container and So On.
+For Example We Have 8 GB Of Server Then Some Part of The Server is used By One Container and Some Part of The Server is Used By Another Container and So On.
 
 Docker Benefits :
 -----------------
@@ -66,7 +63,7 @@ We can Spin Up The Containers Very Fast and We can also Delete The Containers wh
 
 2.Portable :
 ------------
-We Can Define The Dependencies Once inside the Container and Can be From One Environment to Another Environment.
+We Can Define The Dependencies Once inside the Container and Can be moved From One Environment to Another Environment.
 We Can Deploy The Container From Local Server to Development Server and Move The Same Container to Production Server.
 Containers Can Be Shipped Across The Environments.
 
@@ -101,7 +98,7 @@ Here Each Virtual Machine Needs to be Set Up and its Again Tactical Thing.
 
 3.Docker Container :
 --------------------
-In The Physical Server We Have OS and Once We Have OS We Don't Need ANy OS.
+In The Physical Server We Have OS and Once We Have OS We Don't Need Any OS.
 We Can Run Docker Containers on Top Of The UnderLying OS.We Can also Run Multiple Containers on The Same OS.
 Here Each Container Contains an Individual Application.
 
@@ -149,9 +146,8 @@ The Above Commands i.e to build the Docker File and to run the Docker Image are 
 Docker Client Needs to be Installed where we are running these Commands.
 When we Install Docker Both Docker Client and Docker Server will gets Installed.
 Any Docker Command has to run through Docker Client.
-Whenever we run the Command : docker run OccReport using Docker Client,It Internally invokes the Docker Server 
-and Docker Server runs the Script inside Docker Image.
-It will Launch the Container with all the Details Defined inside in the Docker Image.
+Whenever we run the Command : docker run OccReport using Docker Client,It Internally invokes the Docker Server and Docker Server runs the Script inside Docker Image.
+It will Launch the Container with all the dependencies defined inside in the Docker Image.
 
 How Docker Works :
 ------------------

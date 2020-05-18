@@ -1,12 +1,12 @@
 1.What is Docker                               [02-OCT-2019]  ()
-2.How Docker Works							   [02-OCT-2019]  ()
+2.How Docker Works							   [02-OCT-2019]  ()	
 3.Docker Benefits							   [02-OCT-2019]  (Done)
 4.Docker Installation						   [02-OCT-2019]  (Done)
 5.Docker Basic Commands						   [02-OCT-2019]  (Done)
-6.Docker Images								   
-7.Docker Containers
-8.Run Jenkins on Docker Container
-9.Docker File
+6.Docker Images								      
+7.Docker Containers							   
+8.Run Jenkins on Docker Container				
+9.Docker File								   
 10.Docker Compose
 11.Docker Volume
 12.Docker Swarm
@@ -25,15 +25,13 @@
 4.Docker Installation :
 ***********************
 Install the Docker
-TroubleShooting Tips
+TroubleShooting Tipsy
 Validate Installation
 UnInstall Docker
 
-If We Install the Docker Tool Box on Windows Machine,The Installer Automatically installs Oracle Virtual Box
-to Run the Docker Virtual Machine.
+If We Install the Docker Tool Box on Windows Machine,The Installer Automatically installs Oracle Virtual Box to Run the Docker Virtual Machine.
 Here Docker Will be Running  inside the Virtual Machine and We interact with Docker Server Using Docker Client.
-To Install Docker We Ensure that we Have
-OS 64 Bit and Windows 7 or Higher
+To Install Docker We Ensure that we Have OS 64 Bit and Windows 7 or Higher
 
 https://docs.docker.com/v17.09/docker-for-windows/install/ -->  Select Install Docker For Windows -->
 Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
@@ -62,14 +60,15 @@ docker run -it ubuntu : First It Will check for the Image Locally and If It is N
 docker start          : To Start the Container
 docker stop           : To Stop the Container
 
-
 docker stats 		  : Memory and Usage Details of Container
 docker system df 	  : Local Disk Usage for Container
 docker system prune	  : To Delete all the Unused Images and Not Associated with Network 
 
-
 6.Docker Images :
 *****************
+
+
+
 
 
 
@@ -78,12 +77,17 @@ docker system prune	  : To Delete all the Unused Images and Not Associated with 
 
 
 
+
 8.Run Jenkins on Docker Container :
 ***********************************
 
 
+
+
 9.Docker File :
 ***************
+
+
 
 
 10.Docker Compose :
@@ -91,8 +95,12 @@ docker system prune	  : To Delete all the Unused Images and Not Associated with 
 
 
 
+
+
 11.Docker Volume :
 ******************
+
+
 
 
 

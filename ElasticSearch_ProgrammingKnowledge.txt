@@ -1,16 +1,98 @@
-1.Installation								[20-APR-2020]  ()
-2.Import CSV File using LogStash            [20-APR-2020]  ()
-3.Introduction                              [20-APR-2020]  ()
-4.Rest API -Search                          [20-APR-2020]  ()
-5.Installing LogStash                       [20-APR-2020]  ()
-6.Basics of Search                          [20-APR-2020]  ()
-7.Query and Filter Context                  [20-APR-2020]  ()
-8.Our Own Queries                           [20-APR-2020]  ()
+1.Introduction                              [17-MAY-2020]  (Done)
+2.Installation								[17-MAY-2020]  (Done)
+3.Logstash to import CSV File				[17-MAY-2020]  (Done)
+4.Rest API -Search                          [18-MAY-2020]  (Done)
+5.Stashing First Search                     [18-MAY-2020]  (Done)
+6.Basics of Search                          [18-MAY-2020]  (Done)
+7.Query and  Context                  		[18-MAY-2020]  (Done)
+8.Our Own Query and Filter Query            [18-MAY-2020]  (Done)
+9.Compound Queries							[19-MAY-2020]  ()
+10.Our Own Compound Query                  	[19-MAY-2020]  ()
+
+**************************************************************   1.Introduction  ************************************************************** 
+
+Elastic Search is a distributed Open Source Search and Analytics engine for all types of data including textual,numerical,geospatial structural and unstructured data.
+Elastic Search is built oan Apache Lucim and first released in 2010.
+Elastic Search is a Central Component of Elastic Stack.
+Set of Open Source Tolls like Data Injestion,Enrichment,Storage,Analysis and Visualization.
+It is known for its Simple Rest API,distributed Nature,Speed and Scalability.
+It is normally referred to as ELK Stack.
+Elastic Search is a database that stores,retrieves and manages documented oriented and semi structured data.
+When we use Elastic Search we store data in Json Document Form and we query them for Retrieval.
+Elastic Search is just a Database.
+
+Prodcut that involves E-Commerce and searh Engines with huge Database are Facing Issues that includes Product Information Retrieval taking too Long.
+This leads to poor user Experience and in turn turns off potential Customers.
+Thre is also lag for the Search attributed to the Relational Database Design used for the Product Design, where the data is scattered among the Multiple Tables.
+Successful retreival of Meaningful user Information requires fetching the data from these Tables.
+
+Relational Database works comparatively slow when it comes to huge data and fetching Search Results through Database Queries.
+Business Now a Days looking for data Storage Alternatives in the hope of promoting Quick Retreival.
+This can be achieved by adopting NOSQL rather than RDBMS.
+Elastic Search is one such NOSQL Distributed Database.
+
+Speed and search of Elastic Search and its ability to index many types of contents can be used in many Cases like 
+
+Application Searh
+Business Search
+Enterprise Search
+Logging and Data Analytics
+Business Analytics and Much More
 
 
+How does Elastic Search Works :
+-------------------------------
 
-**************************************************************   1.Installation  ************************************************************** 
+Raw data Flows into Elastic Search in a from of variety sources including logs,systems,metrics and web Applications.
+Data injestion is the process by whcih raw data is parsed,normalized and enriched before it is indexed in Elastic Search.
+Once indexed in Elastic Search users can run Complex Queries against their raw data and use aggregations to retreive complex summaries of their data.
 
+From Kibana,users can create powerful visualizations of their data,share dashboards and manage their Elastic Stack.
+Kibana also provides very handy search bar which can be used to search data in Elastic Search.
+
+Query Execution in Elastic Search :
+-----------------------------------
+After indexing the data into Elastic Search,user writes some query to fetch the Data.
+Search API is used to understand the Query and search for the information in the Index through the Same API and 
+returns the response and the same result is return back to the User.
+
+Concepts of Elastic Search :
+----------------------------
+
+1.Cluster :
+-----------
+Cluster is a Collection of one or more Nodes that together hold entire data and give federating index and search capabilities across all servers.
+For Relational Databases the node is DB Instance and there can be N Nodes with the same Cluster Name.
+
+2.Near Real Time :
+------------------
+This is the popular Feature in Elastic Search.
+There is a slight time when we index the document and it becomes Searchable.
+
+3.Index :
+---------
+Index is a Collection of Documents that have Similar Characteristics.
+
+4.Node :
+--------
+Node is a Single Server that holds some data and participates on the Cluster's indexing and Querying.
+Node can be configured to join a Specific Cluster by a Particular Cluster Name.
+A Single Cluster can contain as many Nodes as we Want.
+Node is Simply One Elastic Search Instance.
+
+Shards :
+--------
+Shard is a Subset of Document of an Index.
+An Index can be divided into Many Shards.
+
+
+**************************************************************   2.Installation  ************************************************************** 
+
+Elastic Search is a Search and Analytic Engine.
+Logstash is a Server Side Data processing Pipeline that injests data from Multiple Sources Simultaneously,transfroms the data and sends the data to a Stash like Elastic Search.
+Kibana lets the user to Visualize the data like Charts,Graphs  etc.
+Kibana is a Browser based Tool and we don't need any other Tool.
+Prerequisite for installing is Java.
 
 https://www.elastic.co/downloads/
 
@@ -33,12 +115,417 @@ To Install Kibana :
 D:\Software\kibana-7.6.2-windows-x86_64\bin 
 Then run the Command kibana.bat
 
-To check whether the Elastic Search is running or not we need to check it in the Browser.
+To check whether the Kibana is running or not we need to check it in the Browser.
 
 	http://localhost:5601
 	
 To Install Logstash :
 ---------------------
+
+D:\Software\logstash-7.6.2\bin
+Then run the Command logstash.bat
+
+Before running Kibana we need to create a Configuration File in order to Configure the Logstash.
+we can create conf file any where with any name.
+
+	
+	input {
+		stdin{
+			}
+	}
+		output{
+			elasticsearch {
+			hosts => "localhost:9200"
+			index => "newyork"
+			}
+	}
+	
+	
+conf file has 3 different parts
+
+1.input
+2.filter
+3.output
+
+conf File looks like a Json File but it is nota Json File.
+we can use this conf file along with logstash Command.
+
+	logstash -f logstash.conf
+	
+Here index name is newyork.
+To check whether the Kibana is running or not we need to check it in the Browser.
+	
+	http://localhost:9600/
+	
+
+
+**************************************************************  3.Logstash to import CSV File  **************************************************************
+	
+If we want to insert data into Elastic Search from Kibana refer the site kaggle.com and search for datasets.
+
+	New York City Airbnb Open Data
+	
+Download the CSV Data which is of 7 MB.
+we get the AB_NYC_2019.csv when we extract the Zip File.
+
+Now we need to create a conf file and add the csv file to the filter attribute of conf file.
+If we have Multiple Files then add the * at the Last.
+
+input  :
+--------
+we also need to add the start_position to begining to read the csv File from the begining.
+
+	start_position => begining
+	
+we also need to add the sincedb_path to NULL because Logstash always keep track of where it reads the File before it is stashed.
+
+	sincedb_path => "NULL"
+	
+	input {
+	file{
+			path => "D:/ElasticSearch/AB_NYC_2019.csv"  // Provide Relative Path because Absolute doesn't work.
+			start_position => "beginning"
+			sincedb_path => "NUL"
+		}
+	}
+	
+filter :
+--------	
+While reading the csv file if it crashes then logstash reads the CSV file again from Starting.
+we also need to filter the data like separator,column names etc.
+
+	filter {
+	csv {
+		separator => ","
+		columns => ["id","name","host_id","host_name","neighbourhood_group","neighbourhood","latitude","longitude","room_type","price","minimum_nights","number_of_reviews","last_review","reviews_per_month","calculated_host_listings_count","availability_365"]
+	}
+	}
+
+	
+output :
+--------
+
+	output{
+	elasticsearch {
+	hosts => ["localhost:9200"]
+	index => "newyork"
+	}
+	stdout{
+	}
+	}
+
+Then run the Command logstash -f logstash.conf.
+Navigate to the Management Section in the Bottom of Kibana Dashboard --> Select index pattern --> Click on create index pattern --> 
+Then the index we createed through Logstash is available here.
+
+Search for the index --> next step --> select any one of the Filter  -> then the data is visible for the below Column Names.
+
+Navigate to the Discovery Section --> Search for the Index --> Here we can see the Data.
+
+ 
+**************************************************************  4.Rest API -Search   ********************************************************************************************
+
+we can use developer tools in kibana to run the code.
+ae can add data to the Elastic Search,Search the Data etc.
+
+PUT API is used to add some data to the Elastic Search.
+
+	PUT /customer/-doc/2
+	{
+	  "name": "Nandini Sankoji"
+	}
+	
+There are 4 Major Rest API's Provided by Elastic Search.
+
+PUT/POST
+GET
+DELETE
+UPDATE
+
+PUT/POST helps us to add or update the JSon Document in an Index when a Request is made to that respective index with Specific Mapping.
+mapping is usedto structure the data i.e add some conditions to the data.
+If want only integer to an age parameter we use mapping.
+
+Once we have data in Elastic Search we have to get that back.
+GET APi helps to extract type Json Object by Performing get Request for a Particlar Document.
+
+	GET  /customer/_search
+	
+	GET  /customer/_doc/1 
+	
+GET Request based on parameter we use
+
+	GET  /customer/_search
+	{
+		"query": {
+			"match": {
+			"name":"Nandini"
+			}
+		}
+	}
+
+**************************************************************  5.Stashing First Search   ****************************************************************************************
+
+Logstash is a tool based on filter/pipes pattrens for gathering,processing and generating the log or events.
+It helps in Centralizing and making real time analysis of logs and events from different sources.
+Logstash is written on JRuby Programming Language and runs on Java Virtual Machine.
+
+Logsatsh collects different types of data like Logs,Packets,events,Transactions,Timestamp etc.
+Datasource can be Social data,ECommerce Data,News,Financial Data,IOT Devices,Mobile Devices etc.
+
+Logstash is PlugIn based Data Collection and processing Engine.
+It Comes with a wide range of Plug Ins that makes easily Configurable to Collect,process and forward data to Many different Architectures.
+Processing is organized into one or more pipelines.
+In each pipeline one or more Input Plug Ins receive or collect data and placed on Internal Queue.
+Queue is default Internal Memory and can also be persisted to hard disk to improove performance liability and resiliency.
+
+
+Features :
+**********
+Logstash can collect data from different sources and send to Multiple Destinations.
+Logstash can also handle Multiple HttpRequests and Response Data.
+Logstash can handle all types of logging data like Apache Logs,Window Event Logs,Data over Network Protocols,Data from Standard Input and many More.
+Logstash provides a variety of Filters which helps the user to find more meaning in the data by parsing and transforming it.
+Logstahs can also be used in Handling Sensors data in IOT.
+
+Event Object :
+**************
+Event Object is the Main Object in the Logstash which encapsulates the data flow in the Logstash Pipeline.
+Logstash Uses the Event Object to store the input data and add extra fields created during the Filter Stage.
+
+Pipeline :
+**********
+It comprises of data flow stages in Logstash from input to output.
+Input data is entered into the pipeline,processed and stored in the form of event.
+Then it Sends an Output destination to the user or end system desirable Format.
+
+Input :
+-------
+First stage in the pipeline is input which is used to get the data in the Logstash for Further Processing.
+Logstash Offers various plug Ins to get the data from different Platforms.
+Some of the most commonly used plugins are File System,SysLogs,Redis and Beats.
+
+Filter :
+--------
+Middle Stage of Logstash Pipeline is Filter where the actual processing of events take place.
+Developer can use pre defined regex patterns by Logstash to create Sequences for differentiating between the Fields in the Events for accepted Input.
+
+Output :
+--------
+This is the Last stage in the Logstash Pipeline where the output events can be formatted into the structure required by the destination System.
+Finally it Sends the Output event to the Destination by using PlugIns.
+Some of the Most Commonly used PlugIns are ElasticSearch File,Graphite,Statsd etc.
+
+Advantages :
+************
+Logstash Offers various regex pattern to identify and parse the various fields in any input event.
+Logstash supports a variety of web servers and data sources for extracting logging data.
+Logstash provides multiple plugIns to parse and transform the logging data into user desirable Format.
+Logstash is Centralized which makes easy to process and collect data from different Servers.
+Logstash also uses the HTTP Protocol which enables the user to upgrade Elastic Search Versions with out having to upgrade Logstash.
+
+Disadvantages :
+***************
+Working with Logstash is sometimes a little bit complex as it needs good understanding and Analysis of input Logging Data.
+Filter Plug Ins are not generic.we have to find the correct sequence of patterns to avoid error in parsing.
+
+Stashing First Event :
+**********************
+Logstahs pipeline requires 2 Elements i.e input and output and also an Optional Element Filter.
+Input PlugIn Consume data from the Source ,Filters modify the data and the output writes to the destination.
+Here the destination is Elastic Search.
+
+we are going to perform an event i.e standard input.
+
+	logstash.bat -e 'input { stdin { } } output { stdout { } }'
+	
+
+**************************************************************  6.Basics of Search ****************************************************************************
+
+Refer the below Link 
+
+	https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-index.html
+	
+To start about how Searh works we need to index some data.
+Here we index the bulk Data.
+Download the account.json
+
+When we have a lot of documents to index, we can submit them in batches using Bulk API.
+This makes the Operation Significantly faster rather than iteratingly uploading every Single Document.
+The way we divide batch size depends on document size and Complexity.
+A good place to start is with the batches of 1000 to 5000 and a total Payload between 5 MB and 15 MB.
+
+Open the Command Prompt and copy the URL from the Elastic Search Bulk Index Documentation.
+
+	curl.exe -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
+
+If we want to check the status of the uploaded document i.e check the status of the index 
+
+	curl "localhost:9200/_cat/indices?v"  or in Kibana  GET /_cat/indices?v
+
+Now Search fro the Documents in the Kibana.
+To search for all the Documents in the Index
+	
+	GET /bank/_search  (or)
+	
+	GET /bank/_search
+	{
+		"query": {"match_all": {}}
+	}
+	
+To Seearch based on Condition 
+
+	GET /bank/_search
+	{
+	  "query": {"match": {
+		"firstname": "Amber"
+	  }}
+	}
+
+To Sort the Records based on Sorting order of account Number
+
+	GET /bank/_search
+	{
+	  "query": {"match_all": {}}
+	  , "sort": [
+		{
+		  "account_number": {
+			"order": "desc"
+		  }
+		}
+	  ]
+	}
+	
+Elastic Search is a No Sql Database and every thing iis in JSon Format.
+Even while searching the API we use Json Format.
+
+	GET /bank/_search
+	{
+	  "query": {"match_all": {}}
+	  , "sort": [
+		{
+		  "account_number": {
+			"order": "desc"
+		  }
+		}
+	  ],
+	  "from": 0,
+	  "size": 20
+	}
+	
+The above Query returns the Record that beginning with 0 till 20.
+In Elastic Search each Request is a Self Request.
+Each Rest API Request has its own Request and is Completely separate from the other One.
+To Create the Complex Queries we use bool.
+bool can be used to combine Multiple Queries Criteria.
+We can designate the Queries as required (must match),desirable (should match) or undesirable (must not match).
+
+	GET /bank/_search
+	{
+	  "query": {
+		"bool": {
+		  "must": [
+			{"match": {
+			  "age": 20
+			}}
+		  ],"must_not": [
+			{"match": {
+			  "state": "AK"
+			}}
+		  ]
+		}
+	  }
+	}
+	
+
+**************************************************************  7.Query and Filter Context  ****************************************************************************
+
+When we get the output of a Elastic Searh Query we get the Relevance Score.
+By default Elastic Search matches the result based on Relevance Score.
+Relevance Score measures how well each Document matches the Query.
+Relevance Score is a positive Floating Point Number.
+Relation between the Score and Relevance is Proportional i.e Higher the Score Higher the Relevance.
+Score Calculation depends on two things i.e Query and Filter.
+Relevance Score means How well does the document Match the Query.
+Filter checks whether the Document matches the Condition or not and does not care about Relevance.
+Query context is considered to be as Linear Regression where as Filter context is considered as Logistic Regression problem.
+Filters willbe cached Automatically to speed up the Response.
+
+
+**************************************************************  8.Our Own Query and Filter Query  **********************************************************************
+	
+Here the Requirement that the Address should have either lane or street in the name and balance between 20000 and 30000.
+
+
+	GET /bank/_search
+	{
+	  "query": {
+		"bool": {
+		  "must": 
+			{
+			  "match":
+			   {
+			  "address":"lane street"
+			  }
+			},
+			"filter": 
+			  {
+				"range": {
+				  "balance": {
+					"gte": 20000,
+					"lte": 30000
+				  }
+				}
+				
+			  }
+		}
+	  }
+	}
+
+
+**************************************************************   9.Compound Queries   *********************************************************************************
+	
+
+
+
+
+
+
+************************************************************** 10.Our Own Compound Query  *****************************************************************************
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
 
 
 
