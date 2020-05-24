@@ -12,18 +12,18 @@
 12.Docker Swarm
 
 
-1.What is Docker :
-******************
-
-2.How Docker Works :
-********************
-
-3.Docker Benefits :
-*******************
+******************************************************   1.What is Docker :   **************************************************************************** 
 
 
-4.Docker Installation :
-***********************
+******************************************************   2.How Docker Works :  ***************************************************************************
+
+
+******************************************************   3.Docker Benefits :  ****************************************************************************
+
+
+
+******************************************************   4.Docker Installation :  ************************************************************************
+
 Install the Docker
 TroubleShooting Tipsy
 Validate Installation
@@ -36,8 +36,8 @@ To Install Docker We Ensure that we Have OS 64 Bit and Windows 7 or Higher
 https://docs.docker.com/v17.09/docker-for-windows/install/ -->  Select Install Docker For Windows -->
 Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
 
-5.Docker Basic Commands :
-*************************
+******************************************************  5.Docker Basic Commands :  ***************************************************************************
+
 
 docker version        :  To Check the Docker Client,Docker Server(Docker Engine) and so on
 docker -v :           :  To Check the Docker Version
@@ -50,62 +50,62 @@ docker logout         :  To Logout to the Docker Hub
 docker images         : To see the List of Images
 docker pull  ubuntu   : To Pull the Image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      : To get the Docker Image Id
-docker rmi imageId    : To Remove the Docker Image  based on Image Id
+docker rmi imageId    : To Remove the Docker Image  based on Image Id.Before that there is no Container running for that Image.
 
-docker ps             : To See the List of Containers
-docker run ubuntu     : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub
-						And Here It Wont Start the Container
-docker run -it ubuntu : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub
-						And Here It will Start the Container
+docker ps             : To See the List of Active Containers
+docker ps -a 		  : Ti See the List of Containers i.e active,closed etc.
+docker run ubuntu     : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It Wont Start the Container
+docker run -it ubuntu : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It will Start the Container
 docker start          : To Start the Container
 docker stop           : To Stop the Container
+docker rm 			  : To remove the Docker Container
 
 docker stats 		  : Memory and Usage Details of Container
 docker system df 	  : Local Disk Usage for Container
 docker system prune	  : To Delete all the Unused Images and Not Associated with Network 
 
-6.Docker Images :
-*****************
+******************************************************  6.Docker Images :  ****************************************************************************************
 
 
 
 
 
 
-7.Docker Containers :
-*********************
 
-
-
-
-8.Run Jenkins on Docker Container :
-***********************************
-
-
-
-
-9.Docker File :
-***************
-
-
-
-
-10.Docker Compose :
-*******************
+******************************************************  7.Docker Containers :  ************************************************************************************
 
 
 
 
 
-11.Docker Volume :
-******************
+******************************************************  8.Run Jenkins on Docker Container :   *********************************************************************
 
 
 
 
 
-12.Docker Swarm :
-*****************
+******************************************************  9.Docker File :  *******************************************************************************************
+
+
+
+
+
+******************************************************  10.Docker Compose :  **************************************************************************************
+
+
+
+
+
+
+******************************************************   11.Docker Volume :  **************************************************************************************
+
+
+
+
+
+
+******************************************************   12.Docker Swarm :  ***************************************************************************************
+
 
 
 

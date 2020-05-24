@@ -6,8 +6,8 @@
 6.Basics of Search                          [18-MAY-2020]  (Done)
 7.Query and  Context                  		[18-MAY-2020]  (Done)
 8.Our Own Query and Filter Query            [18-MAY-2020]  (Done)
-9.Compound Queries							[19-MAY-2020]  ()
-10.Our Own Compound Query                  	[19-MAY-2020]  ()
+9.Compound Queries							[19-MAY-2020]  (Done)
+10.Our Own Compound Query                  	[19-MAY-2020]  (Done)
 
 **************************************************************   1.Introduction  ************************************************************** 
 
@@ -454,7 +454,7 @@ Filters willbe cached Automatically to speed up the Response.
 
 **************************************************************  8.Our Own Query and Filter Query  **********************************************************************
 	
-Here the Requirement that the Address should have either lane or street in the name and balance between 20000 and 30000.
+Here the Requirement that the address should have either lane or street in the name and balance between 20000 and 30000.
 
 
 	GET /bank/_search
@@ -485,13 +485,68 @@ Here the Requirement that the Address should have either lane or street in the n
 
 **************************************************************   9.Compound Queries   *********************************************************************************
 	
+Compound Queries wrap other compound queries or leaf queries either to combine their results,change the behavior or to switch from query to Filter Context.
 
+The Queries in this Group are 
 
-
-
+1.bool Query
+2.boosting Query
+3.constant_score query
+4.dis_max query
+5.function_score query
 
 
 ************************************************************** 10.Our Own Compound Query  *****************************************************************************
+
+Requirement 1 :
+---------------
+Here the Requirement that the address should have either lane or street in the name and balance between 20000 and 30000.
+
+Requirement 2:
+--------------
+Query to Search for the address that includes church and lane but priorities church over lane.
+Consider the case we have a requirement based on priority and also give the negative boost score.
+
+
+	GET /bank/_search
+	{
+	  "query": {
+		"boosting": {
+		  "positive": {
+			"term": {
+				"address": "church"
+			}
+		  }
+		  , "negative": {
+			"term": {
+				"address": "lane"
+			}
+		  }
+		  , "negative_boost": 0.5
+		}
+	  }
+	}
+
+ 
+Requirement 3 :
+---------------
+Query to Search for the address that includes church and lane.
+Make sure they have the same Relavance.
+
+	
+	GET /bank/_search
+	{
+	  "query": {
+		"constant_score": {
+		  "filter": {
+			"term": {
+			  "address": "church"
+			}
+		  },
+		  "boost": 1.0
+		}
+	  }
+	}
 
 
  

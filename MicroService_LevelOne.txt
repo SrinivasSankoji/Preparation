@@ -348,5 +348,10 @@ https://dzone.com/articles/registering-multiple-local-microservice-instances
 server.port=${PORT:0}
 eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
 
+To Call the API using Eureka discovery Client 
+Click on Eureka discovery URL and add the Rest End Point along with request Mapping.
+
+	http://desktop-rpkudng:6001/catalog/one
+
 
 

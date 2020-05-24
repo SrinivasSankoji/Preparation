@@ -9,6 +9,7 @@
 9.JSON Web Token 										[]																																							 													
 11.Password Hashing										[24-APR-2020]  (Done)
 12.Bcrypt												[] ()
+
 13.Password Encoding Using Bcrypt						[] ()
 
 ********************************************************* 1.Introduction :  ****************************************************************************
@@ -282,16 +283,13 @@ Entered the emailId,password and confirm passwrod and send it to the web applica
 
 If the password is saved into the database there may be a chance of Hacking Issues.
 This is referred to as Clear Text password.
-
-If the passwrod is not shared how can we validate the password.
-Here encrypt the password and save it into the database.
-Later on compare the password by decrypting the password from the database.
+If the passwrod is not saved then we cannot validate the password.
+Here the Solution is encrypt the password and save it into the database.
+Later on to compare the password,decrypt the password from the database and compare with the password enetred by the user.
 Here in the database we have encrypted password.
 Encryption is done by the secret key and use the same key for Decryption.
 Here Application has to save the key somewhere on the Server.
-If some one hacks the password there may be a chance of hacking the key.
-
-Here we need the password in order to validate.
+If some one hacks the Server there may be a chance of hacking the key.
 Anything Server needs to do that the Hacker cannot Access.
 The Better Approah is Password Hashing.
 
@@ -302,8 +300,7 @@ There are two Importnat properties that makes the Hashing to work best.
 i.e one to one mapping with the original value and messed value.
 
 2.One way Function i.e
-we can take a value and take a unique hash for that value but 
-it should not be possible to take the hash value and calculate back the original value.
+we can take a value and take a unique hash for that value but it is not possible to get the original value using hash value.
 
 Hashing Functions are one way where as Encryption Functions are two way.
 Popular Hashing Functions are 
@@ -313,7 +310,7 @@ Popular Hashing Functions are
 3.Bcrypt
 
 When some one registers the Application ,Web Application stores the password as Hash and discards the actual password.
-Where as HAsh is a One way Function and ther is no way of getting the original Value.
+Where as Hash is a One way Function and ther is no way of getting the original Value.
 Later on when we try to validate the password,we use the same Hash Function to generate the Hash and compare it with the saved Hash Value.
 This is where we are depending on the repeatable value of the Function.
 This is also one of the reason where most of the web applications have a forgot password Flow where Application asks to reset the password.
@@ -321,7 +318,7 @@ We can make the password even more secure by using Salting.
 
 
 
-
+*********************************************************                         ***************************************************************************
 
 
 

@@ -38,7 +38,7 @@ It is a JavsScript Framework and is used to Build Client Side Applications.
 Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
 Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
 By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
-Angular has so Many Features Like Routing which Makes Development Quicker and Faster.
+Angular has so Many Features Like Routing which makes Development Quicker and Faster.
 Angular Even Provides Support For Unit Testing.
 Angular is From Google and uses MicroSoft Typescript Language.
 
@@ -87,14 +87,15 @@ To Create a New Angular Project use the Command
 	ng new Angular
 
 Here the Above Command takes time to run and once it is Completed it Will Create the Folder Angular.
-Now Change the Application to Angular
+Now Change the Application Folder to Angular
+
 	cd Angular
 
 To run the Application run the Command 
 
 	ng serve
 
-To Check the Application run the command
+To Check the Application in the Browser
 
 	localhost:4200
 	
@@ -106,9 +107,9 @@ Every Module represents the Feature area in the Application and also Angular Mod
 	user Module 
 	Admin Module
 	
-Every Angular Application has One Module which is the Root Module & By Naming Convention it is App Module.
+Every Angular Application has One Module which is the root Module & By Naming Convention it is app Module.
 Each Module in turn consists of Components and Services.
-Component controls a Portion of the view in the Browser.
+Component Controls a Portion of the view in the Browser.
 
 						
 				********************************
@@ -120,14 +121,13 @@ Component controls a Portion of the view in the Browser.
 	Side Bar	***			Component 3
 	Component 2	***
 				
-Every Angular Application has One Component which is the Root Component of the Application and is Called
-App Component.
-All Other Components will be nested inside the App Component.
+Every Angular Application has One Component which is the root Component of the Application and is Called app Component.
+All Other Components will be nested inside the app Component.
 Each Component have HTML Template and Class.
-HTML Template to represent the view in the Browser and Class that Contains the Logic of that Particular View.
+HTML Template to represent the view in the Browser and Class that Contains the logic of that Particular View.
 
 Modules can also have Services i.e a Class that Contains the Business Logic of an Application.
-In Addition to Components and Services,Module can also have Few more Pieces of the Angular Application.
+In Addition to Components and Services,Module can also have few more Pieces of the Angular Application.
 Modules can be exported and Imported as and when required and  render the view to the Browser.
 
 File Structure :
@@ -146,7 +146,7 @@ We also have some of the Scripts that can be used to run the Application
 		
 src Folder :
 ------------
-In the src Folder we have main.ts which is an Entry Point for an Angular Application.
+In the src Folder we have main.ts which is an entry Point for an Angular Application.
 we also have app Folder inside src folder.
 app Folder contains app.module.ts which is the Root Module for an Angular Application.
 app Folder also contains app.component.ts which is the Root Component for an Angular Application.
@@ -196,11 +196,11 @@ to Control the Logic of the View.
 Example :
 We Have a Class that Contains a Method to Show or Hide Element based on the Value of the Property.
 
-A Component can also have Meta Data Attached to it.
-This is the Information that the Angular needs to decide whether Particular Class is a a Angular Component or Not.
-Meta Data is defined Using Decorator and is a Feature in TypeScript.
+A Component can also have Metadata Attached to it.
+This is the Information that the Angular needs to decide whether Particular Class is a Angular Component or Not.
+Metadata is defined Using Decorator and is a Feature in TypeScript.
 
-Decorator is an Annotation that Provides information about the Class Attached to it.
+Decorator Annotation Provides information about the Class Attached to it.
 For Component we use Component Decorator.
 
 Example :
@@ -213,11 +213,11 @@ In the app.component.ts we have one Class Named AppComponent and it Contains one
 	}
 
 To the Above Class we have Attached the Meta Data in the form of Component Decorator.
-@Component tells the Angular that this is not the Plain Class and is a Angular Component.
+@Component tells the Angular that this is not the plain Class and is a Angular Component.
 
-@Component attaches the  Meta Data to the Class Right Below it.
-Component Decorator Pattern Contains both the Meta Data and the Class Supports the View.
-As Part of Meta Data We Have 
+@Component attaches the Meta Data to the Class right below it.
+Component Decorator Pattern Contains both the Metadata and the Class that Supports the View.
+As Part of Metadata We Have 
 
 Selector 
 TemplateUrl
@@ -232,21 +232,20 @@ When we Specify the Selector in the HTML, Angular Renders the Component Template
 	<app-root></app-root>
 	</Body>
 
-But what Exactly Here is the Template for this Component and can be Specified by Using TemplateUrl.
+But what Exactly Here is the Template for this Component and can be Specified by Using templateURL.
 TemplateUrl Points to the HTML File that Represents the Component.
-In app.component.html we have title and title is the Property in the Class app.component.ts
+In app.component.html we have title and title is the Property in the Class app.component.ts.
 
 To Create a New Component from Angular CLI we use the Command
 
 	ng g c Helloworld
 	
-When we run the above Command,New Files will be Created and it will Update the App Module.
+When we run the above Command,new Files will be Created and it will update the App Module.
 In the app Folder,Hellworld Folder has been Created and it Contains HTML,CSS,TS and spec.ts Files.
-When we Create a Any Component,Angular Should aware of this i.e In the App Module import the Helloworld Component 
-and add it to the Declarations Array.
+When we Create a Any Component,Angular Should aware of this i.e In the App Module import the Helloworld Component and add it to the Declarations Array.
 
-Declaration Array Contains all the Components used by the Application.
-To include this Component in the HTML,Just add Custom HTML tag that Represents the Selector in app.component.html
+Declaration array Contains all the Components used by the Application.
+To include this Component in the HTML,Just add Custom HTML tag that Represents the Selector in app.component.html.
 
 	<app-helloworld></app-helloworld>
 
@@ -320,8 +319,7 @@ we get the Value into HTML Template by Using Interpolation i.e {{}}
 
   Welcome {{name}}
   
-By Using Interpolation we are asking Angular to evaluate the Content inside the curly braces and display the Value
-when the Content is rendered to the Browser.
+By Using Interpolation we are asking Angular to evaluate the Content inside the curly braces and display the value when the Content is rendered to the Browser.
 
 Consider the Scenario {{2+2}}
 Angular Evaluates the Expression and Displays the Result in the Browser. i.e 4
@@ -451,8 +449,7 @@ Example :
 
 Till Now we Have seen the Data Flow from Component Class to HTML Template.
 Any Update to the Class Property will Reflect the HTML Template.
-Sometimes to respond to User Events Like Mouse Click ,Key Board Events We Need the Data Flow in the Other Direction as Well i.e 
-From HTML Template to Component Class.
+Sometimes to respond to User Events Like Mouse Click ,Key Board Events We Need the Data Flow in the Other Direction as Well i.e from HTML Template to Component Class.
 To Capture Events we Use Event Binding.
 
 	<button>Greet</button>
@@ -470,7 +467,7 @@ events in Angular are enclosed within ()
 	
 It is also Possible to set the Properties to the Events i.e Click Events.
 
-	Declare the Variable with Default Value
+	Declare the Variable with default Value
 	public name ="";
 	 
 	Define the Function 
@@ -509,12 +506,12 @@ When there is a User Interaction We Might Want Some Data to be Flown form View t
 We May Require a Value from input Field to Perform validations.
 To Easily Access DOM Elements and their Properties Angular Provides Template Reference Variables.
   
-Consider the Scenario
+Consider the Scenario	
 
-  <input type="text">
-  <button>Log</button>
+  <input type="text">   
+  <button>Log</button>  	
   
-What we want to achieve here is what ever the User Enters the Text we need to Display it into the Console.
+What we want to achieve here is whatever the User Enters the Text we need to Display it into the Console.
 For that we Need to bind Click Event to the Button.
 Declare the Event for Click and Pass the Value that User has Entered.
 The way we pass the User Entered Text is by Using Template Reference Variables.
@@ -600,8 +597,7 @@ Consider the Scenario :
 
 Case 1 :
 --------
-Parent Component Send some data to the Child Component i.e name 
-and in the Child Component display the name Send by the Parent Component.
+Parent Component Send some data to the Child Component i.e name  and in the Child Component display the name Send by the Parent Component.
 To Send the Data from Parent Component to Child Component i.e app Component to parentchild Component.
 
 Create Variable in the app Component i.e 
@@ -615,8 +611,7 @@ where we include the Child Component Selector in the Parent Component HTML.
 	 
 Now declare the Same Variable in the Child Component that we Have declared in the Parent Component.
 
-Here In the Child Component We Need to Provide Information that the Variable is Not a Normal Variable
-and We are Receiving it from the Parent Property.
+Here In the Child Component We Need to Provide Information that the Variable is Not a Normal Variable and We are Receiving it from the Parent Property.
 This can be Done by Using @Input Decorator.
 
 		 @Input() public parentData;
@@ -634,8 +629,7 @@ Case 2:
 -------
 Child Component Sending  some Data to Parent Component.
 
-In Case of Parent to Child Component Interaction,Parent Component HTML have the Child Component Selector 
-So that we Can Easily Bind the Parent Component Data to the Child Component.
+In Case of Parent to Child Component Interaction,Parent Component HTML have the Child Component Selector So that we Can Easily Bind the Parent Component Data to the Child Component.
 Where as In the Child Component HTML We Don't have Parent Component Selector.
 The Way a Child Component Sends the Data to the Parent Component is by Using Events.
 
@@ -666,7 +660,7 @@ Also Declare the Variable in the Parent Component i.e public message="";
 
 ################################################### 16.Pipes #####################################################################################
 
-Pipes allows us to Transform the Data before Displaying it to the View.
+Pipes allow us to transform the data before displaying it to the View.
 
 
 
@@ -692,7 +686,7 @@ In the Employee List Component to render the Name of Employees
 To get the Employee name in the Employee Detail Component We have to Write the Same Code Again.
 Here we are Violating the Principle of  DRY Principle i.e Do Not Repeat Your Self and Single Responsibility Principle.
 Here Component Class Should have Only One Responsibility i.e To Control the View Logic.
-In Our Case It is also Responsible For Creating and Employee Array in Employee List and Employee Detail Component.
+In Our Case It is also Responsible For Creating an Employee Array in Employee List and Employee Detail Component.
 
 The Solution is Service and Advantage of Services are :
 A Class with Specific Service
@@ -755,8 +749,7 @@ In Case of DI as Design Pattern a Class receives its Dependencies from external 
 		}
 	}
 	
-Problem with Dependency Injection as a Design Pattern is as a Developer We Have to Manually Create the 
-Dependency and Dependent Objects.
+Problem with Dependency Injection as a Design Pattern is as a Developer We Have to Manually Create the Dependency and Dependent Objects.
 If the Number of Objects increases,Maintenance will be Difficult for the Developer.
 Solution is DI as a Framework.
 
@@ -818,9 +811,9 @@ Here Each Module is a Feature area in our Application.
 It is better to register the Service in app Module.
 
 If we Register the Service in app Module,Components under the App Module can use the Service.
-To Register the Service we use the Provider Meta Data.
-
-	add the Service to the Providers Meta Data.
+To Register the Service we use the Provider Metadata.
+Add the Service to the Providers Metadata.
+	
 	 providers: [EmployeeService]
 	
 import the Employee Service 
@@ -862,7 +855,7 @@ Injectable is required Only for Service and Not For Component.
 ################################################### 20.HTTP and Observables ####################################################################
 
 In Real World Application we need to fetch the data from the Web Server / Web Service.
-We make an HTTP request to the API.
+We make a HTTP request to the API.
 The Response we get from the HTTP is Observable.
 
 Here Employee Service makes an HTTP Request to the API and we get the Observable as Response.

@@ -1,13 +1,14 @@
 1.Introduction															[15-MAY-2020] (Done)
-2.Docker Commands                                                       [15-MAY-2020] ()
-3.Docker Run                                                            [16-MAY-2020] ()
-4.Docker Images                                                         [16-MAY-2020] ()
-5.Docker Compose                                                        [16-MAY-2020] ()
-6.Docker Registry                                                       [15-MAY-2020] ()
-7.Docker Engine,Storage and Networking                                  [15-MAY-2020] ()
-8.Docker on Windows                                                     [15-MAY-2020] ()
-9.Container Orchestration Docker Swarm and Kubernetes                   [15-MAY-2020] ()
-10.Conclusion                                                           [15-MAY-2020] ()
+2.Docker Commands                                                       [20-MAY-2020] (Done)
+3.Docker Run                                                            [22-MAY-2020] (Done)
+
+4.Docker Images                                                         [22-MAY-2020] ()
+5.Docker Compose                                                        [23-MAY-2020] ()
+6.Docker Registry                                                       [23-MAY-2020] ()
+7.Docker Engine,Storage and Networking                                  [24-MAY-2020] ()
+8.Docker on Windows                                                     [24-MAY-2020] ()
+9.Container Orchestration Docker Swarm and Kubernetes                   [24-MAY-2020] ()
+10.Conclusion                                                           [24-MAY-2020] ()
 
 
 ******************************************************  1.Introduction  ***********************************************************************
@@ -121,64 +122,318 @@ This Docker File is used to create an Image to the Application and run on any en
 
 3.Getting Started with Docker :
 -------------------------------
+Docker has tow Editions i.e community Edition and Enterprise Edition.
+Community is the set of free Docker Products.
+Enterprise edition is the certified and supported container platform that comes with enterprise add ons like Image Management ,Image Security,
+Universal control on managing container Orhestrations.
+Community edition is available on Linux,Mac,Windows and Cloud Platfrom like AWS.
 
-
-
-
-4.Note on INstalling Docker :
+4.Note on Installing Docker :
 -----------------------------
-
-
-
+Recommended Guide Lines.
 
 5.Demo Setup and Install Docker :
 ---------------------------------
-
-
-
-
-6.Resources :
--------------
-
-
-
-
-
+Docker desktop for Windows.
 
 
 ******************************************************  2.Docker Commands  **********************************************************************
 
 1.Basic Docker Commands :
--------------------------
+*************************
+
+1.docker run :
+--------------
+docker run command is used to run a docker container from a Image.
+
+	docker run nginix
+	
+will run the instance of the nginix application on the docker host if it is already exists otherwise it will download the image from the Docker Hub.
+This is done only for the first time and for the sub sequent times it will reuse the same image.
+
+
+2.docker ps :
+-------------
+	docker ps 
+
+command will list all the  running containers and gives basic information about the container.
+
+3.docker ps -a :
+----------------
+This will give information about all the running and exited Containers.
+
+4.docker stop :
+---------------
+To Stop a running Container we use the command 
+
+	docker stop 
+
+by giving either container id or name.
+To get the docker container name or id we use the command 
+
+	docker ps 
+
+5.docker rm :
+-------------
+If we don't want the container to consume space and want to get rid of it.
+we use the 
+
+	docker rm
+
+command to remove the stopped or exited container permanently.
+what if the image is downloaded and not used on the docker host.
+we see the list of images and their information using the command 
+
+	docker images
+	
+6.docker rmi :
+--------------
+To remove an image that is no longer used we use the command
+	
+	docker rmi imageName
+	
+Here we must ensure that no container is running for that image.
+we must stop all the dependent containers to be able to delete the image.
+
+
+7.docker pull :
+---------------
+If we want to download the image we use the command 
+
+	docker pull ubuntu
+	
+It pulls only the image and not to run the Container.
+If we run the ubuntu image after the pull command it runs the image and exits immideately.
+Because Containers are not meant to host Operating System like Virtual Machine.
+Containers are meant to run a specific task or process such as instance of a web server,application server,database,computation or analysis task etc.
+Once the Task is Complete then the Container exits.
+Container lives as long as the the process inside the container lives.
+If the webserver inside the container stops or crash then the Container exits.
+This is why the ubuntu image stops the execution because there is no process or application running in it.
+
+If the image is not running any service we can instruct the docker to run command with the process.
+
+	docker run ubuntu sleep 10
+	
+when the conatiner starts it runs the sleep command and sleeps into 10 seconds.
+when the sleep command executes then the container stops.
+
+8.docker exec :
+---------------
+If we want to execute a command on the running container 
+
+	docker exec containername cat /etc/hosts
+	
+9.docker attach :
+-----------------
+when we run the simple web application using docker i.e
+
+	docker run kodekloud/simple-webapp
+	
+It runs the application in the attached mode.
+output of the web application is seen on the standard console.
+we wont be able to do other things untill the docker container stops.
+Web application won't respond to our inputs.
+
+CTRL+C to stop the application hosted on the container and the container exits.
+
+10.docker detach :
+------------------
+To run the application on the detached mode 
+
+	docker run -d kodekloud/simple-webapp
+	
+This will run the application in the background mode and will be back to the prompt immideately.
+run the 
+
+	docker ps 
+	
+command to view the running container.
+Now if we want to attach the application back to the running conatiner we use the command 
+
+	docker attach imageId
+	
+Here imageId can be thr first five characters of the container Id.
 
 
 2.Demo Docker Commands :
-------------------------
+************************
 
+	docker run hello-world
+	
+First it will Check whether the Image is present or not.If not Present then it will pull from the Docker Hub.
 
-3.Demo Docker Labs :
---------------------
+	docker ps 
+	
+It will display the list of running Containers only.
 
+	docker ps -a 
+	
+It will display the list of containers that are executed in the past and exited.
+If we want to create our own image,then the naming convention would be
+	
+	srinivas/movie-info-service
 
-4.lab Basic Docker Commands :
------------------------------
+	docker run centos
+	
+Here it run the Image and it does not do anything.
+centos is a base image for centos Operating System.
+Docker is used to run services and applications.
+If we want to keep the container alive we need to run something i.e run the services inside the container.
 
+	docker run -it centos bash
+	
+Here when we run the image,open the container in bash mode.
+To check the Operating System of centos 
 
+	/etc/*release*
+	
+Run the centos imaage and sleep for 20 Seconds and after that it exits.
+
+	docker run centos sleep 20
+	
+Run the centos imaage and sleep for 2000 Seconds in the background and after that it exits.
+
+	docker run -d centos sleep 20
+	
+When we run a container and it exits,container lives on the disk drive.
+If we want to kill the Container we use the command 
+
+	docker kill containerName
+	
+When we close the container forcefully, then the exit code will be 137 otherwise it will be 0(exited under normal Conditions).
+If we want to remove the Containers that were run in the past and exited,we use the command 
+
+	docker rm containerId
+	
+If we want to remove multiple containers 
+
+	docker rm containerId containerId containerId
+	
+This is the way to reclaim the Disk Space.
+To see the List of images 
+
+	docker images
+
+To remove the image,we use the command
+
+	docker rmi imageName
+
+Before deleting the image check whether any container is running for that image.delete the container and remove the image.
+If we dont want the docker to run the image immideately and only need to pull we use the command
+	
+	docker pull ubuntu
+
+If we want to run the command on the particular Container and see the files inside the container
+
+	docker exec containerId cat /etc/*release*
+	
 
 ******************************************************  3.Docker Run     *************************************************************************
 
 1.Docker Run :
---------------
+**************
+
+	docker run redis 
+	
+This will run the container containing a Redis Service.By default it will pull and run the latest image.
+Here it will run the latest image.
+If we want to run the older image we use the version number followed by :
+
+	docker run redis:5.0
+
+when we run the docker image for standard input,it will not ask for the prompt and prints whatever the application is supposed to.
+
+	docker run kodekloud/simple-prompt-docker
+	
+By Defaulr Docker Container does not listen to a standard input.
+Eventhough it is attached to the console,it will not read any input from us.
+It does not have a Terminal to read inputs from.
+Docker Container runs in a Non Interactive Mode.
 
 
+If we like to provide the input, we must map the standard input of the host to the docker container by using i parameter.
+i stands for interactive mode.
+
+	docker run -i kodekloud/simple-prompt-docker
+	
+Here Still the prompt is missing.to get the prompt in the docker terminal we use -t.
+
+	docker run -it kodekloud/simple-prompt-docker
+	
+2.Port Mapping :
+----------------
+run the simple web application on the docker host.
+
+	docker run kodekloud/webapp
+	
+underlying host where the docker is installed is called Docker Host or Docker Engine.
+When we run a containerized web application,it runs and we are able to see the server is running.
+
+Question is How does the user access the application ?
+Here the Application listens to the port 5000 and can be accessed by using port 5000.
+
+What Ip should be used to access the application from the web browser ?
+There are two options available
+
+1.IP of Docker Container
+Every docker container gets the ip default.
+But this is an internal ip and is only accessible within the docker host.
+If we open the browser within the docker host and enter ip and port to access an application.
+
+If we want to access the application outside we need to use the docker Host Ip.
+For this to work we must map the port inside the docker container to a free port on the docker host.
+For example If we want to access the application through port 80 on docker host,
+map the port 80 on Docker host to the port 5000 of the docker container.
+
+	docker run -p 80:5000 kodekloud/simple-webapp
+	
+All traffic on port 80 will be routed to port 5000 inside the docker container.
+This way we can run multiple instances of the application and map them to different port on the docker host.
+
+we can also run different instances of different applications in different ports.
+we cannot map to the same port on the docker host more than once.
+
+3.Volume Mapping :
+------------------
+How the data is persisted inside the Docker Container ?
+
+Consider the case where we run the mySql Container.
+
+	docker run mysql
+
+when the databases and tables are created,data files are stored in the location /var/lib/mysql inside the docker container.
+Docker container has its own isolated file system and any change to any files is happened within the container.
+
+Consider the case we have dumped lot of data to the database.
+If we want to delete the mysql container,the container and all its data is removed.
+
+If we want to persist the data, we have to map the directory outside the container of the docker host to inside the container of the docker host.
+
+	docker run -v /opt/datadir:/var/lib/mysql mysql 
+	
+If we want to see the additional details about the specific container 
+
+	docker inspect containerName
+	
+It returns all the details of the container in a Json Format.
+
+
+4.Container Logs :
+------------------
+If we want to see the logs of the container 
+
+	docker logs containerId/containerName
+	
 
 2.Advanced Docker Run Features :
---------------------------------
+********************************
 
 
 
-3.Lab Docker Run :
-------------------
+
+
+
 
 
 

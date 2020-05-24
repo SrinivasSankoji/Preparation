@@ -1,37 +1,41 @@
-1.Jenkins Introduction  												[18-06-2019] [DONE]
-2.Set up Jenkins on Tomcat
-3.Change Home Directory
-4.Using CLI
-5.Create Users,Manage and assign Roles 									[21-06-2019] [DONE]
-6.Basic Configuration
-7.Job in Jenkins 														[25-06-2019] [DONE]
-8.Jenkins Integrating With GIT											[25-06-2019] [DONE]
-9.CATLIGHT
-10.Automated Deployment 												[25-06-2019] [DONE] 
-11.Implementing Automated Deployment 
-12.Sending Email form Jenkins 
-13.Pipeline in Jenkins 
-14.Setting Up Delivery PipeLine in Jenkins 
-15.Setting Up Build PipeLine in Jenkins 
-16.Blue Ocean 
-17.Trigger Job With Email 
-18.Build Monitor View 
-19.Install Jenkins on AWS 
+1.Jenkins Introduction  												[18-06-2019] [Done]
+2.Set up Jenkins on Tomcat												[23-05-2020] []	
+3.Change Home Directory													[23-05-2020] [Done]	
+4.Using CLI																[23-05-2020] []	
+5.Basic Configuration													[23-05-2020] []	
+6.Create Users,Manage and assign Roles 									[21-06-2019] [DONE]
+7.Job in Jenkins 														[25-06-2019] [Done]
+8.Jenkins Integrating With GIT											[25-06-2019] [Done]
+9.Add GitHub Credentials												[23-05-2020] [Done]
+9.CATLIGHT																[23-05-2020] []	
+10.Automated Deployment 												[25-06-2019] [Done] 
+11.Implementing Automated Deployment (Deploying War on Tomcat)			[23-05-2020] [Done]		
+12.Setting up Tomcat 													[23-05-2020] [Done]															
+13.Sending Email form Jenkins 											[23-05-2020] []
+14.Pipeline in Jenkins                                                  [23-05-2020] [Done]
+15.Setting Up Delivery PipeLine in Jenkins                              [24-05-2020] [Done]
+16.Setting Up Build PipeLine in Jenkins                                 [24-05-2020] [Done]
+
+17.Blue Ocean 															[23-05-2020] []	
+18.Trigger Job With Email 												[23-05-2020] []	
+19.Build Monitor View 													[23-05-2020] []	
+20.Install Jenkins on AWS 												[23-05-2020] []	
+21.Build and Deployment													[24-05-2020] []
 
 
-********************************************** Jenkins Introduction   *******************************************************************
+********************************************** 1.Jenkins Introduction   *******************************************************************
 
-		Jenkins is a Java Application and is Platform Independent and it does not Require any Platform(Window,Mac or Linux).
+		Jenkins is a Java Application and is platform Independent and it does not Require any Platform(Window,Mac or Linux).
 		Jenkins is Used for Continuous Integration and Continuous Delivery.
-		When We work in the Team,We work with Different Developers and Each Developer will do the Changes in the Code 
+		When We work in the Team,We work with Different Developers and each Developer will do some Changes in the Code 
 		and Commit the Code in The Repository(GitHub/BitBucket).
-		At the End of The Day,There are Many Developers who are Changing the Code and Checking in the Code to the Repository
+		At the End of The Day,There are Many Developers who are Changing the Code and Check in the Code to the Repository
 		and now the Build has Failed.
 		It is very Difficult to Identify at which Point the Build has Failed and who has done the Changes.
-		To Resolve the Above Situation we use Jenkins.
-		As soon as When Developer Commits the Code in The Shared Repository,Jenkins will take the Latest Code and Trigger the Build
+		To Resolve the above Situation we use Jenkins.
+		As soon as When the Developer Commits the Code in The Shared Repository,Jenkins will pull the Latest Code and trigger the Build.
 		Build Notification will be sent out.If there is any issue we can revert that Back.
-		If the Build is Successful we can also Integrate our Unit Test as a Post Build Action ans sent the Report Back.
+		If the Build is Successful we can also Integrate our Unit Test as a Post Build Action and sent the Report Back.
 		
 		Download Jenkins :
 		------------------
@@ -40,19 +44,47 @@
 		It will be installed in C:/Program Files/Jenkins
 		Then Copy the Jenkins.war File and Place in Any Directive i.e D:\Software.
 		To Start Jenkins --> Go to The Location where Jenkins.war is Present  --> run the Command  :
-		java -jar jenkins.war -httpPort=9002
-		Open the Jenkins in the Browser --> http://localhost:9002/ and Enter the Password Generated i.e Generated in the Folder
+		java -jar jenkins.war --httpPort=3001
+		Open the Jenkins in the Browser --> http://localhost:3001/ and Enter the Password Generated i.e Generated in the Folder
 		C:\Users\Bhaumik Chary\.jenkins\secrets\initialAdminPassword --> 
 		Enter it --> Select the Option you Want --> Then Continue as Admin.
 		
 		
-********************************************** Setting up Jenkins on Tomcat   *************************************************************
+********************************************** 2.Setting up Jenkins on Tomcat   *************************************************************
 Download and Install Tomcat 
 
-********************************************** Basic Configuration in Jenkins *************************************************************
+
+********************************************** 3.Change Home Directory   ********************************************************************
+
+Whenever we install jenkins It will create a default folder in the user profile of the system by named .jenkins.
+Common reason to change the home directory is it is stored in the users directory and there may be a chance of space issue.
+
+Step 1:
+Check the current Home Directory
+Manage Jenkins --> Configure System  --> Shows the Home Directory
+
+Step 2 :
+Create a New Folder
+D:\Jenkins
+Copy all Data from Home DIrectory to the New Directory.
+
+Step 3:
+Create the System Variable and Set to New Directory
+JENKINS_HOME
+D:\Jenkins
+
+Step 4:
+Restart Jenkins
+In Windows it will not effect the New Location.
+
+Reference :
+http://tech.nitoyon.com/en/blog/2014/02/25/jenkins-home-win/
 
 
-********************************************** Create Users,Manage and Assign Roles   *****************************************************
+********************************************** 4.Using CLI   ********************************************************************************
+
+
+********************************************** 5.Create Users,Manage and Assign Roles   *****************************************************
 
 Create New Users :
 ------------------
@@ -129,13 +161,18 @@ Assigning Roles to User:
 		Manage Jenkins --> Manage And Assign Roles --> Assign Roles --> Select The Appropriate Options.
 		To Test the Scenario --> Create New Item(Project)
 		
-********************************************** Getting Started With Jobs ********************************************************************
+		
+********************************************** 6.Basic Configuration in Jenkins ***************************************************************
+
+
+		
+********************************************** 7.Getting Started With Jobs ********************************************************************
 
 Steps involved in Jobs  are
-A. Create a Basic Job in Jenkins
-B. Basic Job Configurations
-C. Run the Job Remotely
-D. Chain Job Execution
+
+A. Basic Job Configurations
+B. Run the Job Remotely
+C. Chain Job Execution
 
 		Create A Basic Job in Jenkins :
 		*******************************
@@ -143,10 +180,11 @@ D. Chain Job Execution
 
 		After that 5 Tabs will be Opened.
 		General  --> Add Description to The Project
-		Source Code  --> Get the Code from any Repository
+		Source Code  --> To get the Code from any Repository
 		Build Triggers --> Build Options  -->  
 						   Poll SCM For Git Repository
 						   Build Periodically (* * * * *) For Every Minute  (H/60 * * * * ) To Run it Hourly
+						   Run the Job Remotely
 						   
 		Build Environment --> 
 		Build  --> Command Prompt to Use  (Here We Used VER to check the Version of Windows)
@@ -155,11 +193,12 @@ D. Chain Job Execution
 		
 		Run the Job Remotely :
 		**********************
-		
 		Click on Project --> Configure --> Build Triggers --> Select the Options Trigger Build Remotely -->  It Will Give the URL 
 		Copy the URL and Paste it it on the Browser i.e JENKINS_URL/job/Test1/build?token=TOKEN_NAME
-		Repleace Jenkins URL with HostName or local host
+		Repleace Jenkins URL with HostName or localhost
 		Then it will Build the Job --> Then See the Build Version in The Project
+		
+		http://localhost:3001/job/Test2/build?token=1234
 		
 		Chain Job Execution :
 		*********************
@@ -171,19 +210,60 @@ D. Chain Job Execution
 		After Successful Execution of Test2 --> Post Build Actions --> Select the Option Build Other Project --> Add the Test 3 Project
 		Finally Build the Project Test1 and it Internally Chains the Other Projects.
 
-********************************************** Jenkins Integration With GIT *****************************************************************
+********************************************** 8.Jenkins Integration With GIT *****************************************************************
 
-		Create a Java Program
-		Run the Java Program in Jenkins
-		Add The Java Project to Git
-		Add Git Plug Ins to the Jenkins
+		Create a Java Program :
+		-----------------------
+		To run the project that is in workspace :
+		D:\JavaBasics_Workspace\JavaBasics\DateTest\src\main\java
+		javac com\example\demo\ExceptionDateTest.java
+		java com/example/demo/ExceptionDateTest
+		
+		Run the Java Program in Jenkins :
+		---------------------------------
+		Creeate New Item --> FreeStyle Project 
+		To run the java Program through Jenkins --> Build --> Windows Batch Command --> 
+		
+		D:
+		cd D:/JavaBasics_Workspace/JavaBasics/DateTest/src/main/java
+		javac com/example/demo/ExceptionDateTest.java
+		java com/example/demo/ExceptionDateTest
+		
+		Add The Java Project to Git :
+		-----------------------------
+		Follow the Git Basic Steps to add the Project.
+		
+		Add Git Plug Ins to the Jenkins :
+		---------------------------------
 		Manage Jenkins --> Manage Plug Ins --> Search Git Plug In --> Then install
+		Once Git is installed,we will see the Git Option in Source Code Management.
+		In The Source Code Management --> Add Project form Git Hub by Passing GIT URL
+		and In the Build Trigger select the Option Poll SCM  i.e whenever any Changes done in Git Repository it will build automatically in Jenkins.
+		
+		we have to provide the cron Expression.
+		
+		* * * * *
+		
+		Here It will check the Repositroy for every changes.
+		
 
-		In The Build Project --> Add Project form Git Hub by Passing GIT Repository
-		and select the Option Poll SCM  i.e whenever any Changes done in Git Repository it will build automatically
-		in Jenkins.
+**********************************************  9.Add GitHub Credentials **************************************************************************
 
-********************************************** How to Use CatLight **************************************************************************
+		Jenkins --> Credentials --> Jenkins --> Global credentials (unrestricted) --> Add Credentials -->  Add
+
+		UserName
+		Password
+		Id (Auto Generated)
+		Description
+		
+		Click On OK.
+		
+		After this If we create any New Job in Jenkins and in the Source code Management we get the GitHub Credentials.
+		Then the new Job will be Saved in the Provided GitHub WorkSpace.
+		In the General Tab Specify the GitHub Project URL.
+		In the General Tab,create custom workspace, then all the jobs will be created in the Workspace.
+		
+********************************************** 10. How to Use CatLight ****************************************************************************
 
 	    Cat Light is a status Notifier for Developers
 		Cat Light will monitor all the Jobs on Jenkins i.e whenever there is any status change that needs our attention
@@ -202,69 +282,181 @@ D. Chain Job Execution
 		We will get the Cat Light icon at the Bottom.
 		We can also Change the CatLight Settings If Required.
 		
-********************************************** Automated Deployment ******************************************************
+********************************************** 11.Automated Deployment ******************************************************
 
-		Before Understanding Automated Deployment,The Main Stages in Continuous Delivery and Deployment Pipeline of a Product are
+		Before Understanding Automated Deployment,The Main Stages in Continuous Integration and Continuous Delivery of a Project are
 		Build --> Deploy --> Test --> Release
-		Corresponding to every Stage, there are jobs and every job is chained.
+		Corresponding to every Stage, there is a job and every job is chained.
 		i.e when the build job is successful then only deployment job has to run and so on.
 		All jobs are chained in Continuous Integrated System.
-		After every job we have a notification which will tell status of the Jobs 
-		and also are there any issues and also all the information about the Job.
+		After every job we have a notification which will tell status of the Jobs and also are there any issues for that job,information about the Job.
 
 		Project Set Up :
 		----------------
 			   Developers 
 		   --> Commit the Code in VCS(GIT) 
 		   --> build the Project in Jenkins whenever any commit has done in GIT (Build Stage)
-		   -->  Out come is artifact that can be either War or Jar -->  Deploy to the Server (Deployment Stage)
+		   -->  Out come of job is artifact that can be either War or Jar -->  Deploy to the Server (Deployment Stage)
 		   --> once the Deployment is done we will have different Test jobs that will perform the Testing (Test Stage)
 		   --> Once Every thing is successful we will release to Production (Release Stage)
 			   Deployment to the Test server and Production Server are the actual Deployment Steps	   
-               Automated Deployment is the process of Automating the Deployment Process in a Continuous Delivery System
+               Automated Deployment is the process of Automating the Deployment Process in a Continuous Delivery System.
 			   
-********************************************** Implementing Automated Deployment **********************************************************
+			   
+********************************************** 12 .Setting up Tomcat  ************************************************************************	
+
+1.Download and start Tomcat on Windows
+2.Different Methods of Starting and Stopping Tomcat
+3.How to Change Tomcat Port
+4.How to run application on Tomcat
+
+Download the zip file of tomcat,extract and place it in D:/Software
+
+To Start the Tomcat :
+---------------------
+Double click startup.bat
+Double Click startup.sh
+Open the bin folder from the command prompt and run either startup.bat or startup.sh
+Open the bin folder from the command prompt and run catalina.bat start
+
+To Shutdown the Tomcat :
+------------------------
+Double click shutdown.bat
+Double Click shutdown.sh
+Open the bin folder from the command prompt and run either shutdown.bat or shutdown.sh
+Open the bin folder from the command prompt and run catalina.bat stop
+
+To Change the default Port of Tomcat :
+--------------------------------------
+D:\Software\apache-tomcat-8.5.55\conf\server.xml
+
+	 <Connector port="8088" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+http://localhost:8088/ to see whether the Tomcat is running or not.
+
+To run an Application on Tomcat :
+---------------------------------
+Place the War File inside 
+
+	D:\Software\apache-tomcat-8.5.55\webapps
+	
+Place the jenkins.war inside this folder and start the Tomcat.
+
+	http://localhost:8088/jenkins 
+	
+
+********************************************** 13.Implementing Automated Deployment **********************************************************
+
+Here the Scenario is Deploying war on Tomcat.
+
+Step 1:
+Install the Deploy Plug In.
+Manage PlugIn --> Deploy to Container --> Select Download and Install after Restart.
+
+Step 2:
+Create a Build Job in Jenkins :
+New Project --> Free Style Project --> OK.
+
+Step 3:
+Download the Sample War File to demo the Automated Deployment.
+
+Step 4:
+Add the Post Build Action i.e Deploy Ear/War to the Container.
+
+Select the War File as **/*.war i/e It will take the war file available in Workspace
+Place the War File in Jenkins Home i.e C:\Users\Bhaumik Chary\.jenkins\workspace\AutomatedDeployment
+Then in the Context Path provide the name of the war.
+Then add the Container i.e Select Tomcat 8 --> Provide the Tomcat URL  -> http://localhost:8088/ (Tomcat Should be running)
+
+Finally Build the Project and run the URL --> http://localhost:8088/sample/
+It will show the Sample Application.
 
 
+********************************************** 14.Sending Email Notification and PipeLine ****************************************************
 
 
-********************************************** Sending Email Notification and PipeLine ****************************************************
+**********************************************  15.Pipeline in Jenkins  **********************************************************************
+
+Pipeline is a workflow with a group of events or jobs that are chained and integrated with each other in a Sequence.
+Consider the Scenario where we have a Pipe and that contains inlet and outlet.
+Pipeline contains multiple sections of a pipe and that contains multiple inlets and outlets.
+Every section will do some processing and in this case it is Job.
+
+Continuous Delivery pipeline consists of 4 Stages.
+1.Build
+2.Deploy
+3.Test
+4.Release
+
+Every Stage has some jobs and these jobs are integrated with each other and work in a sequence.We call it as continuous delivery pipeline.
+Build Section have build jobs and there will be Notification or feedback for that build.
+All these Sections work together in a sequence in an integrated way and is called continuous delivery pipeline.
+
+********************************************** 16. Delivery PipeLine In Jenkins ***************************************************************
+
+Step 1:
+Chain Required Jobs in Sequence i.e for every Job add the Upstream and Downstream Jobs.
+
+Create the Jobs
+
+SampleBuildJob
+SampleDeployJob
+SampleTestJob
+
+We can chain the Jobs either by using the Option in Build Trigger Job or the Option in Post Build Action.
+Change the Build Trigger Action in SampleDeployJob ans SampleTestJob.
+Now run the Sample BuildJob.
+From the above Case we are making the Pipeline Manually and cannot Visualize the Pipeline.
+we use the Delivery Pipeline to visualize the Chained Jobs.
+Add the Delivery Pipeline PlugIn and restart the Jenkins.
+Add the Delivery Pipeline View to Configure the View.
+Here we get the List of Options and in the Component provide the Initial Job Name.
+Click on Edit View to update the Delivery Pipeline Properties.
+
+********************************************** 17.Build PipeLine In Jenkins *******************************************************************
+
+Install the Build Pipeline PlugIn and restart the Jenkins.
+Add the Build Pipeline to the Cofigure View.
+Select the Initial Job and click on OK.
+We get the Build the form of DashBoard.
+Click on Configure to update the Build Pipeline Properties.
+To Display the Console Select the Option New Window.
+
+********************************************** 18.Build Ocean in Jenkins  *********************************************************************
 
 
-********************************************** Delivery PipeLine In Jenkins ***************************************************************
+********************************************** 19.Trigger Job With Email in  Jenkins  *********************************************************
 
 
-********************************************** Build PipeLine In Jenkins ******************************************************************
+********************************************** 20.Build Monitor View Jenkins  *****************************************************************
 
 
-********************************************** Build Ocean in Jenkins  ********************************************************************
+**********************************************  21.Build and Deployment	 **********************************************************************
 
+Here we needto write the pipeline script or Jenkins File to provide the Sequence of Steps that starts from 
+Cloning the project from GitHub till the Deployment of the War File to the Web Server.
 
-********************************************** Trigger Job With Email in  Jenkins  ********************************************************
+Cloning  i.e get the Project from GitHub
+Packaging i.e build the War File
+Deploying  i.e Deploy on Tomcat
+Start the Server
 
+These are the Steps we are going to specify in the pipeline script or Jenkins File.
+Start the Jenkins Server.
 
-********************************************** Build Monitor View Jenkins  ******************************************************************
+We need to add the Tools For Git and Maven 
 
+Global Tool Configuration --> Git --> Path to Git  i.e  C:\Program Files\Git\bin\git.execute
+Configure the Maven -->  MAVEN_HOME = D:\apache-maven-3.5.3
 
+Create a New Item --> Select the Pipeline --> OK.
+In the Pipeline Select --> Select the Pipeline Script from SCM.
+Add the Git Details and CLick on OK.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+To Deploy the War File into Tomcat we need to have Special Permission.
+Create the user in tomcat-users.xml.
 
 
 

@@ -1,0 +1,29 @@
+Login with AWS To Set up Linux :
+--------------------------------
+1-Open putty
+2.SSH --> Auth --> Add .ppk File(D:/Abhishek/.ppk File)
+3-add .ppk file in ssh auth and connect with ec2-3-6-154-97.ap-south-1.compute.amazonaws.com
+4.Click on Session then add the ec2-3-6-154-97.ap-south-1.compute.amazonaws.com
+login - ec2-user
+then 
+     su kubernetes
+pwd- kube123#
+
+cd ~  or cd /home/kubernetes
+
+
+Technologies :
+--------------
+Java 
+Database (MySql)  --> Server 
+Maven
+Docker
+Kubernetes
+ngiNix
+Tomact
+
+
+
+
+
+
