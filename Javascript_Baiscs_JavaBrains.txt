@@ -30,15 +30,15 @@
 30.Anonymous Functions                                              [07-MAY-2020]  (Done)
 31.Function as Arguments                                            [07-MAY-2020]  (Done)
 32.Function on Objects                                              [07-MAY-2020]  (Done)
-33.this Keyword                                                     [08-MAY-2020]  ()
-34.Code Exercise                                                    [08-MAY-2020]  ()
-35.Exercise Solution                                                [08-MAY-2020]  ()
-36.Default Function Arguments                                       [08-MAY-2020]  ()
-37.Unit Summary                                                     [08-MAY-2020]  ()
-38.Array Methods                                                    [08-MAY-2020]  ()
+33.this Keyword                                                     [08-MAY-2020]  (Done)
+34.Code Exercise                                                    [08-MAY-2020]  (Done)
+35.Exercise Solution                                                [08-MAY-2020]  (Done)
+36.Default Function Arguments                                       [08-MAY-2020]  (Done)
+37.Unit Summary                                                     [08-MAY-2020]  (Done)
+38.Array Methods                                                    [08-MAY-2020]  (Done)
 39.Array For each Method                                            [08-MAY-2020]  ()
-40.Reading Assignment                                               [08-MAY-2020]  ()
-41.Next Steps                                                       [08-MAY-2020]  ()
+40.Reading Assignment                                               [08-MAY-2020]  (Done)
+41.Next Steps                                                       [08-MAY-2020]  (Done)
 
 
 ****************************************** 1.What is Java Script and Java Script as Scripting Language	***************************************************
@@ -48,16 +48,16 @@ But it is used in Many Non Browser Environment as Well.
 
 Light Weight :
 --------------
-Light Weight Language is Nothing But easy to Implement and a Small Memory Foot Print.
+Light Weight Language is nothing But easy to Implement and a Small Memory Foot Print.
 
 Interpreted :
 -------------
 Interpreted Means No Compilation is required and Instructions are executed Directly.
 JavaScript Compilation is Different from other Programming Languages Compilation.
-In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run Execute the Generated Code.
+In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run the Generated Code.
 In C++ Object Binary got Generated where as In case of Java Byte Code got Generated.
 We execute that Generated Code.
-In Case of JavaScript there is no Intermediate File and the Code will be Executed Directly.
+In Case of JavaScript there is no Intermediate File and the Code will be executed Directly.
 
 Java Script is Object Oriented :
 --------------------------------
@@ -78,7 +78,7 @@ Best Example of Scripting Language is Shell Script.
 We have Commands that we can run on Runtime Environment.
 Here Runtime Environment Means Operating System.
 
-We can also Bundle the Command and make them to Execute as a File.
+We can also bundle the Command and make them to execute as a File.
 This becomes a Script that the Shell Executes at Runtime.
 
 Here Runtime Environment is Browser.

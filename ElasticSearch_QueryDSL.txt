@@ -1,0 +1,53 @@
+
+1.Query DSL
+2.Query and Filter Context
+3.Compound Queries
+
+
+***************************************************************   1.Query DSL  ******************************************************************************************
+
+Elastic Search provides Query DSL based on JSON to define Queries.
+Query DSL consists of two Types of Clauses.
+
+Leaf Query Caluses :
+--------------------
+Leaf Query Clauses look for a Particular value in a Particular Field such as must,term,range etc.
+These Queries can be used by Themselves.
+
+Compound Query Clauses :
+------------------------
+Compound Query Clause combines other Leaf or Compound Query to alter their behavior.
+
+
+***************************************************************   2.Query and Filter Context  *****************************************************************************
+
+Elastic Search sorts the Matching Results based on the Relevance Score.
+Relevance Score defines How well does the document matches the Query.
+
+Query Context defines how well does the document matches the Query.
+Query clause also calculates the Relevance score in the _score Meta Field.
+
+Filter Context defines Does this document match this Query Clause.
+Filter Context is mostly used for filtering Structured Data.
+
+
+***************************************************************   2.Compound Queries  *************************************************************************************
+
+Compound Queries wrap other Compound or Leaf Queries either to combine their results and scores,change their behavior or to Switch from query to Filter Context.
+
+bool Query :
+------------
+bool is the default query for combining multiple leaf or compound Queries.
+must and should clauses have their score combined.
+
+
+
+
+
+
+
+
+
+
+
+

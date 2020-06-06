@@ -1,6 +1,6 @@
 1.What is Docker                               [02-OCT-2019]  ()
 2.How Docker Works							   [02-OCT-2019]  ()	
-3.Docker Benefits							   [02-OCT-2019]  (Done)
+3.Docker Benefits							   [02-OCT-2019]  ()
 4.Docker Installation						   [02-OCT-2019]  (Done)
 5.Docker Basic Commands						   [02-OCT-2019]  (Done)
 6.Docker Images								      
@@ -45,12 +45,12 @@ docker --version      :  To Check the Docker Version
 docker info           :  Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
 docker --help         :  To Get Information on any other Commands Example : docker images --help
 docker login          :  To Login to the Docker Hub
-docker logout         :  To Logout to the Docker Hub
+docker logout         :  To Logout from the Docker Hub
 
 docker images         : To see the List of Images
 docker pull  ubuntu   : To Pull the Image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      : To get the Docker Image Id
-docker rmi imageId    : To Remove the Docker Image  based on Image Id.Before that there is no Container running for that Image.
+docker rmi imageId    : To Remove the Docker Image  based on Image Id.Before that check there is no Container running for that Image.
 
 docker ps             : To See the List of Active Containers
 docker ps -a 		  : Ti See the List of Containers i.e active,closed etc.

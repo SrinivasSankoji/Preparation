@@ -1,0 +1,61 @@
+9.GitHub and Git Integration with Jenkins						[26-05-2020] [Done]						
+15.Set up Jenkins For Maven                                     [26-05-2020] [Done]
+17.Jenkins Pipeline                                             [26-05-2020] []
+18.Pipeline Script                                              [26-05-2020] []
+19.Slaves/Nodes                                                 [26-05-2020] []
+20.Launch Agent                                                 [26-05-2020] []
+21.Parameterized Jenkins Job                                    [26-05-2020] []
+22.Jenkins CLI                                                  [26-05-2020] []
+24.Multibranch Pipeline                                         [26-05-2020] []
+
+
+*****************************  9.GitHub and Git Integration with Jenkins ***********************************************
+
+Craete a New Proejcet and add it to the GitHub.
+In The Sourec Code Management Specify the GitHub Repository Details.
+Here it will pull all the Source Code from Git and place it in the Jenkins Home Directory.
+To run the Java based Application,keep the Commands in the Build Tab.
+
+	D:
+	cd D:/Jenkins/workspace/AutomatedGitHub/DateTest/src/main/java
+	javac com/example/demo/ExceptionDateTest.java
+	java com/example/demo/ExceptionDateTest
+	
+*****************************   15.Set up Jenkins For Maven   **********************************************************
+
+Add the GitHub Details
+Select the Option GitHub hook trigger for GITScm polling in Build Trigger.
+Select the Option Delete workspace before build starts in Build Environment.
+Then in the Build Section run the Maven Command.
+
+Select the Advanced Option in Maven If the pom is Located Somewhere other than Default Path.
+Select the Goal as clean package
+
+In order to use Maven we need to do Some additional COnfiguration inside the Jenkins.
+
+Manage Jenkins --> Configure System -->  
+
+Root POM :
+D:\Jenkins\workspace\MavenProject\BcryptDemo\pom.xml
+Goals Option:
+clean package
+
+*****************************   17.Jenkins Pipeline		 **************************************************************
+
+Pipeline is a Script which gives a Series of Jobs or actions in a Pipelined Manner.
+We can define the Pipeline in a Declarative or Scripted Pipeline Syntax.
+In Declarative Pipeline Syntax,pipeline block defines all the work done through out the entire pipeline.
+Pipeline script is a groovy sandbox syntax.
+
+General --> New Job --> GitHub Project --> Mention the GitHub Project URL in the General Tab.
+In the Pipeline Tab --> Select PipelineScript --> Copy the Pipeline Script.
+
+
+
+	
+
+
+
+
+
+

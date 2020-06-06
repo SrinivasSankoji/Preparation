@@ -15,7 +15,7 @@
 
 2.Overview :
 ------------
-To set up an End to End Application Stack including various Technologies Like 
+To set up an end to end Application Stack including various Technologies Like 
 Web Server using Node JS
 Database Using Mongo DB
 Messaging System like Redis
@@ -24,9 +24,8 @@ Orchestration tool Like Ansible.
 There might be lot of Issues while developing the Application Stack.
 One of them is Compatibility with the Underlying OS.
 we have to make sure all of these technologies are Compatible with OS Version.
-We also neeed to check the Compatibility with Libraries and Dependencies with the Underlying OS.
+We also neeed to check the Compatibility with Libraries and dependencies with the Underlying OS.
 This Compatibility Metric Issue is usually referred to as Metric Hell.
-
 
 Everytime a New Developer is OnBoarded we found lot of Issues in setting up the Environment.
 New Developer has to follow large set of Instructions and remember Hundred's of Command to set up the Environment.
@@ -36,9 +35,8 @@ We also have different Development Environments.
 Different Developers may use Different OS.
 We may not Gaurantee that the Application run on One OS will run on another OS.
 All of these i.e developing,building and shipping the Application become more Difficult.
-we need something to sort out the Compatibility Issue,allow us to modify the components without effecting the Other Components,
+we need something to sort out the Compatibility issue,allow us to modify the components without effecting the Other Components,
 even modify the Underlying OS if required.
-
 
 With Docker we can be able to run Each Component in a Seperate Container with its own dependencies and its own Libraries
 all on the same OS and VM but within the Seperate Containers.
@@ -53,21 +51,19 @@ just Like Virtual Machines except they all share the Same OS Kernel.
 Docker utilizes LXE Containers.
 
 Setting up the Container is very hard and it is very LowLevel.
-Docker Offers aHigh Level tool with several powerful Functionalities making it really easy to create the Container.
+Docker Offers a High Level tool with several powerful functionalities making it really easy to create the Container.
 
 Any Operating System Consists of two things.
 
 1.OS Kernel
 2.Software
 
-OS Kernel is responsible for interacting with underlying Hardware
-and the Software makes the Operating System Different.
-
+OS Kernel is responsible for interacting with underlying Hardware and the Software makes the Operating System Different.
 This Software may Consists of Different User Interfaces, drivers,Compilers,File Managers,Developer tools etc.
 We have Common Linux Kernel Shared across all OS and some software that differentiates the OS.
 
 Docker Containers share the Underlying Kernel.
-Consider the Case we have an ubuntu Syatem that have docker installed on it.
+Consider the Case we have an ubuntu System that have docker installed on it.
 Docker can run any flavor of OS on top of it as long as they are on the Same Kernel and in this case Linux.
 
 If the Underlying OS is ubuntu,Docker can run a Container based on another distribution of ubuntu.
@@ -78,23 +74,19 @@ The OS do not share the same kernel is Windows.
 we wont be able to run a windows based Container on a Docker host with Linux on it.
 For that we require a Docker on a Windows Server.
 
-
 When we install Docker Container on windows and run a container based on Linux.
 when we install docker on windows and run a Linux Container on windows, we are not really running a Linux Container on windows.
 Windows run a Linux Container on a Linux Virtual Machine under the hood.
 
-
 Docker is not meant to virtualize and run different OS kernels on the Same Hardware.
-The Main purpose of Docker is to package and containerize the Application and ship them so that it can be run any where an anytime as many times we want.
+The Main purpose of Docker is to package and containerize the Application and ship them so that it can be run any where anytime as many times we want.
 
-
-In case od Docker we have underlying Hardware Infrastructure ,OS and then Docker is installed on the OS.
+In case of Docker we have underlying Hardware Infrastructure ,OS and then Docker is installed on the OS.
 Docker manages the Containers that runs with the Libraries and Dependencies.
-In case of Virtual Machine we have Hypervisor on the hardware and the Virtual Machines on them.
+In case of Virtual Machine we have Hypervisor on the hardware and the Virtual Machine runs on them.
 Each virtual Machine has its own OS,Libraries,Dependencies and then the Application.
 
-
-Virtual Machine consumes the Higher Disksapce where as Docker Container consumes MegaBytes.
+Virtual Machine consumes the Higher disksapce where as Docker Container consumes MegaBytes.
 This makes the Docker Container to boot up Faster where as VM will takes minutes to boot up.
 
 There are lots of Containerized version of Applicationn readily today.
@@ -104,14 +96,12 @@ Example :
 		docker run mongodb 
 
 runs the mongodb database on the docker Host.
-We can also run the Multiple Instances of th e Wen Service and configure a Load Balancer in the Front.
-In case if one of the Instance is Failed,Simply destroy the Insatnce and launc any one.
-
+We can also run the Multiple Instances of the Web Service and configure a Load Balancer in the Front.
+In case if one of the Instance is Failed,Simply destroy the Insatnce and launch any one.
 
 Docker image is a package or Template just like a VM Template and is used to create on ore More Containers.
-Containers are running Instances of Images that are Isolated and have their own Environment and set of Process.
+Containers are running Instances of images that are isolated and have their own Environment and set of Process.
 We can also create our own image and push it into DockerHub and available for public.
-
 
 Traditionalyy Developer develop the Application and give it to the Operations for Deployment in Production.
 Developer do this by Providing the Set of Instructions.
@@ -122,7 +112,7 @@ This Docker File is used to create an Image to the Application and run on any en
 
 3.Getting Started with Docker :
 -------------------------------
-Docker has tow Editions i.e community Edition and Enterprise Edition.
+Docker has two Editions i.e community Edition and Enterprise Edition.
 Community is the set of free Docker Products.
 Enterprise edition is the certified and supported container platform that comes with enterprise add ons like Image Management ,Image Security,
 Universal control on managing container Orhestrations.
@@ -166,7 +156,7 @@ This will give information about all the running and exited Containers.
 ---------------
 To Stop a running Container we use the command 
 
-	docker stop 
+	docker stop containerId or containerName
 
 by giving either container id or name.
 To get the docker container name or id we use the command 
@@ -202,7 +192,7 @@ If we want to download the image we use the command
 
 	docker pull ubuntu
 	
-It pulls only the image and not to run the Container.
+It pulls only the image and won't run the Container.
 If we run the ubuntu image after the pull command it runs the image and exits immideately.
 Because Containers are not meant to host Operating System like Virtual Machine.
 Containers are meant to run a specific task or process such as instance of a web server,application server,database,computation or analysis task etc.
@@ -351,7 +341,6 @@ Eventhough it is attached to the console,it will not read any input from us.
 It does not have a Terminal to read inputs from.
 Docker Container runs in a Non Interactive Mode.
 
-
 If we like to provide the input, we must map the standard input of the host to the docker container by using i parameter.
 i stands for interactive mode.
 
@@ -417,7 +406,6 @@ If we want to see the additional details about the specific container
 	docker inspect containerName
 	
 It returns all the details of the container in a Json Format.
-
 
 4.Container Logs :
 ------------------

@@ -1,6 +1,6 @@
 Introduction :
 
-Elastic is  a Realtime distributed and open source full text search  and analytics engine.
+Elastic is  a realtime distributed and open source full text search and analytics engine.
 It is used in developing single page Applications.
 It is accessible from Restful Webservices  and  uses json object to store data.
 It enables users to explore very large amount of  data at very high speed.
@@ -64,7 +64,7 @@ the Performance of the System by carrying out a paralell search in these
 Features:
 
 Elastic Search is developed in java which makes compatible on alomost every platform.
-Elastic Search is Real Time i.e After one second the added document is searchable in this Engine.
+Elastic Search is real Time i.e After one second the added document is searchable in this Engine.
 Elastic Search is distributed which makes easy to scale and Integrate in any Big Organization.
 Creating Full backups are easy bu using the concept of GateWay.
 Elastic Search returns JSON object as Response.

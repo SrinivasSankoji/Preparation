@@ -1,0 +1,535 @@
+1.Introduction											[04-JUN-2020]  ()
+2.Concepts                                              [04-JUN-2020]  ()
+3.Elastic Search API                                    [04-JUN-2020]  (Done)
+4.Document API                                          [05-JUN-2020]  (Done)
+5.Search API                                            [05-JUN-2020]  (Done)
+6.Query DSL Part 1                                      [04-JUN-2020]  (Done)
+7.Query DSL Part 2                                      [04-JUN-2020]  (Done)
+8.Query DSL Part 3                                      [05-JUN-2020]  ()
+9.Query DSL Part 4                                      [04-JUN-2020]  (Done)
+10.Query DSL Part 5                                     [05-JUN-2020]  (Done)
+11.Query DSL Part 6                                     [05-JUN-2020]  (Done)
+12.bool Query                                           [05-JUN-2020]  ()
+
+13.Index and Mapping Creation Part 1                    [06-JUN-2020]  ()
+14.Index and Mapping Creation Part 2                    [06-JUN-2020]  ()
+15.Index and Mapping Creation Part 3                    [06-JUN-2020]  ()
+16.Nested and Object Type								[06-JUN-2020]  ()
+17.Index and Mapping Creation Part 4                    [06-JUN-2020]  ()
+
+18.SearchBox Query Part 1								[06-JUN-2020]  ()
+19.SearchBox Query Part 2                               [06-JUN-2020]  ()
+														
+20.Aggregation Query                                    [06-JUN-2020]  ()
+21.Update Query for Nested Object                       [06-JUN-2020]  ()
+
+
+***********************************************************   1.Introduction  ********************************************************************
+
+
+
+
+***********************************************************   2.Concepts  ************************************************************************
+
+
+
+
+
+***********************************************************   3.Elastic Search API  **************************************************************
+
+Elastic Search API are
+
+Document API
+Search API
+Indices API
+Cat API
+Cluster API
+
+
+Document API :
+--------------
+We have two Types of Document API
+
+Single Document API
+Multi Document API
+
+Single Document API Consists of 4 Types
+
+Index API
+Get API
+Delete API
+Update API
+
+Multi Document API Consists of 5 Types 
+
+MultiGet API
+Bulk API
+Delete by Query API
+Update by Query API
+ReIndex API
+
+Index API :
+-----------
+Index API adds or Updates typed Json Document in a Specified index and make it Searchable.
+
+	PUT employees-details/_doc/3
+	{
+	  "empUserId":106,
+	  "empName":"Arvind",
+	  "age":28,
+	  "gender":"Male",
+	  "address":[{
+		"addressId":102,
+		"addressNumber":202
+	  }]
+	}
+	
+If we insert the record with the same Id,then it will update the Record.
+
+
+GET API :
+---------
+GET API allows a Typed Json Document from the index based on its Id.
+
+	GET /employees-details/_doc/2
+	
+To get only Specific Number of Records
+
+	GET /employees-details/_search?size=2
+
+To get the Mapping Details of an Index
+
+	GET /employees-details/_mapping
+	
+To get the Total Number of Records 
+
+	GET employees-details/_count
+	
+Delete API :
+------------
+To delete a document in an Index
+
+	DELETE employees-details/_doc/4
+	
+Delete By Query :
+-----------------
+To delete a record with Specific name we use delete by Query
+
+	POST /employees-details/_delete_by_query
+	{
+	  "query":{
+		"match":{
+		  "empName":"Jennifer"
+		}
+	  }
+	}
+	
+Update API :
+------------
+Update API allows to Update a Document based on Script Provided.
+The Operation gets the document from the index,runs the script and index back the result.
+
+We can update the document by using index id or by using update by Query.
+
+	POST employees-details/_update/3
+	{
+	  "script":{
+		"source":"ctx._source=params.val",
+		"lang":"painless",
+		"params":{
+		  "val":{
+			"empUserId" : 106,
+			"empName" : "Roja Arvind",
+			"age" : 45,
+			"gender" : "Male"
+		  }
+		  
+		}
+	  }
+	}
+	
+To update Specific Column using Update by Query 
+
+	POST employees-details/_update/3
+	{
+	  "script":{
+		"source":"ctx._source.empName=params.val",
+		"lang":"painless",
+		"params":{
+		  "val":"Roja Arvind"
+		}
+	  }
+	}
+	
+We can also add the new field to the document using update by Query.
+
+
+	POST /employees-details/_update/1
+	{
+	  "script": {
+		"source": "ctx._source.empsalary=params.val",
+		"lang": "painless",
+		"params": {
+		  "val":91000
+		}
+	  }
+	}
+	
+To add the Element to the Array using update by Query
+
+	POST /employees-details/_update/1
+	{
+	  "script": {
+		"source": "ctx._source.address.add(params.val)",
+		"lang": "painless",
+		"params": {
+		  "val":{
+			"addressId" : 110,
+			"addressNumber" : 210
+		  }
+		}
+	  }
+	}
+	
+The other way of doing update is by using doc typed
+
+	POST /employees-details/_update/1
+	{
+	  "doc": {
+		"empName":"Pamela Anderson"
+	  }
+	}
+	
+	
+If we want to update multiple documents based on condition we use update by Query.
+
+	POST /employees-details/_update_by_query
+	{
+	  "query": {
+		"match": {
+		  "empName": "Roja"
+		}
+	  },
+		"script": {
+		  "source": "ctx._source.age=params.val",
+		  "lang": "painless",
+		  "params": {
+			"val":25
+		  }
+		}
+	}
+
+	
+***********************************************************   4.Document API  *****************************************************************
+
+MultiGet API :
+--------------
+If we want ot get the documents from Multiple Index we use multiGet.
+
+	GET /_mget/
+	{
+	  "docs":[
+		{
+		  "_index":"newyork",
+		  "_id":"H73YInIBfwia5zzx0u-Q"
+		},
+		{
+		  "_index":"employees-details",
+		  "_id":"3"
+		}]
+	}
+	
+Bulk API :
+----------
+If we want to perform bulk operations at a time i.e create an index,add the document to an index,delete an index,
+update the document in an index etc we use bulk API.
+
+ReIndex API :
+-------------
+
+
+
+***********************************************************   5.Search API  *******************************************************************
+
+Search API allows us to execute a Search Query and get back the Search Hits that match the Query.
+The query can be either provided by using query String as parameter or request body.
+ 
+If we want to search for a particular Field in all index  irrespective of documents.
+
+	GET _all/_search?q=gender:Male
+
+A Search Request can be executed purely using a URI by providing a Request Parameters.
+To sort the Document in an index
+	
+	GET /newyork/_search
+	{
+	  "query": {
+		"match": {
+		  "host_name": "Thomas"
+		}
+	  },
+	  "from": 0,
+	  "size": 20
+	  , "sort": [
+		{
+		  "neighbourhood.keyword": {
+			"order": "asc"
+		  }
+		}
+	  ]
+	}
+	
+
+***********************************************************   6.Query DSL Part 1  *************************************************************
+
+Elastic Search provides a full Query DSL based on JSON to define Queries.
+There are two types of query caluses in Query DSL.
+
+Leaf Query 
+Compound Query 
+
+In the Leaf Query we have Full Text Query that contains
+
+Match Query
+Match Phrase Query
+Match Phrase Prefix Query
+Multi Match Query
+Match All
+
+Full Text Queries are usually used for running full text queries on full text fields like body of an Email.
+
+
+Match :
+-------
+whatever we pass as an argument to the match query it will accept as OR Condition.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"match": {
+		  "message": "Very Clean"
+		}
+	  } 
+	}
+
+
+MatchPhrase :
+-------------
+It will search for exact Words occurence in the given field.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"match_phrase": {
+		  "message": "Very Clean"
+		}
+	  } 
+	}
+
+
+Here MatchPhrase is very Strict and we can make it less strcict using slop.
+Slope is nothing but difference between the two words.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"match_phrase": {
+		  "name": {
+			"query": "very quiet",
+			"slop": 1
+		  }
+		  }
+	  }
+	}
+	
+
+MatchPhrasePrefix :
+-------------------
+It will search for the words in the sequence along with prefix.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"match_phrase_prefix": {
+		  "name": "quiet very"
+		}
+	  }
+	}
+	
+***********************************************************   7.Query DSL Part 2  *************************************************************
+
+Query String :
+--------------
+In the Query String if we search for a Text,
+we can mention the search Operation i.e OR and AND
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"query_string": {
+		  "default_field": "name",
+		  "query": "very close",
+		  "default_operator": "AND"
+		}
+	  }
+	}
+	
+If we want to apply query string on Multiple Fields
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"query_string": {
+		  "fields": ["neighbourhood_group","message"],
+		  "query": "Julio Brooklyn",
+		  "default_operator": "AND"
+		}
+	  }
+	}
+	
+Query String alway accepts String Fields.
+
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"query_string": {
+		  "default_field": "price",
+		  "query": "45",
+		  "default_operator": "OR"
+		}
+	  }
+	}
+	
+
+***********************************************************   8.Query DSL Part 3  **************************************************************
+
+
+
+
+***********************************************************   9.Query DSL Part 4  **************************************************************
+
+In the Term Level Query consists of 3 types.
+
+Term Query
+Terms Query
+Range Query
+
+Term Query can be used to match the exact term in the Document.
+Mostly it can be used to filter out the Documents.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"term": {
+		  "host_name.keyword": {
+			"value": "Miriam"
+		  }
+		}
+	  }
+	}
+	
+If we want filter out the document with multiple values,we use trems filter.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"terms": {
+		  "neighbourhood.keyword": [
+			"Nolita"
+		  ]
+		}
+	  }
+	}
+	
+
+***********************************************************   10.Query DSL Part 5  **************************************************************
+
+Range Query can be used to get the documents with some range.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"range": {
+		  "price": {
+			"gte": 400,
+			"lte": 500
+		  }
+		}
+	  }
+	}
+	
+Range Query for Timestamp
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"range": {
+		  "@timestamp": {
+			"gte": "2020-05-17T13:20:22.204Z",
+			"lte": "2020-05-17T13:35:22.204Z"
+		  }
+		}
+	  }
+	}
+	
+***********************************************************   11.Query DSL Part 6  **************************************************************	
+	
+Prefix Query :
+--------------
+Prefix Query can be used to match the text that starts with the prefix.
+
+	
+	GET /newyork/_search
+	{
+	  "query": {
+		"prefix": {
+		  "host_name.keyword": {
+			"value": "The Box"
+		  }
+		}
+	  }
+	}
+	
+
+Wildcard Query :
+----------------
+Wildcard Query can be used to match the Text with wild card 
+.
+
+	GET /newyork/_search
+	{
+	  "query": {
+		"wildcard": {
+		  "room_type.keyword": {
+			"value": "P*"
+		  }
+		}
+	  }
+	}
+	
+Wildcard  Query is Heavy because it is Similar to For Loop.It iterates through all the documents.
+Wildcard Query does not work with Space.
+
+ 
+***********************************************************   12.bool Query   **************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+

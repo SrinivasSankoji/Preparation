@@ -12,13 +12,13 @@
 **************************************************************   1.Introduction  ************************************************************** 
 
 Elastic Search is a distributed Open Source Search and Analytics engine for all types of data including textual,numerical,geospatial structural and unstructured data.
-Elastic Search is built oan Apache Lucim and first released in 2010.
+Elastic Search is built on Apache Lucim and first released in 2010.
 Elastic Search is a Central Component of Elastic Stack.
 Set of Open Source Tolls like Data Injestion,Enrichment,Storage,Analysis and Visualization.
 It is known for its Simple Rest API,distributed Nature,Speed and Scalability.
 It is normally referred to as ELK Stack.
 Elastic Search is a database that stores,retrieves and manages documented oriented and semi structured data.
-When we use Elastic Search we store data in Json Document Form and we query them for Retrieval.
+When we use Elastic Search we store data in Json Document form and we query them for Retrieval.
 Elastic Search is just a Database.
 
 Prodcut that involves E-Commerce and searh Engines with huge Database are Facing Issues that includes Product Information Retrieval taking too Long.
@@ -39,11 +39,9 @@ Enterprise Search
 Logging and Data Analytics
 Business Analytics and Much More
 
-
 How does Elastic Search Works :
 -------------------------------
-
-Raw data Flows into Elastic Search in a from of variety sources including logs,systems,metrics and web Applications.
+Raw data Flows into Elastic Search in a form of variety sources including logs,systems,metrics and web Applications.
 Data injestion is the process by whcih raw data is parsed,normalized and enriched before it is indexed in Elastic Search.
 Once indexed in Elastic Search users can run Complex Queries against their raw data and use aggregations to retreive complex summaries of their data.
 
@@ -82,7 +80,7 @@ Node is Simply One Elastic Search Instance.
 
 Shards :
 --------
-Shard is a Subset of Document of an Index.
+Shard is a Subset of an Index.
 An Index can be divided into Many Shards.
 
 
@@ -243,11 +241,11 @@ DELETE
 UPDATE
 
 PUT/POST helps us to add or update the JSon Document in an Index when a Request is made to that respective index with Specific Mapping.
-mapping is usedto structure the data i.e add some conditions to the data.
+mapping is used to structure the data i.e add some conditions to the data.
 If want only integer to an age parameter we use mapping.
 
 Once we have data in Elastic Search we have to get that back.
-GET APi helps to extract type Json Object by Performing get Request for a Particlar Document.
+GET API helps to extract type Json Object by Performing get Request for a Particlar Document.
 
 	GET  /customer/_search
 	
@@ -363,7 +361,7 @@ If we want to check the status of the uploaded document i.e check the status of 
 
 	curl "localhost:9200/_cat/indices?v"  or in Kibana  GET /_cat/indices?v
 
-Now Search fro the Documents in the Kibana.
+Now Search for the Documents in the Kibana.
 To search for all the Documents in the Index
 	
 	GET /bank/_search  (or)
@@ -379,7 +377,7 @@ To Seearch based on Condition
 	{
 	  "query": {"match": {
 		"firstname": "Amber"
-	  }}
+	  }
 	}
 
 To Sort the Records based on Sorting order of account Number
@@ -396,7 +394,7 @@ To Sort the Records based on Sorting order of account Number
 	  ]
 	}
 	
-Elastic Search is a No Sql Database and every thing iis in JSon Format.
+Elastic Search is a No Sql Database and every thing is in JSon Format.
 Even while searching the API we use Json Format.
 
 	GET /bank/_search
@@ -449,7 +447,7 @@ Score Calculation depends on two things i.e Query and Filter.
 Relevance Score means How well does the document Match the Query.
 Filter checks whether the Document matches the Condition or not and does not care about Relevance.
 Query context is considered to be as Linear Regression where as Filter context is considered as Logistic Regression problem.
-Filters willbe cached Automatically to speed up the Response.
+Filters will be cached Automatically to speed up the Response.
 
 
 **************************************************************  8.Our Own Query and Filter Query  **********************************************************************
@@ -557,28 +555,6 @@ Make sure they have the same Relavance.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-	
 
 
 

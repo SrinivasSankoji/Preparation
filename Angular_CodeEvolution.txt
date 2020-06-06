@@ -20,15 +20,14 @@
 20.HTTP and Observables												[21-FEB-2019]  (Done)
 21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
 22.HTTP Error Handling												[21-FEB-2019]  ()
-
 23.Routing and Navigation											[06-APR-2020]  (Done)
 24.Wild Card Route and Redirecting Routes							[06-APR-2020]  (Done)
 25.Route Parameters													[12-APR-2020]  (Done)
 26.ParamMap Observable												[12-APR-2020]  (Done)
 
-27.Optional Route Parameters										[12-APR-2019]  (Done)
-28.Relative Navigation												[13-APR-2020]  (Done)
-29.Child Routes														[13-APR-2020]  (Done)
+27.Optional Route Parameters										[28-MAY-2020]  ()
+28.Relative Navigation												[28-MAY-2020]  ()
+29.Child Routes														[28-MAY-2020]  ()
 30.Angular 6 Features												[13-APR-2020]  ()
 
 
@@ -952,20 +951,19 @@ Consider the Scenario where we need to navigate between two different views base
 
 		Departmet Employee
 		
-If we Click on Department it has to Show Department List similarly
-If we Click on Employee List it has to Show Employee List.
+If we Click on Department it has to Show Department List 
+similarly If we Click on Employee List it has to Show Employee List.
 
 Steps for the above Requirement are 
 1.Generate the Project with Routing Options using Angular CLI.
 2.Generate the Department List and Employee List Component.
 3.Configure the Routes i.e allows us to navigate the Routes from the URL.
-4.Add Buttons and use directives to navigate the Configured Routes.
+4.Add Buttons and use directives to navigate to the Configured Routes.
 
 we might not generate the project always with Routing Option and we may want to add the Routing to an existing application as well.
 If we want what the Routing Application does then Replicate the Same code in the Existing Application.
 
 Step 1: 
-
 include the base tag in the index.html
 
 	<base href="/">
@@ -973,7 +971,6 @@ include the base tag in the index.html
 This is Required because the Application knows how to construct the url while Navigating.
 
 Step 2 :
-
 In the App Folder create the File 
 
 	app-routing.module.ts
@@ -981,7 +978,6 @@ In the App Folder create the File
 This is the File were we configure the Different Routes.
 
 Step 3 :
-
 import app-routing.module.ts in the app module and add it to the Declarations Array.
 
 Step 4 :
@@ -1015,7 +1011,7 @@ In the app-component.html we have
 
 	<router-outlet></router-outlet>
 	
-Here we are Specifying where the components have to be Displayed using router outlet Directive.
+Here we are Specifying where the components have to be displayed using router outlet Directive.
 Finally Add the Buttons to Navigate from one Component to another Component in app.component.html
 
 	<nav>
@@ -1030,8 +1026,8 @@ To Make Router Possible for these Anchor Tags we use two Special Directives from
 	   <a  routerLink='/employees'>Employee</a>
 	</nav>
 
-routerLink Directive Specifies the Path to which we want to navigate to.
-routerLinkActive Specifies one or more css Classes that will be Applied to the Component when corresponding Router Link is Active.	
+routerLink Directive Specifies the Path where we want to navigate to.
+routerLinkActive Specifies one or more css Classes that will be applied to the Component when corresponding Router Link is Active.	
  
 
 ###########################################  24.Wild Card Route ################################################################################
@@ -1085,9 +1081,9 @@ In the Department Component we have list of Departments i.e
 	Ruby
 	Bootstrap
 	
-If we Click on Department Navigate to the Department Detail Component by passing id of the Department as Route Parameter.
-In the Department Detail Component we will read the id Parameter and display the id in the Department Detail Component.
-If we Click on Angular then in the Department Detail Component Display "Selected Department with id 1"
+If we Click on Department navigate to the DepartmentDetail Component by passing id of the Department as Route Parameter.
+In the DepartmentDetail Component we will read the id Parameter and display the id in the Department Detail Component.
+If we Click on Angular then in the DepartmentDetail Component Display "Selected Department with id 1"
 To achieve the above add the code in the DepartmentList Component.
 
 	departments = [
@@ -1145,11 +1141,15 @@ From the SnapShot we use paramMap API which helps us to read the parameter of th
 ################################################### 26.ParamMap Observable ####################################################################
 
 To Read the Route Parameter we used the snapshot of the activatedRoute.
-But this Sceanrio has drawback.
-Here we are navigating from from DepartmentList Component to DepartmentDetails Component  
-Consider the Scenario where we add the Previous and Next Button in the DepartmentDetail Component and Go back and forth Between Different Departments.
 
-	template:`
+	let id=parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+
+But this Sceanrio has one drawback.
+Here we are navigating from from DepartmentList Component to DepartmentDetails Component  
+Consider the Scenario where we add the Previous and Next Button in the DepartmentDetail Component.
+When we click on Next it has to go back to the Next Department and if we click on Previous it has to go to the Previous Department.
+
+  template:`
   <h3>Selected Department is {{departmentId}}<h3>
   <a>Previous</a>
   <a>Next</a>
@@ -1161,12 +1161,22 @@ To Navigate from Previous and Next we make use of Router Component.
 	 { 
 
 	 }
+To get the previosId ,Get the departmentId using snapShot of the ParamMap and subtract with 1.
+Once we have a previousId, we pass it as the parameter to the navigate method of Router Service.
+
+	public goPrevious()
+	{
+      let previousId=this.departmentId-1;
+      this.router.navigate(['/departmentdetail',previousId]);
+	}
+Similar is the Case with NextId.
 	 
 Here the Problem is in the URL id Value is Updated and in the View it is not Updated.
 This is the drawback of snapshot Approach.
 whenever we are navingating from one Component to another Component and  back to the same Component snapshot approach will not work.
-Angular is going to find out whether it needs to initalize the new Component or reuse the same Component.
-When we are navigating back to the Same Component Angular re uses the same Component and here ngOnInit() is not called Here.
+Angular is going to figure out whether it needs to initalize the new Component or reuse the same Component.
+When we are navigating back to the Same Component Angular re uses the same Component 
+and it does not apply the initialization i.e ngOnInit() is not called Here.
 
 Possible Solution is to use paramMap Observable.
 paramMap returns an Observable and we get the data only when we subscribe.
@@ -1180,15 +1190,14 @@ Observable provides the paramMap which we Strongly type to the params.
     });
   }
 
-Here Any Time Parameter Value Changes even when Navigating back to the Same Component,ParamMap Observable can detect and read It.
+Here Any Time parameter Value Changes even when navigating back to the Same Component,ParamMap Observable can detect and read It.
 
 
 ################################################### 27.Optional Route Parameters ##############################################################
 
-In the Department Detail Component we need to add the navigate Button and when we Click on the Back Button,Previously Selected 
-Department has to be highlighted.
-This can be Achieved by Using Optional Route Parameter.
-Here we need to assign the Handler to the Button Click.
+In the Department Detail Component we need to add the Back Button and when we Click on the Back Button,Previously Selected Department has to be highlighted.
+This can be achieved by Using Optional Route Parameter.
+Here we need to assign the Handler on the Button Click.
 
 	<div>
 		<button (clcik)="goToDepartment()"></button>
@@ -1210,7 +1219,7 @@ Optional Parameter can be used to apply some Logic to the View.
 Here we are going to read the id Parameter and compare with the List of Departments and if the Id Matches then we Highlight the Department.
 
 In the DepartmentList Component read the id Parameter.
-To do this import the ActivatedRoute and Inject it.
+To read the route paramtere we need to import the ActivatedRoute and Inject it in the DepartmentList Componenet.
 Then in the ngOnInit() we are going to retreive the id Parameter by Using paramMap Observable.
 	
 	ngOnInit(): void {
@@ -1224,10 +1233,10 @@ Now Compare the selectedId with the DepartmentId and if it Matches then Highligh
 
 	isSelected(department)
 	{
-    return department===this.selectedId;
+		return department===this.selectedId;
 	}
 	
-Optional Parameter does not require a Place Holder like any Other Parameter.
+Optional Parameter does not require a place Holder like any Other Parameter.
 We can also pass Multiple Parameters to the Optional Parameter.
 
 

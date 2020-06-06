@@ -20,7 +20,7 @@
 18.Trigger Job With Email 												[23-05-2020] []	
 19.Build Monitor View 													[23-05-2020] []	
 20.Install Jenkins on AWS 												[23-05-2020] []	
-21.Build and Deployment													[24-05-2020] []
+21.Build and Deployment	(Siva Reddy)									[24-05-2020] []
 
 
 ********************************************** 1.Jenkins Introduction   *******************************************************************
@@ -210,7 +210,7 @@ C. Chain Job Execution
 		After Successful Execution of Test2 --> Post Build Actions --> Select the Option Build Other Project --> Add the Test 3 Project
 		Finally Build the Project Test1 and it Internally Chains the Other Projects.
 
-********************************************** 8.Jenkins Integration With GIT *****************************************************************
+********************************************** 8.Jenkins Integration With GIT  *****************************************************************
 
 		Create a Java Program :
 		-----------------------
@@ -244,7 +244,7 @@ C. Chain Job Execution
 		
 		* * * * *
 		
-		Here It will check the Repositroy for every changes.
+		Here It will check the Repositroy for every Minute.
 		
 
 **********************************************  9.Add GitHub Credentials **************************************************************************
@@ -433,30 +433,35 @@ To Display the Console Select the Option New Window.
 ********************************************** 20.Build Monitor View Jenkins  *****************************************************************
 
 
-**********************************************  21.Build and Deployment	 **********************************************************************
+**********************************************  21.Build and Deployment	(Siva Reddy) **********************************************************
 
-Here we needto write the pipeline script or Jenkins File to provide the Sequence of Steps that starts from 
+Here we need to write the pipeline script or Jenkins File to provide the Sequence of Steps that starts from 
 Cloning the project from GitHub till the Deployment of the War File to the Web Server.
 
-Cloning  i.e get the Project from GitHub
-Packaging i.e build the War File
+Cloning  i.e Get the Project from GitHub
+Packaging i.e Build the War File
 Deploying  i.e Deploy on Tomcat
-Start the Server
+Finally Start the Server
 
 These are the Steps we are going to specify in the pipeline script or Jenkins File.
 Start the Jenkins Server.
-
-We need to add the Tools For Git and Maven 
+We need to add the Tools For Git and Maven
 
 Global Tool Configuration --> Git --> Path to Git  i.e  C:\Program Files\Git\bin\git.execute
-Configure the Maven -->  MAVEN_HOME = D:\apache-maven-3.5.3
+Configure the Maven -->  MAVEN_HOME = D:\apache-maven-3.5.3 and provide the name as apache-maven-3.5.3.
 
 Create a New Item --> Select the Pipeline --> OK.
 In the Pipeline Select --> Select the Pipeline Script from SCM.
-Add the Git Details and CLick on OK.
+Add the Git Details and Click on OK.
 
 To Deploy the War File into Tomcat we need to have Special Permission.
 Create the user in tomcat-users.xml.
+
+
+	
+	
+	
+	
 
 
 
