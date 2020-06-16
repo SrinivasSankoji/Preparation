@@ -1,0 +1,309 @@
+1.Introduction								[10-JUN-2020] (Done)
+2.Need of JMS								[10-JUN-2020] (Done)
+3.Benfits of JMS                            [10-JUN-2020] (Done)
+4.Messaging Domains                         [10-JUN-2020] (Done)
+5.Message Consumption                       [11-JUN-2020] (Done)
+6.Participating Objects                     [12-JUN-2020] (Done)
+7.JMS Message Components                    [12-JUN-2020] (Done)
+8.Point to Point Example					[12-JUN-2020] ()
+9.Publisher Subscriber Example				[12-JUN-2020] ()
+
+10.JMS Introduction							[12-JUN-2020] ()				
+12.
+
+********************************************************  1.Introduction :  *************************************************************************
+
+JMS is an API which supports the formal Communication called as Messaging between computers on the Network.
+It provides a common interface for Standard Message protocols and Message Services in support to the Java API.
+It provides facility to create,send and read messages.
+JMS is a Technique which is used in J2EE Technology for an application to communicate with other application in a loosely coupled Manner.
+It means the Applications that wants to communicate are not connected directly and they are connected through a common destination.
+
+******************************************************** 2.Need of JMS	******************************************************************************
+
+In Java,An Application want's to send message to another Application in such a way that they don't know about each other,even they may be deployed in sepearte
+continents with no dependency at all.
+
+Consider the Application A and Application B are running in Seperate Environments.
+Here Application B is inetrested in getting updates from Application A when any unique things happens in Application A.
+Here the Best Solution is JMS.
+
+JMS is also useful when we are writing any Event based Application like Chat Srever.
+In case of Event based Application,publish the messages between the Server to the Clients who are connected with Server.
+JMS is different from RMI so that there is no need of destination object to ba Available Online while Sending a Message from Client to the Server.
+Server Publihes the Messages and Forgets and when ever the Client comes Online it will fetch the Message.
+
+
+********************************************************  3.Benfits of JMS  *****************************************************************************
+
+1.Asynchronous :
+----------------
+JMS is asynchronous by default.
+To recieve a Message,the Client is not required to send the request.
+Message will arrive automatically to the Client as they become Available.
+
+2.Reliable :
+------------
+JMS Provides the Facility of assurance that the message will be delivered once and only once.
+
+
+********************************************************  4.Messaging Domains   **************************************************************************
+
+Before the JMS API existed,most Messaging products supported either the point-to-point or the Publish/Subscribe to the Messaging.
+JMS provides the Seperate domain for each approach and defines the Compliance for each Domain.
+Any JMS Provider can implement both i.e Multiple Domain or Single Domain on its own choice.
+JMS provides the Common interface which enable us to use the JMS API in such a way that it is not specific  to either the Domain.
+
+Point-to-Point Messaging Domain :
+---------------------------------
+In Point to Point Messaging Domain,The Application is built on the basis of Message Queues,Senders and Receivers.
+Each and every Message is adressed to a Particular Queue.
+Queue retains all the Messages sent to them untill the Messages are consumed or expired.
+Characteristics of Point to Point Messaging Domain are 
+
+1.There is only One Clinet/Subscriber for each Message.
+2.There is no Time Dependency for Sender and Receiver of a Message.
+3.Receiver can fetch the Message whether it is running or not when the Sender sends the Message.
+4.Receiver Sends the Acknowledgemnt after receiving the Message.
+
+
+Publish/Subscribe Messaging Domain :
+------------------------------------
+In Publish/Subscribe Message Domain,Messages are published to the Topic  and the Topic is responsible to hold and deliver the messages to the Client 
+that subscribes to the Topic.
+Here publisher and Subscriber are generally anonymous and can dynamically publish or subscribe to the Topic.
+
+Characteristics of Publish/Subscribe Messaging Domain are
+
+1.There can be Multiple Subscribers for a Message
+2.Publisher and Subscriber can have a Timing Dependency
+3.Subscriber must be active in order to consume the Messages
+
+
+********************************************************   5.Message Consumption  *************************************************************************
+
+Message Consumptioncan be done in two Ways
+
+
+1.Asynchronous :
+----------------
+In Asynchronous Message Consumption,Subscriber registers the Consumer with the Message Listener.
+MessageListener is same as Event Listener.
+Whenever the Message arrives at the destination JMS provider will deliver the message by calling the Listener's onMessage() Method 
+which will act on the Content of the Message.
+
+
+2.Synchronous :
+---------------  
+In the Synchronous Message Consumption,Subscriber request for the Message using receive().
+receive() will block till the Message arrives or TimeOut if the Message did not arrive on time.
+
+
+******************************************************* 6.Participating Objects *************************************************************************
+
+JMS Application has some Building Blocks,which are 
+
+1.Adminstered Objects
+2.JMS Connections
+3.JMS Sessions
+4.JMS Message Producers
+5.JMS Message Consumers
+6.JMS Message Listeners
+
+1.Adminstered Objects :
+-----------------------
+JMS Application provides two types of administered Objects
+
+Connection Factories
+Destinations
+
+These two administered objects are created by JMS System Administrator.
+Both Objects are stored in Application Server JNDI Directory or JNDI Registry.
+
+
+Connection Factories :
+----------------------
+Connection Factory can be used to create a Connection between JMS provider and JMS Client.
+When JMS Client Such as Sender or Reciever Searches for the Connection Object in the JNDI Registry,
+JMS Client receives one Connection Object which is nothing but a Physical Connection between JMS Provider and JMS Client.
+Using this Connection Object JMS Client can have Communication with Destination Object to Send or Recieve Messages into Queue or Topic.
+
+	QueueConnectionFactory queueConnectionFactory =(QueueConnectionFactory)initialCtx.lookUp("primaryQCF");
+	
+Destination :
+-------------
+Client uses the Destination Object which is used to specify the Target and the Source.
+Tartget i.e One who produces the Message
+Source i.e One who consumes the Message
+
+JMS Application provides two type of Destination i.e Queue and Topic.
+To Create a Queue Session  :
+
+	QueueSession session=connection.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
+	Queue queue=context.lookUp("myQueue");
+	QueueReciever reciever=session.createReceiver(queue);
+	
+To Create a Topic Session  :	
+
+	TopicSession topic=connection.createTopicSession(false,Session.AUTO_ACKNOWLEDGE);
+	Topic topic=context.lookUp("myTopic");
+	TopicSubscriber subscriber=topic.createSubscriber(topic);
+	
+
+2.JMS Connections :
+---------------
+Connection encapsulates the virtual connection with JMS Provider.
+Connection Implements Connection Interface.
+
+	Connection connection=connectionFactory.createConnection();
+	
+After Creating any Connection It should be closed before the Application Completes its Usage.
+
+	connection.close();
+	
+3.JMS Session :
+---------------
+JMS Session is a Single Threaded Context which is used for Producing and Consuming the Messages.
+Sessions are used to create the Message Producers and Message Consumers.
+After Creating the Connection Object we create the Session Object using Connection Object.
+
+	Session session- connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+	
+4.JMS Message Producers :
+-------------------------
+MessageProducer Object can be used to Send the Messages to the Destination.
+MessageProducer implements the MessageProducer Interface.
+session object can be used to create the MessageProducer.
+
+	MessageProducer producer=session.createProducer("topic");
+	MessageProducer producer=session.createProducer("queue");
+
+5.JMS Message Consumers :
+-------------------------
+MessageConsumer Object can be used to consume the Messages that has been sent to the destination.
+Session object can be use to create the MessageConsumer.
+
+	MessageConsumer consumer=session.createCOnsumer("topic");
+	MessageConsumer consumer=session.createCOnsumer("queue");
+
+
+6.JMS Message Listeners :
+-------------------------
+MessageListener is an Obejct whcih acts as Asynchronous EventHandler for Messages.
+MessageListener implements MessageListener interface and it contains one Method onMessage().
+When the Message Arrives what action needs to be performed,that we define inside onMessage() Method.
+by Using setMessageListener() we define the MessageListener with the specific MessageConsumer.
+
+	Listener myListener=new Listener();
+	consumer.setMessageListener(myListener);
+	
+
+*******************************************************  7.JMS Message Components  *************************************************************************
+
+JMS Messages are used by JMS Clients to have Communication between the Systems.
+JMS Message is divided into 3 Parts.
+
+1.Message Header
+2.Message properties
+3.Message Body
+
+1.Message Header :
+------------------
+JMS Message Header Contains Number of predefined Fields that are used by clients and providers to identify and Send Messages.
+Some of the Predefined Headers are 
+
+JMSDestination
+JMSDeliveryMode
+JMSMessageID
+JMSTimestamp
+JMSCorrelationID
+JMSReplyTo
+JMSRedelivered
+JMSType
+JMSExpiration
+JMSPriority
+
+2.Message Properties :
+----------------------
+We can create and set properties for messages.
+Message properties are read by Applications.
+Message properties are useful for filtering Messages.
+
+3.Message Body :
+----------------
+JMS Message API defines 5 Message Body Formats which is also known as Message Types that allows us to send and recieve data in many 
+different forms and also provides compatibility with existing Message Formats.
+Message Body consists of attual Message Send from JMS Sender to reciever.
+
+The Different Types of Message Formats are 
+
+1.Text Message
+2.Object Message
+3.Bytes Message
+4.Stream Message
+5.Map Message
+
+
+
+
+******************************************************* 10.JMS Introduction  *******************************************************
+
+JMS is all about Sending and recieving Messages between two or More Clients.
+JMS Provider is responsible for Routing and Delivery of Messages.
+Different JMS Providers are 
+1.ActiveMQ
+2.RabitMQ
+3.JBossMQ
+4.HornetMQ
+5.IBM WebsphereMQ
+
+Producer is responsible for Sending the Message to the Queue or Topic.
+Receiver will Listen to the Queue or Topic and If Messages are there in the Queue then it will Consume.
+
+Here Producer/Publisher,Receiver/Subscriber is a JMS Client.
+Same JMS Client can act as Producer/Consumer.
+
+We can Send differetnt Kind of Message between Producer and Consumer.
+Message Types are
+Text
+Map
+Stream
+Object
+Byte
+
+Point to Point Messaging :
+--------------------------
+In Point to Point Messaging Model each Message has exactly One Sender and One Receiver.
+Producer publishes the Message to the Queue and Consumer listens the Message to the Queue and gets the Message from the Queue.
+Once Consumer reads the Message from the Queue,it sends an Acknowledgement back to the Queue.
+
+Publisher/Subscriber Messaging :
+--------------------------------
+In Case of Publisher/Subscriber Messaging Model Publisher sends the Message to the Topic.
+Here Multiple Consumers subscribe to the Topic.
+Once the Message arrives to the Topic,Message is sent to the Consumers that has subscribed to the Topic.
+
+JMS API Supports different JMS Providers.
+ActiveMQ
+RabitMQ
+JBossMQ
+
+*******************************************************  11.JMS API Programming Model  *******************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+

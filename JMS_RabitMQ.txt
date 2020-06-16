@@ -1,0 +1,82 @@
+1.RabitMQ_Basics_Bernhard						[12-JUN-2020] (Done)
+2.RabitMQ_Basics_10MinIT						[12-JUN-2020] ()
+3.RabitMQ Installation (Ram N)					[12-JUN-2020] (Done)
+4.Manual Acknowledgement(Ram N)					[12-JUN-2020] ()
+5.Point to Point (Ram N)						[12-JUN-2020] ()
+6.Publish/Subscribe	(Ram N)						[12-JUN-2020] ()
+7.
+
+
+********************************************************  1.RabitMQ_Basics_Bernhard  ********************************************************
+
+RabitMQ is a Message Broker that implements Advanced Message Queuing Protocol (AMQP).
+AMQP Standardizes messaging using Producers,Brokers and Consumers.
+Messaging increases loose coupling and Scalability.
+
+	Producer --> Exchange --> Queue   -> Consumer 
+	
+Publishing a message means Producer Sends the Message to the Exchange and Exchange in turn forwards the Message to the Queue.
+Consuming a message means consume a message from the Queue.
+In a Complex Application we have multiple Queues.
+
+When an Exchange receives a Message,it sends it to the Selected Queue.
+An Exchange Connects to a Queue using a Binding or Binding Key.
+
+To Send a Message to a Exchange producer needs to Specify the Routing Key and an Exchange Compares the Routing Key and identifies the type of Exchange.
+
+1.Fanout Simply ignores the Routing Key and Sends out the message to the Queue all it knows about.
+2.Direct Exchange Sends the Message to the Queue where the Routing Key is same as Binding Key.
+3.Topic Exchange Sends the Message to the Queue where the Routing Key partially matches with the Binding Key.
+4.Header Exchange uses the Message Header instead of Routing Key.
+5.Direct or Nameless Exchange sends the Message to the Queue using the Queue name and not using binding Key.
+
+Core Concepts :
+---------------
+Producer emmits/publishes the message to the Exchange.
+Consumer receives message from Queue.
+Binding connects with an exchange to a Queue using Binding key.
+Exchange Compares the Routing Key with the Binding Key.
+Message Distribution to the Queue depends on type of Exchange.
+Types of Exchange are Fanout,Direct,Topic and Header.
+Special Exchange created by RabitMQ is Default Exchange that compare the Routing Key with the Queue Name.
+Default Exchange indirectly Sending the Message directly to the Queues.
+
+
+********************************************************  2.RabitMQ_Basics_10MinIT  ************************************************************
+
+
+
+
+
+********************************************************  3.RabitMQ Installation	************************************************************
+
+Before Installing RabitMQ Install Erlang
+
+https://www.erlang.org/downloads
+
+Then Install the RabitMQ.
+
+Once the RabitMQ is installed Click on RabitMQ CommandPrompt
+Then Enable RabitMQ Management PlugIn  --> https://www.rabbitmq.com/management.html 
+--> Copy the Command rabbitmq-plugins enable rabbitmq_management  --> Paste it on Command Prompt.
+
+Once the RabitMQ Management is enabled we can access the RabitMQ Management UI.
+
+	http://localhost:15672/
+	
+Then enter the username and password as guest.
+
+******************************************************** 4.Manual Acknowledgement  *************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+

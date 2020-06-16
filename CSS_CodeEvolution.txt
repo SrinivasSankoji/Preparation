@@ -25,7 +25,7 @@ CSS Stands for Cascading Style Sheets.
 CSS describes how HTML Elements has to be displayed on the Screen.
 For Example <HEAD> Tag should  have a Color,<P> Shoud have a Background Color etc.
 Whenever we work with CSS we always use the <HEAD> Section of the Document.
-To Specify we use the <Style> in the <HEAD> with type as "text/css".
+To Specify the CSS,we use the <Style> in the <HEAD> with type as "text/css".
 Whatever we write in the <Style> that can be Applied to that Particular Web Page and also called as Document Level Style Sheet.
 Syntax of CSS is made up of 3 Parts.
 
@@ -34,7 +34,7 @@ Syntax of CSS is made up of 3 Parts.
 3.value
 
 Selector is nothing but an HTML Tag to which we want to apply the Style.
-Proerty is nothing but an Attribute for an HTML Tag i.e fontSize,Background Color etc.
+Proerty is nothing but an CSS Attribute for an HTML Tag i.e fontSize,Background Color etc.
 Value is the value for the Property.
 
 ********************************************************************  2.Color  ********************************************************************
@@ -94,7 +94,7 @@ If we want to change the Font of Paragraph Tag we use font-family Property.
 			font-family: serif;
 		}
 		
-Generally it is better to define Multiple Fonts and If Some one is Unable to Find then it relies on the Other Font i.e from Left to Right.
+Generally it is better to define Multiple Fonts and If Some FOnt Family is Unable to Find then it relies on the Other Font Family i.e from Left to Right.
 
 		font-family: Georgia,verdana,sesrif;
 		
@@ -161,7 +161,7 @@ If we want to Specify the Space between the Lines we use the property line-heigh
 ******************************************************************** 6.Links  ***************************************************************************************
 
 Link is some sort of Text or Image that will take you to another Location when we Click on it.
-Linke in HTMl has 4 States and we can assign Style to each of these 4 States.
+Link in HTMl has 4 States and we can assign Style to each of these 4 States.
 
 When we open the Webpage for the First Time and it has a Link and what style has to be applied is defined by using 
 
@@ -208,8 +208,8 @@ Margin is the Space between  the Element and the Browser.
 
 Property for the Border are 
 
-	border-style: dotted;
 	border-width: 10px;  (Thickness of the Border)
+	border-style: dotted;
 	border-color: lightgreen;
 	
 We can also the Specify the Border Individually i.e left,right,top,bottom.
@@ -395,7 +395,7 @@ Absolute Positionong allows the element to be placed where we want to be.
 		}
 		
 Here Paragraph is Shifted from top 50 Pixcels and Left 80 Pixcels from the Browser.
-Absolute Positioning Shifts from the Top Corner of the Screen where as Relative Positioning Shifts from the Position of the Element.
+Absolute Positioning Shifts from the Top Corner of the Screen where as relative Positioning Shifts from the Position of the Element.
 
 We can also Combine Relative and Absolute Positioning.
 

@@ -323,7 +323,7 @@ If we want to run the command on the particular Container and see the files insi
 
 1.Docker Run :
 **************
-
+		
 	docker run redis 
 	
 This will run the container containing a Redis Service.By default it will pull and run the latest image.
@@ -416,6 +416,9 @@ If we want to see the logs of the container
 
 2.Advanced Docker Run Features :
 ********************************
+
+
+
 
 
 

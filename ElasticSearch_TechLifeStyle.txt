@@ -11,11 +11,11 @@
 11.Query DSL Part 6                                     [05-JUN-2020]  (Done)
 12.bool Query                                           [05-JUN-2020]  ()
 
-13.Index and Mapping Creation Part 1                    [06-JUN-2020]  ()
-14.Index and Mapping Creation Part 2                    [06-JUN-2020]  ()
-15.Index and Mapping Creation Part 3                    [06-JUN-2020]  ()
-16.Nested and Object Type								[06-JUN-2020]  ()
-17.Index and Mapping Creation Part 4                    [06-JUN-2020]  ()
+13.Index and Mapping Creation Part 1                    [08-JUN-2020]  (Done)
+14.Index and Mapping Creation Part 2                    [08-JUN-2020]  (Done)
+15.Index and Mapping Creation Part 3                    [08-JUN-2020]  ()
+16.Nested and Object Type								[09-JUN-2020]  (Done)
+17.Index and Mapping Creation Part 4                    [08-JUN-2020]  ()
 
 18.SearchBox Query Part 1								[06-JUN-2020]  ()
 19.SearchBox Query Part 2                               [06-JUN-2020]  ()
@@ -514,6 +514,150 @@ Wildcard Query does not work with Space.
  
 ***********************************************************   12.bool Query   **************************************************************
 
+
+
+
+
+
+*********************************************************** 13.Index and Mapping Creation Part 1 *******************************************
+
+Analysis is converting text into Token or Terms.
+
+Consider the Scenario we have a Sentence.
+
+"A Quick Brown Fox Jumped over the Lazy Dog"
+
+Tokens : [Quick,Brown,Fox,Jumped,over,Lazy,Dog]
+
+Analysis is performed by 
+
+1.Analyzer
+2.Tokenizer
+3.Token Filter
+4.Character Filter
+
+We use the Analysis in the 
+
+Query Part
+Mapping Parameter
+Index Setting
+
+Analyzer :
+----------
+Analyzer Analysing the Text into Token or Keywords to be searched or indexed.
+Analyzer then builds the TokenStream
+Analyzer are provided to parse and Analyze different Languages.
+
+
+Flow of Analyzer wiil be
+
+Reader  -->  Tokenizer --> Token Filter --> Token Filter --> Token
+
+Tokenizer is responsible for breaking of Sentence into different Tokens i.e keyword or Terms.
+Tokenizer also tracks the ordering of the Tokens.
+Tokenizer then passes the Stream of Tokens to the Token Filter.
+
+For a Particular Ana;yzer we can have only one Tokenizer and N Number of Token Filters.
+
+Stopword is the example for Token Filter i.e It filters out the English Words.
+Covert the entire token into Lower case is another kind of Token Filter.
+
+
+*********************************************************** 14.Index and Mapping Creation Part 2 *******************************************
+
+We have different types of Analyzers
+
+1.Standard Analyzer
+2.Simple Analyzer
+3.Whitespace Analyzer
+4.Keyword Analyzer
+5.Stop Analyzer
+6.Pattern Analyzer
+7.Custom Analyzer
+
+
+Standard Anlayzer :
+-------------------
+This is the default Analyzer which is used if none is specified.
+Standard Analyzer accepts the parameters max_token_length,Stopwords,Stopwords_path.
+
+
+
+
+
+*********************************************************** 15.Index and Mapping Creation Part 3 *******************************************
+
+
+
+
+*********************************************************** 16.Nested and Object Type  *****************************************************
+
+Mapping :
+---------
+Mapping is the process of defining how a document should be mapped to the Search Engine,
+including its Searchable Characteristics such as which fields are Searchable Characteristics such as which fields are Searchable and how they are tokenized.
+
+Fields :
+--------
+Each Mapping has Number of Fields associated with it which can be used to control how the document metadata is indexed.
+
+Types :
+-------
+In the Fields we can have datatypes for each Field in a Document (Strings,Numbers,Objects etc) and can be controlled via the type Mapping.
+
+Object
+Nested
+
+
+Object Datatype :
+-----------------
+JSON Documents are Hierarchical in Nature.Document may Contain inner Objects which in turn may contain inner objects themselves.
+
+Nested Datatype :
+-----------------
+
+
+ 
+
+*********************************************************** 17.Index and Mapping Creation Part 4  ********************************************
+
+Tokenizer :
+-----------
+Tokenizer receives a stream of Characters,breaks it into individual tokens  (usually words ) and outputs a stream of tokens.
+
+We have 3 Types of Tokenizers 
+
+1.Word Tokenizer
+2.Partial Word Tokenizer
+3.Structured Word Tokenizer
+
+Word Tokenizer Consusts of
+
+1.Standard Tokenizer
+2.lowercase Tokenizer
+3.whitespace Tokenizer
+
+Partial Word Tokenizer Consists of 
+
+1.ngram Tokenizer
+2.edge_ngram Tokenizer
+
+Strictured Word Tokenizer Consists of
+
+1.keyword Tokenizer
+2.pattern Tokenizer
+3.simple_pattern Tokenizer
+
+
+***********************************************************   18.SearchBox Query Part 1	 *******************************************************
+
+
+
+
+
+
+
+***********************************************************   19.SearchBox Query Part 2  *******************************************************	
 
 
 
