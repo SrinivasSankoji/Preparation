@@ -5,16 +5,15 @@
 5.Message Consumption                       [11-JUN-2020] (Done)
 6.Participating Objects                     [12-JUN-2020] (Done)
 7.JMS Message Components                    [12-JUN-2020] (Done)
-8.Point to Point Example					[12-JUN-2020] ()
+8.Point to Point Example					[22-JUN-2020] (Done)
 9.Publisher Subscriber Example				[12-JUN-2020] ()
-
-10.JMS Introduction							[12-JUN-2020] ()				
-12.
+10.JMS Introduction (Ram N)					[12-JUN-2020] (Done)			
+11.JMS API Programming Model				[12-JUN-2020] ()
 
 ********************************************************  1.Introduction :  *************************************************************************
 
 JMS is an API which supports the formal Communication called as Messaging between computers on the Network.
-It provides a common interface for Standard Message protocols and Message Services in support to the Java API.
+It provides a common interface for Standard Messaging protocols and Message Services in support to the Java API.
 It provides facility to create,send and read messages.
 JMS is a Technique which is used in J2EE Technology for an application to communicate with other application in a loosely coupled Manner.
 It means the Applications that wants to communicate are not connected directly and they are connected through a common destination.
@@ -23,14 +22,13 @@ It means the Applications that wants to communicate are not connected directly a
 
 In Java,An Application want's to send message to another Application in such a way that they don't know about each other,even they may be deployed in sepearte
 continents with no dependency at all.
-
 Consider the Application A and Application B are running in Seperate Environments.
 Here Application B is inetrested in getting updates from Application A when any unique things happens in Application A.
 Here the Best Solution is JMS.
 
 JMS is also useful when we are writing any Event based Application like Chat Srever.
 In case of Event based Application,publish the messages between the Server to the Clients who are connected with Server.
-JMS is different from RMI so that there is no need of destination object to ba Available Online while Sending a Message from Client to the Server.
+JMS is different from RMI so that there is no need of destination object to be Available Online while Sending a Message from Client to the Server.
 Server Publihes the Messages and Forgets and when ever the Client comes Online it will fetch the Message.
 
 
@@ -50,9 +48,9 @@ JMS Provides the Facility of assurance that the message will be delivered once a
 ********************************************************  4.Messaging Domains   **************************************************************************
 
 Before the JMS API existed,most Messaging products supported either the point-to-point or the Publish/Subscribe to the Messaging.
-JMS provides the Seperate domain for each approach and defines the Compliance for each Domain.
+JMS API provides Seperate domain for each approach and defines the Compliance for each Domain.
 Any JMS Provider can implement both i.e Multiple Domain or Single Domain on its own choice.
-JMS provides the Common interface which enable us to use the JMS API in such a way that it is not specific  to either the Domain.
+JMS provides the Common interface which enable us to use the JMS API in such a way that it is not specific  to either of the Domain.
 
 Point-to-Point Messaging Domain :
 ---------------------------------
@@ -69,7 +67,7 @@ Characteristics of Point to Point Messaging Domain are
 
 Publish/Subscribe Messaging Domain :
 ------------------------------------
-In Publish/Subscribe Message Domain,Messages are published to the Topic  and the Topic is responsible to hold and deliver the messages to the Client 
+In Publish/Subscribe Message Domain,Messages are published to the Topic and the Topic is responsible to hold and deliver the messages to the Client 
 that subscribes to the Topic.
 Here publisher and Subscriber are generally anonymous and can dynamically publish or subscribe to the Topic.
 
@@ -84,14 +82,12 @@ Characteristics of Publish/Subscribe Messaging Domain are
 
 Message Consumptioncan be done in two Ways
 
-
 1.Asynchronous :
 ----------------
 In Asynchronous Message Consumption,Subscriber registers the Consumer with the Message Listener.
 MessageListener is same as Event Listener.
 Whenever the Message arrives at the destination JMS provider will deliver the message by calling the Listener's onMessage() Method 
 which will act on the Content of the Message.
-
 
 2.Synchronous :
 ---------------  
@@ -183,13 +179,12 @@ session object can be used to create the MessageProducer.
 MessageConsumer Object can be used to consume the Messages that has been sent to the destination.
 Session object can be use to create the MessageConsumer.
 
-	MessageConsumer consumer=session.createCOnsumer("topic");
-	MessageConsumer consumer=session.createCOnsumer("queue");
-
+	MessageConsumer consumer=session.createConsumer("topic");
+	MessageConsumer consumer=session.createConsumer("queue");
 
 6.JMS Message Listeners :
 -------------------------
-MessageListener is an Obejct whcih acts as Asynchronous EventHandler for Messages.
+MessageListener is an Obejct whcih acts as an Asynchronous EventHandler for Messages.
 MessageListener implements MessageListener interface and it contains one Method onMessage().
 When the Message Arrives what action needs to be performed,that we define inside onMessage() Method.
 by Using setMessageListener() we define the MessageListener with the specific MessageConsumer.
@@ -209,7 +204,7 @@ JMS Message is divided into 3 Parts.
 
 1.Message Header :
 ------------------
-JMS Message Header Contains Number of predefined Fields that are used by clients and providers to identify and Send Messages.
+JMS API defines Message Header that Contains Number of predefined Fields and are used by clients and providers to identify and Send Messages.
 Some of the Predefined Headers are 
 
 JMSDestination
@@ -243,10 +238,30 @@ The Different Types of Message Formats are
 4.Stream Message
 5.Map Message
 
+******************************************************* 8.Point to Point Example  *******************************************************
+
+In Point to Point to Message,Publisher publishes the Message to the Queue and Single Receiver takes out the Message from the Queue.
+Here the Receiver does not need to be listening to the Queue at the time the Message is Sent.
+
+Typical Point to Point Messaging for the Sender Application will have the Following Steps.
+1.Obtain the initial COntext Object from the JMS Server.
+2.Use the initialContext Object for lookup a Queue Obejct.
+3.Use the initialContext Object for lookup the Queue connection factory.
+4.Use the Queue COnnection Factory to create the Queue Connection as it represents the physical Connection of the JMS Server.
+5.After Creating the QueueConnectionFactory create the Queue Session where the first parameter will decide whether the session is transacted or not.
+Here we will use a non transacted Session.
+6.Create a Queue Sender for a Queue and then create the Message.
+7.Send the Message to the Queue Object.
+8.Close the Queue Connection as it will automatically close the Session and Queue Sender. 
+
+
+******************************************************* 9.Publisher Subscriber Example  *************************************************
 
 
 
-******************************************************* 10.JMS Introduction  *******************************************************
+
+
+******************************************************* 10.JMS Introduction  ************************************************************
 
 JMS is all about Sending and recieving Messages between two or More Clients.
 JMS Provider is responsible for Routing and Delivery of Messages.

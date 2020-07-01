@@ -1,34 +1,34 @@
 Terminology :
 *************
-Micro services to Server less
-Event Driven Architecture
-Service Blocks
-Statelessness
-6 Architectural Constraints Defined in REST (Uniform Interface,Client–Server,Stateless,Cacheable,Layered System,Code on Demand)
-Traditional Application vs Cloud Native Application
-12 Factor Principles
-Data Driven Product Development
-SOLID Principles
+1.Micro services to Server less
+2.Event Driven Architecture
+3.Service Blocks
+4.Statelessness
+5.Six Architectural Constraints Defined in REST (Uniform Interface,Client–Server,Stateless,Cacheable,Layered System,Code on Demand)  (restfulapi.net)
+6.Traditional Application vs Cloud Native Application
+7.Twelve Factor Principles
+8.Data Driven Product Development
+9.SOLID Principles
 
-Spring vs Spring Boot (Java Tech)
-Spring ServiceLocatoryFactoryBean  (Java Tech)
-JDK 12 Features (Java Tech)
-Java 8 Consumer,Supplier,Predicate Interface (Java Tech)
-Java 8 Functional Interface (Java Tech)
-Java 8 Streams (Java Tech)
-How Spring Boot Application Works Internally (Java Tech)
-JIRA Project Management (Java Tech)
-Prevent Singleton Class form Reflection and Serialization (Java Tech)
-Singleton Pattern Best Practices (Java Tech)
-SQL vs No SQL (Java Tech)
-Spring 5 WebClient (Java Tech)
-Spring Boot with JDBI (Java Tech)
-@Autowired,@Qualifier and @Resource  (Java Tech)
+10.Spring vs Spring Boot (Java Techie)
+11.Spring ServiceLocatoryFactoryBean  (Java Techie)
+12.JDK 12 Features (Java Techie)
+13.Java 8 Consumer,Supplier,Predicate Interface (Java Techie)
+14.Java 8 Functional Interface (Java Techie)
+15.Java 8 Streams (Java Techie)
+16.How Spring Boot Application Works Internally (Java Techie)
+17.JIRA Project Management (Java Techie)
+18.Prevent Singleton Class form Reflection and Serialization (Java Techie)
+19.Singleton Pattern Best Practices (Java Techie)
+20.SQL vs No SQL (Java Techie)
+21.Spring 5 WebClient (Java Techie)
+22.Spring Boot with JDBI (Java Techie)
+23.@Autowired,@Qualifier and @Resource  (Java Techie)
 
-Sonar Cube (Java Tech)
-Java 8 Collectors
-Completable Future in Java
-ThreadPoolExecutor in Java
-Load Balancer in Java
-Java Anonymous Class Example (Java 8)
-Enum in Switch 
+24.Sonar Cube (Java Techie)
+25.Java 8 Collectors
+26.Completable Future in Java
+27.ThreadPoolExecutor in Java
+28.Load Balancer in Java
+29.Java Anonymous Class Example (Java 8)
+30.Enum in Switch 

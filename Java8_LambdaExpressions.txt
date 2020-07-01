@@ -1,7 +1,7 @@
 Modifying Variable Inside Lambda :
 ----------------------------------
 When we try to Modify the Variable inside Lambda Expression we get Compile Time Error Saying
-A Variable inside Lambda Must be Final or Effective Final.
+A variable inside Lambda Must be Final or Effective Final.
 A Keyword before a Variable Makes it Final and 
 No Final Keyword Before a Variable Makes it Effectively Final Provided we never Change the Value.
 
@@ -67,6 +67,7 @@ To achieve this we need a Class and Create an Object of that Class and then add 
 
 Before Java 8 :
 	
+	@override
 	public void greet()
 	{
 		System.out.println("Welcome Lambda");
@@ -76,7 +77,7 @@ To be More Generic Create an Interface
 	
 	public interface Greeting 
 	{
-	public void perform();
+		public void perform();
 	}
 	
 	@Override
@@ -108,8 +109,7 @@ Possible Solution is we can directly pass an Action rather than Class that Imple
 	}
 	
 Lambdas allows us to create Functions which does not belong to any Class.
-Functions exists in isolation.
-These functions can be Treated as Values.
+Functions exists in isolation and These functions can be Treated as Values.
 
 Functions as Values :
 ---------------------
@@ -184,7 +184,7 @@ Consider the Example
 					return a*a;
 				  }
 	
-	//Remove Modifier
+	//Remove Access Modifier
 	multipleby2 = int multipleFunction(int a)
 				  {
 					return a*a;

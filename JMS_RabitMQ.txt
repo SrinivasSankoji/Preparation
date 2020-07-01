@@ -4,7 +4,11 @@
 4.Manual Acknowledgement(Ram N)					[12-JUN-2020] ()
 5.Point to Point (Ram N)						[12-JUN-2020] ()
 6.Publish/Subscribe	(Ram N)						[12-JUN-2020] ()
-7.
+7.Publish Message	  (JavaInUSe)				[12-JUN-2020] (Done)
+8.Configure Listener  (JavaInUSe)				[12-JUN-2020] (Done)
+9.Rabit Listener  	  (JavaInUSe)				[12-JUN-2020] (Verify)
+10.Exchange Types 	  (JavaInUSe)				[23-JUN-2020] (Done)
+11.Error Handling	  (JavaInUSe)				[23-JUN-2020] ()	
 
 
 ********************************************************  1.RabitMQ_Basics_Bernhard  ********************************************************
@@ -19,16 +23,18 @@ Publishing a message means Producer Sends the Message to the Exchange and Exchan
 Consuming a message means consume a message from the Queue.
 In a Complex Application we have multiple Queues.
 
-When an Exchange receives a Message,it sends it to the Selected Queue.
+When an Exchange receives a Message,it sends the Message it to the Selected Queue.
 An Exchange Connects to a Queue using a Binding or Binding Key.
 
-To Send a Message to a Exchange producer needs to Specify the Routing Key and an Exchange Compares the Routing Key and identifies the type of Exchange.
+To Send a Message to a Exchange producer needs to Specify the Routing Key and an Exchange Compares the Routing Key with the Binding Key 
+and identifies the type of Exchange.
 
 1.Fanout Simply ignores the Routing Key and Sends out the message to the Queue all it knows about.
 2.Direct Exchange Sends the Message to the Queue where the Routing Key is same as Binding Key.
 3.Topic Exchange Sends the Message to the Queue where the Routing Key partially matches with the Binding Key.
 4.Header Exchange uses the Message Header instead of Routing Key.
 5.Direct or Nameless Exchange sends the Message to the Queue using the Queue name and not using binding Key.
+  Here Routing Key is as same as Queue Name.
 
 Core Concepts :
 ---------------
@@ -71,12 +77,62 @@ Then enter the username and password as guest.
 
 
 
+******************************************************** 10.Exchange Types  ********************************************************************
 
+When using RabitMQ,Publisher never sends the Message to a Queue instead Publisher Sends the Message to an Exchange.
+Exchange is responsible for Sending Message to an appropriate Queue using Routing Keys, bindings and Header Attributes.
+Exchanges are message Routing Agents which we can define and Bindings are the one that connects an exchaneg with the Queues.
 
+Direct Exchange :
+-----------------
+In case of direct Exchange Routing Key is ame as the binding Key.
+Message is sent to exactly one Queue.
 
+	http://localhost:1014/rabitmq/direct?exchange=direct-exchange&routingKey=admin&message=Srinivas
+	
+Fanout Exchange :
+-----------------
+In case of Fanout Exchange Message is routed to all the available bounded Queues.
+Routing Key provided is completely ignored.
+This is a kind of publish subscribe design pattern.
 
+	http://localhost:1014/rabitmq/fanout?exchange=fanout-exchange&message=marketing
+	
+Topic Exchange :
+----------------
+In case of Topic Exchange Routing Key is made of . (Wildcard Characters)
+Unlike Direct Exchange Routing key of the Exchange and binding Key of an Exchange Should not be an exact Match.
+Using Regular Expression we can send the Message to Multiple Bound Queues.
 
+	http://localhost:1014/rabitmq/topic?exchange=topic-exchange&routingKey=queue.finance&message=FinanceQueue
+	
+Header Exchange :
+-----------------
+In case of Header Exchange routing key is sepcified based on the Crieria specified in the Headers instead of routing key.
+Using Header Exchange we an specify the complex criteria for selecting the Routed Queues.
 
+	http://localhost:1014/rabitmq/header?exchange=header-exchange&department=marketing&message=HeaderExchangeMarketing
+	
 
+********************************************************  11.Error Handling  ********************************************************************
 
+Retry the Messages on exception and if the exception still exists  after maximum retries then put the Message on the Dead Letter Queue
+where it can be analyzed and correted later.
+
+Dead Letter Queue :
+-------------------
+It is also known as undelivered message queue and is a holding queue for Messages that cannot be delivered to their destinations 
+due to some or other reason.
+Dead Letter Queue is service Implementation to store messages meets the followig criteria.
+
+1.Message that is sent to the Queue that does not exists
+2.Queue length limit exceeded
+3.Message length limit exceeded
+4.Message is rejected by Queue
+5.Messages reaches a threshold read count number because it is not consumed.Sometimes it is called backout Queue.
+
+	http://localhost:1015/exception/producer?empName=emp1&empId=emp001&salary=-50
+	
+
+ 
 

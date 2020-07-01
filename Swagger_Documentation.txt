@@ -1,0 +1,66 @@
+1.API First Design 								(Techprimers)
+2.Rest API Documentation Using Swagger 			(Techprimers)
+
+
+******************************************   1.API First Design : ***********************************************************************
+	
+1.To Describe the Infromation about the API at the Class Level i.e Controller
+
+	@Api(value = "Hello World Controller")
+No Need to define in Swagger 2.9.2 by Default it takes the Controller Name.
+
+2.To describe the information about the API  i.e at the Method Level
+
+	@ApiOperation(value = "Submit User Data")
+	
+3.To describe the information about the Parameter Level  i.e either @RequestBody or @PathVariable
+
+	public User createUser(@ApiParam("User information for a new User to be created") @RequestBody User user)
+	public User getUser(@ApiParam("Accepts the UserName")  @PathVariable("userName") final String userName)
+	
+	We can also specify be defining in the properties file i.e
+	public User createUser(@ApiParam("${createUser}") @RequestBody User user)
+
+4.To describe the Model Attributes that we Sent as Response
+
+	@ApiModelProperty(notes = "Name of the User")
+	private String userName;
+	
+
+5.To Add the Response Status the API we userName
+
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Success")
+	})
+
+Note : To Remove the BasicErrorController in the Swagger Home Page,Add the Swagger Configuration and the Main method in the Same Package.
+
+6.To Hidden Model Property Values we use hidden Attribute of @ApiModelProperty
+
+7.To Remove the Models in the Swagger Home Page
+
+	new Docket(DocumentationType.SWAGGER_2).ignoredParameterTypes(User.class) 
+	in the Docker Configuration
+	
+8.To Make the Path Variable as Mandatory and describe about the Path Variable
+
+	public User getUser(@ApiParam(name="userName",required = true,value = "Accepts the UserName")  @PathVariable("userName") final String userName)
+
+Scenarios to be Done :
+----------------------
+
+1.To Add Multiple Controllers to the Swagger if they are not in the Same Package.
+
+
+
+
+
+
+
+	
+
+
+
+
+ 
+
