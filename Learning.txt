@@ -9,6 +9,25 @@ nandini@27  GitHub
 bhaumik@23  ICICI
 Nandini@27  SBI
 
+Wifi UserName :
+101423210595
+Wifi Password :
+1Pvk06LW
+
+
+
+Expenses :
+----------
+50,000  Flooring
+20,000	Railing
+30,000	Pipe
+30,000	Marbles
+20,000	Tiles
+30,000 	Ceiling
+20,000  TV Set
+30,000  Kitchen
+30,000  Bed Room
+
 
 Interior Training :
 -------------------
@@ -33,6 +52,7 @@ Term Policy Details :
 MVN Command :
 -----------
 mvn install:install-file -Dfile=D:\\Software\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
+<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 
 Coding Practice :
 *****************
@@ -1216,10 +1236,28 @@ Spring Cloud Sleuth																			()
 
 -----------------------------------------   July  -----------------------------------------------------
 
-Docker Swarm																				()
-npm (Code Evolution)                                                          				()
-Kubernetes Beginners																		()
+Docker Basics																				()
 Design Patterns																				()
+
+Service Discovery																			(Done)
+Hystrix																						()
+Spring Cloud Gateway																		()
+Spring Cloud Sleuth/Zipkin																	()
+Spring Cloud Configuration																	()
+Feign Client																				()
+Consul																						()
+Spring Boot Admin																			()
+Spring Cloud Stream																			()
+Spring CLoud Bus																			()
+
+Version in Swagger																			()																											
+Order of API in Swagger                                                                     ()
+All API at One Place                                                                        (Done)
+Module Wise                                                                                 (Done)
+Header and Authentication                                                                   ()
+
+Spring Security Revise 																		()
+JWT Revise																					()
 
 -----------------------------------------   August  ---------------------------------------------------
 

@@ -53,6 +53,24 @@ Scenarios to be Done :
 
 
 
+application.yaml :
+------------------
+
+documentation: 
+  baseurl: http://localhost
+  swagger: 
+    services :  
+      -
+        name: ExchangeTypes
+        url: ${documentation.baseurl}:1014/v2/api-docs?group=ExchangeTypes
+        version: 2.0
+      -
+        name: Bcrypt
+        url: ${documentation.baseurl}:3004/v2/api-docs?group=Bcrypt
+        version: 2.0
+
+
+
 
 
 
