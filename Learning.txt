@@ -37,6 +37,7 @@ Revit Architectue
 NATA 45 Days
 
 
+
 022629255555 IO-N Internet
 
 
@@ -1236,19 +1237,20 @@ Spring Cloud Sleuth																			()
 
 -----------------------------------------   July  -----------------------------------------------------
 
+Elastic Search																				()
 Docker Basics																				()
 Design Patterns																				()
 
 Service Discovery																			(Done)
+Consul																						()
+Spring Cloud Gateway																		(Done)
 Hystrix																						()
-Spring Cloud Gateway																		()
+Feign Client																				()
 Spring Cloud Sleuth/Zipkin																	()
 Spring Cloud Configuration																	()
-Feign Client																				()
-Consul																						()
 Spring Boot Admin																			()
 Spring Cloud Stream																			()
-Spring CLoud Bus																			()
+Spring Cloud Bus																			()
 
 Version in Swagger																			()																											
 Order of API in Swagger                                                                     ()
@@ -1257,7 +1259,8 @@ Module Wise                                                                     
 Header and Authentication                                                                   ()
 
 Spring Security Revise 																		()
-JWT Revise																					()
+JWT Revise and Implementation																()
+Actuator																					()
 
 -----------------------------------------   August  ---------------------------------------------------
 

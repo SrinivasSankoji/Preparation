@@ -11,19 +11,19 @@
 ********************************************************* 1.Actuator Introduction  Tech Primers  (Tech Primers)	*********************************
 
 Actuators is the Concept Created by Spring Boot to Monitor the Production Application.
-Monitoring the Process,Check the Health,Whether the Application is up or Not,
+Monitoring the Process,Health Chec i.e Whether the Application is up or Not,
 Database Connection is Up or Not,database Connection is Successful inside the Process or Not,Heap Size i.e Space in the Particular JVM.
 All these are Taken Care by Actuator.
 Spring Boot Internally is a Web Application.
-Spring Boot has Created a Library which Exposes Some Rest End Points so that Different Monitoring Tools use Those Rest End Points and
-get the Data out of those Rest End Points.
+Spring Boot has Created a Library which Exposes Some Rest End Points 
+so that Different Monitoring Tools use Those Rest End Points and get the Data out of those Rest End Points.
 By Default Spring Boot Actuator is Security Based and they have Some Security Restrictions.
 We can Disable them by Using 
 		
 		#management.security.enabled=false   and is Deprecated Method
 		
 By Default Health and Info Actuators are Enabled.
-All the Actuators are Disabled By Default and we Need to Enable Them By Using 
+All the Actuators are Disabled By Default and we can to eable them by Using 
 
 	management.endpoints.web.exposure.include=*
 	
@@ -97,8 +97,8 @@ To See all the Actuator End Points
 ************************************************* 3.Custom Health Check Using Actuator (ChargeAhead) *************************************************
 
 Health Actuator is Used to Check the Status of the Application.
-Consider the Scenario If the Application is accessing any Third Party Application and 
-If we want to Check whether the Applications is Up or Not We need to Implement Custom Health End Point.
+Consider the Scenario If the Application is accessing any third Party application and 
+If we want to Check whether the Applications is up or not We need to Implement Custom Health End Point.
 
 		try {
 		URL url=new URL("https://www.google.com");
