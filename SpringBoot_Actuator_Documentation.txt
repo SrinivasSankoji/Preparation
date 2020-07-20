@@ -9,7 +9,16 @@
 8.Spring Boot Actuator												(Calicoder)					[13-JUL-2020]  (Done)
 9.Spring Boot Promotheus  (Calicoder)								(Calicoder)					[20-JUL-2020]  ()
 10.Spring Boot Promotheus (JournalDev)								(JournalDev)				[20-JUL-2020]  ()
-11.Monitoring Microservice with Prometheus and Grafana				(JavaTechie)				[20-JUL-2020]  ()
+11.Monitoring Microservice with Prometheus and Grafana				(JavaTechie)				[20-JUL-2020]  (Done)
+
+
+
+*********************************************************  Implementation ***********************************************************************
+
+Refresh every Http Request
+Multiple Microservices
+Custom Actuator
+
 	
 
 ********************************************************* 1.Actuator Introduction  Tech Primers  (Tech Primers)	*********************************
@@ -223,6 +232,11 @@ we need to remove the custom End Point Defined inside configuration File i.e
 
 
 
+***************************************** 7.Spring Boot - Actuator in Spring Boot 2.0 and 1.0 (Melardev) ****************************************
+
+
+
+
 ***************************************** 8.Spring Boot Actuator (Calicoder)	*****************************************************************
 
 Spring Boot Actuator Module helps us to monitor and  manage the Spring Boot Application by providing production ready Features like health chekup,auditing,metrics and
@@ -421,7 +435,33 @@ Open the Promotheus in the Browser
 	http://192.168.2.3:9090
 	
 
+Configuring Graphana Server Using Docker :
+------------------------------------------
+
+Pull the Graphana image from Docker Hub
+
+	docker run -d --name=grafana -p 3000:3000 grafana/grafana
 	
+Enter the Graphana URL in the Browser 
+
+	http://localhost:3000 
+	
+and Enter the username and password as admin.
+
+Then add the Promotheus Data Source in Graphana i.e 
+
+	http://192.168.2.3:9090/
+	
+
+
+
+
+
+
+
+
+
+
 
 	
 
