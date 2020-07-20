@@ -6,24 +6,28 @@
 5.Micro services with Spring Boot Actuator Two        				(Green Learner)				[26-JAN-2020]  (Done)
 6.Spring Boot 2 x Actuator											(JavaTechie)				[26-JAN-2020]  ()
 7.Spring Boot - Actuator in Spring Boot 2.0 and 1.0 				(Melardev)					[26-JAN-2020]  ()
-
+8.Spring Boot Actuator												(Calicoder)					[13-JUL-2020]  (Done)
+9.Spring Boot Promotheus  (Calicoder)								(Calicoder)					[20-JUL-2020]  ()
+10.Spring Boot Promotheus (JournalDev)								(JournalDev)				[20-JUL-2020]  ()
+11.Monitoring Microservice with Prometheus and Grafana				(JavaTechie)				[20-JUL-2020]  ()
+	
 
 ********************************************************* 1.Actuator Introduction  Tech Primers  (Tech Primers)	*********************************
 
 Actuators is the Concept Created by Spring Boot to Monitor the Production Application.
-Monitoring the Process,Health Chec i.e Whether the Application is up or Not,
+Monitoring the Process,Health Check i.e Whether the Application is up or Not,
 Database Connection is Up or Not,database Connection is Successful inside the Process or Not,Heap Size i.e Space in the Particular JVM.
 All these are Taken Care by Actuator.
 Spring Boot Internally is a Web Application.
-Spring Boot has Created a Library which Exposes Some Rest End Points 
-so that Different Monitoring Tools use Those Rest End Points and get the Data out of those Rest End Points.
-By Default Spring Boot Actuator is Security Based and they have Some Security Restrictions.
+Spring Boot has Created a library which Exposes Some Rest End Points.
+so that Different Monitoring tools use these Rest End Points and get the Data out of those Rest End Points.
+By Default Spring Boot Actuator is Security based and they have Some Security Restrictions.
 We can Disable them by Using 
 		
 		#management.security.enabled=false   and is Deprecated Method
 		
 By Default Health and Info Actuators are Enabled.
-All the Actuators are Disabled By Default and we can to eable them by Using 
+All the Actuators are not exposed  by default and we can to expose them by Using 
 
 	management.endpoints.web.exposure.include=*
 	
@@ -39,7 +43,7 @@ Health :
 	
 Health Provides the Health of the Application.	
 We can also Implement Custom Health Indicator By Using  HealthIndicator Interface .
-To Enable or Disable all the Spring Boot Given Health Indicators we use the Property
+To enable or disable all the Spring Boot given Health Indicators we use the Property
 
 	management.health.defaults.enabled=false
 	
@@ -56,7 +60,7 @@ To Get The Complete Information of the Health Actuator we need to define the Pro
 env :
 -----
 Displays the Sensitive Information of the Application.
-System Properties,Server Port,System Management and also the Properties we Defined inside the Properties File.
+System Properties,Server Port,System Management and also the properties we Defined inside the Properties File.
 
 metrics :
 ---------
@@ -64,7 +68,7 @@ Displays Information about the Processor ,Thread State,Heap State,Garbage Collec
 
 Trace :
 -------
-Displays the Information about the Rest End Point that has been Accessed By The User.
+Displays the Information about the Rest EndPoint that has been called/accessed in an Application.
 
 Heap Dump :
 -----------
@@ -74,10 +78,11 @@ Thread Dump :
 
 http.server.requests :
 ----------------------
-If We Want to implement a Custom Actuator then we Need to Implement HealthIndicator Interface and we Need to Override the Method.
+
 
 Creating Custom End Point inside Actuator Using @EndPoint :
 -----------------------------------------------------------
+If We Want to implement a Custom Actuator then we Need to Implement HealthIndicator Interface and we Need to Override the Method.
 We Can also Create a Custom End Point By Using @EndPoint Annotation apart from Spring Boot Provided End Points
 and we Can also Monitor that Particular End Point.
 
@@ -96,12 +101,12 @@ To See all the Actuator End Points
 
 ************************************************* 3.Custom Health Check Using Actuator (ChargeAhead) *************************************************
 
-Health Actuator is Used to Check the Status of the Application.
+Health Actuator is Used to Check the Status of an Application.
 Consider the Scenario If the Application is accessing any third Party application and 
 If we want to Check whether the Applications is up or not We need to Implement Custom Health End Point.
 
 		try {
-		URL url=new URL("https://www.google.com");
+		URL url=new URL("https://www.google.com");/.
 			HttpURLConnection connection=(HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.connect();
@@ -117,13 +122,17 @@ If we want to Check whether the Applications is up or not We need to Implement C
 		} catch (IOException e) {
 			return Health.down().withDetail("Error", "Service UnAvailable").build();
 		}
+		
+		http://localhost:9876/nextgenops/health
+		
+		http://localhost:9876/nextgenops
 
 ************************************************* 4.Micro services with Spring Boot Actuator One (Green Learner) ********************************************
 
 Actuator End Points Monitor and Interact with our Application.
-By Default Health and Info are Enabled.
+By Default Health and Info are enabled.
 
-To get The Complete Information of Info End Point,Add the Below Properties.
+To get The Complete Information of Info EndPoint,Add the Below Properties in properties File.
 		
 		info.app.encoding=UTF-8
 		info.app.java.source=1.8
@@ -134,16 +143,17 @@ If we Want to Change the Context Path of Spring Boot Given Actuator,Then Define 
 
 		management.endpoints.web.base-path=/nextgenops
 
-By Default all the End Points are Enabled except shutDown.
-To Enable or Disable the Particular End Point we use
+By Default all the End Points are enabled except shutDown.
+To enable or disable the Particular End Point we use
 
-		management.endpoint.metrics.enabled=true
+		management.endpoint.metrics.enabled=false
 		
-To Disable all the End Points,We use the Property
+To disable all the End Points,We use the Property
+
 		management.endpoints.enabled-by-default=false
 
-Some of the End Points Contain Sensitive Information and Careful Consideration Should be Given About When to expose them.
-To Include which End Points are Exposed Use the Following Property.
+Some of the End Points Contain Sensitive Information and Careful Consideration Should be given About When to expose them.
+To Include which End Points are exposed use the Following Property.
 		
 		management.endpoints.web.exposure.include=health,Info
 		
@@ -164,13 +174,12 @@ We Can Refresh the Cache by Using
 		
 ************************************************* 5.Micro services with Spring Boot Actuator Two  (Green Learner)****************************************
 
-There are Number of End Points Provided  by Spring Boot However We Can write our own End Points in two Ways.
+There are Number of end Points Provided  by Spring Boot However We Can write our own End Points in two Ways.
 
 1.@EndPoint(id = "custom-endpoint")
 2.@RestControllerEndpoint(id = "rest-controller-endpoint")
 
-A Class Annotated with @EndPoint and its  Methods Annotated with @ReadOperation,@WriteOperation and @DeleteOperation
-are Automatically Exposed over JMX and Web Application.
+A Class Annotated with @EndPoint and its  Methods Annotated with @ReadOperation,@WriteOperation and @DeleteOperation are Automatically exposed over JMX and Web Application.
 We Can also have Technology Specific End Points i.e @JmxEndPoint and @WebEndPoint.
 If we Want to access Web Framework Specific Functionality,We Can Implement @Controller or @RestController End Point.
 
@@ -185,9 +194,17 @@ If we Want to access Web Framework Specific Functionality,We Can Implement @Cont
 			{
 				return new Greeting(counter.incrementAndGet(),"Hello "+name);
 			}
+			
+			@ReadOperation
+			public String userAppEndPointByName(@Selector String name) {
+				return "This is user management application, reporting from Mars!! All OK !!" + name;
+			}
 		}
-
+		
 We Can also Implement the Custom End Point By Using @RestControllerEndpoint(id = "rest-controller-endpoint")
+If we want to expose only the custm endpoints we use
+	
+	management.endpoints.web.exposure.include=custom-endpoint,rest-controller-endpoint
 
 
 Securing End Points :
@@ -202,6 +219,213 @@ we need to remove the custom End Point Defined inside configuration File i.e
 
 
 ***************************************** 6.Spring Boot 2 x Actuator (JavaTechie) ***************************************************************
+
+
+
+
+***************************************** 8.Spring Boot Actuator (Calicoder)	*****************************************************************
+
+Spring Boot Actuator Module helps us to monitor and  manage the Spring Boot Application by providing production ready Features like health chekup,auditing,metrics and
+http tracing etc.
+Actuator also integrates with external application monitoring systems like Promotheus,Graphite,DataDog,InFlux,Wavefront,New Relic etc.
+Actuator uses Micrometer, an application metrics facade to integrate with the external application monitoring systems.
+
+	http://localhost:8097/actuator
+	
+By default Health and Info end points are exposed over http.
+Some of the useful Actuator End points are 
+
+1.auditevents
+2.info	
+3.health	
+4.metrics	
+5.loggers	
+6.logfile	
+7.httptrace	
+8.env	 
+9.flyway	 
+10.liquidbase	
+11.shutdown	
+12.mappings	
+13.scheduledtasks	
+14.threaddump	
+15.heapdump
+
+Enabling and Disabling Actuator Endpoints :
+-------------------------------------------
+By default all the end points are enabled except the shutdown end point.
+We can enable or disable the Actuator end point by using the property 
+
+	management.endpoint.shutdown.enabled=true
+	
+
+Exposing Actuator Endpoints :
+-----------------------------
+By default all the actuator end points are exposed over JMX but only Health and Info are exposed over HTTP.
+To expose the Actuator end points over HTTP we use 
+
+	management.endpoints.web.exposure.include=health,info
+	management.endpoints.web.exposure.exclude=metrics
+	
+1.Exploring Health Actuator endpoint :
+**************************************
+
+Health end point checks the health of an Application by combining Several Health Indicators.
+Spring Boot Actuator comes with several pre define Health Indicators like 
+
+Datasource Health Indicator
+DiskSpace HealthIndicator
+Mongo HealthIndicator
+Redis HealthIndicator
+Cassandra HealthIndicator
+
+If the Application uses Redis then Redis HealthIndicator will be used as a part of Health Check Up.
+We can disable the particular Health Indicator by using
+
+	management.health.mongo.enabled=false
+	
+By Default all these Health Indicators are enabled and used as a part of Health Check Up Process.
+
+Displaying detailed health information :
+----------------------------------------
+By Default Health Indicator Shows the Simple UP or DOWN.
+To get the Complete details including the status of every Health Indicator that was a part of Health Check Up Process we use
+
+	management.endpoint.health.show-details=always
+
+
+Creating a Custom Health Indicator :
+------------------------------------
+We can create a Custom Health Indicator by implementing HealthIndicator Interface or by Extending AbstractHealthIndicator Class.
+
+		@Component
+		public class CustomHealthIndicator extends AbstractHealthIndicator{
+
+			@Override
+			protected void doHealthCheck(Builder builder) throws Exception {
+				builder.up().withDetail("JAM", "JAM Application is Up")
+							.build();
+			}
+
+		}
+
+
+2.Exploring Metrics Actuator endpoint :
+***************************************
+Metrics EndPoint lists all the Metrics that are available metrics for us to Track.
+
+	http://localhost:8097/actuator/metrics
+	
+
+3.Exploring Loggers Actuator endpoint :
+***************************************
+Loggers EndPoint displays a List of Configured Loggers in the Application with their corresponding Logging Levels.
+
+	http://localhost:8097/actuator/loggers
+
+We can also view the details of an individual Logger by passing the name in the URL like 
+
+	http://localhost:8097/actuator/loggers/ROOT
+	
+To Change the Log Level at run time,make a POST Request by Using the URL with the following payload.
+
+	http://localhost:8097/actuator/loggers/ROOT
+	
+	{
+	configuredLevel: "DEBUG"
+	}
+	
+
+3.Exploring INFO Actuator endpoint :
+************************************
+Info EndPoint displays arbitary information about our Application.
+It  obtains build information from META-INF/build-info.properties,
+GIT infromation from git.properties etc.
+
+we can add properties under the key info in application.properties :
+info.app.name=@project.name@
+info.app.description=@project.description@
+info.app.version=@project.version@
+info.app.encoding=@project.build.sourceEncoding@
+info.app.java.version=@java.version@
+	
+	http://localhost:8097/actuator/info
+
+
+***************************************** 9.Spring Boot Promotheus  (Calicoder)	 	 *****************************************************************
+
+
+
+
+
+***************************************** 10.Spring Boot Promotheus  (JournalDev)	 *****************************************************************
+
+User the Command to pull the promotheus image from docker
+
+	$ docker pull prom/prometheus
+	
+
+
+*****************************************  11.Monitoring Microservice with Prometheus and Grafana (JavaTechie)	**************************************
+
+Micro Meter :
+-------------
+Below is the Micrometer registry for Promotheus.
+
+	<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+	</dependency>
+	
+Micro Meter provides a simple facade to integrate actuator metrics with external monitroing systems and allowing us to instrument JVM Based Applications.
+It supports several monitoring systems like Netflix Atlas,AWS CloudWatch,DataDog,Influx Data,SignalFX,Graphite,WaveFront,Promotheus etc.
+
+Promotheus :
+------------
+Promotheus is an open source monitoring system that was originally built by sound cloud.
+It consists of 3 core components
+
+1.Data Scarpper that pulls metrics data over HTTP periodically at a Configured interval.
+2.Time Series database taht stores all the metrics data.
+3.Simple User Interface where we can visualize,query and monitor all the metrics.
+
+
+Graphana :
+----------
+Graphana allows us to bring data from various sources like Elastic Search,Promotheus,Graphite,Influx DB etc and visualize them with beautiful Graphs.
+Graphana allows us to set alert rules based on metrics data.
+When an alert changes state it can notify over email,slack or various other Channels.
+
+
+Configuring Promotheus Server Using Docker :
+--------------------------------------------
+
+Pull the Promotheus from Docker 
+
+	docker pull prom/prometheus
+	
+To Check whether the image is availaible or not
+
+	docker image ls
+
+To check the promotheus Host Ip on Docker
+
+	docker inspect container Id
+	
+To run the Promotheus Server
+	
+docker run -d --name=prometheus -p 9090:9090 -v D:\Jenkins_Workspace\actuator\src\main\resources\prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
+Open the Promotheus in the Browser
+
+	http://192.168.2.3:9090
+	
+
+	
+
+	
+
+
 
 
 

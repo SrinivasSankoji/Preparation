@@ -18,15 +18,7 @@ Wifi Password :
 
 Expenses :
 ----------
-50,000  Flooring
-20,000	Railing
-30,000	Pipe
-30,000	Marbles
-20,000	Tiles
-30,000 	Ceiling
-20,000  TV Set
-30,000  Kitchen
-30,000  Bed Room
+Bricks 20,000
 
 
 Interior Training :
@@ -1238,6 +1230,8 @@ Spring Cloud Sleuth																			()
 -----------------------------------------   July  -----------------------------------------------------
 
 Elastic Search																				()
+Actuator																					()
+WebHook Event Driven Architecture															()
 Docker Basics																				()
 Design Patterns																				()
 
@@ -1253,14 +1247,14 @@ Spring Cloud Stream																			()
 Spring Cloud Bus																			()
 
 Version in Swagger																			()																											
-Order of API in Swagger                                                                     ()
+Order of API in Swagger                                                                     (Done)
 All API at One Place                                                                        (Done)
 Module Wise                                                                                 (Done)
-Header and Authentication                                                                   ()
 
+Header and Authentication Swagger                                                           ()
 Spring Security Revise 																		()
 JWT Revise and Implementation																()
-Actuator																					()
+
 
 -----------------------------------------   August  ---------------------------------------------------
 

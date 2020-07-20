@@ -1,0 +1,25 @@
+
+#.Java Techie
+1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)     				[17-JUL-2020]  ()
+#.Byte Programming
+2.MicroServices | Distributed Logging & Tracing								(Byte Programming)				[17-JUL-2020]  ()
+#.Green Learner
+3.	
+
+
+**********************************  1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)  **********************************************
+
+We need to add the Configuration to push the tracing details to the Zipkin Server.
+Define the AlwaysSampler in the Configuration.
+
+	@Bean
+	public Sampler defaultSampler() {
+		return  Sampler.ALWAYS_SAMPLE;
+	}
+	
+If we call the Rest API directly then both Trace Id and Sapn Id will be the same.
+
+
+
+
+ 
