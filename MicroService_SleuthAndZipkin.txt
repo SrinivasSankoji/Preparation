@@ -34,19 +34,19 @@ and Measure the Processing time in Each Micro Service that is involved in respon
 The Trace Event for One Request must be Collected,Grouped Together and presented in an Understandable Way.
 This is What Exactly Zipkin About. 
 
-Zipkin Originate from Twitter and become a Open Source Project in GitHub.
+Zipkin Originate from Twitter and become an Open Source Project in GitHub.
 Spring Cloud Sleuth Can be Used in Micro Services that Simplifies the Creation of Trace Events and Sending them to Zipkin Server.
 
 2.Trace Id and Span Id :
 ------------------------
-Trace represents the Whole processing Request.
+TraceId represents the Whole processing Request.
 Span Represents the processing time that takes part in each Micro Service.
 All Trace Events i.e Whole Processing request Will share a unique Trace Id and each Individual Processing will share a Unique Span Id.
 
 3.Spring Cloud Sleuth :
 -----------------------
-Spring Cloud Sleuth Intercepts Incoming Requests and Picks up the Trace id form the Incoming Request or Create a New Trace Id If None Was Specified.
-For OutGoing Request it Fills Out The Trace Id In the Outgoing Message.
+Spring Cloud Sleuth Intercepts Incoming Requests and Picks up the TraceId from the Incoming Request or Create a New TraceId If None Was Specified.
+For OutGoing Request it fills Out The Trace Id In the Outgoing Message.
 Both Synchronous and Asynchronous Messages are Supported.
 HTTP for Synchronous Request and Spring Cloud Stream Binder For Asynchronous Messages.
 Spring Cloud Sleuth also handles the Creation of Span and Span Id and Sends them to the Zipkin Server.
@@ -68,15 +68,18 @@ Present a Restful and J son Based API For Searching and Tracing the Events Progr
 Store Trace Events in Memory.
 
 It is also Possible to Configure a Zipkin Server to store the trace events in Database Lile MySql and Elastic Search.
+Download the Zipkin jar from Maven Repository and run the command java -jar zipkin-server-1.30.3-exec.jar
+
+		http://localhost:9411/zipkin/
 
 5.Sending Trace Events Using Spring Cloud Sleuth :
 --------------------------------------------------
-To Enable Our Micro Services to Send the Trace Events to the Zipkin Server Add the Below Dependencies.
+To Send the Trace Events to the Zipkin Server Add the Below Dependencies.
 
 Spring-Cloud-Starter-Sleuth
 Spring_Cloud-Sleuth-Stream
 
-These Dependencies Will Enable Micro Services to Stream Tracing Events Asynchronously to the Zipkin Server over Event Bus.
+The above dependencies Will Enable Micro Services to Stream Tracing Events Asynchronously to the Zipkin Server over Event Bus.
 To Ensure We Send all the Trace Messages to Zipkin Server,Add the Below Configuration to the Common Config File i.e application.yml
 
 spring.sleuth.sampler.percentage: 1.0

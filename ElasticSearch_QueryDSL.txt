@@ -11,12 +11,12 @@ Query DSL consists of two Types of Clauses.
 
 Leaf Query Caluses :
 --------------------
-Leaf Query Clauses look for a Particular value in a Particular Field such as must,term,range etc.
+Leaf Query look for a Particular value in a Particular Field such as must,term,range etc.
 These Queries can be used by Themselves.
 
 Compound Query Clauses :
 ------------------------
-Compound Query Clause combines other Leaf or Compound Query to alter their behavior.
+Compound Query combines other Leaf or Compound Query to alter their behavior.
 
 
 ***************************************************************   2.Query and Filter Context  *****************************************************************************

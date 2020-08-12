@@ -1,37 +1,38 @@
-Logging in Spring Boot Java Brains			[22-APR-2020]  (Done)
-Custom Logging in Spring Boot				[22-APR-2020]  ()
-Logging Using Elastic Search				[22-APR-2020]  ()
-Logging Best Practices						[22-APR-2020]  (Done)
-SL4J ,Log4J and Logback						[22-APR-2020]  ()
-Logging Properties							[22-APR-2020]  ()
-Execution Time Request						[22-APR-2020]  ()
+1.Logging in Spring Boot Java Brains	  (Java Brains)					[22-APR-2020]  (Done)
+2.Custom Logging in Spring Boot											[22-APR-2020]  ()
+3.Logging Using Elastic Search											[22-APR-2020]  ()
+4.Logging Best Practices			      (Brandan Jones)				[22-APR-2020]  (Done)
+5.SL4J ,Log4J and Logback												[22-APR-2020]  ()
+6.Logging Properties													[22-APR-2020]  ()
+7.Execution Time Request												[22-APR-2020]  ()
+8.Logback in Spring Boot				  (Baledung)				 	[05-AUG-2020]  (Done)
 
-*************************************  Logging in Spring Boot Java Brains ***************************************************
+*************************************  Logging in Spring Boot (Java Brains)***************************************************
 
 Logging Framework allows us to configure the behavior rather than doing the things in one way.
 we can set the Log Level,store the Logs into a File,Database etc.
-Spring Boot comes with its own Logging framework when we add the starter dependency.
+Spring Boot comes with its own Logging framework and we need to add the starter dependency.
 Logging is Built in with Many Starter Dependencies.
-Basic  way to add the Logger is to use the LoggerFactory and it has the Method Called getLogger that accepts the Class as an argument.
+Basic  way to add the Logger is to use the LoggerFactory and it has a Method Called getLogger that accepts the Class as an argument.
 SLF4J is the standard Logging Framework that Spring Boot Internally Uses.
 
 	Logger logger=LoggerFactory.getLogger(LoggingController.class);
 	
-Spring Boot By default Provides the SLF4J Interface For Logging and the Default Implementation is Logback.
-When we add spring-bbot-starter-web by Default It adds spring-bbot-starter-logging.
-spring-bbot-starter-logging depends on spring-jcl(Spring Commons Logging Bridge)
+Spring Boot by default provides the SLF4J Interface for Logging and the default implementation is Logback.
+When we add spring-boot-starter-web by default It adds spring-boot-starter-logging.
+
 Logback is a Framework and is a Kind of Successor to the Log4J Framework.
 Here we are Calling the Logging API Using SLF4J and SLF4J delegating the work to Logback for Logging.
 
 We can Configure the Log Levels and the default log Level is info.
-we can customize the Log level by configuring at the property Level.
+we can customize the Log level by configuring at the property Level i.e
 
 	logging.level.root=trace
 	
 Here even the Spring Framework logs will be displayed.
-We can restrict to package level Logging by configuring the property.
+We can restrict to package level Logging by configuring at the property Level.
 
-we have to specify lot of properties in application.properties  for Logging. 
+we have to specify lot of properties in application.properties for Logging.
 To avoid the usage of more configuration in properties file we can also use the xml configuration.
 Spring Boot looks for certain XML Files in the Classpath.
 
@@ -39,20 +40,18 @@ Spring Boot looks for certain XML Files in the Classpath.
 	logback.xml
 	
 logback.xml is the standard way of configuring the Logback for Logging Framework.
-Here we can also restrict the complex XML by inheriting.
 
+*************************************  Logging Best Practices  (Brandan Jones) ***************************************************
 
-*************************************  Logging Best Practices  Brandan Jones ***************************************************
-
-Logging provides the ability to go back and Investigate.
+Logging provides the ability to go back and investigate.
 Best Practice is to use the Log Levels appropriately.
 we can log things at different Levels.
 
 TRACE --> DEBUG --> INFO --> WARN --> ERROR
 
 We can also implement some custon Logging Levels.
-It is Important we are logging at the Right Level.
-Some thing that is a common occurence and normal and expected should not be logged.
+It is Important we are logging at the right Level.
+Some thing that is a common occurence,normal and expected should not be logged.
 ERROR Should not be logged as INFO Similarly INFO Should not be Logged as ERROR.
 Use the Severity Levels to help us Shift through Logs and Find Out What actually Important and what caused the Issue.
 
@@ -62,7 +61,7 @@ An ERROR will not be logged very Frequently in the Application where as TRACE an
 We can have the General Log File that Contains Everthing.
 We can also have the Log File that is specific to Severity and helps to narrow down the Issue.
 If we have a Try Catch Block or an Exception always should have a Log Statement in that even we dont need it.
-Dont Show the DEtailed Exception to the Users.
+Dont Show the detailed Exception to the Users.
 
 ERROR :
 -------
@@ -82,39 +81,179 @@ DEBUG will give the More Granular Level and is used only in Development.
 
 TRACE :
 -------
-TRACE is Very Fine Grained level which shows entry and Exit.
+TRACE is very fine Grained level which shows entry and Exit.
 
 By Default Spring Boot logs to the Console.
-If we want to log to the File or Multiple Files we use the Configuration.
+If we want to log to Multiple Files we use the Configuration.
 
 	Logger logger=LoggerFactory.getLogger(LoggingController.class);
 	
 
-***************************************************************************************************************  
+************************************************************* 8.Logback in Spring Boot (Baledung) *****************************************************  
 
+1.Logback Overview :
+--------------------
+Logback is a replacement for its predecessor Log4j.
+Logback offers faster implementation than Log4j,provides more options for configuration and more flexibility in archiving old log files.
 
+2.Logback Architecture :
+------------------------
+Logger is a context to log a Message.
+This is the Class that the application intercats with,to create log Messages.
 
+Appender places log messages to their final destination.Logger can have more than one Appender.
+Generally Appender is being attached to the text Files.
 
+Layout prepares the output for messaging.
+Logback supports the creation of custom classes for formatting Messages as well as robust configuration options for the existing ones.
 
+3.Setup :
+---------
+Logback uses the Simple Logging Facade for Java (SLF4J) as its native interface.
+We need to add Logback and Slf4j to the pom.xmls
+Logback also requires logback-classic on classpath at runtime.
 
+4. Basic Example and Configuration :
+------------------------------------
 
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
  
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
 
 
+5. Logger Contexts :
+--------------------
 
+Creating a Context :
+--------------------
+To Log a Message to a Logback,we need to initialize Logger from Logback or Slf4j in Application.
+
+	private static final Logger logger = LoggerFactory.getLogger(Example.class);
+	
+Then use the Logging Context i.e 
+
+	logger.info("Example log from {}", Example.class.getSimpleName());
+
+Using a Context :
+-----------------
+
+
+Parameterized Messages :
+------------------------
+Most useful log Messages requires appending Strings.This requires allocatig Memory,Serializing Objects,Conactenating Strings and potentially Cleanig up the Grabage Collector.
+Logback offers an alternative with its parameerized Messages.
+
+	log.debug("Current count is {}", count);	
+	
+The braces {} will accept any Object and uses its toString() to build a Message only after verifying that the log Message is required.
+
+6. Detailed Configuration :
+---------------------------
+By Default Logback prints the Log Message to the Console.This is the default behavior of Logback.
+If it does not find Configuration File,it creates a ConsoleAppender and associates it with the root Logger.
+
+Locating Configuration Information :
+------------------------------------
+Configuration File can be placed in the Classpath and can be named either logback.xml or logback-test.xml.
+Logback Searches for the file named logback.xml or logback-test.xml in the Classpath.
+If the Library does not find the details,it will use the Java Service Loader to locate an Implementation of the 
+
+	com.qos.logback.classic.spi.Configurator
+	
+and configure itself to log the output directly to the console.
+
+Reloading Configuration Automatically :
+---------------------------------------
+Reloading Logging Configuration while an application is running is a powerful troubleshooting tool.
+Logback makes this possible with the scan parameter.
+
+	<configuration scan="true">
+		-----
+	</configuration>
+	
+Default Behavior is to scan the configuration file changes for every 60 Seconds.
+We can Modify this interval by adding scan period.
+
+
+	<configuration scan="true" scanPeriod="15 seconds">
+	----
+	</configuration>
+	
+Variable Substitution :
+-----------------------
+Logback Configuration File supports Variables.
+We can define the variables inside the Configuration Scripts or externally.
+properties are declared in a <property> tag in configuration scripts.
+But they are also available from outside resources such as system properties.
+
+	<property name="LOG_DIR" value="/var/log/application" />
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/tests.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
 	
 
+7. Appenders :
+--------------
+Loggers pass Logging events to the Appenders and Appenders do the actual work of Logging.
+We usually think Logging as Something that goes to the File or Appender.
+Logback is capable of much more.
+Logback core provides several useful Appenders.
 
+ConsoleAppender :
+-----------------
+ConsoleAppender appends message to System.out or System.err
+It uses OutputStreamWriter to buffer the I/O.
 
+FileAppender :
+--------------
+FileAppender appends messages to a File.
+Logback supports broad range of Configuration Parameters.
+FileAppender is configured with a File Name via <File> Tag.
+<append> Tag instructs the appender to append to an existing file rather tha truncating it.
+If we run the application several times,logging output is appended to the same  file.
 
+The descendant Logger inherits the root Logger's association.
+Appnders are Cumulative.
 
+By adding additivity="false" to the logger,it will not log to the console and neither any of its descendants.
 
+RollingFileAppender :
+---------------------
+Appending the log messages to the same file is not the behavior we need.
+We want files to "roll" based on time,log file size or a combination of both.
+For this we use RollingFileAppender.
 
-	
-	
+Custom Appenders :
+------------------
+We can create custom appenders by extending one of Logback's base appender Classes.
 
+8. Layouts :
+------------
+Layout format the Log Messages.Layout can also be extensible and we can create on our own.
+In the previous examples we have used Pattern Layout.
 
-		
+Configuration Script contains the configuration for PatternLayoutEncoder.
+We pass an encoder to the appender and encoder internally uses the PatternLayout to format the messages.
+PatternLayout recognizes conversion words with %.
+
+%d[HH:mm:ss.SSS] - a timestamp with hours,minutes,seconds and milliseconds
+%thread - Thread name generating the log message
+%-5level - level of logging event and padded to 5 characters
+%logger {36} - name of the logger and truncated to 36 characters
+%msg%n - log messages followed by the platform dependent line separator character.
+
 
 
 

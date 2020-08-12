@@ -3,6 +3,7 @@
 3.Logstash to import CSV File				[17-MAY-2020]  (Done)
 4.Rest API -Search                          [18-MAY-2020]  (Done)
 5.Stashing First Search                     [18-MAY-2020]  (Done)
+
 6.Basics of Search                          [18-MAY-2020]  (Done)
 7.Query and  Context                  		[18-MAY-2020]  (Done)
 8.Our Own Query and Filter Query            [18-MAY-2020]  (Done)
@@ -166,7 +167,7 @@ If we want to insert data into Elastic Search from Kibana refer the site kaggle.
 Download the CSV Data which is of 7 MB.
 we get the AB_NYC_2019.csv when we extract the Zip File.
 
-Now we need to create a conf file and add the csv file to the filter attribute of conf file.
+Now we need to create a conf file and add the csv file to the file attribute of conf file.
 If we have Multiple Files then add the * at the Last.
 
 input  :
@@ -343,7 +344,7 @@ we are going to perform an event i.e standard input.
 Refer the below Link 
 
 	https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-index.html
-	
+		
 To start about how Searh works we need to index some data.
 Here we index the bulk Data.
 Download the account.json
@@ -525,12 +526,10 @@ Consider the case we have a requirement based on priority and also give the nega
 	  }
 	}
 
- 
 Requirement 3 :
 ---------------
 Query to Search for the address that includes church and lane.
-Make sure they have the same Relavance.
-
+Make sure they have the same relavance.
 	
 	GET /bank/_search
 	{
@@ -545,21 +544,5 @@ Make sure they have the same Relavance.
 		}
 	  }
 	}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

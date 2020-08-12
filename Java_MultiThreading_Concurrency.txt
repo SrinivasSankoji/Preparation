@@ -427,8 +427,7 @@ To get the Result Submitted by the Task we use Callable Interface.
 	}
 
 execute() expects a Runnable Task where as submit() expects a Callable Task.
-submit() returns Future Object i.e Thread Pool Provides a Place Holder for the Future Object and Once the Value is returned 
-Place Holder is Filled with the New Value.
+submit() returns Future Object i.e Thread Pool Provides a Place Holder for the Future Object and Once the Value is returned Place Holder is Filled with the New Value.
 
 when we submit the task using submit() of ExecutorsService it will Immediately return the Future Object with Place Holder.
 we Can Perform Remaining Operations.

@@ -163,7 +163,6 @@ To update Specific Column using Update by Query
 	
 We can also add the new field to the document using update by Query.
 
-
 	POST /employees-details/_update/1
 	{
 	  "script": {
@@ -429,7 +428,7 @@ Mostly it can be used to filter out the Documents.
 	  }
 	}
 	
-If we want filter out the document with multiple values,we use trems filter.
+If we want filter out the document with multiple values,we use terms filter.
 
 	GET /newyork/_search
 	{
@@ -494,8 +493,7 @@ Prefix Query can be used to match the text that starts with the prefix.
 
 Wildcard Query :
 ----------------
-Wildcard Query can be used to match the Text with wild card 
-.
+Wildcard Query can be used to match the Text with wild card.
 
 	GET /newyork/_search
 	{
@@ -522,7 +520,6 @@ Wildcard Query does not work with Space.
 *********************************************************** 13.Index and Mapping Creation Part 1 *******************************************
 
 Analysis is converting text into Token or Terms.
-
 Consider the Scenario we have a Sentence.
 
 "A Quick Brown Fox Jumped over the Lazy Dog"
