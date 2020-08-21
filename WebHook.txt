@@ -1,0 +1,46 @@
+1.Webhook with Spring Boot and H2 Database                (dreamix)  							[20-AUG-2020]  (Done)
+2.webhook in spring webApplication                        (oodlestechnologies)					[20-AUG-2020]  ()
+3.Dialoglfow Webhook API with Spring Boot				  (javacodemonk)						[20-AUG-2020]  ()
+4.
+
+
+
+
+
+
+
+
+
+******************************************  1.Webhook with Spring Boot and H2 Database (dreamix) **********************************************
+
+What exactly is a webhook :
+---------------------------
+Webhook is one of the best ways for real time communication with an Application.
+Webhook delivers data to the Applications i.e it gets the data immideately when it occurs in an Application.
+This makes much more efficient for both provider and consumer.
+In webhook we have to register URL's which it will target an Application when the information is being streamed.
+Webhook makes a Simple HttpRequest to an Application.
+
+Where it is appropriate to use WebHook :
+----------------------------------------
+Whenever we want to extend our core product with others custom processes which communicates with our business logic in real time.
+Whenever we want to improove user experience and have an Application with an Asynchronous Architecture.
+
+Security is one of the most important things you should consider while uisng Webhook.We require the URL to use Https.
+Carefully consider the data we share.
+Think about fallback mechanism in case of a problem with internet traffic.
+If we don't have fallback Mechanism Webhook can't be used in critical business Operations.
+
+****************************************** 2.webhook in spring webApplication (oodlestechnologies)	*******************************************
+
+Webhook is nothing but a Simple HTTP call back.
+When some thing happens,HTTP POST Calls the register URL as a Simple Notification.
+Webhook is the concept that in Web Applications when certain things happen then automatic registered URL is aclled by HTTP POST to notify users on the web Application
+that requested data is changed and please review it.
+
+
+
+
+
+
+

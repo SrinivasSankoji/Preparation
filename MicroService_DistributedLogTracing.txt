@@ -1,12 +1,12 @@
 
-#.Java Techie
 1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)     				[31-JUL-2020]  (Done)
-#.Byte Programming
-2.MicroServices | Distributed Logging & Tracing								(Byte Programming)				[17-JUL-2020]  ()
-#.Green Learner
-3.	
-#reflectoring.io
-4.Tracing in Distributed Systems with Spring Cloud Sleuth					(reflectoring)					[31-JUL-2020]  ()
+2.Tracing in Distributed Systems with Spring Cloud Sleuth					(reflectoring)					[13-AUG-2020]  (Done)
+3.MicroServices | Distributed Logging & Tracing								(Byte Programming)				[17-JUL-2020]  ()
+4.																			(Green Learner)					[13-AUG-2020]  ()
+5.Logs Monitoring in Microservices using ELK								(Medium)						[13-AUG-2020]  ()
+6.Centralized logging with the ELK											(callistaenterprise)			[13-AUG-2020]  ()
+
+
 
 **********************************  1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)  **********************************************
 
@@ -16,11 +16,12 @@ Define the AlwaysSampler in the Configuration.
 	@Bean
 	public Sampler defaultSampler() {
 		return  Sampler.ALWAYS_SAMPLE;
+		
 	}
 	
 If we call the Rest API directly then both Trace Id and Sapn Id will be the same.
 
-**********************************  4.Tracing in Distributed Systems with Spring Cloud Sleuth     (reflectoring Techie)  ****************************************************
+**********************************  2.Tracing in Distributed Systems with Spring Cloud Sleuth     (reflectoring Techie)  ****************************************************
 
 If any error occurs in the upstream service,upstream service will probably log the error.
 Since the downstream service recieves the error response,it will also log the error.
@@ -29,8 +30,102 @@ The correlationid is usually referred to as traceId.
 TraceId is created when a request from outside of the system is directed at a downstream service.
 TraceId is then passed to the upstream services so that they can use them in their log entries.
 
+Activate Spring Cloud Sleuth :
+------------------------------
 Spring Cloud Sleuth is a library that supports implementing a traceId.
 Sleuth is activated by default after adding the dependency and creates a traceId for each incoming request.
+If the header x-b3-traceId of the incoming request already contains the traceId,the existing traceId will be used.
+In Outgoing requests,the traceId is put into the Header so that next upstream service can read it.
+
+	x-b3-traceId
+	
+name of the header field consists of the prefix x,which is used for custom Headers that are not part of HTTP Specification and
+b3 for "BigBrotherId" once was the name of the popular tracing UI Zipkin.
+
+Writing the Trace ID into a Log :
+---------------------------------
+Now the TraceID is available and shall be included in our log output.
+Sleuth supports this by writing the trace Id into the Mapped Diagnostic Context (MDC) of SLF4J.
+Example for Logback Configuration is 
+
+	%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%X{X-B3-TraceId:-}] %m%n
+	
+Output the Service Name :
+-------------------------
+If we are using Logback simply create a logback-spring.xml and then use the property <springProperty/> to access the environment variable like 
+spring.application.name.
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<configuration>
+		<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+		<springProperty scope="context" name="springAppName" source="spring.application.name"/>
+		<property name="CONSOLE_LOG_PATTERN"
+				  value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [${springAppName},%X{X-B3-TraceId:-}] %m%n"/>
+		<!-- appenders omitted ... -->
+	</configuration>
+	
+Output the Trace ID in Exceptions :
+-----------------------------------
+Exception Logs should include the traceId since tracing errors is a main reason for introducing the the traceId in the first place.
+Spring Boot by default cannot access the traceid because traceId are not handled by spring boot and are handled by application Server.
+Create a Custom Exception Handler that runs within the Spring Boot Context.
+Since the traceId can be accessed via MDC (Mapped Diagnostic Context) 
+
+	@ControllerAdvice
+	public class ErrorHandler {
+
+	  private Logger logger = LoggerFactory.getLogger(ErrorHandler.class);
+
+	  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	  @ExceptionHandler(Exception.class)
+	  @ResponseBody
+	  public String handleInternalError(Exception e) {
+		logger.error("internal server error", e);
+		return String.format("Internal Server Error (traceId: %s)", MDC.get("X-B3-TraceId"));
+	  }
+	}
+	
+Send the Trace ID to a Central Log Server :
+-------------------------------------------
+When using a log Server like GrayLog it is a good idea to send the traceId to the Log Server not only as a part of a message,
+but also as a seperate searchable and indexable field.
+Default format for passing log events to a Log Server is GrayLog Extended Log Format.
+
+	<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <appender name="GELF" class="me.moocar.logbackgelf.GelfUDPAppender">
+        <remoteHost>graylog.host</remoteHost>
+        <port>12201</port>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="me.moocar.logbackgelf.GelfLayout">
+                <includeFullMDC>true</includeFullMDC>
+                <staticField class="me.moocar.logbackgelf.Field">
+                  <key>serviceName</key>
+                  <value>${springAppName}</value>
+                </staticField>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="GELF" />
+    </root>
+	</configuration>
+	
+The parameter includeFullMDC includes all the MDC Fields (including traceId) as a sepearte fields in the GELF Data Structure
+so that the Log Server can store and index them in a structured Manner.
+
+ 
+**********************************  5.Logs Monitoring in Microservices using ELK (Medium)  ********************************************************************
+
+Log Management plays a very important role when we encounter an error in the Application.
+If we don't manage the logs,it will be difficult in an application especially in Microservices to find the error and Fix it.
+
+
+
+
+
 
 
 
