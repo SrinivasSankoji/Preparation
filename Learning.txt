@@ -9,10 +9,13 @@ nandini@27  GitHub
 bhaumik@23  ICICI
 Nandini@27  SBI
 
-Wifi UserName :
+Act Wifi UserName :
 101423210595
 Wifi Password :
 1Pvk06LW
+
+Airtel :
+9033888777
 
 GoDaddy.com :
 -------------
@@ -36,6 +39,7 @@ Revit Architectue
 NATA 45 Days
 
 022629255555 IO-N Internet
+9130395724 --  vijay hdfc bank
 
 Term Policy Details :
 ---------------------
@@ -50,6 +54,19 @@ MVN Command :
 mvn install:install-file -Dfile=D:\\Software\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 
+SQL Developer : 
+---------------
+$ sqlplus  /nolog
+SQL > conn sys as sysdba
+password :oracle
+SQL > ALTER USER USER_NAME ACCOUNT UNLOCK;
+
+Details :
+username : system
+password : system
+
+alter user username identified by password;
+
 Coding Practice :
 *****************
 https://hackernoon.com/	
@@ -62,10 +79,15 @@ Project
 ---------------------------- Priority   ---------------------------
 1.Job Related :
 ---------------
+Java 11/13
 Redis 
 Elastic Search
 MicroService
 Angular
+AWS/Cloud Concepts
+Docker
+Kubernetes
+GraphQL
 
 
 2.Office Related :
@@ -91,39 +113,32 @@ CSS FlexBox
 React Series
 
 
----------------------------  On line Preparation Topics  ----------
+***************************************** Free Lancer  ****************************************
 
-Java Basics : Java papers.com						[]()
-Internal vs. External Iteration						[]()
-Stream 												[]()
-Boxed Stream										[]()
-Lambda Expression									[]()
-Functional Interface								[]()
-Method References									[]()
-Java Class path										[]()
-System.out.println									[]()
-Java Array											[]()
-Java Primitive										[]()
-Java Variable										[]()
-Java Pass By Value and Pass By Reference			[]()
-Access Modifiers In Java							[]()
-Java Static											[]()
-Java Static Import									[]()
-Java Final Keyword									[]()
-Java Abstract Class and Methods						[]()
-Java Cast and Conversions							[]()
-Java Numeric Promotion								[]()
-Java This											[]()
-Java Weak Reference									[]()
-Java Clone, Shallow Copy and Deep Copy				[]()
-Java Marker Interface								[]()
-Java null and NullPointerException					[]()
-Java Annotations									[]()
-Java Variable Arguments								[]()
-Java Integer Cache									[]()
-Java Double Brace Initialization					[]()
-Java JSON Conversion Tutorial						[]()
-Java Method Reference ::							[]()
+Java BPM 
+Ninja Trader
+Java 9+ 
+Groovy 
+Spring Boot 
+Hibernate  
+PostgreSQL  
+Redis  
+RabbitMQ 
+Kafka 
+React.js 
+Spock 
+Jenkins
+Docker
+Kubernetes
+AWS
+Ansible
+Apache HTTP Server 
+NGINX 
+Apache Tomcat
+
+AWS :
+-----
+Load Balancer,CIDR Notations,IP's,Firewall,ACL,vpc etc.
  
 
 ***************************************  Developer    *****************************************
@@ -1265,21 +1280,35 @@ Micro Services                                                          					()
 PL/SQL                                                          							()
 Docker Basics																				()
 MySql Practice																				()
-Spring Security Revise 																		()
-JWT Revise and Implementation																()
+Spring Security Revise 																		(Done)
+JWT Revise and Implementation																(Done)
 Cookie based Authentication																	()
 
 WebHooks																					()
 Exteranl API Gateway																		()
 Promotheus and Graphana																		(Done)
+RabitMQ																						()
 
 Interview :
 -----------
 Design Patterns
-PL/SQL
 
 
------------------------------------------   September  ------------------------------------------------
+-----------------------------------------   September  -----------------------------------------------
+
+Cookie based Authentication																	()
+RabitMQ																						()
+PL/SQL																						()
+Java8 Revise																				()
+
+-----------------------------------------   October  -------------------------------------------------
+
+Docker Basics																				()
+Design Patterns																				()
+MicroService Architecture Concepts															()
+
+
+
 
 
 

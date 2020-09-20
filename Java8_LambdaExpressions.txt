@@ -1,10 +1,7 @@
 Modifying Variable Inside Lambda :
 ----------------------------------
-When we try to Modify the Variable inside Lambda Expression we get Compile Time Error Saying
-A variable inside Lambda Must be Final or Effective Final.
-A Keyword before a Variable Makes it Final and 
-No Final Keyword Before a Variable Makes it Effectively Final Provided we never Change the Value.
-
+When we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda Must be Final or Effective Final.
+A keyword before a variable makes it final and No final keyword before a variable makes it effectively final provided we never change the value.
 
 1.Introduction 													[27-FEB-2019]  (Done)
 2.Why Lambdas													[27-FEB-2019]  (Done)
@@ -43,10 +40,10 @@ Collections Improvement
 
 ************************************************* 2.Why Lambdas  *********************************************************************
 
-Lambdas Enables us to write Functional Programming.
+Lambdas enables us to write Functional Programming.
 We get Readable and Coincise Code.
-Easier to use API's and Libraries
-Enable Support For Parallel Processing.
+Easier to use API's and Libraries.
+Enables support For parallel processing.
 
 ************************************************* 3.Functional vs Object Oriented Programming *****************************************
 
@@ -60,10 +57,10 @@ Functional Programming can be used in certain Scenarios where we make the code m
 Some of the Problems in Object Oriented Programming are 
 
 Everything is an Object and we cannot have piece of Code or Logic that exists in Isolation.
-It has to be a Part of object associated with it.
-While Developing the Code we need to think about Problems and Each Problem is associated with an Object.
+It has to be a part of object associated with it.
+While Developing the Code we need to think about problems and each problem is associated with an Object.
 Consider the Scenario where we need a function that returns a user name.
-To achieve this we need a Class and Create an Object of that Class and then add the Function to it.
+To achieve this we need a Class and Create an Object of that Class and then add the function to it.
 
 Before Java 8 :
 	
@@ -99,9 +96,9 @@ If we do the same every time it calls the Same GreetingImpl Implementation.
 
 ************************************************* 5.Introducing Lambda Expressions *************************************************
 
-From the above Scenario we are Passing the Behavior to call the Method.
+From the above Scenario we are passing the behavior to call the Method.
 Here we are doing the extra work i.e we are passing the thing that has as a Behavior.
-Possible Solution is we can directly pass an Action rather than Class that Implements an Action.
+Possible Solution is we can directly pass an action rather than Class that implements an Action.
 
 	public void greet(action)
 	{
@@ -109,7 +106,8 @@ Possible Solution is we can directly pass an Action rather than Class that Imple
 	}
 	
 Lambdas allows us to create Functions which does not belong to any Class.
-Functions exists in isolation and These functions can be Treated as Values.
+Functions exists in isolation and these functions can be treated as values i.e
+Using Lambda we can pass function as a value to a variable and use that variable wherever it is required.
 
 Functions as Values :
 ---------------------
@@ -122,15 +120,14 @@ when the above line got executed name Variable contains the Value Srinivas.
 Question is can we assign a block of code to a Variable and the value is block of code and not the actual Value.
 Wherever the variable has to be executed the piece of code has to be executed.
 We write the block of code in java using methods usually.
-Using Lambda we can pass function as a Value to a Variable and use that variable wherever it is Required.
+Using Lambda we can pass function as a value to a variable and use that variable wherever it is required.
 
-	
 	String name = public void perform() 
 				  { 
 					System.out.println("From Greeting Implementation");
 				  }
 
-Here the avove code does some extra things when a function is a part of class.
+Here the above code does some extra things when a function is a part of class.
 whether the function is globally accessible or not.
 But if the function exists in isolation it does not make sense to declare it as public.
 public is not required because the function is accessible whoever has the variable.
@@ -141,7 +138,7 @@ public is not required because the function is accessible whoever has the variab
 					System.out.println("From Greeting Implementation");
 				  }
 
-when we assign a function to a Variable we can access that function using name of that variable.
+when we assign a function to a variable we can access that function using name of that variable.
 Method name is not required.
 
 	String name = void() 
@@ -159,7 +156,7 @@ Here Return Type is Not Required.
 
 The above code is required in order to define the Lambda Expression but with an extra symbol.
 Now the Lambda Expression can be assigned to a Variable.
-If the Body of the Expression is just one Line we can remove the curly braces.
+If the Body of the Expression is just one line we can remove the curly braces.
 
 	String name = () -> System.out.println("From Greeting Implementation");
 					  
@@ -245,8 +242,7 @@ Change the above call to Functional Interface i.e
 	
 myLambda is a Variable that contains Lambda Expression and what is the return type of that.
 If the Function Type is executed then we need to provide the input type and return type for that function type.
-Here the solution is to create an interface for the Lambda Expression and
-create the same signature that the Lambda Expression Has.
+Here the solution is to create an interface for the Lambda Expression and create the same signature that the Lambda Expression Has.
 Lambda that accepts no argument and return type is void and we can give any name to the function.
 
 	interface MyLambda
@@ -275,7 +271,7 @@ Here Interface should contain only Method.
 What is the difference between the above two Implementation.
 
 Step 1 Creates an Implementation of Greeting Interface and calls the Method.
-In Step 2 Lambda Expression behaves like an Implementation of Interface But actually we are having Function in line and not required 
+In Step 2 Lambda Expression behaves like an implementation of Interface but actually we are having Function in line and not required 
 to have an Implementation Class to define the Function.
 
 In Step 1 it is not required to Create an Implementation Class for the Greeting and we can create an Anonymous Inner Class.
@@ -295,7 +291,7 @@ But there are things which Inner class does which is different from Lambda Expre
 									
 *************************************************   9.Type Inference	************************************************************* 
 
-With Lambdas Java Compiler is doing some Type Inference which is very important in order to figure out what kind data that Lambda deals with.
+With Lambdas Java Compiler is doing some Type Inference which is very important in order to figure out what kind of data that Lambda deals with.
 
 	StringLengthLambda stringLengthLambda = (String parameter) -> parameter.length(); 
 	System.out.println(stringLengthLambda.getLength("Bhaumik Sankoji"));
@@ -343,11 +339,11 @@ Create List of Person
 
 Now the Requirement is to 
 
-1.Sort the List by Name
+1.Sort the List by Last Name
 2.Print all the Elements of the List
 3.Display People Name that begins with C
 
-Here the Methods have to accept the Behavior instead of Hard Coding them.
+Here the Methods have to accept the behavior instead of hard coding them.
 Pass in Behavior to Find a Person Name begins with C.
 											
 ************************************************* 13.Lambda Solution	************************************************************	
@@ -355,7 +351,7 @@ Pass in Behavior to Find a Person Name begins with C.
 //Sort by Last Name 
 Collections.sort(people,(p1,p2) -> p1.getLastName().compareTo(p2.getLastName()));
 
-//Print all the Elements of the List Using Pass by Behavior
+//Print all the Elements of the List Using pass by behavior
 printConditionally(people,p -> true);
 
 //Display Last Name that Begins with C Using Pass by Behavior
@@ -373,7 +369,7 @@ printConditionally(people, p -> p.getLastName().startsWith("C"));
 ************************************************* 14.Using Function Interfaces	****************************************************	
 
 Form the above Code we have created an extra Interface to test.
-Here the Interface accepts the Parameter and returns boolean.
+Here the Interface accepts the parameter and returns boolean.
 Here it seems Like extra work .
 Here Interface Name and Method Name inside the Interface doe not Matters.
 
@@ -390,7 +386,7 @@ Here the Scenario is Accept an Object and return boolean.
 	}
 
 Lambda Expression only checks the Signature of the Interface.
-Supplier Interface does not accept any argument and Returns an Object.  Abstract Method is get().
+Supplier Interface does not accept any argument and returns an Object.  Abstract Method is get().
 Function Interface accepts an argument and returns an Object.			Abstract Method is apply(). 
 Predicate Interface accepts an argument and returns boolean.			Abstract Method is test().
 Consumer Interface accepts an argument and returns void.				Abstract Method is accept().
@@ -399,15 +395,15 @@ Consumer Interface accepts an argument and returns void.				Abstract Method is a
 Steps to Create a Lambda Expresssion :
 
 1.Define an Interface
-2.Define a Method inside an Interface which has the Same Signature that Lambda Expression Has.
+2.Define a Method inside an Interface which has the Same Signature that Lambda Expression has.
 
 
-The Above Steps can be Overridden by Predefined Methods inside Function Package.
+The Above Steps can be Overridden by predefined Methods inside Function Package.
 
 							
 ************************************************* 15.More Function Interfaces	****************************************************		
 
-From the Above Code we are Displaying the Person Details in the Console.
+From the Above Code we are displaying the Person details in the Console.
 We can make it as Pass in Behavior.
 
 Lambda Expression for System.out.println will be p -> System.out.println(p)

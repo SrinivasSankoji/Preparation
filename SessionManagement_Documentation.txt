@@ -1,3 +1,14 @@
+
+1.Next-Generation-Session-Management-with-Spring-Session  (infoq)				[10-SEP-2020]  (Done)
+2.EHCache (Simple Learning)                                                     [10-SEP-2020]  (Done)
+3.cookie-based-spring-security-session (innoq)                                  [10-SEP-2020]  ()
+4.Authentication on the Web (Code Realm) (Youtube)								[10-SEP-2020]  ()
+5.Authentication and Cookie Basics (itsTechMode) (Youtube)						[10-SEP-2020]  ()
+6.
+
+
+
+
 References :
 ------------
 http://www.mkjava.com/tutorial/spring-session/
@@ -9,81 +20,78 @@ http://websystique.com/spring/spring-4-cacheable-cacheput-cacheevict-caching-cac
 https://howtodoinjava.com/spring-boot2/spring-boot-cache-example/
 https://javabeat.net/caching-in-spring/
 
+********************************************************** 1.Next-Generation-Session-Management-with-Spring-Session *****************************************************
+
+Sprig Session brings innovation back to the Enterprise Java Session Management and making it easy to implement
+
+--> We can write Horizontally Scalable Cloud Native Applications
+--> Offload the Storage of the Session state into specialized external Session stores such as Redis or Apache Geode,that provides the high quality clustering in an 
+	Application Server independent way.
+--> We can make the HttpSession alive when users are making request over WebSocket.
+--> Access Session data from non web request processing code such as JMS Message processing code.
+--> Support Multiple Sessions per browser and making it easy to build a rich end user experience.
+--> Control how session Id's are exchanged between the client and server and making it easy to write restful API's that can extract session Id from an HTTP header rather than 
+	relying on Cookies.
+
 1.Building a Horizontally Scalable Cloud Native Application :
 -------------------------------------------------------------
-https://www.infoq.com/articles/Next-Generation-Session-Management-with-Spring-Session/
+Cloud Native Application Architecture assumes that application will be scaled by running more no of instances of an Application in the Linux Containers on a Large Pool of VM's.
+For Example it is easy to deploy a War File(Tomcat) on Cloud Environment and then Scale up to 100 Application instances with 1 GB Ram per instance in a few Seconds.
+We can also increase or decrease the number of applications based on our demand.
 
-Cloud Native Application Architecture assumes that application will be scaled by 
-Running more no of Instances of the Application in the Linux Containers on a Large Pool Of Virtual Machines.
-For Example It Is easy to deploy a War File(Tomcat) on Cloud Foundry or Heroku and 
-Then Scale to 100 APP instances with 1 GB Ram per Instance in a Few Seconds.
-We Can Also Increase or decrease the Number of Applications Based on Our Demand.
-
-Many Application Servers Store HTTP Session State in the Same JVM That is running the Application 
-Since it Is Easy and Fast to Implement.
-When an New App Server Joins or Leaves the Cluster Then HTTP Sessions are Rebalanced over the Remaining App Server Instances.
-In a Elastic Cloud Environment Where we Have Hundreds of App Server Instances Running and 
-There may be chance adding or deleting the New App Server Instances and there would be a Problem.
+Many Application Servers Store HTTP Session State in the Same JVM that is running the Application since it is easy and fast to implement.
+When an New App Server joins or leaves the Cluster Then HTTP Sessions are rebalanced over the remaining App Server Instances.
+In a Cloud Environment,we have hundreds of App Server instances running and there may be chance adding or deleting the new App Server instances and there would be a problem.
 
 Re balancing HTTP Session Can become a performance bottleNeck.
 Large HeapSize is needed for Storing Large Number of Sessions and can cause to Garbage Collector.
 TCP Multi cast is Usually Prohibited by Cloud Infrastructure.
-To identify which new Application Server Instances are Joined or Left From the Cluster.
+Difficult to identify which new Application Server instances are joined or left from the Cluster.
 
-Therefore It is more efficient to store the HTTP Session state in a Data Store Outside the JVM Running The Application Code.
-For Example 100 Instances of Tomcat are Configured to Redis For Storing the Session data and
-If the Number of Instances in the Tomcat Increased or Decreased the Session in Redis are Unaffected.
+Therefore It is more efficient to store the HTTP Session state in a data Store Outside the JVM running the Application Code.
+For Example 100 instances of Tomcat are Configured to Redis for storing the Session data and
+If the Number of Instances in the Tomcat increased or decreased the Session in Redis are Unaffected.
 
-For Open Source Servers Like Tomcat It Is easy to find Alternative Implementation Of Session Manager
-that uses Data store like Redis and MemCached.
-However the Configuration Process is Complex and is Specific to Application Server.
-For Closed Source Products such as WebLogic and WebSphere finding an Alternative For Session Managers
-is not only Difficult but also Impossible.
+For Open Source Servers like Tomcat it is easy to find an alternative implementation of Session Manager that uses data store like Redis and MemCached.
+However the Configuration process is Complex and is specific to Application Server.
+For Commercial Servers such as WebLogic and WebSphere finding an Alternative for Session Managers is not only difficult but also impossible.
 
-Spring Session Provides an Application Independent way to configure Pluggable Data Store Within the bounds of the Servlet Specification and Without having any rely on Application Server API's.
-This Means That Spring Session works with all App Servers that Implement The Servlet Specification 
-and is very easy to Configure on the Application Servers.
-We also get to choose whatever External Data Store we want to Choose.
+Spring Session provides an Application independent way to configure pluggable data Store within the bounds of the Servlet Specification and without relyig on Application Server API's.
+This Means that Spring Session works with all Application Servers that implement the Servlet Specification and is very easy to Configure on the Application Servers.
+We can also choose whatever External Data Store we want to Choose.
 
 2.Multiple Accounts per user :
 ------------------------------
-When We Use HTTP Session to Track Application State,Such as Currently Logged In User 
-And If I Want to switch from one Application to Another Application we need to Log out and then Log In.
-With Spring Session it is trivial to configure Multiple HTTP Sessions Per User ,enabling the
-User to Switch Between the Multiple Accounts without need of Logout and Log In.
+If I Want to switch from one Application to another Application we need to Log out and then Log In.
+With Spring Session it is trivial to configure Multiple HTTP Sessions per user ,enabling the user to Switch between Multiple Accounts without need of Logout and Log In.
 
 3.Multi-level Security Preview :
 --------------------------------
-Typical Web Application stores the Identity of the Current User and their roles in the HTTP Session.
-Since Web Application Can Have Only One Session Per Logged in User We wont be able to switch from One Account 
-to Another Account.
-With Spring Session We Can Easily Create Multiple Sessions per Logged In User and Each of those Session 
-Is completely Independent of the other Session.
-So Preview Functionality for Multiple users Can be Easily Achieved.
+Normal Web Application stores the identity of the current User and their roles in the HTTP Session.
+Since Web Application can have only one Session per logged in user We won't be able to switch from one Account to Another Account.
+With Spring Session We Can easily create Multiple Sessions per Logged In User and each of those Session is completely independent of the other Session.
+So preview functionality for multiple users can be easily achieved.
 
 4.Staying Logged In While Using Web Sockets :
 ---------------------------------------------
-According to Servlet Specification,Requests arriving Over Web Socket Cant Make the HTTP Session Alive.
-When the user Starts Chatting,Session CountDown Timer Starts and When the  HTTP Session Expires then 
-the Web Socket Connection is also Closed.
-With Spring Session We Can Eventually Make Sure That both Web Socket Request and Regular Http Requests 
-keep HTTP Session alive for our users.
+According to Servlet Specification,requests arriving over Web Socket can't make HTTP Session Alive.
+When the user Starts Chatting,Session Countdown Timer Starts and When the HTTP Session expires then the Web Socket Connection is also Closed.
+With Spring Session we can eventually make sure that both Web Socket request and regular Http Requests keep HTTP Session alive for our users.
 
 5.Accessing Session Data for non web requests :
 -----------------------------------------------
-We Can Access the Spring Session from Any Non Web Application as Long as we know the Session Id.
-Spring Session has More Rich API Than Regular Servlet HTTP Session API.
-So we Can Retrieve Very Specific Session Just by Knowing The Session ID.
+We can access the Spring Session from any non Web Application as long as we know the Session Id.
+Spring Session has more rich API than regular servlet HttpSession API.
 
 6.Spring Session Architecture :
 -------------------------------
-While Implementing Session Manager Two Key Problems Must be Solved.
-How to Create a Cluster With High Availability Session that can Store Data Reliably and Efficiently.
-How to Determine which Session Instance is Associated with which request i.e whether the request is HTTP,WebSocket,AMQP or some other Protocol.
+While implementing Session Manager two key problems must be solved.
+How to Create a Cluster With High Availability Session that can Store data reliably and efficiently.
+How to determine which Session instance is associated with which request i.e whether the request is HTTP,WebSocket,AMQP or some other Protocol.
 
-i.e How the Session ID Is Transmitted over the Protocol That is used for Making The Request.
+i.e How the Session ID is transmitted over the protocol that is used for making the request.
 
-For The First Problem i.e Storing Data in a High Availability Scalable Cluster is already well Solved by
+For the first problem i.e Storing Data in a High Availability Scalable Cluster is already well Solved by
 Various Data Stores Like Redis,GemFire,APache Geode etc.
 Spring Session has Defined standard Set of Interfaces that has to be implemented by various data stores to mediate Access to the Data Store.
 Various Interfaces Are :
@@ -125,6 +133,7 @@ call the request.getSession()
 
   
 **************************************************** Simple Learning (EhCache) ****************************************************
+
 Introduction :
 --------------
 There are Different Cache Mechanisms Available in the Market Like EHCache,Redis,HazleCast,CouchBase,GemFire etc.

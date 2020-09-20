@@ -11,41 +11,40 @@
 
 ********************************************************* 1.Introduction :  ****************************************************************************
 
-Whenever We Want to Secure a System Like Web Application,We Have to put lot of efforts to implement with Multiple Layers of Security.
-We Even Anticipate that Some of them Might Get Hacked.
+Whenever We Want to Secure a System Like Web Application,We have to put lot of efforts to implement with multiple Layers of Security.
+We even anticipate that some of them might get Hacked.
 Here Spring Security Comes into the Picture.
-Application Security is Not Fun and Security is often an After Thought.
-Security Potentially Causes User Frustration.
-Here Web Server has Built In Security and Why Should I Deal With Security as an Application Developer.
-All the Operating System Level Security,JVM Level Security,App Server Level Security is Already Taken Care.
+Application Security is not fun and Security is often an after thought.
+Security potentially causes User Frustration.
+Here Web Server has built in Security and why Should I deal With Security as an Application Developer.
+All the Operating System Level Security,JVM Level Security,App Server Level Security is already taken Care.
 
-Here We are Talking about Application Level Security.
-For Most of The Cases We Need to Implement Security at Application Level .
-In The Context of Application Level Security,What Functionalities you Want to allow and to Whom you Want To Allow.
-Whom You Want to Expose Data.
-The Biggest Thing That the Security Makes the Challenge is Security Threats are Constantly Evolving and Morphing.
-Spring Security is Like Security Guard That examines an Application for Each and Every Request.
-And Every Time It asks Who are You and What do You Want.
+Here We are talking about Application Level Security.
+For Most of The Cases We need to implement Security at Application Level.
+In The Context of Application Level Security,What functionalities we want to allow and to whom we want to allow.whom we want to expose Data.
+The biggest thing that the Security makes the Challenge is Security Threats are constantly evolving and morphing.
+Spring Security is like Security Guard that examines an Application for each and every Request.
+And every time it asks who are you and what do you want.
 Spring Security is an Application Framework that Provides Application Level Security.
 
 Spring Security Provides :
 Login and Logout Functionality
-Allow/Block access to URL's Logged in Users
-Allow/Block access to URL's Logged in Users But With Certain Roles
+Allow/Block access URL's to Logged in Users
+Allow/Block access URL's to Logged in Users but With Certain Roles
 
-The Above Things can be Done By Using Configuration.
-Spring Security Lets us to Configure Based on Application Needs.
-Spring Security has been Built In a Very Flexible and Customizable Way.
-Spring Security Can Handle Common Security Vulnerabilities out of Box Like 
+The above Things can be done By using Configuration.
+Spring Security allows us to Configure based on application Needs.
+Spring Security has been built In a very flexible and Customizable Way.
+Spring Security can handle common Security Vulnerabilities out of box Like 
 
 Session Fixation,ClickJacking,Click Site Request Forgery etc.
 
-Spring Security has Widely Adapted and People are Constantly Trying to Find Vulnerabilities in it.
+Spring Security has Widely Adapted and People are Constantly trying to find Vulnerabilities in it.
 However Even If The Vulnerability is Found,It Is Immediately Patched.
-We Cannot Achieve Security Based on Secrecy or Hiding the Vulnerabilities.
-We Get Effective Security By Removing the Vulnerabilities.
+We Cannot Achieve Security based on Secrecy or hiding the vulnerabilities.
+We Get effective security By removing the vulnerabilities.
 
-By Using Spring Security We Can Implement :
+By Using Spring Security we can implement :
 
 UserName and Password Authentication
 Single Sign on Stuff Like SSO/OKTA/LDAP
@@ -64,105 +63,98 @@ Method Level Security
 
 1.Authentication :
 ------------------
-Lets Imagine Spring Security is Like Security Guard In Front of the Web Application and Stopping Every Request Going In.
-Who are You is Called Authentication And What do You Want.
-Most Web Application Have Some Representation of Id Like Face Book,Linked In etc.
-These Sites will Have Id's in their System That Uniquely Corresponding to Us.
-After Identifying the Id ,Should Prove That It is Yourself. 
-Common Way It is Done By Using Password.
+Spring Security is like Security Guard in front of Web Application that stops every request going In.
+Who are You is Called Authentication and What do You Want.
+Most Web Application have some representation of id Like Face Book,Linked In etc.
+These Sites will have Id's in their System that uniquely corresponding to us.
+After identifying the id ,Should prove that it is yourself. 
+Common Way It is Done by using Password.
 This Kind of Authentication is Called Knowledge Based Authentication.
-Here Authentication is Done Based on Knowledge We Have Like Password,Pin Code or Answer to a Particular Question.
-Here The Advantage is It is Simple and it is Easy to Use.
-The Disadvantage is It is Not Fully Safe if Some One Steals the Password.
+Here Authentication is done Based on Knowledge We have like Password,Pin Code or answer to a particular Question.
+Here The Advantage is It is Simple and it is easy to Use.
+The disadvantage is it is not fully Safe if some One steals the Password.
 
-There are Some Other Authentication Like Possession Based Authentication 
-Phone/Text Messages
+There are Some Other Authentication like possession based Authentication 
+Phone Calls/Text Messages
 Key Cards and Badges
 Access Token Device
-Some Applications Uses Both Knowledge Based and Possession Based Authentication and Called as Multi Factor Authentication.
+Some Applications uses both Knowledge based and possession based Authentication and Called as Multi Factor Authentication.
 
 Authorization :
 ---------------
 It is Nothing But What the User Can Do and What He is Supposed to Do.
 It is Like Yes or No.
-Once the User is Successfully Authenticated,What the User Can do Depends on Who the User is Called Authorization.
-Authentication and Authorization are Widely Used in the Software Development.
+Once the User is Successfully Authenticated,What the User Can do depends on Who the user is called Authorization.
+Authentication and Authorization are widely used in the Software Development.
 
 Principal :
 -----------
-Authentication is the Process of Identifying the Person Who is Trying to Access the Application and
-Principal is the Person that we Have Identified Through The Process of Authentication.
+Authentication is the process of identifying the person who is trying to access the Application and
+Principal is the person that we have identified through the process of Authentication.
 Principle is the Currently Logged In User.
-Once We Have Authenticated to Any Application By giving User Name and Password,The Application Establishes The Principal and Remembers It.
-This is The Only Reason We Authenticate With The Application Only Once.
-And No Need to Enter The Id and Password For Every Request on Page Load.
+Once We Have Authenticated to any Application by giving User Name and Password,The Application establishes the Principal and remembers It.
+This is the only reason We Authenticate with the Application Only Once and No Need to enter the Id and Password For every request on page load.
 There May Not be a One To One Mapping Between User,Human Being and Principal.
 Example: A Single Peron Can Create Multiple Google Accounts.
 If the User Switches From One Account to Another Account,The Principal Will be The Currently Logged in User.
 
 Granted Authority :
 -------------------
-How Does the Application Decide Whether to Allow or Decline For a Particular Access(API).
-In This Case Application Owner or Maintainer Should Have Handled Before Access.
-If the User is X and He Has Access to Only Some Actions in The Application.
-This Concept of Permission is Called Authorization.
-Granted Authority are Fine Grained Permissions that a User Can Do.
+How does the Application decide whether to allow or decline for a Particular Access(API).
+In This Case Application Owner or Maintainer should have handled before Access.
+If the User is X and he has access to only Some actions in the Application.This Concept of Permission is Called Authorization.
+Granted Authority are fine Grained Permissions that a user can do.
 
 Roles :
 -------
-Role is Nothing But Group of Authorities that are Usually Assigned Together.
-Roles are More Fine Grained Permissions Than Granted Authority.
+Role is Nothing but Group of Authorities that are usually assigned together.
+Roles are More fine Grained Permissions than Granted Authority.
 
 ********************************************************* 3.Adding Spring Security To Spring Boot Project :  *********************************************
 
-By Adding Spring Security Dependency to The Class Path,Spring Security Will Start Working.
-And It Stops Accessing The Application.
-Spring Security Internally Uses Filters For Each and Every Request.
-Whenever User Makes a Request,There will be a Particular Servlet that does The Functionality and Provides the Response For That Particular Request.
-The Way That Handles the Request is by Doing Mapping to The URL.
-The Right Servlet Will be Executed based on the URL Mapping.
-Filters are Like Cross Cutting Concerns that Intercepts Each and Every Request.
-Like Log Every Request,Check Every Request Has Particular Header or Not.
-While Servlets are Mapped to URL's Filters Can be Applied to All URL's.
+By adding Spring Security dependency to the Classpath,Spring Security Will Start Working and it stops accessing the Application.
+Spring Security internally uses filters for each and every Request.
+Whenever user makes a request to an Application,there will be a particular Servlet that does The functionality and provides the response for that particular request.
+The Way the particular servlet handles the request is by mapping to The URL.
+The Right Servlet Will be executed based on the URL Mapping.
+Filters are Like Cross Cutting Concerns that intercepts each and every Request.
+Like Log every request,Checks every request has particular Header or Not.
+While Servlets are mapped to URL's Similarly Filters can be applied to All URL's.
 
-Spring Security by Default Does Some of The Things :
-1.It Adds Mandatory Authentication For All URL's.
-2.It Adds The Login Form
-3.It Handles Login Error
-4.Spring Boot By Default Comes with Error Page
+Spring Security by default does some of the things :
+1.It adds Mandatory Authentication For All URL's.
+2.It adds The Login Form
+3.It handles Login Error
+4.Spring Boot by default comes with an Error Page
 
-When We Add The Spring Security in The Class Path By Default It Creates a Default User Called user and Password in the Console By Default.
-We Can also Customize The Default User and Password By Declaring It In The Properties File.
+When We add The Spring Security in The class Path by default It Creates a default user Called User and Password in the Console by default.
+We Can also Customize The default User and Password By declaring It In The Properties File.
 
 ********************************************************* 4.Spring Security Authentication :  *********************************************************
 
-Here We Will Be Creating In Memory Authentication For The Spring Boot Application.
-Spring Security Authentication Should be Done Based on The Bunch of Users We Have.
-Here  We Get Users From Database or LDAP etc.
-Here We Create Bunch of Users as Hard Coded and Save Them in Memory.
+Here We Will Be Creating In Memory Authentication for The Spring Boot Application.
+Spring Security Authentication Should be done based on bunch of Users we have.
+Here  We get Users from Database or LDAP etc.
+Here We Create bunch of Users as hard Coded and save them in Memory.
 
 The Way to Configure Authentication in Spring Security is by Using Authentication Manager.
-Authentication Manager Manages the Authentication in The Spring Security Application.
-It has the Method Called configure() and It Returns Successful Authentication and It Throws and Exception.
-The Way To Effect Authentication Manger is Not By Creating Our Own Authentication Manager 
-and is To Configure What Authentication Manager Does By Using Builder Pattern.
-We Don't work with AuthenticationManager Directly Most of The Times and We Use Builder Class Called AuthenticationManagerBuilder.
-We Use AuthenticationManagerBuilder To Configure What The Authentication Manager is Supposed To Do.
+Authentication Manager manages the Authentication in The Spring Security Application.
+It has the Method Called configure() and It returns Successful Authentication and It throws and Exception.
+The Way to effect Authentication Manger is not by Creating Our Own Authentication Manager and is to Configure What Authentication Manager Does By Using Builder Pattern.
+We Don't work with AuthenticationManager directly Most of the times and We Use Builder Class Called AuthenticationManagerBuilder.
+We Use AuthenticationManagerBuilder to Configure What The Authentication Manager is Supposed to do.
 
 Steps Here To Configure Authentication is 
 1.Get Hold Of AuthenticationManagerBuilder
 2.Set The Configuration on AuthenticationManagerBuilder
 
-After Configuration of AuthenticationManagerBuilder with The Necessary Details It Will Create a New AuthenticationManager
-which has the Values we Mentioned in the Configuration.
+After Configuration of AuthenticationManagerBuilder with The Necessary details It Will Create a New AuthenticationManager which has the values we mentioned in the Configuration.
 
-In The Spring Security Class There is a Method Called configure(AuthenticationManagerBuilder builder).
-Here We Need to Extend The Class and Override The configure()
-and Do the Configuration what ever We Want.
-If We Don't Override Then It will do the Default Authentication.
+In The Spring Security Class there is a method Called configure(AuthenticationManagerBuilder builder).
+Here We Need to extend The Class and override The configure()and do the Configuration what ever We Want.
+If We Don't Override Then It will do the default Authentication.
 
-Here We Need to Create A Configuration Class and That Should Extends WebSecurityConfigurerAdapter
-and Override The Default Method 
+Here We Need to create a Configuration Class and that should extends WebSecurityConfigurerAdapterand override The default Method 
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception 
@@ -170,37 +162,29 @@ and Override The Default Method
 			
 		}
 
-AuthenticationManagerBuilder Follows The Method Chaining Pattern to Configure The Authentication.
+AuthenticationManagerBuilder follows The method Chaining pattern to Configure the Authentication.
 Add The Annotation @EnableWebSecurity to the SecurityConfiguration.
-When We Are Dealing With Passwords We Don't Want to Work With Clear Text.
-Clear Text is Saving The Password as String.
-Always Deal With Hashed Passwords.
-Spring Security Enforces the Password Encoding.
-Here We Need To Create A Bean With PasswordEncoder.
-NoOpPasswordEncoder is considered as a String By Default.
-If we Want To Configure Bunch Of Users We Use and() 
+When We are dealing With Passwords We don't Want to Work With clear Text.Clear Text is Saving the password as String.
+Always Deal With hashed Passwords.Spring Security enforces the Password Encoding.
+Here We need To create A bean with PasswordEncoder.NoOpPasswordEncoder is considered as a String By Default.
+If we Want To Configure bunch Of Users We Use and().
 
 ********************************************************* 4.Spring Security Authorization :  *********************************************************
 
-Starting Point To Perform Spring Security Authorization is a Basic Spring Boot Application With Spring Security Added
-and It Has In Memory Authentication.
-Here Authentication Can Be In Memory or Database or OAuth Users and So On.
-All We Need a Couple Of Users With Certain Roles So That We Can Configure Certain API To Be Accessed By One Role and So On.
+Starting Point To Perform Spring Security Authorization is a basic Spring Boot Application With Spring Security Added and It has In Memory Authentication.
+Here Authentication can be In Memory or Database or OAuth Users and So On.
+All We Need a Couple Of Users With Certain roles So That We Can Configure Certain API To Be accessed By One role and so on.
 Here We are Using In Memory Authentication For Learning Purpose.
-Default Behavior of Spring Security is It Immediately Adds The Authentication to all The API's 
-and Authorizes all The API's.
-Here Default Behavior is API Needs Authentication and We Want Different API's has Different Access Requirements or
-Different Level of Access Controls.
+Default Behavior of Spring Security is It immediately adds the Authentication to all The API's and Authorizes all The API's.
+Here default behavior is API Needs Authentication and We Want Different API's has Different access Requirements or Different Level of Access Controls.
 Here The Requirement is :
 
-/ has to be Accessed By all The Users
-/user has to Accessed By all The ROle USER and ADMIN
-/admin  has to Accessed By all The Role ADMIN
+/ has to be accessed By all The Users
+/user has to accessed By all The ROle USER and ADMIN
+/admin  has to accessed By all The Role ADMIN
 
-
-If We Want To Configure This Kind of Authorization We Use an Object of HttpSecurity.
-Here We Need to Create A Configuration Class and That Should Extends WebSecurityConfigurerAdapter
-and Override The Default Method 
+If we want to configure these kind of Authorization we use an Object of HttpSecurity.
+Here we need to create a Configuration Class and that should extends WebSecurityConfigurerAdapter and override the default Method.
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception 
@@ -211,7 +195,7 @@ and Override The Default Method
 Here Use Builder Methods to Configure The Authorizations.
 We Use AntMatchers For the Paths.
 Spring Security has Log Out Page by Using logout.
-To Allow Any Kind Of Users We Use permitAll
+To Allow Any Kind Of Users We Use permitAll.
 
 ********************************************************* 7.Spring Security JDBC Authentication  :  *****************************************************
 

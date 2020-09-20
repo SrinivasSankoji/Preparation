@@ -4,12 +4,13 @@
 4.OneToMany Techprimers                                             [04-MAY-2020]  (Done)
 5.ManyToOne Techprimers                                             [04-MAY-2020]  (Done)
 6.OneToMany JavaTechie                                             	[25-MAY-2020]  ()	
+7.OneToMany Medium													[04-SEP-2020]  ()
 																
-7.ManyToOne Demonstration Brandan                                   [25-MAY-2020]  ()
-8.Best Practices Thoughts On Java                                   [25-MAY-2020]  ()
-9.Spring Data JPA LaunchCode                                        [25-MAY-2020]  ()
-10.Hibernate collection,Embedded KK Tutorials 						[25-MAY-2020]  ()
-11.Hibernate Java Brains                                            [25-MAY-2020]  ()
+8.ManyToOne Demonstration Brandan                                   [25-MAY-2020]  ()
+9.Best Practices Thoughts On Java                                   [25-MAY-2020]  ()
+10.Spring Data JPA LaunchCode                                       [25-MAY-2020]  ()
+11.Hibernate collection,Embedded KK Tutorials 						[25-MAY-2020]  ()
+12.Hibernate Java Brains                                            [25-MAY-2020]  ()
 
 
 ***************************************************   1.Spring Data REST and JPA example  *************************************************** 
@@ -100,8 +101,8 @@ we need to create id in UserLog Table.
 	
 Note :
 In case of OnetoOne Mapping @JoinColumn name parameter refers to the same Column id and referencedColumnName parameter refers to the Primary key of Parent Table.
-Similarly In case of OneToMany @JoinColumn name parameter refers to the same Column ID and referencedColumnName parameter to be created in the Child Table
-and  is same as Parent Column Primary Key.
+Similarly In case of OneToMany @JoinColumn name parameter refers to the child Table Column ID and referencedColumnName parameter refers to the same Table Column
+to be created in the Child Table and is same as parent column Primary Key.
 
 
 *************************************************** 5.ManyToOne Techprimers  *********************************************************************************
@@ -123,6 +124,31 @@ In Case of ManyToOne name and referencedColumnName should be the Many Table prim
 
 
 ***************************************************   6.OneToMany JavaTechie   *******************************************************************************
+
+
+
+
+
+
+
+
+
+*************************************************** 7.OneToMany Medium		 *********************************************************************************
+
+Hibernate association is classified into 
+
+OneToOne Relationship
+OneToMany Relationship
+ManyToOne Relationship
+ManyToMany Relationship
+
+Direction of a Relationship can be either Bidirectional or UniDirectional.
+Bidirectional relationship has both owning side and inver side.
+Unidirectional Relationship has only an Owning Side.
+
+Unidirectional Relationships :
+------------------------------
+
 
 
 

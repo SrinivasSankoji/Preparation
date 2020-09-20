@@ -63,36 +63,46 @@ Sand     = 200
 
 September 2020 :
 ----------------
-36,000  (Loan)
-2,000   (LIC)
-5,000   (Rajini Complete)
-10,000  (Reddy)
-3,000   (Loan)
-2,500   (Credit Card)
-6,500   (Credit Card)
-7,500   (Credit Card)
-1,500   (Monthly Bill)
+36,000  (Loan)				--> Done
+2,000   (LIC)				--> Done
+15,000  (Rajini Complete)	--> Done
+10,000  (Reddy)				--> Done
+3,000   (Attamma)			--> Done
+15,000  (Credit Card)		--> Done
+1,200	(Labor)				--> Done
 ======
-74,000
--86,000 (Salary)
+82,200
+-84,000 (Salary)
 ==================
-12,000 (Remaining)
+2,000 (Remaining)
+
+
+Loan Calculation :
+------------------
+1,272,404.50      		 Remaining Amount Till 
+
+35,425*44=15,58,700.00   Remaining Tenure Amount
+43,000*36=15,52,300.00   Fresh Payment for 3 Years
+
+8,000*36=2,88,000.00 	(Extra Amount For 36 Months)
+35,425*12=4,25,000   	(Extra Amount For 12 Months)
 
 October 2020 :
 --------------
 36,000   (Loan)
 2,000    (LIC)
-7,500    (HDFC)
-3,000    (Loan)
-30,000   (Credit Card Complete)
+10,000   (Reddy)
+3,000    (Attamma)
+12,000   (HDFC Credit Card)
+2,000    (Credit Card)
 25,000   (Santosh Complete)
-1,500    (Monthly Bill)
 ===========================
-105,000
--86,000 (Salary)
+90,000
+-84,000 (Salary)
 -44,000 (Retuns)
+-6,000  (Bava)
 =======
-25,000 (Remaining)
+44,000 (Remaining)
 
 November 2020 :
 ---------------
@@ -100,13 +110,11 @@ November 2020 :
 2,000  (LIC)
 3,000  (Loan)
 7,500  (HDFC)
-1,500  (Monthly Bill)
 ==============
 50,000
--86,000
+-84,000
 ========
-36,000 (Remaining)
-20,000 (Previous)
+34,000  (Remaining)
 
 December 2020 :
 ---------------
@@ -119,7 +127,7 @@ December 2020 :
 -86,000
 ===========
 36,000
-50,000 (Previous)
+ (Previous)
 
 January 2021 :
 --------------
@@ -131,7 +139,7 @@ January 2021 :
 -95,000
 ===========
 50,000
-80,000 (Previous)
+ (Previous)
 
 Febraury 2021 :
 ---------------
