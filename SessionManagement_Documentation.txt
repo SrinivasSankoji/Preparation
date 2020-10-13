@@ -86,42 +86,46 @@ Spring Session has more rich API than regular servlet HttpSession API.
 6.Spring Session Architecture :
 -------------------------------
 While implementing Session Manager two key problems must be solved.
-How to Create a Cluster With High Availability Session that can Store data reliably and efficiently.
-How to determine which Session instance is associated with which request i.e whether the request is HTTP,WebSocket,AMQP or some other Protocol.
 
+How to Create a Cluster with high availability session that can store data reliably and efficiently.
+How to determine which Session instance is associated with which request i.e whether the request is HTTP,WebSocket,AMQP or some other Protocol.
 i.e How the Session ID is transmitted over the protocol that is used for making the request.
 
-For the first problem i.e Storing Data in a High Availability Scalable Cluster is already well Solved by
-Various Data Stores Like Redis,GemFire,APache Geode etc.
-Spring Session has Defined standard Set of Interfaces that has to be implemented by various data stores to mediate Access to the Data Store.
+For the first problem i.e Storing data in a high availability Scalable Cluster is already well solved by various data Stores Like Redis,GemFire,APache Geode etc.
+Spring Session has defined standard Set of interfaces that has to be implemented by various data stores to mediate access to the Data Store.
+
 Various Interfaces Are :
-Session  Interface
-ExpiringSession Interface
-SessionRepository Interface
+Session  Interface that defines the basic capabilities of Session such as setting and removing attributes.
+ExpiringSession Interface extends the Session interface to provide attributes that can be used to determine whether the session is expired or not.
+RedisSession is an implementation of ExpiringSession interface.
+SessionRepository Interface defines methods to create,save,delete and retrieve a session.Logic to create an instance of a Session into the data store would be 
+coded in the implementation of this interface.
 
-Spring Session Assumes that the problem of Associating a request to specific Instance is protocol Specific
-because the client and the server need to agree on a way to transmit the session id over 
-the request and response Cycle.
+Spring Session assumes that the problem of associating a request to specific instance is protocol Specific
+because the client and the server need to agree on a way to transmit the session id over the request and response Cycle.
 
-If the Request are arriving over HTTP then Session can be associated with a request by using 
-HTTP Headers or HTTP Cookies.
-If the Request are Arriving Over HTTPS then the Session can be associated with a request by using 
-SSL SessionId.
-If JMS is Used the JMS Header Can be used to store the Session Id Between the Request and Response.
+If the requests are arriving over HTTP then Session can be associated with a request by using HTTP Headers or HTTP Cookies.
+If the requests are arriving Over HTTPS then the Session can be associated with a request by using SSL SessionId.
+If JMS is used the JMS Header can be used to store the Session Id between the Request and Response.
 
-For HTTP Protocol Spring Session Defines HttpSessionStrategy Interface With two Default Implementations :
-CookieHttpSessionStrategy which uses HttpCookie to Associate a Request with Session Id.
+For HTTP Protocol,Spring Session defines HttpSessionStrategy interface with two default Implementations :
+CookieHttpSessionStrategy which uses HttpCookie to associate a request with Session Id.
 HeaderHttpSessionStrategy which use HttpHeaders to associate a request with Session Id.
 
 Spring Session Over HTTP :
 --------------------------
-Spring Session Ships with Built in Support For Redis.
+
+
+
+
+Configuring Spring Session :
+----------------------------
+Spring Session Ships with built in Support For Redis.
 Tc Configure Spring Session in Spring Boot We need to add two Dependencies :
 spring-session and
 spring-boot-starter-redis.
 
-Configuring Connectivity From Spring Session to Redis can be done by Adding Properties 
-in th application.properties file.
+Configuring Connectivity from Spring Session to Redis can be done by adding Properties in th application.properties file.
 By Default Spring Session Uses HttpCookie to Store the Session Id and we can also Configure Spring Session 
 to use a Custom HTTP Header Such As x-auth-token.
 
