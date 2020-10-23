@@ -7,8 +7,6 @@
 6.
 
 
-
-
 References :
 ------------
 http://www.mkjava.com/tutorial/spring-session/
@@ -114,26 +112,63 @@ HeaderHttpSessionStrategy which use HttpHeaders to associate a request with Sess
 
 Spring Session Over HTTP :
 --------------------------
-
-
-
+Spring Session over HTTP is implemented as a Standard Filter that must be configured to intercept all we requests and 
+should be the first filter in the Filter Chain.
+Spring Session Filter is responsible for making sure that any sub sequent calls to the getSession() on HttpServletRequest
+are handed to the Spring Session HttpSession instance rather than default HttpSession of Application Server. 
 
 Configuring Spring Session :
 ----------------------------
+Configuraing Spring Session for a Web Project is a four Step Process.
+
+1.Setup the Data Store that we are using with a Spring Session
+2.Add the Spring Session Jar files to an Application.
+3.Add the Spring Session Filter to a Web Application.
+4.Configure connectivity from Spring Session to the Selected Data Store.
+
 Spring Session Ships with built in Support For Redis.
 Tc Configure Spring Session in Spring Boot We need to add two Dependencies :
-spring-session and
-spring-boot-starter-redis.
 
-Configuring Connectivity from Spring Session to Redis can be done by adding Properties in th application.properties file.
-By Default Spring Session Uses HttpCookie to Store the Session Id and we can also Configure Spring Session 
-to use a Custom HTTP Header Such As x-auth-token.
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+			<version>1.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+		</dependency>
+
+spring-boot-starter-redis dependency ensures that all the required jars to work with redis are included in the application
+so that they can be auto configured using spring boot.
+spring-session dependency brings the spring session jars.
+
+Configuring the Spring Session Filter to a Web Application can be done automatically by Spring Boot using @EnableRedisHttpSession on Spring Boot Configuration.
+
+	@SpringBootApplication
+	@EnableRedisHttpSession
+	public class ExampleApplication {
+
+		public static void main(String[] args) {
+			SpringApplication.run(ExampleApplication.class, args);
+		}
+	}
+	
+Configuring Connectivity from Spring Session to Redis can be done by adding properties in th application.properties file.
+
+	spring.redis.host=localhost
+	spring.redis.password=secret
+	spring.redis.port=6379
+
+
+By Default Spring Session Uses HttpCookie Header to Store the Session Id.
+We can also Configure Spring Session to use a Custom HTTP Header such As x-auth-token.This can be quite helpful while using Rest API's.
 
 Multiple Sessions Per Browser :
-Spring Session Keeps Track of Multiple Users By Using  Session Alias Parameter i.e _s Parameter.
-If The Request has no _s Parameter then Spring Session treats that as the Default Session.
-In order to create a new Session Per Browser 
-call the request.getSession()
+-------------------------------
+Spring Session keeps track of Multiple Sessions per User by Using  Session Alias parameter i.e _s Parameter.
+If The Request has no _s Parameter or _s=0 then Spring Session treats that as the default Session.
+In order to create a new Session per browser call the request.getSession().
 
   
 **************************************************** Simple Learning (EhCache) ****************************************************

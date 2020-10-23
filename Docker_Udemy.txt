@@ -15,43 +15,39 @@
 
 2.Overview :
 ------------
-To set up an end to end Application Stack including various Technologies Like 
+To set up an end to end Application Stack including various Technologies like 
 Web Server using Node JS
-Database Using Mongo DB
+Database using Mongo DB
 Messaging System like Redis
-Orchestration tool Like Ansible.
+Orchestration tool like Ansible.
 
-There might be lot of Issues while developing the Application Stack.
-One of them is Compatibility with the Underlying OS.
+There might be lot of issues while developing the Application Stack.One of them is Compatibility with the underlying OS.
 we have to make sure all of these technologies are Compatible with OS Version.
-We also neeed to check the Compatibility with Libraries and dependencies with the Underlying OS.
-This Compatibility Metric Issue is usually referred to as Metric Hell.
+We also neeed to check the Compatibility with the libraries and dependencies with the Underlying OS.
+This Compatibility Metric issue is usually referred to as Metric Hell.
 
-Everytime a New Developer is OnBoarded we found lot of Issues in setting up the Environment.
-New Developer has to follow large set of Instructions and remember Hundred's of Command to set up the Environment.
-They have to make sure that they are using the Right OS,Right Version of each of these Components.
-Each Developer has to set the Environment for each Time.
-We also have different Development Environments.
+Everytime a new developer is Onboarded we found lot of issues in setting up the Environment.
+New Developer has to follow large set of Instructions and remember hundred's of Command to set up the Environment.
+They have to make sure that they are using the right OS,right version of each of these Components.
+Each Developer has to set the environment for each time.We also have different Development Environments.
 Different Developers may use Different OS.
 We may not Gaurantee that the Application run on One OS will run on another OS.
-All of these i.e developing,building and shipping the Application become more Difficult.
-we need something to sort out the Compatibility issue,allow us to modify the components without effecting the Other Components,
-even modify the Underlying OS if required.
+All of these i.e developing,building and shipping the Application become more difficult.
+we need something to sort out the Compatibility issue,allow us to modify the components without effecting the Other Components,even modify the Underlying OS if required.
 
-With Docker we can be able to run Each Component in a Seperate Container with its own dependencies and its own Libraries
+With Docker we can be able to run each Component in a Seperate Container with its own dependencies and its own Libraries
 all on the same OS and VM but within the Seperate Containers.
-We just had to build the Docker Configuration Once and all the Developers could get Started with Simple Docker run Command.
-Irrespective of what the Underlying Operating System they have,they just need the Docker installed on the System.
-
+We just had to build the Docker Configuration once and all the developers could get started with Simple Docker run Command.
+Irrespective of what the underlying Operating System they have,they just need the Docker installed on the System.
 
 Containers :
 ------------
-Containers are Completedly isolated Environments,they can have their own Processors,Services,Networking Interfaces ,Own Mounts
-just Like Virtual Machines except they all share the Same OS Kernel.
+Containers are Completely isolated Environments,they can have their own processors,services,Networking Interfaces ,Own Mounts
+just Like Virtual Machines except that they all share the Same OS Kernel.
 Docker utilizes LXE Containers.
 
 Setting up the Container is very hard and it is very LowLevel.
-Docker Offers a High Level tool with several powerful functionalities making it really easy to create the Container.
+Docker Offers a high level tool with several powerful functionalities making it really easy to create the Container.
 
 Any Operating System Consists of two things.
 
@@ -67,7 +63,7 @@ Consider the Case we have an ubuntu System that have docker installed on it.
 Docker can run any flavor of OS on top of it as long as they are on the Same Kernel and in this case Linux.
 
 If the Underlying OS is ubuntu,Docker can run a Container based on another distribution of ubuntu.
-Here each Docker Container only  has Additional Software that makes the Operating System different and
+Here each Docker Container only  has additional Software that makes the Operating System different and
 Docker utilizes the Underlying Kernel of the Docker Host which works with all OS above.
 
 The OS do not share the same kernel is Windows.
@@ -79,35 +75,35 @@ when we install docker on windows and run a Linux Container on windows, we are n
 Windows run a Linux Container on a Linux Virtual Machine under the hood.
 
 Docker is not meant to virtualize and run different OS kernels on the Same Hardware.
-The Main purpose of Docker is to package and containerize the Application and ship them so that it can be run any where anytime as many times we want.
+The Main purpose of Docker is to package and containerize the Application and ship them so that it can run any where anytime as many times we want.
 
 In case of Docker we have underlying Hardware Infrastructure ,OS and then Docker is installed on the OS.
-Docker manages the Containers that runs with the Libraries and Dependencies.
+Docker manages the Containers that runs with the libraries and dependencies.
 In case of Virtual Machine we have Hypervisor on the hardware and the Virtual Machine runs on them.
-Each virtual Machine has its own OS,Libraries,Dependencies and then the Application.
+Each virtual Machine has its own OS,libraries,dependencies and then the Application.
 
 Virtual Machine consumes the Higher disksapce where as Docker Container consumes MegaBytes.
 This makes the Docker Container to boot up Faster where as VM will takes minutes to boot up.
 
-There are lots of Containerized version of Applicationn readily today.
-Most Organizations containerized their Applications today and made them Publicly Available on Docker Hub.
+There are lots of Containerized version of Applications readily today.
+Most Organizations containerized their applications today and made them publicly available on Docker Hub.
 Example :
 
 		docker run mongodb 
 
 runs the mongodb database on the docker Host.
-We can also run the Multiple Instances of the Web Service and configure a Load Balancer in the Front.
-In case if one of the Instance is Failed,Simply destroy the Insatnce and launch any one.
+We can also run the multiple instances of the Web Service and configure a Load Balancer in the front.
+In case if one of the instance is failed,Simply destroy the insatnce and launch any one.
 
-Docker image is a package or Template just like a VM Template and is used to create on ore More Containers.
-Containers are running Instances of images that are isolated and have their own Environment and set of Process.
+Docker image is a package or template just like a VM Template and is used to create on ore more containers.
+Containers are running Instances of images that are isolated and have their own environment and set of process.
 We can also create our own image and push it into DockerHub and available for public.
 
-Traditionalyy Developer develop the Application and give it to the Operations for Deployment in Production.
-Developer do this by Providing the Set of Instructions.
-Since the Operations Team does not have any Idea of the Application they Struggle while Deploying the Application.
-In case of Deocker Developer provide the Application along with the Docker File to the Operations Team.
-This Docker File is used to create an Image to the Application and run on any environmet with Docker installed on it.
+Traditionalyy developer develop the application and give it to the Operations for Deployment in Production.
+Developer do this by providing the set of Instructions.
+Since the Operations team does not have any idea of an Application they Struggle while deploying the application.
+In case of Deocker,Developer provide the Application along with the Docker File to the Operations Team.
+This Docker File is used to create an image to the application and run on any environmet with Docker installed on it.
 
 
 3.Getting Started with Docker :
@@ -146,7 +142,7 @@ This is done only for the first time and for the sub sequent times it will reuse
 -------------
 	docker ps 
 
-command will list all the  running containers and gives basic information about the container.
+ps command will list all the  running containers and gives basic information about the container.
 
 3.docker ps -a :
 ----------------
@@ -196,7 +192,7 @@ It pulls only the image and won't run the Container.
 If we run the ubuntu image after the pull command it runs the image and exits immideately.
 Because Containers are not meant to host Operating System like Virtual Machine.
 Containers are meant to run a specific task or process such as instance of a web server,application server,database,computation or analysis task etc.
-Once the Task is Complete then the Container exits.
+Once the Task is Completed then the Container exits.
 Container lives as long as the the process inside the container lives.
 If the webserver inside the container stops or crash then the Container exits.
 This is why the ubuntu image stops the execution because there is no process or application running in it.
@@ -243,7 +239,7 @@ Now if we want to attach the application back to the running conatiner we use th
 
 	docker attach imageId
 	
-Here imageId can be thr first five characters of the container Id.
+Here imageId can be the first five characters of the container Id.
 
 
 2.Demo Docker Commands :
@@ -251,7 +247,7 @@ Here imageId can be thr first five characters of the container Id.
 
 	docker run hello-world
 	
-First it will Check whether the Image is present or not.If not Present then it will pull from the Docker Hub.
+First it will Check whether the image is present or not.If not present then it will pull from the Docker Hub.
 
 	docker ps 
 	
@@ -326,8 +322,7 @@ If we want to run the command on the particular Container and see the files insi
 		
 	docker run redis 
 	
-This will run the container containing a Redis Service.By default it will pull and run the latest image.
-Here it will run the latest image.
+This will run the image containing a redis Service.By default it will pull and run the latest image.
 If we want to run the older image we use the version number followed by :
 
 	docker run redis:5.0
@@ -336,10 +331,9 @@ when we run the docker image for standard input,it will not ask for the prompt a
 
 	docker run kodekloud/simple-prompt-docker
 	
-By Defaulr Docker Container does not listen to a standard input.
-Eventhough it is attached to the console,it will not read any input from us.
-It does not have a Terminal to read inputs from.
-Docker Container runs in a Non Interactive Mode.
+By default Docker Container does not listen to a standard input eventhough it is attached to the console and it will not read any input from us.
+It does not have a terminal to read inputs from.
+Docker Container runs in a non interactive mode.
 
 If we like to provide the input, we must map the standard input of the host to the docker container by using i parameter.
 i stands for interactive mode.
@@ -352,7 +346,7 @@ Here Still the prompt is missing.to get the prompt in the docker terminal we use
 	
 2.Port Mapping :
 ----------------
-run the simple web application on the docker host.
+To run the simple web application on the docker host we use the command
 
 	docker run kodekloud/webapp
 	
@@ -366,11 +360,11 @@ What Ip should be used to access the application from the web browser ?
 There are two options available
 
 1.IP of Docker Container
-Every docker container gets the ip default.
+Every docker container gets the default ip.
 But this is an internal ip and is only accessible within the docker host.
-If we open the browser within the docker host and enter ip and port to access an application.
+we need to open the browser within the docker host and enter ip and port to access an application.
 
-If we want to access the application outside we need to use the docker Host Ip.
+If we want to access the application outside we need to use the docker Host IP.
 For this to work we must map the port inside the docker container to a free port on the docker host.
 For example If we want to access the application through port 80 on docker host,
 map the port 80 on Docker host to the port 5000 of the docker container.

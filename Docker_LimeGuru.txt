@@ -4,112 +4,108 @@
 
 ********************************************************  Introduction  ************************************************************
 
-Before Going to Start Docker,we need to know to How Software development Takes Place in the IT Industry.
-When ever we are Going to Start any Application,How the Software Development Life Cycle Will be 
-and How the Docker Changes the Entire Life Cycle of Software Development.
+Before going to Start Docker,we need to know to how Software development takes Place in the IT Industry.
+When ever we are going to Start any Application,how the Software Development Life Cycle Will be and 
+How Docker Changes the entire Life Cycle of Software Development.
 
 Software Development Life Cycle :
 ---------------------------------
-When ever we Start Any Application we First Design the Application.
-After Designing the Application we need to define the Dependencies i.e Technologies,Frameworks used to Develop the Applications.
-Once the Technologies are Defined then we Start the Development.
-Once the Development is Done is done in Local Environment and then Code is Moved to Development and to Production Environment.
-The Dependencies we defined during the Local Development phase Should be Available in all Phases of the Environment.
-If Any Dependency is missed in any of the Environment then the Application Might Not Work  and Here The Dependencies May be Java ,Servers,Frameworks etc.
-We Might Reach the Infrastructure team to Set up all the Dependencies in all the Environments.
-Here Adding Dependencies is not a One Time Task and it Keep on Changes when the Application is in Development.
-The above Problem can be Resolved by Using Docker.
+When ever we Start any Application we first Design the Application.
+After designing the Application we need to define the dependencies i.e Technologies,Frameworks used to develop the Applications.
+Once the Technologies are defined then we Start the Development.
+Once the Development is done in Local Environment and then `code is moved to Development and to Production Environment.
+The Dependencies we defined during the Local Development phase Should be available in all Phases of the Environment.
+If any Dependency is missed in any of the environment then the Application might Not Work and here The dependencies May be Java ,Servers,Frameworks etc.
+We might reach the Infrastructure team to set up all the dependencies in all the Environments.
+Here adding dependencies is not a One Time Task and it keep on changes when the Application is in Development.
+The above Problem can be resolved by Using Docker.
 Docker Provides a Solution by Keeping all the Dependencies at One Place and 
-it is the Responsibility of Docker that all the Dependencies will be Available in all the Environments.
-Here No Need to Reach to any of the Infrastructure Team to add any New Dependencies.
+it is the responsibility of Docker that all the dependencies will be available in all the Environments.
+Here no need to reach to any of the infrastructure Team to add any New Dependencies.
 Add the Dependencies to the Docker and Docker will take care of availability of all the Dependencies in all the Environments.
 
 How Docker Works :
 ------------------
-Docker Solves the Problems of Managing all the Dependencies like Tools,Libraries,Frameworks,Set up etc by Using Containers 
-and will make it available to the Software Program.
+Docker solves the problem of managing all the dependencies like Tools,Libraries,Frameworks,Set up etc by Using Containers and will make it available to the Software Program.
 Docker is a Containerized Execution i.e 
-For Example we require (Java,HttpServer and Tomcat Server) these Dependencies to run the Application.
-Define these 3  Dependencies as a part of Meta Data and Docker will create a Container inside the Local Server and it will install 
-all the Dependencies inside the Container.
+For Example we require (Java,HttpServer and Tomcat Server) the dependencies to run the Application.
+Define these 3  Dependencies as a part of Meta Data and Docker will create a Container inside the Local Server and it will install all the Dependencies inside the Container.
 Now the Code we have Written,deploy it inside the Container along with the Dependencies.
-The Application will run because all the required Dependencies to run the Application are part of Container Now.
-Now We have Another Server for Testing Environment.
-Here Docker Will Create the Container in the Testing Server with all the Dependencies 
-and on top of that the Application Code will be moved to Testing Environment.
-we need to ensure that we have Defined the Meta Data Correctly.
-Here the Whole Process is Automated i.e Creating The Container,Setting up The Dependencies,Taking it to The Container and Making it Available to Every One.
+The Application will run because all the required dependencies to run the Application are part of Container Now.
+Now We have another Server for Testing Environment.
+Here Docker Will Create the Container in the Testing Server with all the Dependencies and on top of that the Application Code will be moved to Testing Environment.
+we need to ensure that we have defined the Meta Data Correctly.
+Here the Whole Process is automated i.e Creating The Container,Setting up The dependencies,taking it to the Container and Making it available to Every One.
 Once the Code is Available to the Container,
-It Will Execute the Application because the Required Dependencies are Available inside the Container.
+It Will Execute the Application because the required dependencies are available inside the Container.
 Docker is a Containerized Execution. i.e Every Thing In Docker is Containerized.
 For Example We have the Whole Server and there is Only One Container.
-We Can Use Some Part of The Configuration to Create Multiple Containers within the Same Server.Here Each Container Runs Independently.
-There is No Intra Dependency against the Containers and Each Container is Isolated.
-Each Container has its Own Piece of Code,Has its Own Set Up.
-This is Very Efficient Way of Utilizing the Server Resources and Managing The Dependencies.
-For Example We Have 8 GB Of Server Then Some Part of The Server is used By One Container and Some Part of The Server is Used By Another Container and So On.
+We Can Use Some Part of The Configuration to Create Multiple Containers within the Same Server.Here Each Container runs Independently.
+There is No Intra Dependency against the Containers and Each Container is isolated.
+Each Container has its Own Piece of Code,has its Own Set Up.
+This is very efficient Way of Utilizing the Server Resources and managing the dependencies.
+For example we have 8 GB Of server then some part of the Server is used By One container and Some part of The Server is used By another Container and So On.
 
 Docker Benefits :
 -----------------
 1.Light Weight :
 ----------------
-Let us Consider a Server and The Server Contains the OS(It May Be Linux,Windows etc) and on Top of That We Have Different Containers.
-Docker is Light Weight i.e Container Only Contains The Dependencies Which We have Defined.
-The Process to Set Up The Container is Light Weight and It Uses the Same Underlying Resources that the Server Has.
+Let us Consider a Server and the Server Contains the OS(It May Be Linux,Windows etc) and on top of that we have different containers.
+Docker is Light Weight i.e Container Only contains the dependencies which We have defined.
+The Process to Set Up The Container is Light Weight and It Uses the Same Underlying Resources that the Server has.
 Container Does Not Need Much Resources to Launch its Own Daemon Process.
-We can Spin Up The Containers Very Fast and We can also delete The Containers when it is Not Required.
+We can Spin up the containers very fast and we can also delete the containers when it is not required.
 
 2.Portable :
 ------------
-We Can Define The Dependencies Once inside the Container and Can be moved From One Environment to Another Environment.
-We Can Deploy The Container From Local Server to Development Server and Move The Same Container to Production Server.
-Containers Can Be Shipped Across The Environments.
+Once we define the dependencies inside the Container and can be moved from one environment to another Environment.
+We Can Deploy The Container From Local Server to Development Server and move The Same Container to Production Server.
+Containers can Be shipped across the Environments.
 
 3.StateLess Applications:
 -------------------------
-Docker Provides a Way To Implement Stateless Applications i.e The Applications Within the Container Should Be Stateless.
+Docker provides a way to implement Stateless Application i.e The Application within the container should be Stateless.
 Let Us Consider an  Application which Connects to SQL Server Database.
-Two Ways to Deploy The Application into The Container.
-Approach 1 : Deploy the Application into the Container where the Database is Hosted Some Where Else.
+Two Ways to deploy The Application into The Container.
+Approach 1 : Deploy the Application into the Container where the database is hosted some where else.
 Approach 2 : Deploy The Application along with Database inside the Container.
 
-After Some time We May Destroy The Container then in this Case The Whole Data Will Be Lost.
-Docker Recommends to Deploy The Stateless Application within Containerized Approach.
+After Some time we may destroy the Container then in this case whole data will be Lost.
+Docker Recommends to deploy the Stateless application within Containerized Approach.
 
 Different Type Of Servers :
 ---------------------------
 1.Physical Server :
 -------------------
-In the Legacy System we have a Physical Server of 8 GB RAM with 2 CPU'S and Windows as Operating System(It Can Be Any OS).
-This Complete Server is dedicated For Single Application and Application will be Deployed into the Physical Server.
-Here The Whole Hardware is dedicated For Single Application.
+In the Legacy System we have a Physical Server of 8 GB RAM and Windows as Operating System(It Can Be Any OS).
+This Complete Server is dedicated for Single Application and Application will be deployed into the Physical Server.
+Here The Whole Hardware is dedicated for Single Application.
 
 2.Virtual Machines :
 --------------------
 In The Concept of Virtual Machine we have Single OS and on top of that we have VM's.
 Here Each Virtual Machine runs on Different OS.
-We Can Create Different Virtual Machines within the Same Physical Server.
-On Top of Each VM, We can deploy the Applications.
-This Approach is not Resource Efficient Because We have dedicate Resources For Each VM.
-These are Not Light Weight Because Each VM has its Own OS and Relies on Top Of Original OS.
-Here Each Virtual Machine Needs to be Set Up and its Again Tactical Thing.
+We Can Create Different Virtual Machines within the Same Physical Server and On Top of each VM, we can deploy the Applications.
+This approach is not resource efficient because we have dedicated resources for each VM.
+These are not Light Weight because each VM has its own OS and relies on top Of original OS.
+Here Each Virtual Machine needs to be Set Up and its again tactical thing.
 
 3.Docker Container :
 --------------------
-In The Physical Server We Have OS and Once We Have OS We Don't Need Any OS.
-We Can Run Docker Containers on Top Of The UnderLying OS.We Can also Run Multiple Containers on The Same OS.
-Here Each Container Contains an Individual Application.
+In the physical server we have OS and once we have OS we don't need any OS.
+We can run Docker Containers on top of the underLying OS.We can also run multiple Containers on the same OS.
+Here each Container contains an individual Application.
 
 ***********************************************************  Docker File and Docker Image  *******************************************
 1.Docker File :
 ---------------
-When We Create a New Container,Things Work Internally With The Help Of Docker Files and Docker Images.
-Whenever We Want To Deploy an Application We Need to Define Set of Dependencies and It Can Be Any Tools,Frameworks,Libraries etc 
-and These Dependencies can be Defined Inside Docker File.
-The Process to Define Dependencies to Run the Application is Called Docker File.
-All the Tasks which has to be executed Inside the Container should be Defined Inside Docker File.
-There is a Place Called Docker Hub i.e Centralized Repository where all the Images are Available.
-We Can Use Those Images as Part of Docker File or We Can also Customize the Docker File Based on our Requirement.
+When we create a new Container,things work internally with the help of Docker Files and Docker Images.
+Whenever we want to deploy an Application We need to define set of dependencies and it can be any tools,Frameworks,Libraries etc 
+and these dependencies can be defined inside Docker File.
+The Process to define dependencies to run the Application is Called Docker File.
+All the Tasks which has to be executed inside the Container should be defined inside Docker File.
+There is a place Called Docker Hub i.e Centralized Repository where all the images are available.
+We can use those images as Part of Docker File or We Can also Customize the Docker File based on our requirement.
 
 Example :
 ---------
@@ -124,41 +120,40 @@ Now the Docker File is Created.
 
 Execution of Docker File :
 --------------------------
-For Example the Docker File is Present Inside Some Folder.
+For Example the Docker File is present inside Some Folder.
 Then run the Command : docker build.
-It Searches for the File in the Present Directory and starts building the Docker File and Converts into an Image.
+It Searches for the File in the present directory and starts building the Docker File and converts into an Image.
 It is Customized Image for an Application to Run.
-We can also give the Name to an Image  i.e docker build  --tag=OccDailyReport
-All the Images are Present in the Local System and We can see all The Images by Using the Command  : docker Images 
-If we want run the Image then use the Command : docker run  OccDailyReport
-When we run the Above Command It will Create a Container with all the Dependencies and starat the application inside the Container.
-Here Same Docker File is Converted into Image File and is moved across each of the Environment.
+We can also give the Name to an image  i.e docker build  --tag=OccDailyReport
+All the Images are present in the Local System and We can see all the images by Using the Command  : docker Images 
+If we want to run the image then use the Command : docker run  OccDailyReport
+When we run the above Command It will Create a Container with all the dependencies and starat the application inside the Container.
+Here Same Docker File is Converted into image and is moved across each of the Environment.
 
 ***************************************************   Docker Architecture   **********************************************************
 Docker Architecture :
 ---------------------
-It is Primarily Based on Two Things i.e Docker Client and Docker Server.
+It is primarily based on two things i.e Docker Client and Docker Server.
 If we want to build a Docker Image,then we need to run the Command  : docker build --tag==OccReport
 Similarly If we want to run the Docker Image,we need to run the Command : docker run OccReport
 The Above Commands i.e to build the Docker File and to run the Docker Image are invoked using Docker Client.
-Docker Client Needs to be Installed where we are running these Commands.
+Docker Client needs to be installed where we are running these Commands.
 When we Install Docker Both Docker Client and Docker Server will gets Installed.
 Any Docker Command has to run through Docker Client.
-Whenever we run the Command i.e  docker run OccReport using Docker Client,It Internally invokes the Docker Server and 
-Docker Server runs the Script inside Docker Image.
-It will Launch the Container with all the dependencies defined inside in the Docker Image.
+Whenever we run the Command i.e  docker run OccReport using Docker Client,It Internally invokes the Docker Server and Docker Server runs the Script inside Docker Image.
+It will Launch the Container with all the dependencies defined inside the Docker Image.
 
 How Docker Works :
 ------------------
-Docker is Mainly used for manging the Dependencies and in order to do that we need to define Docker File.
-Once The Docker File is Created we need to Convert the Docker File into Docker Image using Docker Client.
+Docker is mainly used for managing the dependencies and in order to do that we need to define the Docker File.
+Once The Docker File is created we need to convert the Docker File into Docker Image using Docker Client.
 We can also Tag the Image Name and we can also register the Docker Image.
-We can save the Docker Image into Docker Hub or Private Hub if Required .
+We can save the Docker image into Docker Hub or Private Hub if Required.
 Then We have Docker Server which contains all the Containers i.e
 When we run the Command : docker run --tag=OccReport,It Creates Docker Image named OccReport and Moved to the Docker Registry.
 Docker Server Interacts with Docker Registry with the Name OccReport,
 It will Create a Container with all the Dependencies mentioned in the Image,and executes the Application defined inside the Image,Code is Deployed.
-If We have Defined Port inside the Image and would be accessible Externally. 
-Any One Can Invoke the Port which resides inside the Container.
+If We have defined Port inside the image and would be accessible externally. 
+Any One Can invoke the port which resides inside the Container.
 
 

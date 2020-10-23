@@ -29,9 +29,9 @@ TroubleShooting Tipsy
 Validate Installation
 UnInstall Docker
 
-If We Install the Docker Tool Box on Windows Machine,The Installer Automatically installs Oracle Virtual Box to Run the Docker Virtual Machine.
-Here Docker Will be Running  inside the Virtual Machine and We interact with Docker Server Using Docker Client.
-To Install Docker We Ensure that we Have OS 64 Bit and Windows 7 or Higher
+If We Install the Docker Tool Box on Windows Machine,Installer Automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
+Here Docker will be running  inside the Virtual Machine and we interact with Docker Server using Docker Client.
+To Install Docker we ensure that we have 64 Bit OS and Windows 7 or Higher.
 
 https://docs.docker.com/v17.09/docker-for-windows/install/ -->  Select Install Docker For Windows -->
 Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
@@ -48,9 +48,9 @@ docker login          :  To Login to the Docker Hub
 docker logout         :  To Logout from the Docker Hub
 
 docker images         : To see the List of Images
-docker pull  ubuntu   : To Pull the Image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
+docker pull  ubuntu   : To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      : To get the Docker Image Id
-docker rmi imageId    : To Remove the Docker Image  based on Image Id.Before that check there is no Container running for that Image.
+docker rmi imageId    : To remove the Docker image  based on Image Id.Before that check there is no Container running for that Image.
 
 docker ps             : To See the List of Active Containers
 docker ps -a 		  : Ti See the List of Containers i.e active,closed etc.
@@ -62,7 +62,7 @@ docker rm 			  : To remove the Docker Container
 
 docker stats 		  : Memory and Usage Details of Container
 docker system df 	  : Local Disk Usage for Container
-docker system prune	  : To Delete all the Unused Images and Not Associated with Network 
+docker system prune	  : To delete all the Unused Images and Not Associated with Network 
 
 ******************************************************  6.Docker Images :  ****************************************************************************************
 
