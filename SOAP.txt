@@ -17,7 +17,11 @@
 17.SOAP UI													
 18.Using Web Service Explorer									
 19.Using End Point											
-20.WS Import Revisited										
+20.WS Import Revisited		
+
+21.SOAP Web Service using JAX-WS (Journaldev)
+22.SOAP web Service using Apache Axis (Journaldev)
+23.JAX-WS Web Service Deployment on Tomcat Server (Journaldev)
 
 
 ********************************************************  1.Introduction to SOAP Web Services : ********************************************************
@@ -145,11 +149,13 @@ Here the solution is write the WSDL first and generate the implementation from t
 This scenarios is called contract first.
 
 
-********************************************************  10.Understanding WSDL :  *************************************************************************
+********************************************************  10.Understanding WSDL :  ***************************************************************************
 
  
  
 
+
+******************************************************** 21.SOAP Web Service using JAX-WS   ******************************************************************
 
 
  

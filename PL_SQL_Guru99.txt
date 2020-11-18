@@ -1,31 +1,551 @@
-1.Introduction													[10-SEP-2020]  ()
-2.Key Differences                                               [10-SEP-2020]  ()
-3.Block                                                         [10-SEP-2020]  ()
-4.First Program                                                 [10-SEP-2020]  ()
-5.Data Types                                                    [10-SEP-2020]  ()
-6.Variable Identifiers                                          [10-SEP-2020]  ()
-7.Collections                                                   [10-SEP-2020]  ()
-8.Records                                                       [10-SEP-2020]  ()
-9.If Then Else                                                  [10-SEP-2020]  ()
-10.Case Statement                                               [10-SEP-2020]  ()
-11.Loop                                                         [10-SEP-2020]  ()
-12.For Loop                                                     [10-SEP-2020]  ()
-13.While Loop                                                   [10-SEP-2020]  ()
-14.Stored Procedure and Functions                               [10-SEP-2020]  ()
-15.Exception Handling                                           [10-SEP-2020]  ()
-16.Insert,Update,Delete and Select                              [10-SEP-2020]  ()
-17.Cursor                                                       [10-SEP-2020]  ()
-18.Bulk Collect                                                 [10-SEP-2020]  ()
-19.Autonomous Transaction                                       [10-SEP-2020]  ()
-20.Package                                                      [10-SEP-2020]  ()
-21.Trigger                                                      [10-SEP-2020]  ()
-22.Object Types                                                 [10-SEP-2020]  ()
-23.Dynamic SQL                                                  [10-SEP-2020]  ()
-24.Nested Blocks and Variable Scopes                            [10-SEP-2020]  ()
+1.Introduction													[26-OCT-2020]  (Done)
+2.Key Differences                                               [26-OCT-2020]  (Done)
+3.PL SQL Block                                                  [27-OCT-2020]  (Done)
+4.First Program                                                 [27-OCT-2020]  (Done)
+5.Data Types                                                    [29-OCT-2020]  (Done)
+6.Variable Identifiers                                          [30-NOV-2020]  (Done)
+
+7.Collections                                                   [10-NOV-2020]  ()
+8.Records                                                       [10-NOV-2020]  ()
+
+9.If Then Else                                                  [10-NOV-2020]  ()
+10.Case Statement                                               [10-NOV-2020]  ()
+11.Loop                                                         [10-NOV-2020]  ()
+12.For Loop                                                     [10-NOV-2020]  ()
+13.While Loop                                                   [10-NOV-2020]  ()
+14.Stored Procedure and Functions                               [10-NOV-2020]  ()
+15.Exception Handling                                           [10-NOV-2020]  ()
+16.Insert,Update,Delete and Select                              [10-NOV-2020]  ()
+17.Cursor                                                       [10-NOV-2020]  ()
+18.Bulk Collect                                                 [10-NOV-2020]  ()
+19.Autonomous Transaction                                       [10-NOV-2020]  ()
+20.Package                                                      [10-NOV-2020]  ()
+21.Trigger                                                      [10-NOV-2020]  ()
+22.Object Types                                                 [10-NOV-2020]  ()
+23.Dynamic SQL                                                  [10-NOV-2020]  ()
+24.Nested Blocks and Variable Scopes                            [10-NOV-2020]  ()
 
 
-1.Introduction Part One  :
-**************************
+**************************************************** 1.Introduction Part One  : ******************************************************************************
+
+PL SQL is an extension of SQL designed for seamless processing of SQL stattements,enhancing the security,portability and robustness of the database.
+PL SQL combines the data manipulation power of SQL with the processing power of procedural language to create super powerful SQL queries.
+PL SQL means what to do with SQL and how to do through its procedural way.
+Similar to other database languages PL SQL gives more control to the programmers by using loops,conditions and object oriented concepts.
+PL SQL stands for Procedural Language Extension To SQL.
+
+Architecture of PL/SQL :
+------------------------
+The PL/SQL architecture mainly consists of following three components:
+
+1.PL SQL Block
+2.PL SQL Engine
+3.Database Server
+
+PL SQL Block :
+--------------
+PL SQL block is the componenet which has the actual PL SQL code.
+PL SQL block contains different sections to divide the code Logically.
+PL SQL block also contains the SQL instructions that can be used to interact with database server.
+PL SQL units are treated as PL SQL blocks which is the starting stage of the architecture and serves as primary input.
+
+Different types of PL SQL units are 
+Anonymous Block
+Function
+Library
+Procedure
+Package Body
+Package Specification
+Trigger
+Type
+Type Body
+
+PL SQL Engine :
+---------------
+PL SQL Engine is the component where the actual processing of the code takes place.
+PL SQL Engine OCTearates the PL SQL units and the SQL part in the input.
+OCTarated PL SQL units will be handle by the PL SQL Engine itself.
+SQL part will be sent to the database server where the actual interaction with the database takes place.
+PL SQL Engine can be installed in both the database server and in the Application Server.
+
+Database Server :
+-----------------
+Database Server is the most important componenet of PL SQL unit which stores the data.
+PL SQL Engine uses the SQL statements from PL SQL units to interact with database server.
+Database Server consists of SQL executor which parses the input SQL statements and executes the same.
+
+
+Advantage of Using PL/SQL :
+---------------------------
+Better performance where SQL statements are executed in bulk rather than single statement.
+High Productivity
+Tight Integration with SQL
+Full portability
+Tight Security
+Support of Object Oriented Concepts
+
+
+**************************************************** 2.Key Differences   : *******************************************************************************
+
+SQL :
+-----
+SQL is the standard language that can be used to query the Database.
+SQL is a Single query that can be used to perform DML and DDL Operations
+SQL is declarative that defines what needs to be done rather than how things needs to be done.
+SQL executes a Single Statement
+SQL is mainly used to manipulate the data.
+SQL can be used to intercat with database server.
+Cannot contain PL SQL code inside the SQL statement.
+
+PL SQL :
+--------
+PL SQL is an extension to SQL that can be used in Oracle.
+PL SQl is a block of code that can be used to write the entire program blocks/procedures/functions etc.
+PL SQL is procedural that defines how the things needs to be done.
+PL SQL executes the whole block.
+PL SQL mainly used to create an Application.
+PL SQL does not need an interaction with database server.
+PL SQL is an extension of SQL which contains SQL inside in it.
+
+
+**************************************************** 3.PL SQL Block  : ********************************************************************************
+
+In PL SQL the code is  not executed in a Single line format but is always executed by grouping the code into a single element called Blocks.
+Blocks contains both PL SQL as well as SQL instructions and all these instructions will be executed as a whole rather than executing a single instruction at a time.
+
+Block Structure :
+-----------------
+PL SQL Blocks have pre defined structure in which the code is to be grouped.
+
+1.Declaration Section
+2.Execution Section
+3.Exception Handling Section
+
+
+Declaration Section :
+---------------------
+This is the first section of the PL SQL block and is optional.
+This is the section in which the declaration of variables,cursors,exceptions,sub programs,pragma instructions and collections that are needed in the block will be declared.
+
+Characteristics of the PL SQL block are
+
+This particular section is optional and can be skipped if no declarations are needed.
+This should be the first section in PL SQL block if it is present.
+This section starts with the keyword "DECLARE" for triggers and anonymous blocks.
+For other sub programs "DECLARE" keyword will not be required.
+Declaration section should always be followed by execution section.
+
+Execution Section :
+-------------------
+Execution part is the main and mandatory part which actually executes the code that is written inside it.
+Since PL SQL expects the executable statements from this block this block cannot be empty block i.e it should have atleast one valid executable code in it.
+
+Characteristics of Execution section are 
+
+Execution section can contain both PL SQL and SQL code.
+Execution section can contain one or many blocks or nested blocks.
+Execution Section starts with the keyword "BEGIN"
+Execution section should be followed by the keyword  "END" or Exception Handling Section (If present)
+
+Exception Handling Section  :
+-----------------------------
+The Exception which occurs at run time in the program is unavoidable and to handle this Oracle has provided Exception Handling Section in Blocks.
+Exception Handling section also contain PL SQL statements.
+This is the optional section in the PL SQL block.
+
+Characteristics of Exception Handling section are 
+
+If the Exception is raised in the execution block,it will be handled in the Exception Handling block.
+Exception Handling section is the last part of PL SQL block.
+control from this section will never return to the execution  block.
+Exception Handling section always starts with the keyword "Exception"
+Exception Handling section should always followed by the keyword "END"
+
+keyword "END" marks the end of the PL SQL block.
+
+PL/SQL Block Syntax :
+---------------------
+
+
+DECLARE  -- optional
+	<declarations>
+
+BEGIN -- mandatory
+	<executable statements .Atleast one executable statement is mandatory>
+	
+EXCEPTION -- optional
+    < exception handling>
+
+END; -- mandatory
+/
+
+Note : A Block should always be followed by "/" which sends the information to the compiler about the end of the Block.
+
+
+Types of PL/SQL block :
+-----------------------
+PL SQL Block mainly consists of two types.
+
+1.Anonymous Blocks
+2.Named Blocks
+
+Anonymous Blocks :
+------------------
+Anonymous blocks are PL SQL blocks which does not have any name assigned to them.
+Anonymous blocks needs to be created in the same session and used in the same session because they will not be stored in the server as database Objects.
+Since they are not stored in the database,no need of compilation of steps.
+They are witten directly and compilation and execution of a program happens in a single process.
+
+Characteristics of Anonymous Block are :
+
+Anonymous blocks does not have any reference name specified for them.
+Anonymous blocks starts with the keyword "DECLARE" or "BEGIN"
+Since these blocks does not have any reference name,these cannot be stored for later purpose.
+Anonymous blocks are created and executed in the same session.
+Anonymous block can call other named blocks but call to anonymous block is not possible because it does not have any reference.
+Anonymous block can have nested block in it which can be named or anonymous.
+Anonymous block can have all 3 sections of the block in which execution section is mandatory and the remaining 2 are optional.
+
+Named blocks :
+--------------
+Named blocks have a specific and unique name for them.They are stored as database objects in the server.
+Since they are available as database objects they can be referred to or used as long as it is present on the server.
+Compilation process for named blocks happens seperately while creating them as database objects.
+
+Characteristics of Named blocks are :
+
+These blocks can be called from other blocks.
+The block structure is same as Asynchronous block except it will never start with keyword "DECLARE".
+Named block starts with the keyword which instructs the compiler to create as Database Object.
+Named blocks can be nested within other blocks and it can also contain nested blocks.
+Named Blocks are basically of two types
+
+1.Procedure
+2.Function
+
+ 
+***********************************************************  4. First Program  *************************************************************
+
+Simple Program using PL/SQL :
+-----------------------------
+Here we are goint to write simple PL SQL program to print the message "Hello World" using Anonymous Block.
+
+BEGIN
+dbms_output.put_line('Hello World');
+END;
+/
+
+Output :
+Hello World
+
+Note : A Block should be always be followed by "/" which sends the information to the compiler about the end of the block.
+Till the compiler Encounters "/" it will not consider the block is completed and it will not execute it.
+
+Declaring and usage of variables in the Program :
+-------------------------------------------------
+/**
+Program to demonstrate the declaration of variable
+**/
+DECLARE 
+text VARCHAR2(25);-- declare the variable
+BEGIN
+text:='Hello World';
+dbms_output.put_line(text);
+END;
+/
+
+***********************************************************  5. Data Types  *************************************************************
+
+DataType defines how the data is defined in specific storage format and range constraints.
+In Oracle each value or constant is assigned with the data type.
+Datatype defines how the data is stored,handled and treated by the oracle during data storage processing.
+Main difference between SQL data type and PL SQL data types are SQL data type are limited to table column where as PL SQL data types are used in the PL SQL blocks.
+
+Scalar Datatypes :
+------------------
+Numeric
+Character
+Boolean
+DateTime
+Interval
+
+Composite Datatypes :
+---------------------
+PLS Integer
+Binary
+Binary Float
+Binary Double
+Number
+
+Reference :
+-----------
+
+
+Lob Datatype :
+--------------
+File
+BLOB
+CLOB
+NCLOB
+
+
+CHARACTER DataType :
+--------------------
+CHARACTER Datatype basically stores alpha numeric characters in string format.
+Literal values should always be enclosed in single quotes while assigning them to a CHARACTER data type.
+
+CHARACTER datatype is further classified into 
+
+1.CHAR 
+2.VARCHAR2
+3.VARCHAR
+4.NCHAR
+5.NVARCHAR2
+6.LONG and LONG RAW
+
+1.CHAR :
+--------
+CHAR datatype stores the String value and the size of the String is fixed at the time of declaring the variable.
+If the variable didn't occupy the entire size that has been declared for the variable,Oracle will allocate the memory for declared size.
+The size restriction of CHAR datatype is 1-2000 bytes.
+CHAR datatype is more appropriate to use where ever the fixed size data will be handled.
+
+	grade CHAR;
+	manager CHAR(10)='Srinu';
+	
+Here for the variable grade 1 byte will be occupied i.e default memory allocation for the variable.
+For the variable manager Oracle will allocate 10 bytes rather than 5 bytes.
+
+2.VARCHAR2 :
+------------
+VARCHAR2 datatype stores the String but lenght of the string is not fixed.
+Size restriction for this datatype is 1-4000 bytes for table column size and 1-32767 bytes for variables.
+Size is defined for each variable at the time of variable declaration only but Oracle will allocate memory at the time of variable is defined.
+It is always good to use VARCHAR2 instead of CHAR datatype to optimize the memory usage.
+
+3.VARCHAR :
+-----------
+VARCHAR is synonymous with VARCHAR2 datatype.
+
+4.NCHAR :
+---------
+NCHAR datatype is similar to CHAR datatype but the character set is of national character set.
+
+5.NVARCHAR2 :
+-------------
+NVARCHAR2 datatype is similar to VARCHAR2 datatype but the character set is of national character set.
+
+6.LONG and LONG RAW :
+---------------------
+LONG and LONG RAW datatype is used to store the large text of raw data upto the maximum size of 2 GB.
+These data types are mainly used in data dictionary.
+LONG datatype is used to store the character set data where as LONG RAW data type is used to store the data in binary format.
+LONG RAW accepts media objects,images etc where as LONG works only o data that can be stored using character set.
+
+NUMBER Data Type: 
+-----------------
+NUMBER data type stores fixed or floating point numbers up to 38 digits of precision.
+NUMBER data type is used to work with fields which contains only number data.
+Variable can be declared either with precision and decimal digits or without this information.
+values need not enclose within quotes while assigning for this data type.
+
+	A NUMBER(8,2);
+	B NUMBER(8);
+	C NUMBER;
+
+Declares the variable "A" is of number data type with total precision 8 and decimal digits 2.
+Declares the variable "B" is of number data type with total precision of 8 and no decimal digits.
+Declares the variable "C" is of number data type with no restriction of precision and decimal digits.
+it can take upto a maximum of 38 digits.
+
+BOOLEAN Data Type :
+-------------------
+Boolean datatype stores the logical values.it represents either TRUE or FALSE and mainly used in conditional statements.
+Boolean values need not enclosed in single quotes.
+
+	checked  BOOLEAN;
+	
+Output of the variable checked  will be either true or false based on condition set.
+
+DATE Data Type :
+----------------
+DATE data type stores the data in date format as date,moth and year.
+whenever a variable is defined with date datatype along with date it can hold time information and by default time information is set to 12:00:00.
+values need to enclose within quotes while assigning for this data type.
+
+	newyear DATE :='01-JAN-2021';
+	today-date DATE:=SYSDATE;
+	
+LOB Data Type :
+---------------
+LOB data type is mainly used to store and manipulate large blocks of unstructured data like images,multimedia files etc.
+Oracle prefers LOB data type than LONG data type as it is more flexible than LONG data type.
+Advantages of LOB over LONG data type are :
+
+Number of columns in a table with LONG data type is limited to 1 where as there is no restriction on number of columns with LOB data type.
+Data interface tool accepts LOB data type of the table during data replication but it ommits LONG column of the table.LONG column needs to be relicated manually.
+LONG data type can store upto 2GB where as LOB can store upto 128 TB.
+
+Following are the different types of LOB data types and they can store upto 128 tera bytes.
+
+BLOB
+CLOB and NCLOB
+BFILE
+
+BLOB stores the LOB data in the binary format and it can store upto 128 terra bytes.
+CLOB stores the LOB data in the character set where as NCLOB stores the LOB data in the native character set.
+BFILE stores the unstructured binary format data outside the database as an operating system file.
+Size of BFILE is to a limited operating system and are read only files and they cannot be modified.
+
+
+***********************************************************  6.Variable Identifiers  ***********************************************************
+
+Identifier is nothing but a name given to a PL SQL Object.
+Object could be constant,variable,exception,cursor,procedure,function,package,trigger,object type,reserved word,label etc.
+
+Properties of Identifiers :
+---------------------------
+Must start with letter
+Cannot contain white space characters
+Maximum size limited to 30 characters
+Can contain _,#,$ in the variable
+Variable in PL SQL is case insensitive
+
+Naming Conventions of Identifiers :
+-----------------------------------
+In a complex program sometimes we may have to include many identifiers.
+These identifiers include variables,cursors etc.
+So to avoid confusion and to increase the readability of the program we need to follow certain naming conventions.
+
+First Letter of the variable should be used to declare the level of the variable
+
+L - Local Variable
+P - Parameter Variable
+G - Global Variable
+
+Second Letter of the variable is used to identify the identifier of the variable
+
+C - Cursor
+V - Varchar and Char data type
+N - Number data type
+R - Record data type
+T - Table data type
+
+examples :
+
+lv_name i.e local level variable of type varchar data type
+pc_num i.e parameter level variable of tye Cursor
+gn_userid i.e Global level variable of type Number
+
+Variables – An Identifier :
+---------------------------
+Variable is the basic identifier which is used more frequently.
+Variable is nothing but place holder where the user can store th value.
+Variable needs to be associated with some valid PL SQL data type befor using them.
+Data type will define the storage and processing method for these variables.
+Variables needs to be declared before using them in the program.
+Declaration of variables needs to be done in the Declaration section of PL SQL Block.
+
+
+DECLARE 
+lv_name1 VARCHAR2(50);
+lv_name2 VARCHAR2(50)='BHAUMIK';
+BEGIN
+lv_name1:=lv_name2;
+dbms_ootput.put_line(lv_name1);
+END;
+/
+
+Output : BHAUMIK
+
+
+***********************************************************  7.Collections 		***********************************************************
+
+Collection is an ordered group of elements of particular data types.It can be a collection of simple data type or complex data type.
+In Collection,each element is identified by the term called "subscript".
+Each element in the collection is assigned with a unique "subscript".
+Data in the collection can be manipulated or fetched by using the unique subscript.
+
+Collections are most useful when large data of same data type needs to be processed or manipulated.
+Collections can be populated and manipulated as a whole using "BULK" option in Oracle.
+Collections are classified based on the structure,subscript and storage.
+
+Index By Table (Associative Array)
+Nested Tables
+Varray 
+
+At any point data in the collection can be referred by using Collection Name,subscript and Field/Column Name.
+
+Varrays :
+---------
+Varray is a collection method in which size of the array is fixed.
+Array size cannot be exceeded than its fixed value.
+Subscript of the varray is numeric value.
+
+Attributes of varrray are 
+
+Upper limit size is fixed.
+populated sequentially starting with subscript "1".
+Varray collection type is always dense i.e we cannot delete any array elements.Varray can be deleted as a whole or it can be trimmed from the end.
+Varray is always dense in nature,it has very less flexibility.
+Varray is more appropriate to use when the size of the array is known and to perform similar activities on all the array elements.
+Subscript and sequence always remains stable.subscript count and collection count is always same.
+Varray needs to be initialized before using them in programs.Any operation on uninitialized collection will throw an error.
+Varray can be created as database object which is visible throughout the database or inside the subprogram, which can be used only in that subprogram.
+
+	TYPE <type_name> IS VARRAY (<SIZE>) OF <DATA_TYPE>;
+	
+Nested Tables :
+---------------
+Nested Table is a collection method in which size of the array is not fixed.
+Subscript of the Nested Table is numeric value.
+Since the upper limit size is not fixed,memory needs to extended each time before we use it.we can extend the collection by using "EXTENDS" keyword.
+Nested Table collection type can be of both dense and sparse.we can create the collection as dense and we can also delete the inividual array element which makes it as sparse.
+It gives more flexibility regarding deleting the array element.
+Nested Table can be stored in the system generated database table and can be used in the select query to fetch the values.
+subscript and sequence are not stable i.e subscript and sequence count may vary.
+
+	TYPE <type_name> IS TABLE OF <DATA_TYPE>;
+	
+Index-by-table :
+----------------
+Index by table is a collection in which array size is not fixed.
+In Index by table subscript can be defined by the user. 
+
+Attributes of Index by Table are :
+
+In Index by Table subscript can be of Integer or String.At the time of creating the collection subscript type should be mentioned.
+In Index by table collections are not stored sequentially and are always sparse in nature.
+In Index by Collection Array size is not fixed.
+Index by table cannot be stored in the database column.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
