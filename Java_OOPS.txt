@@ -1,0 +1,498 @@
+1.Data Hiding										[02-DEC-2020]  (Done)	
+2.Abstraction                                       [02-DEC-2020]  (Done)
+3.Encapsulation                                     [02-DEC-2020]  (Done)
+4.Tightly Encapsulated Class                        [02-DEC-2020]  (Done)
+5.Is a Relationship                                 [10-DEC-2020]  (Done)
+6.Has a Relationship                                [10-DEC-2020]  (Done)
+7.Method Signature                                  [10-DEC-2020]  (Done)
+8.Overloading                                       [10-DEC-2020]  (Done)
+
+9.Overriding                                        [13-DEC-2020]  ()
+10.Polymorphism                                     [02-DEC-2020]  ()
+11.Coupling                                         [02-DEC-2020]  ()
+12.Static Control Flow                              [02-DEC-2020]  ()
+13.Static Block                                     [02-DEC-2020]  ()
+14.Static Control Flow                              [02-DEC-2020]  ()
+15.Object Creation                                  [02-DEC-2020]  ()
+16.Memory Area of JVM                               [02-DEC-2020]  ()
+17.Constructor                                      [02-DEC-2020]  ()
+18.Singleton Class                                  [02-DEC-2020]  ()
+19.Typecasting                                      [02-DEC-2020]  ()
+20.vararg Method                                    [02-DEC-2020]  ()
+21.Main Method                                      [02-DEC-2020]  ()
+
+
+
+**********************************************************  1.Data Hiding  *********************************************************************
+
+Data Hiding Means hiding of Data.
+Our internal data sholu not go out diretly i.e outside person is not allowed to access our internal data directly.
+By using private modifier we can acheive data hiding.
+Instead of providing the data directly,provide access through method.
+Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
+Main advantage of data hiding is security.
+Recomended Modifier for data variable is private.
+
+
+**********************************************************  2.Abstraction  **********************************************************************
+
+Hiding the internal implementation and highlighting the set of services i.e required information is called as Abstraction.
+All the Operations are performed internally by highlighting the set of services.
+Bank people will highlight the set of services what they are offering by hiding the internal implementation.
+Abstraction improoves the maintainability and modularity of the application.
+Abstraction improoves the easyness to use the system because not required to know about the internal implementation.
+
+********************************************************** 3.Encapsulation  **********************************************************************
+
+If any componenet of java class follows Data hiding and Abstraction is called Encapsulation.
+Binding the data and corresponding functionality together into a single module is called Encapsulation.
+Every Java class is an example of Encapsulation.
+
+In case of Encapsulation,we does not aware which code it got executed and where it is executed.
+Here we are hiding the data behind the methods is a central concept of Encapsulation.
+Main Advantage of Encapsulation is
+We can acheive security
+Enhancement will become easy
+Improoves the maintainability and modularity of an Application
+
+If we want security we should compromise the performance of the Application.
+Disadvantage of Encapsulation is it increases the length of the code and slows down execution.
+Perfromance of the system will be impacted.
+
+********************************************************** 4.Tightly Encapsulated Class  **********************************************************
+
+When ever we are very strict about data hiding,we go for tightly encapsulatd class.
+A class is tightly Encapsulated class if each and every variable of the class is declared as private.
+Whether the class contains corresponding setter and getter methods or not,whether these methods are declared as public or not.
+These things are not required to check.
+
+Note :
+If the Parent class is not tightly encapsulated then no child class is not tightly encapsulated.
+
+********************************************************** 5.Is a Relationship  *******************************************************************
+
+It is also known as Inheritance.
+By using extends keyword we can implement is a relationship.
+Advantage is reusability of code.
+If several components have the same functionality then it is not recomended to define that common functionality in every component.
+We need to define the common functionality in one class and specific functionality in the child class.
+This approach improoves the reusability of the code  and reduces the development time.
+Entire Java API is implemented based on simple inheritance.
+For all Errors and Exceptions,common functionality is available in Throwable class.Hence Throwable class acts as a root class for Java Exception Hierarchy.
+Similarly For all Java classes most common required functionality is available in  Object class.
+Hence Object class acts as a Root Class for all Java Classes.
+
+Example :
+---------
+public class Parent {
+
+	public void m1()
+	{
+		System.out.println("Parent Class Method");
+	}
+}
+
+public class Child extends Parent{
+
+	public void m2()
+	{
+		System.out.println("Child Class Method");
+	}
+}
+
+public class ParentChild {
+	public static void main(String[] args) {
+		Parent parent=new Parent();
+		parent.m1();
+		Child child=new Child();
+		child.m1();
+		child.m2();
+	}
+}
+
+												Object
+						Throwable    String   StringBuffer      Number
+				Exception   Errors                          Byte  Short Integer
+			RTE  IOE        OutOfMemoryError
+
+Object class contains 11 Methods that contains common functionality which is avaialbale for all the Classes.
+
+Note :
+------
+1.Whatever methods parent has by default avaialbale to child class.Hence on the child class reference we can call both parent and child class methods.
+2.Whatever methods child has by default avaialbale not avaialbale to the parent class.Hence on the parent class reference we cannot call child class methods.
+3.Parent class reference can be used to hold child class objects but by using this reference we can call methods available in parent class 
+and child class specific methods we cannot call.
+4.Child class reference cannot be used to hold parent class object.
+
+
+Multiple Inheritance :
+----------------------
+Java does not support Multiple inheritance through class because there may be a chance of ambiguity problem.
+In Java a class cannot extend more than one class at a time,Hence Java won't provide support for multiple inheritance.
+
+
+Class A
+{
+	m1();
+}
+
+
+Class B 
+{
+   m1();
+}
+
+Class C extends A,B
+{
+	m1();  // Compile Time Error Due to Ambiguity problem which method it has to call.
+}
+
+But an Interface can extend more than one Interface at a time,Hence Java provides support for Multiple Inheritance through Interface.
+
+Interface A 
+{
+}
+
+Interface B 
+{
+}
+
+Interface C extends A,B
+{
+}
+
+Because for Interface we need to provide Implementation.
+Here Implementation for A is in Seperate Class and B is in Another Class.
+To the Interface C Only one implementation is enough ans single implementation acts for both interfaces.
+There is no chance of ambiguity.
+Eventhough multiple method declarations are present,there should be only one implementation i.e implementation is unique.
+Hence there is no chance of ambiguity Problem in interfaces.
+
+Cyclic Interface :
+------------------
+Cyclic Inheritance is not allowed in Java.
+
+Class A extends A
+{
+
+}
+
+Class A extends B
+{
+}
+
+Class B extends A
+{
+}
+
+************************************************************* 6.Has a Relationship  *************************************************************
+
+It is also known as Composition or Aggregation.
+Whenever the common functionality is repeatedly required,write it in one class and call this functionality where ever it is required.
+There is no specfic keyword to implement has a relationship but most of the times we use new keyword.
+Main Advantage of has a relationship is reusability of the code.
+
+Consider the scenario if we want to build the car ,each part is taken from the third party Vendor.
+Here the Disadvantag is if there is a change in Engine, then it will impact the Class Car.
+Has a Relationship increases the dependencies between the components and increases the Maintanance problems.
+
+
+Note : If there is no parent child relationship and still i wnat to acheive reusability of the code we use has a relationship.
+Composition and Aggregation are both the cases that comes under has a relationship.
+
+Composition :
+-------------
+Consider the scenario of University where it consists of several departments.
+Without existing university there is no chance of existing department.
+Here University is a Container object where as Department is contained Object.
+Here Container objects and contained objects are Strongly associated with each other.Then this Association is nothing but Composition.
+Without existing Outer class object there is no chance of existing Inner class object.
+
+Aggregation :
+-------------
+Consider the scenario of department.
+Many Professors works under one department.
+There may also be scenario where the Department has no Professors in it.
+Here without existing container object(Department) there may also be a chance of existing contained object(Professor).
+Container objects and contained objects are weakly associated is called Aggregation.
+
+Note :
+------
+In Composition,Container object holds Contained Objects i.e Conatiner and Contained Objects are Strongly associated.
+In Aggregation,Container Object holds the references of Contained Objects i.e Conatiner and Contained Objects are weakly associated.
+
+************************************************************* 7.Method Signature   **********************************************************************
+
+			public void m1(int i,double d);
+			
+In Java Method Signature consists of name of the Method and Argument Types.
+Return type is not a part of Method Signature.
+For each called performed by the Thread on the Method,corresponding entry will be stored inside the Stack Area.
+
+public class MethodSignatureDemo {
+
+	public void m1(int i)
+	{
+		System.out.println("Integer Value is "+i);
+	}
+	
+	public void m1(double d,int i)
+	{
+		System.out.println("Integer Value is "+i + "and Double Value is "+d );
+	}
+	public static void main(String[] args) {
+		MethodSignatureDemo demo =new MethodSignatureDemo();
+		demo.m1(5);
+		demo.m1(36.0,5);
+		
+	}
+}
+
+Note :
+------
+In a Class two Methods with same signature are not allowed.
+Atleast argument types should be different.
+
+************************************************************* 8.Overloading   ******************************************************************************
+
+Two Methods are said to be overloaded methods If Both the Methods have the same name and having different argument types i.e
+Atleast order of arguments must be different is also applicable.
+
+In C 
+
+	abs(10.2);
+	abs(-10.2);
+	
+both returns the absolute value and returns 10.2
+
+	abs(10l) gives compile time error and we need to define one more method i.e
+	labs(10);
+	
+Here C does not support overloading and increases the complexity of the program.
+But Java supports overlaoding and reduces the complexity of the program.
+
+Note :
+------
+In overloading Method resolution is always taken care by compiler i.e based on reference type.
+Compiler decides which method has to be executed based on reference type.
+Here overloading is called static polymorphism or compile time polymorphism or Early Binding.
+
+public class OverloadingDemo {
+
+	public void m1()
+	{
+		System.out.println("No Argument COnstructor");
+	}
+	public void m1(int i)
+	{
+		System.out.println("Value of Integer Argument is "+i);
+	}
+	public void m1(double d)
+	{
+		System.out.println("Value of Double Argument is "+d);
+	}
+	public static void main(String[] args) {
+		OverloadingDemo demo=new OverloadingDemo();
+		demo.m1();
+		demo.m1(36);
+		demo.m1('a');// Automatic promotion in Overloading
+	}
+}
+
+Automatic promotion in Overloading :
+------------------------------------
+While performing Method overloading,if exactly matched method is not found then we don't get compile time error.
+Here Compiler promotes the argument to the next level and checks whether the matched method is available or not.
+This process will be continued untill all the possible promotions.
+Still if the matched method is not avaialbale then we get the compile time Error.
+Promoting the argument to the next level is nothing but Automatic promotion in Overloading.
+
+Various possibel promotions are 
+
+	byte --> short \
+					\ 
+					 >
+			      >	   int --> long --> float --> double
+			char /		   
+
+public void m1(Object obj)
+{
+	System.out.println("Object Argument");
+}
+public void m1(String string)
+{
+	System.out.println("String Argument");
+}
+
+demo.m1(null);// Child class preference in case of overloading and output is "String Argument".
+
+Note :
+------
+In case of overloading Method Resolution if both method matches,then priority goes to the Child class argument over the Parent class argument.
+
+
+public void m1(String string)
+{
+	System.out.println("String Argument");
+}
+
+public void m1(StringBuffer stringBuffer)
+{
+	System.out.println("StringBuffer Argument");
+}
+
+demo.m1(null);// CTE
+
+Note :
+------
+In case of over laoding method Resolution,If both methods are at same level we get CTE.
+
+
+VarArg Method :
+---------------
+
+vararg method came in 1.5 version.
+vararg() can be called by passing any no of arguments including 0or any.
+In general vararg() will get the least priority i.e if no oher method matches then only vararg() will get the chance.
+vararg() is same as default in switch case.
+
+public void m1(int... i)
+{
+	System.out.println("Vararg Method with Parameter "+i);
+}
+
+demo.m1(35,24);
+
+
+***************************************************************** 9.Overriding  *********************************************************************
+
+whatever the methods parent has by default it is avaialbale to the child class.
+If the child class is not satisfied with the parent class method then child class is allowed to redefine the parent class method in the child class based on its requirement.
+Parent class method which is overriden is called overridden method.
+Child class method which is overriding is called overriding method.
+
+public class ParentDemo {
+
+	public void property()
+	{
+		System.out.println("Property");
+	}
+	public void marriage()
+	{
+		System.out.println("Arranged Marriage");
+	}
+}
+
+public class ChildDemo extends ParentDemo{
+
+	public void marriage()
+	{
+		System.out.println("Love Marriage");
+	}
+}
+
+ParentDemo parentChild=new ChildDemo();
+parentChild.marriage();
+
+Flow of execution :
+-------------------
+Here compiler will check whether the marriage method is present or not.
+It again checks whether it is present in Parent class object or Child class Object.
+If it is present in Parent Class Object it will execute the Parent Class method.
+Similarly if it is present in child class object it will execute child class Object.
+
+At runtime JVM will check whether the method is overriding in the child class or not.
+If yes Cild class method will get executed.
+
+In overriding Method Resolution is always taken care by compiler based on Runtime Object.
+Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
+
+Rules for Overriding :
+----------------------
+Method Name and argument type must be same. i.e Method Signature must be same.
+In Overriding return type mst be matched but this rule is applicable till Java 1.4.
+Form Java 1.5 onwards Covariant return types are allowed.
+According to Covariant Return Type,Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
+Covariant Return Type is applicable only for Object Types and not for primitive types.
+
+Scenario : Parent Class method is declared as private 
+------------------------------------------------------
+Based on requirement we can override parent class private methods in child class.
+But it is not overriding.
+Overriding concept is not applicable for private methods.
+
+public class ParentDemo {
+	private void personal()
+	{
+		System.out.println("Property");
+	}
+}
+
+public class ChildDemo extends ParentDemo{
+	private void personal()
+	{
+		System.out.println("Property");
+	}
+}
+
+Scenario : Parent Class method is declared as final 
+---------------------------------------------------
+public class ParentDemo {
+	public final void drink()
+	{
+		System.out.println("Property");
+	}
+}
+
+public class ChildDemo extends ParentDemo{
+	public void drink()
+	{
+		System.out.println("Property");
+	}
+}
+
+Here it gives the CTE saying Cannot override the final method from ParentDemo.
+We can override non final method as final.
+We can override Parent class abstract method in the Child class to provide implementation.
+
+Scenario : Parent Class method is non abstract 
+----------------------------------------------
+public class ChildDemo {
+	public void marriage()
+	{
+		System.out.println("Love Marriage");
+	}
+}
+
+public abstract class AbstractChildDemo extends ChildDemo{
+	public abstract void marriage();
+}
+
+If the Parent class method is non abstract then in the Child class it can be overridden as an abstract method.
+Advantage is ,In the next level child we need to provide implementation.
+Disdavantage is Parent class method is not available to the next level child class.
+We can override non abstract method as abstract in the child class.
+
+Synchronized,Strictfp,native won't give any restriction while overriding.
+
+Scenario : Overriding w.r.t private,public and default :
+--------------------------------------------------------
+If the Parent class method is declared as public then compulsory Child class method should also be declared as public.
+While overriding we cannot reduce the scope of the Access Modifier but we can increase.
+
+	private --> default --> protected --> public
+	
+
+Scenario : Overriding w.r.t Exception :
+---------------------------------------
+
+
+
+
+
+
+
+
+
+

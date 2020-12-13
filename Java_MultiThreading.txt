@@ -1,5 +1,5 @@
-Java 8 Concurrency Utilities  :
-*******************************
+Java 8 Concurrency Utilities  Jenkov :
+**************************************
 1.BlockingQueue
 2.ArrayBlockingQueue
 3.DelayQueue
@@ -40,7 +40,7 @@ Reactive System with Eclipse Vert.X
 ************************************************************  Thread Pool Executor   *********************************************************************
 
 Java Thread Pool Manages the Pool of Worker Threads.
-It Contains a Queue(Runnable Threads) that contains tasks waiting to get Executed.
+It Contains a Queue(Runnable Threads) that contains tasks waiting to get executed.
 We Can also Use ThreadPoolExecutor to create a Thread Pool in Java.
 Threads will execute the Runnable Threads from the Queue.
 Executors is a Utility Class that Provides useful methods to work with ExecutorService,ScheduledExecutorService,ThreadFactory and

@@ -50,7 +50,7 @@ git checkout HEAD path/to/your/dir/or/file
 
 -- To Undo the Modified Files
 git reset --hard HEAD
-
+99;
 --Switch From One Branch to Another Branch
 git branch "Branch Name" 
 git checkout replica

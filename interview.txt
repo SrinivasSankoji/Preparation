@@ -112,19 +112,35 @@ Kubernetes
 
 ***************************************** Interview  ***********************************************
 
+https://www.javainterviewpoint.com/
+
+OOPS
+Exception Handling
+Lang Package
+Interfaces and Modifiers
+MultiThreading
+Generics,Enum
+Collections
+Servlets
+Spring AOP
+
+
 Mindgate :
 ----------
-JVM Internal Architecture
-Heap Memory,Stack Memory
-Constructor Chaining
-HashMap,Concurrent Hashmap Internal
-Thread Safety
-Synchronized
-Has a Relationship
-Spring Bean Life Cycle
-Asymmetric Encryption Cryptography in Java
-What is the difference between symmetric and asymmetric encryption
-Encryption vs Hashing
+JVM Internal Architecture											()		
+Java Memory Management												()	
+A Detailed Breakdown of the JVM										()		
+Heap Memory,Stack Memory						                    ()
+Constructor Chaining                                                ()
+HashMap,Concurrent Hashmap Internal                                 ()
+Thread Safety                                                       ()
+Synchronized                                                        ()
+Has a Relationship                                                  ()
+Spring Bean Life Cycle                                              ()
+Asymmetric Encryption Cryptography in Java                          ()
+Difference between symmetric and asymmetric encryption              ()
+Encryption vs Hashing                                               ()
+Class Loaders                                                       ()
 
 
 

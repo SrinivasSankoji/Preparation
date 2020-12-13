@@ -142,7 +142,7 @@ Whenever a Shared Resource has to be updated across the Components or Multiple T
 
 ******************************************** 2.Java Memory Model ************************************************************
 
-Java Memory Model is a Specification which Guarantees the Visibility of Fields when we have re Ordering of Instructions.
+Java Memory Model is a Specification which Guarantees the visibility of fields when we have re Ordering of instructions.
 Java Memory Model Enforces that all the JVM has to implement these set of Rules so that Program Runs in the Same Manner. 
 
 1.Order of Execution
