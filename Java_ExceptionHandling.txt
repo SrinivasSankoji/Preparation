@@ -1,0 +1,103 @@
+1.Introduction															[16-DEC-2020]  (Done)
+2.RuntimeStack Mechanism                                                [16-DEC-2020]  (Done)
+3.Default Exception Handling in Java                                    [16-DEC-2020]  (Done)
+4.Exception Hierarchy                                                   [16-DEC-2020]  (Done)
+5.Exception and Error                                                   [14-DEC-2020]  ()
+6.Checked and Unchecked Exception                                       [14-DEC-2020]  ()
+7.Partially Checked Exception                                           [14-DEC-2020]  ()
+8.Exception Handling using try catch block                              [14-DEC-2020]  ()
+9.Control flow in try catch block                                       [14-DEC-2020]  ()
+10.Methods to Print Exception                                           [14-DEC-2020]  ()
+11.Try with Multiple Catch Block                                        [14-DEC-2020]  ()
+12.Finally Block                                                        [14-DEC-2020]  ()
+13.return vs finally                                                    [14-DEC-2020]  ()
+14.finally,final and finalize                                           [14-DEC-2020]  ()
+15.Control flow in try catch finally                                    [14-DEC-2020]  ()
+16.Control flow in Nested try catch finally                             [14-DEC-2020]  ()
+17.Combination of try catch finally                                     [14-DEC-2020]  ()
+18.throw keyword                                                        [14-DEC-2020]  ()
+19.throws keyword                                                       [14-DEC-2020]  ()
+20.CompileTime Errors                                                   [14-DEC-2020]  ()
+21.Customized Exception                                                 [14-DEC-2020]  ()
+22.Top 10 Exception                                                     [14-DEC-2020]  ()
+23.Try with Resources                                                   [14-DEC-2020]  ()
+24.Multi Catch Block                                                    [14-DEC-2020]  ()
+
+
+******************************************************************** 1.Introduction  ***************************************************************************
+
+Abnormal termination of the program is the result of Exception.
+An unwanted or unexpected event that disturbs the  normal flow of execution of the program is nothing but Exception.
+Main purpose of Exception Handling is the graceful termination of the program.
+
+Scenario 1:
+-----------
+My program has to read the data from the remote file and at runtime remote file is not available.
+we get FileNotFoundException.
+It is highly recomended to handle the Exception.
+We have to provide the local File to continue to rest of the program normally.
+
+Scenario 2 :
+------------
+Opened the database and while reading the data from the database SQLException is raised.
+Here program terminates abnormally without closing the connection.
+If 10 connections are opened and program terminates the program without closing the connection,resources are wasted.
+Eventhough program terminates abnormally,close the DB connection and stop the program.
+
+Exception HAndling does not mean repairing an Exception i.e we have to provide an alternative way to continue the rest of the program normally.
+This way of providing alternative is nothing but Exception Handling.
+
+******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
+
+Every Java program contains one Thread.
+For every Thread JVM will create a Seperate Runtime Stack.
+For every method call perfromed by the Thread one entry will be stored inside the Corresponding Stack.
+Each Entry in the Stack is called Activation Record or Stack Frame.
+After completing the Method corresponding entry from the Stack will be removed.
+After completing all the Methods Stack will be empty.
+Just before terminating the program,empty stack will be destroyed by the JVM.
+
+******************************************************************** 3.Default Exception Handling in Java  *********************************************************
+
+If anywhere an Exception is raised inside a Method,the Method in which an Exception is raised is responsible to create an Exception object including
+
+Name of the Exception
+Description of the Exception
+Location of the Exception
+
+public class ExceptionDemoOne {
+	public static void main(String[] args) {
+		doStuff();
+	}
+	public static void doStuff()
+	{
+		doMoreStuff();
+		System.out.println(10/0);
+	}
+	public static void doMoreStuff()
+	{
+		System.out.println("Hello");
+	}
+}
+
+After creating an Exception object by the Method,This Method hand overs the Exception object to the JVM.
+JVM will check in which method problem raises,This Method has Exception Handling code or not.
+If Not JVM terminates the program abnormally and removes the method from the Satck.
+JVM handovers the responsibility of Exception Handling to the Default ExceptionHandler which is a part of JVM.
+
+Note :
+------
+In our program if one program terminate abnormally,then the program termination is always abnormal termination.
+If all the methods are terminate normally then only program will be terminated normally.
+
+********************************************************************  4.Exception Hierarchy  ***********************************************************************
+
+Throwable Class acts asa Root Class for Jave Exception Hierarchy.
+It contains following two Child Classes.
+
+1.Exception
+2.Error
+
+ 
+
+********************************************************************  5.Exception and Error ***************************************************************************	
