@@ -2,26 +2,27 @@
 2.RuntimeStack Mechanism                                                [16-DEC-2020]  (Done)
 3.Default Exception Handling in Java                                    [16-DEC-2020]  (Done)
 4.Exception Hierarchy                                                   [16-DEC-2020]  (Done)
-5.Exception and Error                                                   [14-DEC-2020]  ()
-6.Checked and Unchecked Exception                                       [14-DEC-2020]  ()
-7.Partially Checked Exception                                           [14-DEC-2020]  ()
-8.Exception Handling using try catch block                              [14-DEC-2020]  ()
-9.Control flow in try catch block                                       [14-DEC-2020]  ()
-10.Methods to Print Exception                                           [14-DEC-2020]  ()
-11.Try with Multiple Catch Block                                        [14-DEC-2020]  ()
-12.Finally Block                                                        [14-DEC-2020]  ()
-13.return vs finally                                                    [14-DEC-2020]  ()
-14.finally,final and finalize                                           [14-DEC-2020]  ()
-15.Control flow in try catch finally                                    [14-DEC-2020]  ()
-16.Control flow in Nested try catch finally                             [14-DEC-2020]  ()
-17.Combination of try catch finally                                     [14-DEC-2020]  ()
-18.throw keyword                                                        [14-DEC-2020]  ()
-19.throws keyword                                                       [14-DEC-2020]  ()
-20.CompileTime Errors                                                   [14-DEC-2020]  ()
-21.Customized Exception                                                 [14-DEC-2020]  ()
-22.Top 10 Exception                                                     [14-DEC-2020]  ()
-23.Try with Resources                                                   [14-DEC-2020]  ()
-24.Multi Catch Block                                                    [14-DEC-2020]  ()
+5.Exception and Error                                                   [16-DEC-2020]  (Done)
+6.Checked and Unchecked Exception                                       [16-DEC-2020]  (Done)
+7.Partially Checked Exception                                           [16-DEC-2020]  (Done)
+8.Exception Handling using try catch block                              [17-DEC-2020]  (Done)
+9.Control flow in try catch block                                       [17-DEC-2020]  (Done)
+10.Methods to Print Exception                                           [17-DEC-2020]  (Done)
+11.Try with Multiple Catch Block                                        [17-DEC-2020]  (Done)
+12.Finally Block                                                        [17-DEC-2020]  (Done)
+13.return vs finally                                                    [17-DEC-2020]  (Done)
+14.finally,final and finalize                                           [17-DEC-2020]  (Done)
+
+15.Control flow in try catch finally                                    [18-DEC-2020]  ()
+16.Control flow in Nested try catch finally                             [18-DEC-2020]  ()
+17.Combination of try catch finally                                     [18-DEC-2020]  ()
+18.throw keyword                                                        [18-DEC-2020]  ()
+19.throws keyword                                                       [18-DEC-2020]  ()
+20.Various CompileTime Errors                                           [18-DEC-2020]  ()
+21.Customized Exception                                                 [18-DEC-2020]  ()
+22.Top 10 Exception                                                     [18-DEC-2020]  ()
+23.Try with Resources                                                   [18-DEC-2020]  ()
+24.Multi Catch Block                                                    [18-DEC-2020]  ()
 
 
 ******************************************************************** 1.Introduction  ***************************************************************************
@@ -101,3 +102,195 @@ It contains following two Child Classes.
  
 
 ********************************************************************  5.Exception and Error ***************************************************************************	
+Most of the times Exceptions are caused by programmers and are recoverable.
+If our program requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
+If FileNotFoundException occurs we can provide loacl file so that rest of the program will be continued normally.
+
+Most of the times Error are caused by lack of system resources and are not recoverable.
+If OutOfMemory occurs as a programmer we cannot do anything and the program will be terminated abnormally.
+
+******************************************************************** 6.Checked and Unchecked Exception  **************************************************************
+Each and every Exception occurs at Runtime.
+The Exception which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
+In our program sometimes there may be a chance of getting an Exception at Runtime.
+Compiler verifies whether we are handling that Exception or not.i.e writing catch block or not is the only requirement of the compiler.
+
+Example :FileNotFoundException
+
+There are some Exceptions which are not checked by the compiler.These type of Exception are called UncheckedException.
+
+Example :
+ArithematicException
+NullPointerException
+
+RuntimeException and its Child Classes and
+Error and its Child Classes are Unchecked Exception.
+Remaining are Checked Exception.
+
+Note :
+------
+Whether the Exception is Checked or UnChecked compulsory it should occur at Runtime only.
+There is no chance of Exception occurig at Compile Time.
+
+******************************************************************** 7.Partially Checked Exception  ********************************************************************
+
+A Checked Exception is said to be fully Checked Exception If all of its Child Classes are Checked.
+Example :
+IOException
+InterruptedException
+
+A Checked Exception is said to be partially Checked Exception If some of its Child classes are unchecked.
+Example :
+Throwable
+Exception
+
+Only possible Partial Checked Exception are
+Throwable
+Exception
+
+******************************************************************** 8.Exception Handling using try catch block  ********************************************************
+
+We can make the program as graceful terminataion of the program by using try catch block.
+The code which makes the program termination is called risky code and should be placed inside try catch block.
+ 
+	public class ExceptionDemoTwo {
+	public static void main(String[] args) {
+		System.out.println("Statement 1");
+		try {
+			System.out.println(10 / 0);
+		} catch (Exception e) {
+			System.out.println(10 / 2);
+		}
+		System.out.println("Statement 3");
+	}
+	}
+	
+******************************************************************** 9.Control flow in try catch block  ******************************************************************
+
+1.Within the try block If any where an exception is raised,rest of the try block will be executed even though wehandled the exception.
+Hence within the try block we have to take only risky code and lenth of the risky code should be as less as possible.
+2.There may be a chance of getting an Exception in catch and finally block also in addition to try block.
+3.If any satetment which is not part of try block raising an exception,then it is always abnormal termination of the program.
+
+******************************************************************** 10.Methods to Print Exception  **********************************************************************
+
+Throwable Class defines the following methods to print Exception information on the console.
+
+e.getMessage()  	 - Description
+e.toString()    	 - Name of the Exception : Description
+e.printStacktrace()  - Name of the Exception : Description : StackTrace
+
+******************************************************************** 11.Try with Multiple Catch Block  *******************************************************************
+
+The way of Handling the Exception varies from Exception to Exception.
+For every Exception it is recomended to take seperate catch block.
+Try with Multiple Catch block is recomended to use.
+
+Within try block at any point of time there may be a chance of getting only one Exception at a time.
+But we cannot expect exactly which Exception is going to raise.
+
+If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle the Exception.
+If we are writing try with multiple catch block,order of catch block is important .i.e form Child to Parent.
+ 
+******************************************************************** 12.Finally Block   *********************************************************************************
+
+It is never recomended to clean up code within the try block because there is no gaurantee for the exeuction of each and every statement.
+It is not recomended to clean up the code within the catch block because there is no gaurantee of execution.
+We required a place to maintain clan up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
+such type of place is nothing but finally block.
+Main purpose of finally block is to maintain clean up code which should be executed  always.
+
+	public class FinallyDemoOne {
+	public static void main(String[] args) {
+		try {
+			System.out.println("Try");
+			System.out.println(10/0);
+		}
+		catch (Exception e) {
+			System.out.println("Catch");
+		}
+		finally {
+			System.out.println("Finally");
+		}
+	}
+	}
+
+********************************************************************  13.return vs finally  *****************************************************************************
+
+finally block dominates return statement also.
+Hence if there is any return statement present inside try or catch block,first finally block will be executed then return statement will be executed.
+
+	public class FinallyDemoTwo {
+	public static void main(String[] args) {
+		try {
+			System.out.println("Try");
+			return;
+		}
+		catch (Exception e) {
+			System.out.println("Catch");
+		}
+		finally {
+			System.out.println("Finally");
+		}
+	}
+	}
+
+
+Special Case :
+--------------
+System.exit(0); dominates finally block.
+There is only one situation where finally block won't be executed i.e System.exit(0);
+Here JVM itself is going to shutdown and finally block won't be executed.
+
+System.exit(0);
+
+Number represents the Status code of JVM 
+0 represents Normal termination of the JVM
+Non Zero means abnormal termination of the JVM.
+whether it is Zero or Non Zero Programmer or program has no effect at all and going to be used by JVM.
+
+	public class FinallyDemoTwo {
+	public static void main(String[] args) {
+		try {
+			System.out.println("Try");
+			System.exit(0);
+			return;
+		}
+		catch (Exception e) {
+			System.out.println("Catch");
+		}
+		finally {
+			System.out.println("Finally");
+		}
+	}
+	}
+	
+Output : Try
+
+********************************************************************  14.finally,final and finalize   ********************************************************************
+final :
+-------
+It is a modifier applicable for variables,methods and classes.
+For final class inheritance is not Applicable
+If a Method is declared as final we cannot overridden that method.
+If a variable is declared as final we cannot perform reassignment for that variable.
+
+finally :
+---------
+It is a block always associated with try and catch to maintain clean up code.
+Speciality of finally block is it will be executed always irrespective of whether the exception is raised or not and whether it is handled or not.
+
+finalize() :
+------------
+It is a method that will be executed by Garbage collector just before destroying the object to perform clean up activities.
+Once finalize() completes the execution Garbage collector destroys the object Automatically.
+When compared to finalize() finally block is always recomended to perform claen up activities.
+
+******************************************************************** 15.Control flow in try catch finally  ****************************************************************
+
+
+
+
+
+
+
