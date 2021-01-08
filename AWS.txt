@@ -23,6 +23,116 @@ ngiNix
 Tomact
 
 
+1.AWS Introduction   (thedevcoach)  		[30-DEC-2020]  ()
+
+
+
+
+
+
+*************************************************************************  1.AWS Introduction   *************************************************************************
+
+AWS stands for Amazon Web Services.
+AWS has a wide range of computing products taht allows us to operate tasks on the cloud on demand.
+Currently AWS is the biggest service offering of the cloud market that has databases,event queues to basic web site hosting.
+
+AWS is designed to be quite low level and it is not designed for casual web site builder.
+AWS is built for large enterprises to build their entire business on.
+AWS is not only low level but there are many different services and lots of services that even substitute each other.
+
+WHERE TO START LEARNING AWS :
+-----------------------------
+While learning AWS we should focus on 3 Areas.
+
+1.AWS Core Services
+2.Hands on Learning on AWS Core Services.
+3.Structure the Learning 
+
+Within AWS many services are built on set of core services.
+AWS has a service called ECS(Elastic Container Service) that allows us to run container based services.
+When we run the services on ECS,we need to configure the host for our containers to run on.
+One of the option to run the host is EC2.
+In this scenario EC2 is the core service.
+Many services in AWS are periphery services which are compliment and build on others.
+
+Core Services in AWS are EC2,IAM and S3.
+
+EC2 :
+-----
+EC2 is way of running the computer in the cloud.
+In EC2 we can launch Linux Machine,Windows Machine etc.
+EC2 is like having a Computer at the Push of a Button.
+EC2 is popular because of its flexibiity.
+On EC2 we can run different type of workloads.We can install wordpress to build a web site.
+We also can install database and store data directly on EC2.
+Imagine we can run everything on EC2.
+
+Since EC2 is more flexible we don't run everything on EC2.
+If we run the database on EC2 we also need to manage ourself.
+AWS offers RDS which takes away of maintaining our own database.
+But AWS runs it under the hood of EC2.
+
+we not only run machines on the cloud i.e EC2,we also need other features such as permissions.
+IAM comes into the picture.
+
+IAM :
+-----
+IAM is how we manage parmissions and access in AWS.
+In order to launch EC2 we need to have a user that has the appropriate access to do so.
+To get access we need to use AWS IAM.
+IAM is not only how users get access to do things in AWS but also how we grant machines to talk to each other.
+
+For instance EC2 machine can be assigned a role.
+That role then governs what an EC2 machine can and cannot do.
+We need to understand the different IAM objects and their relationships.
+Within IAM we have users,roles,groups and policies and all these are related somehow.
+
+A User can be in the Group and that Group can have access policies which are granted to the User.
+Also User can have policies directly.
+
+S3 :
+----
+S3 allows us to store files in a flexible way.
+S3 can be used to host websites,stores assets such as images and even log files for an application.
+If we ever need simple persistence for files S3 is the best answer.
+
+If we want to use AWS RedShift i.e querying tool we need to put data in S3.
+If we want to get access logs in AWS account then data will be in S3.
+If we want to host static website,turn on logs for load balancer we need S3.
+
+Other Core Services are 
+
+CloudWatch : Built in AWS Monitoring Tool.
+Route 53   : Domain Purchasing and DNS Routing.Allows us to point our website or server to a domain Name.
+RDS 	   : AWS hosted database solutions.Has a range of databases from SQL to document based.
+CloudFormation : AWS built in infrastructure as code.create resources by writing our infrastructure as a JSON Template and tell AWs to create it.
+
+
+2.Hands on Learning on AWS Core Services :
+------------------------------------------
+In order to get hands on we need to make ensure that everything in AWS account is set up properly.
+
+Root Account : why we should not use it.
+Access keys  : why should be very careful and where we store them.
+MFA          : how it protects our account from getting hacked
+Infrastructure as Code : how it makes our hands on learning easier.
+
+Root Account :
+--------------
+ 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 

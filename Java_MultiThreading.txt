@@ -1,0 +1,389 @@
+1.Introduction									[28-DEC-2020]  (Done)
+2.Starting a Thread                             [28-DEC-2020]  (Done)
+3.Life Cycle of Thread                          [04-JAN-2021]  (Done)
+4.Thread Class Constructor                      [05-JAN-2021]  (Done)
+5.Setting and Getting name of Thread            [05-JAN-2021]  (Done)
+6.Thread Priority                               [05-JAN-2021]  (Done)
+
+7.yield                                         [05-JAN-2021]  (Done)
+8.join                                          [06-JAN-2021]  ()
+9.sleep                                         [06-JAN-2021]  ()
+
+10.Synchronization                              [06-JAN-2021]  ()
+11.Inter Thread Communication                   [06-JAN-2021]  ()
+12.Daemon Threads                               [06-JAN-2021]  ()
+13.ThreadGroup                                  [06-JAN-2021]  ()
+
+
+*************************************************************   1.Introduction	 ****************************************************************************
+
+Executing several tasks is the concept of Multitasking.
+There are two types of Multitasking.
+
+1.Process based Multitasking
+2.Thread based Multitasking
+
+1.Process based Multitasking :
+------------------------------
+Executing several tasks simultaneously where each task is seperate independent process.
+Such type of multi tasking is called process based multi tasking.
+Process based multi tasking is best suitable at OS Level and not at programatic level.
+
+2.Thread based Multitasking :
+-----------------------------
+Executing several tasks simultaneously where each task is a seperate independent part of the same process is called Thread based Multitasking.
+Here each independent part is called Thread.
+Thread based Multitasking is best suitable for programatic levl.
+Whether it is Thread based or process based,Main Advantage of Multitasking is that we can reduce the response time so that performance will be improoved.
+
+************************************************************* 2.Starting a Thread  *************************************************************************
+
+We can define a Thread in the following two ways
+1.By Extending Thread Class
+2.By Implementing Runnable Interface
+
+1.By Extending Thread Class :
+-----------------------------
+	public class MyThread extends Thread{
+	@Override
+	public void run() {
+		for (int i = 0; i <= 10; i++) {
+			System.out.println(i);
+		}
+	}
+	}
+	
+	public class Test {
+	public static void main(String[] args) {
+		MyThread thread=new MyThread();
+		thread.start();
+		for (int i = 5; i <= 10; i++) {
+			System.out.println(i);
+		}
+	}
+	}
+	
+2.By Implementing Runnable Interface :
+--------------------------------------
+we can define a thread even by implementing runnable interface.
+Runnable interface is present in java.lang package and it contains only one method.
+
+	public void run()
+	
+	public class MyRunnable implements Runnable{
+	@Override
+	public void run() {
+		for (int i = 0; i <= 5; i++) {
+			System.out.println(i);
+		}
+	}
+	}
+	
+	public class RunnableTest {
+	public static void main(String[] args) {
+		MyRunnable runnable=new MyRunnable();
+		Thread t=new Thread(runnable);
+		t.start();
+	}
+	}
+	
+Scenario One :
+--------------
+MyRunnable runnable=new MyRunnable();
+Thread t=new Thread(runnable);
+t.start();
+		
+New Thread will be created and responsible for the execution of Thread Class run(). i.e t.start().
+
+Scenario Two :
+--------------
+t.run()
+No New Thread will be created and Thead class run() will be executed like a normal method.
+	
+Note :
+------
+Once runnable object is created and it does not have the start capability .
+someone has to start the runnable object.
+Thread class has the capability to stsrt the runnable object.
+Best way of definig a Thread is by implementing runnable interface.
+
+Thread Scheduler :
+------------------
+If several Threads are waiting to get the chance to execute,then which thread will be executed first is decided by the Thread Scheduler.
+we can't expect exact behavior of Thread Scheduler and is JVM independent.
+Due to this we cannot expect the order of execution of Thread.
+
+Difference between start() and run() :
+--------------------------------------
+If two independent jobs are there,job has to be executed.
+In which order it is executed is not important.
+To start the thread If our class does not contain start() then parent class start() will be executed.
+Thread class start() calls the run().
+
+In case of start(),a new thread will be created which is responsible for the execution of run().
+In case of run(),no new thread will be created and run() will be executed lika a normal method.
+
+Importance of start() :
+-----------------------
+Start() is responsible to register our thread with Thread Scheduler.
+Thread Scheduler is responsible to allocate memory to the Thread.
+finally invokes the run().
+
+Without executing Thread class start() there is no chance of starting new Thread in Java.
+We have to overload run() which will be executed by the thread class start().
+If we have overloaded run() then it will be executed just like a normal method.
+
+Not overriding run() :
+----------------------
+If we are not overiding run() then parent class run() will be executed and it has empty implementation.
+Here we will get no output and we don't get any compile time error.
+It is highly recomended to override run().
+
+overriding start() :
+--------------------
+If we override start() then no new thread will be created and start() will be executed just like a  normal method.
+
+
+*************************************************************  3.Life Cycle of Thread  **************************************************************** 
+
+New Born State
+Ready/Runnable State
+Running State
+Dead State
+
+		Thread t=new Thread();
+		
+When we Create a Thread object then Thread is said to be in new state or born state.
+
+when t.start() is excuted then Thread is said to be in ready/runnable state i.e 
+Here start() allocates the memory to the Thread and invokes the run().
+
+Once run() starts the execution then Thread will be in running state.
+
+Once run() completes the execution then Thread will enter into dead state.
+
+Note :
+------
+After starting the thread again if we start the thread then we will get IllegalThreadStateException.
+
+**********************************************************  4.Thread Class Constructor  *************************************************************
+
+Thread t=new Thread();
+Thread t=new Thread(Runnable r);
+Thread t=new Thread(String name);
+Thread t=new Thread(Runnable r,String name);
+Thread t=new Thread(ThreadGroup g);
+Thread t=new Thread(ThreadGroup g,Runnable r);
+Thread t=new Thread(ThreadGroup g,String name);
+
+We can also define a Thread that extends Thread class and passing it as a parameter to the Runnable object.
+This way of defining a Thread is not recomended.
+
+	public class ThreadConstructor  extends Thread{
+	@Override
+	public void run() {
+		System.out.println("Thread Class Constructor");
+	}
+	public static void main(String[] args) {
+		ThreadConstructor constructor=new ThreadConstructor();
+		Thread t=new Thread(constructor);
+		t.start();
+	}
+	}
+********************************************************** 5.Setting and Getting name of Thread   **************************************************
+
+Every Thread in Java has some name.It may be default name generated by JVM or customized name explicitly provided by the programmer.
+Thread class defines the following methods to set and get the names of the Thread.
+
+	public final String getName();
+	public final void setName(String name);
+	
+If we want to set my own name to the Thread 
+	Thread.currentThread().setName("Bhaumik");
+	
+If we want to know the current executing Thread  
+
+	Thread.currentThread();
+
+********************************************************** 6.Thread Priority   ***********************************************************************
+
+Every Thread in Java has some priority.
+It may be explicitly provided by the programmer or default value generated by JVM.
+Valid range of Thread priority is 1 to 10 where 1 is the least priority and 10 is the highest priority.
+Thread class contains some constants to represent standard priority i.e
+
+Thread.MAX_PRIORITY=10;
+Thread.MIN_PRIORITY=1;
+Thread.NORM_PRIORITY=5;
+
+ThreadScheduler will use these priorities while allocating it to the processor.
+Thread which is having the highest priority will get the chance to execute first.c
+If two threads having the same priority then we can't expect the exact behavior.
+It depends on the ThreadScheduler.vcccc
+Default priority only for main Thread is 5 and for all remaining Threads it will be inheriting form parent to child.
+Whatever priority Parent has same priority will be applicable for Child.
+
+We can get and set the priority of Thread.
+Thread class has the following methods.
+
+	public final int getPriority();
+	public final void setPriority(int priority);
+	
+Here allowed values are 1 to 10.
+If we give any other value it gives IllegalArgumentException.
+
+*************************************************************  7.yield  ******************************************************************************
+
+we can prevent Thread execution by using the following methods.
+
+1.yield()
+2.join()
+3.sleep()
+
+public static native void yield() :
+-----------------------------------
+yield() causes to pause the current executing thread and give the chance to remaining waiting threads of same priority.
+If there are no waiting Threads or all Threads have the same priority then same Thread will continue its execution.
+Thread which is yielded to get the chance to execute again is decided by the ThreadScheduler and we cannot expect exactly.
+When yield() is executed,Thread state moves from running state to ready/runnable state.
+
+
+	public class ThreadYeildDemo extends Thread{
+	@Override
+	public void run() {
+		for (int i = 0; i < 5; i++) {
+			Thread.yield(); //Pause the Current executing Thread
+			System.out.println(i);
+		}
+	}
+	public static void main(String[] args) { // Creation of Main Thread
+		ThreadYeildDemo yeildDemo=new ThreadYeildDemo(); // Creation of Child Thread
+		yeildDemo.start(); // Starting Child Thread
+		for (int i = 6; i < 10; i++) {
+			System.out.println(i);
+		}
+	}
+	}
+	
+Output :
+--------
+6
+7
+8
+9
+0
+1
+2
+3
+4
+	
+Here Child Thread calls the yield() and is paused for sometime and Main Thread gets the chance to execute more number of times.
+In the above program Main Thread will be completed first when compared to Child Thread.
+
+*************************************************************  8.join   ***************************************************************************
+
+public final void join() throws InterruptedException :
+------------------------------------------------------
+If a Thread wants to wait until the completion of some other Thread then we should go for join().
+If a Thread t1 wants to wait until the execution of thread t2,then we have to call t1.join().
+Here thread t1 will enter into waiting state.
+Once t2 completes its execution then t1 can start its execution.
+
+Whenever we are calling join(),Thread enters into waiting state and there may be a chance of other Thread interrupting the Thread.
+Here we get InterruptedException and is a checked Exception.
+We need to handle this either by using try cathc block or throws keyword.
+whne join() is executed,Thread enters into waiting state and if the other Thread completes its execution or time expires 
+then current Thread enters into ready/runnable state.
+
+	public class JoinThread extends Thread {
+	@Override
+	public void run() {
+		for (int i = 0; i <= 5; i++) {
+			System.out.println("Seetha Thread");
+		}
+	}
+	}
+	
+	public class JoinDemo {
+	public static void main(String[] args) throws InterruptedException {// Creation of Main Thread
+		JoinThread thread = new JoinThread();
+		thread.start();// Child Thread
+		thread.join();// Child Thread enters into waiting state and is executed by Main Thread
+		for (int i = 0; i <= 5; i++) {
+			System.out.println("Rama Thread");
+		}
+	}
+	}
+	
+Here Child Thread will wait untill the completion of Main Thread.
+
+Output :
+--------
+Seetha Thread
+Seetha Thread
+Seetha Thread
+Seetha Thread
+Seetha Thread
+Rama Thread
+Rama Thread
+Rama Thread
+Rama Thread
+Rama Thread
+Rama Thread	
+	
+
+*************************************************************  9.sleep  **************************************************************************
+
+If a Thread does not want to perform any operation for a particular amount of time i.e just pause is required we go for sleep().
+Whenever we are using sleep() compulsory time period should be required.
+Whenever Thread is in sleep() there may be a chance of other Thread interrupting the Thread and raises InterruptedException.
+Here we need to handle either by using try catch block or throws keyword.
+
+If the Thread calls the sleep() then Thread will be in sleep state.
+Sleeping Thread comes into ready/runnable state
+1.If the time expires
+2.If the sleeping Thread got interrupted
+
+Thread class contains interrupt() to interrupt the sleeping Thread or waiting Thread.
+	
+	public void interrupt()
+	
+
+
+
+*************************************************************   10.Synchronization   *************************************************************
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

@@ -3,16 +3,19 @@
 
 Java 8
 MultiThreading
+Inner Classes
+Enum
+Generics
 
 
 ***************************************** Internal Implementation  *****************************
-
+JVM Architecture
 List Implementation
+Hashing and Salting
 Hashmap Implementation
 Hashset Implementation
 LinkedList Implementation
 Sorting Techniques
-
 
 
 ***************************************** Spring Boot  *****************************************
@@ -24,7 +27,6 @@ Relationship
 Spring Scheduler
 Spring Security
 Actuator
-
 
 
 ***************************************** Database  ********************************************

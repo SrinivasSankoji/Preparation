@@ -12,18 +12,17 @@
 12.Finally Block                                                        [17-DEC-2020]  (Done)
 13.return vs finally                                                    [17-DEC-2020]  (Done)
 14.finally,final and finalize                                           [17-DEC-2020]  (Done)
+15.Control flow in try catch finally                                    [21-DEC-2020]  (Done)
+16.Combination of try catch finally                                     [21-DEC-2020]  (Done)
+17.throw keyword                                                        [21-DEC-2020]  (Done)
+18.throws keyword                                                       [21-DEC-2020]  (Done)
+19.Various CompileTime Errors                                           [21-DEC-2020]  (Done)
+20.Customized Exception                                                 [21-DEC-2020]  (Done)
+21.Top 10 Exception                                                     [21-DEC-2020]  (Done)
+22.Try with Resources                                                   [21-DEC-2020]  (Done)
+23.Multi Catch Block                                                    [21-DEC-2020]  (Done)
 
-15.Control flow in try catch finally                                    [18-DEC-2020]  ()
-16.Control flow in Nested try catch finally                             [18-DEC-2020]  ()
-17.Combination of try catch finally                                     [18-DEC-2020]  ()
-18.throw keyword                                                        [18-DEC-2020]  ()
-19.throws keyword                                                       [18-DEC-2020]  ()
-20.Various CompileTime Errors                                           [18-DEC-2020]  ()
-21.Customized Exception                                                 [18-DEC-2020]  ()
-22.Top 10 Exception                                                     [18-DEC-2020]  ()
-23.Try with Resources                                                   [18-DEC-2020]  ()
-24.Multi Catch Block                                                    [18-DEC-2020]  ()
-
+24.Interview Questions													[21-DEC-2020]  (Done)
 
 ******************************************************************** 1.Introduction  ***************************************************************************
 
@@ -288,9 +287,319 @@ When compared to finalize() finally block is always recomended to perform claen 
 
 ******************************************************************** 15.Control flow in try catch finally  ****************************************************************
 
+Nested try catch finally is possible.
+If the control enters into the try block then only finally block will be executed.
+If the control won't enter into the try block then finally block won't be executed.
+
+	public class FinallyDemoThree {
+	public static void main(String[] args) {
+		System.out.println(10/0);
+		try {
+			System.out.println("Try Block");
+		}
+		catch (Exception e) {
+			System.out.println("Catch Block");
+		}
+		finally {
+			System.out.println("Finally Block");
+		}
+	}
+	}
+	
+Note :
+------
+At any point of time DefaultExceptionHandler can handle only one Exception at a time i.e most recently raised exception.
+
+********************************************************************  16.Combination of try catch finally  ***************************************************************
+
+1.try catch finally order is important
+2.We cannot take try without catch or finally
+3.catch without try is invalid
+4.finally without try is invalid
+5.when we are taking try compulsory we have to take either catch or finally
+6.Nesting of try catch finally is possible.
+
+******************************************************************** 17.throw keyword  ***********************************************************************************
+
+Exception object is thrown by the program or method and handovers the exception object to the JVM.
+The method in which an Exception is raised is responsible to create an Exception object and handovers the Exception object to the JVM.
+JVM verifies is there any try catch block is defined inside the method or not and handovers the exception object to the Default Exception Handler.
+
+	public class ThrowDemoOne {
+	public static void main(String[] args) {
+		System.out.println(10/0);
+	}
+	}
+	
+	public class ThrowDemoTwo {
+	public static void main(String[] args) {
+		throw new ArithmeticException("Divided by Zero");
+		}
+	}
+ 
+In program One main() is responsible to create an Exceptio object and handover to the JVM.
+In program Two programmer is responsible to create an Exception object and handover to the JVM.
+
+To handover our own created Exception object to the JVM manually we use throw keyword.
+Here JVM identifies our own created Exception object and verifies is there any try catch block defined or not.
+If not found handovers the Exception object to the Default Exception handler which is a part of JVM.
+
+Note :
+------
+usually we use throws keyword for Customized Exceptions and not for pre defined Exceptions.
+
+ 
+	public class ThrowDemoFour {
+	static ArithmeticException exception=new ArithmeticException();
+	public static void main(String[] args) {
+		throw exception;
+	}
+	}
+	
+Here we get RuntimeException.
+
+	public class ThrowDemoFive {
+	static ArithmeticException exception;
+	public static void main(String[] args) {
+		throw exception;
+	}
+	}
+	
+Here we get NullPointerException because exception refers to null.
+
+	public class ThrowDemoOne {
+	public static void main(String[] args) {
+		System.out.println(10/0);
+		System.out.println("Hai");
+	}
+	}
+	
+Here we get RuntimeException.
+
+	public class ThrowDemoSix {
+	public static void main(String[] args) {
+		throw new ArithmeticException("Divided by Zero");
+		//System.out.println("Hai");  CTE 
+	}
+	}
+
+Here we get Compile Time Error saying unreachable code.
 
 
+Note : 
+------
+we can use throw keyword only for throwable types and not for normal java objects.
 
+	public class ThrowableDemoSeven {
+	public static void main(String[] args) {
+		throw new ThrowableDemoSeven();
+	}
+	}
+	
+Here we get Compile Time Error and can be resolved by adding
 
+	public class ThrowableDemoSeven extends RuntimeException
+	
+********************************************************************  18.throws keyword  ************************************************************************
+
+In our program if there is any chance of raising checked Exception,compulsory we should handle that checked Exception.
+Other wise we get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
+
+	public class ThrowsDemoOne {
+	public static void main(String[] args) {
+		PrintWriter writer=new PrintWriter("abc.txt"); // CTE saying Unhandled exception type FileNotFoundException
+		writer.println("Hello");
+	}
+	}
+
+	public class ThrowsDemoTwo {
+	public static void main(String[] args) {
+		Thread.sleep(1000);
+	}
+	}
+
+Here there is a chance of Thread entering into sleeping state and other Thread have the chance of Interrupting the Thread.
+We get CTE saying Unhandled exception type FileNotFoundException.
+
+We can handle Compile Time Errors by using either Try Catch block or by using throws keyword.
+Responsibility of throws keyword is to delegate the responsibility of handling the exception to the caller method and 
+caller method is responsible to hand over the Exception object to the JVM.
+
+Note :
+------
+usage of throws keyword does not prevent the abnormal termination of the program and required only to convince the compiler.
+
+Scenario One :
+--------------
+	public class ThrowsDemoThree {
+	public static void main(String[] args) {
+		doStuff();
+	}
+	public static void doStuff()
+	{
+		doMoreStuff();
+	}
+	public static void doMoreStuff()
+	{
+		Thread.sleep(1000);
+	}
+	}
+	
+Here we get the CTE because we are not delegating the Exception to the main().
+
+Note :
+------
+We can use throws keyword only for Throwable types other wise we get CTE saying incompatible types.
+We can use throws keyword only for methods and constructors and not for classes and blocks.
+	
+	public class ThrowsDemoFour {
+	public static void main(String[] args) {
+		throw new Exception(); //CTE
+	}
+	}
+
+Here we get CTE because checked Exception must be handled.
+
+	public class ThrowsDemoFour {
+	public static void main(String[] args) {
+		throw new Error();
+	}
+	}
+	
+Here we get RTE because Error is an unchecked Exception.
+
+Note :
+------
+Within the try block if there is no chance of raising an Exception,catch block won't be executed and we get CTE.
+This rule is applicable only for fully checked Exception.
+
+	public class ThrowsDemoFive {
+	public static void main(String[] args) {
+		try {
+			System.out.println("Hello");
+		}
+		catch (InterruptedException e) {
+		}
+	}
+	}
+	
+Exception Handling keyword summary :
+------------------------------------
+try : To maintain risky code
+catch : To maintain Exception Handlind code
+finally : To maintain clean up code
+throw : To hand over our own created Exception object to the JVM.
+throws : To delegate the responsibility of ExceptionHandling to the caller.
+
+******************************************************************** 19.Various CompileTime Errors ********************************************************************
+
+unreprted Exception must be declared or thrown :  For checked Exception
+Exception has already been caught : order of catch block
+Exception is never thrown : Within try blcok if there is no chance of raising an Exception
+unreachable statement : after throw keyword
+incompatible types : using for non throwable types 
+
+********************************************************************  20.Customized Exception   **********************************************************************
+
+sometimes to meet programmer requirement we have to create our own Exception which is called customized Exception or user defined Exception.
+
+	public class TooYoungException  extends RuntimeException{
+	private static final long serialVersionUID = 1L;
+	public TooYoungException(String message) {
+		super(message);
+	}
+	}
+	
+public class TooYoungException  extends RuntimeException
+
+Here if it is Checked Exception i.e extends Exception we get CTE because it has to be handled.
+It is highly recomended to define our own exception as unchecked i.e extends RTE and not Exception.
+
+Note :
+------
+Best use of throw keyword is for customized Exception and not for predefimrd Exception.
+
+***************************************************************** 21.Top 10 Exception  *******************************************************************************
+
+Exceptions are divided into two types
+
+1.JVM Exception
+2.Programatic Exception
+
+JVM Exception :
+---------------
+Exceptions which are automatically raised by the JVM whenever a particular event occurs are called JVM Exception.
+Example : NPE,AE,AIOBE etc.
+
+Programatic Exception :
+-----------------------
+These are the Eception which are automatically raised by the programmer to indicate something wrong is called Programatic Exception.
+Example : IllegalArgumentException,TooYoungException etc.
+
+Exception propogation :
+-----------------------
+Inside a method if an Exception raises and if we are not handling that exception,then the exception will be propogated to the caller method.
+Here caller method is responsible to handle that exception.
+This process is called Exception Propogation.
+
+***************************************************************** 22.Try with Resources ****************************************************************************
+
+If we are opening the resources in the try block then it should be closed in the finally block.
+Here we need to write finally block and length of the code will be increased and reduces readability.
+Upto 1.6 version it is highly recomended to write finally block to close all the resources which are opened as a part of try block.
+To overcome this we use try with resources.
+Main advantage of try with resources is that Resources which are opened as a part of try block will be closed automatically once the control reaches to the end of thr try block
+either normally or abnormally.
+Here we are not required to close explicitly.
+
+Note :
+------
+1.We can take any number of resources and should be seperated with ,.
+2.Resources whatever we are taking are Autoclosable Resources i.e corresponding Class implements AutoClosable interface.
+3.Resource reference variable should be declared as final so that we cannot perform reassignment for that variable.
+4.untill 1.6 try should be associated with catch or finally but from 1.7 we can only have try with Autoclosable interface.
+
+*************************************************************** 23.Multi Catch Block  *********************************************************************************
+
+Untill 1.6 for different Exceptions we have same Exception Handling code.
+Compulsory we have to write seperate catch block for every Exception Type.
+Problem in this approach is it increases the length of the code and reduces readability.
+We can resolve this problem by using Multicatch block.
+
+Note :
+------
+In Multicatch block there should not be any relationship between Exception Types i.e parent to child or child to parent or same type
+otherwise we get CTE.
+
+***************************************************************   24.Interview Questions  ****************************************************************************
+
+We cannot handle unchecked Exception either by catching or throwing it in Java.
+If we are throwing any checked Exception compulsory we need to handle it either by using try catch block or by using throws keyword.
+
+throw keyword :
+---------------
+throw keyword is used to throw an exception in java.
+throw is used inside a method.
+throw is followed ny an instance of an Exception
+throw can be used to throw only one exception at a time
+
+throws :
+--------
+throws keyword is used to delegate the responsibility of Exception Handling to the caller method.
+throws is used as a method declaration.
+throws is followed by the name of the Exception.
+throws can be used to throw Multiple Exceptions.
+
+1.If the Super Class method does not throw any Exception then subclass method can throw any unchecked Exception.
+2.If the Super Class method does not throw any Exception then subclass method cannot throw any CheckedException.
+3.If the Super Class method throws any checked Exceptio then sub class method can throw the same exception or its subclass.
+4.If super class method throws any Unchecked Exception/RuntimeException then subclass method cannot throw any Exception.
+
+finally block :
+---------------
+Whenever Exception is occured in try block and corresponding catch and finally block has the return statement,
+then finally block return statement will be executed.
+
+ 
 
 

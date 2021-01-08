@@ -1,1 +1,332 @@
-aas
+1.Introduction								[22-DEC-2020]  (Done)
+2.public modifier                           [22-DEC-2020]  (Done)
+3.default modifier                          [22-DEC-2020]  (Done)
+4.final modifier                            [22-DEC-2020]  (Done)
+5.abstract modifier                         [22-DEC-2020]  (Done)
+6.strictfp modifier                         [22-DEC-2020]  (Done)
+7.private modifier							[22-DEC-2020]  (Done)
+8.protected modifier						[22-DEC-2020]  (Done)
+9.static modifier                           [22-DEC-2020]  (Done)
+10.native modifier                          [23-DEC-2020]  (Done)
+11.synchronized modifier                    [24-DEC-2020]  (Done)
+12.Transiemt Modifier                       [24-DEC-2020]  (Done)
+13.volatile modifier                        [24-DEC-2020]  (Done)
+
+*****************************************************************  1.Introduction  *****************************************************************
+
+Whenevr we are writing any Java Class we have to provide information about our Java Class to the JVM like
+
+1.whether the Class can be accessible from any where or not.
+2.whether the Class creation is possible or not.
+3.whether the instatiation of the Class is possible or not.
+
+we can specify all the above information by using Access modifiers.
+
+public 
+default
+final 
+abstract
+strictfp
+
+All the above modifiers are applicable for Top level Classes.
+For Inner Classes protected,static and private are also applicable.
+
+*****************************************************************  2.public Modifier  ************************************************************
+
+1.If a Class is declared as public then we can access that Class from any where within the package or outside the package.
+2.If a member or method is declared as public then we can access that method from anywhere but before that class should be visible.
+Before checking method visibility we have to check Class visibility.
+
+*****************************************************************  3.default Modifier  ************************************************************
+
+default modifier is also called package level access.
+
+1.If a Class is declared as default then we can access that Class within the current package.
+From outside the package we cannot access.
+Hence default access is also called as package level access.
+2.If a method is declared as default then we can access that method only within the package.
+Outside the package we cannot access that method.
+
+*****************************************************************  4.final Modifier  *************************************************************
+
+final is a modifer applicable for classes,methods and variables.
+
+final method :
+--------------
+Parent Class methods are by default available to Child Class.
+If a Parent Class method is declared as final then we cannot override that method in the Child Class.
+
+final Class :
+-------------
+If a Class is declared as final then no one is allowed to extend the functionality i.e we cannot extend the final classes.
+Every method declared inside final Class is by default final whether we declare it or not.
+Main Advantage of final Class is Security i.e no one is allowed to extend the functionality.
+Disadvantage of final Class is it misses the benefits of OOPS.
+
+final instance variable :
+-------------------------
+If the value of the variable changes from object to object then such type of variables are called instance variables.
+For every object a seperate copy of instance variables will be created.
+For instance variables JVM will perform initialization with default values and we can also perform initialization explicitly.
+
+If the instance variable is declared as final then we have to perform initialization at the time of declaration only.
+Otherwise we get CTE and JVM won't provide initialization.
+
+Note :
+------
+For final insatnce variables we should perform initialization before constructor execution only.
+Various places to perform initialization for instance variables are 
+
+	final int x=10;
+	final int y;
+	{
+		y=10;
+	}
+	final int z;
+	FinalDemo()
+	{
+		z=10;
+	}
+	
+final static variable :
+-----------------------
+If the value of the variable not varies from object to object then it is recomended to declares such type of variables as static.
+In case of static variables single copy will be created at the Class level and shared by every object of the Class.
+If static variables are declared as final then JVM won't provide any default values and we have to perform initialization explicitly.
+Various places to perform initialization for instance variables are 
+
+	final static int i=36;
+
+final local variable :
+----------------------
+Variables which are declared inside the method or block or constructor is called local variables.
+Main purpose of local variables is to meet the temporary requiremnt of the program.
+For local variables JVM won't provide any default values and compulsory we have to perform initialization before using that variable.
+whether the local variable is declared as final or not before using only we have t perform initialization
+otherwise it is not required to perform initialization.
+
+If the instance variable is declared as public,protected,default then it has meaning.
+The only applicable modifier for local variable is final.
+
+Note :
+------
+If we are not declaring any modifier then default is the access modifier for static and instance variables and not for local variables.
+
+Formal parameters of the method :
+---------------------------------
+Formal parameters of the method simply acts as a local variables of the method.
+If we declare the formal parameters of the method as final we cannot perform reassignment for that method.
+
+	public static void m1(int x,int y)
+	{
+		x=36;
+		y=25;
+	}
+	public static void main(String[] args) {
+		m1(25,22);
+	}
+
+*****************************************************************  5.abstract modifier  *****************************************************************
+
+Applicable only for Classes and Methods but not for variables.
+
+abstract method :
+-----------------
+If we don't know about implementation still we can declare the Class as abstract.
+Abstract method has only declaration but not implementation.
+Advantage of abstract method is to provide guidelines to the child class such that which method it has to provide implementation.
+
+abstract Class :
+----------------
+For any Java Classes if we don't want to create an obejct then such type of Class should be declared with abstract modifier.
+For abstract Classes instatiation is not possible.
+
+If a Class contains atleast one abstract method then corresponding Class should be declared as abstract.
+Because implementation is not completed and has to be provided by the Child Class.
+
+Note :
+------
+Eventhough Class does not contain any abstract method still the Class can be declared as abstract to avoid instatiation.
+Abstract class can contain zero or more abstract methods.
+
+Abstract Class which does not contain abstract methods are
+HttpServlet
+Adaptor Classes
+GenericServlet
+
+Scenario One :
+--------------
+In case of Servlet,user defined Servlet extends HttpServlet.
+If the request is for GET Type and if we are not overriding the doGet() in user defined Servlet the Parent Class doGet() will be executed.
+HttpServlet doGet() provides the Error information and to avoid this HttpServlet Class is declared as abstract to avoid the Calls to the Method.
+
+final vs abstract :
+-------------------
+abstract methods we need to override in the child Class to provide implementation where as final methods we cannot override.
+abstract final combination is illegal for methods.
+abstract Classes we should create Child Class to provide implementation where as for final Classes we cannot create Child Class.
+abstract final combination is illegal for Classes.
+
+Note :
+------
+abstract class can contain final methods because abstract class may contain zero or more abstract methods.
+
+*****************************************************************  6.strictfp modifier  *****************************************************************
+
+Applicable for Classes and methods but not for variables.
+Result of floating point Arithematic values varies from processor to processor.
+If a method is declared as strictfp then all the floating point declarations in that method has to follow IEEE754 standard so that we get platform independent results.
+
+Note :
+------
+abstract strictfp is illegal for methods because abstract never talks about implementation where strictfp talks about implementation.
+Abstract class can have strictfp methods because Abstract class can contain zero or more abstract methods.
+
+***************************************************************  7.private modifier	 *****************************************************************
+
+If a method is declared as private we can access that method only within the Class and outside the Class we cannot access.
+private is not applicable for Top Level Classes where as Nested Classes can be declared as private.
+
+Note :
+------
+private methods are not visible to the Child Classes where as abstract method should be visible to the Child Classes.
+abstract private combination is illegal for methods.
+
+*************************************************************** 8.protected modifier  ***************************************************************
+
+If a method is declared as protected then we can access that method any where within the package and outside the package only in Child Class.
+protected method outside the package can be accessed by using child reference 
+where as protected method within the package can be accessed by using either Parent reference or Child reference.
+
+	package com.jio.javainterviewpoint.classloading;
+
+	public class A {
+	protected void m2() {
+		System.out.println("Inside classloading Package");
+	}
+	}
+	
+	package com.jio.javainterviewpoint.modifiers;
+	import com.jio.javainterviewpoint.classloading.A;
+	public class B extends A{
+	protected void m3() {
+		System.out.println("Inside modifiers Child Package");
+	}
+	public static void main(String[] args) {
+		B b=new B();
+		b.m2();
+		
+		A a=new A();
+		a.m2();  // CTE
+		
+		A a1=new B();
+		a1.m2(); // CTE
+	}
+	}
+
+Note :
+------
+In Object Class clone() and finalize() are protected and hence outside the package we cannot access by using object reference.
+
+*************************************************************** 9.static modifier  ***************************************************************
+
+static is the modifier applicable for methods and classes but not for classes(Nested Classes can be static).
+If the value of the variable is same for all objects then the variable should be declared as static.
+In case of static variables only one copy will be created and will be shared across all the objects.
+
+Note :
+------
+we can access static members from both instance area and static area where as we cannot access instance members directly from static area.
+For static methods implementation should be there where as for abstract methods doesn't need an implementation.
+We cannot declare both static and abstract methods.
+
+*************************************************************** 10.native modifier ***************************************************************
+
+native is a modifier applicable only for methods and not for variables and classes.
+The methods which are implemented in non java ,those methods are called as native methods or foreign methods.
+Main Advantage of native methods is
+1.It improoves the performance of the system
+2.To use already existing legacy non java code
+
+Note :
+------
+whenever some functionality is required and has already developed in other language and it has to be used in my java program,we use native keyword.
+Whenever memory level communication is required we use native keyword.
+
+Procedure to use native keyword :
+---------------------------------
+whenever we are loading any java class corresponding native libraries should be loaded i.e we have to take inside static block.
+For native methods we are not responsible to provide implementation and it has been implemented in other language and ends with ; .
+native methods cannot have a body.
+
+	Class Native{
+	static{
+	System.loadLibrary("Native Library");
+	}
+	public native void m1();
+	}
+	
+	Class Client{
+	main(){
+	Native n=new Native();
+	n.m1();
+	}
+	}
+	
+In object Class clone() is a native method.
+
+	Class Object {
+	static{
+	System.loadLibrary("Native Library");
+	}
+	protected native Object clone();
+	}
+	
+***************************************************************  11.synchronized modifier  ******************************************************************
+
+synchronized is a modifier applicable for methods and blocks but not for Classes and variables.
+If a method or block is declared as synchronized then at a time only one Thread is allowed to access the method or block
+so that we can overcome data inconsistency problems.
+
+Disadvantage of synchronized keyword is it increases waiting time of threads and creates performance problems.
+Hence if there is no specific requirement then it is never recomended to use ynchronized keyword.
+
+***************************************************************  12.Transiemt Modifier  *********************************************************************
+
+Transient is a modifier applicable only for variables but not for classes and methods.
+While performng Serialization if we don't want to serialize the value of the particular variable to meet security constraints 
+we declare the variable as tarnsient variable.
+while performing serialization JVM ignores the transient variable and stores the default value to the file.
+
+***************************************************************  13.volatile modifier  **********************************************************************
+
+volatile is a modifier applicable only for variables but not for classes and methods.
+If a single variable is accessed by multiple Threads then there may be chance of data inconsistency problems.
+if we use the volatile modifier for the variable for every thread JVM will create the seperate local copy and 
+all the intermediate modifications performed by the thread will take place in local copy.
+
+Conclusion :
+------------
+The Only applicable modifier for local variable is final.
+Modifiers applicable only for variables are transient and volatile.
+modifiers applicable only for methods are native and synchronized.
+modifiers applicable only for Top level classes are public,default,final,abstract,strictfp.
+
+
+	
+
+	
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
