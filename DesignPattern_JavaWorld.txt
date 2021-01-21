@@ -1,69 +1,88 @@
+1.Design Pattern Introduction									[20-JAN-2021]  (Done)						
+2.Composite Design Pattern                                      [02-JAN-2021]  ()
+3.Startegy Design Pattern                                       [02-JAN-2021]  ()
+4.Command Pattern                                               [02-JAN-2021]  ()
+5.MultpPlatform                                                 [02-JAN-2021]  ()
+6.Creation Design Pattern                                       [02-JAN-2021]  ()
+7.Singleton Design Pattern                                      [02-JAN-2021]  ()
+8.Singleton Design Pattern using Java                           [02-JAN-2021]  ()
+9.Builder Pattern                                               [02-JAN-2021]  ()
+10.Builder Pattern using Java                                   [02-JAN-2021]  ()
+11.Factory Method Pattern                                       [02-JAN-2021]  ()
+12.Factory Method Pattern using Java                            [02-JAN-2021]  ()
+13.Abstract Factory Pattern                                     [02-JAN-2021]  ()
+14.Abstract Factory Pattern using Java                          [02-JAN-2021]  ()
+15.Prototype Pattern                                            [02-JAN-2021]  ()
+16.Prototype Pattern using Java                                 [02-JAN-2021]  ()
+17.Structural Design Pattern                                    [02-JAN-2021]  ()
+18.Facade Design Pattern                                        [02-JAN-2021]  ()
+19.Facade Design Pattern using Java                             [02-JAN-2021]  ()
+20.Adapter Pattern                                              [02-JAN-2021]  ()
+21.Adapter Pattern using Java                                   [02-JAN-2021]  ()
+22.Decorator Pattern                                            [02-JAN-2021]  ()
+23.Decorator Pattern using Java                                 [02-JAN-2021]  ()
+24.Bridge Pattern                                               [02-JAN-2021]  ()
+25.Bridge Pattern using Java                                    [02-JAN-2021]  ()
+26.Composite Pattern                                            [02-JAN-2021]  ()
+27.Composite Pattern using Java                                 [02-JAN-2021]  ()
+28.Proxy pattern                                                [02-JAN-2021]  ()
+29.Proxy pattern using Java                                     [02-JAN-2021]  ()
+30.Flyweight Pattern                                            [02-JAN-2021]  ()
+31.Flyweight Pattern using Java                                 [02-JAN-2021]  ()
+32.Behavioral Design Pattern                                    [02-JAN-2021]  ()
+33.command Pattern                                              [02-JAN-2021]  ()
+34.command Pattern using Java                                   [02-JAN-2021]  ()
+35.Strategy Pattern                                             [02-JAN-2021]  ()
+36.Strategy Pattern using Java                                  [02-JAN-2021]  ()
+37.Visitor Pattern                                              [02-JAN-2021]  ()
+38.Visitor Pattern using Java                                   [02-JAN-2021]  ()
+39.Observer Pattern                                             [02-JAN-2021]  ()
+40.Observer Pattern using Java                                  [02-JAN-2021]  ()
+41.Memento Pattern                                              [02-JAN-2021]  ()
+42.Memento Pattern using Java                                   [02-JAN-2021]  ()
+43.Mediator Pattern                                             [02-JAN-2021]  ()
+44.Mediator Pattern using Java                                  [02-JAN-2021]  ()
+45.Chain of responsibility Pattern                              [02-JAN-2021]  ()
+46.Chain of responsibility Pattern using Java                   [02-JAN-2021]  ()
+47.State Pattern                                                [02-JAN-2021]  ()
+48.State Pattern using Java                                     [02-JAN-2021]  ()
+49.Templatte Method Pattern                                     [02-JAN-2021]  ()
+50.Templatte Method Pattern using Java                          [02-JAN-2021]  ()
+51.Inversion Of Control Pattern                                 [02-JAN-2021]  ()
+52.Inversion Of Control Pattern  using Java                     [02-JAN-2021]  ()
+53.Data Transfer Object Pattern                                 [02-JAN-2021]  ()
+54.Data Transfer Object Pattern   using Java                    [02-JAN-2021]  ()
 
-Creation Design Pattern :
--------------------------
-Singleton
-Builder
-Factory
-Abstract Factory
-Prototype
 
-Structural Design Pattern :
----------------------------
-Facade
-Adapter
-Decorator
-Bridge
-Composite
-Proxy
-FlyWeight
-
-Behavioral Design Pattern :
----------------------------
-Command
-Strategy
-Visitor
-Observer
-Memento
-Mediator
-Chain of Responsibility
-State
-Template
-
-Additional Patterns :
----------------------
-Inversion of Control
-Data Transfer Object
-
-
-
-
-************************************************ Introduction ****************************************************************
+******************************************************** 1.Introduction ************************************************************************************
 
 Business Analyst Will create the System Design.
-Before Creating the System Design He will Review the Requirement,
-identify the Problems in each of the Requirement and for Each Problem he will Design the Solution.
+Before Creating the System Design He will review the requirement,
+Identify the problems in each of the requirement and for each Problem he will design the solution.
+Here for every requirement the common thing is identify the problem and design the solution.
+Each Pattern describes a problem which occurs over and over again and then describes the core of the solution to that problem.
 
-Here For Every Requirement the Common thing is identify the Problem and Design the Solution.
-Each Pattern describes a Problem which occurs over and over again and then	 describes the core of the solution to that Problem.
-
-Main four Elements of a Design Pattern are :
+Main 4 elements of a Design Pattern are :
 1.Name
 2.Problem
 3.Solution
 4.Consequences
 
 Design Pattern Name  :
+----------------------
 1.Improved Design
-2.Team Communication because Every one Talks about the Same Concepts
-3.Name to Describe the Design Problem
+2.Team Communication because every one talks about the same concepts
+3.Name to describe the design problem
 4.Increase Abstraction in Design
 
 Design Pattern Problem :
+------------------------
 When the Pattern can be Applied
 What is the Context i.e Problem with Current Design
 
 
 Design Pattern Solution :
+-------------------------
 Define Elements that Compose the Design.
 How Elements are Related to Each Other
 Element Responsibility
@@ -72,6 +91,7 @@ Element Collaboration
 Here template will be Fully Reusable and Language Agnostic.
 
 Design Pattern Consequences :
+-----------------------------
 Is the Pattern Right Choice
 Can Include Language and Implementation Issues.
 Choose the Correct Pattern by Understanding the Consequences.
@@ -153,7 +173,7 @@ Data Transfer Object
 
 
 
-****************************************   Facade Pattern  **************************************** 
+******************************************************** 18.Facade Pattern  ***************************************************************************
 
 It can be used as an Interface for Complex Sub Systems.
 Facade Provides a Unified interface to a Set of Interfaces in a Sub System.
@@ -168,20 +188,20 @@ Facade Needs to Translate the Request into Sub System Specific Objects.
 Client don't have to access the Sub System there by Providing Loose Coupling.
 
 Advantages :
-Sub System is Easier to Use.
-Client Does not Require Specific Knowledge.
-Loose Coupling
-Sub System can also be Used Directly.
-Abstract Complex System from Client
+Sub System is easier to use.
+Client does not require specific knowledge.
+Loose Coupling.
+Sub System can also be used directly.
+Abstract complex System from Client.
 
 Drawback :
 An Extra Programming Layer.
 
-****************************************   Inversion of Control  **************************************** 
+******************************************************** 51.Inversion of Control **********************************************************************
 
 
 
-**************************************** Data Transfer Object    ****************************************
+******************************************************** 54.Data Transfer Object **********************************************************************
 
 DTO Design pattern can be used to Transfer the Object Across the Network.
 Domain Objects are Tightly Coupled with Database and it May contain Sensitive Information.

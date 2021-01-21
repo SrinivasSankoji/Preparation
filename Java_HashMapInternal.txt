@@ -1,0 +1,60 @@
+1.HashMap - Internal  						(DZone)   					[21-JAN-2021]  ()
+2.HashMap - Internal 						(howtodoinjava)   			[21-JAN-2021]  ()
+3.HashMap – Custom Key Design               (howtodoinjava)   			[21-JAN-2021]  ()
+4.HashMap – Synchronize HashMap             (howtodoinjava)   			[21-JAN-2021]  ()
+5.HashMap – Merge HashMaps                  (howtodoinjava)   			[21-JAN-2021]  ()
+6.HashMap – Compare HashMaps                (howtodoinjava)   			[21-JAN-2021]  ()
+7.HashMap – Iterations                      (howtodoinjava)   			[21-JAN-2021]  ()
+8.HashMap – Cloning                         (howtodoinjava)   			[21-JAN-2021]  ()
+
+9. HashMap - Internal  						(javaconceptoftheday)   	[21-JAN-2021]  ()
+10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   	[21-JAN-2021]  ()
+11.Initial capacity vs Load Factor			(javaconceptoftheday)   	[21-JAN-2021]  ()
+12.HashSet Internal							(javaconceptoftheday)   	[21-JAN-2021]  ()
+13.
+
+****************************************************************  1.HashMap Internal  (DZone)   ****************************************************************
+
+HashMap is a Map which is used to store key value pairs.
+HashMap works on the principle of hashing.
+Hashing functions are used to link the key and value in HashMap.
+HashMap is a data structure which allows us to store objects and retrieve it in constant time O(1) provided we know the key.
+
+How Hashmap Calculates the Index of a Bucket :
+----------------------------------------------
+HashMap maintains an Array of Bucket to store key value pairs.
+Whenever we store or retrieve any key value pair,HashMap calculates the index of the bucket for each and every operation.
+Key object is used to calculate the index of the Bucket.
+hash value is calculated using hash(key) i.e private method of HashMap.
+
+	final int hash(Object key)
+	
+This method returns the hash value of the key.
+Also if the hash value is too large then converts it into a smaller hash value.
+
+Note :
+------
+If the hash value of key object returns the integer that is greater than the size of Array then it throws ArrayOutOfBoundsException.
+To handle this situation HashMap reduces the hash value between 0 and n-1 using an expression.
+
+	index=hash(key) & (n-1)
+	
+Now the index value generated is used by HashMap to identify the Bucket Location and can never generate exception as the index value is always between 0 to n-1.
+
+What put()does :
+----------------
+First It checks for the key object.
+If the key is null then the value is stored in table[0] because hashCode for null is always 0.
+When we try to insert other element i.e key value pair,hashValue is calculated by calling hashCode() on the key object.
+Now the generated hashValue is used to identify the bucket Location and store the Entry object into an Array.
+JDK designers assumed that there might be some poorly written hashCode() function that can return very high or very low hashCode value.
+To resolve this issue they introduced another hash()function  and passed the key object hashCode to this hash() function to bring the hashValue in the range of Array Index Size.
+
+How Collisions are resolved :
+-----------------------------
+
+
+
+ 
+
+

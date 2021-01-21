@@ -42,7 +42,7 @@ Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
 docker version        :  To Check the Docker Client,Docker Server(Docker Engine) and so on
 docker -v :           :  To Check the Docker Version
 docker --version      :  To Check the Docker Version
-docker info           :  Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
+docker info           :  To get Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
 docker --help         :  To Get Information on any other Commands Example : docker images --help
 docker login          :  To Login to the Docker Hub
 docker logout         :  To Logout from the Docker Hub
@@ -50,7 +50,7 @@ docker logout         :  To Logout from the Docker Hub
 docker images         : To see the List of Images
 docker pull  ubuntu   : To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      : To get the Docker Image Id
-docker rmi imageId    : To remove the Docker image  based on Image Id.Before that check there is no Container running for that Image.
+docker rmi imageId    : To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
 docker ps             : To See the List of Active Containers
 docker ps -a 		  : Ti See the List of Containers i.e active,closed etc.

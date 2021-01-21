@@ -1,1 +1,161 @@
-xsc
+1.Introduction												 [18-JAN-2021]  (Done)
+2.Genric Classes                                             [18-JAN-2021]  (Done)
+3.Bouded Types                                               [18-JAN-2021]  (Done)
+4.Generic Methods                                            [18-JAN-2021]  (Done)
+5.Communication with legacy nn generic code                  [19-JAN-2021]  (Done)
+
+
+**************************************************************  1.Introduction	********************************************************************
+
+Arrays are by default type safe.
+If we declare String[] then we can add only String type of objects.
+If we try to add any other object we get CTE.
+Also while retreiving Arrays no need to perform type casting.
+Collections are not type safe.
+We can add any type of objects.
+Also while retreiving Collection we need to perform type casting.
+
+To resolve the above problems i.e type safety and type casting we go for Generics.
+If we declare the ArrayList with String type then we can add only String type of objects.
+
+	ArrayList<String> array=new ArrayList<String>();
+	
+Also at the time of reterival no need toperform type casting.
+By using Generics we can resolve type casting and type safety problems.
+These parameterized Collection classes are called as Generic Collection classes.
+
+Note :
+Polymorphism concept is applicable only for Base Types and not for Parameter Types i.e <>. 
+Generic concept is applicable only for Objects but not for the primitive types.
+
+**************************************************************  2.Genric Classes   ***************************************************************
+
+Until 1.5 version ArrayList class can be declared as 
+
+	class ArrayList{
+	add(object obj);
+	Object get(int index);
+	}
+
+From 1.5 version onwards ArrayList can be declared as 
+
+	class ArrayList<T>{
+	add(T t);
+	T get(int index);
+	}
+	
+On Runtime class will be loaded based on requirement.
+
+	ArrayList<String> l=new ArrayList<String>();
+	
+	class ArrayList<String>{
+	add(String);
+	String get(int index);
+	}
+
+Here the argument to the add() is String and we can add only String type of objects.
+No need to perform typecasting to retreive the elements.
+TypeSafety and TypeCasting can be resolved by using Generics.
+
+Creation of our own Generic classes :
+
+	public class Gen<T> {
+	T obj;
+	Gen(T obj)
+	{
+		this.obj=obj;
+	}
+	public T getObj()
+	{
+		return obj;
+	}
+	public void show()
+	{
+		System.out.println("Type of Object is"+obj.getClass().getName());
+	}
+	}
+	
+**************************************************************  3.Bouded Types  ************************************************************************
+
+We can bound the type parameter for a particular range.such type of types is called bounded types.
+Here we can pass any type to the class and there is no restriction.
+
+	class Gen<T>
+	{
+	}
+
+we can acheive the bounded type by using extends keyword.
+	
+	class Gen<T extends X>
+	{
+	}
+	
+If X is a class then any type which is a child class of X is allowed as the tye parameter.
+If X is an interface then any type which is the implementation of X is possible.
+
+Note :
+In Generics we only use extends keyword and there is no implements keyword.
+
+************************************************************** 4.Generic Methods   ********************************************************************
+
+1.m1(ArrayList<String>)
+This method is applicable only for ArrayList of String type.
+
+2.m1(ArrayList<? extends X>)
+If X is a claass then this method is applicable for ArrayList of either X or its child classes.
+If X is an interface then this method is applicable for any implementation class of X.
+
+3.m1(ArrayList<? super X>)
+
+4.m1(ArrayList<?>)
+This method is applicable for ArrayList of any type.
+Here we can pass only null because we don't the exactly what type of object is coming.
+
+	public class GenericMethodDemo {
+	public static void main(String[] args) {
+		ArrayList<String> l1 = new ArrayList<String>();
+		l1.add("A");
+		l1.add("B");
+		l1.add("C");
+		l1.add("D");
+		m1(l1);
+		ArrayList<Integer> l2 = new ArrayList<Integer>();
+		l2.add(10);
+		l2.add(20);
+		l2.add(30);
+		l2.add(40);
+		m1(l2);
+	}
+	public static void m1(ArrayList<?> l)
+	{
+		//l.add("D");
+		l.add(null);
+		l.remove(1);
+		System.out.println(l);
+	}
+	}
+
+**************************************************************  5.Communication with legacy nn generic code  **************************************************************
+
+Generics concept is applicable only at compile time and not at runtime.
+
+	public class GenericsCompileTime {
+	public static void main(String[] args) {
+		ArrayList<String> a1=new ArrayList<String>();
+		a1.add("Bhaumik");
+		a1.add("Nandini");
+		a1.add("Srinivas");
+		//a1.add(10);
+		m1(a1);
+		System.out.println(a1);
+	}
+	public static void m1(ArrayList l)
+	{
+		l.add(10);
+	}
+	}
+
+
+
+
+

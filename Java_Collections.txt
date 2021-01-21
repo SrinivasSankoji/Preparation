@@ -13,23 +13,20 @@
 
 An Array is an indexed collection of fixed number of Homogenous data elements.
 Main Limitation of Arrays are 
-1.Arrays are fixed in size.once we create an Array there  is no chance of increasing or decreasing its size based on our requirement.
+1.Arrays are fixed in size.once we create an Array there is no chance of increasing or decreasing its size based on our requirement.
 2.Arrays can hold only Homogenous elements.
 
 		Student[] student=new Student[10];
 		student[0]=new Student();
 		//student[1]=new Integer  CTE
-		//student[2]="Bhaumik";   CTE
-		
+		//student[2]="Bhaumik";   CTE		
 We can resolve the above problem by using Object Array.
-		
 		Object[] object=new Object[10];
 		object[0]=new Student();
 		object[1]=new Integer(10);
 		object[2]="Bhaumik";
 		
-By using Object Array we can hold Hetergogenous Elements.
-
+By using Object Array we can add Hetergogenous Elements.
 3.For Arrays there is no underlying Data Structure i.e for every requirement we have to write the code explicitly and there is no default raedymade support like 
 sorting,searching etc.
 4.We cannot represent Array elements in sorting order by default.
@@ -37,15 +34,14 @@ sorting,searching etc.
 
 To resolve all the issues sun people introduced Collections.
 For every requirement readymade method support is available.
-We can represent all the elements in sorting order and we can prevent duplicate object insertion by default.
-
+By using Collection we can represent all the elements in sorting order and we can also prevent duplicate object insertion by default.
 
 *************************************************************  2.Comparison between Collections and Arrays  ***************************************************
 
 Arrays :
 --------
 Arrays are fixed in size.
-Arrays can hold Homogenous data elements.
+Arrays can hold only Homogenous data elements.
 With respect to Memory Arrays are not recomended to use.
 With respect to Performance Arrays are recomended to use.
 Arrays can hold both Objects and priitive types.
@@ -58,11 +54,11 @@ Collections can hold Hetergogenous Elements.
 Collections can hold only objects but not primitives.
 With respect to memory Collections are recomended to use.
 With respect to Performance Collections are not recomended to use.
-Every Collection has built by using some underlying data structure.
+Every Collection object has built by using some underlying data structure.
 
 ************************************************************* 3.Collections Framework   ***********************************************************************
 
-Collections Framework defines a group of Classes and Interfaces that can be used for representing a Collection of Objects as a Single entity.
+Collections Framework defines a group of Classes and Interfaces that can be used for representing a group of Objects as a Single entity.
 Key Interfaces in Collection Framework are 
 
 1.Collection
@@ -82,12 +78,11 @@ There is no concrete class which implements collection interface directly.
 
 Difference between Collection and Collections :
 Collection is an interface which is present in java.util package that can be used to represent a group of individual objects as a single entity.
-Collections is a Class which is present in java.lang package which defines several utility methods for collection implemented class objects.
+Collections is a class which is present in java.lang package which defines several utility methods for collection implemented class objects.
 
 2.List :
 --------
-List interface can be used for representing a group of individual objects as a single entity where
-insertion order is preserved and duplicate objects are allowed.
+List interface can be used for representing a group of individual objects as a single entity where insertion order is preserved and duplicate objects are allowed.
 List interface is the Child interfaace of Collection.
 List implementation classes are 
 
@@ -101,8 +96,8 @@ By means of index we can preserve insertion order and we can differentiate dupli
 
 3.Set :
 -------
-Set interface can be used for representing group of individual objects as a single entity where 
-duplicate objects are not allowed and insertion order is preserved.
+Set interface can be used for representing group of individual objects as a single entity where duplicate objects are not allowed and insertion order is not preserved.
+insertion order is based on hashCodee of the object.
 This is the child interface of collection.
 Set interface implementation classes are
 
@@ -113,7 +108,7 @@ LinkedHashSet
 -------------
 SortedSet interface can be used for representing group of individual objects as a single entity where all the objects are inserted in some sorting order.
 SortedSet is the child interface of Set interface.
-Only Implementation class of SortedSet is TreeSet.
+Implementation class of SortedSet is TreeSet.
 
 5.Queue :
 ---------
@@ -123,7 +118,7 @@ Implementation Class of Queue interface is PriorityQueue.
 Child interface of Queue interface is BlockingQueue.
 
 All the above interafecs are used for representing group of individual obects.
-If we want to represent a group of individual objects as key value pairs we go for Map.
+If we want to represent a group of individual objects as a key value pairs we go for Map.
 
 Map :
 -----
@@ -159,7 +154,7 @@ ArrayList and Vector class implements RandomAccess interface so that we can acce
 ArrayList is best suitable if our frequent operation is retreival.
 
 Note :
-Usually Collection object can be used for data transport operation.
+Usually Collection object can be used for data transportation operation.
 For this purpose every Collection object already implements Serializable and cloneable interface.
 ArrayList is the worst choice if we perform insertion and deletion in the middle because of lot of shift operations.
 
@@ -178,7 +173,7 @@ LinkedList does not have initial capacity concept.
 
 Vector :
 --------
-Underlying Datastructure is resizable r growable Array.
+Underlying Datastructure is resizable or growable Array.
 Duplicate objects are allowed.
 Insertion order is presrved.
 null insertion is possibele.
@@ -188,7 +183,7 @@ Vector is the best choice if our frequent operation is retreival operation.
 Vector is the worst choice if our frequnet operation is insertion or deletion in the middle.
 
 Difference between ArrayList and Vector :
-Every method present ArrayList is non synchronized where as Every method present inside Vector is Synchronized.
+Every method present ArrayList is non synchronized where as every method present inside Vector is Synchronized.
 Vector is Thread Safe where as ArrayList is not Thread Safe.
 Performance ov Vector is Low where as Performance of ArrayList is high.
 
@@ -216,7 +211,7 @@ Stack is the child class of Vector and contains only one Constructor.
 	
 *************************************************************  6.Cursors in Collection Framework   ****************************************************************
 
-Form the collection object to retreive the object we use the following 3 cursors.
+Form the collection object to retreive the elements one by one we use the following 3 cursors.
 
 1.Enumeration
 2.Iterator
@@ -282,7 +277,7 @@ SortedSet :
 -----------
 SortedSet can be used for representing a group of individual objects where duplicate objects are not allowed,
 insertion order is not preserved and objects are inserted according to some sorting order.
-sorting order may be default natural sorting order or customized sorting order.
+Here sorting order may be default natural sorting order or customized sorting order.
 
 TreeSet :
 ---------
@@ -321,7 +316,7 @@ This interface contains only one method
 obj1.compareTo(obj2)
 returns -ve if the obj1 comes before obj2.
 returns +ve if the obj1 comes after  obj2.
-returns  0 if the obj1 and obj2 are equal.
+returns  0 if both obj1 and obj2 are equal.
 
 Note:
 While inserting objects into the TreeSet JVM internally uses compareTo() if we are depending on natural sorting order.
@@ -360,9 +355,9 @@ HashTable,Properties
 HashMap :
 ---------
 Underlying DataStructure for HashMap is HashTable.
-key value pairs are not sorted.
+insertion order is not preserved and is based on hashCode of the keys.
 Access time for HashMap is O(1).
-Values can be null but the key should be unique.
+Values can be duplicated but the key should be unique.
 null value for the key is allowed only once.
 
 LinkedHashMap :
