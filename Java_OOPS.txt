@@ -7,6 +7,7 @@
 7.Method Signature                                  [10-DEC-2020]  (Done)
 8.Overloading                                       [10-DEC-2020]  (Done)
 9.Overriding                                        [13-DEC-2020]  (Done)
+
 10.Polymorphism                                     [13-DEC-2020]  (Done)
 11.Coupling                                         [02-DEC-2020]  ()
 12.Static Control Flow                              [02-DEC-2020]  ()
@@ -228,7 +229,7 @@ In Aggregation,Container Object holds the references of Contained Objects i.e Co
 			
 In Java Method Signature consists of name of the Method and Argument Types.
 Return type is not a part of Method Signature.
-For each call performed by the Thread on the Method,corresponding entry will be stored inside the Stack Area.
+For each call performed by the Thread on the method,corresponding Entry will be stored inside the Stack Area.
 
 public class MethodSignatureDemo {
 
@@ -251,12 +252,11 @@ public class MethodSignatureDemo {
 
 Note :
 ------
-In a Class two Methods with same signature are not allowed.
-Atleast argument types should be different.
+In a Class two Methods with same signature are not allowed.Atleast argument types should be different.
 
 ************************************************************* 8.Overloading   ******************************************************************************
 
-Two Methods are said to be overloaded methods If Both the Methods have the same name and having different argument types i.e
+Two Methods are said to be overloaded methods if both the methods have the same name and having different argument types i.e
 Atleast order of arguments must be different is also applicable.
 
 In C 
@@ -276,7 +276,7 @@ Note :
 ------
 In overloading Method resolution is always taken care by compiler i.e based on reference type.
 Compiler decides which method has to be executed based on reference type.
-Here overloading is called static polymorphism or compile time polymorphism or Early Binding.
+Here overloading is called static polymorphism or compile time polymorphism or early Binding.
 
 public class OverloadingDemo {
 
@@ -353,7 +353,7 @@ VarArg Method :
 ---------------
 
 vararg method came in 1.5 version.
-vararg() can be called by passing any no of arguments including 0or any.
+vararg() can be called by passing any no of arguments including 0 or any.
 In general vararg() will get the least priority i.e if no oher method matches then only vararg() will get the chance.
 vararg() is same as default in switch case.
 
@@ -410,7 +410,7 @@ Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Lat
 
 Rules for Overriding :
 ----------------------
-Method Name and argument type must be same. i.e Method Signature must be same.
+Name of the Method and argument type must be same. i.e Method Signature must be same.
 In Overriding return type mst be matched but this rule is applicable till Java 1.4.
 Form Java 1.5 onwards Covariant return types are allowed.
 According to Covariant Return Type,Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
@@ -452,7 +452,7 @@ public class ChildDemo extends ParentDemo{
 	}
 }
 
-Here it gives the CTE saying Cannot override the final method from ParentDemo.
+Here it gives the CTE saying cannot override the final method from ParentDemo.
 We can override non final method as final.
 We can override Parent class abstract method in the Child class to provide implementation.
 
@@ -504,9 +504,9 @@ Note :
 We cannot override non static methods as static and vice versa.
 
 If the Parent and Child class methods are declared as static ,it is valid.But it is not method overriding and it is method hiding.
-All rules of method overriding and method hiding are same.
+All rules of method overloading and method hiding are same.
 In overriding method resolution is taken care by JVM based on runtime object.
-On case of method hiding,method resolution is taken care by compiler based on reference.
+In case of method hiding,method resolution is taken care by compiler based on reference.
 
 Overriding w.r.t Vararg Methods :
 ---------------------------------
@@ -533,14 +533,14 @@ If we replace the Parent Class m1() with Vararg Method then it is said to be Ove
 
 Overriding w.r.t variables :
 ----------------------------
-Overriding concept is not applicable for Variables and is applicable only for methods.
-Variable resolution is always taken care by compiler based on reference type,whether the variable is static or non static.
+Overriding concept is not applicable for variables and is applicable only for methods.
+variable resolution is always taken care by compiler based on reference type,whether the variable is static or non static.
 
 Difference between Overloading and Overriding :
 -----------------------------------------------
 
 Overloading :
-Method Name should be same
+Method Name should be same.
 Argument Type should be different atleast order
 There is no restrictions on return type.
 We can Overlaod private,static,final methods.
@@ -550,8 +550,7 @@ Method resolution is always taken care by compiler based on reference type.
 Overlaoding is aloso known as static polymorphism or compile time polymorphism or early binding.
 
 Overriding:
-Method name should be same
-Arguments should be same including order
+Name of the Method and Argument Type should be same including order.
 Return type should be same or Covariant return type
 Access modifier should be increase but cannot decrease
 Overridden method should throw the same execption as parent or its sub type.
@@ -595,19 +594,18 @@ There are two types of polymorphism
 Static polymorphism  --> Method Overloading,Method Hiding
 Dynamic Polymorphism  --> Method Overriding
 
-Encapsulation talks about security
-Inheritance talks about reusability
-Polymorphism talks about Flexibility.
+Encapsulation talks about security.
+Inheritance talks about reusability.
+Polymorphism talks about flexibility.
 
 ******************************************************************* 13.Static Block  **********************************************************************
 
-Static Block will be executed at the time of Class Loading.
-Hence at the time of Class Loading if we want to perform any activity, then we have to define the code inside static block.
-
+Static block will be executed at the time of Class Loading.
+Hence at the time of Class Loading if we want to perform any other activity,then we have to define the code inside static block.
 
 Scenario One :
 --------------
-At the time of JDBC Driver class Loading,Automatically registering the driver with DriverManager is required.
+At the time of JDBC Driver class Loading,automatically registering the driver with DriverManager is required.
 Every driver class contains a static block to perfrom this activity.
 
 	Class Driver{
@@ -730,17 +728,17 @@ For example if we write count in constructor,sometimes to create a Single Object
 
 Rules for Writing Constructor :
 -------------------------------
-Name of the Constructor and name of the Class should be same.
+Name of the Constructor and Name of the Class should be same.
 Return Type concept is not applicable for Constructor even void also.
 Whenever we are giving return type to the Constructor,Compiler treats as a Method and does not give any Compile time Error.
 We can also have a method name whose name is same as Class Name but not according to the naming convention.
-The Only applicable modifiers for the Constructor are private,default,protected,public.
+The only applicable modifiers for the Constructor are private,default,protected,public.
 
 Default Constructor :
 ---------------------
 Every Class in Java including abstract class should contain Constructor.
 It may be explicitly provided by the programmer or generated by the Compiler.
-If we are not writing any constructor then only compiler will generate the Default Constructor.
+If we are not writing any constructor then only compiler will generate the default Constructor.
 If we are writing atleast one constructor then compiler won't generate the default constructor.
 
 Prototype of default Constructor :
@@ -764,7 +762,7 @@ Default Constructor contains one line i.e super() .
 It is a No Argument call to the Super class Constructor.
 
 Compiler verfies whether the Constructor has written properly or not.
-Compiler also verifies whether the first line inside every constructor should be either super or this.
+Compiler also verifies whether the first line inside every constructor should be either super() or this().
 If we don't write anything compiler generates super() for us.
 
 Note :
@@ -784,8 +782,8 @@ We can use super() and this() only inside constructor.
 super,this :
 ------------
 super and this are applicable only for instance variables.
-These are the keywords to refer super class and current class instance variables.
-we can use super and this keywords except static area.
+These are the keywords used to refer super class and current class instance variables.
+we can use super and this keywords anywhere except static area.
 
 Overloaded Constructor :
 ------------------------
@@ -805,7 +803,7 @@ Inheritance and overriding concept is not applicable for Constructors.
 Note :
 ------ 
 Recursive Method Invocation gives Runtime Exception
-where as Recursive COnstructor invocation gives Compile Time Error.
+where as Recursive Constructor invocation gives Compile Time Error.
 
 Note :
 ------
@@ -814,13 +812,12 @@ Whenever we are writing any argument Constructor,it is highly recomended to writ
 
 Constrcutor w.r.t Exception Handling :
 --------------------------------------
-If a Child class Constructor throws some checked Exception then Parent Class Constructor should throw the same Checked Exception or its Parent.
-
+If a Child class Constructor throws some checked Exception then the Parent Class Constructor should throw the same Checked Exception or its Parent.
 
 ******************************************************************* 18.Singleton Class  **************************************************************************
 
 For any Java Class if we are allowed to create only one Object,then such class is said to be Singleton Object.
-Advantage of Singleton Object is Instead of creating multiple Objects for the same purpose,create only one object and reuse the same object for every request.
+Advantage of Singleton Object is instead of creating multiple Objects for the same purpose,create only one object and reuse the same object for every request.
 so that performance and memory utilizations will be improved.
 
 If we want to get runtime object
@@ -843,7 +840,7 @@ Here entire Singleton nature is present inside getRuntime().
 Rules for creating Singleton :
 ------------------------------
 1.Declare the private static reference variable of the same class.
-2.Define the private constructor.
+2.Declare the private constructor.
 3.Define the static method and verify the object has created or not.
 
 
@@ -882,7 +879,7 @@ Syntax :
 A is Class or Interface
 b is object reference
 C is Class or Interface
-d is Object reference or Object
+d is Object reference
 
 Compime time Checking (One) :
 -----------------------------
@@ -985,7 +982,7 @@ At runtime JVM searches the main() with the following syntax
 public :
 To call this method by JVM from anywhere
 static :
-without existing object alos JVM has to call this method
+without existing object also JVM has to call this method
 void :
 main() won't return anything to the JVM
 main :
@@ -1016,42 +1013,9 @@ Note :
 we can overload the main() but JVM will always execute the String[] args main().
 Other overloaded method will be executed as a Normal method.
 
-
 Note :
 ------
 Inheritance concept is also applicable for main().
 Hence while executing child class if child class doesnot contain main() then parent class main() will be executed.
-Overiding concept is applicable for main() but it is not method overriding it is method hiding.
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Overiding concept is applicable for main() but it is not method overriding,it is method hiding.
 

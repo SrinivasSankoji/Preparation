@@ -1,5 +1,5 @@
-1.HashMap - Internal  						(DZone)   					[21-JAN-2021]  ()
-2.HashMap - Internal 						(howtodoinjava)   			[21-JAN-2021]  ()
+1.HashMap - Internal  						(DZone)   					[22-JAN-2021]  (Done)
+2.HashMap - Internal 						(howtodoinjava)   			[22-JAN-2021]  (Done)
 3.HashMap – Custom Key Design               (howtodoinjava)   			[21-JAN-2021]  ()
 4.HashMap – Synchronize HashMap             (howtodoinjava)   			[21-JAN-2021]  ()
 5.HashMap – Merge HashMaps                  (howtodoinjava)   			[21-JAN-2021]  ()
@@ -10,14 +10,14 @@
 9. HashMap - Internal  						(javaconceptoftheday)   	[21-JAN-2021]  ()
 10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   	[21-JAN-2021]  ()
 11.Initial capacity vs Load Factor			(javaconceptoftheday)   	[21-JAN-2021]  ()
-12.HashSet Internal							(javaconceptoftheday)   	[21-JAN-2021]  ()
-13.
+12.HashSet Internal							(javaconceptoftheday)   	[23-JAN-2021]  (Done)
 
 ****************************************************************  1.HashMap Internal  (DZone)   ****************************************************************
 
 HashMap is a Map which is used to store key value pairs.
 HashMap works on the principle of hashing.
-Hashing functions are used to link the key and value in HashMap.
+Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
+Hashing functions are used to link the Entry objects in the  HashMap.
 HashMap is a data structure which allows us to store objects and retrieve it in constant time O(1) provided we know the key.
 
 How Hashmap Calculates the Index of a Bucket :
@@ -52,6 +52,208 @@ To resolve this issue they introduced another hash()function  and passed the key
 
 How Collisions are resolved :
 -----------------------------
+As we know that two unequal objects can have the same hashCode value.
+Two different objects will be stored in the same Array Location and the answer is LinkedList.
+
+Entry class has an attribute "next".
+This attribute always points to the next object in the chain.
+This is the exactly the behavior of LinkedList.
+
+Entry objects are stored in the form of LinkedList.
+When an Entry object needs to be stored in a particuar index,HashMap checks whether there is already Entry present in the index.
+If no Entry is present then Entry object is stored in that index.
+
+If there is an Entry object sitting on that calculated index,its next attribute is checked.
+if it is null then the current Entry object becomes the next node in the LinkedList.
+If the next variable is not null,the procedure is followed untill the next is evaluated as null.
+
+If we add the Entry object with the same key that is present already in the index.
+After determining the index position of the Entry object,while iterating the LinkedList on the calculated index,
+HashMap calls the equals() on the key object for each Entry.
+
+All the Entry objects in the LinkedList will have the same hashCode but equals method will test for true equality.
+If both the key objects are equal then the value object will be replaced with the key.
+
+
+******************************************************************* 2.HashMap - Internal  (howtodoinjava)  *********************************************************************
+
+1.What is Hashing :
+-------------------
+HashMap works on the principle of hashing.
+Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
+Hash function should return the same hashCode each and every time whne the function is applied on the same or equal objects.
+Two equal objects must produce the same hashCode consistently.
+
+Note :
+------
+All objects in Java inherit default implementation of hashCode() function defined in Objec class.
+This function produces hashCode() by typically converting the internal address of the object into an Integer.
+Thus producing differrent hashCode for different objects.
+
+2. Entry class in HashMap :
+---------------------------
+Map by definition is an Object that maps keys to values.
+There must be some Mechanism in HashMap to store this key value pair.
+HashMap has a static nested class Entry to insert key value pair.
+
+	static class Entry<K,V> implements Map.Entry<K,V>
+	{
+		final K key;
+		V value;
+		Entry<K,V> next;
+		final int hash;
+	}
+
+3.How HashMap.put() methods works :
+-----------------------------------
+Instances of an Entry class are stored inside Array.
+HashMap defines this variable as 
+
+	transient Entry[] table;
+	
+	public V put(K key,V value)
+	{
+		if(key==null)
+		return putForNullKey(value);
+		int hash=hash(key.hashCode());
+		int i=indexFor(hash,table.length);
+		for(Entry<K,V> e=table[i];e!=null;e=e.next)
+		{
+			Object k;
+			if(e.hash==hash && (key.equals(k) || key == (e.key))
+			{
+				V oldvalue=e.value;
+				e.value=value;
+				e.recordAccess(this);
+				return oldvalue;
+			}
+		}
+		modCount++;
+		addEntry(hash,key,value,i);
+		return null;
+	}
+
+4.What put() method does  :
+---------------------------
+First key object is checked for null condition.
+If the key is null then entry object will be stored in table[0] position because hashCode for null is always 0.
+
+	if(key==null)
+	return putForNullKey(value);
+		
+		
+When we try to insert another Entry object,first it calculates the hashcode() on the key object.
+JDK designers assumed that there might be poorly written hashCode() function that may return higher value or lower hashCode value.
+
+	key.hashCode()
+	
+To resolve this issue they have implemented hash() that return the hashValue in the range of Array index size.
+	
+	int hash=hash(key.hashCode());
+	
+Noe indexFor(hash,table.length) is used to calculatethe index position for storing the Entry object.
+
+	int i=indexFor(hash,table.length);
+	
+How collisions are resolved  :
+-------------------------------
+As we know that two unequal objects have the same hashcode.
+Two different objects can have the same hashcode and the answer is LinkedList.
+
+Entry class has an attribute "next".
+This always points to the next object in the chain.
+
+whenever an Entry object needs to be stored in a particular index,First it checks if the object is already present or not.
+If the object is not present then the Entry object will be stored in that index.
+If the object is present in that calculated index,its next attribute is checked.
+if the next attribute is null then the Entry object will become the next node in the LinkedList.
+If the next variable is not null,procedure is followed until the next variable is null.
+
+if we try to insert the Entry object with the same key value,after determinig the index position for that Entry object,
+while iterating over LinkedList HashMap will call the equals() on the key object.
+If both the key objects are same then value object will be replaced with the new value.
+ 
+5.How HashMap.get() methods works  :
+------------------------------------
+Whenever we call get(key) i.e calling get() by passing key object as an argument
+First it calls the hashCode() on the key object and the result is passed as an argument to the hash().
+Now the generated hashvalue is passed as an argument for indexFor() i.e 
+
+	int index =indexFor(hash,table.length);
+	
+Now HashMap will identify the exact Entry object using the index and it simply returns the value object stored inside the Entry object.
+If no match is found get() returns null.
+
+6.Key notes on internal working of HashMap :
+--------------------------------------------
+HashMap is DataStructure that can be used to store key value pairs as an Entry object in a Table Array.
+Particular index location in an Array is called Bucket.
+Key object hashCode() is used to calculate the index location of an Entry object.
+Key object equals() is used to identify the uniqueness of the keys in the Map.
+hashCode for null is always 0 and such Entry object will be stored inside 0 index in an Array.
+
+7.HashMap improvements in Java 8 :
+----------------------------------
+As part of the performnace improovement of HashMap in Java 8,LinkedList is replaced by BalancedTree to store the Entry objects in the Array.
+
+
+*******************************************************************  12.HashSet Internal (javaconceptoftheday)  *********************************************************
+
+HashSet uses HashMap internally to store its objects.
+Whenever we create a HashSet object,one HashMap object associated with it is alos created.
+HashMap object is used to store the elements we enter in the HashSet.
+The elements we stored inside the HashSet are stored as Keys and the value associated with those keys will be a Constant.
+Every constructor of HashSet class internally creates one HashMap object.
+
+	private transient HashMap<E,Object> map;
+	
+	public HashSet()
+	{
+		map=new HashMap<>();
+	}
+	
+	public HashSet(int initialCapacity)
+	{
+		map=new HashMap<>(initialCapacity);
+	}
+	
+	public HashSet(int initialCapacity,float loadFactor)
+	{
+		map=new HashMap<>(initialCapacity,loadFactor);
+	}
+	
+	
+How HashSet Works Internally  :
+-------------------------------
+Whenever we insert an element in the HashSet using add() method it actually creates an entry in the backing HashMap object 
+with the element we specified as it's key and constant called PRESENT as it's value.
+"PRESENT" in HashSet is defined as 
+
+	private static final Object PRESENT=new Object();
+
+	public add(E e)
+	{
+		map.put(e,PRESENT)=null;
+	}
+	
+add() method of HashSet internally calls put() of backing HashMap object by passing the element as key and constant "PRESENT" as its value.
+remove() works in the same manner.
+
+	public remove(E e)
+	{
+		map.remove(e)=PRESENT;
+	}
+	
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,21 +3,22 @@
 3.Dynamic Class Loading					(DZone)						[30-NOV-2020]  (Done)
 4.Detailed Breakdown of the JVM			(DZone)						[18-NOV-2020]  ()
 5.Evolution Java Memory Architecture	(DZone)						[18-NOV-2020]  ()
-6.JVM & its Architecture				(Guru99)					[18-NOV-2020]  ()
+6.JVM Architecture						(Guru99)					[18-NOV-2020]  ()
+7.JVM Architecture						(howtodoinjava)				[23-JAN-2021]  ()
 
 
 
 ************************************************************  1.JVM  Architecture (DZone) ******************************************************************************
 
 Every Java Developer knows that byte code will be executed by the JVM.
-Fact is that JRE is an implementation of JVM,which analyzes the byte Code,interprets the code and executes it.
+Fact is that JRE is an implementation of JVM,which analyzes the byte code,interprets the code and executes it.
 As a Java Developer If we know the Architecture of JVM,it enables us to write the code more efficiently.
 
 What is JVM :
 -------------
 Java Virtual Machine is a software implementation of a Physical Machine.
 Java was developed with the concept of WORA i.e Write Once and Run Anywhere,which runs on the VM.
-Compiler compiles the .java File and generates the .class File which is an input to the JVM,which loads and executes the .class File.
+Compiler compiles the .java File and generates the .class file which is an input to the JVM,which loads and executes the .class File.
 
 JVM is divided into 3 main sub Systems.
 
@@ -28,7 +29,7 @@ JVM is divided into 3 main sub Systems.
 1.Class Loader Subsystem :
 --------------------------
 Dynamic Class Loading(Class.forName) functionality is handled by the Class Loader Subsystem.
-It loads,links and initializes the Class file when it refers to a class for the first time i.e at runtime and not compile time.
+Class Loader Subsystem loads,links and initializes the Class file when it refers to a class for the first time i.e at runtime and not compile time.
 
 A) Loading :
 ------------
@@ -36,8 +37,7 @@ Class Loading will be done by the 3 Class Loaders.
 
 A.Bootstrap Class Loader :
 --------------------------
-Responsibel for Loading the Classes from Bootstrap Classpath i.e rt.jar 
-Highest Priority is given to the Bootstrap Class Loader.
+Responsibel for Loading the Classes from Bootstrap Classpath i.e rt.jar and highest priority is given to the Bootstrap Class Loader.
 
 B.Extension Class Loader :
 --------------------------
@@ -45,9 +45,9 @@ Responsible for loading the Classes which are inside ext folder i.e jre/lib.
 
 C.Application Class Loader :
 ----------------------------
-Responsible for Loading the Classes at Application Level Classpath,Path mentioned in the Environment Variable etc.
+Responsible for loading the Classes at Application Level i.e path mentioned in the Environment Variable etc.
 
-Class Loader will follow the Delegation Hierarchy Algorithm while Loading the Class Files.
+Class Loader will follow the delegation hierarchy Algorithm while Loading the Class Files.
 
 B) Linking :
 ------------
@@ -58,7 +58,7 @@ Prepare :
 For all static variables memory will be allocated and assigned with default values.
 
 Resolve :
-All Symbolic memory references are replaced with original references from emthod Area.
+All Symbolic memory references are replaced with original references from method Area.
 
 C) Initialization :
 -------------------
