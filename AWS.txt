@@ -32,12 +32,12 @@ Tomact
 *************************************************************************  1.AWS Introduction (thedevcoach) ***************************************************************
 
 AWS stands for Amazon Web Services.
-AWS has a wide range of computing products taht allows us to operate tasks on the cloud on demand.
+AWS has a wide range of computing products that allows us to operate tasks on the cloud on demand.
 Currently AWS is the biggest service offering of the cloud market that has databases,event queues to basic web site hosting.
 
 AWS is designed to be quite low level and it is not designed for casual web site builder.
 AWS is built for large enterprises to build their entire business on.
-AWS is not only low level but there are many different services and lots of services that even substitute each other.
+AWS is not only low level but there are many different services and lots of services that even substitute with each other.
 
 WHERE TO START LEARNING AWS :
 -----------------------------
@@ -60,7 +60,8 @@ EC2 :
 -----
 EC2 is way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
-EC2 is like having a Computer at the Push of a Button.
+
+EC2 is like having a Computer at the push of a Button.
 EC2 is popular because of its flexibiity.
 On EC2 we can run different type of workloads.We can install wordpress to build a web site.
 We also can install database and store data directly on EC2.
