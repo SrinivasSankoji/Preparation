@@ -33,11 +33,10 @@ Tomact
 
 AWS stands for Amazon Web Services.
 AWS has a wide range of computing products that allows us to operate tasks on the cloud on demand.
-Currently AWS is the biggest service offering of the cloud market that has databases,event queues to basic web site hosting.
-
 AWS is designed to be quite low level and it is not designed for casual web site builder.
 AWS is built for large enterprises to build their entire business on.
 AWS is not only low level but there are many different services and lots of services that even substitute with each other.
+Currently AWS is the biggest service offering of the cloud market that has databases,event queues to basic web site hosting.
 
 WHERE TO START LEARNING AWS :
 -----------------------------
@@ -50,27 +49,26 @@ While learning AWS we should focus on 3 Areas.
 Within AWS many services are built on set of core services.
 AWS has a service called ECS(Elastic Container Service) that allows us to run container based services.
 When we run the services on ECS,we need to configure the host for our containers to run on.
-One of the option to run the host is EC2.
-In this scenario EC2 is the core service.
+One of the option to run the host is EC2.In this scenario EC2 is the core service.
 Many services in AWS are periphery services which are compliment and build on others.
 
 Core Services in AWS are EC2,IAM and S3.
 
-EC2 :
------
+EC2 (Elastic Cloud Compute) :
+-----------------------------
 EC2 is way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
-
 EC2 is like having a Computer at the push of a Button.
-EC2 is popular because of its flexibiity.
-On EC2 we can run different type of workloads.We can install wordpress to build a web site.
-We also can install database and store data directly on EC2.
+
+EC2 is more popular because of its flexibiity.
+On EC2 we can run different type of workloads.
+We can install wordpress to build a web site.We also can install database and store data directly on EC2.
 Imagine we can run everything on EC2.
 
 Since EC2 is more flexible we don't run everything on EC2.
 If we run the database on EC2 we also need to manage ourself.
 AWS offers RDS which takes away of maintaining our own database.
-But AWS runs it under the hood of EC2.
+Here AWS run it under the hood of EC2.
 
 we not only run machines on the cloud i.e EC2,we also need other features such as permissions.
 IAM comes into the picture.
@@ -93,12 +91,12 @@ Also User can have policies directly.
 S3 :
 ----
 S3 allows us to store files in a flexible way.
-S3 can be used to host websites,stores assets such as images and even log files for an application.
+S3 can be used to host static websites,stores assets such as images and log files for an application.
 If we ever need simple persistence for files S3 is the best answer.
 
 If we want to use AWS RedShift i.e querying tool we need to put data in S3.
 If we want to get access logs in AWS account then data will be in S3.
-If we want to host static website,turn on logs for load balancer we need S3.
+If we want to host static website,logs for load balancer we need S3.
 
 Other Core Services are 
 
@@ -126,6 +124,36 @@ Root Account :
 
 
  
+
+******************************************************************** 2.AWS Introduction (Guru99)  ****************************************************************
+
+Cloud Computing is a term referred to storing and accessing the data over the Internet.
+Here it does not store any data on the hard disk of a computer.
+In Cloud computing we can access the data from the Remote Server.
+
+AWS is a platform that offers Reliable,Scalable,Flexible,Easy to use and cost effective cloud computing solutions.
+The Platform is developed with a combination of Infrastructure as a Service,Platform as a Service and Software as a Service.
+AWS has a wide range of cloud computing Products that includes Storage,Database,Analytics,Networking,Mobile,Development Tools,Enterprise Applications etc.
+All these srevices are used as pay as you go pricing Model.
+
+
+EC2: 
+It is a Virtual Machine in the Cloud on which we have OS Level Control.We can run this Cloud Server whereever we want.
+LightSail : 
+It is a Cloud Computing tool that automatically manages the storage,computer and networking capabilities that are required to run the Application.
+Elastic Beanstalk :
+It offers automated deployment and provisioning of resources like a highly scalable production website.
+EKS(Elastic Container Service For Kubernetes) :
+It allows us to work on Kubernetes on Amazon Cloud Environment without installation.
+AWS Lambda :
+It is a service that allows us to run functions in the cloud.It is a big cost save because it allows us to pay only when the function got executed.
+
+
+
+
+
+
+
 
 
 
