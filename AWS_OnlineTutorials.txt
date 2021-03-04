@@ -1,0 +1,228 @@
+1.AWS Introduction										[01-MAR-2021]  (Done)
+2.AWS Certified Solution Architect                      [22-MAR-2021]  ()
+3.AWS CLI Setup                                         [22-MAR-2021]  ()
+												
+4.EC2 Introduction                                      [22-MAR-2021]  ()
+5.EC2 and Linux Basics                                  [22-MAR-2021]  ()
+6.EC2 Bootstrap Script                                  [22-MAR-2021]  ()
+7.EC2 Windows Instance                                  [22-MAR-2021]  ()
+8.EC2 Metadata                                          [22-MAR-2021]  ()
+9.EC2 Placement Groups                                  [22-MAR-2021]  ()
+10.EC2 AutoScaling                                      [22-MAR-2021]  ()
+													
+11.S3 Introduction                                      [22-MAR-2021]  ()
+12.S3 Metadata                                          [22-MAR-2021]  ()
+13.S3 Bucket Properties                                 [22-MAR-2021]  ()
+14.S3 ACL and Amazon Bucket Policy                      [22-MAR-2021]  ()
+15.S3 Glacier                                           [22-MAR-2021]  ()
+														
+16.IAM Roles and Policies                               [22-MAR-2021]  ()
+17.IAM user Roles with EC2 CLI                          [22-MAR-2021]  ()
+
+
+********************************************************************* 1.AWS Introduction  *********************************************************************
+
+Whenever we get a new project from any Organization,
+we need to understand the requirement,How long it will take to develop the specific Application and requirements to implement the Application.
+
+
+					Application
+					Runtimes
+					Security and Integration
+					Databases
+					Servers
+					Virtualization
+					Server Hardware
+					Storage
+					Networking
+
+Once the Application is finalized we need to get 
+
+How much Storage devices are required
+How much Server Hardware is required 
+Networking devices required to connect the Server Hardware
+
+we need to connect all the three i.e Storage,Server and Network Devices.
+Finally we need a Network Admin who will create a Virtualization Layer on top of these Hardwares.
+Virtualization helps in providing different kind of systems on the same server.
+Here we can have both Linux Machine as well as Windows Machine on the Same Server.
+Once the Virtualization is completed Architect comes into the picture and he will create a Server based on his requirement on the virtual machine.
+Architect will also design the database.
+Once the Server and Database are designed by Architect,Developer will start implementing the Application and run those Applications.
+Security Engineer will ensure all of them are tightly integrated and secured from any Attacks.
+This is how the traditional IT Company works till now.
+
+Once the Cloud came into the picture,solution is divided into 3 parts.
+
+Infrastructure as a Service
+Platform as a Service
+Software as a Service
+
+In case of Infrastructure as Service we do not worry about setting up the 
+Hardware Components,
+Networking Components 
+Storage Components 
+Virtualization etc.
+Here we are asking the Cloud vendor to provide the Linux Server with some configuration.
+It is best suitable for the Solution Architects that helps in saving the cost.
+
+In case of Software as a Service we directly use the Application.
+Example are GoogleDrive,Gmail,Apps on Android etc.
+It is best suitable for the End Users.
+
+In case of Platform as a Service we only need to implement the Application.
+If we want to implement a Java Application we need a Linux Server with Java installed on it.
+It is best suitable for the Application Developers.
+
+Difference between Traditional Infrastructure and AWS Services :
+----------------------------------------------------------------
+Whenever we are going to get any project,Company purchases lot of Servers,Racks and storage devices like DAS,SAN,NAS,RDBMS etc.
+All of these are interconnected using Router,Pipelines and switches etc.by the Administrator.
+Administrator is going to provide the Firewall and security for the complete Infrastructure.
+
+Compared to On Premise Servers we also have Servers in the AWS Cloud.
+AWS has a ready image i.e AMI(AMazon Machine Image) for Windows OS,Linux OS etc.
+Pick up the ready image and start the EC2 instance (Elastic Compute Cloud).EC2 is also called as virtual machine.
+
+In Traditional Networking we have Routers,Pipelines,Switches that connects with the Servers,Storage Devices and Databases etc.
+In Case of AWS we have Load Balancers that directly connects to the Virtual Servers and it balances the complete Load.
+How much traffic can flow to each virtual server is decided by Load Balancer.
+
+We can also create our own VPC(Virtual Private Cloud) in which we can connect all the devices i.e servers,databases etc.
+We can also create our own Security Groups,NACL's(Networl Access Control List).
+Whatever Network we are going to build we are going to secure with Security Groups and NACL's.
+
+Compared to Traditional Architeture we have Network Administrators who are going to provide priviliges.
+In case of AWS we have to use IAM Services to provide the Access rights.
+
+For the traditional Sequential Databases we have AWS RDS Service.
+For Storage of File system like images,static Files etc we have AWS S3(Simple Storage Service).
+To spin up the OS,Store,install and run the Software we have AWS EBS(Elastic Block Store).
+
+We have Elastic File System that automatically grows and shrinks.
+He are we are going to pay for the data that we are using.
+
+Advantages of AWS Cloud Computing :
+-----------------------------------
+Trade Capital expense for variable expense.
+Benefits from Massive economies of sale.
+Stop guessing about capacity.
+Increase speed and agility.
+Stop spending money on running and maintaining Data Center.
+Go Global in Minutes.
+
+AWS Platform :
+--------------
+AWS Global Infrastructure
+Networking
+
+Compute 
+Storage
+Database
+Security and Identity
+
+AWS Global Infrastructue is about 2 things i.e Regions and Availablity Zones.
+Region is nothing but Geographic Location and consists of atleast 2 Availablity Zones.
+Availablity Zone is nothing but cluster of Data Centers and isolted from failures in other Availablity Zones.
+All the Availablity Zones are inter connected with each other.
+
+In case of Networking,
+How to set up our own private Cloud
+How to Host websites usiing Route 53
+How we can get a Direct Connect with AWS Cloud Platform by  bypassing the Internet.
+
+
+In Case of Compute,
+EC2 i.e Virtual Machine
+
+In Case of Storage we have
+S3
+EFS
+Cloud Front
+Glacier
+Storage Gateway
+
+In Case of Databases we have
+RDS
+RedShift
+DynamoDB
+ElasticCache
+DMS (Database Migration Service)
+
+*********************************************************************  2.AWS Certified Solution Architect  **********************************************************
+
+Public Cloud :
+Here Infrastructure is provided by the Cloud Vendor.
+
+Private Cloud :
+For a long time we have been into the private Cloud Model.
+Here Organizations built their own data centers inside the Building.
+Application Built here is used only within the Organization.
+
+Hybrid Cloud :
+It is combination of Both private CLoud and Public Cloud.
+
+
+AWS Account :
+-------------
+
+
+
+*********************************************************************  16.IAM Roles and Policies   ******************************************************************
+
+IAM is a part of Security.
+Consider the scenario we have created an Account for AWS in a Company and have to do the complete Set up.
+First thing we are going to look into is IAM.
+This is the place we are going to add the Users and who will have the access to my AWS Account and which User have the what Level of Access.
+IAM stands for Identity and Access Management which allows the user to access and their level of Access.
+
+Advantages of IAM :
+-------------------
+1.Centralized control of AWS Account.
+2.Shared Access for AWS Account (Multiple Administrators)
+3.Granular Permissions (Until what level user can have a specific Access.We can also defind the specific documnet)
+4.Identity Federation
+If the company got more than 1000 users it is difficult to add each user in IAM section.
+Here we integrate the Active Dircetory so that all the  users can use the Id and password of the company itself.
+We can also do the Identity Federation with Facebook and LinkedIn.
+5. MultiFactor Authentication (Two Level Authentication)
+6.Provide Temporary Accss for users/devices and services wherever necessary
+As a Company we might get the requirent that we can hire some third party Engineer to resolve the issue.
+Here he willget the Temporary access until the work is done.
+7.Allows us to set up our own password rotation policy.
+Password should be case sensitive,Atleast contain one Capital Letter etc.
+8.Intergrates with many different AWS Services 
+9.Supports PCI DSS Compliance
+
+Terms in IAM :
+--------------
+Users
+Groups
+Roles
+Policies
+
+Users : End user who is going to access the AWS Cloud console.
+Groups : Collection of users under one set of permissions.
+Roles : We can create Roles and assign them to AWS Resources.
+Gropus can be assigned to the users where as Roles can be assigned to the services.
+Policies : It is a document that defines one or more permissions.
+what kind of permission that a specific User will have,Group will have,Role will have.
+Policies i.e permission document can be attached to User,Group,Role.
+
+Consider the scenario where in EC2 we will launch virtual servers and in S3 is a Storage.
+If EC2 wants to communicate with S3 in a secured way,provide the Role to EC2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
