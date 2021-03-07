@@ -173,17 +173,17 @@ AWS Account :
 IAM is a part of Security.
 Consider the scenario we have created an Account for AWS in a Company and have to do the complete Set up.
 First thing we are going to look into is IAM.
-This is the place we are going to add the Users and who will have the access to my AWS Account and which User have the what Level of Access.
-IAM stands for Identity and Access Management which allows the user to access and their level of Access.
+This is the place we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
+IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
 
 Advantages of IAM :
 -------------------
 1.Centralized control of AWS Account.
 2.Shared Access for AWS Account (Multiple Administrators)
-3.Granular Permissions (Until what level user can have a specific Access.We can also defind the specific documnet)
+3.Granular Permissions (Until what level user can have the specific Access.We can also defind the specific documnet)
 4.Identity Federation
 If the company got more than 1000 users it is difficult to add each user in IAM section.
-Here we integrate the Active Dircetory so that all the  users can use the Id and password of the company itself.
+Here we can integrate with the Active Dircetory so that all the  users can use the userId and password of the company itself.
 We can also do the Identity Federation with Facebook and LinkedIn.
 5. MultiFactor Authentication (Two Level Authentication)
 6.Provide Temporary Accss for users/devices and services wherever necessary

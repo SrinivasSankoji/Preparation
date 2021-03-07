@@ -7,7 +7,6 @@
 7.Method Signature                                  [10-DEC-2020]  (Done)
 8.Overloading                                       [10-DEC-2020]  (Done)
 9.Overriding                                        [13-DEC-2020]  (Done)
-
 10.Polymorphism                                     [13-DEC-2020]  (Done)
 11.Coupling                                         [02-DEC-2020]  ()
 12.Static Control Flow                              [02-DEC-2020]  ()
@@ -42,16 +41,14 @@ Abstraction improoves the easyness to use the system because not required to kno
 
 ********************************************************** 3.Encapsulation  **********************************************************************
 
-If any componenet of java class follows Data Hiding and Abstraction is called Encapsulation.
+If any componenet of java class follows Data Hiding and Abstraction then it is called Encapsulation.
 Binding the data and corresponding functionality together into a single module is called Encapsulation.
 Every Java class is an example of Encapsulation.
 
 In case of Encapsulation,we does not aware which code it got executed and where it is executed.
 Here we are hiding the data behind the methods is a central concept of Encapsulation.
-Main Advantage of Encapsulation is
-We can acheive security
-Enhancement will become easy
-Improoves the maintainability and modularity of an Application
+Main Advantage of Encapsulation is we can acheive security and Enhancement will become easy.
+Encapsulation improoves the maintainability and modularity of an Application.
 
 If we want security we should compromise the performance of the Application.
 Disadvantage of Encapsulation is it increases the length of the code and slows down execution.
@@ -155,10 +152,12 @@ But an Interface can extend more than one Interface at a time,Hence Java provide
 
 Interface A 
 {
+	m1();
 }
 
 Interface B 
 {
+	m1();
 }
 
 Interface C extends A,B
@@ -167,7 +166,7 @@ Interface C extends A,B
 
 Because for Interface we need to provide Implementation.
 Here Implementation for A is in Seperate Class and B is in Another Class.
-To the Interface C Only one implementation is enough ans single implementation acts for both interfaces.There is no chance of ambiguity.
+To the Interface C Only one implementation is enough and single implementation acts for both interfaces.There is no chance of ambiguity.
 Eventhough multiple method declarations are present,there should be only one implementation i.e implementation is unique.
 Hence there is no chance of ambiguity Problem in interfaces.
 
@@ -308,7 +307,7 @@ This process will be continued untill all the possible promotions.
 Still if the matched method is not avaialbale then we get the compile time Error.
 Promoting the argument to the next level is nothing but Automatic promotion in Overloading.
 
-Various possibel promotions are 
+Various possible promotions are 
 
 	byte --> short \
 					\ 
@@ -325,7 +324,7 @@ public void m1(String string)
 	System.out.println("String Argument");
 }
 
-demo.m1(null);// Child class preference in case of overloading and output is "String Argument".
+demo.m1(null);// Priority goes to Child class in case of overloading and output is "String Argument".
 
 Note :
 ------
@@ -346,7 +345,7 @@ demo.m1(null);// CTE
 
 Note :
 ------
-In case of over laoding method Resolution,If both methods are at same level we get CTE.
+In case of overloading method Resolution,If both methods are at same level we get CTE.
 
 
 VarArg Method :
@@ -403,7 +402,7 @@ If it is present in Parent Class Object it will execute the Parent Class method.
 Similarly if it is present in child class object it will execute child class Object.
 
 At runtime JVM will check whether the method is overriding in the child class or not.
-If yes Cild class method will get executed.
+If yes child class method will get executed.
 
 In overriding Method Resolution is always taken care by compiler based on Runtime Object.
 Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
@@ -411,10 +410,10 @@ Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Lat
 Rules for Overriding :
 ----------------------
 Name of the Method and argument type must be same. i.e Method Signature must be same.
-In Overriding return type mst be matched but this rule is applicable till Java 1.4.
+In Overriding return type must be matched but this rule is applicable untill Java 1.4.
 Form Java 1.5 onwards Covariant return types are allowed.
 According to Covariant Return Type,Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
-Covariant Return Type is applicable only for Object Types and not for primitive types.
+Covariant Return Type is applicable only for Object Types but not for primitive types.
 
 Scenario : Parent Class method is declared as private 
 ------------------------------------------------------
@@ -550,10 +549,11 @@ Method resolution is always taken care by compiler based on reference type.
 Overlaoding is aloso known as static polymorphism or compile time polymorphism or early binding.
 
 Overriding:
-Name of the Method and Argument Type should be same including order.
+Name of the Method and Argument Type should be same i.e Method Signature should be same including order.
 Return type should be same or Covariant return type
 Access modifier should be increase but cannot decrease
 Overridden method should throw the same execption as parent or its sub type.
+
 Method Resolution is taken care by JVM based on runtime object.
 Overriding is also known as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
 
@@ -631,7 +631,7 @@ Note :
 Within a Class we can take any number of static blocks but all the static blocks will be executed from top to bottom.
 Without using main() it is possible to print some statement on the console.
 Without using main() and static block it is also possible to print some statement on the console.
-Without using System.out.println() it is possible to print some statement on the console.
+Without using System.out.println() it is also possible to print some statement on the console.
 
 
 ******************************************************************* 15.Object Creation Ways  *******************************************************************
@@ -653,7 +653,7 @@ We can create the Object in 5 different ways
 4.By Using clone()
 
 	Test t=new Test()
-	Object o t.clone();// Constructor is not executed
+	Object o = t.clone();// Constructor is not executed
 	
 5.By using Serialization 
 
@@ -696,8 +696,8 @@ For every object creation instance block and constructor will be executed.
 Difference between instance block and Constructor :
 ---------------------------------------------------
 Main purpose of Constructor is to perfrom initialization of an Object.
-Other than initialization activity if we want to perfrom any other activity we need to define inside static instance block.
-For every Object creation both static instance block and constructor will be executed but static instance block first followed by contructor.
+Other than initialization activity if we want to perfrom any other activity we need to define inside static block.
+For every Object creation both static block and constructor will be executed but static instance block first followed by contructor.
 
 Both Constructor and instance block will have different purpose.
 Replacing one concept with another concept is not possible.
@@ -807,7 +807,7 @@ where as Recursive Constructor invocation gives Compile Time Error.
 
 Note :
 ------
-Functionality of super() is call No Argument Constructor in the Parent Class.
+Functionality of super() is to call No Argument Constructor in the Parent Class.
 Whenever we are writing any argument Constructor,it is highly recomended to write No Argument Constructor also.
 
 Constrcutor w.r.t Exception Handling :
