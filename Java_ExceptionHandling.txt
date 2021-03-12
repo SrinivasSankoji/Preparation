@@ -31,8 +31,7 @@ Main purpose of Exception Handling is the graceful termination of the program.
 
 Scenario 1:
 -----------
-My program has to read the data from the remote file and at runtime remote file is not available.
-we get FileNotFoundException.
+My program has to read the data from the remote file and at runtime remote file is not available.we get FileNotFoundException.
 It is highly recomended to handle the Exception.
 We have to provide the local File to continue to rest of the program normally.
 
@@ -43,14 +42,14 @@ Here program terminates abnormally without closing the connection.
 If 10 connections are opened and program terminates the program without closing the connection,resources are wasted.
 Eventhough program terminates abnormally,close the DB connection and stop the program.
 
-Exception HAndling does not mean repairing an Exception i.e we have to provide an alternative way to continue the rest of the program normally.
+Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue the rest of the program normally.
 This way of providing alternative is nothing but Exception Handling.
 
 ******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
 
 Every Java program contains one Thread.
 For every Thread JVM will create a Seperate Runtime Stack.
-For every method call perfromed by the Thread one entry will be stored inside the Corresponding Stack.
+For every Method call perfromed by the Thread one entry will be stored inside the Corresponding Stack.
 Each Entry in the Stack is called Activation Record or Stack Frame.
 After completing the Method corresponding entry from the Stack will be removed.
 After completing all the Methods Stack will be empty.
@@ -91,14 +90,13 @@ If all the methods are terminate normally then only program will be terminated n
 
 ********************************************************************  4.Exception Hierarchy  ***********************************************************************
 
-Throwable Class acts asa Root Class for Jave Exception Hierarchy.
+Throwable Class acts as a Root Class for Java Exception Hierarchy.
 It contains following two Child Classes.
 
 1.Exception
 2.Error
 
  
-
 ********************************************************************  5.Exception and Error ***************************************************************************	
 Most of the times Exceptions are caused by programmers and are recoverable.
 If our program requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
@@ -121,8 +119,7 @@ Example :
 ArithematicException
 NullPointerException
 
-RuntimeException and its Child Classes and
-Error and its Child Classes are Unchecked Exception.
+RuntimeException and its Child Classes and Error and its Child Classes are Unchecked Exception.
 Remaining are Checked Exception.
 
 Note :
@@ -165,7 +162,7 @@ The code which makes the program termination is called risky code and should be 
 	
 ******************************************************************** 9.Control flow in try catch block  ******************************************************************
 
-1.Within the try block If any where an exception is raised,rest of the try block will be executed even though wehandled the exception.
+1.Within the try block If any where an exception is raised,rest of the try block won't be executed even though we handled the exception.
 Hence within the try block we have to take only risky code and lenth of the risky code should be as less as possible.
 2.There may be a chance of getting an Exception in catch and finally block also in addition to try block.
 3.If any satetment which is not part of try block raising an exception,then it is always abnormal termination of the program.
@@ -192,11 +189,11 @@ If we are writing try with multiple catch block,order of catch block is importan
  
 ******************************************************************** 12.Finally Block   *********************************************************************************
 
-It is never recomended to clean up code within the try block because there is no gaurantee for the exeuction of each and every statement.
-It is not recomended to clean up the code within the catch block because there is no gaurantee of execution.
+It is never recomended to write the clean up code within the try block because there is no gaurantee for the exeuction of each and every statement.
+It is not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
 We required a place to maintain clan up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
 such type of place is nothing but finally block.
-Main purpose of finally block is to maintain clean up code which should be executed  always.
+Main purpose of finally block is to maintain clean up code which should be executed always.
 
 	public class FinallyDemoOne {
 	public static void main(String[] args) {
@@ -311,11 +308,11 @@ At any point of time DefaultExceptionHandler can handle only one Exception at a 
 
 ********************************************************************  16.Combination of try catch finally  ***************************************************************
 
-1.try catch finally order is important
-2.We cannot take try without catch or finally
-3.catch without try is invalid
-4.finally without try is invalid
-5.when we are taking try compulsory we have to take either catch or finally
+1.try catch finally order is important.
+2.We cannot take try without catch or finally.
+3.catch without try is invalid.
+4.finally without try is invalid.
+5.when we are taking try compulsory we have to take either catch or finally.
 6.Nesting of try catch finally is possible.
 
 ******************************************************************** 17.throw keyword  ***********************************************************************************
@@ -336,7 +333,7 @@ JVM verifies is there any try catch block is defined inside the method or not an
 		}
 	}
  
-In program One main() is responsible to create an Exceptio object and handover to the JVM.
+In program One main() is responsible to create an Exception object and handover to the JVM.
 In program Two programmer is responsible to create an Exception object and handover to the JVM.
 
 To handover our own created Exception object to the JVM manually we use throw keyword.
@@ -347,7 +344,6 @@ Note :
 ------
 usually we use throws keyword for Customized Exceptions and not for pre defined Exceptions.
 
- 
 	public class ThrowDemoFour {
 	static ArithmeticException exception=new ArithmeticException();
 	public static void main(String[] args) {
@@ -405,7 +401,7 @@ In our program if there is any chance of raising checked Exception,compulsory we
 Other wise we get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
 
 	public class ThrowsDemoOne {
-	public static void main(String[] args) {
+	public static void main(String[] args) {zm3
 		PrintWriter writer=new PrintWriter("abc.txt"); // CTE saying Unhandled exception type FileNotFoundException
 		writer.println("Hello");
 	}
@@ -420,7 +416,7 @@ Other wise we get Compile Time Error saying unreported Exception must be caught 
 Here there is a chance of Thread entering into sleeping state and other Thread have the chance of Interrupting the Thread.
 We get CTE saying Unhandled exception type FileNotFoundException.
 
-We can handle Compile Time Errors by using either Try Catch block or by using throws keyword.
+We can handle Compile Time Errors either by using Try Catch block or by using throws keyword.
 Responsibility of throws keyword is to delegate the responsibility of handling the exception to the caller method and 
 caller method is responsible to hand over the Exception object to the JVM.
 
@@ -509,14 +505,14 @@ sometimes to meet programmer requirement we have to create our own Exception whi
 	}
 	}
 	
-public class TooYoungException  extends RuntimeException
+public class TooYoungException extends RuntimeException
 
 Here if it is Checked Exception i.e extends Exception we get CTE because it has to be handled.
 It is highly recomended to define our own exception as unchecked i.e extends RTE and not Exception.
 
 Note :
 ------
-Best use of throw keyword is for customized Exception and not for predefimrd Exception.
+Best use of throw keyword is for customized Exception and not for predefined Exception.
 
 ***************************************************************** 21.Top 10 Exception  *******************************************************************************
 
@@ -532,7 +528,7 @@ Example : NPE,AE,AIOBE etc.
 
 Programatic Exception :
 -----------------------
-These are the Eception which are automatically raised by the programmer to indicate something wrong is called Programatic Exception.
+These are the Exception which are automatically raised by the programmer to indicate something went wrong is called Programatic Exception.
 Example : IllegalArgumentException,TooYoungException etc.
 
 Exception propogation :
@@ -567,8 +563,7 @@ We can resolve this problem by using Multicatch block.
 
 Note :
 ------
-In Multicatch block there should not be any relationship between Exception Types i.e parent to child or child to parent or same type
-otherwise we get CTE.
+In Multicatch block there should not be any relationship between Exception Types i.e parent to child or child to parent or same type otherwise we get CTE.
 
 ***************************************************************   24.Interview Questions  ****************************************************************************
 
@@ -579,8 +574,8 @@ throw keyword :
 ---------------
 throw keyword is used to throw an exception in java.
 throw is used inside a method.
-throw is followed ny an instance of an Exception
-throw can be used to throw only one exception at a time
+throw is followed by an instance of an Exception
+throw can be used to throw only one exception at a time.
 
 throws :
 --------
@@ -591,7 +586,7 @@ throws can be used to throw Multiple Exceptions.
 
 1.If the Super Class method does not throw any Exception then subclass method can throw any unchecked Exception.
 2.If the Super Class method does not throw any Exception then subclass method cannot throw any CheckedException.
-3.If the Super Class method throws any checked Exceptio then sub class method can throw the same exception or its subclass.
+3.If the Super Class method throws any checked Exception then sub class method can throw the same exception or its subclass.
 4.If super class method throws any Unchecked Exception/RuntimeException then subclass method cannot throw any Exception.
 
 finally block :

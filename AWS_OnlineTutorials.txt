@@ -48,7 +48,7 @@ Virtualization helps in providing different kind of systems on the same server.
 Here we can have both Linux Machine as well as Windows Machine on the Same Server.
 Once the Virtualization is completed Architect comes into the picture and he will create a Server based on his requirement on the virtual machine.
 Architect will also design the database.
-Once the Server and Database are designed by Architect,Developer will start implementing the Application and run those Applications.
+Once the Server and Database are designed by the Architect,Developer will start implementing the Application and run those Applications.
 Security Engineer will ensure all of them are tightly integrated and secured from any Attacks.
 This is how the traditional IT Company works till now.
 
@@ -77,14 +77,15 @@ It is best suitable for the Application Developers.
 Difference between Traditional Infrastructure and AWS Services :
 ----------------------------------------------------------------
 Whenever we are going to get any project,Company purchases lot of Servers,Racks and storage devices like DAS,SAN,NAS,RDBMS etc.
-All of these are interconnected using Router,Pipelines and switches etc.by the Administrator.
+All of these are interconnected using Router,Pipelines,switches etc.by the Administrator.
 Administrator is going to provide the Firewall and security for the complete Infrastructure.
 
 Compared to On Premise Servers we also have Servers in the AWS Cloud.
 AWS has a ready image i.e AMI(AMazon Machine Image) for Windows OS,Linux OS etc.
 Pick up the ready image and start the EC2 instance (Elastic Compute Cloud).EC2 is also called as virtual machine.
 
-In Traditional Networking we have Routers,Pipelines,Switches that connects with the Servers,Storage Devices and Databases etc.
+
+In Traditional Networking Architecture we have Routers,Pipelines,Switches that connects with the Servers,Storage Devices and Databases etc.
 In Case of AWS we have Load Balancers that directly connects to the Virtual Servers and it balances the complete Load.
 How much traffic can flow to each virtual server is decided by Load Balancer.
 
@@ -92,15 +93,14 @@ We can also create our own VPC(Virtual Private Cloud) in which we can connect al
 We can also create our own Security Groups,NACL's(Networl Access Control List).
 Whatever Network we are going to build we are going to secure with Security Groups and NACL's.
 
-Compared to Traditional Architeture we have Network Administrators who are going to provide priviliges.
+In case of Traditional Architeture we have Network Administrators who are going to provide priviliges.
 In case of AWS we have to use IAM Services to provide the Access rights.
 
 For the traditional Sequential Databases we have AWS RDS Service.
 For Storage of File system like images,static Files etc we have AWS S3(Simple Storage Service).
 To spin up the OS,Store,install and run the Software we have AWS EBS(Elastic Block Store).
 
-We have Elastic File System that automatically grows and shrinks.
-He are we are going to pay for the data that we are using.
+We have Elastic File System that automatically grows and shrinks.He are we are going to pay for the data that we are using.
 
 Advantages of AWS Cloud Computing :
 -----------------------------------
@@ -122,15 +122,14 @@ Database
 Security and Identity
 
 AWS Global Infrastructue is about 2 things i.e Regions and Availablity Zones.
-Region is nothing but Geographic Location and consists of atleast 2 Availablity Zones.
-Availablity Zone is nothing but cluster of Data Centers and isolted from failures in other Availablity Zones.
+Region is nothing but Geographic Location and it consists of atleast 2 Availablity Zones.
+Availablity Zone is nothing but cluster of Data Centers and is isolted from failures in other Availablity Zones.
 All the Availablity Zones are inter connected with each other.
 
 In case of Networking,
 How to set up our own private Cloud
 How to Host websites usiing Route 53
-How we can get a Direct Connect with AWS Cloud Platform by  bypassing the Internet.
-
+How we can get a Direct Connect with AWS Cloud Platform by bypassing the Internet.
 
 In Case of Compute,
 EC2 i.e Virtual Machine
@@ -160,7 +159,7 @@ Here Organizations built their own data centers inside the Building.
 Application Built here is used only within the Organization.
 
 Hybrid Cloud :
-It is combination of Both private CLoud and Public Cloud.
+It is combination of both private Cloud and Public Cloud.
 
 
 AWS Account :

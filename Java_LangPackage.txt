@@ -13,14 +13,14 @@
 
 *********************************************************************** 1.Object Class Introduction  ***********************************************************************
 
-In Java we have Severla packages like util,sql,io,lang,awt,.net etc.
-Without using java.lang package we cannot write single program.
+In Java we have Several packages like util,sql,io,lang,awt,.net etc.
+Without using java.lang package we cannot write a single program.
 
 Class Test
 {
   main(String[] args)
   {
-  System.out.println("Main Method");
+  System.out.println("Main Method"); 	
   }
 }
 
@@ -40,7 +40,7 @@ Methods in Object Class :
 1.public String toString();
 2.public native int hashCode();
 3.public boolean equals(Object o);
-4.public native Object clone() throws CloneNotSupportedException
+4.protected native Object clone() throws CloneNotSupportedException
 5.protected void finalize() throws Throwable
 6.public final Class getClass();
 7.public final void wait() throws InterruptedException;
@@ -54,14 +54,14 @@ Methods in Object Class :
 public String toString() :
 
 We use toString() to get the String representation of an Object.
-Whenever we are trying to print an Object reference internally Object class toString() is called and If we want to get the meaningful representation of an Object
-we need to override the toString().
+Whenever we are trying to print an Object reference internally Object class toString() is called. 
+If we want to get the meaningful String representation of an Object we need to override the toString().
 Object Class toString() is implemented as below
 
-public String toString()
-{
-	return getClass().getName()+"@"+Integer.toHexString(hashCode());
-}
+	public String toString()
+	{
+		return getClass().getName()+"@"+Integer.toHexString(hashCode());
+	}
 
 Example :
 ---------
@@ -94,8 +94,7 @@ public native int hashCode() :
 hashCode() does not represent an address of an object.
 For every object JVM is going to assign one unique number nothing but hashCode and based on hashCode object will be inserted.
 JVM internally uses hashCode() while storing data into hashing related data structure like HashTable,HashMap,HashSet etc.
-In case of hashing related data items,To search for a particular object is available or not,what is the hashcode of that object,
-then directly goes to that object with that hashCode.
+In case of hashing related data items,To search for a particular object is available or not,what is the hashcode of that object,then directly goes to that object with that hashCode.
 Main advantage of Storing objects based on hashCode() is search option will become efficient.
 
 Most successful alogorithm is 
@@ -128,7 +127,7 @@ public booelan equals(Object obj) :
 
 We use equals() to check equality of two objects i.e given two objects are equal or not.
 equals() can be used to check the content comparison where as == meant for reference comparison.
-In String class equals() is overridden and meant for content comparison.
+In String class equals() is overridden and is meant for content comparison.
 
 public class StringDemo {
 	public static void main(String[] args) {
@@ -140,7 +139,7 @@ public class StringDemo {
 }
 
 In StringBuffer class equals() is not overridden and object class equals method got executed which is meant for reference comparison.
-eventhough content is same itreturns false.
+eventhough content is same it returns false.
 
 		StringBuffer s3 = new StringBuffer("Chary");
 		StringBuffer s4 = new StringBuffer("Chary");
@@ -308,17 +307,17 @@ In Deep Cloning,By using clone object reference if we perform any changes to the
 
 Note :
 ------
-Shallow cloning is recomende when the object contains only primitive variables.
+Shallow cloning is recomended when the object contains only primitive variables.
 Deep cloning is required when the object contains reference variables.
 
 *************************************************************************** 6.getClass()  ***************************************************************************
 
 public final Class getClass() :
 
-If we to know the Runtime CLass definition of an object we use getClass().
+If we want to know the Runtime CLass definition of an object we use getClass().
 Connection connection=DriverManager.getConnection("");
 
-To print the Database connection interface vendro implemented ClassName
+To print the Database connection interface vendor implemented ClassName
 
 	connection.getClass().getName();
 	
@@ -327,7 +326,7 @@ To print the Database connection interface vendro implemented ClassName
 
 protected void finalize() throws Throwable :
 
-Just befor destroying an object Garbage Collector always calls finalize() to perform cleanup activities.
+Just before destroying an object Garbage Collector always calls finalize() to perform cleanup activities.
 Once finalize() completes the execution then Garbage collector destroys the object automatically.
 
 *************************************************************************** 8.wait(),notify() and notifyAll()  *******************************************************
@@ -339,7 +338,7 @@ Inter Thread Communication can be acheived by using these Methods.
 
 Once we create a String object we cannot perform any changes in the existing object.
 If we are trying with those changes a new object will be created and it does not have any reference and is eligible for Garbage Collector.
-Non changeable behavior is nothin but 
+Non changeable behavior is nothin but Immutable.
 
 String s=new String("Chary");
 s.concat("Software");
@@ -394,20 +393,20 @@ Scenario :
 	String s4="Chary";
 	
 Whenever we are using new operator compulsory a new object will be created in Heap Area.
-There is no chance of existing Two objects with the same content in SCP where as it is possible to have two objects with the same content on Heap.
+There is no chance of existing two objects with the same content in SCP where as it is possible to have two objects with the same content on Heap.
 Duplicate objects are allowed in Heap but not in SCP.
 
 Example 1 :
 -----------
 		String s1=new String("Srinivas");
-		String s2=s1.concat(" Chary");
+		String s2=s1.concat("Chary");
 		s1=s1.concat(" Sankoji");
 		System.out.println(s1);// Srinivas Sankoji
 		System.out.println(s2); // Srinivas Chary
 		
 Note :
 ------
-If an object is required to create at Runtime object is going to create in Heap but not in SCP.
+If an object is required to create at Runtime object it is going to create in Heap but not in SCP.
 
 Example 2 :
 -----------
@@ -516,17 +515,17 @@ If there is no change in the content no new object will be created both in Heap 
 		
 Creation of our Own Immutable Class :
 -------------------------------------
-Once we created a String object we cannot perform any changes in the existing object.
+Once we create a String object we cannot perform any changes in the existing object.
 If we are trying with those changes a new object will be created .
 If there is no change in the content existing object will be reused.
 This behavior is nothing but Immutability.
 
 Rules to create a Final Class :
 -------------------------------
-1.Declare the Class as Final so that it cannotbe extended.
-2.Make all the variable/fields as private so that direct access is not allowed.
+1.Declare the Class as final so that it cannotbe extended.
+2.Make all the variables as private so that direct access is not allowed.
 3.Don't provide setter method for variables.
-3.Declare the Constructor as public
+3.Declare the Constructor as public.
 4.Declare the static method and verify the object has created or not.
 5.use the instance method to create the Object.
 
@@ -567,7 +566,7 @@ sb.append(" Software");
 System.out.println(sb);
 sb=new StringBuffer("Naresh");  // CTE
 
-Oncw e create a StringBuffer object as final we can perform changes in the existing object.
+Once we create a StringBuffer object as final we can perform changes in the existing object.
 only thing is we cannot reassign the variable.
 final is applicable for reference variables where as immutability is applicable for objects.
 
@@ -579,43 +578,17 @@ In String for every change a new object will be created.
 If the content is not fixed and keep on changing then we go for StringBuffer.
 In StringBuffer for every change new object will be created and all changes will be doen in the existing object.
 All the methods in StringBuffer are synchronized.
-At a Time only one Thread is allowed to operate on the object and performance of the system is going down.
+At a time only one Thread is allowed to operate on the object and performance of the system is going down.
 To resolve this we go fro StringBuilder.
 
 StringBuilder :
 ---------------
-Only difference between StringBuffer and StringBUilder is all the methods present in StringBuilder are no synchronized.
+Only difference between StringBuffer and StringBUilder is all the methods present in StringBuilder are non synchronized.
 StringBuilder is introduced in Java 1.5.
 
 Method Chaining :
 -----------------
-For most of the methods in String,StringBuffer and StringBuilder returt type is same.
-Hence after applying amethod call based on the return type we can apply another method call.
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-		
-	
-
-	
-
-
-
-
-
-
-
+For most of the methods in String,StringBuffer and StringBuilder return type is same.
+Hence after applying method call based on the return type we can apply another method call.
 
 

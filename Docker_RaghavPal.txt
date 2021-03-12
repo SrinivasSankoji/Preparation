@@ -3,13 +3,15 @@
 3.Docker Benefits							   [02-OCT-2019]  ()
 4.Docker Installation						   [02-OCT-2019]  (Done)
 5.Docker Basic Commands						   [02-OCT-2019]  (Done)
-6.Docker Images								      
-7.Docker Containers							   
-8.Run Jenkins on Docker Container				
-9.Docker File								   
-10.Docker Compose
-11.Docker Volume
-12.Docker Swarm
+6.Docker Images								   [11-MAR-2021]  (Done)			      
+7.Docker Containers							   [11-MAR-2021]  (Done)
+8.Run Jenkins on Docker Container			   [12-MAR-2021]  ()
+9.Docker File								   [12-MAR-2021]  (Done)
+
+10.Docker Compose                              [12-MAR-2021]  ()
+11.Docker Volume                               [13-MAR-2021]  ()
+12.Docker Swarm                                [13-MAR-2021]  ()
+
 
 
 ******************************************************   1.What is Docker :   **************************************************************************** 
@@ -39,44 +41,99 @@ Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
 ******************************************************  5.Docker Basic Commands :  ***************************************************************************
 
 
-docker version        :  To Check the Docker Client,Docker Server(Docker Engine) and so on
-docker -v :           :  To Check the Docker Version
-docker --version      :  To Check the Docker Version
-docker info           :  To get Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
-docker --help         :  To Get Information on any other Commands Example : docker images --help
-docker login          :  To Login to the Docker Hub
-docker logout         :  To Logout from the Docker Hub
+docker version        		:  To Check the Docker Client,Docker Server(Docker Engine) and so on
+docker -v :           		:  To Check the Docker Version
+docker --version      		:  To Check the Docker Version
+docker info           		:  To get Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
+docker --help        		:  To Get Information on any other Commands Example : docker images --help
+docker login          		:  To Login to the Docker Hub
+docker logout         		:  To Logout from the Docker Hub
 
-docker images         : To see the List of Images
-docker pull  ubuntu   : To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
-docker images -q      : To get the Docker Image Id
-docker rmi imageId    : To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
+docker images         		: To see the List of Images
+docker pull  ubuntu   		: To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
+docker images -q      		: To get the Docker Image Id
+docker rmi imageId    		: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
-docker ps             : To See the List of Active Containers
-docker ps -a 		  : Ti See the List of Containers i.e active,closed etc.
-docker run ubuntu     : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It Wont Start the Container
-docker run -it ubuntu : First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It will Start the Container
-docker start          : To Start the Container
-docker stop           : To Stop the Container
-docker rm 			  : To remove the Docker Container
+docker ps             		: To See the List of Active Containers
+docker ps -a 		 		: To See the List of Containers i.e active,closed etc.
+docker run ubuntu     		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It Wont Start the Container
+docker run -it ubuntu 		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It will Start the Container
+docker start          		: To Start the Container
+docker stop           		: To Stop the Container
+docker rm [ContainerID]  	: To remove the Docker Container
 
-docker stats 		  : Memory and Usage Details of Container
-docker system df 	  : Local Disk Usage for Container
-docker system prune	  : To delete all the Unused Images and Not Associated with Network 
+docker stats 		  		: Memory and Usage Details of Container
+docker system df 	  		: Local Disk Usage for Container
+docker system prune	  		: To delete all the Unused Images and Not Associated with Network 
 
 ******************************************************  6.Docker Images :  ****************************************************************************************
 
+To pull the image we use the command
 
+	docker pull imageName
+	
+To pull the image using version
 
+	docker pull ubuntu:18.04
+	
+Docker images are the templates used to create Docker Containers.
+Docker image conatins the required files to create the Containers.
+Container is a running instanece of an image.
+Docker images can be stored at Local or Remote Registries.
 
+Docker can build images automatically by reading the instructions from the Docker File.
+Single Docker image can be used to create multiple containers.
 
+Dangling Images :
+-----------------
+These are the images that are not tagged with any container or running container.
 
+docker images         					: To see the List of Images	
+docker images -q      					: To get the Docker Image Id
+docker images -f "dangling=false"		: To get the Images that are not tagged with any container or running container.
+docker images -f "dangling=false" -q	: To get the Image Id that are not tagged with any container or running container.
+
+docker run ubuntu						: To start the container from the image
+docker run --name MyUbuntu -it ubuntu bash : To start the container from the image in an intercative mode and tagging the name to the container
+docker inspect 							: To inspect the Docker image
+docker rmi imageId    					: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
 ******************************************************  7.Docker Containers :  ************************************************************************************
 
+Container is a light weight,stand alone and executable package of a peice of software that includes every thing to to run it.
+It contains code,runtime,system tools,system libraries etc.
+Containers run on the same Machine sharing the same OS Kernel.
 
+Docker Containers are the running instances of Docker Images.
+In the Docker Architecture we have a Docker Client,Docker Host(Docker Server) and the Docker Registry.
+Dokcer Client is the place where we are running the Docker Commands.
+Docker Host can be available at our Local System and it contains Docker Containers and Docker Images.
 
+When we run the command 
 
+	docker pull ubuntu
+
+It actually goes to the Docker Registry and fetches the image and saves it into the Docker Host.
+Again we run the command
+
+	docker run ubuntu
+	
+It actually checks for the image into the local system and if it is available creates the container from the image.
+If it is not available then it pulls the image from the Docker Registry.
+
+Note : Docker build can be used to create the Docker image using Docker file.
+
+docker run hello-world   		: Chacke the image in the Docker Server and if not found get it from the Docker Hub and creates the Docker Container.
+docker ps -a 		 	 		: To See the List of Containers i.e active,closed etc.
+docker pause   [ContainerID] 	: To pause the Container
+docker unpause [ContainerID] 	: To unpause the Container
+docker stop    [ContainerID] 	: To stop the running Container
+docker rm 	   [ContainerID]	: To remove  the Container
+docker top 	   [ContainerID]    : To view the top process of the running Container
+docker stats   [ContainerID]    : To view the statistics of the running Container
+docker attach  [ContainerID]	: To attach to the running Container.(Open ubuntu in the attach mode)
+docker kill    [ContainerID]    : To kill the Container
+docker history [Image Name]     : To check the history of the Image.
 
 ******************************************************  8.Run Jenkins on Docker Container :   *********************************************************************
 
@@ -86,9 +143,59 @@ docker system prune	  : To delete all the Unused Images and Not Associated with 
 
 ******************************************************  9.Docker File :  *******************************************************************************************
 
+Docker File is a simple text file with instructions to build an image.
+Create a file named DockerFile.
+When we run  docker build command Docker searches for the file named DockerFile.
 
 
+mkdir DockerFiles
+nul>DockerFile
 
+DockerFile starts with the instruction FROM
+If we want to get the base image from ubuntu
+
+	FROM ubuntu
+	
+Note : we can also add the empty image to the DockerFile and add the instructions to the Empty Image.
+
+	FROM scratch
+	
+We can also add the Author Details to the DockerFile.
+
+	MAINTAINER srinivas.sankoji<Srinivaschary.chary@gmail.com>
+	
+To run the Command on the image
+
+	RUN apt-get update
+	
+If we want to display something on the commad line during container creation
+
+	CMD ["echo","First Docker Image"]
+
+Note :
+RUN gets executed during the build of an image where as CMD gets executed during the container creation.
+
+To see the content of DockerFile in CommandPrompt
+
+	type DockerFile
+	
+To build the image,navigate to the location where the DockerFile is present or . (Current Directory)
+
+	docker build .
+	
+we can also tag the image using -t .
+
+	docker build -t FirstImage:1.0 .
+	
+To run the image 
+
+	docker run [imageid]
+	
+Reference Sites :
+
+https://github.com/wsargent/docker-cheat-sheet#dockerfile
+
+https://docs.docker.com/engine/reference/builder/#environment-replacement
 
 ******************************************************  10.Docker Compose :  **************************************************************************************
 

@@ -145,7 +145,7 @@ Generics concept is applicable only at compile time and not at runtime.
 		a1.add("Bhaumik");
 		a1.add("Nandini");
 		a1.add("Srinivas");
-		//a1.add(10);
+		//a1.add(10);  //Generics Concept Not Applicable for Compile Time
 		m1(a1);
 		System.out.println(a1);
 	}

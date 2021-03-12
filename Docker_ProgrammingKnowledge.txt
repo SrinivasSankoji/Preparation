@@ -1,0 +1,29 @@
+1.Docker Search,Images,Pull                         [12-MAR-2021]  (Done)
+2.Docker File                                       [12-MAR-2021]  ()
+3.Docker Container                                  [12-MAR-2021]  ()
+4.Build and Run Java Application on Docker          [12-MAR-2021]  ()
+5.Port Mapping                                      [12-MAR-2021]  ()
+6.Docker Hub                                        [12-MAR-2021]  ()
+
+************************************************************  1.Docker Search,Images,Pull  ************************************************************ 
+
+To search the Docker Image
+
+	docker search ubuntu
+	
+To search the image by applying filters  (Star Rating)
+
+	docker search --filter stars=100 ubuntu
+	
+To search the image by applying multiple filters (Offical Image)
+
+	docker search --filter stars=100 --filter is-official=true ubuntu
+	
+To serach the image by applying multiple filters ()
+
+	
+	
+************************************************************  2.Docker File **************************************************************************
+
+
+	

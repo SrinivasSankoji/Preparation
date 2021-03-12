@@ -7,6 +7,11 @@
 7.JVM Architecture						(howtodoinjava)				[23-JAN-2021]  ()
 
 
+Delegation Heirarchy
+Class Level Data
+Stack Frame / Stack Area
+Operand Stack
+Frame Data 
 
 ************************************************************  1.JVM  Architecture (DZone) ******************************************************************************
 
@@ -27,9 +32,11 @@ JVM is divided into 3 main sub Systems.
 3.Execution Engine
 
 1.Class Loader Subsystem :
---------------------------
+**************************
+
 Dynamic Class Loading(Class.forName) functionality is handled by the Class Loader Subsystem.
 Class Loader Subsystem loads,links and initializes the Class file when it refers to a class for the first time i.e at runtime and not compile time.
+Class Loader Subsystem will follow the delegation hierarchy Algorithm while loading the Class Files.
 
 A) Loading :
 ------------
@@ -37,7 +44,7 @@ Class Loading will be done by the 3 Class Loaders.
 
 A.Bootstrap Class Loader :
 --------------------------
-Responsibel for Loading the Classes from Bootstrap Classpath i.e rt.jar and highest priority is given to the Bootstrap Class Loader.
+Responsible for loading the Classes from bootstrap Classpath i.e rt.jar and highest priority is given to the Bootstrap Class Loader.
 
 B.Extension Class Loader :
 --------------------------
@@ -47,7 +54,6 @@ C.Application Class Loader :
 ----------------------------
 Responsible for loading the Classes at Application Level i.e path mentioned in the Environment Variable etc.
 
-Class Loader will follow the delegation hierarchy Algorithm while Loading the Class Files.
 
 B) Linking :
 ------------
@@ -62,72 +68,79 @@ All Symbolic memory references are replaced with original references from method
 
 C) Initialization :
 -------------------
-This is the fianl phase of Class Loading.Here all the static variables will be assigned with original values and the static block will be executed.
+This is the fianl phase of Class Loading.
+Here all the static variables will be assigned with original values and the static block will be executed.
 
 2.Runtime Data Area :
----------------------
+*********************
+
 A) Method Area :
 ----------------
-All the Class level data is stored here including static variables.There is only method area per JVM and it is a shared resource.
+All the Class level data including static variables are stored here .
+There is only method area per JVM and it is a shared resource.
 
 B)Heap Area :
 -------------
-All the Objects and their corresponding instance variables will be stored here.
-There is also one Heap area per JVM.
+All the Objects and their corresponding instance variables are stored here.
+There is only one Heap area per JVM and it is a shared resource.
+
 Since the Method Area and Heap Area shares memory for Multiple Threads,Data stored here is not Thread Safe.
 
 C)Stack Area :
 --------------
-For Every Thread seperate runtime stack will be created.For every Method Call,One entry will be made in the Stack which is called Stack Frame.
-All Local Variables will be created in the stack Memory.Stack Area is Thread safe since it is not a shared Resource.
+All Local Variables will be created in the stack Area.
+Stack Area is Thread safe since it is not a shared Resource.
+For Every Thread seperate runtime stack will be created.
+For every Method Call performed by the Thread,One entry will be stored in the Stack which is called Stack Frame.
 Stack Frame is divided into 3 sub entities.
 
-1.Local Variable Array
-Related to Method how many local variables are involved and the corresponding values will be stored here.
-2.Operand Stack
+1.Local Variable Array :
+Related to Method how many local variables are involved,corresponding values will be stored here.
+2.Operand Stack :
 If any Intermediate Operation is required to perform,Operand stack acts as runtime workspace to perform the operation. 
-3.Frame Data
-All Symbols corresponding to the method is stored here.
+3.Frame Data :
+All Symbols corresponding to the methods are stored here.
 In case of any Exception,catch block information will be maintained in the frame data.
 
 D)PC Registers :
 ----------------
-Each Thread will have seperate PC Registers to hold the address of the current executing instruction and 
+Each Thread will have seperate PC Registers to hold the address of the current executing instruction. 
 Once the instrcution is executed the PC Register will be updated with the next instruction.
 
 E)Native Method Stacks :
 ------------------------
-Native Method stack holds Native method infromation.
-For every Thread,A Seperate Native method stack will be created.
+Native Method stack holds native method infromation.
+For every Thread Seperate Native method stack will be created.
 
 3.Execution Engine :
---------------------
-Byte Code which is assigned to the Runtime Data Area will be executed by the execution Engine.
+********************
+Byte Code which is assigned to the Runtime Data Area will be executed by the Execution Engine.
 Execution Engine reads the Byte Code and executes it piece by piece.
 
 A)Interpreter :
 ---------------
-Interpreter interprets the Byte code faster but executes slowly.
-Disadvantage of Interpreter is that when one method is called Multiple times,every time a new interpretation is required.
+Interpreter interprets the byte code faster but executes slowly.
+Disadvantage of Interpreter is that when one method is called multiple times,every time a new interpretation is required.
 
 B)JIT Compiler :
 ----------------
-JIT Compilre neutralizes the disadvantage of Interpreter.
-With the help of Interpreter,Execution Engine interprets the Byte Code.
+JIT Compiler neutralizes the disadvantage of Interpreter.
+With the help of Interpreter,Execution Engine interprets the byte Code.
 When the Execution Engine finds repeated code,it uses JIT Compiler which compiles the entire Byte Code and changes it into native code.
 This native code will be used directly for the repeated method calls,which improoves the performance of the system.
 
 Intermediate Code Generator : Produces Intermediate code.
-Code Optimizer : Responsible for Optimizing the Intermediate code generated above.
-Target Code Generator : Responsible for generating Machine code or Native code.
-Profiler : A Special componenet,responsible for finding Hotspots i.e whether the method is called multiple times or not.
+Code Optimizer 				: Responsible for Optimizing the Intermediate code generated above.
+Target Code Generator 		: Responsible for generating Machine code or Native code.
+Profiler 					: A Special componenet,responsible for finding Hotspots i.e whether the method is called multiple times or not.
 
 C)Garbage Collector :
 ---------------------
 Garbage Collector collects and removes unreferenced Objects.
 Garbage Collection can be triggered by calling Syste.gc() but the execution is not gauranteed.
 
-Java Native Interface will be interacting with Native Method Libraries and provides the Native Libraries required for the Execution Engine.
+D)Java Native Interface will be interacting with Native Method Libraries 
+and provides the Native Libraries required for the Execution Engine.
 
 
 ************************************************************  2.Java Memory Management (DZone)   ************************************************************* 
@@ -233,6 +246,7 @@ At certain point in time,that object becomes eligible for Garbage Collector.
 
 Garbage Collector Types :
 -------------------------
+
 
 
 

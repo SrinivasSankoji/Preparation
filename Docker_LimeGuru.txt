@@ -1,12 +1,15 @@
 1.Introduction  
 2.Docker File and Docker Image   
-3.Docker Architecture   
+3.Docker Architecture 
+4.Docker Container vs Virtual Machine vs Physical Server 			[12-MAR-2021]  ()	
+5.Open COntainer Initiative											[12-MAR-2021]  ()	
 
 ******************************************************** 1.Introduction  ************************************************************
 
 Before going to Start Docker,we need to know to how Software development takes Place in the IT Industry.
 When ever we are going to Start any Application,how the Software Development Life Cycle Will be and 
 How Docker Changes the entire Life Cycle of Software Development.
+
 
 Software Development Life Cycle :
 ---------------------------------
@@ -21,14 +24,14 @@ Here adding dependencies is not a one time task and it keep on changes when the 
 The above problem can be resolved by using Docker.
 Docker provides a solution by keeping all the dependencies at one place and 
 it is the responsibility of Docker that all the dependencies will be available in all the Environments.
-Here no need to reach to any of the infrastructure team to add any new Dependencies.
+Here no need to approach any of the infrastructure team to add any new Dependencies.
 Add the Dependencies to the Docker and Docker will take care of availability of all the Dependencies in all the Environments.
 
 How Docker Works :
 ------------------
 Docker solves the problem of managing all the dependencies like Tools,Libraries,Frameworks Set up etc. by using Containers and will make it available to the Software Program.
 Docker is a Containerized Execution i.e 
-For Example we require (Java,HttpServer and Tomcat Server) these dependencies to run the Application.
+For Example we require (Java,HttpServer and Tomcat Server) the dependencies to run the Application.
 Define these 3 dependencies as a part of Metadata and Docker will create a container inside the Local Server and it will install all the Dependencies inside the Container.
 Now the code we have written,deploy it inside the Container along with the dependencies.
 The Application will run because all the required dependencies to run the Application are part of Container now.
@@ -37,7 +40,7 @@ Here Docker Will Create the Container in the Testing Server with all the Depende
 we need to ensure that we have defined the Metadata Correctly.
 Here the Whole Process is automated i.e Creating The Container,Setting up The dependencies,taking it to the Container and Making it available to every One.
 Once the Code is available to the Container,It will execute the Application because the required dependencies are available inside the Container.
-Docker is a Containerized Execution. i.e Everything In Docker is Containerized.
+Docker is a Containerized Execution. i.e Everything in Docker is Containerized.
 For Example We have the Whole Server and there is only One Container.
 We Can use Some part of the Configuration to create multiple containers within the same server.Here Each Container runs Independently.
 There is No Intra Dependency against the Containers and each Container is isolated.
@@ -92,7 +95,7 @@ Here Each Virtual Machine needs to be Set Up and its again tactical thing.
 3.Docker Container :
 --------------------
 In the physical server we have OS and once we have OS we don't need any OS.
-We can run Docker Containers on top of the underLying OS.We can also run multiple Containers on the same OS.
+We can run Docker Containers on top of the underlying OS.We can also run multiple Containers on the same OS.
 Here each Container contains an individual Application.
 
 *********************************************************** 2.Docker File and Docker Image  *******************************************
@@ -113,19 +116,24 @@ Run PIP Install Flask   (Run The Command and Install the Flask)
 Copy app.py
 Run Python app.py
 
-Note : Here app.py Should also available in the Container i.e Copy app.py
-Based on the above Script Docker will Set up The Container.
-Now the Docker File is Created.
+Note : Here app.py should also be available in the Container i.e Copy app.py
+Based on the above Script Docker will Set up The Container.Now the Docker File is Created.
 
 Execution of Docker File :
 --------------------------
 For Example the Docker File is present inside Some Folder.
 Then run the Command : docker build.
-It Searches for the File in the present directory and starts building the Docker File and converts into an Image.
-It is Customized Image for an Application to Run.
-We can also give the Name to an image  i.e docker build  --tag=OccDailyReport
-All the Images are present in the Local System and We can see all the images by Using the Command  : docker Images 
-If we want to run the image then use the Command : docker run  OccDailyReport
+It Searches for the file in the current directory and starts building the Docker File and converts into an Image.
+It is Customized image for an Application to Run.
+We can also give the Name to an image  i.e 
+
+	docker build --tag=OccDailyReport
+	
+All the Images are present in the Local System and We can see all the images by Using the Command  : docker images 
+If we want to run the image then use the Command : 
+
+	docker run  OccDailyReport
+	
 When we run the above Command It will Create a Container with all the dependencies and starat the application inside the Container.
 Here Same Docker File is converted into image and is moved across each of the Environment.
 
@@ -134,13 +142,23 @@ Here Same Docker File is converted into image and is moved across each of the En
 Docker Architecture :
 ---------------------
 It is primarily based on two things i.e Docker Client and Docker Server.
-If we want to build a Docker Image,then we need to run the Command  : docker build --tag==OccReport
-Similarly If we want to run the Docker Image,we need to run the Command : docker run OccReport
-The Above Commands i.e to build the Docker File and to run the Docker Image are invoked using Docker Client.
+If we want to build a Docker Image,then we need to run the Command  : 
+
+	docker build --tag==OccReport
+	
+Similarly If we want to run the Docker Image,we need to run the Command : 
+
+	docker run OccReport
+	
+The above Commands i.e to build the Docker File and to run the Docker Image are invoked using Docker Client.
 Docker Client needs to be installed where we are running these Commands.
 When we Install Docker both Docker Client and Docker Server will gets Installed.
 Any Docker Command has to run through Docker Client.
-Whenever we run the Command i.e  docker run OccReport using Docker Client,It Internally invokes the Docker Server and Docker Server runs the Script inside Docker Image.
+Whenever we run the Command i.e  
+
+	docker run OccReport 
+	
+using Docker Client,It Internally invokes the Docker Server and Docker Server runs the Script inside Docker Image.
 It will Launch the Container with all the dependencies defined inside the Docker image.
 
 How Docker Works :
@@ -153,8 +171,8 @@ Then We have Docker Server which contains all the Containers i.e
 When we run the Command : docker run --tag=OccReport,It Creates Docker Image named OccReport and Moved to the Docker Registry.
 Docker Server Interacts with Docker Registry with the Name OccReport,
 It will Create a Container with all the Dependencies mentioned in the Image,and executes the Application defined inside the Image,Code is Deployed.
-If We have defined the port inside the image and would be accessible externally. 
-Anyone Can invoke the port which resides inside the Container.
+If We have defined the port inside the image then it would be accessible externally. 
+Anyone Can invoke the application which resides inside the Container.
 
 
 

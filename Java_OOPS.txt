@@ -905,8 +905,7 @@ Underlying Object type of d must be same or derived type of C otherwise we get R
 	
 Here C and d has some relationship
 Here C is same as A
-Here at Runtime underlying Type of d is String which is not same as C nor derived type of C.
-we get RuntimeException.
+Here at Runtime underlying Type of d is String which is not same as C nor derived type of C.we get RuntimeException.
 
 Note :
 ------
@@ -936,7 +935,7 @@ we can invoke this method by passing any number of int values including 0 also.
 	
 We can differentiate the values by using index.
 
-	public static void m2(int... x)z
+	public static void m2(int... x)
 	{
 		int total=0;
 		for(int y:x)
