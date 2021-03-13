@@ -1,24 +1,12 @@
 1.Docker File Build Commands					  									()							[12-MAR-2021]  ()
 2.DockerFile To Build Your Own Docker Images	  									(LearnITGuide Tutorials)    [12-MAR-2021]  ()
 3.Build Own Private Docker Hub Registry on Linux  									(LearnITGuide Tutorials)    [12-MAR-2021]  ()
-
 4.Spring Boot with Docker Container				  									(Simple Programming)        [12-MAR-2021]  (Done)
 5.Spring Boot with Docker Container				  									(Play Java)                 [12-MAR-2021]  (Done)
 6.Spring Boot with Docker Container				  									(Tech Primers)              [12-MAR-2021]  ()
 15.Build and Run a Spring Boot Application with Docker								(thepracticaldeveloper)		[12-MAR-2021]  ()
-
 7.Dockerizing using Maven						  									(stackabuse)				[12-MAR-2021]  ()
-
-
-8.Docker Compose								  									(baeldung)					[12-MAR-2021]  ()
-9.Docker Compose								  									(JakeWright)				[12-MAR-2021]  ()
-10.Docker Compose								  									(Edureka)					[12-MAR-2021]  ()
-11.Docker Compose								  									(DevOpsLearn Easy)			[12-MAR-2021]  ()
-12.Deploying Multiple Spring Boot Microservices using Docker Compose				(javainuse)
-
 12.Docker CMD vs ENTRYPOINT
-13.Docker Networking
-14.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[12-MAR-2021]  ()
 
 
 *********************************************************  1.Command to Build the Docker File   ********************************************************* 
@@ -102,7 +90,20 @@ Then run the command
 	docker run -d -p 8090:8080 srinivassankoji/springboot-docker:1.0
 
 
+********************************************************* 5.Spring Boot with Docker Container(Tech Primers)  *********************************************************
 
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 

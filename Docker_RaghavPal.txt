@@ -7,8 +7,7 @@
 7.Docker Containers							   [11-MAR-2021]  (Done)
 8.Run Jenkins on Docker Container			   [12-MAR-2021]  ()
 9.Docker File								   [12-MAR-2021]  (Done)
-
-10.Docker Compose                              [12-MAR-2021]  ()
+10.Docker Compose                              [13-MAR-2021]  (Done)
 11.Docker Volume                               [13-MAR-2021]  ()
 12.Docker Swarm                                [13-MAR-2021]  ()
 
@@ -21,7 +20,6 @@
 
 
 ******************************************************   3.Docker Benefits :  ****************************************************************************
-
 
 
 ******************************************************   4.Docker Installation :  ************************************************************************
@@ -199,9 +197,89 @@ https://docs.docker.com/engine/reference/builder/#environment-replacement
 
 ******************************************************  10.Docker Compose :  **************************************************************************************
 
+Docker Compose is a tool for defining and running multi container Applications.
+Here we use yaml file i.e docker-compose.yml to configure Application Services.
+We can start all the services with a single command  : docker compose up	
+we can stop all the services with a single command : docker compose down
+We can scale up selected services when required.
+
+In real world we need to create different services and that has to be intercated with each other.
+Best suitable example is MicroServices.
+We have different services like 
+
+Account Service
+Product Service
+Cart Service
+Order Service
+
+In MicroServices each Application will have seperate Service,seperate database and seperate Server.
+Whenever we want to make changes in one module then it won't reflect the other module.
+Scaling up is very efficient.
+We can alos increase the capacity of the services based on requirement.
+This kind of Architecture can be implemented by using Docker Compose.
+
+Step 1:
+To check whether the docker compse is installed or not
+
+	docker compose -v
+	
+Step 2:
+create dockoer compose file in any location 
+
+	docker-compose.yml
+	
+Requirement is to create a basic Web Application.
+For that we need basic WebServer and the Database.
 
 
+Step 3:
+To check the validity of the file using the command
 
+	docker compose config
+	
+version : '2'
+
+services :
+
+  web:
+    image: nginx
+  database:
+    image: redis
+
+Step 4:
+Run the docker compose by using the command in the detached mode
+
+	docker-compose up -d
+
+To stop the services
+
+	docker-compose down
+	
+Step 5:
+To expose the web server 
+
+	 ports:
+   -"9090:80:"
+   
+Expose the port 80 of the nginx web server to the 9090 port of Application Service.
+ 
+version : '2'
+
+services :
+
+  web:
+    image: nginx
+    ports:
+        - "9090:80"
+  database:
+    image: redis
+	
+In the Browser http://localhost:9090/ NGinx is up and running.
+
+Step 6 :
+To scale the services 
+
+	docker-compose up -d --scale database=4
 
 
 ******************************************************   11.Docker Volume :  **************************************************************************************

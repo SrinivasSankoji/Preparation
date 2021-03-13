@@ -1,0 +1,16 @@
+8.Docker Compose								  									(Baeldung)					[12-MAR-2021]  (Done)
+9.Docker Compose								  									(JakeWright)				[12-MAR-2021]  ()
+10.Docker Compose								  									(Edureka)					[12-MAR-2021]  ()
+11.Docker Compose								  									(DevOpsLearn Easy)			[12-MAR-2021]  ()
+12.Deploying Multiple Spring Boot Microservices using Docker Compose				(javainuse)					[12-MAR-2021]  ()
+14.Deploying Multiple Spring Boot Services With Docker Compose						(dzone)						[12-MAR-2021]  ()		
+13.Manage Docker Containers with Docker Compose										(springframework.guru)		[12-MAR-2021]  ()
+
+********************************************************* 8.Docker Compose(baeldung) *********************************************************************************
+
+Docker Commands and Docker Files are particularly suitable for creating individual containers.
+But If we want to operate on a Network of isolated Applications,Container Management quickly becomes cluttered.
+
+To solve that Docker provides a tool named Docker Compose.
+Docker Compose comes with its own build file in YAML format and is better suitable for managing Multiple Containers.
+We can start or stop composite of Services in one command or we can merge the logs of multiple services together into one pseudo-tty.
