@@ -1,4 +1,4 @@
-1.Docker Networking	Part One														(IntelliQ IT Trainings)		[12-MAR-2021]  ()
+1.Docker Networking	Part One														(IntelliQ IT Trainings)		[12-MAR-2021]  (Done)
 1.Docker Networking	Part Two														(IntelliQ IT Trainings)		[12-MAR-2021]  ()
 3.Docker Networking																	(aquasec)					[12-MAR-2021]  ()
 4.Docker Networking																	(edureka)					[12-MAR-2021]  ()
@@ -6,3 +6,90 @@
 
 
 ********************************************************* 13.Docker Networking (IntelliQ IT Trainings) ***************************************************************
+
+Docker generally uses the following type of Networks 
+
+1.Bridge
+2.Host or Host Only
+3.null
+4.Macvlan   (Used in legacy systems)
+5.Overlay	(Used in Container Orcchestration tools like Docker Swam)
+
+When Multiple Docker Containers run on the Single Machine or Single Host,the default network used by Docker is Bridge Network.
+Consider the case we have created Multiple COntainers in the Single Host i.e Ubuntu Container,Tomcat Container,PHP Container etc.
+All these Containers are connected using Bridge Network and can communicate with each other.
+
+Here --link tag is deprecated because of Bridge Network.
+
+How we can create a Multi Container Architecture where different containers can communicate with each other.
+Consider the scenario where 
+
+Wordpress Container can communicate with MySql Container
+Ghost Container (Blogging Software) can communicate with MySql Container.
+
+
+Here we are creating two different architecture for two different Projects.
+Problem with the approach is all these containers are running on the same machine via Bridge Network can communicate with each other.
+Problem to the solution is we want to restrict certain Containers to communicate among themselves.
+This can be done by virtual bridge networks.
+
+Create 2 Bride Networks named Bridge1 and Bridge2.
+Create 3 Busy Box Containers named C1,C2 and C3.
+
+Scenario One :
+Instead of C1,C2,C3 allowing to run on the default Bridge Network,we put C1 and C2 on the Bridge1 and C3 on Bridge 2.
+Here C1 and C2 can communicate with each Other where as C3 cannot Communicate with C1 and C2.
+
+To craete a Docker Network 
+
+	docker network craete --driver bridge Bridge1
+	docker network craete --driver bridge Bridge2
+	
+To view the networks 
+
+	docker network ls
+	
+Run the BusyBox Container C1 and C2 in the Bridge Network Bridge1 and Container C3 in Bridge Network2
+
+	docker run --name C1 -it --network Bridge1 busybox
+	docker run --name C2 -it --network Bridge1 busybox
+	docker run --name C3 -it --network Bridge2 busybox
+
+To come out of the container without exiting and stopping it CTRL+P CTRL+Q
+
+To identify the IP Address of the container 
+
+	docker inspect C1
+	
+	172.21.0.2	(Bridge1)
+	
+	docker inspect C2
+	
+	172.21.0.3   (Bridge1)
+	
+	dokcer inspect C3
+	
+	172.22.0.2   (Bridge2)
+	
+Scenario Two :
+Single Container can run paralelly on multiple Networks.
+Here C2 Container can run on Bridge1 as well as Bridge2.
+
+	docker network connect Bridge2 C2
+	
+To check whether C2 is connected to Bridge2 Attach the C2 Container
+	
+	docker attach C2
+
+	docker inspect C2
+	
+Note :
+Default Network used by Docker when Multiple Containers running on the same Machine is Bridge Network. 
+
+	
+
+
+
+
+
+
