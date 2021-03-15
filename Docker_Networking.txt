@@ -1,8 +1,10 @@
 1.Docker Networking	Part One														(IntelliQ IT Trainings)		[12-MAR-2021]  (Done)
-1.Docker Networking	Part Two														(IntelliQ IT Trainings)		[12-MAR-2021]  ()
-3.Docker Networking																	(aquasec)					[12-MAR-2021]  ()
-4.Docker Networking																	(edureka)					[12-MAR-2021]  ()
-2.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[12-MAR-2021]  ()
+2.Docker Networking																	(aquasec)					[15-MAR-2021]  (Done)
+3.Docker Networking																	(edureka)					[12-MAR-2021]  ()
+3.Docker Networking	Host Network													()							[12-MAR-2021]  ()
+3.Docker Networking	None Network													()							[12-MAR-2021]  ()
+3.Docker Networking	Overlay Network													(SysTechInfra Solutions)	[12-MAR-2021]  ()
+4.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[12-MAR-2021]  ()
 
 
 ********************************************************* 13.Docker Networking (IntelliQ IT Trainings) ***************************************************************
@@ -86,8 +88,144 @@ To check whether C2 is connected to Bridge2 Attach the C2 Container
 Note :
 Default Network used by Docker when Multiple Containers running on the same Machine is Bridge Network. 
 
-	
 
+******************************************************************* 2.Docker Networking(aquasec)  *********************************************************************
+
+For Docker Containers to communicate with each other and outside the world via host machine,there has to be a layer of networking involved.
+Docker supports different types of networks,each fit for certain use case.
+
+For example building an Application which runs on a Single Docker Container will have different Network Setup compared to
+Web Application with a cluster of darabases,application,load balancers which span multiple containers that needs to communicate with each other.
+
+Docker Default Networking :
+---------------------------
+When Docker is installed,default bridge network named docker0 is created.
+Each new Docker Container is automatically attached to this network unless,custom network is specified.
+
+Besides docker0 two other networks get created automatically by Docker i.e host and none
+
+Host :
+------ 
+Host Network removes the Network isolation between the Docker Host and Docker containers to use the Host's Network directly.
+With this we will not be able to run multiple web Containers on the same host,on the same port as the port is now common to all the containers on the network.
+To the outside world they are on the same network.
+
+NONE : 
+------
+In this kind of network,Containers are not attached to any network and do not have access to the external network or other Containers.
+This network can be used whenever we want to completely disable the networking stack on a Container and only create a loop back device.
+
+Docker Networking Types :
+-------------------------
+Docker comes with network drivers geared towards different usecases.
+Most Common Network types are 
+
+Bridge
+Overlay
+Macvlan
+
+Bridge :
+--------
+Bridge network is the most common Network Type.
+It is limited to containers within a Single host running the Docker Engine.
+Bridge network are easy to create,manage and troubleshoot.
+
+For the Containers on Bridge network to communicate or to be reachable from outside the world,port mapping needs to be configured.
+Consider the case we have Docker Container running the Web Service on port 80.
+Because this Container is attached to the Bridge Network on a private subnet,
+port on host system like 8500 needs to be mapped to port 80 on the Container for the outside traffic to reach the Web Service.
+
+To create a Bridge network named Bridge3 pass the argument bridge to the -d parameter.
+
+	docker network create -d bridge Bridge3
+	
+In case of Bridge Network all the Containers get an Internal IP Address and these Containers can access each other using the Internal IP.
+Bridge Networks are usually used when our Application runs in Stand alone Containers that needs to Communicate.
+
+	
+Overlay :
+---------
+After Docker Swarm
+
+Macvlan :
+---------
+After Docker Swarm
+
+Container discovery on docker0 network (DNS resolution) :
+---------------------------------------------------------
+Different network provides different communication patterns between the containers depending on the network type whether it is default docker network or user defined network.
+
+Docker will assign a name and hostName to each Container created on the default docker0 network unless different name/hostName is specified by the user.
+Docker then keeps mapping of each name/hostName against the Container's IP Address.
+This mapping allows pinging each Container by name as opposed to IP Address.
+
+Example :
+After DNS Video
+
+
+Directly linking containers :
+-----------------------------
+It is possible to directly link one Container to the another using the --link option when starting the Container.
+This allows Containers to discover each other and securely tarnsfer information about One Container with other Container.
+However Docker has deprecated this feature and recomended to use user defined network instead.
+
+Example :
+After LInking Video
+
+
+Exposing Ports and Forwarding Traffic :
+---------------------------------------
+Docker network use subnets that cannot be accessed from the outside world.
+To allow requests from the internet to reach to the Container,we need to map Container port to the port on the Container Host.
+
+	-p 8500:80
+
+Containers Connected to Multiple Networks :
+-------------------------------------------
+Finegrained network policies for connectivity and isolation can be achieved by joining containers to multiple networks.
+By default each Container will be attached to single network.
+More networks can be attached to a Container by creating it first with the 
+
+	docker create 
+
+instead of 
+
+	docker run 
+
+and then running the command 
+ 
+	docker network connect
+
+How IPv6 Works on Docker :
+--------------------------
+By default Docker configures the Container networks for IPv4 only.
+To enable the IPv4/IPv6 dual stack  --ipv6 flag needs to be applied when starting the Docker Daemon.
+Then the docker0 bridge will get an IPv6 link -loacal address.
+
+To assign globally IPv6 address to all the Containers assign the flag  --fixed-cidr-v6 followed by IPv6 Address.
+
+Common Operations :
+-------------------
+To insepct a network  						:  docker network inspect 
+To list all the networks   					:  docker network ls
+To create a network							:  docker network create
+To connect the Container to the network 	:  docker network connect Bridge1 C1
+To disconnect the Container to the network	:  docker network disconect Bridge1 C1
+To remove the network 						:  docker network rm Bridge1
+
+
+Docker Networking with Multiple Hosts :
+---------------------------------------
+After Docker Swarm
+
+
+
+*************************************** 4.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
+
+
+
+
+*************************************** 3.Docker Networking	Overlay Network(SysTechInfra Solutions)	  ***************************************************************
 
 
 
