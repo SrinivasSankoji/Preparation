@@ -2,18 +2,67 @@
 2.Docker Compose								  									(JakeWright)				[12-MAR-2021]  ()
 3.Docker Compose								  									(Edureka)					[12-MAR-2021]  ()
 4.Docker Compose								  									(DevOpsLearn Easy)			[12-MAR-2021]  ()
-5.Deploying Multiple Spring Boot Microservices using Docker Compose					(javainuse)					[12-MAR-2021]  ()
-6.Deploying Multiple Spring Boot Services With Docker Compose						(dzone)						[12-MAR-2021]  ()		
+5.Deploying Multiple Spring Boot Microservices using Docker Compose					(javainuse)					[16-MAR-2021]  (Done)
+6.Deploying Multiple Spring Boot Services With Docker Compose						(dzone)						[16-MAR-2021]  ()		
 7.Manage Docker Containers with Docker Compose										(springframework.guru)		[12-MAR-2021]  ()
 8.Docker Compose For Containerizing A MEAN Stack Application						(edureka blog)				[12-MAR-2021]  ()
 
 ********************************************************* 8.Docker Compose(baeldung) *********************************************************************************
 
 Docker Commands and Docker Files are particularly suitable for creating individual containers.
-But If we want to operate on a Network of isolated Applications,Container Management quickly becomes cluttered.
+If we want to operate on a Network of isolated Applications,Container Management quickly becomes cluttered.
 
 To solve that Docker provides a tool named Docker Compose.
 Docker Compose comes with its own build file in YAML format and is better suitable for managing Multiple Containers.
 We can start or stop composite of Services in one command or we can merge the logs of multiple services together into one pseudo-tty.
+
+Example :
+---------
+
+******************************************* 5.Deploying Multiple Spring Boot Microservices using Docker Compose (javainuse)	*******************************************
+
+To deploy multiple spring boot micro services to Multiple Docker Containers we have used Docker networking.
+To acheive this we need to perform the steps manually.
+
+Create a custom docker network.
+Start the Containers by adding to the custom network.
+
+The above steps can be automated by using Docker Compose.
+Docker Compose is a tool for defining and running multi container Docker Applications.
+With Docker Compose we will be using YAML Configuration to configure all the Application services.
+Then with a Single command we can start all the services from the configuration.
+Using Docker Compose we will be creating custom network and start the Containers by adding them to the custom network.
+
+Docker Compose is a three step process.
+
+1.Define the app's environment with a Dockerfile so that it can be reproduced anywhere.
+2.Define the services in docker-compose.yml so that they can run together in an isolated enviroonment.
+3.start the dcoker compose by using the docker command docker-compose up.
+
+
+
+version : "3"
+services:
+  consumer :
+    image : employee-consumer
+    ports :
+      - "8501:8500"
+    networks : 
+      - consumer-producer
+      
+  producer :
+    image  : employee-producer
+    ports  :
+     - "8601:8600"
+    networks :
+      - consumer-producer
+      
+networks:
+  consumer-producer :
+    
+
+  
+
+    
 
 

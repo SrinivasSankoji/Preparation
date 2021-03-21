@@ -4,7 +4,7 @@
 3.Docker Networking	Host Network													()							[12-MAR-2021]  ()
 3.Docker Networking	None Network													()							[12-MAR-2021]  ()
 3.Docker Networking	Overlay Network													(SysTechInfra Solutions)	[12-MAR-2021]  ()
-4.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[12-MAR-2021]  ()
+4.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[16-MAR-2021]  (Done)
 
 
 ********************************************************* 13.Docker Networking (IntelliQ IT Trainings) ***************************************************************
@@ -222,8 +222,47 @@ After Docker Swarm
 
 *************************************** 4.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
 
+Create two Microservice named 
+
+1.employee-producer  
+2.employee-consumer 
+
+Dockerfile and Docker build commands can be used to create a Single service into the Container.
+If the requirement is in such a way that we need to deploy multiple microservices into the multiple Docker Container
+and each Container has to communicate with each other.
+Here employee-producer will be exposing Rest API which will be consumed by the employee-consumer.
+
+Docker has designed in such a way that Docker Container should have only Single running Service.
+Here we will be deploying two micro services into two different Containers and and we make them interact with each other.
 
 
+After starting the two containers if we hit the url on the browser i.e http://localhost:8500/consumer we won'tvget any output.
+Here we have to make the Containers communicate with each other.
+We wil be using Docker networking to allow multiple Containers to interact with each other.
+Here we need to create our own network adn add the Containers to the network.
+
+	docker network create producer-consumer
+
+	docker run --network producer-consumer --name producer -d -p 8501:8500 employee-consumer
+
+	docker run --network producer-consumer --name consumer -d -p 8601:8600 employee-consumer
+
+To check the logs of the Container
+
+	docker logs [ContainerName]
+	
+Example :
+
+To run the Consumer Application 
+	
+	http://localhost:8501/consumer and in the Consumer Application,to call the producer Application 
+	
+	String baseUrl = "http://producer:8600/employee";  (Pass the Producer Image Name)
+
+To run the producer Application
+
+	http://localhost:8601/employee
+	
 
 *************************************** 3.Docker Networking	Overlay Network(SysTechInfra Solutions)	  ***************************************************************
 

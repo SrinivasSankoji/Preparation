@@ -8,8 +8,8 @@
 8.Run Jenkins on Docker Container			   [12-MAR-2021]  ()
 9.Docker File								   [12-MAR-2021]  (Done)
 10.Docker Compose                              [13-MAR-2021]  (Done)
-11.Docker Volume                               [13-MAR-2021]  ()
-12.Docker Swarm                                [13-MAR-2021]  ()
+11.Docker Volume                               [17-MAR-2021]  (Done)
+12.Docker Swarm                                [18-MAR-2021]  ()
 
 
 
@@ -143,8 +143,7 @@ docker history [Image Name]     : To check the history of the Image.
 
 Docker File is a simple text file with instructions to build an image.
 Create a file named DockerFile.
-When we run  docker build command Docker searches for the file named DockerFile.
-
+When we run  docker build command Docker searches for the file named Dockerfile.
 
 mkdir DockerFiles
 nul>DockerFile
@@ -284,12 +283,49 @@ To scale the services
 
 ******************************************************   11.Docker Volume :  **************************************************************************************
 
+In Docker when we craete Container there has to be some place where the data inside the Container will be stored.
+If we are not providing any explicit data store then it gets stored within the Container and If we delete the Container then the data stored inside the Container will be lost.
+Whenever we work in Enterprise Applications,we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
+We may also requires more Containers that can share the same data.
+
+Advantages of Volumes :
+-----------------------
+Volumes can be used to decouple Container from the storage.
+Shaer Volume (Storage/Data) among different Containers.
+Attach Volume to the Container.
+On Deleting Container,Volume does not delete the Data.
+
+docker volume create    					: To create docker volume  VOL1
+docker volume ls							: To see the List of volume
+docker volume inspect [voluemName]			: To insepect the Docker Volume
+docker volume rm [voluemName]				: To remove the Docker Volume
+docker volume prune 						: To remove the unused Volumes which are not used by any Container
+
+Example :
+---------
+
+
 
 
 
 
 
 ******************************************************   12.Docker Swarm :  ***************************************************************************************
+
+To create the docker warm in Windows 
+
+	docker swarm init
+	
+To see the Docker swarm details 
+
+	docker info
+	
+To get the information about the nodes
+
+	docke nodes ls
+	
+
+
 
 
 
