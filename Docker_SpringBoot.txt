@@ -49,14 +49,14 @@ create a file name with .dockerignore at the root folder with the Content.
 	.gitignore
 	node_modules
 	npm-debug.log
-	Dockerfile*
+	Dockerfile
 	docker-compose*
 	README.md
 	LICENSE
 	.vscode
 	
 Base Image :
-Docker usually starts with the base image and is the starting point for the Dockerfile.
+Dockerfile usually starts with the base image and is the starting point for the Dockerfile.
 We add the base image to the Dockerfile using FROM command followed by these image.
 
 	FROM openjdk:latest
@@ -100,10 +100,10 @@ To push the image to the Docker Hub using the command
 
 ADD 					: copies files from host system on to the Container.
 CMD/ ENTRYPOINT 		: CMD tells the Docker that how to run the Application when the Container starts.
-ENV 					: Sets an Environment variable in the new Container
-EXPOSE 					: EXPORT informs the Docker which port the Container is listening at runtime.
+ENV 					: Sets an Environment variable in the new Container.
+EXPOSE 					: EXPOSE informs the Docker which port the Container is listening at runtime.
 FROM 					: Base Image to use the build and must be the first command in the build file.
-MAINTAINER 				: Optionla value for the MAINTAINER of the Script.
+MAINTAINER 				: Optional value for the MAINTAINER of the Script.
  
 
 *********************************************************  4.Spring Boot with Docker Container (Simple Programming)  *************************************
@@ -230,7 +230,7 @@ First Approach (Docker Networking) :
 Now create the MySql Container and then attach the MySql Container to the Springboot-mySql Container.
 
 Note :
-Without attaching MySql COntainer to the springboot-mysql Container is it possible to provie communication between the Containers.
+Without attaching MySql Container to the springboot-mysql Container is it possible to provie communication between the Containers.
 Answer is yes because of Docker Networking.
 Docker Networking allows us to attach as many Containers as you like.
 Docker takes care of Networking aspects.
@@ -302,7 +302,7 @@ Hit the briwser with the URL
 
 	http://localhost:8602/users
 	
-Now Springboot-my sql will be communicating with my sql Container.
+Now Springboot-mysql-second will be communicating with my sql Container.
 
 
 Third Approach (Docker Compose) :
@@ -331,7 +331,7 @@ services :
        - mysql-container
      
 Note :
-Make sure the images are already present and usinf docker-compse we create the Containers from those images.
+Make sure the images are already present and using docker-compse we create the Containers from those images.
 
 
 

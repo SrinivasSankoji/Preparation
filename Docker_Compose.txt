@@ -21,7 +21,7 @@ Example :
 
 ******************************************* 5.Deploying Multiple Spring Boot Microservices using Docker Compose (javainuse)	*******************************************
 
-To deploy multiple spring boot micro services to Multiple Docker Containers we have used Docker networking.
+To Deploy multiple spring boot micro services to Multiple Docker Containers we have used Docker Networking.
 To acheive this we need to perform the steps manually.
 
 Create a custom docker network.

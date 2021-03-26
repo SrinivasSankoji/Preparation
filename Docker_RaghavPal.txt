@@ -12,7 +12,6 @@
 12.Docker Swarm                                [18-MAR-2021]  ()
 
 
-
 ******************************************************   1.What is Docker :   **************************************************************************** 
 
 
@@ -23,11 +22,6 @@
 
 
 ******************************************************   4.Docker Installation :  ************************************************************************
-
-Install the Docker
-TroubleShooting Tipsy
-Validate Installation
-UnInstall Docker
 
 If We Install the Docker Tool Box on Windows Machine,Installer Automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
 Here Docker will be running  inside the Virtual Machine and we interact with Docker Server using Docker Client.
@@ -142,7 +136,7 @@ docker history [Image Name]     : To check the history of the Image.
 ******************************************************  9.Docker File :  *******************************************************************************************
 
 Docker File is a simple text file with instructions to build an image.
-Create a file named DockerFile.
+Create a file named Dockerfile.
 When we run  docker build command Docker searches for the file named Dockerfile.
 
 mkdir DockerFiles
@@ -214,7 +208,7 @@ Order Service
 In MicroServices each Application will have seperate Service,seperate database and seperate Server.
 Whenever we want to make changes in one module then it won't reflect the other module.
 Scaling up is very efficient.
-We can alos increase the capacity of the services based on requirement.
+We can also increase the capacity of the services based on requirement.
 This kind of Architecture can be implemented by using Docker Compose.
 
 Step 1:
@@ -285,13 +279,13 @@ To scale the services
 
 In Docker when we craete Container there has to be some place where the data inside the Container will be stored.
 If we are not providing any explicit data store then it gets stored within the Container and If we delete the Container then the data stored inside the Container will be lost.
-Whenever we work in Enterprise Applications,we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
-We may also requires more Containers that can share the same data.
+Whenever we work in any Enterprise Applications,we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
+We may also require more Containers that can share the same data.
 
 Advantages of Volumes :
 -----------------------
-Volumes can be used to decouple Container from the storage.
-Shaer Volume (Storage/Data) among different Containers.
+Volumes can be used to decouple the Container from the storage.
+Share Volume (Storage/Data) among different Containers.
 Attach Volume to the Container.
 On Deleting Container,Volume does not delete the Data.
 
@@ -303,16 +297,45 @@ docker volume prune 						: To remove the unused Volumes which are not used by a
 
 Example :
 ---------
+Create the Volume VOL1
 
+	docker create Volume VOL1
+	
+To inspect the volume 
 
+	docker volume inspect VOL1
 
+Pull the Jenkins Image and run it with the Docker Volume VOL1
 
+	docker run --name myjenkins -p 8081:8080 -d -v VOL1:/var/jenkins_home jenkins/jenkins
+	
+Now create the new Job in Jenkins
+	
+	TestJob
+	
+Now start the another instance of the Jenkins by attaching the same Volume
+	
+	docker run --name myjenkins1 -p 8082:8080 -d -v VOL1:/var/jenkins_home jenkins/jenkins
+	
+and login with Admin and passowrd in the Jenkins Console.
 
+Here the volume is shared between the Two Containers.
 
+Note :
+------
+Volume drivers allows us to store Volumes on remote hosts or cloud providers.
+We can also use the BindMount i.e a File or directory on the Host Machine is mounted into a Container.
+
+In case of BindMount we use a Physical Location instead of Volume.
+
+	docker run --name myjenkins2 -p 8083:8080 -d -v /Users/DELL/Desktop/DockerVolume:/var/jenkins_home jenkins/jenkins
+	
 
 ******************************************************   12.Docker Swarm :  ***************************************************************************************
 
-To create the docker warm in Windows 
+
+
+To create the docker swarm in Windows 
 
 	docker swarm init
 	

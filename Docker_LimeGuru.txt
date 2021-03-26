@@ -5,7 +5,7 @@
 
 ******************************************************** 1.Introduction  ************************************************************
 
-Before going to Start Docker,we need to know to how Software development takes Place in the IT Industry.
+Before going to Start Docker,we need to know to how the Software development takes Place in the IT Industry.
 When ever we are going to Start any Application,how the Software Development Life Cycle Will be and 
 How Docker Changes the entire Life Cycle of Software Development.
 
@@ -24,7 +24,7 @@ The above problem can be resolved by using Docker.
 Docker provides a solution by keeping all the dependencies at one place and 
 it is the responsibility of Docker that all the dependencies will be available in all the Environments.
 Here no need to approach any of the infrastructure team to add any new Dependencies.
-Add the Dependencies to the Docker and Docker will take care of availability of all the Dependencies in all the Environments.
+Add the Dependencies to the Docker and Docker will take care of availability of all the dependencies in all the Environments.
 
 How Docker Works :
 ------------------
@@ -40,9 +40,9 @@ we need to ensure that we have defined the Metadata Correctly.
 Here the Whole Process is automated i.e Creating The Container,Setting up The dependencies,taking it to the Container and Making it available to every One.
 Once the Code is available to the Container,It will execute the Application because the required dependencies are available inside the Container.
 Docker is a Containerized Execution. i.e Everything in Docker is Containerized.
-For Example We have the Whole Server and there is only One Container.
-We Can use Some part of the Configuration to create multiple containers within the same server.Here Each Container runs Independently.
-There is No Intra Dependency against the Containers and each Container is isolated.
+For Example we have the whole Server and there is only One Container.
+We can use Some part of the Configuration to create multiple containers within the same server.Here Each Container runs Independently.
+There is No intra Dependency against the Containers and each Container is isolated.
 Each Container has its own piece of Code,has its own Set Up.
 This is very efficient Way of Utilizing the Server Resources and managing the dependencies.
 For example we have 8 GB of server then some part of the Server is used by one container and some part of the Server is used by another container and so on.
@@ -167,7 +167,7 @@ Once The Docker File is created we need to convert the Docker File into Docker I
 We can also Tag the Image Name and we can also register the Docker Image.
 We can save the Docker image into Docker Hub or Private Hub if Required.
 Then We have Docker Server which contains all the Containers i.e
-When we run the Command : docker run --tag=OccReport,It Creates Docker Image named OccReport and Moved to the Docker Registry.
+When we run the Command : docker run --tag=OccReport,It Creates Container named OccReport and moved to the Docker Registry.
 Docker Server Interacts with Docker Registry with the Name OccReport,
 It will Create a Container with all the Dependencies mentioned in the Image,and executes the Application defined inside the Image,Code is Deployed.
 If We have defined the port inside the image then it would be accessible externally. 

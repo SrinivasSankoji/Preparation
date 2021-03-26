@@ -1,10 +1,11 @@
+0.Installation								[24-MAR-2021]  ()
 1.Introduction								[17-MAR-2020]  (Done)
 2.ls 										[17-MAR-2020]  (Done)
 3.cd 										[17-MAR-2020]  (Done)
 4.cat 										[21-MAR-2020]  (Done)
 5.I/O Redirection							[21-MAR-2020]  (Done)
 6.mkdir 									[21-MAR-2020]  (Done)
-7.rm adn rmdir 								[21-MAR-2020]  (Done)
+7.rm and rmdir 								[21-MAR-2020]  (Done)
 8.cp 										[21-MAR-2020]  (Done)
 9.mv 										[24-MAR-2020]  (Done)
 10.less 									[24-MAR-2020]  (Done)
@@ -44,12 +45,11 @@
 42.Install Postgree Sql                     [17-MAR-2020]  ()
 
 
-*************************************************************** Change Location from SSD to Hard Disk ******************************************
-
-
-
-
 ***************************************************************  1.Introduction   **************************************************************
+
+df -h 		: To view the MountPoint
+sudo su 	: login as a Root User
+
 
 Command Line based is much Faster than Graphicl User Interface.
 When it comes to Programming we are able to know about the background details of a Program.
@@ -333,7 +333,7 @@ verbose gives the extended Information about the Command.
 	rmdir -pv a/b/c/d/e
 	
 Create text file inside the Folder b i.e cat > abc.txt
-If we use thecommad rmdir to remove the Directory Structure then it gives an Error.
+If we use the commad rmdir to remove the Directory Structure then it gives an Error.
 If the Directory Contains a File then rmdir command does not work.
 Here the Directory upto c will be Deleted.
 To remove both Directory and Files

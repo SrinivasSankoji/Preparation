@@ -1,10 +1,229 @@
 1.Docker Volume 							(IntelliQ IT Trainings)					[18-MAR-2021]  ()
-2.Docker Volume 							(Java home cloud)						[18-MAR-2021]  ()
+2.Docker Volume 							(Java home cloud)						[26-MAR-2021]  (Done)
 3.Docker Volume 							(Tech world with Naina)					[18-MAR-2021]  ()
-4.Docker Volume 							(DevOps Learn Easy)						[18-MAR-2021]  ()
-5.Docker Volume 							(Developers Thought)					[18-MAR-2021]  ()
-6.Docker Volume 							(Aarsh's screencast)					[18-MAR-2021]  ()
+4.Docker Volume 							(Developers Thought)					[26-MAR-2021]  (Done)
+5.Docker Volume 							(DevOps Learn Easy)						[18-MAR-2021]  ()
+6.Types of Docker Volume					(Valaxy Technologies)					[18-MAR-2021]  ()
+6.Docker Volume 							(GT Test Automation)					[18-MAR-2021]  ()
+
+*********************************************************  1.Docker Volume (IntelliQ IT Trainings)	*********************************************************
+
+
+
 
 
 *********************************************************  2.Docker Volume (Java home cloud)	*********************************************************
 
+By default any data generated with the Container is deleted along with the Container.
+Default volume of Container is associated with Docker Container Life Cycle.
+When Container is created it creates the File sytem similary when the Container is deleted Container delets the File system.
+This behavior is suitable for stateless Applications like web Applications and not suitable for stateful applications like Database Applications.
+Even If the Container is deleted we want to retain the data so that we can spin up the new Container where the previous Container is left.
+
+Example :
+---------
+
+	docker run -it -d alpine
+	
+To get into the Container 
+
+	docker exec -it d44532d03526 ash
+	
+Create the Folder and File 
+
+	mkdir bhaumik
+	
+	vi info.txt
+	
+If we delete the Container,folders we created are also deleted.
+
+Create a new volume
+
+	docker create volume bhaumik
+	
+Now run the Container with the Volume
+	
+	docker run -it -d -v bhaumik:/bhaumikdata alpine
+	
+Here bhaumik:/bhaumikdata means pointing to the volume on the host to the folder inside the Container.
+Here folder bhaumikdata will be created automatically inside the Container.
+create the text file inside the folder which is present inside the Container.
+
+Navigate to the Container
+
+	docker exec it [COntainerId] ash   --> ls 
+
+Here bhaumikdata Folder is created.
+create the Text File inside the /bhaumkdata folder.
+
+	vi dummy.txt
+	
+Add some text to the File,save and come out from the File.
+
+	ESC :wq! to save the text to the File.
+	ESC :q! to come out fom the File.
+	
+Come out from the Container and delete the Container.
+Now Check the data in the volumea and text file exists.
+
+Example :
+---------
+Docker with Web Application (Practice in Linux Machine)
+
+	
+********************************************************* 4.Docker Volume (Developers Thought)  *********************************************************
+
+Dcoker Container is an instance of a Docker Image.
+Whenever a new Container is created a seperate process is started.
+Any Data which is craeted or updated under that process,resides in the same process and not available for other Containers.
+Once the Container is removed Corresponding process will also be removed.
+Data is present inside the File system of the Container until the presence of the Container.
+Writing the Data into the Containers writable layer requires a storage driver to manage the file system which slows dowm the performance.
+
+Volume Mount :
+--------------
+Volumes are stored as part of host file system and managed by Docker.In Linux it is stored at /var/lib/docker/volumes.
+Volumes can be explicitly created by docker using the command docker volume create (or) at the time of Container creation if it is sepcified in the docker run command.
+When the volume is mounted to a Conntainer it is the directory which is created by docker volume is actually mounted.
+Volume can be mounted to multiple Containers.
+On removal of Container Volume cannot be removed.
+
+To share data among Multiple Containers i.e log files of each Container.
+Whenever we want backup,restore or migrate data among multiple Docker Hosts i.e In case of Docker swarm where services are deployed on Different Nodes.
+
+Bind Mount :
+------------
+They can store any where in the Host File system.
+When Bind Mount is used,a file or directory on the host machine is mounted on to a Container.
+It involves tight coupling between the host file system and the Container.
+Dcoker CLI cannot be used to manage the bind mounts because Bind Mount is not a Docker Entity.
+
+share the source code or build artifacts between a developer environment on a host machine and Container.
+when the host machine gaurantees the directory structure required by the Container.
+
+
+Docker Volume Mount using Dockerfile  :
+---------------------------------------
+create the diretory DockerVolume
+
+	mkdir DockeerVolume
+	
+Create the Dockerfile inside the DockerVolume
+
+	touch Dockerfile
+
+Edit the Dockerfile
+
+	vi Dockerfile
+	
+FROM ubunut:latest
+RUN mkdir /data
+WORKDIR /data
+RUN echo "Hello from Docker Volume" > text
+VOLUME /data
+
+Build the Docker Image from the Dockerfile
+
+	docker build -t srinivas/volumeone .
+	
+Run the Docker Image
+
+	docker run --name volumemount -d srinivas/volumeone:latest
+	
+Now check the Volume inside the Docker Host i.e File which is present indide the Docker Container is mounted to the Host Machine of the Docker Host or Not.
+Here we have created a Volume named "data".
+Access as a root user 
+
+	sudo su
+	
+Navigate to the Directory where the Docker is installed
+
+	cd /var/lib/docker/volumes/
+	
+Then navigate to the Docker Volume and inside the volume we see the diretory "/data" that containes the "text" file.
+
+Docker Volume Mount using Dcoker RUN Command :
+----------------------------------------------
+
+To list all the Volumes
+
+	docker volume ls
+	
+To create the Docker Volume
+
+	docker volume create bhaumik
+	
+Create the Dockerfile 
+
+	FROM ubuntu:latest
+	RUN mkdir/data
+	ARG MESSAGE=Hi
+	ARGE FILENAME=Test
+	ENV MESSAGE={MESSAGE}
+	ENV FILENAME={FILENAME}
+	WORKDIR /data
+	ENTRYPOINT echo ${MESSAGE} > ${FILENAME} && ls
+	
+Build the Docker Image from the Dockerfile
+
+	docker build -t srinivas/volumerun .
+	
+Now run the Docker Image using Docker Run
+
+	docker run --env "MESSAGE=Good Morning" --env "FILENAME=Test1" --name=volumerun1 --mount type=volume,source=demo,target=/data srinivas/volumerun:latest
+
+Note :
+Pass the ENV variables in the "".
+
+Create one more Container from the image srinivas/voluemrun:latest
+
+	docker run --env "MESSAGE=Good Morning" --env "FILENAME=Test2" --name=volumerun2 --mount type=volume,source=demo,target=/data srinivas/volumerun:latest
+	
+If we run the above command it will display the two files i.each
+
+	cd /var/lib/docker/volumes/_data
+
+	Test1
+	Test2
+	
+
+Docker Bind Mount using Dcoker RUN Command :
+--------------------------------------------
+
+	docker run --env "MESSAGE=Good Morning Bind Mount" --env "FILENAME=Test" --name=bindmount --mount type=bind,source=$(pwd)/BindMount,target=/data srinivas/volumerun:latest
+	
+whatever content which is present in /data will get copied to BindMount.
+make sure BindMount directory is present before running the command.
+
+Note :
+when we use bind no volume gets created in the Docker host Machine.
+
+
+
+
+
+
+	
+	
+	
+
+	
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+ 

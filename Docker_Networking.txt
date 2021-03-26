@@ -1,10 +1,11 @@
 1.Docker Networking	Part One														(IntelliQ IT Trainings)		[12-MAR-2021]  (Done)
 2.Docker Networking																	(aquasec)					[15-MAR-2021]  (Done)
 3.Docker Networking																	(edureka)					[12-MAR-2021]  ()
-3.Docker Networking	Host Network													()							[12-MAR-2021]  ()
-3.Docker Networking	None Network													()							[12-MAR-2021]  ()
-3.Docker Networking	Overlay Network													(SysTechInfra Solutions)	[12-MAR-2021]  ()
-4.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[16-MAR-2021]  (Done)
+4.Docker Networking	Host Network													()							[12-MAR-2021]  ()
+5.Docker Networking	None Network													()							[12-MAR-2021]  ()
+6.Docker Networking	Overlay Network													(SysTechInfra Solutions)	[12-MAR-2021]  ()
+7.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[16-MAR-2021]  (Done)
+8.Docker Networking																	(Developers Thought)		[16-MAR-2021]  ()
 
 
 ********************************************************* 13.Docker Networking (IntelliQ IT Trainings) ***************************************************************
@@ -18,7 +19,7 @@ Docker generally uses the following type of Networks
 5.Overlay	(Used in Container Orcchestration tools like Docker Swam)
 
 When Multiple Docker Containers run on the Single Machine or Single Host,the default network used by Docker is Bridge Network.
-Consider the case we have created Multiple COntainers in the Single Host i.e Ubuntu Container,Tomcat Container,PHP Container etc.
+Consider the case we have created Multiple Containers in the Single Host i.e Ubuntu Container,Tomcat Container,PHP Container etc.
 All these Containers are connected using Bridge Network and can communicate with each other.
 
 Here --link tag is deprecated because of Bridge Network.
@@ -29,11 +30,10 @@ Consider the scenario where
 Wordpress Container can communicate with MySql Container
 Ghost Container (Blogging Software) can communicate with MySql Container.
 
-
 Here we are creating two different architecture for two different Projects.
-Problem with the approach is all these containers are running on the same machine via Bridge Network can communicate with each other.
+Problem with this approach is all these containers are running on the same machine via Bridge Network and can communicate with each other.
 Problem to the solution is we want to restrict certain Containers to communicate among themselves.
-This can be done by virtual bridge networks.
+This can be done by virtual bridge networks(Docker Networking).
 
 Create 2 Bride Networks named Bridge1 and Bridge2.
 Create 3 Busy Box Containers named C1,C2 and C3.
@@ -95,7 +95,7 @@ For Docker Containers to communicate with each other and outside the world via h
 Docker supports different types of networks,each fit for certain use case.
 
 For example building an Application which runs on a Single Docker Container will have different Network Setup compared to
-Web Application with a cluster of darabases,application,load balancers which span multiple containers that needs to communicate with each other.
+Web Application with a cluster of databases,application,load balancers which span multiple containers that needs to communicate with each other.
 
 Docker Default Networking :
 ---------------------------
@@ -130,7 +130,7 @@ Bridge network is the most common Network Type.
 It is limited to containers within a Single host running the Docker Engine.
 Bridge network are easy to create,manage and troubleshoot.
 
-For the Containers on Bridge network to communicate or to be reachable from outside the world,port mapping needs to be configured.
+For the Containers on Bridge network to communicate or to be reachable from outside world,port mapping needs to be configured.
 Consider the case we have Docker Container running the Web Service on port 80.
 Because this Container is attached to the Bridge Network on a private subnet,
 port on host system like 8500 needs to be mapped to port 80 on the Container for the outside traffic to reach the Web Service.
@@ -155,7 +155,7 @@ Container discovery on docker0 network (DNS resolution) :
 ---------------------------------------------------------
 Different network provides different communication patterns between the containers depending on the network type whether it is default docker network or user defined network.
 
-Docker will assign a name and hostName to each Container created on the default docker0 network unless different name/hostName is specified by the user.
+Docker will assign name and hostName to each Container created on the default docker0 network unless different name/hostName is specified by the user.
 Docker then keeps mapping of each name/hostName against the Container's IP Address.
 This mapping allows pinging each Container by name as opposed to IP Address.
 
@@ -175,7 +175,7 @@ After LInking Video
 
 Exposing Ports and Forwarding Traffic :
 ---------------------------------------
-Docker network use subnets that cannot be accessed from the outside world.
+Docker network use private subnets that cannot be accessed from the outside world.
 To allow requests from the internet to reach to the Container,we need to map Container port to the port on the Container Host.
 
 	-p 8500:80
@@ -220,7 +220,7 @@ After Docker Swarm
 
 
 
-*************************************** 4.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
+*************************************** 7.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
 
 Create two Microservice named 
 
@@ -235,17 +235,16 @@ Here employee-producer will be exposing Rest API which will be consumed by the e
 Docker has designed in such a way that Docker Container should have only Single running Service.
 Here we will be deploying two micro services into two different Containers and and we make them interact with each other.
 
-
-After starting the two containers if we hit the url on the browser i.e http://localhost:8500/consumer we won'tvget any output.
+After starting the two containers if we hit the url on the browser i.e http://localhost:8500/consumer we won't get any output.
 Here we have to make the Containers communicate with each other.
 We wil be using Docker networking to allow multiple Containers to interact with each other.
-Here we need to create our own network adn add the Containers to the network.
+Here we need to create our own network and add the Containers to the network.
 
 	docker network create producer-consumer
 
 	docker run --network producer-consumer --name producer -d -p 8501:8500 employee-consumer
 
-	docker run --network producer-consumer --name consumer -d -p 8601:8600 employee-consumer
+	docker run --network producer-consumer --name consumer -d -p 8601:8600 employee-producer
 
 To check the logs of the Container
 

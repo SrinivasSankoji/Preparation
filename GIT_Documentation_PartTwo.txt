@@ -1,37 +1,34 @@
-Topics : 
-********
+1.Installing Git on Windows 													[11-06-2019]			(Done)
+2.Branching and Merging 														[11-06-2019]			(Done)
+3.Adding Project to GitHub 														[12-06-2019]			(Done)
+4.Import a Project form GitHub Using Eclipse									[12-06-2019]			(Done)
+5.Add Existing Project on GitHUb Using GitBash 									[12-06-2019]			(Done)
+6.Undoing/Reverting/Resetting  Code  											[13-06-2019]			(Done)
+7.HEAD 																			[22-03-2021]			()
+8.gitIgnoreFile 																[13-06-2019]			(Done)
+9.Difference and Merge Using Meld   											[13-06-2019]			(Done) 
+10.GitHub 																		[22-03-2021]			()
+11.Pull Request 																[22-03-2021]			()
+12.Git MERGE vs REBASE 															[22-03-2021]            ()
+13.Stash Command 																[22-03-2021]            ()
+14.Resolve Merge Conflicts in GIT Using EGIT									[22-03-2021]            ()
+15.GIT Merge Tool 																[15-06-2019]			(Done)
+16.Remote Git Server and Merging 												[22-03-2021]			()
+17.Git Tags -- What,why,when and How 											[22-03-2021]            ()
+18.Introduction and Basics  (academind.com)										[22-03-2021]            ()
+19.Adding a Project, Creating Feature Branch, Merging With Master  (ChargeAhead)[22-03-2021]            ()
+20.Stash Command (academind.com)												[22-03-2021]            ()
+21.Merge vs ReBase (academind.com)												[22-03-2021]            ()
+22.Pull Request 																[22-03-2021]            ()
+23.Merge Form One Branch to Another Branch										[22-03-2021]            ()
+24.Compare Local Repository With Git Hub Repository								[22-03-2021]            ()
+25.Check out To Previous Version												[22-03-2021]            ()
+26.Creating a Spring Boot Project and add it to Git Hub in Multiple Ways		[22-03-2021]            ()
+27.Git and GitHub Introduction and Why to Use Git								[22-03-2021]            ()
+28.Sending Email from GitHub													[22-03-2021]            ()
 
-#Creating a Spring Boot Project and add it to Git Hub in Multiple Ways
-#Git and GitHub Introduction and Why to Use Git
-#Sending Email from GitHub
-#
-1.Installing Git on Windows [11-06-2019][DONE]
-2.Branching and Merging [11-06-2019][DONE]
-3.Adding Project to GitHub [12-06-2019][DONE]
-4.Import a Project form GitHub Using Eclipse [12-06-2019][DONE]
-5.Add Existing Project on GitHUb Using GitBash [12-06-2019][DONE]
-6.Undoing/Reverting/Resetting  Code  [13-06-2019][DONE]
-7.HEAD 
-8.gitIgnoreFile [13-06-2019][DONE] 
-9.Difference and Merge Using Meld   [13-06-2019][DONE] 
-10.GitHub 
-11.Pull Request 
-12.Git MERGE vs REBASE 
-13.Stash Command 
-14.Resolve Merge Conflicts in GIT Using EGIT
-15.GIT Merge Tool [15-06-2019][DONE]
-16.Remote Git Server and Merging 
-17.Git Tags -- What,why,when and How 
-18.Introduction and Basics  (academind.com)
-19.Adding a Project, Creating Feature Branch, Merging With Master  (ChargeAhead)
-20.Stash Command (academind.com)
-21.Merge vs ReBase (academind.com)
-22.Pull Request 
-23.Merge Form One Branch to Another Branch
-24.Compare Local Repository With Git Hub Repository
-25.Check out To Previous Version
 
-************************************* Scenarios  **************************************************************
+*************************************  Scenarios  **************************************************************
 
 Copying a GitHub Repository to Your Local Computer : We use the Command  : git clone "Repository URL" [Done]
 adding Project to GitHub [Done]

@@ -1,0 +1,52 @@
+1.VirtualBox Installation											[18-MAR-2021]  (ProgrammingKnowledge2)
+2.Docker Installation on Linux										[18-MAR-2021]  ()
+3.
+
+
+
+*************************************************************** 1.Installation ******************************************
+
+Search for virtualbox
+
+	https://www.virtualbox.org/wiki/Downloads
+	
+select the windowshost and select next -> install the virtual box.
+
+Install ubuntu on Virtual Box :
+-------------------------------
+To install ubuntu on Oracle Virtual box we need an iso file of ubuntu.
+
+	https://ubuntu.com/#download
+	
+Select the 20.04 LTS(Long Trem Support)  --> Ubuntu Desktop --> Download 
+
+When we click on download button iso file will be downloaded
+
+Click on New in Virtual Box --> next -> Ram (Till Green Color) --> Hard Disk Size (100 GB) --> Create.
+Select the Ubuntu --> settings --> Advanced --> Shared Clip Board --> Select BiDirectional --> 
+
+System --> processor --> Till Green Mark
+Storage --> Select Empty -->  Click on Choose a Disk File  --> Go to iso File --> Select It.
+
+Now To start the Ubuntu --> Select Ubuntu and Select Start.
+
+Tomake the Ubunt Full screen use the Command
+
+	sudo apt-get install virtualbox-guest-additions-iso
+	
+Then select Devices --> Insert Guest CD Automation Image -->  
+
+*************************************************************** 2.Docker Installation on Linux  ***************************************************************	
+
+Search for Docker on Ubuntu
+
+	https://docs.docker.com/engine/install/ubuntu/
+
+First Approach :
+----------------	
+We Can install Docker on Ubuntu using the Repository
+
+Second Approach :
+-----------------
+We can install ubuntu using standard Linux Commands
+
