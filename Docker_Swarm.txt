@@ -1,6 +1,88 @@
-1.Docker Swarm							(IntelliQ IT Trainings)					[18-MAR-2021]  ()
-2.Docker Swarm							(DevOps Learn Easy)						[18-MAR-2021]  ()
-3.Docker Swarm							(Edureka)								[18-MAR-2021]  ()
-4.Docker Swarm							(Intellipaat)							[18-MAR-2021]  ()
-5.Docker Swarm							(Developers Thought)					[18-MAR-2021]  ()
+1.Docker Swarm	Installation			(computingforgeeks)						[26-MAR-2021]  ()
+2.Docker Swarm							(IntelliQ IT Trainings)					[26-MAR-2021]  ()
+3.Docker Swarm							(DevOps Learn Easy)						[18-MAR-2021]  ()
+4.Docker Swarm							(Edureka)								[18-MAR-2021]  ()
+5.Docker Swarm							(Intellipaat)							[18-MAR-2021]  ()
+6.Docker Swarm							(Developers Thought)					[18-MAR-2021]  ()
+
+********************************************************  2.Docker Swarm(IntelliQ IT Trainings)	********************************************************
+
+Docker swarm is a tool 	using which we can handle Docker Containers in a production Environment.
+We can handle all the scenarios like Load Balancing ,Scalability,High Avalaibility,Rolling Updates,Fail Over Scenarios etc.
+Docker swarm is from Docker Community.
+
+Container Orchestration  :
+--------------------------
+If we want to run the Tomcat Container we use the command 
+
+	docker run tomcat:latest
+	
+It starts the Tomcat Server.
+Tomcat is a web server where we can store the artifacts in the Tomcat.
+End  Users will be reaching to the Tomcat by using IP Address and can access the web page.
+Whatever Application that has deployed into the Tomcat,Endusers can access the Application using Browser.
+
+Here the Docker Tomcat Container has the capability to scale the users upto 100.
+If the users are increased to 1000 then Tomcat Container which was initially designed to load the 100 users cannot sustain.
+If the Application is already moved to production and we want to enhance the capability.
+Container Orchestration comes into the picture.
+
+Using Container Orchestration tools we can create multiple Containers.
+Though we are creating multiple Containers there will be one single service running.
+Ideally Multiple Replica of the same Container will be created.
+
+Note:
+If we use the run command then multiple tomcat Containers will be created.
+
+Load Balancing :
+----------------
+If Multiple Containers of the same service is not enough then create one more Server with Multiple Containers running the same service.
+Here for all these Containers in the two different servers Only one service is running.
+Consider if the end user is trying to reach the website,
+There will be DNS server whcih will convert the domain name into IP Address which may communicate with the First Server or Second Server.
+Within these two servers response can come from any of these eight Containers.
+This way Container Orchestration performs the Load Balancing.
+
+Scaling :
+---------
+We can also increase or decrease the Number of Containers/Servers at runtime is nothing but scaling.
+
+Rolling Update :
+----------------
+Consider the case we have MySql and is running in the Container Orchestration i.e 4 Replicas of Single MySql Service is running in the Server.
+Data is getting stored into the Database and it can be handled by any of these Containers.
+If there is a requirement to migrate the MySql version.
+Since the Application is already in production and we dont want the Database to go down.
+Here Docker warm will take one Replica and perform the Rolling Updates on that Replica.
+Even if The Replica goes down load will be balanced to the other Replca's.
+Once the Upgradation is done then Docker swarm will perform the upgradation on other Replica's.
+At any point of time there should be no down time.
+
+Fail Over Scenario :
+--------------------
+Consider the scenario where we have a web Application that is hosted on 3 different Linux Servers with 3 Containers.
+Though they are 3 Containers ideally we call them as Replica's.
+When the EndUser access the Application DNS will internally convert the hostname to IP Address.
+For some reason if the IP Addressof that server is not available/crashed .
+Container Orchestration tools like Docker swarm we have defined that there should be 3 Replicas and 3 is considered as desired count.
+It always ensure that 3 Replica's are present.
+It will immideately start the Replica of that Container on the other server's and ensure the Replica Count is always 3.
+
+Set up Docker Swarm :
+--------------------- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

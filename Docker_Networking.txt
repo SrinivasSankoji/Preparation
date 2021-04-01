@@ -1,20 +1,20 @@
 1.Docker Networking	Part One														(IntelliQ IT Trainings)		[12-MAR-2021]  (Done)
 2.Docker Networking																	(aquasec)					[15-MAR-2021]  (Done)
 3.Docker Networking																	(edureka)					[12-MAR-2021]  ()
-4.Docker Networking	Host Network													()							[12-MAR-2021]  ()
-5.Docker Networking	None Network													()							[12-MAR-2021]  ()
-6.Docker Networking	Overlay Network													(SysTechInfra Solutions)	[12-MAR-2021]  ()
+4.Host and NONE Network																(AWS HandsOn)				[26-MAR-2021]  (Done)
+5.Macvlan Network																	(Srinivas Makam)			[12-MAR-2021]  ()
+6.Overlay Network																	(SysTechInfra Solutions)	[12-MAR-2021]  ()
 7.Deploying Multiple Spring Boot Microservices using Docker Networking				(javainuse)					[16-MAR-2021]  (Done)
 8.Docker Networking																	(Developers Thought)		[16-MAR-2021]  ()
 
 
-********************************************************* 13.Docker Networking (IntelliQ IT Trainings) ***************************************************************
+********************************************************* 1.Docker Networking (IntelliQ IT Trainings) ***************************************************************
 
 Docker generally uses the following type of Networks 
 
 1.Bridge
 2.Host or Host Only
-3.null
+3.null or NONE
 4.Macvlan   (Used in legacy systems)
 5.Overlay	(Used in Container Orcchestration tools like Docker Swam)
 
@@ -220,6 +220,63 @@ After Docker Swarm
 
 
 
+*************************************** 4.Host and NONE Network	(AWS HandsOn) **************************************************************************************
+
+Host Network :
+--------------
+With Host Network Container is able to share the same Network Namespace as our host where the Container is running.
+It is not best practice to run the Containers in the Host Network from security point of view.
+
+To see the Ip Address in Linux 
+
+	ip addr show
+	
+When we start the Container in the same Network Namespace as host we get the same Ip Address.
+	
+	docker run --it --network host centos /bin/bash
+	
+Now run the Command 
+
+	ip addr show
+
+It will show the same namespace that the host has i.e Container Network namespace and the Host Network namespace will be the same.
+
+None Network :
+--------------
+When we start any Container by Default it starts with bridge Network.
+If we want to start the Container with no Network at all we use the NONE Network.
+
+	docker run --it --network none centos /bin/bash
+	
+If we run the command 
+
+	ip addr show
+	
+Then no Network is attached to the Container and shows only the loopback device.
+NONE network isolates the Container and No Netwrok inside the Container and Cannot communicate with other Containers running on the host.
+
+Container Communication :
+-------------------------
+Containers which are running on the same Network namespace can communicate with each other without any special networking needs.
+Create the Network named Bridge1 of type bridge.
+
+	docker network create --driver bridge Bridge1
+	
+Run the Two Containers with the same network namespace
+
+	docker run -it --network Bridge1 centos bin/bash
+	
+and run the command
+
+	ip addr show
+	
+Now ping the IP Address of Container One from Container Two.
+This shows that Container with the same network  namespace can communicate with each other.
+
+*************************************** 6.Docker Networking	Overlay Network(SysTechInfra Solutions)	  ***************************************************************
+
+
+
 *************************************** 7.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
 
 Create two Microservice named 
@@ -263,7 +320,7 @@ To run the producer Application
 	http://localhost:8601/employee
 	
 
-*************************************** 3.Docker Networking	Overlay Network(SysTechInfra Solutions)	  ***************************************************************
+
 
 
 

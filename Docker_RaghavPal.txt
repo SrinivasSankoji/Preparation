@@ -9,7 +9,7 @@
 9.Docker File								   [12-MAR-2021]  (Done)
 10.Docker Compose                              [13-MAR-2021]  (Done)
 11.Docker Volume                               [17-MAR-2021]  (Done)
-12.Docker Swarm                                [18-MAR-2021]  ()
+12.Docker Swarm                                [26-MAR-2021]  ()
 
 
 ******************************************************   1.What is Docker :   **************************************************************************** 
@@ -326,26 +326,45 @@ Note :
 Volume drivers allows us to store Volumes on remote hosts or cloud providers.
 We can also use the BindMount i.e a File or directory on the Host Machine is mounted into a Container.
 
-In case of BindMount we use a Physical Location instead of Volume.
+In case of Bind Mount we use a Physical Location instead of Volume.
 
 	docker run --name myjenkins2 -p 8083:8080 -d -v /Users/DELL/Desktop/DockerVolume:/var/jenkins_home jenkins/jenkins
 	
 
 ******************************************************   12.Docker Swarm :  ***************************************************************************************
 
+Docker Swarm is a group of Machines that are running Docker and are joined into a Cluster.
+In case of Docker swarm we have multiple Nodes and One Node is the Swarm Manager and the other Nodes are worker Nodes.
+We can have this kind of Architecture where we have multiple Machines that are running Docker and are Connected with each other 
+and we can manage all these nodes from a Single Machine.
+Consider the scenario where we have a swarm Manager and 3 worker nodes.
+we create the services in the worker nodes and all the services are managed by the single machine which is a swarm  manager.
+
+Docker swarm is a tool for Container Orchestration.
+Consider the scenario where we have 100 Containers
+
+1.Health check for every Container
+2.Ensure all the Containers are up on every system
+3.scaling the Containers up or down depending on the load
+4.Adding updates/changes to all the Containers
+
+All the above tasks are tedious if we do it manually.
+Orchestration is nothing but managing and controlling multiple Docker Containers as a Single service.
+Other Orchestration tools available are Kubernetes,Apache Mesos.
+
+Set up the Docker Machine :
+---------------------------
 
 
-To create the docker swarm in Windows 
 
-	docker swarm init
-	
-To see the Docker swarm details 
 
-	docker info
-	
-To get the information about the nodes
 
-	docke nodes ls
+
+
+
+
+
+
 	
 
 

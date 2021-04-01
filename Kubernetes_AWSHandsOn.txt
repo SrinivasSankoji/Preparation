@@ -1,0 +1,153 @@
+1.Introduction												[28-MAR-2021]  ()
+2.Setup MiniKube                                            [28-MAR-2021]  ()
+3.Kube API Server                                           [31-MAR-2021]  (Done)
+4.ETCD in Kubernetes                                        [01-APR-2021]  (Done)
+5.Kubernetes Certified Exam                                 [01-APR-2021]  ()
+6.Kube Controller Manager and Scheduler                     [01-APR-2021]  (Done)
+
+7.Pods                                                      [02-APR-2021]  ()
+8.Pod Networking                                            [02-APR-2021]  ()
+9.Static Pods                                               [02-APR-2021]  ()
+10.Container Probes                                         [02-APR-2021]  ()
+
+11.Replica Sets                                             [03-APR-2021]  ()
+12.Deployment in Kubernetes                                 [03-APR-2021]  ()
+
+13.Kubernetes Services Part 1                               [04-APR-2021]  ()
+14.Kubernetes Service Part 2                                [04-APR-2021]  ()
+
+15.Kubernetes Namespace                                     [05-APR-2021]  ()
+16.Manual Scheduling                                        [05-APR-2021]  ()
+17.Kubernetes Affinity and Anti Affinity                    [05-APR-2021]  ()
+
+18.Kubernetes Taints and Tolerants                          [06-APR-2021]  ()
+19.ConfigMaps                                               [06-APR-2021]  ()
+20.Persistent Volumes and Claims                            [06-APR-2021]  ()
+
+21.ETCD Backup                                              [07-APR-2021]  ()
+22.ETCD Database Restore                                    [07-APR-2021]  ()
+23.Nginx Ingress Controller                                 [07-APR-2021]  ()
+
+
+
+*************************************************************  3.Kube API Server  ***********************************************************************************
+
+kube API Server is the primary management componenet that we intercat with.
+When we run the kubectl command,we are actually intercating with API Serevr.
+API Server exposes the kubernetes API.
+we can also intercat with API server using Curl Request.
+
+Consider the Scenario of creating a Pod and the Steps are 
+
+create the yml file
+apply
+
+Here request goes to the API Server and creates the Pod object and updates the ETCD and shows the user that Pod object is created.
+The Scheduler which is running in the Kubernetes Cluster is continuously monitors the API Server for the New Objects.
+When the scheduler finds the new object has created,It looks for the Node where the Pod has to be placed.
+
+Scheduler comes with the information of the available Node and then transfers the information to the API Server.
+API Server again updates the ETCD Node with the Node information.
+API Server then sends the information to the kubelet which is running on the worker Node.
+kubelet gets the Node information from the API Server and communicates with the Container Runtime to create the Pod.
+Container Runtime actually creates the Pod and updates the kubelet and the kubelet then updates the API Server that the Pod has created.
+API Server then updates the ETCD about the Pod creation.
+
+ETCD is the place where we have complete information about the Cluster.
+
+If we install the Kubernetes as Hardware,download the binary and provision the kube API Server.
+If we install the Kubernetes using the kubeadm,kubadm actually runs the API Server as Pod.
+When we switch to the console we can actually see how the API Server is running as Pod and we can see all the Configuration details.
+
+Practice the Example :
+----------------------
+
+
+
+
+
+*************************************************************  4.ETCD in Kubernetes  ******************************************************************************
+
+ETCD is the brain of the Kubernetes System.
+ETCD actually stores everything (Pod Creation,Adding Node,Any Deployment etc ) that is happening in the Kubernetes Cluster.
+When we do some migrations in Kubernetes ETCD is the most importnat Component.
+If we loose the ETCD cluster,we actually loose the data.
+
+ETCD is a key value data store.
+ETCD has consistent Read and Write i.e Any data which we write that is immideately for Read.
+ETCD is highly available because data is replicated in all the Nodes.
+when we deploy Kubernetes in a production Environment,we normally see the ETCD as external Component and not deployed along with the Kubernetes Cluster.
+ETCD is a Cluster of its own.It can be a 3 Node or 5 Node Cluster and maintain a leadership among them using RAFT protocol.
+ETCD is secure.
+
+If we set up the Kubernetes cluster from scratch,we can isolate ETCD cluster by creating as a seperate Cluster of its own.
+Then advertise the address to the Kubernetes Cluster.
+If we set up the Kubernetes cluster using kubeadm,kubeadm deploys all of them as Pods.
+
+Practice the Example :
+----------------------
+
+
+
+
+
+************************************************************* 6.Kube Controller Manager and Scheduler  ************************************************************
+
+Controller Manager :
+--------------------
+Controller Manager is another component of Kubernetes echo system that manages the Operational work.
+Controller Manager is not a single component and a group of smaller components packaged as a Single Binary.
+
+If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes Release Pages and run it as Service.
+If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as Pod.
+
+we have different Controller in the Controller Manager.
+Replication Controller ensures the number of Pods are running as per the Configuration.
+Replication Controller keeps monitoring the API Server fro any changes.
+When particular Pod goes down,kubelet shares the information to the API Server which then shares the information to the ETCD.
+Controller Manager gets the information about the Pod from the API Server and 
+If the Pod is down then the Controlle Manager tries to restart another Pod in the same Node or another Node.
+
+Scheduler :
+-----------
+Scheduler is another Component of Kubernetes eco system.
+Whenever we create a Pod obejct for deployment,Scheduler finds the appropriate Worker Node where the Pod has to placed.
+
+Scheduler has two stages which can be used to deploy the Pod in a correct Node.
+Filtering
+Scoring
+
+Consider the scenario we have 4 Worker Nodes.
+
+Woker Node 1  : 1 GB
+Woker Node 2  : 500 MB
+Woker Node 3  : 10 GB
+Woker Node 4  : 20 GB
+
+If we want to deploy a Pod which requires 2GB of Memory.
+Here Scheduler filters all the worker Nodes and  gets the suitable Nodes.
+Scheduler then scores the Nodes based on the available resources and places the Pod into the Node which has the highest score.
+
+
+Practice the Example :
+----------------------
+
+
+************************************************************* 7.Pods  **************************************************************************************************
+
+
+
+           
+************************************************************* 8.Pod Networking  ****************************************************************************************
+
+
+ 
+************************************************************* 9.Static Pods ********************************************************************************************  
+
+
+
+   
+************************************************************* 10.Container Probes  *************************************************************************************
+
+
+

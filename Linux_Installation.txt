@@ -1,10 +1,13 @@
-1.VirtualBox Installation											[18-MAR-2021]  (ProgrammingKnowledge2)
-2.Docker Installation on Linux										[18-MAR-2021]  ()
-3.
+1.VirtualBox Installation						(ProgrammingKnowledge2)				[18-MAR-2021]  (Done)
+2.Docker Installation on Linux														[18-MAR-2021]  (Done)
+3.Docker Machine Installation on Linux			(Just me and Opensource)			[18-MAR-2021]  ()
+4.Docker Swarm Installation						(Just me and Opensource)			[18-MAR-2021]  ()
+5.Minukube on Ubuntu							(Codetuber)							[30-MAR-2021]  (Done)	
+6.Install minkube								(Bits & Pieces)						[01-APR-2021]  ()	
 
 
 
-*************************************************************** 1.Installation ******************************************
+*************************************************************** 1.Installation (ProgrammingKnowledge2)	***************************************************
 
 Search for virtualbox
 
@@ -49,4 +52,134 @@ We Can install Docker on Ubuntu using the Repository
 Second Approach :
 -----------------
 We can install ubuntu using standard Linux Commands
+
+*************************************************************** 3.Docker Machine Installation on Linux (Just me and Opensource) ********************************
+
+docker-machine is a command using which we are going to deploy a machine with docker runtime instance.
+docker-machine command works with virtual machine,AWS,GCP etc.
+
+Using docker-machine we can create virtual machine in the host machine or it can be an instance in AWS,GCP,Digital Ocean etc.
+These are the machines with Docker runtime installed.
+using docker-machine command we can manage multiple machines with the single command.
+
+Run the Command (http://docs.docker.oeynet.com/machine/install-machine/#installing-machine-directly)
+
+	curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+	chmod +x /tmp/docker-machine &&
+	sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+	
+Run the command to check the docker-machine is installed or not
+
+	docker-machine version
+	
+Docker Machine to create Docker Machines :
+------------------------------------------
+Using docker-machine we are going to create the machines in the host machine.
+All we need docker-machine binary is installed on the host machine.
+Here we will be using virtual box to create the virtual machines with Docker runtime installed.
+Run the command
+
+	which docker machine
+	
+To check the installatio directory of Docker Machine.
+To check the list of docker-machines 
+
+	docker-machine ls
+	
+To view the details of the comamnd
+
+	docker-machine --help | less
+	
+To create the docker-machine
+
+	docker-machine create --driver virtualbox node1 --virtualbox-no-vtx-nocheck
+	
+
+	
+***************************************************************  5.Minukube on Ubuntu (Codetuber)	*************************************************************** 
+
+Minukube is a local Kubernets which is easy to learn and develop Application on Kubernetes.
+Minikube allows us to run Kubernetes on Local Machine.
+
+To check the number of processors in a system we use the command
+
+	nproc
+	
+Run the Command
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+ 
+Install kubectl
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+
+mkdir -p ~/.local/bin/kubectl
+mv ./kubectl ~/.local/bin/kubectl
+
+finally run the Command
+
+kubectl version --client
+
+
+To Uninstall Minikube :
+-----------------------
+minikube delete
+
+
+
+******************************************** 6.Install minkube Windows (Bits & Pieces) ****************************************************************************
+
+Download the Minikube 
+
+https://github.com/kubernetes/minikube/releases/minikube-windows-amd64
+
+Download kubectl 
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/#install-kubectl-binary-with-curl-on-windows
+
+Select Download the latest release v1.20.0. Link.
+
+
+Add these binaries to the path.
+
+Open the Command Prompt
+
+	minikube config set vm-driver virtualbox
+	
+	minikube delete
+	minikube start
+
+
+******************************************** 7.Install Minikube on Ubuntu ****************************************************************************************
+
+https://phoenixnap.com/kb/install-minikube-on-ubuntu	
+
+	minikube config set vm-driver virtualbox
+	
+	minikube delete
+	minikube start
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,388 @@
+1.Kubernetes Introduction											[28-MAR-2021]  (Done)
+2.Kubernetes Features Part One                                      [28-MAR-2021]  (Done)
+3.Kubernetes Features Part Two                                      [29-MAR-2021]  (Done)
+4.Kubernetes Architecture Part One                                  [29-MAR-2021]  (Done)
+5.Kubernetes Architecture Part Two                                  [30-MAR-2021]  (Done)
+6.Kubernetes How to use                                             [30-MAR-2021]  ()
+
+7.Kubernetes Playground                                             [28-MAR-2021]  ()
+8.Play with Kubernetes                                              [28-MAR-2021]  ()
+9.Kubernetes classroom                                              [28-MAR-2021]  ()
+
+10.Minikube                                              			[28-MAR-2021]  ()
+
+
+***********************************************************  1.Kubernetes Introduction	***********************************************************
+
+Kubernetes is a Container Management tool or Container Orchestration tool.
+Kubernetes was developed by Google Lab and later donated to CNCF (Cloud Native Computing Foundation).
+Kubernetes is open source and written in GO Language.
+
+Container Management tool manages Containerized Application.
+Container Management tool or Container Orchestration tool automates deploying,scaling and managing containerized application on a group of servers.
+Kubernetes is a Containerized Management tool that manages Containerized Applications i.e Applications available on container platform like Docker.
+
+Different processes that takes care in the process of Container Management are
+
+Deploying
+Scheduling
+Scaling
+Load Balancing
+
+In an Enterprise Application we use large number of Containers to ensure
+
+Deployment or RollOut's
+Availability
+Load Balancing
+Scale up and Scale down based on user Load.
+Batch Execution
+Rollbacks
+Monitoring
+
+All these process will be very difficult when we perform it manually.we need a tool that takes care of automating all the above process.
+Tools are Kubernetes,Docker swarm,Apache Mesos.
+
+*********************************************************** 2.Kubernetes Features Part One  ***********************************************************
+
+Container tool like Docker will create the Containers where as Container Management tool like Kubernetes will manage the Containers in a distributed Manner.
+
+Features of Kubernetes are
+
+1.Automatic bin packing
+2.Service Discovery and Load Balancing
+3.Storage Orchestration
+4.Self Healing
+
+5.Automated Rollouts and Rollbacks
+6.Secret and Configuration Management
+7.Batch Execution
+8.Horizontal Scaling
+
+
+1.Automatic bin packing :
+-------------------------
+Consider the case we have 5 Servers and each Server has the Capacity of 10 GB (RAM).
+We have a list of Jobs(Containers) to run on these 5 Servers in the most efficient way so that we do not compromise the resources.
+Every Job has different resource(Memory) requirement.
+Kubernetes will take care of packaging these jobs(Containers) in bins(Servers) in the most efficient way.
+Kubernetes places the Containers based on their resources requirements like CPU & Memory (RAM) while not sacrificing availability by saving Resources.
+
+In Kubernetes we do not interact with the Container directly.
+Containers are wrapped into a Single functional unit called Pods.
+Pods can contain a Single Container or Multiple Containers.
+Pods are hosted inside Node.
+
+When we specify a Pod we can optionally specify how much CPU and Memory(RAM) each Container needs.
+When Containers have resource requests specified,the Kubernetes scheduler can make better decission about in which nodes Pods to be placed.
+
+2,Service Discovery and Load Balancing :
+----------------------------------------
+Kubernetes does not run the Container directly instead it wraps one or more Containers into a higher level structure called Pod.
+Pods can contain a Single Container or Multiple Containers.
+Every Pod has a unique IP Address.
+
+We can have multiple Pods in the Node.
+Pods have the same set of functions that are abstracted into sets called Services.
+Kubernetes Service is a set of Pods that work together.
+Kubernetes provide a Single DNS Name for a Set of Pods and can laod balance across them.
+With this System Kubernetes has Complete control over the network and communication between Pods and can handle laod balance between the Pods.
+
+3.Storage Orchestration :
+-------------------------
+Containers that are running inside a Pod may need some storage option.
+Pods can have a Storage Volume.
+Usually a Single Volume is shared within all the Containers in the Pod.
+
+Kubernetes allows us to mount the Storage System of our Choice.
+Local
+Cloud
+NFS(Network File System)
+
+4.Self Healing :
+----------------
+Kubernetes will take care of lot of processing to monitor the Applications.
+If the Container fails,Kubernetes will take care of restarting the Container.
+If the Node goes down,Kubernetes will replace and reschedule the Pods on the other Available Node.
+Kubernetes has a Monitoring System that will check all the Containers.
+If any Container does not respond to the Monitoring System or the user defined health check,Kubernetes will kill the Container and will take care of availability of the Application.
+The process that takes care of all these steps is Replication Controller.
+
+***********************************************************  3.Kubernetes Features Part Two   *********************************************************** 
+
+5.Automated Rollout's and Rollback's :
+--------------------------------------
+Kubernetes can manage Rollout's and Rollback's in an Automated way.
+Whenever we make any changes to the Application or by adding new Features to the Application to deploy is called RollOut.
+Whatever new changes made to the Application and has to revert back is called Rollback.
+Kubernetes ensures there is no down time process during RollOut and Rollback of an Application.
+
+Kubernetes progressively rolls out the changes to the Application or its Configuration.
+while monitoring Application Health to ensure that it does not kill all the instances at the same time.
+If something goes wrong Kubernetes will roll back the changes ensure there is no downtime during process.
+
+6.Secret and Configuration Management :
+---------------------------------------
+In Kubernetes we have two objects i.e Secrets and Config Maps.
+
+Secrets :
+---------
+In Kubernetes Sensitive Data like passwords,keys,tokens are handled using Secrets.
+Secrets is a Kubernetes Object created Outside Pods.
+
+Config Maps:
+------------
+In Kubernetes Configuration is handled using Config Maps.
+Config Maps is a Kubernetes Object created Outside Pods.
+
+Advantage of Secrets and Config Maps is that these are created outside the Pods so that they are Portable and easy to manage.
+Seperates the Sensitive Data and Configuration from the Container.
+It also helps in deploying and updating the Application Configuration without rebuilding the image and without exposing secrets in stack Configuration.
+Secrets and Config Maps are stores in ETCD.
+ETCD is a key value data store or database.
+Max Size limit for Secrets is 1 MB.
+
+7.Batch Execution :
+-------------------
+Batch Jobs requires an executable or a process to be run to its completion.
+In Kubernetes run to completion jobs are primarily used for batch processing.
+Each Job creates one or mode Pods.
+During Job Execution If any Container or Pod fails Job Controller will reschedule the Container,Pods on another Node.
+Batch Job can also run Multiple Pods in paralell and scale up if required.
+Once the Job is completed,the Pods will move from running state to shut down state.
+Batch execution in Kubernetes supports long running Jobs and replaces failed Containers.
+
+8.Horizontal Scaling :
+----------------------
+In Kubernetes we can scale up and scale down the Containers.
+scale up means create more Replica's of the Container if required and scale down means kill the Containers if not required.
+Scale up and Scale down of Containers can be created in multiple ways.
+
+Using Commands
+Using Dashboard (Kubernetes)
+Based on CPU Usage
+
+There are three tools in Kubernetes called 
+
+Replication Controller
+Manifest File
+Horizontal Pod AutoScaler
+
+Replication Controller is a structure that enables to create Multiple Pods and makes sure that these number of Pods always exist.
+If any Pod crashes,Replication Controller will replaces it.
+Replication Controller gets the information about the Number of Pods to create and make available always from a file called manifest file.
+In the Manifest file there is a variable called Replica and it denotes the count of the Replica.
+Replication Controller also called as rc or rcs,ensures that desired number of Pods are maintained always.
+
+Horizontal Pod Autoscaler will monitor the CPU Utilization with a Custom Metrics and sends the Message to the Replication Controller to set the Number of Pods Required.
+Based on this Replication Controller will maintain the number of Pods.
+There is a Controlle Manager in Horizontal Pod Auto Scaler which loops every 15 Seconds.
+It keeps on Monitoring the CPU Usage and based on those Metrics it will sends the signal to the Replication Controller to maintain the number of Pods.
+
+
+***********************************************************  4.Kubernetes Architecture Part One  ***********************************************************  
+
+In an Organization we have a Manager,Manager manages the Team Members and together they form the Team.
+In Kubernetes we have a Master and Worker Nodes together they form a Cluster.
+When we set up Kubernetes we get a Cluster and Cluster is a Set of Machines called Nodes.
+A Cluster has atleast one worker Node and atleast one Master Node to form a Cluster.
+There can be more than one Master Node in a Cluster to provide a Cluster with fail over and high availability.
+There can be Multiple Clusters in Kubernetes Architecture.
+
+Node can be 
+
+Physical Machine
+Virtual Machine
+VM on Cloud
+
+Worker Nodes host the Pods that are the Components of the Application.
+Master Nodes manages the worker nodes and Pods in the Cluster.
+
+Kubernetes can support Clusters with upto 5000 Nodes.
+Limit of Pods in a Cluster is 1,50,000.
+Limit of Containers in a Cluster is 3,00,00.
+For a Single Node there cannot be more than 100 Pods.
+
+
+***********************************************************  5.Kubernetes Architecture Part Two  *********************************************************** 
+
+When we Set up Kubernetes we get a Cluster.
+Cluster has a Master and Worker Node.
+In a Worker Node there may be one or More Pods.
+Inside Pods there may be one or More Containers.
+In a Cluster we can have multiple Worker Nodes and one or many Master Nodes.
+Master Node contorls the Worker Nodes.
+
+Master Node is responsible for Managing the Cluster.
+Master Node monitors and manages the Worker Nodes and Pods in the Cluster.
+Whenever there is a failure of the Node,it will move the workload to the other working Node.
+Master Node will take care of the overall working of the Kubernetes Cluster.
+
+Master Node has 4 Components 
+
+1.API Server
+2.Scheduler   
+3.Controller Manager
+4.ETCD
+
+1.API Serevr :
+--------------
+API Server is responsibele for all the communication on the Kubernetes.
+API Server exposes some API's that user can interact i.e To interact with API Server we use some API's.
+To call the API we use a command line tool called kubectl or UI (Kubernetes Dashboard).
+kubectl is the command line utility to interact with Kubernetes API.
+kubectl is a Go Language Libraray.
+
+2.Scheduler :
+-------------
+Scheduler is a Component that schedules Pods across multiple Nodes.
+Worker Nodes can be physical Machine or virtual Machine and can have different infrastructure or Hardware Configurations.
+Scheduler knows about these Hardware Configurations of Nodes.
+Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
+
+Scheduler is a component on Master that watches the newly created Pods that have no Node assigned and selects a node for them to run on.
+Scheduler obtains all the information from ETCD.
+Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration Files i.e indirectly from ETCD data store and
+schedules the Pods accordingly.
+
+3.Control Manager :
+-------------------
+Control Manager is the component of the Master that runs different Controllers.we have 
+
+KUBE-CONTROLLER-MANAGER
+CLOUD-CONTROLLER-MANAGER
+
+KUBE-CONTROLLER-MANAGER :
+
+kube-controller-manager runs some monitors that will inform the Master about there is any Node which is failed or not Available
+and can take some necessary actions.
+
+kube-controller-manager has the following Controllers :
+
+Node Controller
+Replication Controller
+Endpoints Controller
+Service Account and Token Controller
+
+These controller will make sure that all the Nodes are working fine.
+It will alos check the correct number of Pods are running as per specification File.
+It will also check the Health of the Cluster.
+All these controllers are seperate process and however to reduce the complexity they are compiled into a single binary and run as a single process.
+
+Node Controller is responsible for monitoring the Nodes and whenever a Node goes down it will send a signal.
+Replication Controller is responsible for maintaining the correct number of Pods as per the configuration specified.
+Endpoint controller is responsible for maintaining all the services and communications.
+Service Accounts and token controllers are responsible for creating Accounts and API access tokens for new namespaces.
+
+All these controllers will run some monitros in loops which will take care of the cluster and it will take the configuration in the desired infra structure.
+whenever there is some mismatch or not as per the configuration it will send the signals and take necessary action and send the communication to required component that will
+take appropriate action.
+
+CLOUD-CONTROLLER-MANAGERS :
+
+when we use the infra structure of a cloud provider all the monitor's that needs to run for intercating with cloud service provider
+or the infra structure of the cloud service provider is done through cloud control manager.
+
+Cloud control Manager has some monitors that interacts with cloud service providers.
+
+NodeController 
+Route Controller
+Service Controller
+Volume Controller
+
+Node Controller responsible for checking with the cloud provider to determine if a Node has been deleted in the Cloud after it stops responding.
+Route Controller is responsible for setting up the routes in underlying cloud infrastructure.
+Service Controller is responsible for creating,updating and deleting cloud provider load balancers.
+Volume Controller is responsible for creating,attaching and mounting volumes and interacting with cloud providers to orchestrate volumes.
+
+All the above Controller's are responsible for managing and maintaining the interaction with the cloud service provider.
+We can disable the controller loops by setting the --cloud--provider flag to external when starting the kube controller manager.
+
+4.ETCD :
+--------
+ETCD is a open source,distributed and key value data store in Kubernetes Cluster.
+ETCD is consistent and highly available key value store used as Kubernetes backing store for all cluster data.
+ETCD is a single source of truth for all the components of the Kubernetes Cluster.
+
+API server is the only component that intercats with ETCD data store.
+ETCD can be the part of Kubernetes Master or can be configured externally.
+
+WORKER NODE :
+
+Worker Nodes can be a Physical or Virtual Machine where Containers are deployed.
+Every Node in Kubernetes Cluster must run a Container Runtime like Docker.
+
+Worker Node has the following Components.
+
+1.kubelet
+2.kubeproxy
+3.Container Runtime
+
+These Components run on every Node and responsible for maintaining the Pods and providing the Kubernetes Runtime Environment.
+
+1.kubelet :
+-----------
+kubelet is an agent or utility running on each Worker Node and is the component that intercats with Master using API Server.
+kubelet gets the information from Pods spec and based on those specifications it makes sure that Containers are running accordingly on the Pods.
+In case if there is any issue with any Pod,kubelet tries to restart the Pod on the same Node or different Node.
+
+Note :
+kubelet does not manage the Containers which are not created by Kubernetes. 
+
+2.kube-proxy :
+--------------
+kube-proxy is the networking component in a Node and it can also intercat with the external world.
+This is the Component or an Agent which is responsible for maintaining the Network Configuration and Rules.
+
+All Node runs the Daemon called kube-proxy which watches the API server on the Master Node,
+So that it can communicate with Master Node using API Server and it gets all the information for addition and removal of Services and Endpoints.
+
+Note :
+API Server component of the Master Node interacts with kube-proxy and kubelet Component of worker Node.
+
+3.Container Runtime :
+---------------------
+Container Runtime is the software that is responsible for running the Containers.
+Most common Container platfrom used in Kubernetes is Docker.
+
+Kubernetes supports several Container Runtimes
+Docker
+Contained
+Cri-o
+Rktlet
+Kubernetes CRI (Container Runtime Interface)
+
+Kubernetes does not have the capabilty to directly handle Containers.
+In order to run and manage a Container's lifecycle,Kubernetes requires a Container Runtime on the Node where a Pod and its Containers are to be scheduled.
+
+We can also have the extended functionality of the Kubernetes like 
+Dashboard
+Monitoring
+Logging
+DNS
+
+***********************************************************  6.Kubernetes How to use  **********************************************************************
+
+We can install and use Kubernetes 
+
+On a Personal Computer and Laptop
+On a Physical/Virtual Machine or Servers
+As a Cloud Service
+
+We can start using Kubernetes even without installing in our system.
+
+
+
+***********************************************************  7.Kubernetes playground ***********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+

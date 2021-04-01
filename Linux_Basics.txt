@@ -1,0 +1,22 @@
+1.Bash vs Shell vs Command Line vs Terminal - Bash Scripting		(Sonar Systems)				[31-MAR-2021]  (Done)
+2.Basic Shell Commands in Linux     								(geeksforgeeks)  			[30-MAR-2021]  ()
+3.Vim Editor in Linux												(tecmint)                   [30-MAR-2021]  ()
+4.Linux Commands  													(tecmint)                   [30-MAR-2021]  ()
+5.Basic Linux/Unix Commands											(guru99)                    [30-MAR-2021]  ()
+6.Frequent UNIX / Linux Commands									(thegeekstuff)              [30-MAR-2021]  ()
+7.Bash Commands														(dev)						[30-MAR-2021]  ()
+8.Bash cheat sheet													(educative)					[30-MAR-2021]  ()
+9.
+
+
+************************************************** 1.Bash vs Shell vs Command Line vs Terminal - Bash Scripting(Sonar Systems)	*************************************************
+
+Terminal is a Text interface to the shell program and can't do anything on it's own apart from giving input to the shell program and displaying output from the shell program.
+Shell is a program that processes commands and returns an Output.
+Terminal runs the Shell.
+
+Bash is a type of Shell program.Bash and Shell are not synonymous.
+
+Command line is just a style of user interface that requires users to type in commands to get the computer to do the stuff 
+as opposed to a graphical user interface where the user clicks.
+
