@@ -20,7 +20,7 @@ Kubernetes is open source and written in GO Language.
 
 Container Management tool manages Containerized Application.
 Container Management tool or Container Orchestration tool automates deploying,scaling and managing containerized application on a group of servers.
-Kubernetes is a Containerized Management tool that manages Containerized Applications i.e Applications available on container platform like Docker.
+Kubernetes is a Container Management tool that manages Containerized Applications i.e Applications available on Container platform like Docker.
 
 Different processes that takes care in the process of Container Management are
 
@@ -29,7 +29,7 @@ Scheduling
 Scaling
 Load Balancing
 
-In an Enterprise Application we use large number of Containers to ensure
+In an Enterprise Application we use large number of Container's and we need to ensure
 
 Deployment or RollOut's
 Availability
@@ -68,12 +68,12 @@ Kubernetes will take care of packaging these jobs(Containers) in bins(Servers) i
 Kubernetes places the Containers based on their resources requirements like CPU & Memory (RAM) while not sacrificing availability by saving Resources.
 
 In Kubernetes we do not interact with the Container directly.
-Containers are wrapped into a Single functional unit called Pods.
+Containers are wrapped into a Single functional unit called Pod.
 Pods can contain a Single Container or Multiple Containers.
 Pods are hosted inside Node.
 
 When we specify a Pod we can optionally specify how much CPU and Memory(RAM) each Container needs.
-When Containers have resource requests specified,the Kubernetes scheduler can make better decission about in which nodes Pods to be placed.
+When Containers have resource requests specified,the Kubernetes scheduler can make better decission about in which Node Pod has to be placed.
 
 2,Service Discovery and Load Balancing :
 ----------------------------------------
@@ -105,20 +105,19 @@ If the Container fails,Kubernetes will take care of restarting the Container.
 If the Node goes down,Kubernetes will replace and reschedule the Pods on the other Available Node.
 Kubernetes has a Monitoring System that will check all the Containers.
 If any Container does not respond to the Monitoring System or the user defined health check,Kubernetes will kill the Container and will take care of availability of the Application.
-The process that takes care of all these steps is Replication Controller.
+The process that takes care of all these steps is called Replication Controller.
 
 ***********************************************************  3.Kubernetes Features Part Two   *********************************************************** 
 
 5.Automated Rollout's and Rollback's :
 --------------------------------------
 Kubernetes can manage Rollout's and Rollback's in an Automated way.
-Whenever we make any changes to the Application or by adding new Features to the Application to deploy is called RollOut.
-Whatever new changes made to the Application and has to revert back is called Rollback.
-Kubernetes ensures there is no down time process during RollOut and Rollback of an Application.
+Whenever we make any changes to the Application  i.e by adding new Features to the Application to deploy is called RollOut.
+Whatever new changes that has been made to the Application and has to revert is called Rollback.
 
-Kubernetes progressively rolls out the changes to the Application or its Configuration.
+Kubernetes progressively rolls out the changes to the Application or its Configuration,
 while monitoring Application Health to ensure that it does not kill all the instances at the same time.
-If something goes wrong Kubernetes will roll back the changes ensure there is no downtime during process.
+If something goes wrong Kubernetes will roll back the changes and ensures there is no downtime during the process.
 
 6.Secret and Configuration Management :
 ---------------------------------------
@@ -126,7 +125,7 @@ In Kubernetes we have two objects i.e Secrets and Config Maps.
 
 Secrets :
 ---------
-In Kubernetes Sensitive Data like passwords,keys,tokens are handled using Secrets.
+In Kubernetes sensitive data like passwords,keys,tokens are handled using Secrets.
 Secrets is a Kubernetes Object created Outside Pods.
 
 Config Maps:
@@ -134,8 +133,8 @@ Config Maps:
 In Kubernetes Configuration is handled using Config Maps.
 Config Maps is a Kubernetes Object created Outside Pods.
 
-Advantage of Secrets and Config Maps is that these are created outside the Pods so that they are Portable and easy to manage.
-Seperates the Sensitive Data and Configuration from the Container.
+Advantage of Secrets and Config Maps is that these are created outside the Pods so that they are portable and easy to manage.
+Seperates the sensitive data and Configuration from the Container.
 It also helps in deploying and updating the Application Configuration without rebuilding the image and without exposing secrets in stack Configuration.
 Secrets and Config Maps are stores in ETCD.
 ETCD is a key value data store or database.
@@ -143,18 +142,18 @@ Max Size limit for Secrets is 1 MB.
 
 7.Batch Execution :
 -------------------
-Batch Jobs requires an executable or a process to be run to its completion.
+Batch Jobs requires an executable or a process to run to its completion.
 In Kubernetes run to completion jobs are primarily used for batch processing.
 Each Job creates one or mode Pods.
 During Job Execution If any Container or Pod fails Job Controller will reschedule the Container,Pods on another Node.
 Batch Job can also run Multiple Pods in paralell and scale up if required.
-Once the Job is completed,the Pods will move from running state to shut down state.
+Once the Job is completed,the Pods will be moved from running state to shut down state.
 Batch execution in Kubernetes supports long running Jobs and replaces failed Containers.
 
 8.Horizontal Scaling :
 ----------------------
 In Kubernetes we can scale up and scale down the Containers.
-scale up means create more Replica's of the Container if required and scale down means kill the Containers if not required.
+scale up means creating more Replica's of the Container if required and scale down means kill the Containers if not required.
 Scale up and Scale down of Containers can be created in multiple ways.
 
 Using Commands
@@ -175,7 +174,7 @@ Replication Controller also called as rc or rcs,ensures that desired number of P
 
 Horizontal Pod Autoscaler will monitor the CPU Utilization with a Custom Metrics and sends the Message to the Replication Controller to set the Number of Pods Required.
 Based on this Replication Controller will maintain the number of Pods.
-There is a Controlle Manager in Horizontal Pod Auto Scaler which loops every 15 Seconds.
+There is a Controller Manager in Horizontal Pod Auto Scaler which loops every 15 Seconds.
 It keeps on Monitoring the CPU Usage and based on those Metrics it will sends the signal to the Replication Controller to maintain the number of Pods.
 
 
@@ -195,7 +194,7 @@ Virtual Machine
 VM on Cloud
 
 Worker Nodes host the Pods that are the Components of the Application.
-Master Nodes manages the worker nodes and Pods in the Cluster.
+Master Nodes manages the Worker Nodes and Pods in the Cluster.
 
 Kubernetes can support Clusters with upto 5000 Nodes.
 Limit of Pods in a Cluster is 1,50,000.
@@ -213,7 +212,7 @@ In a Cluster we can have multiple Worker Nodes and one or many Master Nodes.
 Master Node contorls the Worker Nodes.
 
 Master Node is responsible for Managing the Cluster.
-Master Node monitors and manages the Worker Nodes and Pods in the Cluster.
+Master Node monitors the Worker Nodes and Pods in the Cluster.
 Whenever there is a failure of the Node,it will move the workload to the other working Node.
 Master Node will take care of the overall working of the Kubernetes Cluster.
 
@@ -227,34 +226,38 @@ Master Node has 4 Components
 1.API Serevr :
 --------------
 API Server is responsibele for all the communication on the Kubernetes.
-API Server exposes some API's that user can interact i.e To interact with API Server we use some API's.
-To call the API we use a command line tool called kubectl or UI (Kubernetes Dashboard).
+API Server exposes some API's that a user can interact i.e To interact with API Server we use some API's.
+To call the API Server we use a command line tool called kubectl or UI (Kubernetes Dashboard).
 kubectl is the command line utility to interact with Kubernetes API.
 kubectl is a Go Language Libraray.
 
 2.Scheduler :
 -------------
-Scheduler is a Component that schedules Pods across multiple Nodes.
+Scheduler is a Component that schedules the Pods across multiple Nodes.
 Worker Nodes can be physical Machine or virtual Machine and can have different infrastructure or Hardware Configurations.
 Scheduler knows about these Hardware Configurations of Nodes.
 Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
 
 Scheduler is a component on Master that watches the newly created Pods that have no Node assigned and selects a node for them to run on.
-Scheduler obtains all the information from ETCD.
+Scheduler gets all the information from ETCD. i.e
 Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration Files i.e indirectly from ETCD data store and
 schedules the Pods accordingly.
 
 3.Control Manager :
 -------------------
-Control Manager is the component of the Master that runs different Controllers.we have 
+Control Manager is the component of the Master that runs different monitors.we have 
 
 KUBE-CONTROLLER-MANAGER
 CLOUD-CONTROLLER-MANAGER
 
 KUBE-CONTROLLER-MANAGER :
 
-kube-controller-manager runs some monitors that will inform the Master about there is any Node which is failed or not Available
-and can take some necessary actions.
+kube-controller-manager runs some Controller's that will inform the Master about 
+
+It will check all the Nodes are working fine and is there any Node which is failed or not Available and can take some necessary actions.
+It will check the correct number of Pods are running as per specification.
+It will check the Health status of the Cluster.
+All these controllers are seperate process and however to reduce the complexity they are compiled into a single binary and run as a single process.
 
 kube-controller-manager has the following Controllers :
 
@@ -263,19 +266,13 @@ Replication Controller
 Endpoints Controller
 Service Account and Token Controller
 
-These controller will make sure that all the Nodes are working fine.
-It will alos check the correct number of Pods are running as per specification File.
-It will also check the Health of the Cluster.
-All these controllers are seperate process and however to reduce the complexity they are compiled into a single binary and run as a single process.
-
 Node Controller is responsible for monitoring the Nodes and whenever a Node goes down it will send a signal.
 Replication Controller is responsible for maintaining the correct number of Pods as per the configuration specified.
 Endpoint controller is responsible for maintaining all the services and communications.
 Service Accounts and token controllers are responsible for creating Accounts and API access tokens for new namespaces.
 
-All these controllers will run some monitros in loops which will take care of the cluster and it will take the configuration in the desired infra structure.
-whenever there is some mismatch or not as per the configuration it will send the signals and take necessary action and send the communication to required component that will
-take appropriate action.
+All these controllers will run some monitros in loops which will take care of the cluster and it will get the configuration of the desired infra structure.
+whenever there is some mismatch or not as per the configuration it will send the signals and send the communication to required component that will take appropriate action.
 
 CLOUD-CONTROLLER-MANAGERS :
 

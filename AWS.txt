@@ -1,32 +1,9 @@
-Login with AWS To Set up Linux :
---------------------------------
-1-Open putty
-2.SSH --> Auth --> Add .ppk File(D:/Abhishek/.ppk File)
-3-add .ppk file in ssh auth and connect with ec2-3-6-154-97.ap-south-1.compute.amazonaws.com
-4.Click on Session then add the ec2-3-6-154-97.ap-south-1.compute.amazonaws.com
-login - ec2-user
-then 
-     su kubernetes
-pwd- kube123#
-
-cd ~  or cd /home/kubernetes
-
-
-Technologies :
---------------
-Java 
-Database (MySql)  --> Server 
-Maven
-Docker
-Kubernetes
-ngiNix
-Tomact
-
-
-1.AWS Introduction   (thedevcoach)  					[30-DEC-2020]  ()
-2.AWS Introduction   (Guru99)							[30-DEC-2020]  ()
-3.AWS Basics		 (SimpliLearn Video)				[30-DEC-2020]  ()
-4.AWS Services 		 (AWS Training Center Video)  		[30-DEC-2020]  ()
+1.AWS Introduction   			(thedevcoach)  						[30-DEC-2020]  ()
+2.AWS Introduction   			(Guru99)							[30-DEC-2020]  ()
+3.AWS Basics		 			(SimpliLearn Video)					[30-DEC-2020]  ()
+4.AWS Services 		 			(AWS Training Center Video)  		[30-DEC-2020]  ()
+5.AWS Introduction	 			(Online Tutorials)					[01-MAR-2021]  (Done)
+6.AWS CLI Setup   	 			(Online Tutorials)                  [22-MAR-2021]  ()
 
 
 *************************************************************************  1.AWS Introduction (thedevcoach) ***************************************************************
@@ -150,7 +127,151 @@ It is a service that allows us to run functions in the cloud.It is a big cost sa
 
 
 
+********************************************************************* 5.AWS Introduction (Online Tutorials) ***********************************************************
 
+Whenever we get a new project from any Organization,
+we need to understand the requirement,How long it will take to develop the specific Application and requirements to implement the Application.
+
+
+					Application
+					Runtimes
+					Security and Integration
+					Databases
+					Servers
+					Virtualization
+					Server Hardware
+					Storage
+					Networking
+
+Once the Application is finalized we need to get 
+
+How much Storage devices are required
+How much Server Hardware is required 
+Networking devices required to connect the Server Hardware
+
+we need to connect all the three i.e Storage,Server and Network Devices.
+Finally we need a Network Admin who will create a Virtualization Layer on top of these Hardwares.
+Virtualization helps in providing different kind of systems on the same server.
+Here we can have both Linux Machine as well as Windows Machine on the Same Server.
+Once the Virtualization is completed Architect comes into the picture and he will create a Server based on his requirement on the virtual machine.
+Architect will also design the database.
+Once the Server and Database are designed by the Architect,Developer will start implementing the Application and run those Applications.
+Security Engineer will ensure all of them are tightly integrated and secured from any Attacks.
+This is how the traditional IT Company works till now.
+
+Once the Cloud came into the picture,solution is divided into 3 parts.
+
+Infrastructure as a Service
+Platform as a Service
+Software as a Service
+
+In case of Infrastructure as Service we do not worry about setting up the 
+Hardware Components,
+Networking Components 
+Storage Components 
+Virtualization etc.
+Here we are asking the Cloud vendor to provide the Linux Server with some configuration.
+It is best suitable for the Solution Architects that helps in saving the cost.
+
+In case of Software as a Service we directly use the Application.
+Example are GoogleDrive,Gmail,Apps on Android etc.
+It is best suitable for the End Users.
+
+In case of Platform as a Service we only need to implement the Application.
+If we want to implement a Java Application we need a Linux Server with Java installed on it.
+It is best suitable for the Application Developers.
+
+Difference between Traditional Infrastructure and AWS Services :
+----------------------------------------------------------------
+Whenever we are going to get any project,Company purchases lot of Servers,Racks and storage devices like DAS,SAN,NAS,RDBMS etc.
+All of these are interconnected using Router,Pipelines,switches etc.by the Administrator.
+Administrator is going to provide the Firewall and security for the complete Infrastructure.
+
+Compared to On Premise Servers we also have Servers in the AWS Cloud.
+AWS has a ready image i.e AMI(AMazon Machine Image) for Windows OS,Linux OS etc.
+Pick up the ready image and start the EC2 instance (Elastic Compute Cloud).EC2 is also called as virtual machine.
+
+
+In Traditional Networking Architecture we have Routers,Pipelines,Switches that connects with the Servers,Storage Devices and Databases etc.
+In Case of AWS we have Load Balancers that directly connects to the Virtual Servers and it balances the complete Load.
+How much traffic can flow to each virtual server is decided by Load Balancer.
+
+We can also create our own VPC(Virtual Private Cloud) in which we can connect all the devices i.e servers,databases etc.
+We can also create our own Security Groups,NACL's(Networl Access Control List).
+Whatever Network we are going to build we are going to secure with Security Groups and NACL's.
+
+In case of Traditional Architeture we have Network Administrators who are going to provide priviliges.
+In case of AWS we have to use IAM Services to provide the Access rights.
+
+For the traditional Sequential Databases we have AWS RDS Service.
+For Storage of File system like images,static Files etc we have AWS S3(Simple Storage Service).
+To spin up the OS,Store,install and run the Software we have AWS EBS(Elastic Block Store).
+
+We have Elastic File System that automatically grows and shrinks.He are we are going to pay for the data that we are using.
+
+Advantages of AWS Cloud Computing :
+-----------------------------------
+Trade Capital expense for variable expense.
+Benefits from Massive economies of sale.
+Stop guessing about capacity.
+Increase speed and agility.
+Stop spending money on running and maintaining Data Center.
+Go Global in Minutes.
+
+AWS Platform :
+--------------
+AWS Global Infrastructure
+Networking
+
+Compute 
+Storage
+Database
+Security and Identity
+
+AWS Global Infrastructue is about 2 things i.e Regions and Availablity Zones.
+Region is nothing but Geographic Location and it consists of atleast 2 Availablity Zones.
+Availablity Zone is nothing but cluster of Data Centers and is isolted from failures in other Availablity Zones.
+All the Availablity Zones are inter connected with each other.
+
+In case of Networking,
+How to set up our own private Cloud
+How to Host websites usiing Route 53
+How we can get a Direct Connect with AWS Cloud Platform by bypassing the Internet.
+
+In Case of Compute,
+EC2 i.e Virtual Machine
+
+In Case of Storage we have
+S3
+EFS
+Cloud Front
+Glacier
+Storage Gateway
+
+In Case of Databases we have
+RDS
+RedShift
+DynamoDB
+ElasticCache
+DMS (Database Migration Service)
+
+Public Cloud :
+Here Infrastructure is provided by the Cloud Vendor.
+
+Private Cloud :
+For a long time we have been into the private Cloud Model.
+Here Organizations built their own data centers inside the Building.
+Application Built here is used only within the Organization.
+
+Hybrid Cloud :
+It is combination of both private Cloud and Public Cloud.
+
+
+AWS Account :
+-------------
+
+
+********************************************************************* 6.AWS CLI Setup (Online Tutorials) ************************************************************* 
 
 
 

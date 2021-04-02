@@ -1,0 +1,46 @@
+1.IAM Roles and Policies                               [22-MAR-2021]  ()
+2.IAM user Roles with EC2 CLI                          [22-MAR-2021]  ()
+
+*********************************************************************  1.IAM Roles and Policies   ******************************************************************
+
+IAM is a part of Security.
+Consider the scenario we have created an Account for AWS in a Company and have to do the complete Set up.
+First thing we are going to look into is IAM.
+This is the place we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
+IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
+
+Advantages of IAM :
+-------------------
+1.Centralized control of AWS Account.
+2.Shared Access for AWS Account (Multiple Administrators)
+3.Granular Permissions (Until what level user can have the specific Access.We can also defind the specific documnet)
+4.Identity Federation
+If the company got more than 1000 users it is difficult to add each user in IAM section.
+Here we can integrate with the Active Dircetory so that all the  users can use the userId and password of the company itself.
+We can also do the Identity Federation with Facebook and LinkedIn.
+5. MultiFactor Authentication (Two Level Authentication)
+6.Provide Temporary Accss for users/devices and services wherever necessary
+As a Company we might get the requirent that we can hire some third party Engineer to resolve the issue.
+Here he willget the Temporary access until the work is done.
+7.Allows us to set up our own password rotation policy.
+Password should be case sensitive,Atleast contain one Capital Letter etc.
+8.Intergrates with many different AWS Services 
+9.Supports PCI DSS Compliance
+
+Terms in IAM :
+--------------
+Users
+Groups
+Roles
+Policies
+
+Users : End user who is going to access the AWS Cloud console.
+Groups : Collection of users under one set of permissions.
+Roles : We can create Roles and assign them to AWS Resources.
+Gropus can be assigned to the users where as Roles can be assigned to the services.
+Policies : It is a document that defines one or more permissions.
+what kind of permission that a specific User will have,Group will have,Role will have.
+Policies i.e permission document can be attached to User,Group,Role.
+
+Consider the scenario where in EC2 we will launch virtual servers and in S3 is a Storage.
+If EC2 wants to communicate with S3 in a secured way,provide the Role to EC2.
