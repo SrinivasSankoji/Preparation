@@ -160,9 +160,49 @@ Open the Command Prompt
 https://phoenixnap.com/kb/install-minikube-on-ubuntu	
 
 	minikube config set vm-driver virtualbox
-	
+
+To start and stop the minkube we use the command
+
 	minikube delete
 	minikube start
+	
+Mangage Kubernetes with Minkube :
+---------------------------------
+To see the kubectl Configuration we use the command
+
+	kubectl config view
+	
+To show the cluster information, we use the command
+
+	kubectl cluster-info
+	
+To check the running nodes,we use the command
+
+	kubectl get nodes
+	
+To see the list of all minikube pods,we use the command
+
+	kubectl get pod
+	
+To ssh into the minikube
+
+	minikube ssh
+	
+To exit out of the shell,we use the command
+
+	exit
+	
+To check the status of the Single Node Cluster
+
+	minikube status
+	
+To stop running the Single Node Cluster
+
+	minikube stop
+	
+To see the list of all the minikube addons,we use the command
+
+	minikube addons list
 	
 
 
