@@ -76,7 +76,7 @@ All these system Pods runs in a namespace called kube-system.
 
 If we are deploying Kubernetes as a Hardware,download the binary and run the kube API Server as a Service.
 Configuration will be in the ETCD  and can view the Configuration in the ETCD service filename.
-To see the configuration of the Pod,we use the command
+To see the configuration of the API Server Pod,we use the command
 
 	kubectl describe pod kube-apiserver-minikube -n kube-system
 
@@ -88,7 +88,7 @@ If we want to see the response in Json format
 
 ETCD is the single source of truth for all the components of the Kubernetes System.
 ETCD actually stores everything that is happening in the Kubernetes Cluster i.e Pod Creation,Adding Node,Any Deployment etc.
-When we do migration in Kubernetes ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
+When we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
 
 ETCD is open source,distributed key value data store.
 ETCD has consistent Read and Write i.e Any data which we write that is immideately for Read.
@@ -101,11 +101,26 @@ If we set up the Kubernetes cluster from scratch,we can isolate ETCD cluster by 
 Then advertise the address to the Kubernetes Cluster.
 If we set up the Kubernetes cluster using kubeadm,kubeadm deploys all of them as Pods.
 
-Practice the Example :
-----------------------
+To see all the Pods in the Kubernetes system,we use the command
 
+	kubectl get pods --n kube-system
 
+To see all the COnfigurations in the ETCD Pod we use the command
 
+	kubectl describe pod etcd-minikube -n kube-system
+
+If we run the ETCD as binary or external cluster then we will be able to see the ETCD as Service and runs on port 2379.
+All the configuration information will go inside the system d service file.
+
+To intercat with ETCD Cluster or ETCD Node which is deployed by the minikube local system
+
+	kubectl exec etcd-minikube -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl --endpoints https// --cacert --key --cert get / -prefix --keys-only"
+
+To insert the data into the ETCD
+
+	kubectl exec etcd-minikube -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl --endpoints https// --cacert --key --cert put name bhaumik"
+
+	kubectl exec etcd-minikube -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl --endpoints https// --cacert --key --cert get name"
 
 
 ************************************************************* 6.Kube Controller Manager and Scheduler  ************************************************************
