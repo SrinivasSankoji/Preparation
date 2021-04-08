@@ -161,7 +161,20 @@ If we want to deploy a Pod which requires 2GB of Memory.
 Here Scheduler filters all the worker Nodes and  gets the suitable Nodes.
 Scheduler then scores the Nodes based on the available resources and places the Pod into the Node which has the highest score.
 
+To get the Pods in the kube-system namespace,we use the command
 
+	kubectl get pods -n kube-system
+
+To describe the configuration of the controller manager
+
+	kubectl describe pod kube-controller-manager-minikube -n kube-system
+
+To describe the configuration of the Scheduler
+
+	kubectl describe pod kube-scheduler-minikube -n kube-system
+
+Note :
+We can also create custome scheduler whenwe craete the Pod.
 
 
 ************************************************************* 7.Pods  **************************************************************************************************
