@@ -181,7 +181,7 @@ It keeps on Monitoring the CPU Usage and based on those Metrics it will sends th
 ***********************************************************  4.Kubernetes Architecture Part One  ***********************************************************  
 
 In an Organization we have a Manager,Manager manages the Team Members and together they form the Team.
-In Kubernetes we have a Master and Worker Nodes together they form a Cluster.
+In Kubernetes we have a Master and Worker Node together they form a Cluster.
 When we set up Kubernetes we get a Cluster and Cluster is a Set of Machines called Nodes.
 A Cluster has atleast one worker Node and atleast one Master Node to form a Cluster.
 There can be more than one Master Node in a Cluster to provide a Cluster with fail over and high availability.
@@ -194,7 +194,9 @@ Virtual Machine
 VM on Cloud
 
 Worker Nodes host the Pods that are the Components of the Application.
-Master Nodes manages the Worker Nodes and Pods in the Cluster.
+Master Node is responsible for monitoring and managing the worker Nodes in the Cluster.
+Whenever there is a failure of the Worker Node,it will move the workload to the other Worker Node.
+Master Node will take care of the overall working of the Kubernetes Cluster.
 
 Kubernetes can support Clusters with upto 5000 Nodes.
 Limit of Pods in a Cluster is 1,50,000.
@@ -203,19 +205,6 @@ For a Single Node there cannot be more than 100 Pods.
 
 
 ***********************************************************  5.Kubernetes Architecture Part Two  *********************************************************** 
-
-When we Set up Kubernetes we get a Cluster.
-Cluster has a Master and Worker Node.
-In a Worker Node there may be one or More Pods.
-Inside Pods there may be one or More Containers.
-In a Cluster we can have multiple Worker Nodes and one or many Master Nodes.
-Master Node contorls the Worker Nodes.
-
-Master Node is responsible for Managing the Cluster.
-Master Node monitors the Worker Nodes and Pods in the Cluster.
-Whenever there is a failure of the Node,it will move the workload to the other working Node.
-Master Node will take care of the overall working of the Kubernetes Cluster.
-
 Master Node has 4 Components 
 
 1.API Server
@@ -227,21 +216,17 @@ Master Node has 4 Components
 --------------
 API Server is responsibele for all the communication on the Kubernetes.
 API Server exposes some API's that a user can interact i.e To interact with API Server we use some API's.
-To call the API Server we use a command line tool called kubectl or UI (Kubernetes Dashboard).
-kubectl is the command line utility to interact with Kubernetes API.
+To call the API Server we use a command line tool called kubectl or Kubernetes Dashboard.
 kubectl is a Go Language Libraray.
+
 
 2.Scheduler :
 -------------
-Scheduler is a Component that schedules the Pods across multiple Nodes.
+Scheduler is a Component of Master that schedules the Pods across multiple Worker Nodes i.e
+Scheduler watches the newly created Pods that have no Node assigned and selects a Node for them to run on.
 Worker Nodes can be physical Machine or virtual Machine and can have different infrastructure or Hardware Configurations.
-Scheduler knows about these Hardware Configurations of Nodes.
+Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration files i.e indirectly from ETCD data store.
 Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
-
-Scheduler is a component on Master that watches the newly created Pods that have no Node assigned and selects a node for them to run on.
-Scheduler gets all the information from ETCD. i.e
-Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration Files i.e indirectly from ETCD data store and
-schedules the Pods accordingly.
 
 3.Control Manager :
 -------------------
@@ -254,9 +239,9 @@ KUBE-CONTROLLER-MANAGER :
 
 kube-controller-manager runs some Controller's that will inform the Master about 
 
+It will check the Health status of the Cluster.
 It will check all the Nodes are working fine and is there any Node which is failed or not Available and can take some necessary actions.
 It will check the correct number of Pods are running as per specification.
-It will check the Health status of the Cluster.
 All these controllers are seperate process and however to reduce the complexity they are compiled into a single binary and run as a single process.
 
 kube-controller-manager has the following Controllers :
@@ -318,7 +303,7 @@ These Components run on every Node and responsible for maintaining the Pods and 
 
 1.kubelet :
 -----------
-kubelet is an agent or utility running on each Worker Node and is the component that intercats with Master using API Server.
+kubelet is an agent or utility that runs on each Worker Node and is the Component that intercats with Master using API Server.
 kubelet gets the information from Pods spec and based on those specifications it makes sure that Containers are running accordingly on the Pods.
 In case if there is any issue with any Pod,kubelet tries to restart the Pod on the same Node or different Node.
 

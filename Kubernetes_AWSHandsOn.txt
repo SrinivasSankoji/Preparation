@@ -32,18 +32,18 @@
 
 *************************************************************  3.Kube API Server  ***********************************************************************************
 
-kube API Server is the primary management componenet that we intercat with.
+API Server is the primary management componenet that we intercat with.
 When we run the kubectl command,we are actually intercating with API Serevr.
 API Server exposes the kubernetes API.
-we can also intercat with API server using Curl Request.
+we can also intercat with API server using curl Request.
 
-Consider the Scenario of creating a Pod and the Steps are 
+Consider the scenario of creating a Pod and the Steps are 
 
 create the yml file
 apply
 
 Here request goes to the API Server and creates the Pod object and updates the ETCD and shows the user that Pod object is created.
-The Scheduler which is running in the Kubernetes Cluster is continuously monitors the API Server for the New Objects.
+The Scheduler which is running in the Kubernetes Cluster continuously monitors the API Server for the New Objects.
 When the scheduler finds the new object has created,It looks for the Node where the Pod has to be placed.
 
 Scheduler comes with the information of the available Node and then transfers the information to the API Server.
