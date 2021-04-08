@@ -162,8 +162,6 @@ Here Scheduler filters all the worker Nodes and  gets the suitable Nodes.
 Scheduler then scores the Nodes based on the available resources and places the Pod into the Node which has the highest score.
 
 
-Practice the Example :
-----------------------
 
 
 ************************************************************* 7.Pods  **************************************************************************************************

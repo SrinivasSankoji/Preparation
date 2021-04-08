@@ -1,31 +1,27 @@
 1.Installing Git on Windows 													[11-06-2019]			(Done)
-2.Branching and Merging 														[11-06-2019]			(Done)
+2.Branching and Merging (Raghav Pal)											[11-06-2019]			(Done)
 3.Adding Project to GitHub 														[12-06-2019]			(Done)
 4.Import a Project form GitHub Using Eclipse									[12-06-2019]			(Done)
-5.Add Existing Project on GitHUb Using GitBash 									[12-06-2019]			(Done)
+5.Add Existing Project on GitHub Using GitBash 									[12-06-2019]			(Done)
 6.Undoing/Reverting/Resetting  Code  											[13-06-2019]			(Done)
 7.HEAD 																			[22-03-2021]			()
 8.gitIgnoreFile 																[13-06-2019]			(Done)
 9.Difference and Merge Using Meld   											[13-06-2019]			(Done) 
 10.GitHub 																		[22-03-2021]			()
 11.Pull Request 																[22-03-2021]			()
-12.Git MERGE vs REBASE 															[22-03-2021]            ()
+12.Git MERGE vs REBASE 	(Raghav Pal)											[22-03-2021]            ()
 13.Stash Command 																[22-03-2021]            ()
 14.Resolve Merge Conflicts in GIT Using EGIT									[22-03-2021]            ()
 15.GIT Merge Tool 																[15-06-2019]			(Done)
 16.Remote Git Server and Merging 												[22-03-2021]			()
-17.Git Tags -- What,why,when and How 											[22-03-2021]            ()
-18.Introduction and Basics  (academind.com)										[22-03-2021]            ()
-19.Adding a Project, Creating Feature Branch, Merging With Master  (ChargeAhead)[22-03-2021]            ()
-20.Stash Command (academind.com)												[22-03-2021]            ()
-21.Merge vs ReBase (academind.com)												[22-03-2021]            ()
+17.Git Tags -- What,why,when and How 	(Raghav Pal)							[22-03-2021]            ()
 22.Pull Request 																[22-03-2021]            ()
 23.Merge Form One Branch to Another Branch										[22-03-2021]            ()
 24.Compare Local Repository With Git Hub Repository								[22-03-2021]            ()
 25.Check out To Previous Version												[22-03-2021]            ()
 26.Creating a Spring Boot Project and add it to Git Hub in Multiple Ways		[22-03-2021]            ()
-27.Git and GitHub Introduction and Why to Use Git								[22-03-2021]            ()
-28.Sending Email from GitHub													[22-03-2021]            ()
+27.Git and GitHub Introduction and Why to Use Git (Raghav Pal)					[22-03-2021]            ()
+28.Sending Email from GitHub	(Raghav Pal)									[22-03-2021]            ()
 
 
 *************************************  Scenarios  **************************************************************
@@ -138,8 +134,7 @@ git checkout "Branch Name"
 
 git branch "Branch Name" and enter the command  : git status
 Still we are pointing to the Master Branch,and if wee want to work on the newly created branch 
-we need to check out and we use the Command git checkout "Branch Name"
-it will not reflect in the Git Hub.
+we need to check out and we use the Command git checkout "Branch Name" it will not reflect in the Git Hub.
 Add new File in The Folder test2.text and To Add a Text File in the Git Bash 
 use the command : touch  test3.txt
 
