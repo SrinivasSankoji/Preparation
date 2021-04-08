@@ -32,9 +32,9 @@
 
 *************************************************************  3.Kube API Server  ***********************************************************************************
 
-API Server is the primary management componenet that we intercat with.
+API Server is the primary componenet that we intercat with,in the Kubernetes.
 When we run the kubectl command,we are actually intercating with API Serevr.
-API Server exposes the kubernetes API.
+API Server exposes some API that the user can interact with.
 we can also intercat with API server using curl Request.
 
 Consider the scenario of creating a Pod and the Steps are 
@@ -44,13 +44,13 @@ apply
 
 Here request goes to the API Server and creates the Pod object and updates the ETCD and shows the user that Pod object is created.
 The Scheduler which is running in the Kubernetes Cluster continuously monitors the API Server for the New Objects.
-When the scheduler finds the new object has created,It looks for the Node where the Pod has to be placed.
+Whenever Scheduler finds the new Pod object has created,It looks for the Node where the Pod has to be placed.
 
 Scheduler comes with the information of the available Node and then transfers the information to the API Server.
 API Server again updates the ETCD Node with the Node information.
 API Server then sends the information to the kubelet which is running on the worker Node.
 kubelet gets the Node information from the API Server and communicates with the Container Runtime to create the Pod.
-Container Runtime actually creates the Pod and updates the kubelet and the kubelet then updates the API Server that the Pod has created.
+Container Runtime actually creates the Pod and updates the kubelet and then kubelet then updates the API Server that the Pod has created.
 API Server then updates the ETCD about the Pod creation.
 
 ETCD is the place where we have complete information about the Cluster.
@@ -68,12 +68,11 @@ Practice the Example :
 
 *************************************************************  4.ETCD in Kubernetes  ******************************************************************************
 
-ETCD is the brain of the Kubernetes System.
-ETCD actually stores everything (Pod Creation,Adding Node,Any Deployment etc ) that is happening in the Kubernetes Cluster.
-When we do some migrations in Kubernetes ETCD is the most importnat Component.
-If we loose the ETCD cluster,we actually loose the data.
+ETCD is the single source of truth for all the components of the Kubernetes System.
+ETCD actually stores everything that is happening in the Kubernetes Cluster i.e Pod Creation,Adding Node,Any Deployment etc.
+When we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
 
-ETCD is a key value data store.
+ETCD is open source,distributed key value data store.
 ETCD has consistent Read and Write i.e Any data which we write that is immideately for Read.
 ETCD is highly available because data is replicated in all the Nodes.
 when we deploy Kubernetes in a production Environment,we normally see the ETCD as external Component and not deployed along with the Kubernetes Cluster.

@@ -281,8 +281,8 @@ We can disable the controller loops by setting the --cloud--provider flag to ext
 
 4.ETCD :
 --------
-ETCD is a open source,distributed and key value data store in Kubernetes Cluster.
-ETCD is consistent and highly available key value store used as Kubernetes backing store for all cluster data.
+ETCD is a open source,distributed key value data store in Kubernetes Cluster.
+ETCD is consistent and highly available key value data store used to store for all cluster data in the Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
 
 API server is the only component that intercats with ETCD data store.
@@ -299,12 +299,12 @@ Worker Node has the following Components.
 2.kubeproxy
 3.Container Runtime
 
-These Components run on every Node and responsible for maintaining the Pods and providing the Kubernetes Runtime Environment.
+These Components run on every Worker Node and responsible for maintaining the Pods and providing the Kubernetes Runtime Environment.
 
 1.kubelet :
 -----------
 kubelet is an agent or utility that runs on each Worker Node and is the Component that intercats with Master using API Server.
-kubelet gets the information from Pods spec and based on those specifications it makes sure that Containers are running accordingly on the Pods.
+kubelet gets the information from Pods specification and based on those specifications it makes sure that Containers are running accordingly on the Pods.
 In case if there is any issue with any Pod,kubelet tries to restart the Pod on the same Node or different Node.
 
 Note :
