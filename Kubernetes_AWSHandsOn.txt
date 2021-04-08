@@ -1,5 +1,5 @@
 1.Introduction												[28-MAR-2021]  ()
-2.Setup MiniKube                                            [28-MAR-2021]  ()
+2.Setup MiniKube                                            [31-MAR-2021]  (Done)
 3.Kube API Server                                           [31-MAR-2021]  (Done)
 4.ETCD in Kubernetes                                        [01-APR-2021]  (Done)
 5.Kubernetes Certified Exam                                 [01-APR-2021]  ()
@@ -59,18 +59,36 @@ If we install the Kubernetes as Hardware,download the binary and provision the k
 If we install the Kubernetes using the kubeadm,kubadm actually runs the API Server as Pod.
 When we switch to the console we can actually see how the API Server is running as Pod and we can see all the Configuration details.
 
-Practice the Example :
-----------------------
+To get all the Nodes in the Cluster,we use the command
 
+	kubectl get nodes
 
+To get all the Pods in the Cluster,we use the command
 
+	kubectl get pods
 
+Here no Pods are running as of now.
+minikube actually uses the kubeadmin to deploy the Kubernetes cluster.
+But we are not able to see all the Kubernetes Components as Pods because all these Pods are deployed in different Namespaces.
+All these system Pods runs in a namespace called kube-system.
+
+	kubectl get pods --namespace kube-system (or) kubectl get pods --n kube-system
+
+If we are deploying Kubernetes as a Hardware,download the binary and run the kube API Server as a Service.
+Configuration will be in the ETCD  and can view the Configuration in the ETCD service filename.
+To see the configuration of the Pod,we use the command
+
+	kubectl describe pod kube-apiserver-minikube -n kube-system
+
+If we want to see the response in Json format
+
+	kubectl get pods -o json
 
 *************************************************************  4.ETCD in Kubernetes  ******************************************************************************
 
 ETCD is the single source of truth for all the components of the Kubernetes System.
 ETCD actually stores everything that is happening in the Kubernetes Cluster i.e Pod Creation,Adding Node,Any Deployment etc.
-When we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
+When we do migration in Kubernetes ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
 
 ETCD is open source,distributed key value data store.
 ETCD has consistent Read and Write i.e Any data which we write that is immideately for Read.
@@ -101,6 +119,7 @@ If we set up the Kubernetes cluster from scratch,download the binary from Kubern
 If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as Pod.
 
 we have different Controller in the Controller Manager.
+
 Replication Controller ensures the number of Pods are running as per the Configuration.
 Replication Controller keeps monitoring the API Server fro any changes.
 When particular Pod goes down,kubelet shares the information to the API Server which then shares the information to the ETCD.
