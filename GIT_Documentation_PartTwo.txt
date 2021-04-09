@@ -24,7 +24,7 @@
 28.Sending Email from GitHub	(Raghav Pal)									[22-03-2021]            ()
 
 
-*************************************  Scenarios  **************************************************************
+******************************************************  Scenarios  *****************************************************************************
 
 Copying a GitHub Repository to Your Local Computer : We use the Command  : git clone "Repository URL" [Done]
 adding Project to GitHub [Done]
@@ -43,17 +43,15 @@ Pull Request Scenarios :
 Sub Branch to Main Branch
 Branch to Branch
 
+**********************************  Removing Files and Directories ****************************************************************************
 
-
-
-**********************************  Removing Files and Directories *******************************************************************
-
-To delete the file in GitHub we use the Command 
+To delete the file in GitHub we use the below Command and after this run the commit and push Commands.
 
 	git rm "FileName" 
 	
-and after this run the commit and push Commands.
-To remove The Directory we use the Command : git rm -r "DirectoryName" and After this run the Commit and push Commands.
+To delete the Directory we use the below Command and after this run the Commit and push Commands.
+
+	git rm -r "DirectoryName" 
 
 To check the remote origin we use the Command 
 
@@ -63,43 +61,76 @@ If the remote is not added then we use the command
 	
 	git remote add -origin "Remote Repository URL"
 			
-**********************************  Installing Git on Windows  *************************************************
+******************************************************  1.Installing Git on Windows  ***********************************************************
 
-1. Check If Git is already Installed
-2.Download And Install Git
+1.Check If Git is already Installed
+2.Download and Install Git
 3.Add the Project to Git
-4.To add user name and Password of Git Hub use the Below Commands :
+4.To add user name and Password of GitHub use the below Commands
 
 git config --global user.email srinivaschary.chary@gmail.com/SrinivasSankoji/Test
 git config --global user.name srinivassankoji   
    
 5 .Commands :  
-git init to initialize Check in Folder and Files	
-git add  to add the file to the GIT(Created Folder)
-git status to check the status of the File
-git commit -m ""   to commit the Code in Git
+git init 						To initialize Check in Folder and Files	
+git add  						To add the file to the GIT(Created Folder)
+git status 						To check the status of the File
+git commit -m "Message"   		To commit the Code in Git
 git remote add origin https://github.com/SrinivasSankoji/Test.git
 git push -u origin master
    
 git log
 git --help
 			    
-Down Load and Install GIT :
-***************************
-
+Download and Install GIT :
+**************************
 Use The Middle Option 
 Use Windows Default Console Windows 
-To Check Whether The Git is Installed or Not  
+To Check Whether the Git is Installed or Not  
 git --version 
 
-Add Folder/Project to The Git :
--------------------------------
+
+*************************************************** 2.Branching and Merging ******************************************************
+
+To Create a Branch use the Command : 
+------------------------------------
+
+git branch "Branch Name" 
+git checkout "Branch Name"
+
+git branch "Branch Name" and enter the command  : git status
+Still we are pointing to the Master Branch,and if we want to work on the newly created branch we need to check out and we use the Command 
+
+	git checkout "Branch Name" 
+
+It will not reflect in the GitHub.
+Add new file in the folder test2.txt and to add a Text File in the Git Bash 
+use the command : touch  test3.txt
+
+Merging the Branch :
+--------------------
+git merger "BranchName"
+
+To merge a new Branch in Master Branch we use the Command git merger "BranchName"
+Note : When we are Merging to Master Branch we need to check out the Master Branch and Merge the newly created Branch
+Then run the Command Commit and Push to reflect it in GitHub.
+
+Deleting the Branch :
+---------------------
+git branch -d  "Branch Name"
+git push origin --delete "BranchName"
+
+To delete the Branch we use the Command git branch -d  "Branch Name" It will delete the Branch locally and not in Git Hub.
+To delete the Branch form Git Hub we use the Command git push origin --delete "BranchName"
+
+*************************************************** 3.Adding Project to The GitHub ***************************************************
+
 create a Folder
 open the Folder and in the Address bar enter cmd.
-It will Open the Command Prompt with That Folder
+It will Open the Command Prompt with that Folder
 Enter the Command git init and It will create a folder .git
 Our Git is Tracking this Folder.
-Now Enter The Command git status Then it will show the Message Nothing to Commit
+Now Enter The Command git status Then it will show the Message nothing to Commit
 To Add a Text File in the Command Prompt 
 dir > test1.txt
 And run the Command git status it will show the Untracked Files
@@ -117,7 +148,7 @@ Still it will not show our changes in Git Hub.
 We need to push using the Command : git push -u origin master
 Here master is the Name of the Branch and we can use any other Branch.
 		
-******************************** Copying a GitHub Repository to Your Local Computer  and From Eclipse ***************************
+************************************************ 4.Import a Project form GitHub Using Eclipse ****************************************
 
 Reference URL --> https://www.youtube.com/watch?v=O72FWNeO-xY
 We use the Command  : git clone "Repository URL"	
@@ -128,46 +159,11 @@ Project Explorer.
 
 Generate the SSH Key from GitBash using the Command available in GitLab.
 		
-********************************  Branching and Merging *******************************************************
-
-To Create a Branch use the Command : 
-------------------------------------
-
-git branch "Branch Name" 
-git checkout "Branch Name"
-
-git branch "Branch Name" and enter the command  : git status
-Still we are pointing to the Master Branch,and if wee want to work on the newly created branch 
-we need to check out and we use the Command git checkout "Branch Name" it will not reflect in the Git Hub.
-Add new File in The Folder test2.text and To Add a Text File in the Git Bash 
-use the command : touch  test3.txt
-
-Merging the Branch :
---------------------
-git merger "BranchName"
-
-To merge a new Branch in Master Branch we use the Command git merger "BranchName"
-Note : When we are Merging to Master Branch we need to check out the Master Branch and Merge the Branch
-Then run the Command Commit and Push to reflect it in GitHub.
-
-Deleting the Branch :
----------------------
-git branch -d  "Branch Name"
-git push origin --delete "BranchName"
-
-To delete the Branch we use the Command git branch -d  "Branch Name"
-It will delete the Branch locally and not in Git Hub.
-To delete the Branch form Git Hub we use the Command
-git push origin --delete "BranchName"
-
-********************************  Adding Project to GitHub  *******************************************************
-
 Steps :  How to Create a GitHub Repository
 		 How to Clone Repository In Eclipse
 		 How to add Eclipse Project to GitHub Repository
 		 How to Commit ,Push and Pull The Changes
-		 
-		 
+		  
 Creating a GitHub Repository :
 ------------------------------
 Create an Account in GitHub
@@ -191,7 +187,7 @@ here we will get all the Options once we Clone the Repository
 Before that Add the User in GitHub
 Right Click --> import -> Existing Maven Project from SCM -->  Choose the WorkSpace --> Install.
 		
-********************  Add Existing Project on GitHUb Using GitBash *************************************
+*************************************************  5.Add Existing Project on GitHub Using GitBash  ***********************************************************
 Copy The Repository URL from the GitHub.
 Open The GitBash Command in the Project Folder and 
 
@@ -202,7 +198,7 @@ git commit -m "Message"
 git remote add origin https://github.com/SrinivasSankoji/GitDemo.git
 
 
-********************* Undoing/Reverting/Resetting *************************************
+************************************************ 6.Undoing/Reverting/Resetting *********************************************************************************
 
 Undoing Uncommitted Changes :
 -----------------------------
@@ -255,11 +251,11 @@ If i want to go back to the Particular History we use the Command Reset
 i.e  git reset --hard CommittedId
 
 
-*********************  HEAD in GIT  *************************************
+******************************************************* 7.HEAD in GIT  ******************************************************************************************
 
 
 
-*********************  GIT IGNORE  *************************************
+******************************************************* 8.GIT IGNORE  *******************************************************************************************
 
 When we run the Command git status in the Git Folder,It Shows all the Files that has not been committed.
 If we want to igonore some of the Files in the Git Foldder we use the command 
@@ -275,7 +271,7 @@ we don't see the file again..
 If we want to ignore particular file then add the file in .gitignore
 We can also ignore the Files with Extension by adding *.exe in the >gitignore File 
 
-*********************  Diff and Merge using Meld  Tool in GIT *************************************
+******************************************************  9.Diff and Merge using Meld  Tool in GIT *******************************************************************
 
 To see the Difference between local file and GitHUb File we use the Command : git difftool origin/master i.e 
 git difftool shows the changes between UnCommitted Code in the Local Changes and the Head(GitHub).
@@ -321,16 +317,15 @@ Then it will show the Merge Conflicts
 To run the merge tool we use the Command :
 git mergetool
 		
-*********************  Pull Request  ****************************************************
+*************************************************************** 11.Pull Request  **********************************************************************************
 
 
 
-*********************  Forking a GitHub Repository  *************************************
+*************************************************************** 12.Git MERGE vs REBASE  ***************************************************************************
 
 
 
-Adding a Project, Creating Feature Branch, Merging With Master
-***************************************************************
+
 
 
 
