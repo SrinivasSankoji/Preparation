@@ -48,57 +48,61 @@ Branch to Branch
 
 **********************************  Removing Files and Directories *******************************************************************
 
-			To delete the File in GitHub we use the Command : git rm "FileName" 
-			and After this run the commit and Push Commands.
+To delete the file in GitHub we use the Command 
 
-			To remove The Directory we use the Command : git rm -r "DirectoryName" 
-			and After this run the Commit and push Commands.
+	git rm "FileName" 
+	
+and after this run the commit and push Commands.
+To remove The Directory we use the Command : git rm -r "DirectoryName" and After this run the Commit and push Commands.
 
-			To check the remote origin we use the Command 
-			git remote -v
-			if the remote is not added then we use the command 
-			git remote add -origin "Remote Repository URL"
+To check the remote origin we use the Command 
+
+		git remote -v
+		
+If the remote is not added then we use the command 
+	
+	git remote add -origin "Remote Repository URL"
 			
 **********************************  Installing Git on Windows  *************************************************
 
-			1. Check If Git is already Installed
-			2.Download And Install Git
-			3.Add the Project to Git
-			4.To add user name and Password of Git Hub use the Below Commands :
+1. Check If Git is already Installed
+2.Download And Install Git
+3.Add the Project to Git
+4.To add user name and Password of Git Hub use the Below Commands :
 
-			git config --global user.email srinivaschary.chary@gmail.com/SrinivasSankoji/Test
-			git config --global user.name srinivassankoji   
-			   
-			5 .Commands :  
-			git init to initialize Check in Folder and Files	
-		    git add  to add the file to the GIT(Created Folder)
-		    git status to check the status of the File
-		    git commit -m ""   to commit the Code in Git
-		    git remote add origin https://github.com/SrinivasSankoji/Test.git
-		    git push -u origin master
-			   
-			git log
-			git --help
+git config --global user.email srinivaschary.chary@gmail.com/SrinivasSankoji/Test
+git config --global user.name srinivassankoji   
+   
+5 .Commands :  
+git init to initialize Check in Folder and Files	
+git add  to add the file to the GIT(Created Folder)
+git status to check the status of the File
+git commit -m ""   to commit the Code in Git
+git remote add origin https://github.com/SrinivasSankoji/Test.git
+git push -u origin master
+   
+git log
+git --help
 			    
 Down Load and Install GIT :
 ***************************
 
-		Use The Middle Option 
-		Use Windows Default Console Windows 
-		To Check Whether The Git is Installed or Not  
-		git --version 
+Use The Middle Option 
+Use Windows Default Console Windows 
+To Check Whether The Git is Installed or Not  
+git --version 
 
 Add Folder/Project to The Git :
 -------------------------------
-		create a Folder
-		open the Folder and in the Address bar enter cmd.
-		It will Open the Command Prompt with That Folder
-		Enter the Command git init and It will create a folder .git
-		Our Git is Tracking this Folder.
-		Now Enter The Command git status Then it will show the Message Nothing to Commit
-		To Add a Text File in the Command Prompt 
-		dir > test1.txt
-		And run the Command git status it will show the Untracked Files
+create a Folder
+open the Folder and in the Address bar enter cmd.
+It will Open the Command Prompt with That Folder
+Enter the Command git init and It will create a folder .git
+Our Git is Tracking this Folder.
+Now Enter The Command git status Then it will show the Message Nothing to Commit
+To Add a Text File in the Command Prompt 
+dir > test1.txt
+And run the Command git status it will show the Untracked Files
 
 How to Use Git Bash :
 *********************
@@ -317,7 +321,7 @@ Then it will show the Merge Conflicts
 To run the merge tool we use the Command :
 git mergetool
 		
-*********************  Pull Request  *************************************
+*********************  Pull Request  ****************************************************
 
 
 
