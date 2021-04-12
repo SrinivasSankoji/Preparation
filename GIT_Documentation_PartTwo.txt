@@ -154,8 +154,7 @@ Reference URL --> https://www.youtube.com/watch?v=O72FWNeO-xY
 We use the Command  : git clone "Repository URL"	
 
 Window --> show View -- > Git Repository --> Clone a Git Repository --> copy the Git Repository URL --> Finish.
-In The Git Repositories -->  Right Click on The Project --> Select import Maven Project --> Then Project will be Added to the 
-Project Explorer.	
+In The Git Repositories -->  Right Click on The Project --> Select import Maven Project --> Then Project will be Added to the Project Explorer.	
 
 Generate the SSH Key from GitBash using the Command available in GitLab.
 		
@@ -204,38 +203,39 @@ Undoing Uncommitted Changes :
 -----------------------------
 First Clone the Project using the Command 
 
-git clone Repository URL
+	git clone Repository URL
 
-do Some Changes in the Working Directory/Any File and after that run the Command git Status
-Then it will show the changed File
+do Some Changes in the Working Directory/Any File and after that run the Command Then it will show the changed File.
 
-we use the Command git checkout -- FileName
- it will Revert back the Changes
+	git Status
+	
+we use the Command and it will revert back the Changes.
+
+	git checkout -- FileName 
  
 If there are Changes in Multiple Files then We use the Command
 
-git checkout -- .
+	git checkout -- .
 
-Undo Committed Changes using Revert  :
+Undo Committed Changes using revert  :
 --------------------------------------
 
 We can know the Committed Changes using the Command
 
-git log
+	git log
 
 After Committing the Code and If We wnat to revert back the Changes we use the Command revert with Committed Id
 
-git revert committedI
+	git revert committedId
 
 and after that to come out from the Console we use 
 
-:q
+	:q
 
---> When We run the Command It Directly Committed The Changes
-If i Don't Want to Directly run the Changes and I want to Explicitly Commit the Changes
-we use the Command 
+When We run the command It directly Committed The Changes
+If I don't want to directly run the Changes and I want to explicitly commit the Changes we use the Command 
 
-git revert -n commitId
+	git revert -n commitId
 
 and the run the Command git status to see the Changes
 after that run the command git commit -m "Message" 
@@ -246,9 +246,9 @@ Resetting Changes Using Reset :
 
 When we run the Command git log
 It shows all the History of the Committed Changes
-If i want to go back to the Particular History we use the Command Reset
+If i want to go back to the Particular History we use the command Reset
 
-i.e  git reset --hard CommittedId
+	git reset --hard CommittedId
 
 
 ******************************************************* 7.HEAD in GIT  ******************************************************************************************
@@ -258,18 +258,19 @@ i.e  git reset --hard CommittedId
 ******************************************************* 8.GIT IGNORE  *******************************************************************************************
 
 When we run the Command git status in the Git Folder,It Shows all the Files that has not been committed.
-If we want to igonore some of the Files in the Git Foldder we use the command 
-git revert
+If we want to ignore some of the Files in the Git Folder we use the command 
+
+	git ignore
+	
 Before that create the ignore file using command 
 
-touch .gitignore
+	touch .gitignore
 
-and in the created file add the file we want to ignore
-and then run the command git status
+and in the created file add the file we want to ignore and then run the command git status
 we don't see the file again..
 
 If we want to ignore particular file then add the file in .gitignore
-We can also ignore the Files with Extension by adding *.exe in the >gitignore File 
+We can also ignore the Files with extension by adding *.exe in the .gitignore File 
 
 ******************************************************  9.Diff and Merge using Meld  Tool in GIT *******************************************************************
 
