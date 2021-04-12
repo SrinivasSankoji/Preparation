@@ -5,10 +5,10 @@
 5.Kubernetes Certified Exam                                 [01-APR-2021]  ()
 6.Kube Controller Manager and Scheduler                     [01-APR-2021]  (Done)
 
-7.Pods                                                      [02-APR-2021]  ()
-8.Pod Networking                                            [02-APR-2021]  ()
-9.Static Pods                                               [02-APR-2021]  ()
-10.Container Probes                                         [02-APR-2021]  ()
+7.Pods                                                      [12-APR-2021]  (Done)
+8.Pod Networking                                            [12-APR-2021]  (Done)
+9.Static Pods                                               [12-APR-2021]  ()
+10.Container Probes                                         [12-APR-2021]  ()
 
 11.Replica Sets                                             [03-APR-2021]  ()
 12.Deployment in Kubernetes                                 [03-APR-2021]  ()
@@ -179,13 +179,80 @@ We can also create custome scheduler whenwe craete the Pod.
 
 ************************************************************* 7.Pods  **************************************************************************************************
 
+Pod is the smallest deployable unit in Kubernetes.
+At the End of the day we are going to run Containers in Kubernetes.
+Pod is nothing but a collection of Containers i.e Pod hosts the Containers.
+All the Containers running inside the Pod shares the same network namespace and storage namespace.
+Within the Pods all the Containers can communicate with each other using localhost.
+It is the Pod that get's the IP Address to communicate and not the Container.
+
+To run the Pod using imperative command
+
+	kubectl run mypod --image=nginx 
+	
+To see the list of Pods 
+
+	kubetcl get pods
+	
+To delete the Pod we use the command
+
+	kubectl delete pod mypod
+	
+To get the yaml file that can be used to create the Pod
+
+	kubectl run mypod --image=nginx --dry-run=client -o yaml -> nginx.yaml
+	
+Here Kubernetes will create the yaml manifest file here.
+To create the Pod using yaml file 
+
+	kubectl apply -f nginx.yaml
+	
+Note :
+we never run an isolated Pod in Kubernetes environment.
+We run the Pod as a part of Deployment,ReplicaSet etc.
 
 
-           
+Static Pods (Not Completed):
+----------------------------
+These are the Pods which are created on Worker Nodes managed by Master Node and not created using yaml file.
+These are the Pods which are managed by kubelet which is running on the worker Node.
+
+Pod Lifecycle (Not Completed):
+------------------------------
+Pending	
+Running  	 		
+Succeded  	
+
+    
 ************************************************************* 8.Pod Networking  ****************************************************************************************
 
+lets consider how the Docker Networking works.
+when we run the Docker Daemon on any Node it internally creates the default Docker0 network and all the Containers are attached to the default network.
+This default network gets an IP Address.
 
- 
+Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network Docker0.
+Newly Container gets another virtual Ethernet which has the same range of Docker0 Network.
+Similar is the case for all the newly created Containers.
+
+When we create the Pod all the Containers within the Pod shares the same Namespace network.
+They can communicate with each other on the localhost.
+Kubernetes implements the shared network Namespace by running the Container named Pause.
+Pause Container responsibilty is to hold the Network Namespace for all the remaining Containers.
+
+In Kubernetes one Pod can reach out to another Pod using IP Address.
+Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other by using Router or API Gateway.
+Each Node has a corresponding IP Address.
+By default Kubernetes does not implement any networking structure and it informs what kind of networking structure it expects.
+When we set up the Kubernetes Cluster Networking PlugIns are not installed.
+We need to set up the Networking PlugIns outside the Cluster.
+If the Network PlugIns are not installed then there will be no next hop and ends up in creating the same IP for all the Nodes.
+There is no mechanism to tell how to send the packet from one Node to another Node.
+Here Network PlugIn comes into the picture.
+
+Function of Network PlugIn is to run the Overlay Network across all the Nodes.
+Network PlugIn covers all the Bridges which are running on the Node and assigns the IP Address to all the Nodes within the Bridge Network.
+Containers running inside the Pod will get the Sequential IP Address.
+
 ************************************************************* 9.Static Pods ********************************************************************************************  
 
 

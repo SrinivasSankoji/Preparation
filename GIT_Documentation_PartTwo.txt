@@ -221,24 +221,24 @@ Undo Committed Changes using Revert  :
 
 We can know the Committed Changes using the Command
 
-git log
+	git log
 
 After Committing the Code and If We wnat to revert back the Changes we use the Command revert with Committed Id
 
-git revert committedI
+	git revert committedId
 
-and after that to come out from the Console we use 
+and after that to come out from the Console we use the command
 
-:q
+	:q
 
---> When We run the Command It Directly Committed The Changes
-If i Don't Want to Directly run the Changes and I want to Explicitly Commit the Changes
-we use the Command 
+When We run the Command It Directly Committed The Changes
+If I Don't Want to Directly run the Changes and I want to Explicitly Commit the Changes we use the Command 
 
-git revert -n commitId
+	git revert -n commitId
 
-and the run the Command git status to see the Changes
-after that run the command git commit -m "Message" 
+and the run the Command git status to see the Changes after that run the command 
+
+	git commit -m "Message" 
 
 
 Resetting Changes Using Reset :
@@ -246,9 +246,9 @@ Resetting Changes Using Reset :
 
 When we run the Command git log
 It shows all the History of the Committed Changes
-If i want to go back to the Particular History we use the Command Reset
+If I want to go back to the Particular History we use the Command Reset
 
-i.e  git reset --hard CommittedId
+	git reset --hard CommittedId
 
 
 ******************************************************* 7.HEAD in GIT  ******************************************************************************************
