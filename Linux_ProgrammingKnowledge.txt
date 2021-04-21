@@ -15,33 +15,33 @@
 15.kill										[29-MAR-2020]  (Done)
 16.echo										[29-MAR-2020]  (Done)
 17.file Permissions							[30-MAR-2020]  (Done)
-18.Diretory Permissions						[30-MAR-2020]  ()
-19.Octal and Numeric Permissions			[30-MAR-2020]  ()
-
+18.Diretory Permissions						[21-APR-2021]  (Done)
+19.Octal and Numeric Permissions			[21-APR-2021]  (Done)
 20.Introduction to Bash Scripting			[30-MAR-2020]  (Done)
 21.which and whatis							[30-MAR-2020]  (Done)
-22.useradd									[31-MAR-2020]  ()
-23.userdel									[31-MAR-2020]  ()
-24.Group Management							[31-MAR-2020]  ()
-25..bashrc File								[31-MAR-2020]  ()
-26.Viewing Resources						[31-MAR-2020]  ()
-27.watch                                    [31-MAR-2020]  ()
-28.Head and Tail                            [31-MAR-2020]  ()
-29.find                                     [31-MAR-2020]  ()
-30.wc                                       [31-MAR-2020]  ()
 
-31.cal                                      [17-MAR-2020]  ()
-32.date                                     [17-MAR-2020]  ()
-33.Run Multiple Terminal                    [17-MAR-2020]  ()
-34.apt-get                                  [17-MAR-2020]  ()
-35.ifconfig                                 [17-MAR-2020]  ()
-36.tar                                      [17-MAR-2020]  ()
-37.grep                                     [17-MAR-2020]  ()
-38.netstat                                  [17-MAR-2020]  ()
-39.enable SSH                               [17-MAR-2020]  ()
-40.scp                                      [17-MAR-2020]  ()
-41.Atom Editor                              [17-MAR-2020]  ()
-42.Install Postgree Sql                     [17-MAR-2020]  ()
+22.useradd									[21-APR-2021]  ()
+23.userdel									[21-APR-2021]  ()
+24.Group Management							[21-APR-2021]  ()
+25..bashrc File								[21-APR-2021]  ()
+26.Viewing Resources						[21-APR-2021]  ()
+27.watch                                    [21-APR-2021]  ()
+28.Head and Tail                            [21-APR-2021]  ()
+29.find                                     [21-APR-2021]  ()
+30.wc                                       [21-APR-2021]  ()
+
+31.cal                                      [21-APR-2021]  ()
+32.date                                     [21-APR-2021]  ()
+33.Run Multiple Terminal                    [21-APR-2021]  ()
+34.apt-get                                  [21-APR-2021]  ()
+35.ifconfig                                 [21-APR-2021]  ()
+36.tar                                      [21-APR-2021]  ()
+37.grep                                     [21-APR-2021]  ()
+38.netstat                                  [21-APR-2021]  ()
+39.enable SSH                               [21-APR-2021]  ()
+40.scp                                      [21-APR-2021]  ()
+41.Atom Editor                              [21-APR-2021]  ()
+42.Install Postgree Sql                     [21-APR-2021]  ()
 
 
 ***************************************************************  1.Introduction   **************************************************************
@@ -57,10 +57,12 @@ Shell is also known as Command Line Interface.
 Terminal is a tool using which we can pass Shell commands.This a Program that opens in window and lets you interact with Shell.
 Terminal is a Text interface to the shell program and can't do anything on it's own apart from giving input to the shell program and displaying output from the shell program.
 
-To Open a Terminal in ubuntu 
-	
-	Search for Terminal or
-	CTRL+ALT+T
+To Open a Terminal in ubuntu   							  CTRL+ALT+T
+To Lock the Screen  						SUPER+L    or CTRL+ALT+L
+To show the Desktop							SUPER+D    or CTRL+ALT+D
+To show the Application Menu				SUPTRL+A   or CTRLT+ALT+A
+To switch between Running Applications      SUPER+TAB  or ALT+TAB
+
 	
 The Files in Linux System are arranged in hierarchical directory structure.
 Directory may contain files or other directories also.
@@ -639,10 +641,97 @@ If we want to give the seperate permissions to user,group and others
 
 *************************************************************** 18.Diretory Permissions	 **************************************************************************
 
+We can change the permissions of the files and directories in Linux using chmod command.
+Create the directory named dir in the desktop and add the files file1,file2,file3
+Navigate to the Desktop and run the command
+
+	ls -ld dir
+	
+Here output will be 
+
+	drwxr-xr-x 3 bhaumik bhaumik 4096 Apr 21 15:11 .
+	
+User has the read,write and execute permissions
+Group has the read and execute permissions.
+Others has the read and execute permissions.
+
+To change the permission of the User i.e reduce the write capabilty of the User using chmod command
+
+	chmod u-w dir
+	dr-xrwxr-x 2 bhaumik bhaumik 4096 Apr 21 15:11 dir
+	
+Here write permission has removed for the User.
+Once we remove the write permission for the directory we cannot add any new file.
+
+
+To change the permission of the User i.e reduce the read capabilty of the User using chmod command
+
+	chmod u-r dir
+	d-wxrwxr-x 2 bhaumik bhaumik 4096 Apr 21 15:11 dir
+
+Here read permission has removed for the User.
+Once we remove the read permission for the directory we cannot read the files in the directory and gets the permission denied error.
+
+To change the permission of the User i.e reduce the execution capabilty of the User using chmod command
+
+	chmod u-r dir
+	drw-rwxr-x 2 bhaumik bhaumik 4096 Apr 21 15:11 dir
+	
+Here execute permission has removed for the User.
+Once we remove the execute permission for the directory we cannot navigate to the directory.
+It shows the content of the file but Cannot execute anything with this directory.
+
+	ls dir/
+	
+To add the read,write and execute permission for the User,Group and others using chmod command
+
+	chmod ugo=rwx dir
 
 
 *************************************************************** 19.Octal and Numeric Permissions	***************************************************************
 
+Octal permission is a numeric representation of a File or directory.
+Create a file in the desktop
+
+	touch test.txt
+	
+To see the permissions of the file
+
+	ls -l
+	
+Here the output will be
+
+	-rw-rw-r-- 1 bhaumik bhaumik 0 Apr 21 16:39 test.txt
+	
+User has read ans write permissions.
+Group has read and write permissions.
+Others has only read permissions.
+
+To visualize the permissions in numeric
+
+User   Group  Others
+rwx	   rwx	  rwx
+111	   111    111
+
+If we want to provide a permission the user to read,write and execute in numeric format
+
+	4+2+1=7
+
+Read and Write
+
+	4+2+0=6
+
+Read and execute
+
+	4+0+1=5
+	
+If we want to change the permission of the file using number notation
+
+	chmd 765 test.txt
+	
+For users provide the access read,write and execute
+For Group provide the access read and write
+for Others provide read and execute
 
 
 *************************************************************** 20.Introduction to Bash Scripting   ***************************************************************
