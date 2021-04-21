@@ -15,20 +15,21 @@
 15.kill										[29-MAR-2020]  (Done)
 16.echo										[29-MAR-2020]  (Done)
 17.file Permissions							[30-MAR-2020]  (Done)
-18.Diretory Permissions						[20-APR-2021]  ()
-19.Octal and Numeric Permissions			[20-APR-2021]  ()
+18.Diretory Permissions						[30-MAR-2020]  ()
+19.Octal and Numeric Permissions			[30-MAR-2020]  ()
+
 20.Introduction to Bash Scripting			[30-MAR-2020]  (Done)
 21.which and whatis							[30-MAR-2020]  (Done)
 22.useradd									[31-MAR-2020]  ()
 23.userdel									[31-MAR-2020]  ()
 24.Group Management							[31-MAR-2020]  ()
 25..bashrc File								[31-MAR-2020]  ()
-
 26.Viewing Resources						[31-MAR-2020]  ()
 27.watch                                    [31-MAR-2020]  ()
 28.Head and Tail                            [31-MAR-2020]  ()
 29.find                                     [31-MAR-2020]  ()
 30.wc                                       [31-MAR-2020]  ()
+
 31.cal                                      [17-MAR-2020]  ()
 32.date                                     [17-MAR-2020]  ()
 33.Run Multiple Terminal                    [17-MAR-2020]  ()
@@ -100,7 +101,7 @@ If we want to see all the Contents of the root Folder
 
 	ls / or ls - or ls /home/Computer
 	
-If we want to go one Folder back we use the command
+If we want to go One Folder back we use the command
 
 	ls ..
 	ls ../..  (Two Folder Back)
@@ -159,12 +160,12 @@ cd command is used to change the Current working directory in Linux.
 
 	cd [dir]
 	
-Whenever we open the Terminal it opens with the  home directory.
+Whenever we open the Terminal it Opens with the  home directory.
 If we want to go to the root Directory we use the Command
 
 	cd /
 	
-To see in which Directory we are in,we use the command 
+To See in which Directory we are in,we use the command 
 
 	pwd
 	
@@ -188,7 +189,7 @@ To access this we use the Command
 
 *************************************************************** 4.cat 	***************************************************************
 
-Cat is one of the most frequently used command in Linux.
+Cat is one of the most Frequently used command in Linux.
 It 	has 3 different functionalities with regards to Text Files.
 
 1.Displaying the Text File 
@@ -261,7 +262,7 @@ If we do the same thing again i.e
 	Line 6
 	CTRL + D
 	
-and Enter Some Text then old data will be overridden by the new data.
+and Enter Some Text then Old Data will be Overridden by the New Data.
 To Append the data to the file we use the command 
 
 	cat >> test.txt
@@ -387,7 +388,7 @@ To move the text from file1 to file 2
 In the above case file1.txt is be replaced by file2.txt.
 If the file does not exist then it will create a new File.
 
-To move the filename to the directory 
+to move the filename to the directory 
 
 	mv file1.txt filename/
 	
@@ -425,8 +426,8 @@ If we want the data to be displayed in page wise we use space Button.
 B to up the Page.
 D to dwon the Page.
 
-SHIFT + G then it will browse to the end of the File.
-1G        then it will browse to the Starting of the File.
+SHIFT + G  or 1g then it will browse to the end of the File.
+1G  then it will browse to the Starting of the File.
 
 If we want to search for the Particular text in the File we use
 
@@ -440,12 +441,12 @@ to quit the less command
 ***************************************************************  11.touch	***************************************************************	
 
 Touch command can be used to create a new empty files in Linux.
-It can also be used to change the existing timestamp of these Files or directories.
+It is also used to change the existing timestamp of these Files or directories.
 To create a new Empty File
 
 	touch file6
 	
-we can also give the file extension to the touch command
+we can alsogive the file extension to the touch command
 
 	touch file7.txt
 	
@@ -462,7 +463,7 @@ nano can also be used to create a new File.
 
 	nano file1.txt 
 	
-Here it will be opened in the terminal and won't be saved.
+Here it will be opened in the terminal and won't e saved.
 Enter the Text and to save the file use the command 
 
 	CTRL + O
@@ -479,24 +480,24 @@ sudo is a command which rules them all.
 sudo stands for super user do.
 sudo user allows us to perform some extra priviliges as an administrator or super user.
 
-To find the list of directories in the root directory
+To find the List of directories in the root directory
 
 	ls /
 	
 To create a directory 
 
-	mkdir folder
+	mkdir Folder1
 	
 Here we get the Permission Denied Error.
-In Linux Operating System If we open the Terminal It doesnot have the administrator or root Priviliges.
+In Ubuntu Linux Operating System If we open the Terminal It doesnot have the administrator or root Priviliges.
 Here we need to use the sudo command in order to tell the Terminal that the command has to be executed as Administrator.
 
-	sudo mkdir folder
+	sudo mkdir Folder1
 	
-Here it asks the passwrod which is same as system password.
+Here it asks the passwrod whixh is same as sysytem password.
 password is applicable for same session in the Terminal.
-whenever we are installing any third party softwares in ubuntu it will ask for the super user access.
-Command to install any third party software is 
+when ever we are installing any third party softwares in ubuntu it will ask for the super user access.
+and the command to install any third party software is 
 
 	apt-get install library
 	
@@ -508,11 +509,12 @@ To change the Terminal into super user mode
 ***************************************************************  14.top		********************************************************************
 
 top command provides a dynamic real time view of running system.
-If we want to know which process is taking most cpu,which program is takig more memory we use top command.
+If we want to know which process is taking most cpu,
+which program is takig more memory we use top command.
 
 	top 
 	
-It will show the list of application with cpu percentage and process Id.
+It will show the list of application with cpu percentage and process id.
 In Linux every program has its own process Id.
 By default it will refresh for every 3 seconds.
 If we want to change the refresh interval then Enter s and change the time Interval.
@@ -523,6 +525,8 @@ To come out from the top Command Enter q.
 
 								
 ***************************************************************  15.kill	********************************************************************
+
+Open the System Setting and open it.
 Commad to kill the process is
 
 	kill -flags processId
@@ -536,7 +540,7 @@ To Kill the Program
 
 	kill 3286
 	
-If the kill command is not able to kill the Process some how,then use the command
+If the kill command is not able to kill the Process some how then use the command
 
 	kill -KILL 3286
 	
@@ -544,11 +548,12 @@ Another Command to kill the process is
 
 	kill -9 3286
 	
-Some times if we do not know the name about the process and to find the process Id along with program name we use the command 
+Some times if we do not know the name about the process and to find the process Id
+along with program name we use the command 
 
 	ps -ux
 	
-ps -ux will give the current user process and if we want to get the detais of all the users
+ps -ux will ive the current user process and if we want to get the detais of all the users
 
 	ps -aux
 	
@@ -556,13 +561,14 @@ If we want to know the Programs run by the particular user we use the command
 
 	ps -U username
 	
-If we want to know the process Id of a Particular Program and its dependent Program Process Id 
+If we want to know the process Id of a Particular Program and its dependent Progream Process Id 
 
-	ps -C gnome-terminal
+	ps -C genoyme -terminal
 	
 ***************************************************************   16.echo	*************************************************************************************
 
-echo command will display the text that is enterd by the user.echo allows us to declare the variables.
+echo command will display the text that is enterd by the user.
+echo command allows us to declare the variables.
 echo command becomes more useful when we write any bash scripting.
 
 	echo Hllo World
@@ -576,7 +582,7 @@ To display the value of the variable
 Here the varibale is valid only for current session.
 If we want to escape something in the echo command
 	
-	echo -e 'some \ntext '
+	echo -e 'some \n text '
 
 when ever we use -e we can perform some interpretation of text.
 
@@ -597,13 +603,13 @@ If it is normal b then it is a Binary Special file
 Next 3 Elements represets the Owner of the File.
 Next 3 Elements represets the Group of the File.
 Last 3 Elements represents the Permission of the File.
-last Character 1 represents the symbolic links of the File.
 
+last Character 1 represents the symbolic links of the File.
 name represents the Owner of the File 
 group represents the group of the File.
 Number represents the Size of the File.
 Date on which file is Created.
-Finally name of the File.
+Finalyy name of the File.
 
 we use the utility chmod to change the permission of the File.
 For any kind of file basically we have 3 types of Permissions.
@@ -615,18 +621,18 @@ executable
 	chmod o+x file
 	
 Here others will have the Permission of executing the File.
-For a Group to add the Permissions
+For a Group to add the Permissions 
 
 	chmod g+x file
 	
-Here "+" is for adding the permission , "-" is for reducing the permission and "=" is for granting the permission.
+Here + is for adding the permission , - is for reducing the permission and = is for granting the permission
 We can also use user and group both at the same time.
 
 	chmod ugo=rwx file or chmod a -rwx file
 	
 Here a represents all i.e user,group and other.
 
-If we want to give the seperate permissions to user group and others 
+If we want to give the seperate permissions to user,group and others 
 
 	chmod u+rw,g+rw,o+rwx file
 	
@@ -651,18 +657,15 @@ First Line we write inside the Script is
 	#!/bin/bash
 	
 	ls -l
-	
-	
-	
-we need to find the Location of the bash using the command
+		
+we need to find out the Location of the bash using the command
 
 	which bash
 	
-results the output  /bin/bash.
+that results the output  /bin/bash.
 
 To save the bash file use CTRL+O and to exit from the Script File CTRL+X
-Berfore executing the script we nedd to provide the executable permission to the Script File
-otherwise it gives the Permission Denied Error.
+Berfore executing the script we nedd to provide the executable permission to the Script File otherwise it gives the Permission Denied Error.
 
 	chmod +x myscript.sh
 
@@ -673,14 +676,14 @@ To execute the Script
 
 *************************************************************** 21.which and whatis		***************************************************************************
 
-which command is used to return the path name of the  file or path of the command.
+which command is used to return the path of the file or path of the command.
 
 	which ls
 	
 returns the location of the ls command executable location.
 which command is more helpful while writing the bash scripting.
 
-whatis command shows the manual page description of the command.
+whatis command shows the manual description of the command.
 
 	whatis ls
 	
