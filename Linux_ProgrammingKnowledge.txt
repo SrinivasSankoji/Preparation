@@ -19,17 +19,16 @@
 19.Octal and Numeric Permissions			[21-APR-2021]  (Done)
 20.Introduction to Bash Scripting			[30-MAR-2020]  (Done)
 21.which and whatis							[30-MAR-2020]  (Done)
+22.useradd									[24-APR-2021]  (Done)
+23.userdel									[24-APR-2021]  (Done)
+24.Group Management							[24-APR-2021]  (Done)
+25..bashrc File								[24-APR-2021]  (Done)
+26.Viewing Resources						[24-APR-2021]  (Done)
+27.watch                                    [24-APR-2021]  (Done)
+28.Head and Tail                            [24-APR-2021]  (Done)
 
-22.useradd									[21-APR-2021]  ()
-23.userdel									[21-APR-2021]  ()
-24.Group Management							[21-APR-2021]  ()
-25..bashrc File								[21-APR-2021]  ()
-26.Viewing Resources						[21-APR-2021]  ()
-27.watch                                    [21-APR-2021]  ()
-28.Head and Tail                            [21-APR-2021]  ()
-29.find                                     [21-APR-2021]  ()
-30.wc                                       [21-APR-2021]  ()
-
+29.find                                     [24-APR-2021]  ()
+30.wc                                       [24-APR-2021]  ()
 31.cal                                      [21-APR-2021]  ()
 32.date                                     [21-APR-2021]  ()
 33.Run Multiple Terminal                    [21-APR-2021]  ()
@@ -769,7 +768,7 @@ which command is used to return the path of the file or path of the command.
 
 	which ls
 	
-returns the location of the ls command executable location.
+returns the executable location of the ls command.
 which command is more helpful while writing the bash scripting.
 
 whatis command shows the manual description of the command.
@@ -778,80 +777,192 @@ whatis command shows the manual description of the command.
 	
 ***************************************************************  22.useradd	  **********************************************************************
 
+To create a User in Linux we use the command
 
-								
+	sudo useradd srinivas -m -s /bin/bash -g users -c "New USer created with name Srinivas"
+	
+-m to create the default home directory with this name.
+-s to create the default shell whatever we provide i.e -s /bin/bash
+-g to create the default user group i.e -g users
+-c to provide the comments i.e -c "New User srinivas Created"
+
+To create the user we need to use sudo command.
+To check the user ha created or not we use the command
+
+	ls /home
+	
+We will be able to see the newly created user.
+Here we haven't provided any password to the User.
+To provide the password to the user we use the command 
+
+	sudo passwd "name of the user"
+	
+Note :
+If we use only passwd then it will change the system password.
+
+
 ***************************************************************  23.userdel	 ***********************************************************************
+To see the list of users we use the command
 
+	ls /home
+	
+To delete the user we use the command
 
-								
+	sudo userdel test
+	
+From the above command user will be deleted but the user exists in the home directory.
+The above command will be helpful when we don't want to delete the actual data.
+If we want to delete the user along  with the home directory 
+
+	sudo userdel -r srinivas
+	
+To remove the user from the home directory
+
+	sudo userdel rm -r test
+	
+
 *************************************************************** 24.Group Management	 ***************************************************************
 
+To view the current user is mapped to which group,we use the command
 
-						
+	groups
+	
+To list all the groups available in the system
+
+	cat /etc/group
+	
+To add the new group to the list of groups
+
+	sudo groupadd "Name of the Group"
+	
+Note :
+All the groups are added to the group list based on date wise.
+
+To delete the group 
+
+	sudo groupdel "Name of the Group"
+	
+To add the user to the padticular group we use the command
+
+	 sudo gpasswd -a bhaumik Java
+	 
+a stands for adding the group
+d stands for deleting the group
+
+				
 ***************************************************************  25..bashrc File  *****************************************************************
 
+.baschrc file is a script that will be executed whenver we start the terminal in an intercative mode.
+To see the hidden files we use the command
+
+	ls -a
+	
+To display the content of the .bashrc file
+
+	gedit .bashrc
+	
+Most of the operating systems have the .bashrc file that contains some scripts.
+If it doesn't exists create the .bashrc file.
+Add some text to the .bashrc file and open the new terminal,then it will open the terminal wit the added text.
+
+Note :
+Mostly we use the .bashrc for setting up the environment variables.
 
 								
 ***************************************************************  26.Viewing Resources  ************************************************************
 
+df command returns the amount of available disk space,used disk space by the file system.
+To make it human readable we use the flag -h along with df command
 
-						
+	df -h
+	
+du command returns the disk space used by the file system.
+To view the amount of data used by the downloads folder we use the command
+
+	du -h
+	
+To view the space used by the home folder and doesnot want to see all the files and only to see the size
+
+	du -sh
+	
+free command can be used to display the total amount of free and used physical and swap memory in the system.
+As well as the buffer used by the Kernel.
+
+	free  -g
+
+To view the data in 
+
+m 		-  Mega Bytes
+b 		-  Bytes
+g 		-  Giga Bytes
+tera 	-  Tera Bytes
+
+
 ***************************************************************  27.watch   ***********************************************************************
 
+watch command can be used to run the commands or scripts at regular intervals or repeatedly.
+To view the free memory available in our system we use the command
 
-                                 
+	free -m
+	
+If we apply the watch command it will be executed very 2 seconds.
+
+	watch free -m
+	
+we can also change the default time
+
+	watch -n 1 free -m 
+	
+Note :
+we can also change the time in points
+
+
 ***************************************************************  28.Head and Tail  ****************************************************************
 
+Head and Tail commands can be used generally with files.
+Head can be used to output the first part of the file where as Tail part can be used to output the last part of the file.
+By default it limits to 10 lines.
 
-                          
+To see the log files in the ubuntu system navigate to the root folder
+
+	/var/log
+	
+We use the commands
+
+	head dmesg
+	tail mesg
+	
+both command will display only the first and last 10 files.
+
+To view the specific number of lines
+
+	head -n5 dmesg  or head -5 dmesg
+	
+	
+we can also use the tail command with -f flag
+
+	tail -10f dmesg
+	
+This command will not come out from the terminal and waits for any inputs to the file.
+If any new input is coming then it will append to the file.
+f stands for follow.
+
+we can also display the input from multiple files
+
+	head dmesg kern.log
+	
+
 ***************************************************************  29.find  *************************************************************************
 
 
+
+
                                    
-***************************************************************  30.wc    *************************************************************************   
+***************************************************************  30.wc    *************************************************************************
+
+
 
                                 
-
-
-
-
-
-	
-	
-	
-
-
-
-
-	
-	
-
-
-
-
-
-
-
-
-	
-
-
-	
-
-
-
-
-
-
-
-
-	
-
-
-		
-	
-	
-
 
 
 
