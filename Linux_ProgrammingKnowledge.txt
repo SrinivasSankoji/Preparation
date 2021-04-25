@@ -26,21 +26,21 @@
 26.Viewing Resources						[24-APR-2021]  (Done)
 27.watch                                    [24-APR-2021]  (Done)
 28.Head and Tail                            [24-APR-2021]  (Done)
+29.find                                     [25-APR-2021]  (Done)
+30.wc                                       [25-APR-2021]  (Done)
+31.cal                                      [25-APR-2021]  (Done)
+32.date                                     [25-APR-2021]  (Done)
+33.Run Multiple Terminal                    [25-APR-2021]  (Done)
 
-29.find                                     [24-APR-2021]  ()
-30.wc                                       [24-APR-2021]  ()
-31.cal                                      [21-APR-2021]  ()
-32.date                                     [21-APR-2021]  ()
-33.Run Multiple Terminal                    [21-APR-2021]  ()
-34.apt-get                                  [21-APR-2021]  ()
-35.ifconfig                                 [21-APR-2021]  ()
-36.tar                                      [21-APR-2021]  ()
-37.grep                                     [21-APR-2021]  ()
-38.netstat                                  [21-APR-2021]  ()
-39.enable SSH                               [21-APR-2021]  ()
-40.scp                                      [21-APR-2021]  ()
-41.Atom Editor                              [21-APR-2021]  ()
-42.Install Postgree Sql                     [21-APR-2021]  ()
+34.apt-get                                  [25-APR-2021]  ()
+35.ifconfig                                 [25-APR-2021]  ()
+36.tar                                      [25-APR-2021]  ()
+37.grep                                     [25-APR-2021]  ()
+38.netstat                                  [25-APR-2021]  ()
+39.enable SSH                               [25-APR-2021]  ()
+40.scp                                      [25-APR-2021]  ()
+41.Atom Editor                              [25-APR-2021]  ()
+42.Install Postgree Sql                     [25-APR-2021]  ()
 
 
 ***************************************************************  1.Introduction   **************************************************************
@@ -954,15 +954,114 @@ we can also display the input from multiple files
 
 ***************************************************************  29.find  *************************************************************************
 
+find command can be used to search for the files in the directory hierarchy.
+To search for the file in the home directory we use the command
 
+	find /home/bhaumik/Desktop -name test.txt
+	
+To search for the file using wild character we use the command
 
+	find -name GIT*
+	
+To search for the file in the root directory
 
-                                   
+	sudo find / -name dmesg
+	
+Note :
+we can also search for the files with extension like *.txt
+
+We can also search for the file that has created 1 day before
+
+	find /home/bhaumik -mtime -1
+	
+
 ***************************************************************  30.wc    *************************************************************************
 
+wc or wordcount command prints the new lines,word count and character count.
+mostly we use wc command with files.
+
+	wc Kubernetes_AWSHandsOn.txt
+	
+First output is the Number of Lines.
+Second Output is the Number of words.
+Third Output is the Number of Characters.
+
+-l Number of lines
+-w Number of words
+-c number of Characeters
+-L Longest Line in the  Text
 
 
-                                
+***************************************************************   31.cal *************************************************************************
+
+cal command can be used to display the conventionally formatted calendar in command line.
+
+cal displays the current month calnedar
+ncal displays the current month calendar with week in left side.
+cal 1986  displays the 1986 calnedar
+cal 9 1986 displays the september 1986 calendar
+cal -1 displays the current month
+
+
+***************************************************************   32.date   **********************************************************************    
+
+date command is used to display the system date and also to change the system date.
+date displays the current date and time.
+date -s "" this will set the system time.
+
+date +%m  specifies the Month Number
+date +%h  specifies the abbrevated Month
+date +%B  specifies the full Month Name
+date +%d  specifies the day of the Month
+date +%y  specifies the Year
+
+
+date +%D specifies the date as mm/dd/yy
+date +%T specifies the time as hh:mm:ss
+
+
+***************************************************************  33.Run Multiple Terminal ********************************************************
+
+we can run two or more terminal commands in Linux using ";","&&" and "||".
+In case of ; commands will be executed irrespective of other commands.
+In case of && if the first command fails then the next command won't be executed.
+In case of || if the first command success then second command won't be executed.
+
+
+***************************************************************   34.apt-get  ********************************************************************
+
+
+***************************************************************   35.ifconfig  *******************************************************************            
+  
+  
+***************************************************************  36.tar  *************************************************************************  
+
+
+
+
+***************************************************************  37.grep *************************************************************************
+
+
+
+
+***************************************************************  38.netstat **********************************************************************   
+
+
+
+***************************************************************  39.enable SSH  ******************************************************************      
+
+
+
+***************************************************************  40.scp     **********************************************************************   
+
+
+
+***************************************************************  41.Atom Editor     **************************************************************  
+
+
+
+
+***************************************************************  42.Install Postgree Sql  ********************************************************
 
 
 
