@@ -278,7 +278,7 @@ We can disable the controller loops by setting the --cloud--provider flag to ext
 4.ETCD :
 --------
 ETCD is a open source,distributed key value data store in Kubernetes Cluster.
-ETCD is consistent and highly available key value data store used to store for all cluster data in the Kubernetes.
+ETCD is consistent and highly available key value data store used to store all cluster data in the Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
 
 API server is the only component that intercats with ETCD data store.
@@ -319,6 +319,8 @@ API Server component of the Master Node interacts with kube-proxy and kubelet Co
 
 3.Container Runtime :
 ---------------------
+Kubernetes does not have the capabilty to directly handle Containers.
+In order to run and manage a Container's lifecycle,Kubernetes requires a Container Runtime on the Node where a Pod and its Containers are to be scheduled.
 Container Runtime is the software that is responsible for running the Containers.
 Most common Container platfrom used in Kubernetes is Docker.
 
@@ -328,9 +330,6 @@ Contained
 Cri-o
 Rktlet
 Kubernetes CRI (Container Runtime Interface)
-
-Kubernetes does not have the capabilty to directly handle Containers.
-In order to run and manage a Container's lifecycle,Kubernetes requires a Container Runtime on the Node where a Pod and its Containers are to be scheduled.
 
 We can also have the extended functionality of the Kubernetes like 
 Dashboard

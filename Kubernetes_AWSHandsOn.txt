@@ -7,8 +7,8 @@
 
 7.Pods                                                      [12-APR-2021]  (Done)
 8.Pod Networking                                            [12-APR-2021]  (Done)
-9.Static Pods                                               [21-APR-2021]  ()
-10.Container Probes                                         [21-APR-2021]  ()
+9.Static Pods                                               [26-APR-2021]  ()
+10.Container Probes                                         [26-APR-2021]  ()
 
 11.Replica Sets                                             [03-APR-2021]  ()
 12.Deployment in Kubernetes                                 [03-APR-2021]  ()
@@ -32,11 +32,9 @@
 
 *************************************************************  3.Kube API Server  ***********************************************************************************
 
-API Server is the primary componenet that we intercat with,in the Kubernetes.
+API Server is the primary componenet that we intercat with in the Kubernetes.
 When we run the kubectl command,we are actually intercating with API Serevr.
-API Server exposes some API that the user can interact with.
-we can also intercat with API server using curl Request.
-
+API Server exposes some API that the user can interact with.we can also intercat with API server using curl Request.
 Consider the scenario of creating a Pod and the Steps are 
 
 create the yml file
@@ -69,7 +67,7 @@ To get all the Pods in the Cluster,we use the command
 
 Here no Pods are running as of now.
 minikube actually uses the kubeadmin to deploy the Kubernetes cluster.
-But we are not able to see all the Kubernetes Components as Pods because all these Pods are deployed in different Namespaces.
+Here we are not able to see all the Kubernetes Components as Pods because all these Pods are deployed in different Namespaces.
 All these system Pods runs in a namespace called kube-system.
 
 	kubectl get pods --namespace kube-system (or) kubectl get pods --n kube-system
@@ -105,14 +103,14 @@ To see all the Pods in the Kubernetes system,we use the command
 
 	kubectl get pods --n kube-system
 
-To see all the COnfigurations in the ETCD Pod we use the command
+To see all the Configurations in the ETCD Pod we use the command
 
 	kubectl describe pod etcd-minikube -n kube-system
 
 If we run the ETCD as binary or external cluster then we will be able to see the ETCD as Service and runs on port 2379.
 All the configuration information will go inside the system d service file.
 
-To intercat with ETCD Cluster or ETCD Node which is deployed by the minikube local system
+To intercat with ETCD Cluster or ETCD Pod which is deployed by the minikube local system
 
 	kubectl exec etcd-minikube -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl --endpoints https// --cacert --key --cert get / -prefix --keys-only"
 
@@ -130,16 +128,15 @@ Controller Manager :
 Controller Manager is another component of Kubernetes echo system that manages the Operational work.
 Controller Manager is not a single component and a group of smaller components packaged as a Single Binary.
 
-If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes Release Pages and run it as Service.
+If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes Release Page and run as a Service.
 If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as Pod.
 
-we have different Controller in the Controller Manager.
-
+we have different Controllers in the Controller Manager.
 Replication Controller ensures the number of Pods are running as per the Configuration.
-Replication Controller keeps monitoring the API Server fro any changes.
+Replication Controller keeps monitoring the API Server for any changes.
 When particular Pod goes down,kubelet shares the information to the API Server which then shares the information to the ETCD.
 Controller Manager gets the information about the Pod from the API Server and 
-If the Pod is down then the Controlle Manager tries to restart another Pod in the same Node or another Node.
+If the Pod is down then the Controller Manager tries to restart the Pod in the same Node or another Node.
 
 Scheduler :
 -----------
@@ -161,7 +158,7 @@ If we want to deploy a Pod which requires 2GB of Memory.
 Here Scheduler filters all the worker Nodes and  gets the suitable Nodes.
 Scheduler then scores the Nodes based on the available resources and places the Pod into the Node which has the highest score.
 
-To get the Pods in the kube-system namespace,we use the command
+To get the Pods in the kube-system namespace we use the command
 
 	kubectl get pods -n kube-system
 
@@ -174,13 +171,12 @@ To describe the configuration of the Scheduler
 	kubectl describe pod kube-scheduler-minikube -n kube-system
 
 Note :
-We can also create custome scheduler whenwe craete the Pod.
+We can also create custom scheduler when we craete the Pod.
 
 
 ************************************************************* 7.Pods  **************************************************************************************************
 
-Pod is the smallest deployable unit in Kubernetes.
-At the End of the day we are going to run Containers in Kubernetes.
+Pod is the smallest deployable unit in Kubernetes.At the End of the day we are going to run Containers in Kubernetes.
 Pod is nothing but a collection of Containers i.e Pod hosts the Containers.
 All the Containers running inside the Pod shares the same network namespace and storage namespace.
 Within the Pods all the Containers can communicate with each other using localhost.
@@ -227,23 +223,22 @@ Succeded
 ************************************************************* 8.Pod Networking  ****************************************************************************************
 
 lets consider how the Docker Networking works.
-when we run the Docker Daemon on any Node it internally creates the default Docker0 network and all the Containers are attached to the default network.
+when we run the Docker Daemon on any Node it internally creates the default docker0 network and all the newly created Containers are attached to the default network.
 This default network gets an IP Address.
 
-Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network Docker0.
-Newly Container gets another virtual Ethernet which has the same range of Docker0 Network.
+Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network i.e docker0.
+Newly created Container gets another virtual pair of Ethernet which has the same range of docker0 Network.
 Similar is the case for all the newly created Containers.
 
 When we create the Pod all the Containers within the Pod shares the same Namespace network.
 They can communicate with each other on the localhost.
 Kubernetes implements the shared network Namespace by running the Container named Pause.
-Pause Container responsibilty is to hold the Network Namespace for all the remaining Containers.
+Pause Container responsibilty is to hold the same Network Namespace for all the remaining Containers.
 
 In Kubernetes one Pod can reach out to another Pod using IP Address.
 Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other by using Router or API Gateway.
 Each Node has a corresponding IP Address.
-By default Kubernetes does not implement any networking structure and it informs what kind of networking structure it expects.
-When we set up the Kubernetes Cluster Networking PlugIns are not installed.
+When we set up the Kubernetes Cluster,Networking PlugIns are not installed and it informs what kind of networking structure it expects.
 We need to set up the Networking PlugIns outside the Cluster.
 If the Network PlugIns are not installed then there will be no next hop and ends up in creating the same IP for all the Nodes.
 There is no mechanism to tell how to send the packet from one Node to another Node.
