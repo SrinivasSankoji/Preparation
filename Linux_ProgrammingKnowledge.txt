@@ -32,8 +32,8 @@
 32.date                                     [25-APR-2021]  (Done)
 33.Run Multiple Terminal                    [25-APR-2021]  (Done)
 34.apt-get                                  [26-APR-2021]  (Done)
-35.ifconfig                                 [26-APR-2021]  ()
-36.tar                                      [26-APR-2021]  ()
+35.ifconfig                                 [26-APR-2021]  (Done)
+36.tar                                      [26-APR-2021]  (Done)
 
 37.grep                                     [27-APR-2021]  ()
 38.netstat                                  [27-APR-2021]  ()
@@ -1069,12 +1069,57 @@ The packages that were installed during other packages and no longer used can be
 	sudo apt-get autoremove
 
 ***************************************************************   35.ifconfig  *******************************************************************            
-  
+
+ifconfig stands for interface configuration.
+ifconfig can be used to view and change the configuration of Network interface on our system.
+
+Note :
+Ifconfig is not installed on ubuntu then install it using the command
+
+	sudo apt-get install net-tools
+	
+wlp2so means connected through wireless Internet
+inet means Local Ip Address or ipv4 Address
+broadcat means gateway address
+ether means macaddress that we cannot change
+inet6 means ipv6 Address
+
+Note :Additional Ethernet Interfaces would be named as eth1,eth2 etc.
+
+lo stands for loopback interface that the system uses to communicate with itself.
+
+If we have multiple ethernet address or wireless addressand want to view only one interface we use the command
+
+	ifconfig wlp2s0
+	
+We can enable or disbale the ethernet or wireless lan using ifconfig
+
+	sudo ifconfig wlp2s0 doown
+	sudo ifconfig wlp2s0 up
+ 
   
 ***************************************************************  36.tar  *************************************************************************  
 
+tar command can be used to create,maintain,modify and extract files which are archived in the tar format.
+tar stands for tape archive which stores the files in the archive format.
 
+	tar -cvf "Name of the Tar file" "Directory"
+	
+c stands for creating the tar file
+v stands for verbose i.e  which can be used to diplay the progress while creating the tar file
+f stands for specifying the file name and if we don't specify the file name system generated filename will be assigned to the tar file
 
+To extract the tar file we use the command
+
+	tar -xvf dir.tar
+
+To create the file in tar.gz format we use the command
+
+	tar -czvf dir.tar.gz dir
+	
+To extract the file in tar.gz format we use the command
+
+	tar -xzvf dir.tar.gz
 
 ***************************************************************  37.grep *************************************************************************
 
