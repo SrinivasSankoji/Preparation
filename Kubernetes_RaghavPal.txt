@@ -19,7 +19,7 @@ Kubernetes is open source and written in GO Language.
 Container Management tool or Container Orchestration tool automates deploying,scaling and managing containerized application on a group of servers.
 Kubernetes is a Container Management tool that manages Containerized Applications i.e Applications deployed on Container platform like Docker.
 
-Different processes that takes care in the process of Container Management are
+Different process that takes care in the process of Container Management are
 
 Deploying
 Scheduling  i.e Where to deploy the Pod on the Worker Node.
@@ -30,8 +30,8 @@ In an Enterprise Application we use large number of Container's and we need to e
 
 Deployment or RollOut's
 Availability
+Scaling
 Load Balancing
-Scale up and Scale down based on user Load.
 Batch Execution
 Rollbacks
 Monitoring
@@ -215,7 +215,6 @@ API Server is responsibele for all the communication on the Kubernetes.
 API Server exposes some API's that a user can interact i.e To interact with API Server we use some API's.
 To call the API Server we use a command line tool called kubectl or Kubernetes Dashboard.
 kubectl is a Go Language Libraray.
-
 
 2.Scheduler :
 -------------
