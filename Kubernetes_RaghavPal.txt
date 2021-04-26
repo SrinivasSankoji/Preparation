@@ -16,14 +16,13 @@ Kubernetes is a Container Management tool or Container Orchestration tool.
 Kubernetes was developed by Google Lab and later donated to CNCF (Cloud Native Computing Foundation).
 Kubernetes is open source and written in GO Language.
 
-Container Management tool manages Containerized Application.
 Container Management tool or Container Orchestration tool automates deploying,scaling and managing containerized application on a group of servers.
-Kubernetes is a Container Management tool that manages Containerized Applications i.e Applications available on Container platform like Docker.
+Kubernetes is a Container Management tool that manages Containerized Applications i.e Applications deployed on Container platform like Docker.
 
 Different processes that takes care in the process of Container Management are
 
 Deploying
-Scheduling
+Scheduling  i.e Where to deploy the Pod on the Worker Node.
 Scaling
 Load Balancing
 
@@ -73,7 +72,7 @@ Pods are hosted inside Node.
 When we specify a Pod we can optionally specify how much CPU and Memory(RAM) each Container needs.
 When Containers have resource requests specified,the Kubernetes scheduler can make better decission about in which Node Pod has to be placed.
 
-2,Service Discovery and Load Balancing :
+2.Service Discovery and Load Balancing :
 ----------------------------------------
 Kubernetes does not run the Container directly instead it wraps one or more Containers into a higher level structure called Pod.
 Pods can contain a Single Container or Multiple Containers.

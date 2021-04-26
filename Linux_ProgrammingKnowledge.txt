@@ -31,16 +31,18 @@
 31.cal                                      [25-APR-2021]  (Done)
 32.date                                     [25-APR-2021]  (Done)
 33.Run Multiple Terminal                    [25-APR-2021]  (Done)
+34.apt-get                                  [26-APR-2021]  (Done)
+35.ifconfig                                 [26-APR-2021]  ()
+36.tar                                      [26-APR-2021]  ()
 
-34.apt-get                                  [25-APR-2021]  ()
-35.ifconfig                                 [25-APR-2021]  ()
-36.tar                                      [25-APR-2021]  ()
-37.grep                                     [25-APR-2021]  ()
-38.netstat                                  [25-APR-2021]  ()
-39.enable SSH                               [25-APR-2021]  ()
-40.scp                                      [25-APR-2021]  ()
-41.Atom Editor                              [25-APR-2021]  ()
-42.Install Postgree Sql                     [25-APR-2021]  ()
+37.grep                                     [27-APR-2021]  ()
+38.netstat                                  [27-APR-2021]  ()
+
+39.enable SSH                               [28-APR-2021]  ()
+40.scp                                      [28-APR-2021]  ()
+
+41.Atom Editor                              [29-APR-2021]  ()
+42.Install Postgree Sql                     [29-APR-2021]  ()
 
 
 ***************************************************************  1.Introduction   **************************************************************
@@ -1030,6 +1032,41 @@ In case of || if the first command success then second command won't be executed
 
 ***************************************************************   34.apt-get  ********************************************************************
 
+apt-get command that can be used to install,remove and update packages on debian based Linux Operating System.
+Ubuntu is a debian based Operating System.
+apt-get is a command that can be used to work with apt software packages.
+apt stands for Advanced Packaging Tool which is available for debian based Operating System.
+
+whenver we are installing any package,we need to use apt-get command with the root user
+
+	sudo apt-get update
+	
+The above command updates the local package files with the remote server files.
+The packages are stores inside the folder
+
+	/etc/apt/sources.list
+	
+sources.list contains the list of packages.
+we can manually update the package from sources.list file or we can use apt-get update to update the whole package.
+
+To install the software we use the command
+
+	sudo apt-get install "software"
+	sudo apt-get install php5-cli
+	
+To remove the software,we use the commaand
+
+	sudo apt-get remove php5-cli
+	
+The above command only removes the software but not the configurations related to those software.
+To remove the configurations along  with the software we use the command
+
+	sudo apt-get remove --purge php5-cli
+	
+Note :
+The packages that were installed during other packages and no longer used can be removed by using autoremove.
+
+	sudo apt-get autoremove
 
 ***************************************************************   35.ifconfig  *******************************************************************            
   
