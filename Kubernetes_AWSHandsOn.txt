@@ -8,7 +8,7 @@
 8.Pod Networking                                            [12-APR-2021]  (Done)
 9.Static Pods                                               [27-APR-2021]  ()
 10.Container Probes                                         [27-APR-2021]  ()
-11.Replica Sets                                             [27-APR-2021]  ()
+11.Replica Sets                                             [27-APR-2021]  (Done)
 12.Deployment in Kubernetes                                 [27-APR-2021]  ()
 
 13.Kubernetes Services Part 1                               [04-APR-2021]  ()
@@ -195,7 +195,8 @@ To delete the Pod we use the command
 To get the yaml file that can be used to create the Pod
 
 	kubectl run mypod --image=nginx --dry-run=client -o yaml -> nginx.yaml
-	
+
+--dry-run=client flag can be used ignore the run command.
 Here Kubernetes will create the yaml manifest file here.
 To create the Pod using yaml file 
 
@@ -255,6 +256,56 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  *****************************************************************************************
 
+Replica Set is a Kubernetes Controller where it actually maintains the stable set of Pods as per the Configuration.
+Replica Set gaurantees the availability of Pod at any given point of time.
+Earlier version of Kubernetes it is called Replication Controller and now it is Replica Set.
+
+Note :
+We never run the Pods behind the Replica Set directly 
+There is high level feature which is called Deployment which provides lots more feature than Replica Set.
+Deployment actually creates the Replica Set.
+we cannot generate the yaml file for Replica Set using kubectl command like we created the yaml file for pods.
+
+Here we can create a deployment manifest file and run it as a Replica Set.
+
+	kubectl create deployment myreplica --image=nginx --dry-run=client -o yaml >rs.yaml
+	
+Output of yaml file :
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplica
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myreplica
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: myreplica
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+
+To run the pod we use the command
+
+	kubectl apply -f rs.yaml
+	
+To view the RepliSet
+
+	kubectl get rs
+	
+To view the Pods
+
+	kubectl get pods
+
+Note :
+If we define a pod named myreplica then that pod will be automattically acquired by RepliaSet
+and it would be terminated because number of Replica's is already defined in ReplicaSet.
 
 
 ************************************************************* 12.Deployment in Kubernetes   **************************************************************************** 
