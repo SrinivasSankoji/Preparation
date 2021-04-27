@@ -1,45 +1,53 @@
-1.Introduction                               14-DEC-2019 (Done)
-2.Setting Up								 25-DEC-2019 ()
-3.Understanding Archetypes and pom.xml		 25-DEC-2019 ()
-4.Maven Build Phases						 25-DEC-2019 ()
-5.Adding Dependency							 25-DEC-2019 ()
-6.Web Application Using Maven				 14-DEC-2019 ()
-7.Compiler Plug In							 14-DEC-2019 ()
-8.Jetty Plug In								 14-DEC-2019 ()
-9.Eclipse Plug In							 14-DEC-2019 ()
-10.Maven Project in Eclipse					 14-DEC-2019 ()
+1.Introduction                               [14-DEC-2019] (Done)
+2.Setting Up								 [25-APR-2021] ()
+3.Understanding Archetypes and pom.xml		 [25-APR-2021] ()
+4.Maven Build Phases						 [25-APR-2021] ()
+5.Adding Dependency							 [25-APR-2021] ()
+6.Web Application Using Maven				 [14-APR-2021] ()
+7.Compiler Plug In							 [14-APR-2021] ()
+8.Jetty Plug In								 [14-APR-2021] ()
+9.Eclipse Plug In							 [14-APR-2021] ()
+10.Maven Project in Eclipse					 [14-APR-2021] ()
 
 
-1.Introduction :
-----------------
-Maven is mostly commonly is used as a Build Tool i.e Helps to Build the Code in Development Environment.
-Maven Can also be Used for Project Management Tool i.e Generate Reports,Dependency Management etc.
-Most Common Problems and Activities While Developing the Application are
+*********************************************************************** 1.Introduction ***********************************************************************
 
-Multiple Jars
-Dependency and Versions
+Maven is mostly commonly used as a build Tool i.e helps to build the code in development Environment.
+Maven can also be used as a Project Management Tool i.e generate reports,dependency management etc.
+Most common problems and activities while developing the Application are
+
 Project Structure
-Build,Publish and Deploy
+Dependency and Versions
+build,publish and deploy
+Multiple Jars
 
-Maven Helps in Resolving the Above Activities by Using Maven Repository.
-To check the Maven has Installed or Not Use The Command mvn --version.
-To Create the Application using Maven We Use the command mvn archetype:generate and 
-choose a Number i.e What Kind of Application Want to be Created by Maven
+Maven Helps in resolving the above activities by using maven repository.
+To check the Maven has installed or not use the command 
+
+	mvn --version.
+	
+To Create the Application using Maven we use the command 
+
+	mvn archetype:generate "Number" 
+	
+choose a Number i.e what kind of Application we want to be created by Maven
 choose version 
 choose group Id i.e Package structure
 choose artifact Id  i.e Application Name
 
-Here Maven has Created a Folder Structure along with pom.xml
+Here Maven has created a folder structure along with pom.xml
 
-2.Setting Up :
---------------
+*********************************************************************** 2.Setting Up ***********************************************************************
 
-3.Understanding Archetypes and pom.xml :
-----------------------------------------
-The First Thing Maven Does for us is Creating a Source Code Template called  Folder Structure. 
-Second Maven Does is Build i.e compile the Code and package the Application into a Jar File.
-Here We are Generating the Source Code Structure by using the Command 	maven archetype: generate 
-and the output of this is the Folder Structure and pom.xml 
 
-4.Maven Build Phases :
-----------------------
+*********************************************************************** 3.Understanding Archetypes and pom.xml *********************************************
+
+The first thing Maven does for us is creating a source code template called Folder Structure. 
+Second Maven does is build i.e compile the code and package the Application into a jar File.
+Here We are Generating the source code Structure by using the command and the output of this is the folder structure and pom.xml 
+
+	maven archetype: generate 
+	
+
+
+*********************************************************************** 4.Maven Build Phases **************************************************************
