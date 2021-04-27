@@ -4,14 +4,12 @@
 4.ETCD in Kubernetes                                        [01-APR-2021]  (Done)
 5.Kubernetes Certified Exam                                 [01-APR-2021]  ()
 6.Kube Controller Manager and Scheduler                     [01-APR-2021]  (Done)
-
 7.Pods                                                      [12-APR-2021]  (Done)
 8.Pod Networking                                            [12-APR-2021]  (Done)
-9.Static Pods                                               [26-APR-2021]  ()
-10.Container Probes                                         [26-APR-2021]  ()
-
-11.Replica Sets                                             [03-APR-2021]  ()
-12.Deployment in Kubernetes                                 [03-APR-2021]  ()
+9.Static Pods                                               [27-APR-2021]  ()
+10.Container Probes                                         [27-APR-2021]  ()
+11.Replica Sets                                             [27-APR-2021]  ()
+12.Deployment in Kubernetes                                 [27-APR-2021]  ()
 
 13.Kubernetes Services Part 1                               [04-APR-2021]  ()
 14.Kubernetes Service Part 2                                [04-APR-2021]  ()
@@ -227,11 +225,10 @@ when we run the Docker Daemon on any Node it internally creates the default dock
 This default network gets an IP Address.
 
 Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network i.e docker0.
-Newly created Container gets another virtual pair of Ethernet which has the same range of docker0 Network.
+Newly created Container gets virtual pair of Ethernet which has the same range of docker0 Network.
 Similar is the case for all the newly created Containers.
 
-When we create the Pod all the Containers within the Pod shares the same Namespace network.
-They can communicate with each other on the localhost.
+When we create the Pod all the Containers within the Pod shares the same Namespace network.They can communicate with each other on the localhost.
 Kubernetes implements the shared network Namespace by running the Container named Pause.
 Pause Container responsibilty is to hold the same Network Namespace for all the remaining Containers.
 
@@ -256,4 +253,8 @@ Containers running inside the Pod will get the Sequential IP Address.
 ************************************************************* 10.Container Probes  *************************************************************************************
 
 
+************************************************************* 11.Replica Sets  *****************************************************************************************
 
+
+
+************************************************************* 12.Deployment in Kubernetes   **************************************************************************** 

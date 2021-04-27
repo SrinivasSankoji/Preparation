@@ -34,15 +34,22 @@
 34.apt-get                                  [26-APR-2021]  (Done)
 35.ifconfig                                 [26-APR-2021]  (Done)
 36.tar                                      [26-APR-2021]  (Done)
-
 37.grep                                     [27-APR-2021]  ()
 38.netstat                                  [27-APR-2021]  ()
+39.enable SSH                               [27-APR-2021]  (Done)
+40.scp                                      [27-APR-2021]  ()
 
-39.enable SSH                               [28-APR-2021]  ()
-40.scp                                      [28-APR-2021]  ()
+41.Atom Editor                              [28-APR-2021]  ()
+42.Install Postgree Sql                     [28-APR-2021]  ()
 
-41.Atom Editor                              [29-APR-2021]  ()
-42.Install Postgree Sql                     [29-APR-2021]  ()
+
+top
+free
+vmstat
+iostat
+lsof
+fdisk
+fstab
 
 
 ***************************************************************  1.Introduction   **************************************************************
@@ -1123,18 +1130,56 @@ To extract the file in tar.gz format we use the command
 
 ***************************************************************  37.grep *************************************************************************
 
-
+grep stands for globally search for regular expression and print matching lines.
+grep command processes the text line by line and prinnts any line which matches the specified pattern.
+grep command can be used to search some kind of word or sentence in multiple text files using the regular expression.
+	
 
 
 ***************************************************************  38.netstat **********************************************************************   
 
+netstat stands for network statistics.
 
 
-***************************************************************  39.enable SSH  ******************************************************************      
+***************************************************************  39.enable SSH  ******************************************************************  
+    
+To enable SSH on Ubuntu Operating System we need to install Open SSH Server.
+SSH stands for secure shell
+SSH is a protocol which can be used to securely logged in to the remote Operating System.
+It is the most common way to acces the remote Linux/Unix Server.
+To check whether the SSH client is installed or not we use the command
+	
+	ssh
+	
+Once the ssh is installed we will also be able to connect to different remote OS on the Cloud.
 
+	ssh username@IpAddress -p 
+	
+To check whether the SSH Server is installed or not we use the command
 
+	ssh localhost
+	
+Here we are trying to connect to the localhost via ssh.
+If we get the output as connection refused then SSH Server is not installed.
+If we want our system to be available for the other Server's we need to instal the SSH Server.
+To install SSH Server
+
+	sudo apt-get install openssh-server
+	
+To check whether the SSH Server is installed or not we use the command
+
+	sudo service ssh status
+	
+Note :
+If we want to change the default port where the SSH Server is running,we use the command
+
+	sudo gedit /etc/ssh/sshd_config
+	
+then search for the port and change the value if required.
 
 ***************************************************************  40.scp     **********************************************************************   
+
+
 
 
 

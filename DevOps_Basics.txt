@@ -1,2 +1,94 @@
 1.DevOps RoadMap	(TechWorld with Naina)     				[19-JAN-2021] ()
-2.
+2.DevOps RoadMap	(Cloud Advocate)     				    [19-JAN-2021] ()
+
+**************************************************  2.DevOps RoadMap  (Cloud Advocate)   **************************************************
+
+Why DevOps
+Why Cloud 
+
+1.Terms used in DevOps are :
+Agile
+Quality
+Scale of Infrsstructure
+Caching
+Case Studies
+Vertical vs Horizontal Scaling
+CDN
+Availability
+
+2.Linux :
+Linux Architecture
+Linux Package Installation
+Linux Commands
+
+
+3.Bash Scripting:
+Shell Variables
+PATH
+Aliases
+File Descriptors
+Loops
+Conditions
+crontab
+Basics of Python Programmming
+Bash Scripting Interview Questions
+
+4.Common Infra Services :
+Undersatnding DNS
+How SSL Works
+Understanding Http
+Http Status Codes
+Web Servers :Apache,Nginx,IIS
+Reverse Proxy
+Load Balancers : Layer4 vs Layer7,HA Proxy,Nginx
+Apache BenchMarking
+Alogorithm used in Load Balancing  i.e RoundRobin
+
+5.Continuous Integration
+GIT :
+Pull,Fetch,Merge Conflicts etc
+Jenkins :
+Integrating with GIT
+Jenkins as a Code
+Maven/Gradle build on Jenkins
+
+6.Configuration Management :
+Ansible
+Chef
+Puppet  (Optional)
+Salt	(Optional)
+
+
+7.Virtualization :
+Virtualization Basics
+Types of Virtualization
+Docker
+GKE,EKS (Cloud Concepts)
+Sample Website using Docker 
+Kubernetes
+
+8.Monitoring and Logging
+System Logging in Linux :
+Syslog
+Logging Levels
+rsyslog/rsyslogd
+Remote Logging
+ELK Set up in Linux
+
+Nagios (Optional)
+CloudWatch (AWS)
+
+9.AWS
+Networking and Security Concepts of Cloud
+
+
+
+
+
+
+
+
+
+
+
+
