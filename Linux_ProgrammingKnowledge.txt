@@ -34,11 +34,11 @@
 34.apt-get                                  [26-APR-2021]  (Done)
 35.ifconfig                                 [26-APR-2021]  (Done)
 36.tar                                      [26-APR-2021]  (Done)
-37.grep                                     [27-APR-2021]  ()
+37.grep                                     [27-APR-2021]  (Done)
 38.netstat                                  [27-APR-2021]  ()
 39.enable SSH                               [27-APR-2021]  (Done)
-40.scp                                      [27-APR-2021]  ()
 
+40.scp                                      [27-APR-2021]  ()
 41.Atom Editor                              [28-APR-2021]  ()
 42.Install Postgree Sql                     [28-APR-2021]  ()
 
@@ -1133,13 +1133,100 @@ To extract the file in tar.gz format we use the command
 grep stands for globally search for regular expression and print matching lines.
 grep command processes the text line by line and prinnts any line which matches the specified pattern.
 grep command can be used to search some kind of word or sentence in multiple text files using the regular expression.
+
+Navigate to the Desktop and create the new file by using man command for tar and write the output to another file.
+
+	man tar > file4.txt
 	
+To serach for the word "options" in file4.txt we use the command
+
+	grep "options" file4.txt
+	
+It returns the lines that contains text "options".
+I we want the line number to be displayed along with the lines we use the command
+
+	grep -n "options" file4.txt
+	
+Note :
+grep command is case sensitive by default and we can make case insensitive by using -i command
+
+	grep -ni "options" file4.txt
+	
+grep command can also be used to search the sentence 
+
+	grep -n "some options" file4.txt
+	
+grep command can be used to search the text in multiple files
+
+	grep -n "options" file1.txt file2.txt file3.txt
+	
+If all the files are in the same directory then we use the command
+
+	grep -n "options" *
+	
+To get the lines which does not contains the text in the file we use the command
+
+	grep -nv "options" file4.txt
 
 
 ***************************************************************  38.netstat **********************************************************************   
 
 netstat stands for network statistics.
+netstat can be used to display network connections,routing tables and a number of network interfaces.
+In addition it can be used to view network protocol statistics.
+To use network statistics we use the command
 
+	netstat
+	
+default option is -a and will it show all the options whether it is tcp,udp or unix connections.
+
+-t To view only the tcp connections.To view all the tcp connections including tcp6 we use the command -at
+-u To view only the udp connections.To view all the udp connections including tcp6 we use the command -au
+-x To view only the unix connections.To view all the unix connections including tcp6 we use the command -ax
+-l For the ports which are Listening
+-lt  For the Posrt which are listening and for tcp Network Connections.
+-lu  For the Posrt which are listening and for udp Network Connections.
+-lx  For the Posrt which are listening and for unix Network Connections.
+
+-s to view the Statistics of every network interface
+
+	netstat -s
+	
+-st  for tcp
+-su for udp
+-sx for unix
+
+-p To view the pid of every network interface
+
+	netstat -p
+	
+-pt for tcp
+-pu for udp
+-px for unix
+
+If we want to view the numeric ports we use the command
+
+	netstat -n | less
+
+To view the network statistics continuously we use the command
+
+	netstat -c
+	
+To view the network confing of the system we use the command
+
+	netstat -ie
+	
+i stands for interface
+e stand sfor extended interface
+
+Note :
+we can also use netstat command with less command to view the output in page wise.
+
+	netstat -a | less
+	
+If we want to search for the text in the output of netstat command,we use gerp command along with netstat command.
+
+	nststat -an | grep ':80'
 
 ***************************************************************  39.enable SSH  ******************************************************************  
     
