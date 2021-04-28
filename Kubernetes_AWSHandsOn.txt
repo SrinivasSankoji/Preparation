@@ -10,9 +10,8 @@
 10.Container Probes                                         [27-APR-2021]  ()
 11.Replica Sets                                             [27-APR-2021]  (Done)
 12.Deployment in Kubernetes                                 [28-APR-2021]  ()
-
-13.Kubernetes Services Part 1                               [04-APR-2021]  ()
-14.Kubernetes Service Part 2                                [04-APR-2021]  ()
+13.Kubernetes Services Part 1                               [28-APR-2021]  (Done)
+14.Kubernetes Services Part 2                                [04-APR-2021] ()
 
 15.Kubernetes Namespace                                     [05-APR-2021]  ()
 16.Manual Scheduling                                        [05-APR-2021]  ()
@@ -314,6 +313,53 @@ and it would be terminated because number of Replica's is already defined in Rep
 
  
 ************************************************************* 13.Kubernetes Services Part 1  ***************************************************************************
+
+We have seen how pods communicate with each other using Ip Address.
+This is not useful in all the scenario's.
+
+Consider the scenario we have 2 Pods.
+Application Pod
+Database Pod
+
+	Application Pod  --> Database Pod
+
+If the Application Pod holds the IP Address of the Database Pod and we know that pods in Kubernetes are ephimeral and any time a new pod can come and ha snew Ip Address.
+Problem to the solution is we need to use DNS of database instead of Ip Address and any IP Address can be beyond the DNS.
+Service in Kubernetes actually provides the proxy i.e behind the service we can put the pods.
+
+	Aplication Pod  -->  Service  <--  Database Pod
+
+Here Service reverse proxy the Database pod and holds the IP Address.
+Now the Application can use these IP Address to connect to the Database Pod.
+
+Here IP that service gets is the virtual IP.
+The service which we have created does not have any physical or virtual interface and IP Address is not attached to any network interface.
+
+For the communication to be happen between the pods the flow will be
+Each node will get the unique Ip Address and there shold be an overlay network between the nodes.
+Bridge Network connects to the Ethernet of the Nodes and it internally connects to the Gateway.
+Gateway thn communicates with the Ethernet of another Node and which connects to the Bridge Network and the connects to the virtual ethernet of the Pod.
+
+	Application Pod  --> Service   <-- Database Pod
+	
+When the request goes to the service from Application Pod there is component calle kube-proxy.
+kube-proxy maintains all the network configuration rules.
+Whenver request originates for the Ip,it redirects the request to the Node which has the running pods or live pods.
+
+Note :
+The Ip Address which the Service gets is not from or not in the range of Node Network or Pod Network.
+This actually has a different IP Address range.
+
+There are 3 types of services and by default is Cluster IP.
+
+Node Port
+Cluster IP
+Load Balancer
+
+
+
+
+
 
 
 

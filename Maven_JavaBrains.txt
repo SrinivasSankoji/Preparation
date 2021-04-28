@@ -18,24 +18,33 @@ Most common problems and activities while developing the Application are
 
 Project Structure
 Dependency and Versions
-build,publish and deploy
-Multiple Jars
+build,publish and deploy.In case of ANT we write the Targets.
+Multiple Jars can be resolved by using Maven.
 
+Maven helps in creating the project structure,managing the dependencies,downloading the dependencies etc.
 Maven Helps in resolving the above activities by using maven repository.
-To check the Maven has installed or not use the command 
+There are Repository's online and Maven talks to them to reolve the issues.
+To check the Maven has installed or not we use the command 
 
 	mvn --version.
 	
 To Create the Application using Maven we use the command 
+create the directory myApp -->
 
-	mvn archetype:generate "Number" 
+	mvn archetype:generate
 	
-choose a Number i.e what kind of Application we want to be created by Maven
+When we run the above commad Maven will download the required PlugIns and will open the prompt to choose a Number.
+i.e what kind of Application we want to be created by Maven
 choose version 
 choose group Id i.e Package structure
 choose artifact Id  i.e Application Name
 
 Here Maven has created a folder structure along with pom.xml
+
+Note :
+archetype is model that how the project want to be structured.
+They are predefined archetypes available online.
+default is 106.
 
 *********************************************************************** 2.Setting Up ***********************************************************************
 
