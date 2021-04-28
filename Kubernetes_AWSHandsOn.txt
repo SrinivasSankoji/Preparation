@@ -9,7 +9,7 @@
 9.Static Pods                                               [27-APR-2021]  ()
 10.Container Probes                                         [27-APR-2021]  ()
 11.Replica Sets                                             [27-APR-2021]  (Done)
-12.Deployment in Kubernetes                                 [27-APR-2021]  ()
+12.Deployment in Kubernetes                                 [28-APR-2021]  ()
 
 13.Kubernetes Services Part 1                               [04-APR-2021]  ()
 14.Kubernetes Service Part 2                                [04-APR-2021]  ()
@@ -291,11 +291,11 @@ spec:
       - image: nginx
         name: nginx
 
-To run the pod we use the command
+To run the deployment we use the command
 
 	kubectl apply -f rs.yaml
 	
-To view the RepliSet
+To view the ReplicaSet
 
 	kubectl get rs
 	
@@ -308,4 +308,13 @@ If we define a pod named myreplica then that pod will be automattically acquired
 and it would be terminated because number of Replica's is already defined in ReplicaSet.
 
 
-************************************************************* 12.Deployment in Kubernetes   **************************************************************************** 
+************************************************************* 12.Deployment in Kubernetes   ****************************************************************************
+
+
+
+ 
+************************************************************* 13.Kubernetes Services Part 1  ***************************************************************************
+
+
+
+************************************************************* 14.Kubernetes Service Part 2   ***************************************************************************
