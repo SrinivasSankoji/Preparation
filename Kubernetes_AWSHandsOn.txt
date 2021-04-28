@@ -9,7 +9,7 @@
 9.Static Pods                                               [27-APR-2021]  ()
 10.Container Probes                                         [27-APR-2021]  ()
 11.Replica Sets                                             [27-APR-2021]  (Done)
-12.Deployment in Kubernetes                                 [28-APR-2021]  ()
+12.Deployment in Kubernetes                                 [28-APR-2021]  (Done)
 13.Kubernetes Services Part 1                               [28-APR-2021]  (Done)
 14.Kubernetes Services Part 2                                [04-APR-2021] ()
 
@@ -233,7 +233,7 @@ Kubernetes implements the shared network Namespace by running the Container name
 Pause Container responsibilty is to hold the same Network Namespace for all the remaining Containers.
 
 In Kubernetes one Pod can reach out to another Pod using IP Address.
-Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other by using Router or API Gateway.
+Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other either by using Router or API Gateway.
 Each Node has a corresponding IP Address.
 When we set up the Kubernetes Cluster,Networking PlugIns are not installed and it informs what kind of networking structure it expects.
 We need to set up the Networking PlugIns outside the Cluster.
@@ -255,12 +255,12 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  *****************************************************************************************
 
-Replica Set is a Kubernetes Controller where it actually maintains the stable set of Pods as per the Configuration.
+Replica Set is a Kubernetes Controller where it actually maintains the number of Pods as per the Configuration.
 Replica Set gaurantees the availability of Pod at any given point of time.
 Earlier version of Kubernetes it is called Replication Controller and now it is Replica Set.
 
 Note :
-We never run the Pods behind the Replica Set directly 
+We never run the pods behind the Replica Set directly 
 There is high level feature which is called Deployment which provides lots more feature than Replica Set.
 Deployment actually creates the Replica Set.
 we cannot generate the yaml file for Replica Set using kubectl command like we created the yaml file for pods.
@@ -308,10 +308,63 @@ and it would be terminated because number of Replica's is already defined in Rep
 
 
 ************************************************************* 12.Deployment in Kubernetes   ****************************************************************************
+Deployment can be used to deploy the Application.
+When we deploy any Application in Kubernetes, we deploy them using Kubernetes.
+It is similar to Replica Set with additional features like updating image of an Application,Roll Out's and Roll back of an Application.
+To create the deployment manifest file in imperative way we use the commad 
 
+	kubectl create deployment deploy --image=nginx --replicas=1 --dry-run=client -0 yaml > deploy.yaml
+	
+To run the Deployment we use the command
 
+	kubectl apply -f deploy.yaml
+	
+When we craete the deployment,Replica Set will be created Automatically.
 
- 
+	kubectl get rs or kubectl get Replica Set
+	
+To scale the Deployment using imperative command
+
+	kubectl scale deployment deploy --replicas=3
+	
+Note:
+When we perform scaling through imperative command then ther will be no change in yaml file.
+
+To change the image in the deployment we use the command
+
+	kubectl set image deployment/deploy nginx=nginx:1.16.1
+	
+To view the the updated image in the deployment we use the command
+
+	kubectl describe deployment deploy
+	
+Note :
+If we don't specify any strategy then it is Rolling Update.
+To view the rolling update i.e terminates the Pod and creates the New Pod
+
+	watch kubectl get pods
+	
+If we want to check the Rollout status of the deployment we use the command
+
+	kubectl rollout status deployment deploy
+	
+To check the rollout history we use the command
+
+	kubectl rollout history deployment deploy
+	
+If we want to see what happen in revision 3 we use the command
+
+	kubectl rollout history deployment deploy --revision=3
+	
+To rollback to the previous revision we use the command
+
+	kubectl rollout undo deployment deploy
+	
+To rollback to the specific revision
+	
+	kubectl rollout undo deployment deploy --to-revision=3
+	
+
 ************************************************************* 13.Kubernetes Services Part 1  ***************************************************************************
 
 We have seen how pods communicate with each other using Ip Address.
@@ -364,3 +417,19 @@ Load Balancer
 
 
 ************************************************************* 14.Kubernetes Service Part 2   ***************************************************************************
+
+
+
+
+
+************************************************************* 15.Kubernetes Namespace **********************************************************************************
+
+
+
+
+************************************************************* 16.Manual Scheduling    **********************************************************************************   
+
+
+
+
+************************************************************* 17.Kubernetes Affinity and Anti Affinity *****************************************************************
