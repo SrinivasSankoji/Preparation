@@ -12,16 +12,16 @@
 12.Deployment in Kubernetes                                 [28-APR-2021]  (Done)
 13.Kubernetes Services Part 1                               [28-APR-2021]  (Done)
 14.Kubernetes Services Part 2                               [29-APR-2021]  ()
-15.Kubernetes Namespace                                     [29-APR-2021]  ()
+15.Kubernetes Namespace                                     [29-APR-2021]  (Done)
 
-16.Manual Scheduling                                        [05-APR-2021]  ()
-17.Kubernetes Affinity and Anti Affinity                    [05-APR-2021]  ()
-18.Kubernetes Taints and Tolerants                          [06-APR-2021]  ()
-19.ConfigMaps                                               [06-APR-2021]  ()
-20.Persistent Volumes and Claims                            [06-APR-2021]  ()
-21.ETCD Backup                                              [07-APR-2021]  ()
-22.ETCD Database Restore                                    [07-APR-2021]  ()
-23.Nginx Ingress Controller                                 [07-APR-2021]  ()
+16.Manual Scheduling                                        [05-MAY-2021]  ()
+17.Kubernetes Affinity and Anti Affinity                    [05-MAY-2021]  ()
+18.Kubernetes Taints and Tolerants                          [06-MAY-2021]  ()
+19.ConfigMaps                                               [06-MAY-2021]  ()
+20.Persistent Volumes and Claims                            [06-MAY-2021]  ()
+21.ETCD Backup                                              [07-MAY-2021]  ()
+22.ETCD Database Restore                                    [07-MAY-2021]  ()
+23.Nginx Ingress Controller                                 [07-MAY-2021]  ()
 
 
 
@@ -374,7 +374,7 @@ Database Pod
 
 	Application Pod  --> Database Pod
 
-If the Application Pod holds the IP Address of the Database Pod and we know that pods in Kubernetes are ephimeral and any time a new pod can come and ha snew Ip Address.
+If the Application Pod holds the IP Address of the Database Pod and we know that pods in Kubernetes are ephimeral and any time a new pod can come which has new Ip Address.
 Problem to the solution is we need to use DNS of database instead of Ip Address and any IP Address can be beyond the DNS.
 Service in Kubernetes actually provides the proxy i.e behind the service we can put the pods.
 
@@ -383,10 +383,10 @@ Service in Kubernetes actually provides the proxy i.e behind the service we can 
 Here Service reverse proxy the Database pod and holds the IP Address.
 Now the Application can use these IP Address to connect to the Database Pod.
 
-Here IP that service gets is the virtual IP.
+Here IP that the service gets is the virtual IP.
 The service which we have created does not have any physical or virtual interface and IP Address is not attached to any network interface.
 
-For the communication to be happen between the pods the flow will be
+For the communication to happen between the pods the flow will be
 Each node will get the unique Ip Address and there shold be an overlay network between the nodes.
 Bridge Network connects to the Ethernet of the Nodes and it internally connects to the Gateway.
 Gateway thn communicates with the Ethernet of another Node and which connects to the Bridge Network and the connects to the virtual ethernet of the Pod.
@@ -407,22 +407,46 @@ Node Port
 Cluster IP
 Load Balancer
 
-
-
-
-
+Example on Pod to Pod Communication : (Not Completed)
+Prerequisite is Master and Worker Node
 
 
 
 ************************************************************* 14.Kubernetes Service Part 2   ***************************************************************************
 
-
-
+Pods communication through Service :(Not Completed)
+Prerequisite is Master and Worker Node
 
 
 ************************************************************* 15.Kubernetes Namespace **********************************************************************************
 
+Namespaces can be used for resource seggregation.
+If the Cluster wants to be used as a performance Cluseter and also as a Dev Cluster,then not required to create another Cluster by spending lot of Money.
+We can seggregate the resources i.e running the Pods and services on one Single Cluster based on namespaces.
 
+Namespace in Kubernetes concept is similar to Namespace in Linux.
+There will be Storage Namespace,Netwrok Namespace etc.
+Similarly we have Namespace for Pods in Kubernetes.
+To view the Namespace in Kubernetes we use the command
+
+	kubectl get namespaces
+	
+If we create any resource then by default it comes under default namespace.
+
+	kubectl get pods -n default
+	
+To create the namespaces we use the command
+
+	kubectl create namespace development
+	kubectl create namespace production
+	
+To create the Pod in the development namespace we use the command
+
+	kubectl run webserver --image=nginx --namespace=development
+
+Note :
+Services which are in one namespace can communicate with the services whch are in another namespace using custom DNS.
+Kubernetes internally uses DNS to provide communication between the Services.
 
 
 ************************************************************* 16.Manual Scheduling    **********************************************************************************   
