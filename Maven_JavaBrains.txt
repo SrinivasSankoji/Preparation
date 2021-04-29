@@ -1,6 +1,6 @@
 1.Introduction                               [14-DEC-2019] (Done)
-2.Setting Up								 [25-APR-2021] ()
-3.Understanding Archetypes and pom.xml		 [25-APR-2021] ()
+2.Setting Up								 [29-APR-2021] (Done)
+3.Understanding Archetypes and pom.xml		 [29-APR-2021] (Done)
 4.Maven Build Phases						 [25-APR-2021] ()
 5.Adding Dependency							 [25-APR-2021] ()
 6.Web Application Using Maven				 [14-APR-2021] ()
@@ -12,24 +12,24 @@
 
 *********************************************************************** 1.Introduction ***********************************************************************
 
-Maven is mostly commonly used as a build Tool i.e helps to build the code in development Environment.
+Maven is mostly used as a build Tool i.e helps us to build and deploy the code in development Environment.
 Maven can also be used as a Project Management Tool i.e generate reports,dependency management etc.
-Most common problems and activities while developing the Application are
+Most common problems while developing the Application are
 
 Project Structure
 Dependency and Versions
-build,publish and deploy.In case of ANT we write the Targets.
-Multiple Jars can be resolved by using Maven.
+build,publish and deploy.In case of ANT we write the targets.
+Multiple Jars can also be resolved by using Maven.
 
-Maven helps in creating the project structure,managing the dependencies,downloading the dependencies etc.
+Maven helps in creating the project structure,managing the dependencies and information about the project etc.
 Maven Helps in resolving the above activities by using maven repository.
 There are Repository's online and Maven talks to them to reolve the issues.
-To check the Maven has installed or not we use the command 
+To check whether the Maven has installed or not we use the command 
 
 	mvn --version.
-	
-To Create the Application using Maven we use the command 
-create the directory myApp -->
+
+create the directory myApp -->	
+To Create an Application using Maven we use the command 
 
 	mvn archetype:generate
 	
@@ -45,18 +45,113 @@ Note :
 archetype is model that how the project want to be structured.
 They are predefined archetypes available online.
 default is 106.
+Spring Boot : 2689
+
+Here Maven download the dependencies i.e spring-boot-starter-test.
+If the spring-boot-starter-test is dependent on another Jar then Maven takes care of its related dependencies.
 
 *********************************************************************** 2.Setting Up ***********************************************************************
+
+To compile the Maven Project navigate to the directory where the pom.xml is present.
+	
+	cd D:\Maven\springbootmaven
+	
+Now run the command
+
+	mvn compile
+	
+Maven takes care downloading all the dependencies that we mentioned in pom.xml and compile the java classes of an Application.
+Here Maven compiles all the classes present in the src directory.
+Maven also compiles the test cases present inside the test directory.
+Once the compilation is done we need to package it and we use the command
+
+	mvn package
+
+The above command will package the Application into jar file.
+The above command will also run the Testcases.
+To execute the Application 
+
+	java -cp target/springbootmaven-1.0-SNAPSHOT.jar  com.jio.ngo.simple.SampleSimpleApplication.java
+
+Maven Repository has two types of Informations
+Archetype Information
+Dependency Information
+
 
 
 *********************************************************************** 3.Understanding Archetypes and pom.xml *********************************************
 
 The first thing Maven does for us is creating a source code template called Folder Structure. 
 Second Maven does is build i.e compile the code and package the Application into a jar File.
-Here We are Generating the source code Structure by using the command and the output of this is the folder structure and pom.xml 
+Here We are Generating the source code structure by using the command and the output of this command is the folder structure and pom.xml 
 
 	maven archetype: generate 
 	
+This was downloaded from the Maven Repository based on the given Output.
 
+archetype : 
+This is the information to the Maven that what kind of project we need.
+Maven comes with a huge list of archetypes and each archetype corresponds to a particular type of Application that we want to develop.
+Archetypes for Spring Application,Hibernate Application etc.
+
+Group Id and Artifact Id :
+The above two identifies the output that we are generating.
+If the Project generates the Jar file then we need to give the GroupId and ArtifactId for that Jar File.
+
+Note :
+we can have n number of artifactId under groupId.
+ArtifactId is a name given to a Project.
+
+Version :
+versioan has default 1.0-snapshot
+snapshot is useful when it is in development.
+Once code is released for the Production,then we mark it as Release.
+
+Package :
+Package is the place where we place the source code.
+Depending on the input provided to the package,Java Class in the Archetype will be assigned to the Package.
+If it is a Web Application it is a War.
+If it is a Java Application then it is a Jar.
+
+name :
+Here name can be different from ArtifactId.
+If the name is different then the Application is visible with the Name but Application is built with ArtifactId.
+
+dependency :
+<dependencies> will have the list of dependencies that the project has.
+
+scope:
+It is used by Maven when we are building and packaging an Application.
+
+Note :
+We need to define the GroupId,ArtifactId and version in such a way that Other Applications can consume our ArtifactId
+If we save it in a Repository.
+
+If we do not want to publish it to the Repository and want to use it for Internal Purpose.
+Maven has an Internal Repository.
+Whenver we build an ArtiactId then it is going to install it in the Local Repository.
+
+If some other Application needs an ArtifactId then firstly it checks in the Local Repository and pulls from the Local Repository.
+If it is not available then it searches in the Remote Repository.
+
+In the pom.xml we have 
+Maven Co-ordinates   i.e groupId,artifactId and version
+Metadata  
+Build Information i.e packaging
+Resources and Dependencies
 
 *********************************************************************** 4.Maven Build Phases **************************************************************
+
+Maven chooses the standard project structure based on the archetype we select.
+Second phase is build process i.e 
+Once we have done with the code ,we need to build and deploy the code.
+Maven helps in Build process.
+
+
+
+
+ 
+
+
+
+*********************************************************************** 5.Adding Dependency	 **************************************************************
