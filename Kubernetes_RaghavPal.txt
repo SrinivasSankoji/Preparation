@@ -190,7 +190,7 @@ Physical Machine
 Virtual Machine
 VM on Cloud
 
-Worker Nodes host the Pods that are the Components of the Application.
+Worker Nodes host the Pods that are the Components of an Application.
 Master Node is responsible for monitoring and managing the worker Nodes in the Cluster.
 Whenever there is a failure of the Worker Node,it will move the workload to the other Worker Node.
 Master Node will take care of the overall working of the Kubernetes Cluster.
@@ -277,8 +277,8 @@ We can disable the controller loops by setting the --cloud--provider flag to ext
 
 4.ETCD :
 --------
-ETCD is a open source,distributed key value data store in Kubernetes Cluster.
-ETCD is consistent and highly available key value data store used to store all cluster data in the Kubernetes.
+ETCD is a open source,distributed and key value data store in Kubernetes Cluster.
+ETCD is consistent and highly available key value data store used to store all the cluster data in the Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
 
 API server is the only component that intercats with ETCD data store.
@@ -312,7 +312,7 @@ kube-proxy is the networking component in a Node and it can also intercat with t
 This is the Component or an Agent which is responsible for maintaining the Network Configuration and Rules.
 
 All Node runs the Daemon called kube-proxy which watches the API server on the Master Node,
-So that it can communicate with Master Node using API Server and it gets all the information for addition and removal of Services and Endpoints.
+So that it can communicate with Master Node using API Server and it gets all the information like addition and removal of Services and Endpoints.
 
 Note :
 API Server component of the Master Node interacts with kube-proxy and kubelet Component of worker Node.

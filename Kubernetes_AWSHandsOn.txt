@@ -32,7 +32,7 @@ Label Nodes
 
 *************************************************************  3.Kube API Server  ***********************************************************************************
 
-API Server is the primary componenet that we intercat with in the Kubernetes.
+API Server is the primary componenet that we intercat within the Kubernetes.
 When we run the kubectl command,we are actually intercating with API Serevr.
 API Server exposes some API that the user can interact with.we can also intercat with API server using curl Request.
 Consider the scenario of creating a Pod and the Steps are 
@@ -53,24 +53,23 @@ API Server then updates the ETCD about the Pod creation.
 
 ETCD is the place where we have complete information about the Cluster.
 
-If we install the Kubernetes as Hardware,download the binary and provision the kube API Server.
-If we install the Kubernetes using the kubeadm,kubadm actually runs the API Server as Pod.
-When we switch to the console we can actually see how the API Server is running as Pod and we can see all the Configuration details.
+If we install the Kubernetes as Hardware,download the binary and run the kube API Server as a Service.
+If we install the Kubernetes using the kubeadm,kubadm runs the API Server as Pod.
+When we switch to the console we can see how the API Server is running as Pod and we can see all the Configuration details.
 
-To get all the Nodes in the Cluster,we use the command
+To view all the Nodes in the Cluster,we use the command
 
 	kubectl get nodes
 
-To get all the Pods in the Cluster,we use the command
+To view all the Pods in the Cluster,we use the command
 
 	kubectl get pods
 
 Here no Pods are running as of now.
-minikube actually uses the kubeadmin to deploy the Kubernetes cluster.
 Here we are not able to see all the Kubernetes Components as Pods because all these Pods are deployed in different Namespaces.
 All these system Pods runs in a namespace called kube-system.
 
-	kubectl get pods --namespace kube-system (or) kubectl get pods --n kube-system
+	kubectl get pods --namespace kube-system (or) kubectl get pods -n kube-system
 
 If we are deploying Kubernetes as a Hardware,download the binary and run the kube API Server as a Service.
 Configuration will be in the ETCD  and can view the Configuration in the ETCD service filename.
@@ -85,13 +84,13 @@ If we want to see the response in Json format
 *************************************************************  4.ETCD in Kubernetes  ******************************************************************************
 
 ETCD is the single source of truth for all the components of the Kubernetes System.
-ETCD actually stores everything that is happening in the Kubernetes Cluster i.e Pod Creation,Adding Node,Any Deployment etc.
-When we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we actually loose the data.
+ETCD stores everything that is happening in the Kubernetes Cluster i.e Adding Node,Pod Creation,Any Deployment etc.
+Whenever we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we loose the data.
 
-ETCD is open source,distributed key value data store.
-ETCD has consistent Read and Write i.e Any data which we write that is immideately for Read.
+ETCD is open source,distributed and key value data store.
+ETCD has consistent Read and Write i.e Any data which we write that is immideately available for read.
 ETCD is highly available because data is replicated in all the Nodes.
-when we deploy Kubernetes in a production Environment,we normally see the ETCD as external Component and not deployed along with the Kubernetes Cluster.
+Whenever we deploy Kubernetes in a production Environment,we normally see the ETCD as an external Component and not deployed along with the Kubernetes Cluster.
 ETCD is a Cluster of its own.It can be a 3 Node or 5 Node Cluster and maintain a leadership among them using RAFT protocol.
 ETCD is secure.
 
@@ -99,15 +98,15 @@ If we set up the Kubernetes cluster from scratch,we can isolate ETCD cluster by 
 Then advertise the address to the Kubernetes Cluster.
 If we set up the Kubernetes cluster using kubeadm,kubeadm deploys all of them as Pods.
 
-To see all the Pods in the Kubernetes system,we use the command
+To view all the Pods in the Kubernetes system,we use the command
 
-	kubectl get pods --n kube-system
+	kubectl get pods -n kube-system
 
-To see all the Configurations in the ETCD Pod we use the command
+To view the Configurations of the ETCD Pod we use the command
 
 	kubectl describe pod etcd-minikube -n kube-system
 
-If we run the ETCD as binary or external cluster then we will be able to see the ETCD as Service and runs on port 2379.
+If we run the ETCD as binary or an external Component then we will be able to see the ETCD as Service and runs on port 2379.
 All the configuration information will go inside the system d service file.
 
 To intercat with ETCD Cluster or ETCD Pod which is deployed by the minikube local system
@@ -129,14 +128,13 @@ Controller Manager is another component of Kubernetes echo system that manages t
 Controller Manager is not a single component and a group of smaller components packaged as a Single Binary.
 
 If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes Release Page and run as a Service.
-If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as Pod.
+If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as a Pod.
 
 we have different Controllers in the Controller Manager.
 Replication Controller ensures the number of Pods are running as per the Configuration.
 Replication Controller keeps monitoring the API Server for any changes.
 When particular Pod goes down,kubelet shares the information to the API Server which then shares the information to the ETCD.
-Controller Manager gets the information about the Pod from the API Server and 
-If the Pod is down then the Controller Manager tries to restart the Pod in the same Node or another Node.
+Controller Manager gets the information about the Pod from the API Server and If the Pod is down then the Controller Manager tries to restart the Pod in the same Node or another Node.
 
 Scheduler :
 -----------
@@ -144,8 +142,8 @@ Scheduler is another Component of Kubernetes eco system.
 Whenever we create a Pod obejct for deployment,Scheduler finds the appropriate Worker Node where the Pod has to placed.
 
 Scheduler has two stages which can be used to deploy the Pod in a correct Node.
-Filtering
-Scoring
+1.Filtering
+2.Scoring
 
 Consider the scenario we have 4 Worker Nodes.
 
@@ -158,7 +156,7 @@ If we want to deploy a Pod which requires 2GB of Memory.
 Here Scheduler filters all the worker Nodes and  gets the suitable Nodes.
 Scheduler then scores the Nodes based on the available resources and places the Pod into the Node which has the highest score.
 
-To get the Pods in the kube-system namespace we use the command
+To view the Pods in the kube-system namespace we use the command
 
 	kubectl get pods -n kube-system
 
@@ -176,7 +174,7 @@ We can also create custom scheduler when we craete the Pod.
 
 ************************************************************* 7.Pods  **************************************************************************************************
 
-Pod is the smallest deployable unit in Kubernetes.At the End of the day we are going to run Containers in Kubernetes.
+Pod is the smallest deployable unit in Kubernetes.
 Pod is nothing but a collection of Containers i.e Pod hosts the Containers.
 All the Containers running inside the Pod shares the same network namespace and storage namespace.
 Within the Pods all the Containers can communicate with each other using localhost.
@@ -198,9 +196,9 @@ To get the yaml file that can be used to create the Pod
 
 	kubectl run mypod --image=nginx --dry-run=client -o yaml -> nginx.yaml
 
---dry-run=client flag can be used ignore the run command.
+--dry-run=client flag can be used to ignore the run command.
 Here Kubernetes will create the yaml manifest file here.
-To create the Pod using yaml file 
+To run the Pod using yaml file 
 
 	kubectl apply -f nginx.yaml
 	
@@ -224,14 +222,13 @@ Succeded
 ************************************************************* 8.Pod Networking  ****************************************************************************************
 
 lets consider how the Docker Networking works.
-when we run the Docker Daemon on any Node it internally creates the default docker0 network and all the newly created Containers are attached to the default network.
-This default network gets an IP Address.
+Whenever we run the Docker daemon on any Node it internally creates the default docker0 network.
+This default network gets an IP Address and all the newly created Containers are attached to the default network.
 
 Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network i.e docker0.
-Newly created Container gets virtual pair of Ethernet which has the same range of docker0 Network.
 Similar is the case for all the newly created Containers.
 
-When we create the Pod all the Containers within the Pod shares the same Namespace network.They can communicate with each other on the localhost.
+Whenever we create the Pod all the Containers within the Pod shares the same Namespace network.They can communicate with each other on the localhost.
 Kubernetes implements the shared network Namespace by running the Container named Pause.
 Pause Container responsibilty is to hold the same Network Namespace for all the remaining Containers.
 
@@ -258,9 +255,9 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  *****************************************************************************************
 
-Replica Set is a Kubernetes Controller where it actually maintains the number of Pods as per the Configuration.
+Replica Set is a Kubernetes Controller where it ensures the number of Pods are running as per the Configuration.
 Replica Set gaurantees the availability of Pod at any given point of time.
-Earlier version of Kubernetes it is called Replication Controller and now it is Replica Set.
+Earlier version of Kubernetes is called Replication Controller and now it is Replica Set.
 
 Note :
 We never run the pods behind the Replica Set directly 
@@ -306,13 +303,14 @@ To view the Pods
 	kubectl get pods
 
 Note :
-If we define a pod named myreplica then that pod will be automattically acquired by RepliaSet
+If we define a pod named myreplica then that pod will be automatically acquired by RepliaSet
 and it would be terminated because number of Replica's is already defined in ReplicaSet.
 
 
 ************************************************************* 12.Deployment in Kubernetes   ****************************************************************************
+
 Deployment can be used to deploy the Application.
-When we deploy any Application in Kubernetes, we deploy them using Kubernetes.
+If we want to deploy any Application in Kubernetes,we deploy them using Deployment.
 It is similar to Replica Set with additional features like updating image of an Application,Roll Out's and Roll back of an Application.
 To create the deployment manifest file in imperative way we use the commad 
 
