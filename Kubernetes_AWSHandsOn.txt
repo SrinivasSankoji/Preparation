@@ -311,15 +311,16 @@ and it would be terminated because number of Replica's is already defined in Rep
 
 Deployment can be used to deploy the Application.
 If we want to deploy any Application in Kubernetes,we deploy them using Deployment.
-It is similar to Replica Set with additional features like updating image of an Application,Roll Out's and Roll back of an Application.
-To create the deployment manifest file in imperative way we use the commad 
+It is similar to Replica Set with additional features like updating the image of an Application,RollOut's and Rollback of an Application.
+To create the deployment manifest file in an imperative way we use the commad 
 
-	kubectl create deployment deploy --image=nginx --replicas=1 --dry-run=client -0 yaml > deploy.yaml
+	kubectl create deployment deploy --image=nginx --replicas=1 --dry-run=client -o yaml > deploy.yaml
 	
 To run the Deployment we use the command
 
 	kubectl apply -f deploy.yaml
 	
+Note :
 When we craete the deployment,Replica Set will be created Automatically.
 
 	kubectl get rs or kubectl get Replica Set
@@ -379,7 +380,7 @@ Database Pod
 
 If the Application Pod holds the IP Address of the Database Pod and we know that pods in Kubernetes are ephimeral and any time a new pod can come which has new Ip Address.
 Problem to the solution is we need to use DNS of database instead of Ip Address and any IP Address can be beyond the DNS.
-Service in Kubernetes actually provides the proxy i.e behind the service we can put the pods.
+Service in Kubernetes provides the proxy i.e behind the service we can put the pods.
 
 	Aplication Pod  -->  Service  <--  Database Pod
 
@@ -392,11 +393,11 @@ The service which we have created does not have any physical or virtual interfac
 For the communication to happen between the pods the flow will be
 Each node will get the unique Ip Address and there shold be an overlay network between the nodes.
 Bridge Network connects to the Ethernet of the Nodes and it internally connects to the Gateway.
-Gateway thn communicates with the Ethernet of another Node and which connects to the Bridge Network and the connects to the virtual ethernet of the Pod.
+Gateway then communicates with the Ethernet of another Node and which connects to the Bridge Network and the connects to the virtual ethernet of the Pod.
 
 	Application Pod  --> Service   <-- Database Pod
 	
-When the request goes to the service from Application Pod there is component calle kube-proxy.
+When the request goes to the service from an Application Pod there is component calle kube-proxy.
 kube-proxy maintains all the network configuration rules.
 Whenver request originates for the Ip,it redirects the request to the Node which has the running pods or live pods.
 
@@ -424,12 +425,11 @@ Prerequisite is Master and Worker Node
 ************************************************************* 15.Kubernetes Namespace **********************************************************************************
 
 Namespaces can be used for resource seggregation.
-If the Cluster wants to be used as a performance Cluseter and also as a Dev Cluster,then not required to create another Cluster by spending lot of Money.
+If the same Cluster wants to be used as a performance Cluseter and also as a Development Cluster,then not required to create another Cluster by spending lot of Money.
 We can seggregate the resources i.e running the Pods and services on one Single Cluster based on namespaces.
 
 Namespace in Kubernetes concept is similar to Namespace in Linux.
-There will be Storage Namespace,Netwrok Namespace etc.
-Similarly we have Namespace for Pods in Kubernetes.
+There will be Storage Namespace,Netwrok Namespace etc.Similarly we have Namespace for Pods in Kubernetes.
 To view the Namespace in Kubernetes we use the command
 
 	kubectl get namespaces
@@ -448,7 +448,7 @@ To create the Pod in the development namespace we use the command
 	kubectl run webserver --image=nginx --namespace=development
 
 Note :
-Services which are in one namespace can communicate with the services whch are in another namespace using custom DNS.
+Services which are in one namespace can communicate with the services which are in another namespace by using custom DNS.
 Kubernetes internally uses DNS to provide communication between the Services.
 
 
