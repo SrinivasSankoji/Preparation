@@ -1,9 +1,10 @@
 1.Introduction                               [14-DEC-2019] (Done)
 2.Setting Up								 [29-APR-2021] (Done)
 3.Understanding Archetypes and pom.xml		 [29-APR-2021] (Done)
-4.Maven Build Phases						 [25-APR-2021] ()
-5.Adding Dependency							 [25-APR-2021] ()
-6.Web Application Using Maven				 [14-APR-2021] ()
+4.Maven Build Phases						 [11-MAY-2021] (Done)
+5.Adding Dependency							 [11-MAY-2021] ()
+6.Web Application Using Maven				 [11-MAY-2021] ()
+
 7.Compiler Plug In							 [14-APR-2021] ()
 8.Jetty Plug In								 [14-APR-2021] ()
 9.Eclipse Plug In							 [14-APR-2021] ()
@@ -21,7 +22,7 @@ Dependency and Versions
 build,publish and deploy.In case of ANT we write the targets.
 Multiple Jars can also be resolved by using Maven.
 
-Maven helps in creating the project structure,managing the dependencies and information about the project etc.
+Maven helps in creating the project structure,managing the dependencies and provides the information about the project etc.
 Maven Helps in resolving the above activities by using maven repository.
 There are Repository's online and Maven talks to them to reolve the issues.
 To check whether the Maven has installed or not we use the command 
@@ -33,7 +34,7 @@ To Create an Application using Maven we use the command
 
 	mvn archetype:generate
 	
-When we run the above commad Maven will download the required PlugIns and will open the prompt to choose a Number.
+When we run the above commad Maven will download the required plugIns and will open the prompt to choose a Number.
 i.e what kind of Application we want to be created by Maven
 choose version 
 choose group Id i.e Package structure
@@ -60,9 +61,9 @@ Now run the command
 
 	mvn compile
 	
-Maven takes care downloading all the dependencies that we mentioned in pom.xml and compile the java classes of an Application.
+Maven takes care of downloading all the dependencies that we mentioned in pom.xml and compile the .java classes of an Application.
 Here Maven compiles all the classes present in the src directory.
-Maven also compiles the test cases present inside the test directory.
+Maven also compiles the test classes present inside the test directory.
 Once the compilation is done we need to package it and we use the command
 
 	mvn package
@@ -77,8 +78,6 @@ Maven Repository has two types of Informations
 Archetype Information
 Dependency Information
 
-
-
 *********************************************************************** 3.Understanding Archetypes and pom.xml *********************************************
 
 The first thing Maven does for us is creating a source code template called Folder Structure. 
@@ -87,7 +86,7 @@ Here We are Generating the source code structure by using the command and the ou
 
 	maven archetype: generate 
 	
-This was downloaded from the Maven Repository based on the given Output.
+This was downloaded from the Maven Repository based on the given input.
 
 archetype : 
 This is the information to the Maven that what kind of project we need.
@@ -124,12 +123,9 @@ scope:
 It is used by Maven when we are building and packaging an Application.
 
 Note :
-We need to define the GroupId,ArtifactId and version in such a way that Other Applications can consume our ArtifactId
-If we save it in a Repository.
-
-If we do not want to publish it to the Repository and want to use it for Internal Purpose.
-Maven has an Internal Repository.
-Whenver we build an ArtiactId then it is going to install it in the Local Repository.
+We need to define the GroupId,ArtifactId and version in such a way that Other Applications can consume our ArtifactId(Application) If we save it in a Repository.
+If we do not want to publish it to the Repository and want to use it for Internal Purpose. 
+Maven has an Internal Repository and Whenver we build an ArtiactId then it is going to install it in the Local Repository.
 
 If some other Application needs an ArtifactId then firstly it checks in the Local Repository and pulls from the Local Repository.
 If it is not available then it searches in the Remote Repository.
@@ -142,10 +138,58 @@ Resources and Dependencies
 
 *********************************************************************** 4.Maven Build Phases **************************************************************
 
-Maven chooses the standard project structure based on the archetype we select.
-Second phase is build process i.e 
-Once we have done with the code ,we need to build and deploy the code.
+Maven chooses the standard project structure based on the archetype we select and we can also customize the archetype.This is the First phase.
+Second phase is build process i.e Once we have done with the coding,we need to build and deploy the code.
 Maven helps in Build process.
+
+Build was done using some of the commands
+
+	compile
+	package
+
+We need to specify one command that will take care of all the other activities.
+In case of ANT we need to specify target for each step.
+Every step has to be explicitly mentioned like validate,compile,package,deploy and install.
+
+Maven has standrad directory structure and it knows what needs to be done.
+Consider the scenario if we have created any project using maven archetype and it has 2 folders i.e main and test.
+If the code is in the main then Maven assumes that it as the Application Code.
+If the code is in the test then Maven assumes that it as the Test cases.
+Depending on that it compiles the main source code and not the test cases.
+Maven will run the test cases before we package the code.
+
+Maven has something called as Build Life cycle and is defined as a part of Maven Architecture.
+Every Build has a life cycle.
+First we write the code,compile it,run the Test cases,package the Application,install it in a particular Repository or in a shared location where other developers can use the binary.
+Maven has an internal Build Life cycle itself.
+Build Life cycle is split into different phases.
+
+validate  i.e cheks everything is in order
+compile
+test
+package 
+install
+deploy
+
+All these phases will form the Maven Build Life Cycle.
+If we do not configure then Maven will choose the default Build Life Cycle.
+If we specify the Build phase package then Maven Automatically executes the previous phases i.e compile and test.
+If any of the phase Fails then next phase won't be executed.
+
+
+install :
+Maven installs the artifact into the local Maven Repository.
+If one project depends on another project artifact then Maven searches for the artifact in the Local Repository and if it does not found then Maven Searches in the Remote Repository.
+install helps in publishing the jar into the Local Repository.
+
+deploy:
+If we want to publish the artifact to the remote Repository where the other users can download.
+
+Example :
+In order to run any of the phases,navigate to the directory where the pom.xml is present
+
+
+
 
 
 
