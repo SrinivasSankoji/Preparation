@@ -12,7 +12,7 @@
 Examples :
 Simple Java Project
 Web Application uisng Maven
-Install Maven on ubuntu
+Install Maven on Linux
 
 *********************************************************************** 1.Introduction ***********************************************************************
 
@@ -223,10 +223,10 @@ groupId
 artifactId
 version
 
-When we add the dependency during the compile phase it will download all the jars which are required and makes them available to th classpath to compile.
+When we add the dependency,During the compile phase it will download all the jars which are required and makes them available to th classpath to compile.
 
 Note :
-By default scope is compile i.e dependencies will be available during the compilation phase.
+Default scope is compile i.e dependencies will be available during the compilation phase.
 
 *********************************************************************** 6.Web Application Using Maven ***********************************************************************
 
@@ -239,25 +239,49 @@ PlugIns are a way in which we can extend the functionality of Maven.
 Maven Architecture itself is a assembly of PlugIns and is a modular Architecture.
 Maven Compiler is a PlugIn inside the Maven system.
 All the core components acts as a PlugIns and make it as a Modular Architecture.
-Advantage of PlugIn Architecture is that we can add PlugIns and we can configure the way we want to extend the functionality and finetune the Maven performance.
+Advantage of PlugIn Architecture is that we can add PlugIns and we can configure the way we want to extend the functionality.
 
 If we create the Web Application using Maven we get the Compiler PlugIn inside pom.xml.
 Here the source and target is 1.4
 
-	<configuration>
-	 <source>1.4</source>
-	 <target>1.4</target>
-	</configuration>
+	<plugins>
+		<plugin>    
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.4</source>
+				<target>1.4</target>
+			</configuration>
+		</plugin>
+	</plugins>
 
 The above code is generated while we choose the archetype and is the configuration for Maven Compiler PlugIn.
-In our code if we use the generics in our code which comes in 1.5,code won't get compiled.
+In our code If we use the Generics in our code which comes in 1.5,code won't get compiled.
 For Maven 2 default version is 1.4.
-Here we need to specify the configuration externally for the generic code to work.
+Here we need to specify the configuration externally for the Generics code to work i.e make the source and target to 1.5.
+To check the default JDK version of Maven we use the below command which shows the Java Version in which Maven runs.
+
+	mvn -v
+
+
+
+*********************************************************************** 8.Jetty Plug In  ***********************************************************************************
+
+
 
 *********************************************************************** 9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse  ******************************************
 
 Maven has a modular architecture that comprises of lot of plugIns.
 Eclipse is widely used IDE nad even that has modular Architecture.
+
+
+
+*********************************************************************** 10.Maven Project in Eclipse	***********************************************************************
+
+
+
+
+*********************************************************************** Install Maven in Linux ****************************************************************************
+
 
 
 
