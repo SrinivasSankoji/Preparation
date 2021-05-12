@@ -1,15 +1,18 @@
-1.Introduction                               [14-DEC-2019] (Done)
-2.Setting Up								 [29-APR-2021] (Done)
-3.Understanding Archetypes and pom.xml		 [29-APR-2021] (Done)
-4.Maven Build Phases						 [11-MAY-2021] (Done)
-5.Adding Dependency							 [11-MAY-2021] ()
-6.Web Application Using Maven				 [11-MAY-2021] ()
+1.Introduction                               							[14-DEC-2019] (Done)
+2.Setting Up								 							[29-APR-2021] (Done)
+3.Understanding Archetypes and pom.xml		 							[29-APR-2021] (Done)
+4.Maven Build Phases						 							[11-MAY-2021] (Done)
+5.Adding Dependency							 							[12-MAY-2021] (Done)
+6.Web Application Using Maven				 							[12-MAY-2021] ()
+7.Compiler Plug In							 							[12-APR-2021] (Done)
+8.Jetty Plug In								 							[12-APR-2021] ()
+9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse				[12-APR-2021] ()
+10.Maven Project in Eclipse					 							[12-APR-2021] ()
 
-7.Compiler Plug In							 [14-APR-2021] ()
-8.Jetty Plug In								 [14-APR-2021] ()
-9.Eclipse Plug In							 [14-APR-2021] ()
-10.Maven Project in Eclipse					 [14-APR-2021] ()
-
+Examples :
+Simple Java Project
+Web Application uisng Maven
+Install Maven on ubuntu
 
 *********************************************************************** 1.Introduction ***********************************************************************
 
@@ -190,12 +193,75 @@ In order to run any of the phases,navigate to the directory where the pom.xml is
 
 
 
-
-
-
-
- 
-
-
-
 *********************************************************************** 5.Adding Dependency	 **************************************************************
+
+Till now we have choosen the archetype for an Application and set up the project structure.
+We alos peroform the Maven Build phases like compile,test,package,install and deploy.
+Here we add the dependency by changing the pom.xml and Maven to import the jars from the Repository.
+
+Note :
+target folder is the result of build and compile that we did earlier.
+We can clear the target folder by using the command mvn clean.
+clean is a phase which removes all the classes and the jars that were generated earlier.
+
+Example :
+consider the scenario of adding the log statement instead of sysout.
+Here we need to add the dependency to use the log statements in the program.
+Maven does the things automatically by adding the dependency.
+
+Note :
+If we don't use Maven we need to download the jar and add it to the classpath to make it available to the program.
+Then the program can be able to compile.
+
+If the Maven does not find the dependency and we run the below command then we get the Compilation Error.
+
+	mvn compile
+
+Here we need to tell the Maven to pull the jar from Central Repository by adding the dependency in the pom.xml.
+dependency contains the GAV i.e For Maven to identify the artifacts we need to define the 
+groupId
+artifactId
+version
+
+When we add the dependency during the compile phase it will download all the jars which are required and makes them available to th classpath to compile.
+
+Note :
+By default scope is compile i.e dependencies will be available during the compilation phase.
+
+*********************************************************************** 6.Web Application Using Maven ***********************************************************************
+
+
+
+
+*********************************************************************** 7.Compiler Plug In	*********************************************************************************
+
+PlugIns are a way in which we can extend the functionality of Maven.
+Maven Architecture itself is a assembly of PlugIns and is a modular Architecture.
+Maven Compiler is a PlugIn inside the Maven system.
+All the core components acts as a PlugIns and make it as a Modular Architecture.
+Advantage of PlugIn Architecture is that we can add PlugIns and we can configure the way we want to extend the functionality and finetune the Maven performance.
+
+If we create the Web Application using Maven we get the Compiler PlugIn inside pom.xml.
+Here the source and target is 1.4
+
+	<configuration>
+	 <source>1.4</source>
+	 <target>1.4</target>
+	</configuration>
+
+The above code is generated while we choose the archetype and is the configuration for Maven Compiler PlugIn.
+In our code if we use the generics in our code which comes in 1.5,code won't get compiled.
+For Maven 2 default version is 1.4.
+Here we need to specify the configuration externally for the generic code to work.
+
+*********************************************************************** 9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse  ******************************************
+
+Maven has a modular architecture that comprises of lot of plugIns.
+Eclipse is widely used IDE nad even that has modular Architecture.
+
+
+
+
+
+
+
