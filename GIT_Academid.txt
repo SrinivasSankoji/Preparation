@@ -109,8 +109,15 @@ If we want to go to the previous commit we use the command
 	git checkout commitId
 	
 When we run the above command,we are now back to the code before and the HEAD points to this commit.
-This commit is no longer part of Master Branch.
-We can use this feature to check what is happened in the previous commit.
+This commit is no longer part of Master Branch and We can use this feature to check what is happened in the previous commit.
+If we want to go back to the current commit after the checkout commitid,we use the command
+
+	git checkout master
+	
+Consider the Scenario where we have written some code and not performed any add and commit operation i.e not added to the Repository.
+If we want to revert unstaged changes and go bck to the previous commit we use the command	
+
+	git checkout -- .
 
 
 
