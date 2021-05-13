@@ -37,6 +37,47 @@ These two commits are saved inside a Branch.
 Branch is the part of the GIT Repository.
 
 Example :
+We run the GIT either with the command prompt or Terminal on the Windows.
+If we don't have git,source code history cannot be maintained and cannot go back to the previous state.
+GIT allows us to manage our different versions of source code history in a very efficient and easy to maintain manner.
+We have to trun our project into a project managed by GIT.
+
+
+git init :
+This will initialize the GIT Repository i.e telling the GIT to manage the project.
+Once the GIT is initialized we get all the files in the project that needs to create the Repository.
+With the Repository we can make sure that GIT will monitor and control all the files in the Folder.
+
+git status :
+It will show the untracked files or modified files in the Repository.
+If the file is newly created then it will be shown as untracked.
+If the file is already present in the Repository then it will be shown as modified.
+
+git add . :
+If the status is untracked,GIT knows that thare are some files which needs to be tracked by GIT.
+We have to tell explicitly tell GIT which files it should include in our Repository therefor which code parts it should track.
+To tell the GIt to track these files we use the command 
+
+	git add . or git add filename
+	
+The above command will add all the files of the project folder to the tarcking logic of the Repository.
+If we again run the command 
+	
+	git status
+
+we now seen the status in green color which indicates that the changes are tracked by the GIT Repository.
+
+git commit :
+To commit the chnages to the branch in the Repository we use the command
+
+	git commit -m "Changes"
+	
+Above command states that add this code as a version of the Code in the so called Branch.
+once the commit is executed all the changes are pushed to the Repository.
+To view the committed changes we use the command
+
+	git log
+	
 
  
 
