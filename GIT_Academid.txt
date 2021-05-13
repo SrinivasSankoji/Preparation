@@ -78,6 +78,18 @@ To view the committed changes we use the command
 
 	git log
 	
+Branch :
+GIT automatically creates the master branch.
+
+Note :
+we created the Repository by using the command git init.
+Inside the Repository we addded some file and added the code in it.
+We informed the git to track the changes of the file using the command git add .
+Once the changes are tracked by the GIT we add the changes to the Repository and we use the command git commit.
+Once we commit the code,code is added to the Repository and GIT automatically creates the master Branch of our Repository.
+
+
+
 
  
 
