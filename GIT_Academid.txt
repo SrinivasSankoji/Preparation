@@ -1,5 +1,58 @@
 1.Introduction				[13-04-2021]			()
-2.Basics					[13-04-2021]			()
+2.Basic Commands			[13-04-2021]			()
 3.Stash                     [13-04-2021]			()
 4.Merge vs Rebase           [13-04-2021]			()
 
+
+*********************************************************************** 1.Introduction ***********************************************************************
+
+GIT is a version Control System.
+GIT is a tool that allows us to manage our source code history.
+GIT can be downloaded and is a version Control System which allows us to manage our source code history.
+As GIT is downloaded it can be a local tool that we can install on our Machine.
+
+
+GitHub is a hosting and collabartion provider which has the purpose to host the git repositories.
+GitHub is a Web based solution.
+We can push the GIT Repositories to the GitHub so that other developers can access the Code and collabarate in Project.
+Pushing the project from GIT to GitHub is totally optional and we can work locally with GIT.
+Alternative to GitHub is AWS Code Commit.
+
+Git and GitHub are two different things althouh the names seems to be quite similar.
+  
+Repository is the location where the code history is stored.
+We have to tell git that it should manage certain projects or specific projects.For this purpose we have to add the project files to the Repository.
+Inside the Repository the code is also structured in efficient and logical way.
+
+Branch :
+Inside the Repository we also has a branch.
+Branch is the folder within the Repository that contains commits.
+
+Commit :
+Commit stands for the different stages and different versions of the source code that we saved inside a branch.
+
+Consider the case we have started the code and finished the code.
+Two versions of the code in two commits.
+These two commits are saved inside a Branch.
+Branch is the part of the GIT Repository.
+
+Example :
+
+ 
+
+
+
+
+
+*********************************************************************** 2.Basic Commands *********************************************************************
+
+
+
+
+*********************************************************************** 3.Stash  ******************************************************************************
+
+
+
+
+
+*********************************************************************** 4.Merge vs Rebase  ********************************************************************
