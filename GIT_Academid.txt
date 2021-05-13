@@ -86,7 +86,35 @@ we created the Repository by using the command git init.
 Inside the Repository we addded some file and added the code in it.
 We informed the git to track the changes of the file using the command git add .
 Once the changes are tracked by the GIT we add the changes to the Repository and we use the command git commit.
-Once we commit the code,code is saved into the master branch of our Repository.
+Once we commit the code,code is now saved into the master branch of our Repository.
+
+Example :
+Now Add some text in the file and perform the add and commit operations.
+
+	git add .
+	git commit -m "Second Commit"
+	
+Now we have two commits in the Master branch of our Repository.
+
+Note :
+GIT does not create copies of commits that we create.
+GIT simply tracks the changes in the file.
+When we perform add operation GIT looks for all the files in the code and verifies are there any changes in the file.
+When we perfrom commit these changes will be saved.
+GIT does not copy the code again and again and it will be highly inefficient.
+
+Whenver we create a new commit then this commit would be the HEAD of the Branch.
+If we want to go to the previous commit we use the command
+	
+	git checkout commitId
+	
+When we run the above command,we are now back to the code before and the HEAD points to this commit.
+This commit is no longer part of Master Branch.
+We can use this feature to check what is happened in the previous commit.
+
+
+
+
 
 
 
