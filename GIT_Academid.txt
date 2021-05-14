@@ -156,7 +156,7 @@ To merge the newly created branch to the master branch,navigate to the master br
 	
 As newly created branch is not required then we can remove the branch using the command
 
-	git branch -D git-academid
+	git BRANCHDELETION -D git-academid
 	
 
 
