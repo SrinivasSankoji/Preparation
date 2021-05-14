@@ -119,7 +119,12 @@ If we want to revert unstaged changes and go bck to the previous commit we use t
 
 	git checkout -- .
 
+git branch :
+When we run the below command then we get the output as master with * .
 
+	git branch
+	
+We are in the master Branch which was automatically created when we perform the first commit.
 
 
 
