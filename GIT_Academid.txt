@@ -126,6 +126,12 @@ When we run the below command then we get the output as master with * .
 	
 We are in the master Branch which was automatically created when we perform the first commit.
 
+Branching :
+Branch contains the code we have and different versions of it.
+Consider the scenario where we work in the master branch and has a stable release.
+If we want to add a new feature and don't want to crash ths stable way.
+Then we can alos create a new branch for a secific feature and keep working on those features.
+Once the feature is finished then merge the feature to the master branch.
 
 
 
