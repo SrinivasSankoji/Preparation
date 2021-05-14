@@ -275,10 +275,23 @@ When we run the above command all the changes are drafted and GIT points to the 
 To get back the changes we use the command
 
 	git stash apply
+
+We now has the option to commit the project or keep on working on the stash.
+Which stash we want to display is based on index.
+
+	git stash 0
 	
+git stash apply will apply the most recent changes.
+To add the description for the stash we use the command
+	
+	git stash push -m "Meaningful Name to the Stash"
+	
+To remove/drop the stash we use the command
 
+	git stash drop indexNumber
+	
+To merge the stash we use the command
 
-
-
-
+	git stash pop indexNumber
+	
 *********************************************************************** 4.Merge vs Rebase  ********************************************************************
