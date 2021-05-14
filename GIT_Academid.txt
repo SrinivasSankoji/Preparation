@@ -150,17 +150,21 @@ Add some text to the newly created branch and then add and commit the code.
 	git add .
 	git commit -m "Branch Creation"
 	
+To merge the newly created branch to the master branch,navigate to the master branch and then run the command
+
+	git merge git-academid
+	
+As newly created branch is not required then we can remove the branch using the command
+
+	git branch -D git-academid
+	
+
 
 
 
 
 
  
-
-
-
-
-
 *********************************************************************** 2.Basic Commands *********************************************************************
 
 
