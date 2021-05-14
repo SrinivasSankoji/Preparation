@@ -333,6 +333,8 @@ Creating Second Commit in Feature Branch i.e named f2.
 Problem with squash is that we need to manually resolve the Errors and then add and commit the code.
 We had an another approach that can resolve the same issue i.e by using ReBase.
 
+Note : We run the merge command in master Branch. 
+
 Squash :
 Squash allows us to summarize different commits.
 All the changes in the feature branch i.e till the last commit puts together and merges them with the latest commit of the master Branch.
