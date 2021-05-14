@@ -320,15 +320,21 @@ ReBase
 
 Merge :
 Creating First Commit in Master Branch i.e named m1.
-
-Creating Second COmmit in Master Branch i.e named m2.
-
+Creating Second Commit in Master Branch i.e named m2.
 After Creating the Feature Branch and Adding two commits in the Feature Branch.
 Creating Third Commit in Master Branch i.e named m3.
 
 Feature Branch :
 Creating First Commit in Feature Branch i.e named f1.
-
 Creating Second Commit in Feature Branch i.e named f2.
 
- 
+Squash :
+Squash allows us to summarize different commits.
+All the changes in the feature branch i.e till the last commit puts together and merges them with the latest commit of the master Branch.
+
+Problem with squash is that we need to manually resolve the Errors and then add and commit the code.
+We had an another approach that can resolve the same issue i.e by using ReBase.
+
+Rebase :
+
+
