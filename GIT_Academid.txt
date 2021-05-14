@@ -1,4 +1,4 @@
-1.Introduction				[13-04-2021]			()
+1.Introduction				[14-04-2021]			(Done)
 2.Basic Commands			[13-04-2021]			()
 3.Stash                     [13-04-2021]			()
 4.Merge vs Rebase           [13-04-2021]			()
@@ -186,8 +186,80 @@ git branch -D branchName
 
 *********************************************************************** 2.Basic Commands *********************************************************************
 
+GIT allows us to control different versions of our code locally on our Machine.
+To push our code from our local Repository to a Web based remote Repository and for that we use GitHub.
+GitHub allows us to store the local Repositories into Cloud.
 
+Note :
+creating a Repository with README i.e creating a Repository with some data.
 
+Remote :
+To establish the connection bewteen the Local Repository and remote Repository we use the command
+
+	git remote add origin "URL"
+	
+origin is the name of the remote Repository.
+Because we want to make sure that we establish the connection between a specific remote Repository.
+We can alos give any name instead of origin.
+To check whether the Local Repository is added to the Remote Repository we use the command
+
+	git remote (or) git remote -v
+
+remote -v can be used to see the remote Repository of the URL.
+Now we have a connection between the Local Repository and the remote Repository.
+
+Push:
+To push the Local Repository to the Remote Repository we use the command
+
+		git push -u origin master
+		
+push : To move the Local Repository to the Remote Repository
+-u 	 : Upstream from Local Repository to the Remote Repository
+origin : name of the Remote Repository
+master : branch that can be pushed from Local Repository to remote Repository.
+
+Here we have to enter the credentials for GitHub userName and password.
+We can also cachce the username and password.
+If we run the below command then we are at master branch created by Local Repository 
+
+	git branch 
+	
+If we run the below command then it shows the link between the Local Repository and Remote Repository i.e repository at GitHub which has the name origin 
+
+	git remote
+	
+If we run the below command then it shows the output as
+
+	git branch -r  o/p : origin/master
+	
+Means we have a connection between the Local master branch and master branch in our remote Repository.
+
+Cloning :
+To get the code from the remote Repository we use the the command
+
+	git clone "URL"
+	
+To push the changes to the remote Repository we use the command
+
+	git push
+
+To get the code from the remote Repository we have 2 options
+
+	git fetch : To get the Code from remote Repository to the remote tarcking Branch.
+	git checkout origin/master : To checkout the code from remote tracking Branch.
+	git merge origin/master : To merge the remote tracking branch to the Local Branch.
+	
+The above two commands can be replaced by using single command 
+
+	git pull
+		
+Note :
+We have Local Repository and remote Repository.
+In between we have remote tracking Repository and is kind of synchronization between local and remote Repository.
+
+To remove the connection between the local Repository and remote Repository we use the command
+
+	git remote rm origin
 
 *********************************************************************** 3.Stash  ******************************************************************************
 
