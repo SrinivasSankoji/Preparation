@@ -158,15 +158,32 @@ As newly created branch is not required then we can remove the branch using the 
 
 	git branch -D git-academid
 
+Merge Conflicts :
+If the branch and the master has the confilcts while merging the branch then we need to manually compare the text and resolve the conflicts.
+After resolving the conflicts add and commit the code.
 
-	
+GIT Commands :
+1.Initialization:
+Navigate to Projct folder
+git init
+git status
+
+2.Commits :
+git add .
+git commit -m ""
+git log
+git chckout commitId
+git checkoit -- .
+git reste --hard commitId
+
+3.Branches
+git branch
+git checkout commitId
+git checkout -b branchName
+git merge branchName
+git branch -D branchName
 
 
-
-
-
-
- 
 *********************************************************************** 2.Basic Commands *********************************************************************
 
 
