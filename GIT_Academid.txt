@@ -315,8 +315,8 @@ Now we need to commit the Feature Branch in the Master Branch i.e
 	
 To caheive this we have 2 Approaches 
 
-Merge
-ReBase
+1.Merge
+2.ReBase
 
 Merge :
 Creating First Commit in Master Branch i.e named m1.
@@ -328,12 +328,14 @@ Feature Branch :
 Creating First Commit in Feature Branch i.e named f1.
 Creating Second Commit in Feature Branch i.e named f2.
 
+	git merge --squash Feature
+	
+Problem with squash is that we need to manually resolve the Errors and then add and commit the code.
+We had an another approach that can resolve the same issue i.e by using ReBase.
+
 Squash :
 Squash allows us to summarize different commits.
 All the changes in the feature branch i.e till the last commit puts together and merges them with the latest commit of the master Branch.
-
-Problem with squash is that we need to manually resolve the Errors and then add and commit the code.
-We had an another approach that can resolve the same issue i.e by using ReBase.
 
 Rebase :
 
