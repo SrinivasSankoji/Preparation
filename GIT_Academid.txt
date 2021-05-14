@@ -296,4 +296,25 @@ To merge the stash we use the command
 	
 *********************************************************************** 4.Merge vs Rebase  ********************************************************************
 
+consider the scenario we have the following usecase.
+
+Master   m1      m2    
+
+Feature          m2     f1   f2 
+
+Combined m1      m2     m3   featureBranch  
+
+
+Here Master Branch has two commits i.e m1 and m2.
+Create new Branch from the m2 commit of the Master Branch.
+Then Create 2 more commits from the Master Branch.
+Till that time Master Branch has one more commit i.e m3
+Now we need to commit the Feature Branch in the Master Branch i.e 
+
+	m1 --> m2 --> m3 --> Feature Branch.
+	
+To caheive this we have 2 Approaches 
+
+Merge
+ReBase
 
