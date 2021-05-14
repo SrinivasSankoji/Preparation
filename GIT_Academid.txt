@@ -131,10 +131,25 @@ Branch contains the code we have and different versions of it.
 Consider the scenario where we work in the master branch and has a stable release.
 If we want to add a new feature and don't want to crash ths stable way.
 Then we can alos create a new branch for a secific feature and keep working on those features.
-Once the feature is finished then merge the feature to the master branch.
+Once the feature is finished then we merge the feature to the master branch.
 
+To create a new branch we use the command
+	
+	git checkout -b git-academid
+	
+If we run the below command,git is mapped to the newly created branch.
 
+	git branch
+	
+If we run the below command,all the commits related to master branch are now part of newly created branch.
 
+	git log
+
+Add some text to the newly created branch and then add and commit the code.
+
+	git add .
+	git commit -m "Branch Creation"
+	
 
 
 
