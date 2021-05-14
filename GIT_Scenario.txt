@@ -29,11 +29,11 @@ and Then Trying to Push the Central Repository Then We Get the Error
 If We Try to Pull The Changes Then The Code will be Pulled into the Local Repository and Conflict Arises.
 To Resolve The Conflict We Need to do the Changes Manually.
 After Resolving Conflict  We Need to Add the Resource to Index and then Commit into the Repository.
-If we Add to the Index We Get The Default Commit Message.
+If we Add to the Index We get The default Commit Message.
 
 2.Git Basics :
 **************
-Git is a Version Control System where as  Git Hub is Hosting Provider.
+Git is a Version Control System where as  Git Hub is a Hosting Provider.
 We Can Push Git Repository to Git Hub.
 We Can also Work Locally with Git.
 

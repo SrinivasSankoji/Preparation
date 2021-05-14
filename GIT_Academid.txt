@@ -1,6 +1,6 @@
 1.Introduction				[14-04-2021]			(Done)
 2.Basic Commands			[14-04-2021]			(Done)
-3.Stash                     [14-04-2021]			()
+3.Stash                     [14-04-2021]			(Done)
 4.Merge vs Rebase           [14-04-2021]			()
 
 
@@ -295,3 +295,5 @@ To merge the stash we use the command
 	git stash pop indexNumber
 	
 *********************************************************************** 4.Merge vs Rebase  ********************************************************************
+
+
