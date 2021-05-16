@@ -1,13 +1,13 @@
-1.GIT Basics											[14-04-2021]			()
-2.GIT HEAD and Branch									[14-04-2021]			()
-3.GIT Pull Request										[14-04-2021]			()
-4.GIT Resolve Conflicts using Merge Tool				[14-04-2021]			()
-5.GIT Revert											[14-04-2021]			()
-6.GIT Resolve Conflicts in Pull							[14-04-2021]			()
-7.Cherry Pick											[14-04-2021]			()
-8.Merge vs Rebase										[14-04-2021]			()
-9.Revert Previous Version in GIT						[14-04-2021]			()
-10.GIT Blame											[14-04-2021]			()
+1.GIT Basics											[16-04-2021]			()
+2.GIT HEAD and Branch									[16-04-2021]			(Done)
+3.GIT Pull Request										[16-04-2021]			()
+4.GIT Resolve Conflicts using Merge Tool				[16-04-2021]			()
+5.GIT Revert											[16-04-2021]			()
+6.GIT Resolve Conflicts in Pull							[16-04-2021]			()
+7.Cherry Pick											[16-04-2021]			()
+8.Merge vs Rebase										[16-04-2021]			()
+9.Revert Previous Version in GIT						[16-04-2021]			()
+10.GIT Blame											[16-04-2021]			()
 
 
 ***********************************************************************  1.GIT Basics  ***********************************************************************
@@ -15,17 +15,73 @@
 
 ***********************************************************************  2.GIT HEAD and Branch  **************************************************************	
 GIT HEAD is a lightweight pointer points to a recent commit in our branch.
+HEAD exactly tells where exactly we are pointing to.
+If we do commits,then HEAD moves along with the commit.
 
-
+Branches gives the isolation to our work and won't messup with others code.
+Once we are done with the changes we need to merge with master Branch.
 
 *********************************************************************** 3.GIT Pull Request	*******************************************************************
 
 
 *********************************************************************** 4.GIT Resolve Conflicts using Merge Tool  *********************************************
+We can resolve conflicts in GIT either manually or by using tools like diff merge.
+If the conflict is very simple,we can resolve it manually.
+
+	https://sourcegear.com/diffmerge/
+	
+
+
+
 
 
 *********************************************************************** 5.GIT Revert  *************************************************************************
 
+When we perform any changes in a File then those changes are in Working Area.
+For some reasons if we want to discard the changes we sue the command
+
+	git checkout filename (or) -- .
+	
+After updating the files,we usually stage them before commit.
+To stage the files we use the command 
+
+	git add .
+	
+To unstage the files we use the command
+
+	git reset HEAD filename (or) .
+	
+When we unstaged the files then those changes are kept in the working Area.
+To remove the commit from the Local Repository we use the command reset.
+GIT reset completely takes out the commit form the history.
+
+	git reset HEAD~1
+	
+Now the pointer moves to the aother commit.
+Chnages will be there in the working Area.
+The above command removes the latest command in the history and all the files part of this commit are kept in working Area.
+
+Note :
+If the commits are not publicly published i.e if the commits are not pushed remotely we can use the git reset command.
+Using git reset we can remove recent one commit,two commits but there is no option to remove specific commit.
+
+Different modes of reset are
+
+1.Hard reset
+2.Soft reset
+3.Mixed reset
+
+Default is mixed  i.e removes the index and the changes are present in the working tree.
+Soft reset i.e removes the index and all the changes are present in the staging area and only needs to be committed.
+hard reset i.e removes the index and no changes are present in the working tree.
+
+	git reset --soft HEAD~1
+	
+Revert :
+
+
+
+	
 
 
 *********************************************************************** 6.GIT Resolve Conflicts in Pull	 ******************************************************
