@@ -1,7 +1,7 @@
 1.Introduction				[14-04-2021]			(Done)
 2.Basic Commands			[14-04-2021]			(Done)
 3.Stash                     [14-04-2021]			(Done)
-4.Merge vs Rebase           [14-04-2021]			()
+4.Merge vs Rebase           [14-04-2021]			(Done)
 
 
 *********************************************************************** 1.Introduction ***********************************************************************
@@ -346,6 +346,7 @@ Note : We run the merge command in master Branch.
 
 Squash :
 Squash allows us to summarize different commits.
+
 All the changes in the feature branch i.e till the last commit puts together and merges them with the latest commit of the master Branch.
 
 Rebase :
@@ -358,3 +359,21 @@ Feature Branch :
 Creating First Commit in Feature Branch i.e named f1.
 Creating Second Commit in Feature Branch i.e named f2.
 
+First thing Rebase does is it checks both the branches.
+Looks for the last commit in both the branches which have in common.In this example it is m2 commit.
+Git looks at changes in the current branch i.e Feature Branch.
+Verifies all the changes in the feature branch and saves the changes internall for the moment.
+Then it goes back to the master and what changes are there in the master.
+Mater branch has one commit name m3.
+Then GIT moves the Feature branch forward to the m3 commit.
+Now Feature Branch is no longer based on m2 commit.
+Then GIT applies the internall saved information and puts it on top of 3 commits.
+
+Note :
+Once we apply git rebase, we are in synch with master i.e latest commits in master will be applied to Feature Branch.
+
+To finally add the status to the master,we use the command
+
+	git rebase Feature
+
+***********************************************************************************************************************************************************************
