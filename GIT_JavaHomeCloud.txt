@@ -1,6 +1,6 @@
 1.GIT Basics											[16-04-2021]			()
 2.GIT HEAD and Branch									[16-04-2021]			(Done)
-3.GIT Pull Request										[16-04-2021]			()
+3.GIT Pull Request										[16-04-2021]			(Done)
 4.GIT Resolve Conflicts using Merge Tool				[16-04-2021]			()
 5.GIT Revert											[16-04-2021]			(Done)
 6.GIT Resolve Conflicts in Pull							[16-04-2021]			()
@@ -32,8 +32,6 @@ To create a Pull Request create the Branch,Add it to the staging Area and move i
 
 	git checkout -b "GITPullRequest"
 	
-
-
 
 *********************************************************************** 4.GIT Resolve Conflicts using Merge Tool  *********************************************
 
