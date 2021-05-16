@@ -1,13 +1,13 @@
-1.GIT Basics											[14-04-2021]			()
-2.GIT HEAD and Branch									[14-04-2021]			()
-3.GIT Pull Request										[14-04-2021]			()
-4.GIT Resolve Conflicts using Merge Tool				[14-04-2021]			()
-5.GIT Revert											[14-04-2021]			()
-6.GIT Resolve Conflicts in Pull							[14-04-2021]			()
-7.Cherry Pick											[14-04-2021]			()
-8.Merge vs Rebase										[14-04-2021]			()
-9.Revert Previous Version in GIT						[14-04-2021]			()
-10.GIT Blame											[14-04-2021]			()
+1.GIT Basics											[16-04-2021]			()
+2.GIT HEAD and Branch									[16-04-2021]			(Done)
+3.GIT Pull Request										[16-04-2021]			()
+4.GIT Resolve Conflicts using Merge Tool				[16-04-2021]			()
+5.GIT Revert											[16-04-2021]			()
+6.GIT Resolve Conflicts in Pull							[16-04-2021]			()
+7.Cherry Pick											[16-04-2021]			()
+8.Merge vs Rebase										[16-04-2021]			()
+9.Revert Previous Version in GIT						[16-04-2021]			()
+10.GIT Blame											[16-04-2021]			()
 
 
 ***********************************************************************  1.GIT Basics  ***********************************************************************
@@ -15,16 +15,28 @@
 
 ***********************************************************************  2.GIT HEAD and Branch  **************************************************************	
 GIT HEAD is a lightweight pointer points to a recent commit in our branch.
+HEAD exactly tells where exactly we are pointing to.
+If we do commits,then HEAD moves along with the commit.
 
-
+Branches gives the isolation to our work and won't messup with others code.
+Once we are done with the changes we need to merge with master Branch.
 
 *********************************************************************** 3.GIT Pull Request	*******************************************************************
 
 
 *********************************************************************** 4.GIT Resolve Conflicts using Merge Tool  *********************************************
+We can resolve conflicts in GIT either manually or by using tools like diff merge.
+If the conflict is very simple,we can resolve it manually.
+
+	https://sourcegear.com/diffmerge/
+	
+
+
+
 
 
 *********************************************************************** 5.GIT Revert  *************************************************************************
+
 
 
 
