@@ -78,12 +78,14 @@ hard reset i.e removes the index and no changes are present in the working tree.
 	git reset --soft HEAD~1
 	
 Revert :
+If we want to undo the changes that are present in the remote repository we use the revert command.
 
 
+Note :
+we can use revert with any commitId.
+With revert we are not removing the commitId and are making changes to the commitId,with those changes a new commitId will be craeted.
 
-	
-
-
+	git revert commitId
 
 *********************************************************************** 6.GIT Resolve Conflicts in Pull	 ******************************************************
 
