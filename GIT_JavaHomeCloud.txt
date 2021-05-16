@@ -2,7 +2,7 @@
 2.GIT HEAD and Branch									[16-04-2021]			(Done)
 3.GIT Pull Request										[16-04-2021]			()
 4.GIT Resolve Conflicts using Merge Tool				[16-04-2021]			()
-5.GIT Revert											[16-04-2021]			()
+5.GIT Revert											[16-04-2021]			(Done)
 6.GIT Resolve Conflicts in Pull							[16-04-2021]			()
 7.Cherry Pick											[16-04-2021]			()
 8.Merge vs Rebase										[16-04-2021]			()
@@ -23,8 +23,16 @@ Once we are done with the changes we need to merge with master Branch.
 
 *********************************************************************** 3.GIT Pull Request	*******************************************************************
 
+Pull Request is the standrad process of merging all the changes of Feature branch to it's main Branch.
+Befor merging the changes to the Master Branch it is very importnat that the code is reviewed.
+Pull Request allows others to know abut your changes and let's them to review their code.
+Once it is reviewed the code click on merge and merge all to merge the code.
+
+
+
 
 *********************************************************************** 4.GIT Resolve Conflicts using Merge Tool  *********************************************
+
 We can resolve conflicts in GIT either manually or by using tools like diff merge.
 If the conflict is very simple,we can resolve it manually.
 
