@@ -28,6 +28,10 @@ Befor merging the changes to the Master Branch it is very importnat that the cod
 Pull Request allows others to know abut your changes and let's them to review their code.
 Once it is reviewed the code click on merge and merge all to merge the code.
 
+To create a Pull Request create the Branch,Add it to the staging Area and move it to the Remote Repository.
+
+	git checkout -b "GITPullRequest"
+	
 
 
 
