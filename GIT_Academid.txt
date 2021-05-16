@@ -308,17 +308,26 @@ Combined m1      m2     m3   featureBranch
 Here Master Branch has two commits i.e m1 and m2.
 Create new Branch from the m2 commit of the Master Branch.
 Then Create 2 more commits from the Master Branch.
+
 Till that time Master Branch has one more commit i.e m3
 Now we need to commit the Feature Branch in the Master Branch i.e 
 
 	m1 --> m2 --> m3 --> Feature Branch.
 	
-To caheive this we have 2 Approaches 
+To acheive this we have 2 Approaches 
 
 1.Merge
 2.ReBase
 
 Merge :
+Merging is a GIT's way of putting forked history back together.
+GIT merge allow's us to take the independent lines of code developed by GIT branch and integrate them into a single branch.
+
+GIT Conflict :
+If GIT encounter's a piece of data that is changed in both the histories,then GIT is unable to combne them.
+GIT will need a user intervention to continue.
+Here Current Branch will be updated to reflect the Merge but the target Branch will be completely unaffected.
+
 Creating First Commit in Master Branch i.e named m1.
 Creating Second Commit in Master Branch i.e named m2.
 After Creating the Feature Branch and Adding two commits in the Feature Branch.
@@ -344,3 +353,8 @@ Creating First Commit in Master Branch i.e named m1.
 Creating Second Commit in Master Branch i.e named m2.
 After Creating the Feature Branch and Adding two commits in the Feature Branch.
 Creating Third Commit in Master Branch i.e named m3.
+
+Feature Branch :
+Creating First Commit in Feature Branch i.e named f1.
+Creating Second Commit in Feature Branch i.e named f2.
+
