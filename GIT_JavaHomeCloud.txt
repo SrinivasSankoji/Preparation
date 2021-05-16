@@ -78,6 +78,13 @@ hard reset i.e removes the index and no changes are present in the working tree.
 	git reset --soft HEAD~1
 	
 Revert :
+If we want to undo the recent commit that is publicy available then we use the command
+
+	git revert
+	
+Note :
+Using revert we can undo changes in any commit.
+It won't remove the commit and makes changes to the underlying commitId and makes the new commitId.
 
 
 
