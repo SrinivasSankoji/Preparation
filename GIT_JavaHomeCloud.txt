@@ -3,11 +3,11 @@
 3.GIT Pull Request										[16-04-2021]			(Done)
 4.GIT Resolve Conflicts using Merge Tool				[16-04-2021]			()
 5.GIT Revert											[16-04-2021]			(Done)
-6.GIT Resolve Conflicts in Pull							[16-04-2021]			()
-7.Cherry Pick											[16-04-2021]			()
-8.Merge vs Rebase										[16-04-2021]			()
-9.Revert Previous Version in GIT						[16-04-2021]			()
-10.GIT Blame											[16-04-2021]			()
+6.GIT Resolve Conflicts in Pull							[17-04-2021]			(Done)
+7.Cherry Pick											[17-04-2021]			(Done)
+8.Merge vs Rebase										[17-04-2021]			()
+9.Revert Previous Version in GIT						[17-04-2021]			()
+10.GIT Blame											[17-04-2021]			()
 
 
 ***********************************************************************  1.GIT Basics  ***********************************************************************
@@ -99,17 +99,44 @@ With revert we are not removing the commitId and are making changes to the commi
 
 *********************************************************************** 6.GIT Resolve Conflicts in Pull	 ******************************************************
 
+To replicate the scenario
+Create a new branch named "Feature".
+Edit the files in the Feature Branch.
+Add it to the staging Area,commit and push it to the Feature Branch.
+
+Till that time modify the same file and same line in the master to get the conflict.
+
+Now create the pull request to the Feature Branch.
+Then merge it to the Master branch and now we get the conflict.
+To resolve the conflict use the command in the Feature Branch
+
+	git pull origin master
+	
+Then manually resolve the conflicts and then add it to the staging Area,commit and push the Feature Branch.
 
 *********************************************************************** 7.Cherry Pick   ***********************************************************************	
 
- 
+Consider the scenario we have two commits in the master branch i.e m1 and m2.
+Created the Feature Branch from the Master Branch and now the Feature Branch also has the two commits i.e m1 and m2.
+Create 3 more comits in the Feature Branch i.e f1,f2 and f3.
+If we want to merge only the commit f2 in the master branch then we use cherry-pick.
+If we use merge then all the commots of feature branch will be merged into master branch.
+
+	git cherry-pick commitId
+	
+
 *********************************************************************** 8.Merge vs Rebase  ********************************************************************
 
 
 
 *********************************************************************** 9.Revert Previous Version in GIT   ****************************************************
 
+When we move the code to the production we may get some bugs.
+To fix those bugs temporarily we need to revert back to the previous version.
+To revert back to the previous version we use the command
 
+	git checkout commitId filename
+	
 *********************************************************************** 10.GIT Blame  *************************************************************************
 
 
