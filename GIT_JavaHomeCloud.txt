@@ -122,7 +122,7 @@ Consider the scenario we have two commits in the master branch i.e m1 and m2.
 Created the Feature Branch from the Master Branch and now the Feature Branch also has the two commits i.e m1 and m2.
 Create 3 more comits in the Feature Branch i.e f1,f2 and f3.
 If we want to merge only the commit f2 in the master branch then we use cherry-pick.
-If we use merge then all the commots of feature branch will be merged into master branch.
+If we use merge then all the commits of feature branch will be merged into master branch.
 
 	git cherry-pick commitId
 	
