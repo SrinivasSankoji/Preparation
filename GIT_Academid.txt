@@ -6,11 +6,8 @@
 
 *********************************************************************** 1.Introduction ***********************************************************************
 
-GIT is a version Control System.
-GIT is a tool that allows us to manage our source code history.
-GIT can be downloaded and is a version Control System which allows us to manage our source code history.
+GIT is a distributed version Control System that allows us to manage our source code history.
 As GIT is downloaded it can be a local tool that we can install on our Machine.
-
 
 GitHub is a hosting and collabartion provider which has the purpose to host the git repositories.
 GitHub is a Web based solution.
@@ -55,7 +52,7 @@ If the file is already present in the Repository then it will be shown as modifi
 
 git add . :
 If the status is untracked,GIT knows that thare are some files which needs to be tracked by GIT.
-We have to tell explicitly tell GIT which files it should include in our Repository therefor which code parts it should track.
+We have to tell explicitly tell GIT which files it should include in our Repository therefore which code parts it should track.
 To tell the GIt to track these files we use the command 
 
 	git add . or git add filename
@@ -130,7 +127,7 @@ Branching :
 Branch contains the code we have and different versions of it.
 Consider the scenario where we work in the master branch and has a stable release.
 If we want to add a new feature and don't want to crash ths stable way.
-Then we can alos create a new branch for a secific feature and keep working on those features.
+Then we can alos create a new branch for a specific feature and keep working on those features.
 Once the feature is finished then we merge the feature to the master branch.
 
 To create a new branch we use the command
@@ -174,7 +171,7 @@ git commit -m ""
 git log
 git chckout commitId
 git checkoit -- .
-git reste --hard commitId
+git reset --hard commitId
 
 3.Branches
 git branch
@@ -324,7 +321,7 @@ Merging is a GIT's way of putting forked history back together.
 GIT merge allow's us to take the independent lines of code developed by GIT branch and integrate them into a single branch.
 
 GIT Conflict :
-If GIT encounter's a piece of data that is changed in both the histories,then GIT is unable to combne them.
+If GIT encounter's a piece of data that is changed in both the histories,then GIT is unable to combine them.
 GIT will need a user intervention to continue.
 Here Current Branch will be updated to reflect the Merge but the target Branch will be completely unaffected.
 
@@ -346,7 +343,6 @@ Note : We run the merge command in master Branch.
 
 Squash :
 Squash allows us to summarize different commits.
-
 All the changes in the feature branch i.e till the last commit puts together and merges them with the latest commit of the master Branch.
 
 Rebase :
@@ -362,12 +358,12 @@ Creating Second Commit in Feature Branch i.e named f2.
 First thing Rebase does is it checks both the branches.
 Looks for the last commit in both the branches which have in common.In this example it is m2 commit.
 Git looks at changes in the current branch i.e Feature Branch.
-Verifies all the changes in the feature branch and saves the changes internall for the moment.
+Verifies all the changes in the feature branch and saves the changes internally for the moment.
 Then it goes back to the master and what changes are there in the master.
 Mater branch has one commit name m3.
 Then GIT moves the Feature branch forward to the m3 commit.
 Now Feature Branch is no longer based on m2 commit.
-Then GIT applies the internall saved information and puts it on top of 3 commits.
+Then GIT applies the internally saved information and puts it on top of 3 commits.
 
 Note :
 Once we apply git rebase, we are in synch with master i.e latest commits in master will be applied to Feature Branch.

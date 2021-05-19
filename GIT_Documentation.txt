@@ -25,7 +25,7 @@ Though GIT mirrors entire Repository,Size of the Data in the Local System(Client
 
 3.Implicit Backup :
 The Chances of loosing data is very rare because of multiple copies of data is present in Local System.
-Data Present at Client Side mirrors the Repository.
+Data Present at Client Side mirrors the remote Repository.
 
 4.Security :
 GIT Uses a Common Cryptographic Hash Function Called Secure Hash Function(SHA1) to name and Identify Objects within Database.
@@ -45,7 +45,7 @@ But Branch Management with GIT is very Simple and it takes only few Seconds to C
 Distributed Version Control System (DVCS) Terminologies :
 ---------------------------------------------------------
 1.Local Repository 
-2.Working Directory and Staging Area or Index
+2.Working Directory or Staging Area or Index
 3.Blobs
 4.Trees
 5.Commits
@@ -65,7 +65,7 @@ Developers make Changes in their Local Repository and after commit those changes
 
 2.Working Directory or Staging Area or Index :
 Working Directory is the place where all the files are checked out.
-In Other CVCS developers generally make modifications and commmit their Changes directly to the repository.
+In Other CVCS developers generally make modifications and commmit their Changes directly to the remote repository.
 But in GIT ,Whenever we Push an operation GIT Looks for the file present in Staging Area 
 and only files present in the Staging area are Considered for Push and not all the modified files.
 
@@ -87,7 +87,7 @@ It holds BLOB as well as other SubDirectories.
 A Tree is a Binary File that Stores References to BLOBS.
 
 5.Commits:
-Commit holds the Current State of the Repository and considers the commited Object as a Node of the Linked List.
+Commit holds the Current State of the Repository and considers the commited Object as a HEAD Node of the Linked List.
 Every Commited Object has a pointer to the Parent Commit Object.
 
 6.Branches :

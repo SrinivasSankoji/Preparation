@@ -14,6 +14,7 @@
 
 
 ***********************************************************************  2.GIT HEAD and Branch  **************************************************************	
+
 GIT HEAD is a lightweight pointer points to a recent commit in our branch.
 HEAD exactly tells where exactly we are pointing to.
 If we do commits,then HEAD moves along with the commit.
