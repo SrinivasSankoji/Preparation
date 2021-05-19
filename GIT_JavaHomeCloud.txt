@@ -15,7 +15,7 @@
 
 ***********************************************************************  2.GIT HEAD and Branch  **************************************************************	
 
-GIT HEAD is a lightweight pointer points to a recent commit in our branch.
+GIT HEAD is a lightweight pointer that points to a recent commit in our branch.
 HEAD exactly tells where exactly we are pointing to.
 If we do commits,then HEAD moves along with the commit.
 
@@ -25,14 +25,16 @@ Once we are done with the changes we need to merge with master Branch.
 *********************************************************************** 3.GIT Pull Request	*******************************************************************
 
 Pull Request is the standrad process of merging all the changes of Feature branch to it's main Branch.
-Befor merging the changes to the Master Branch it is very importnat that the code is reviewed.
-Pull Request allows others to know abut your changes and let's them to review their code.
+Before merging the changes to the Master Branch it is very importnat that the code is reviewed.
+Pull Request allows others to know abut your changes and let's them to review the code.
 Once it is reviewed the code click on merge and merge all to merge the code.
 
-To create a Pull Request create the Branch,Add it to the staging Area and move it to the Remote Repository.
+To create a Pull Request create the Branch,Add it to the staging Area,commit and move it to the Remote Repository.
 
 	git checkout -b "GITPullRequest"
-	
+	git add .
+	git commit -m ""
+	git push -u origin GITPullRequest
 
 *********************************************************************** 4.GIT Resolve Conflicts using Merge Tool  *********************************************
 
@@ -49,7 +51,7 @@ If the conflict is very simple,we can resolve it manually.
 *********************************************************************** 5.GIT Revert  *************************************************************************
 
 When we perform any changes in a File then those changes are in Working Area.
-For some reasons if we want to discard the changes we sue the command
+For some reasons if we want to discard the changes we use the command
 
 	git checkout filename (or) -- .
 	
@@ -68,9 +70,9 @@ GIT reset completely takes out the commit form the history.
 
 	git reset HEAD~1
 	
-Now the pointer moves to the aother commit.
+Now the pointer moves to the another commit.
 Chnages will be there in the working Area.
-The above command removes the latest command in the history and all the files part of this commit are kept in working Area.
+The above command removes the latest commit in the history and all the files part of this commit are kept in working Area.
 
 Note :
 If the commits are not publicly published i.e if the commits are not pushed remotely we can use the git reset command.
@@ -82,15 +84,14 @@ Different modes of reset are
 2.Soft reset
 3.Mixed reset
 
-Default is mixed  i.e removes the index and the changes are present in the working tree.
-Soft reset i.e removes the index and all the changes are present in the staging area and only needs to be committed.
-hard reset i.e removes the index and no changes are present in the working tree.
+Default is mixed  i.e removes the commitId and the changes are present in the working tree.
+Soft reset i.e removes the commitId and all the changes are present in the staging area and only needs to be committed.
+hard reset i.e removes the commitId and no changes are present in the working tree.
 
 	git reset --soft HEAD~1
 	
 Revert :
 If we want to undo the changes that are present in the remote repository we use the revert command.
-
 
 Note :
 we can use revert with any commitId.
