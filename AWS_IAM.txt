@@ -1,19 +1,20 @@
-1.IAM Roles and Policies                               [22-MAR-2021]  ()
+1.IAM Roles and Policies                               [22-MAR-2021]  (Done)
 2.IAM user Roles with EC2 CLI                          [22-MAR-2021]  ()
+3.AWS IAM and Its Features 	(Prabhu Rajendran)		   [22-APR-2021]  ()
 
-*********************************************************************  1.IAM Roles and Policies   ******************************************************************
+*********************************************************************  1.IAM Roles and Policies   **********************************************
 
+IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
 IAM is a part of Security.
 Consider the scenario we have created an Account for AWS in a Company and have to do the complete Set up.
 First thing we are going to look into is IAM.
-This is the place we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
-IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
+This is the place where we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
 
 Advantages of IAM :
 -------------------
 1.Centralized control of AWS Account.
 2.Shared Access for AWS Account (Multiple Administrators)
-3.Granular Permissions (Until what level user can have the specific Access.We can also defind the specific documnet)
+3.Granular Permissions (Until what level user can have the specific Access.We can also define the specific documnet)
 4.Identity Federation
 If the company got more than 1000 users it is difficult to add each user in IAM section.
 Here we can integrate with the Active Dircetory so that all the  users can use the userId and password of the company itself.
@@ -34,13 +35,108 @@ Groups
 Roles
 Policies
 
-Users : End user who is going to access the AWS Cloud console.
-Groups : Collection of users under one set of permissions.
-Roles : We can create Roles and assign them to AWS Resources.
-Gropus can be assigned to the users where as Roles can be assigned to the services.
-Policies : It is a document that defines one or more permissions.
+Users  : 
+End user who is going to access the AWS Management console for interactive Tasks.
+User can make programatic requests to AWS services using the API or CLI.
+Each User is associated with one and only one AWS account.
+User consists of name and password to sign into AWS Management Console.
+User can contain upto two access keys that can be used by API or CLI.
+
+Groups : 
+Collection of Users under one set of permissions whcih makes easier to manage Users instead of giving individual access.
+Any User in the group automatically has the permissions that are assigned to the group.
+Group is the only way to attach policies to multiple users at a time.
+
+Roles  : 
+Role is an Identity with permission policies that determines what I can do and cannot do in AWS.
+Role doesn't have any credential associated with it.
+User can assume a Role temporarily and can take different permissions for a specific task.
+Role can also be assigned to a Federated User who can sign in using third party provider instead of AWS.
+We can create Roles and assign them to AWS Resources.
+Groups can be assigned to the users where as Roles can be assigned to the services.
+
+Policies : 
+It is a document that defines one or more permissions.
 what kind of permission that a specific User will have,Group will have,Role will have.
-Policies i.e permission document can be attached to User,Group,Role.
+Policies i.e A permission document that can be attached to User,Group,Role.
 
 Consider the scenario where in EC2 we will launch virtual servers and in S3 is a Storage.
 If EC2 wants to communicate with S3 in a secured way,provide the Role to EC2.
+
+***************************************************** 3.AWS IAM and Its Features (Prabhu Rajendran)  *****************************************
+
+Consider the scenario where we don't have IAM.
+Here Organization has to create multiple User Accounts and each has it's own billing and subscription to AWS Accounts.
+Without IAM we cannot control Tasks that a User can do.
+IAM enables the Organization to create multiple Users,each with it's security credentials,controlled and billed to single AWS Account.
+
+1.AWS Account Root User
+2.Features of IAM
+3.What is IAM users and Why 
+4.What is IAM Groups and Why 
+5.What is IAM Roles and Why
+6.Important Terms associated with IAM Roles
+7.IAM Roles and Use Cases
+8.Creating IAM Roles 
+
+1.AWS Account Root User :
+-------------------------
+When we first create an AWS account This identity is called Root User.
+This has complete access to all the AWS services and resources.
+Root User can also change the password and view the billing Information.
+
+2.Features of IAM :
+-------------------
+Same as Advantages of IAM.
+IAM identities are categorized into three types
+IAM Users
+IAM Groups
+IAM Roles
+
+3.What is IAM users and Why :
+-----------------------------
+End user who is going to access the AWS Management console for interactive Tasks.
+User can make programatic requests to AWS services using the API or CLI.
+Each User is associated with one and only one AWS account.
+User consists of name and password to sign into AWS Management Console.
+User can contain upto two access keys that can be used by API or CLI.
+
+Creating an IAM User (AWS Management Console):
+Task to be completed
+
+4.What is IAM Groups and Why :
+------------------------------
+Collection of Users under one set of permissions whcih makes easier to manage Users instead of giving individual access.
+Any User in the group automatically has the permissions that are assigned to the group.
+
+Creating an IAM Group (AWS Management Console) and attache policies required to group.
+Task to be completed
+
+5.What is IAM Roles and Why :
+-----------------------------
+Role is an Identity with permission policies that determines what I can do and cannot do in AWS.
+Role doesn't have any credential associated with it.
+User can assume a Role temporarily and can take different permissions for a specific task.
+Role can also be assigned to a Federated User who can sign in using third party provider instead of AWS.
+We can create Roles and assign them to AWS Resources.
+Groups can be assigned to the users where as Roles can be assigned to the services.
+
+When to create IAM User or when to Create IAM Role :
+Task to be completed
+
+6.Important Terms associated with IAM Roles :
+---------------------------------------------
+Delegation :
+Delegation is the process of granting permission to the user to access the AWS resources that we control.
+Delegation is set up by the trusted Account(who owns the AWS resources) and trusting account (who needs an access to the resources).
+
+Trusted and Trusting are categorized into three types :
+1.Same Account.
+2.Two differnt Accounts by same Organization.
+3.Two different Accounts owned by different Organizations.
+
+
+
+
+
+

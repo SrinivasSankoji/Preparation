@@ -47,8 +47,7 @@ If we run the database on EC2 we also need to manage ourself.
 AWS offers RDS which takes away of maintaining our own database.
 Here AWS run it under the hood of EC2.
 
-we not only run machines on the cloud i.e EC2,we also need other features such as permissions.
-IAM comes into the picture.
+we not only run machines on the cloud i.e EC2,we also need other features such as permissions.IAM comes into the picture.
 
 IAM :
 -----
@@ -77,11 +76,10 @@ If we want to host static website,logs for load balancer we need S3.
 
 Other Core Services are 
 
-CloudWatch : Built in AWS Monitoring Tool.
-Route 53   : Domain Purchasing and DNS Routing.Allows us to point our website or server to a domain Name.
 RDS 	   : AWS hosted database solutions.Has a range of databases from SQL to document based.
+Route 53   : Domain Purchasing and DNS Routing.Allows us to point our website or server to a domain Name.
 CloudFormation : AWS built in infrastructure as code.create resources by writing our infrastructure as a JSON Template and tell AWs to create it.
-
+CloudWatch : Built in AWS Monitoring Tool.
 
 2.Hands on Learning on AWS Core Services :
 ------------------------------------------

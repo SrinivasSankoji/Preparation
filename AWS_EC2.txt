@@ -1,4 +1,4 @@
-1.EC2 Introduction   			(Vishal Padghan)        [22-MAR-2021]  ()
+1.EC2 Introduction   			(Vishal Padghan)        [21-APR-2021]  (Done)
 2.EC2 and Linux Basics          ()     					[22-MAR-2021]  ()
 3.EC2 Bootstrap Script          ()              		[22-MAR-2021]  ()
 4.EC2 Windows Instance          ()             			[22-MAR-2021]  ()
@@ -7,7 +7,258 @@
 7.EC2 AutoScaling               ()              		[22-MAR-2021]  ()
 
 
-******************************************************************* 1.EC2 Introduction *********************************************************************************
+******************************************************************* 1.EC2 Introduction (Vishal Padghan) **********************************************************************
+
+1.Drawback
+2.Introduction
+3.Instance
+4.Why EC2
+5.Types of Computing Instances
+6.Burstable Performance Instances
+7.EBS-Optimized Instances
+8.Cluster Networking Instances
+9.Dedicated Instances
+10.Example
+11.How to run systems in EC2
+12.Security in AWS EC2
+13.Auto Scaling
+14.Elastic Load Balancing
+15.AWS EC2 Pricing
+16.AWS EC2 Use Case
+
+1.Drawback :
+------------
+It is very difficult to predict how much computing power required for an Application that has just launched.
+There may be two scenarios.
+We may over estimate the requirement and increase the stack of servers which will be of no use.
+We may under estimate the requirement which leads to the crash of an Application.
+
+2.Introduction :
+----------------
+EC2 is a service from Amazon that provides a resizable computing services on the cloud.
+Resizable because we can quickly scale up or scale down the number os server instances we are using if the computing requirement changes.
+
+3.Instance :
+------------
+Instance is a Virtual Server for running Application on EC2.
+It can be considered as a tiny part of a large computer,whcih has its own harddrive,network connection,os etc.
+We can have multiple tiny computers on a single physical server and each tiny machine is called as an instance.
+EC2 is a service along with other services like S3.
+When we use EC2 or any other service we use it through a instance i.e t2.micro instance for EC2.
+
+4.Why EC2 :
+-----------
+As a Developer if we want to work independently, we need to buy a stack of servers.
+We estimated the correct capacity and the computing power is enough.
+The problem here is If there is any problem in the stack of servers we need to troubleshoot the issue.
+We may laso need to hire the team to maintain the stack of servers.
+Based on load we cannot scale up or scale down the servers with immideate effect.
+There are some other problems which makes the EC2 stronger.
+
+5.Types of Computing Instances :
+--------------------------------
+Computing is a very broad term and the nature of task decides what kind of computing we need.
+AWS EC2 offers 5 types of instances 
+
+General Instances
+Compute Instances
+Memory Instances
+Storage Instances
+GPU instances
+
+General Instances :
+For Applications that require a balance of perfromance and cost.
+Consider the case of Email Responding Systems where we need a prompt response as well as cost effective because it doesn't require much processing.
+
+Compute Instances :
+For Applications that requires a lot of processing from the CPU.
+Example : Analysis of data from a stream of data like Twitter.
+
+Memory Instances :
+For Applications that are heavy in nature and requires a lot of RAM.
+Consider the scenario where lot of Applications are running in the background i.e multitasking
+
+Storage Instances :
+For an Application that are huge in size or occupies a lot of space.
+
+GPU instances :
+For Applications that requires some heavy graphics rendering.
+Consider the scenario of 3D modelling etc.
+
+Note :
+Every instance type has a set of instances which are optimized for different work loads.
+
+General Instances  : t2,m3,m4
+Compute Instances  : c3,c4
+Memory Instances   : r3,x1
+Storage Instances  : i2,d2
+GPU instances      : g2
+
+6.Burstable Performance Instances :
+-----------------------------------
+T2 instances are burstable instances.
+This means CPU performs at a baseline of its Capacity.Consider the case of 20 Percent of CPU.
+When the Application needs more than 20% of the performance of the CPU,then CPU enters into burst mode giving the higher performance for a limited amount of time.
+Therefore work happens faster.
+
+We get the Credits when the CPU is idle.
+Each CPU credit gives a burst of 1 Minute to the CPU.
+Every time a burst happens in a CPU,CPU credits are used.
+If CPU credits are not used they are credited to your account and stay for 24 Hours.
+Based on Credit Balance we can decide whether t2 instance should be scaled up or scaled down.
+
+Example :
+Customer Analysis Data i.e Customer's Website Activity should be monitered real time.
+There will be a time where the tarffic to the website is minimum.
+In this Case high processor is not required and is expensive for the company.
+We may use t2 instance beacuse it will give burstable CPU performance.
+Whenever traffic to the website is high CPU performance will be increased automatically.
+
+7.EBS-Optimized Instances : 
+---------------------------
+C4,M4 and D2 instances are EBS optimized by default.
+EBS means Elastic Block Storage which is a storage option provided by AWS in which the IOPS rate is high.
+When an EBS Volume is attached to an optimized instance,Single Digit milli seconds latency can be acheived.
+
+IOPS i.e Input Output Operations per Second is a performance measurement used to characterizecomputer storage devices.
+
+Example :
+Auto Response Mailing System.
+Here Response should be quick and We would require a system where the response time is as short as possible.
+This can be acheived by using EBS optimized instances where the IOPS is high and low latencies.
+
+8.Cluster Networking Instances :
+--------------------------------
+M4,C4,C3,X1,I2,D2,G2 instances support cluster networking.
+The instances are launched into a common placement group are put in a logical group that provides a high bandwidth and 
+low latency between all the instances in the group.
+
+Placement group is a Logical Cluster where some selected EC2 instances which are part of that group can utilize upto 10 GB for single flow
+and 20 GB for multiflow traffic in each direction.
+
+Instances which are not part of placement Group are limited to 5 GBPS speed in Multiflow Traffic.
+Note :
+Cluster networking is ideal for high performance analytics system.
+
+Example :
+Search Engine on our Website
+It should be able to sort the records and return the relevant results.
+Here we might require two servers i.e one server is for database and another server is for processing the keywords.
+Communication between the two servers should be at the maximum possible rate.
+To acheive this we need to put them in a placement group and for that we use Cluster Networking instances.
+
+9.Dedicated Instances :
+-----------------------
+These are the instances that run on a single tennant-hardware dedicated to a single cutomer.
+
+Example :
+Some processes in every organization are highly confidential.
+
+11.How to run systems in EC2 :
+------------------------------
+Login to AWS Account and clck on AWS EC2.
+Under Create instance,Click on Launch Instance.
+Whenever we want to Launch an Instance we have to specify which AMI we want to use.It can be Ubuntu,Windows etc.
+
+Select the AMI.AMI's are Templates of OS and they provide the information needed to Launch an Instance.
+1.AMI's could be preconfigured or we can configure on its own.
+For preconfigured AMI's we have to select it from market place.
+For setting up our own,go to quick start and select one.
+2.While configuring AMI we will reach a point where we have to select an EBS Storage Option.
+
+EBS i.e Elastic Block Storage is a persistent block level Storage Volume that can be used along with EC2.
+Here each block acts as a hard drive.
+Just like Computer needs a Hard drive,EC2 needs a Storage Volume to store the OS which we have specified during the instance creation.
+Optons for EBS are 
+
+1.Provisioned IOPS :
+This category is for workloads which are mission critical i.e it provides high IOPS rates.
+2.General Purpose :
+This category is for workload which needs performance and cost balance.
+3.Magnetic :
+This category is for workloads where the data is accessed less frequently and retreival time is more.
+
+After selecting the suitable option in EBS,we give a name for an instance and then we create the Security Group.
+Security Group acts as a firewall to control Inbound and Outbound traffic.
+Each Security Group has rules according to which the traffic is governed.
+Each instance can be assigned upto 5 Security Groups.
+
+Finally we can see the console that shows all the settings that we have done,verify and launch the instance.
+
+12.Security in AWS EC2 :
+------------------------
+When we launch the instance we need to provide the Authentication otherwsie any one can access the EC2 instance.
+To Authenticate users to their Instances,AWS employs a key value pair method.
+
+EC2 uses a public-key and private-key cryptography to encrypt and decrypt login information.
+public-key cryptography uses the public-key to encrypt the piece of data such as password.
+Then the recepient uses the private-key to decrypt the data.
+public-key and private-key are known as key value pair.
+
+13.Auto Scaling :
+-----------------
+Auto Scaling is a service designed in AWS EC2 in which we can automatically Launch or terminate instances based user-defined profiles,
+schedules and health checks.
+
+14.Elastic Load Balancing :
+---------------------------
+Elastic Load Balancing automatically distributes incoming Application traffic across multiple EC2 instances
+in multiple availability zones.
+Availability zones are the places where Amazon has set up their servers.
+Since they have the customers from the globe they have set up multiple Availability Zones to reduce the latency.
+
+Elastic IP Address are static IP Address that are associated with our AWS Account.
+They can be used to mask the failure of an instance by automatically remapping our address to another working instance in our Account.
+
+15.AWS EC2 Pricing :
+--------------------
+AWS EC2 Free tier allows 750 Hours of t2.micro instance usage per month.
+Free Tier is valid for 1 year.
+
+There are three pricing options in AWS EC2.
+
+1.Spot Instances
+The price we set for EC2 is hourly basis.
+The moment where the price of the instance becomes greater than what we have set,the instance shut downs automatically.
+
+2.On Demand Instances
+These are used when we want to pay for the hour with no long term commitments ad upfront payments.
+These are useful for Applications deployed for the first time or test Applications.
+
+3.Reserved Instances
+With this we can have reserved instances for a specific period of time with 3 payment options and 2 terms.
+
+No Upfront
+Partial Upfront
+Full Upfront
+
+1 Year Term
+3 Year Term
+
+16.AWS EC2 Use Case :
+
+
+
+
+ 
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
 
 
 
