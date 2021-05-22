@@ -1,0 +1,59 @@
+1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  ()
+2.AWS VPC  				(Mathew Kenny Thomas)  				[22-APR-2021]  () 
+
+
+
+
+
+
+**************************************************** 1.AWS VPC (Vishal Padghan)   *********************************************************
+
+Security becomes more important when some resources needs to be shared with contract employees or third party vendors
+because we run the risk of exposing sensitive Data to them.
+Using AWS VPC we will be creating an isolated space on AWS and provide the access to those Users.
+AWS VPC as the name defines It is a private cloud in the AWS Environment that helps us to use all the services by AWS in a defined private space.
+We can also have the control over the virtual network and we can also restrict the incoming traffic using security groups.
+
+There are two types of VPC
+Default VPC i.e created by Amazon
+Non Default VPC that is created by us to meet the securty needs.
+
+Basic Concepts in VPC :
+
+1.Subnet and its Utility
+2.Route Table
+3.Internet Gateway
+4.Creating VPC using AWS Console
+5.Creating A Non-Default VPC And Creating A Private And Public Subnet Inside The VPC 
+
+1.Subnet and its Utility :
+--------------------------
+Subnet can be thought of dividing large network into smaller networks.
+This is done because maintenance of smaller networks is easier as compared to larger networks.
+It also provides the security to the network from other networks.
+
+Example :
+Consider the scenario of Teams in an Organization.
+There are different Teams in an Organization like HR,Finance,Support,Operations etc.
+The Data accessible to the Finance Team cannot be given to the Operations Team etc.
+Here we will create a Subnet such that accessing and maintaining the Network becomes Easier.
+
+2.Route Table :
+---------------
+Route Table contains set of rules called routes which determines where the traffic has to be redirected.
+Route Table can also be used to add the Internet Gateway to the Subnet.
+We can also have multiple route tables in a VPC.
+
+3.Internet Gateway :
+--------------------
+Internet Gateway allows the user to make the Subnet public by providing a Route to the Internet.
+With the help of Internet Gateway An Instance can be accessed through the Internet and resources outside the instance can access the instance.
+Only one Internet Gateway can be attached to a VPC at a time.
+
+4.Creating VPC using AWS Console :
+----------------------------------
+
+
+5.Creating A Non-Default VPC And Creating A Private And Public Subnet Inside The VPC :
+--------------------------------------------------------------------------------------
+

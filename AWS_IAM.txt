@@ -127,7 +127,7 @@ Task to be completed
 6.Important Terms associated with IAM Roles :
 ---------------------------------------------
 Delegation :
-Delegation is the process of granting permission to the user to access the AWS resources that we control.
+Delegation is the process of granting permissions to the user to access the AWS resources that we control.
 Delegation is set up by the trusted Account(who owns the AWS resources) and trusting account (who needs an access to the resources).
 
 Trusted and Trusting are categorized into three types :
@@ -135,8 +135,25 @@ Trusted and Trusting are categorized into three types :
 2.Two differnt Accounts by same Organization.
 3.Two different Accounts owned by different Organizations.
 
+Permission Policy :
+Grants the User with the Role the needed permissions to carry out the intended tasks.
+
+Trust Policy :
+Speicfies which trusted account member is allowed to use this role.
+
+Federation:
+process of creating trust relationship between external service provider and AWS.
+
+Permision Boundary :
+It is an advanced feature of AWS and limit the maximum permission to the Role that has.
+It can be applied to both IAM User and IAM Role.
+
+
+7.IAM Roles and Use Cases :
+---------------------------
 
 
 
-
+8.Creating IAM Roles :
+----------------------
 
