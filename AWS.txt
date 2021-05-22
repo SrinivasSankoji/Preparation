@@ -3,10 +3,10 @@
 3.AWS Basics		 			(SimpliLearn Video)					[30-DEC-2020]  ()
 4.AWS Services 		 			(AWS Training Center Video)  		[30-DEC-2020]  ()
 5.AWS Introduction	 			(Online Tutorials)					[01-MAR-2021]  (Done)
-6.AWS CLI Setup   	 			(Online Tutorials)                  [22-MAR-2021]  ()
+6.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  ()
 
 
-*************************************************************************  1.AWS Introduction (thedevcoach) ***************************************************************
+********************************************************  1.AWS Introduction (thedevcoach) ********************************************
 
 AWS stands for Amazon Web Services.
 AWS has a wide range of computing products that allows us to operate tasks on the cloud on demand.
@@ -269,7 +269,44 @@ AWS Account :
 -------------
 
 
-********************************************************************* 6.AWS CLI Setup (Online Tutorials) ************************************************************* 
+********************************************************* 6.AWS CLI Setup (Vishal Padghan) *********************************************
+
+1.What is AWS CLI :
+-------------------
+AWS CLI ie Command Line Tool is a unified interface using which we can monitor and manage all the AWS Services from a terminal Session on a Client.
+Although most of the services canbbe managed y using AWS Management Console or API's  and the third way is AWS CLI.
+AWS has made it possible for Linux,Mac and Windows users to manage the AWS services from the local terminal or commad line.
+We can run commands on AWS EC2 instance using a remote terminal such as putty or SSH.
+AWS CLI also provides direct access to AWS services public API.
+
+2.Uses of AWS CLI :
+-------------------
+1.Easy Installation
+2.Saves Time
+If we want to Search the large file in S3 Folder
+Login into Account
+Search for the bucket
+Search for the Folder
+Serahc for the File
+3.Automates Process 
+AWS CLI gives the ability to automate the entire process of monitoring and managing the AWS Services through Scripts.
+4.Supports ALL AWS Services 
+AWS control's all the AWS Service from one tool
+
+3.Installing AWS CLI :
+----------------------
+AWS CLI can be installed in 3 ways
+
+using pip
+using virtual Environment
+using bundled scheduler
+
+Installing the AWS CLI Using pip :
+
+
+
+4.How to use AWS CLI :
+----------------------
 
 
 
