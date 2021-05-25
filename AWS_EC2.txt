@@ -1,10 +1,10 @@
-1.EC2 Introduction   			(Vishal Padghan)        [21-APR-2021]  (Done)
-2.EC2 and Linux Basics          ()     					[22-MAR-2021]  ()
-3.EC2 Bootstrap Script          ()              		[22-MAR-2021]  ()
-4.EC2 Windows Instance          ()             			[22-MAR-2021]  ()
-5.EC2 Metadata                  ()              		[22-MAR-2021]  ()
-6.EC2 Placement Groups          ()              		[22-MAR-2021]  ()
-7.EC2 AutoScaling               ()              		[22-MAR-2021]  ()
+1.EC2 Introduction   						   (Vishal Padghan)         [21-APR-2021]  (Done)
+2.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[22-MAR-2021]  ()
+3.EC2 Bootstrap Script          			   ()              		    [22-MAR-2021]  ()
+4.EC2 Windows Instance          			   ()             			[22-MAR-2021]  ()
+5.EC2 Metadata                                 ()              		    [22-MAR-2021]  ()
+6.EC2 Placement Groups                         ()              		    [22-MAR-2021]  ()
+7.EC2 AutoScaling                              ()              		    [22-MAR-2021]  ()
 
 
 ******************************************************************* 1.EC2 Introduction (Vishal Padghan) **********************************************************************
@@ -36,7 +36,21 @@ We may under estimate the requirement which leads to the crash of an Application
 2.Introduction :
 ----------------
 EC2 is a service from Amazon that provides a resizable computing services on the cloud.
-Resizable because we can quickly scale up or scale down the number os server instances we are using if the computing requirement changes.
+Resizable because we can quickly scale up or scale down the number of server instances we are using,if the computing requirement changes.
+
+EC2 is way of running the computer in the cloud.
+In EC2 we can launch Linux Machine,Windows Machine etc.
+EC2 is like having a Computer at the push of a Button.
+
+In EC2 we can run different type of workloads.
+We can install wordpress to build a web site.We can also install database and store data directly on EC2.
+Imagine we can run everything on EC2.
+
+Note :
+Since EC2 is more flexible we don't run everything on EC2.
+If we run the database on EC2 we need to manage ourself.
+AWS offers RDS which takes care of maintaining our own database.
+Here AWS run it under the hood of EC2.
 
 3.Instance :
 ------------
@@ -51,7 +65,7 @@ When we use EC2 or any other service we use it through a instance i.e t2.micro i
 As a Developer if we want to work independently, we need to buy a stack of servers.
 We estimated the correct capacity and the computing power is enough.
 The problem here is If there is any problem in the stack of servers we need to troubleshoot the issue.
-We may laso need to hire the team to maintain the stack of servers.
+We may also need to hire the team to maintain the stack of servers.
 Based on load we cannot scale up or scale down the servers with immideate effect.
 There are some other problems which makes the EC2 stronger.
 
@@ -67,7 +81,7 @@ Storage Instances
 GPU instances
 
 General Instances :
-For Applications that require a balance of perfromance and cost.
+For Applications that require a balance of perfromance and cost effective.
 Consider the case of Email Responding Systems where we need a prompt response as well as cost effective because it doesn't require much processing.
 
 Compute Instances :
@@ -82,7 +96,7 @@ Storage Instances :
 For an Application that are huge in size or occupies a lot of space.
 
 GPU instances :
-For Applications that requires some heavy graphics rendering.
+For Applications that requires heavy graphics rendering.
 Consider the scenario of 3D modelling etc.
 
 Note :
@@ -101,9 +115,9 @@ This means CPU performs at a baseline of its Capacity.Consider the case of 20 Pe
 When the Application needs more than 20% of the performance of the CPU,then CPU enters into burst mode giving the higher performance for a limited amount of time.
 Therefore work happens faster.
 
-We get the Credits when the CPU is idle.
-Each CPU credit gives a burst of 1 Minute to the CPU.
+We get the CPU Credits when the CPU is idle.
 Every time a burst happens in a CPU,CPU credits are used.
+Each CPU credit gives a burst of 1 Minute to the CPU.
 If CPU credits are not used they are credited to your account and stay for 24 Hours.
 Based on Credit Balance we can decide whether t2 instance should be scaled up or scaled down.
 
@@ -164,21 +178,21 @@ Select the AMI.AMI's are Templates of OS and they provide the information needed
 1.AMI's could be preconfigured or we can configure on its own.
 For preconfigured AMI's we have to select it from market place.
 For setting up our own,go to quick start and select one.
-2.While configuring AMI we will reach a point where we have to select an EBS Storage Option.
+2.While configuring AMI we will reach to a point where we have to select an EBS Storage Option.
 
 EBS i.e Elastic Block Storage is a persistent block level Storage Volume that can be used along with EC2.
-Here each block acts as a hard drive.
+Here each block acts as a Hard drive.
 Just like Computer needs a Hard drive,EC2 needs a Storage Volume to store the OS which we have specified during the instance creation.
 Optons for EBS are 
 
 1.Provisioned IOPS :
 This category is for workloads which are mission critical i.e it provides high IOPS rates.
 2.General Purpose :
-This category is for workload which needs performance and cost balance.
+This category is for workload which needs balance of performance and cost effective.
 3.Magnetic :
 This category is for workloads where the data is accessed less frequently and retreival time is more.
 
-After selecting the suitable option in EBS,we give a name for an instance and then we create the Security Group.
+After selecting the suitable option in EBS,provide a name for an instance and then create the Security Group.
 Security Group acts as a firewall to control Inbound and Outbound traffic.
 Each Security Group has rules according to which the traffic is governed.
 Each instance can be assigned upto 5 Security Groups.
@@ -187,8 +201,8 @@ Finally we can see the console that shows all the settings that we have done,ver
 
 12.Security in AWS EC2 :
 ------------------------
-When we launch the instance we need to provide the Authentication otherwsie any one can access the EC2 instance.
-To Authenticate users to their Instances,AWS employs a key value pair method.
+Whenever we launch the instance we need to provide the Authentication otherwsie Any one can access the EC2 instance.
+To Authenticate the users to their instances AWS offers a key value pair method.
 
 EC2 uses a public-key and private-key cryptography to encrypt and decrypt login information.
 public-key cryptography uses the public-key to encrypt the piece of data such as password.
@@ -197,15 +211,14 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service designed in AWS EC2 in which we can automatically Launch or terminate instances based user-defined profiles,
+Auto Scaling is a service designed in AWS EC2 in which we can automatically Launch or terminate instances based on user-defined profiles,
 schedules and health checks.
 
 14.Elastic Load Balancing :
 ---------------------------
-Elastic Load Balancing automatically distributes incoming Application traffic across multiple EC2 instances
-in multiple availability zones.
+Elastic Load Balancing automatically distributes incoming Application traffic across multiple EC2 instances in multiple availability zones.
 Availability zones are the places where Amazon has set up their servers.
-Since they have the customers from the globe they have set up multiple Availability Zones to reduce the latency.
+Since they have the customers across the globe they have set up multiple Availability Zones to reduce the latency.
 
 Elastic IP Address are static IP Address that are associated with our AWS Account.
 They can be used to mask the failure of an instance by automatically remapping our address to another working instance in our Account.
@@ -219,7 +232,7 @@ There are three pricing options in AWS EC2.
 
 1.Spot Instances
 The price we set for EC2 is hourly basis.
-The moment where the price of the instance becomes greater than what we have set,the instance shut downs automatically.
+The moment when the price of the instance becomes greater than what we have set,the instance shut downs automatically.
 
 2.On Demand Instances
 These are used when we want to pay for the hour with no long term commitments ad upfront payments.

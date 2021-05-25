@@ -10,6 +10,9 @@ Consider the scenario we have created an Account for AWS in a Company and have t
 First thing we are going to look into is IAM.
 This is the place where we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
 
+Note :
+IAM is not only how users get access to do things in AWS but also how we grant machines to talk to each other.
+
 Advantages of IAM :
 -------------------
 1.Centralized control of AWS Account.

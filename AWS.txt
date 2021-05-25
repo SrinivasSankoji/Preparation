@@ -4,16 +4,43 @@
 4.AWS Services 		 			(AWS Training Center Video)  		[30-DEC-2020]  ()
 5.AWS Introduction	 			(Online Tutorials)					[01-MAR-2021]  (Done)
 6.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  ()
+7.AWS Account Creation			(Guilherme Virtuoso)				[22-APR-2021]  ()
+8.AWS Account Creation			(Kangze Huang)						[22-APR-2021]  ()
+9.AWS Account Creation			(Harriet Ryder)						[22-APR-2021]  ()
 
 
 ********************************************************  1.AWS Introduction (thedevcoach) ********************************************
 
+
+AWS Solution Architect Associate :
+----------------------------------
+1.EC2
+2.Elastic Block Storage
+3.AMI
+4.VPC
+5.S3
+6.AWS Lambda
+7.ECS
+8.Route53
+9.IAM
+10.RDS
+11.SNS and SQS
+
+
+Cloud Computing is a term referred to storing and accessing the data over the Internet.
+Here it does not store any data on the hard disk of a computer.
+In Cloud computing we can access the data from the Remote Server.
+
 AWS stands for Amazon Web Services.
 AWS has a wide range of computing products that allows us to operate tasks on the cloud on demand.
+Computing Products like Storage,Database,Analytics,Networking,Mobile,Development Tools,Enterprise Applications etc.
 AWS is designed to be quite low level and it is not designed for casual web site builder.
 AWS is built for large enterprises to build their entire business on.
-AWS is not only low level but there are many different services and lots of services that even substitute with each other.
-Currently AWS is the biggest service offering of the cloud market that has databases,event queues to basic web site hosting.
+AWS is not only low level but there are many different services and lot of services that even substitute with each other.
+
+AWS is a platform that offers Reliable,Scalable,Flexible,Easy to use and cost effective cloud computing solutions.
+The Platform is developed with a combination of Infrastructure as a Service,Platform as a Service and Software as a Service.
+All these srevices are used as pay as you go pricing Model.
 
 WHERE TO START LEARNING AWS :
 -----------------------------
@@ -23,62 +50,64 @@ While learning AWS we should focus on 3 Areas.
 2.Hands on Learning on AWS Core Services.
 3.Structure the Learning 
 
-Within AWS many services are built on set of core services.
+Within AWS many services are periphery services which are built on other AWS services.
 AWS has a service called ECS(Elastic Container Service) that allows us to run container based services.
 When we run the services on ECS,we need to configure the host for our containers to run on.
-One of the option to run the host is EC2.In this scenario EC2 is the core service.
-Many services in AWS are periphery services which are compliment and build on others.
+One of the option to run the host is EC2.
 
 Core Services in AWS are EC2,IAM and S3.
 
 EC2 (Elastic Cloud Compute) :
 -----------------------------
+EC2 is a service from Amazon that provides a resizable computing services on the cloud.
+Resizable because we can quickly scale up or scale down the number of server instances we are using,if the computing requirement changes.
+
 EC2 is way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
 EC2 is like having a Computer at the push of a Button.
 
-EC2 is more popular because of its flexibiity.
-On EC2 we can run different type of workloads.
+In EC2 we can run different type of workloads.
 We can install wordpress to build a web site.We also can install database and store data directly on EC2.
 Imagine we can run everything on EC2.
 
+Note :
 Since EC2 is more flexible we don't run everything on EC2.
-If we run the database on EC2 we also need to manage ourself.
-AWS offers RDS which takes away of maintaining our own database.
+If we run the database on EC2 we need to manage ourself.
+AWS offers RDS which takes care of maintaining our own database.
 Here AWS run it under the hood of EC2.
 
-we not only run machines on the cloud i.e EC2,we also need other features such as permissions.IAM comes into the picture.
+we not only run machines on the cloud i.e EC2,we also need other features such as permissions.
+IAM comes into the picture.
 
 IAM :
 -----
-IAM is how we manage parmissions and access in AWS.
+IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
 In order to launch EC2 we need to have a user that has the appropriate access to do so.
 To get access we need to use AWS IAM.
-IAM is not only how users get access to do things in AWS but also how we grant machines to talk to each other.
 
+IAM is not only how the users get the access to do things in AWS but also how we grant machines to talk to each other.
 For instance EC2 machine can be assigned a role.
 That role then governs what an EC2 machine can and cannot do.
+
 We need to understand the different IAM objects and their relationships.
 Within IAM we have users,roles,groups and policies and all these are related somehow.
-
 A User can be in the Group and that Group can have access policies which are granted to the User.
 Also User can have policies directly.
 
 S3 :
 ----
 S3 allows us to store files in a flexible way.
-S3 can be used to host static websites,stores assets such as images and log files for an application.
-If we ever need simple persistence for files S3 is the best answer.
+S3 can be used to host static websites,stores assets such as images and log files of an application.
+If we ever need simple persistence for files then S3 is the best answer.
 
 If we want to use AWS RedShift i.e querying tool we need to put data in S3.
 If we want to get access logs in AWS account then data will be in S3.
-If we want to host static website,logs for load balancer we need S3.
 
 Other Core Services are 
 
 RDS 	   : AWS hosted database solutions.Has a range of databases from SQL to document based.
 Route 53   : Domain Purchasing and DNS Routing.Allows us to point our website or server to a domain Name.
-CloudFormation : AWS built in infrastructure as code.create resources by writing our infrastructure as a JSON Template and tell AWs to create it.
+CloudFormation : AWS built in infrastructure as code.creates resources by writing our infrastructure as a JSON Template and tell AWs to create it.
 CloudWatch : Built in AWS Monitoring Tool.
 
 2.Hands on Learning on AWS Core Services :
@@ -97,39 +126,28 @@ Root Account :
  
 
 
-
- 
-
 ******************************************************************** 2.AWS Introduction (Guru99)  ****************************************************************
 
-Cloud Computing is a term referred to storing and accessing the data over the Internet.
-Here it does not store any data on the hard disk of a computer.
-In Cloud computing we can access the data from the Remote Server.
-
-AWS is a platform that offers Reliable,Scalable,Flexible,Easy to use and cost effective cloud computing solutions.
-The Platform is developed with a combination of Infrastructure as a Service,Platform as a Service and Software as a Service.
-AWS has a wide range of cloud computing Products that includes Storage,Database,Analytics,Networking,Mobile,Development Tools,Enterprise Applications etc.
-All these srevices are used as pay as you go pricing Model.
-
-
 EC2: 
-It is a Virtual Machine in the Cloud on which we have OS Level Control.We can run this Cloud Server whereever we want.
+EC2 is a way of running the Computer on the Cloud on which we have OS Level Control.We can run this Cloud Server whereever we want.
+
 LightSail : 
 It is a Cloud Computing tool that automatically manages the storage,computer and networking capabilities that are required to run the Application.
+
 Elastic Beanstalk :
 It offers automated deployment and provisioning of resources like a highly scalable production website.
+
 EKS(Elastic Container Service For Kubernetes) :
 It allows us to work on Kubernetes on Amazon Cloud Environment without installation.
+
 AWS Lambda :
 It is a service that allows us to run functions in the cloud.It is a big cost save because it allows us to pay only when the function got executed.
 
 
-
 ********************************************************************* 5.AWS Introduction (Online Tutorials) ***********************************************************
 
-Whenever we get a new project from any Organization,
-we need to understand the requirement,How long it will take to develop the specific Application and requirements to implement the Application.
-
+Whenever we get a new project from any Organization we need to understand the requirement.
+How long will it take to develop the specific Application and requirements to implement the Application.
 
 					Application
 					Runtimes
@@ -138,14 +156,14 @@ we need to understand the requirement,How long it will take to develop the speci
 					Servers
 					Virtualization
 					Server Hardware
-					Storage
+					Storage Devices
 					Networking
 
 Once the Application is finalized we need to get 
 
-How much Storage devices are required
-How much Server Hardware is required 
-Networking devices required to connect the Server Hardware
+How much Storage devices are required.
+How much Server Hardware is required.
+Networking devices required to connect the Server Hardware.
 
 we need to connect all the three i.e Storage,Server and Network Devices.
 Finally we need a Network Admin who will create a Virtualization Layer on top of these Hardwares.
@@ -158,15 +176,14 @@ Security Engineer will ensure all of them are tightly integrated and secured fro
 This is how the traditional IT Company works till now.
 
 Once the Cloud came into the picture,solution is divided into 3 parts.
-
-Infrastructure as a Service
-Platform as a Service
-Software as a Service
+1.Infrastructure as a Service
+2.Platform as a Service
+3.Software as a Service
 
 In case of Infrastructure as Service we do not worry about setting up the 
-Hardware Components,
 Networking Components 
 Storage Components 
+Server Hardware
 Virtualization etc.
 Here we are asking the Cloud vendor to provide the Linux Server with some configuration.
 It is best suitable for the Solution Architects that helps in saving the cost.
@@ -189,7 +206,6 @@ Compared to On Premise Servers we also have Servers in the AWS Cloud.
 AWS has a ready image i.e AMI(AMazon Machine Image) for Windows OS,Linux OS etc.
 Pick up the ready image and start the EC2 instance (Elastic Compute Cloud).EC2 is also called as virtual machine.
 
-
 In Traditional Networking Architecture we have Routers,Pipelines,Switches that connects with the Servers,Storage Devices and Databases etc.
 In Case of AWS we have Load Balancers that directly connects to the Virtual Servers and it balances the complete Load.
 How much traffic can flow to each virtual server is decided by Load Balancer.
@@ -209,12 +225,12 @@ We have Elastic File System that automatically grows and shrinks.He are we are g
 
 Advantages of AWS Cloud Computing :
 -----------------------------------
-Trade Capital expense for variable expense.
-Benefits from Massive economies of sale.
 Stop guessing about capacity.
-Increase speed and agility.
+Increase in speed and agility.
 Stop spending money on running and maintaining Data Center.
 Go Global in Minutes.
+Trade Capital expense for variable expense.
+Benefits from Massive economies of sale.
 
 AWS Platform :
 --------------
@@ -259,11 +275,9 @@ Here Infrastructure is provided by the Cloud Vendor.
 Private Cloud :
 For a long time we have been into the private Cloud Model.
 Here Organizations built their own data centers inside the Building.
-Application Built here is used only within the Organization.
 
 Hybrid Cloud :
 It is combination of both private Cloud and Public Cloud.
-
 
 AWS Account :
 -------------
@@ -273,8 +287,8 @@ AWS Account :
 
 1.What is AWS CLI :
 -------------------
-AWS CLI ie Command Line Tool is a unified interface using which we can monitor and manage all the AWS Services from a terminal Session on a Client.
-Although most of the services canbbe managed y using AWS Management Console or API's  and the third way is AWS CLI.
+AWS CLI is a unified interface using which we can monitor and manage all the AWS Services from a terminal Session on a Client.
+Although most of the services can be managed by using AWS Management Console or API's,the third way is AWS CLI.
 AWS has made it possible for Linux,Mac and Windows users to manage the AWS services from the local terminal or commad line.
 We can run commands on AWS EC2 instance using a remote terminal such as putty or SSH.
 AWS CLI also provides direct access to AWS services public API.
@@ -310,6 +324,11 @@ Installing the AWS CLI Using pip :
 
 
 
+************************************************************** 7.AWS Account Creation (Guilherme Virtuoso)  *************************************************
+
+Login into  https://aws.amazon.com/
+
+Select the Region -- Asia Pacific Mumbai.
 
 
 

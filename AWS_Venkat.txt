@@ -1,15 +1,62 @@
-1.AWS Free Tier Account												[19-APR-2021] ()
-2.Create an Admin User                                              [19-APR-2021] ()
-3.AWS Billing Alert                                                 [19-APR-2021] ()
-4.Install AWS CLI                                                   [19-APR-2021] ()
-5.Launching EC2 instance                                            [19-APR-2021] ()
-6.Launching EC2 instance using CLI                                  [19-APR-2021] ()
-7.Running Web Server in AWS                                         [19-APR-2021] ()
-8.
+1.AWS Free Tier Account												[25-MAY-2021] (Done)
+2.Create an Admin User                                              [25-MAY-2021] (Done)
+3.AWS Billing Alert                                                 [25-MAY-2021] ()
+4.Install AWS CLI                                                   [25-MAY-2021] ()
+5.Launching EC2 instance                                            [25-MAY-2021] ()
+6.Launching EC2 instance using CLI                                  [25-MAY-2021] ()
+7.Running Web Server in AWS                                         [25-MAY-2021] ()
+
+8.Configuring Elastic Load Balancer									[19-MAY-2021] ()
+9.Configuring AutoScaling Group with ELB                            [19-MAY-2021] ()
+10.Elastic Beanstalk Deploy Application                             [19-MAY-2021] ()
+11.EB CLI for Elastic Beanstalk                                     [19-MAY-2021] ()
+12.Deploying App in BeanStalk Using EB CLI                          [19-MAY-2021] ()
+13.EB CLI Multiple Environments with GIT                            [19-MAY-2021] ()
+14.AWS CodeCommit Repository                                        [19-MAY-2021] ()
+15.Code Pipeline using CodeCommit                                   [19-MAY-2021] ()
+16.Code Pipeline using S3 and CodeDeploy                            [19-MAY-2021] ()
+17.Setup Continuous Deployment to Elastic Beanstalk                 [19-MAY-2021] ()
+18.Running a static Website in AWS S3                               [19-MAY-2021] ()
+19.Deploy Docker Container in AWS EBS                               [19-MAY-2021] ()
+20.Running Jenkins in AWS Part 1                                    [19-MAY-2021] ()
+21.Running Jenkins in AWS Part 2                                    [19-MAY-2021] ()
+22.
+23.
+24.
+25.
+26.
+27.
+28.Creating VPC in AWS Part 1
+29.Creating VPC in AWS Part 2
+30.Creating VPC in AWS Part 3
+31.Setup VPC Peering in AWS
+
+***************************************************************  1.AWS Free Tier Account   **********************************************************
+
+Login into  https://aws.amazon.com/
+Select the Region -- Asia Pacific Mumbai.
+
+*************************************************************** 2.Create an Admin User **************************************************************
+
+If we access the AWS account using Email then that will be the Root Account.
+Root Account has an access to everything including Billing Information.
+Here we need to create an Additional User and start using that User to create the Resources.
+Newly created User does not have an access to Billing but has full admin Access.
+
+To create a New User
+
+	Services --> IAM --> Select User --> Add User 
+	Enter UserName
+	Enter Custom Password
+	Attach the Permission Policy
+	Select Admin
+	Select Access Key and Access Token
+	Review and Close.
+	
+Copy the URL and Login as IAM User.
+Now we can see all the services which are similar to Admin User.
 
 
+***************************************************************  3.AWS Billing Alert  *************************************************************** 
 
-***************************************************************  1.AWS Free Tier Account   *******************************************************************************
-
-Select 12 Months Free Tier Account.
-Basic Subscription
+ 
