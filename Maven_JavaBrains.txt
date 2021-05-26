@@ -14,9 +14,9 @@ Simple Java Project
 Web Application uisng Maven
 Install Maven on Linux
 
-*********************************************************************** 1.Introduction ***********************************************************************
+*********************************************************************** 1.Introduction **********************************************************
 
-Maven is mostly used as a build Tool i.e helps us to build and deploy the code in development Environment.
+Maven is mostly used as a build Tool ie helps us to build and deploy the code in development Environment.
 Maven can also be used as a Project Management Tool i.e generate reports,dependency management etc.
 Most common problems while developing the Application are
 
@@ -54,7 +54,7 @@ Spring Boot : 2689
 Here Maven download the dependencies i.e spring-boot-starter-test.
 If the spring-boot-starter-test is dependent on another Jar then Maven takes care of its related dependencies.
 
-*********************************************************************** 2.Setting Up ***********************************************************************
+*********************************************************************** 2.Setting Up *******************************************************
 
 To compile the Maven Project navigate to the directory where the pom.xml is present.
 	
@@ -81,10 +81,10 @@ Maven Repository has two types of Informations
 Archetype Information
 Dependency Information
 
-*********************************************************************** 3.Understanding Archetypes and pom.xml *********************************************
+*********************************************************************** 3.Understanding Archetypes and pom.xml *********************************
 
 The first thing Maven does for us is creating a source code template called Folder Structure. 
-Second Maven does is build i.e compile the code and package the Application into a jar File.
+Second thing Maven does is build i.e compile the code and package the Application into a jar File.
 Here We are Generating the source code structure by using the command and the output of this command is the folder structure and pom.xml 
 
 	maven archetype: generate 
@@ -150,9 +150,8 @@ Build was done using some of the commands
 	compile
 	package
 
-We need to specify one command that will take care of all the other activities.
-In case of ANT we need to specify target for each step.
-Every step has to be explicitly mentioned like validate,compile,package,deploy and install.
+In case of Maven We need to specify one command that will take care of all the other activities.
+In case of ANT we need to specify target for each step ie Every step has to be explicitly mentioned like validate,compile,test,package,install and deploy.
 
 Maven has standrad directory structure and it knows what needs to be done.
 Consider the scenario if we have created any project using maven archetype and it has 2 folders i.e main and test.
@@ -163,7 +162,8 @@ Maven will run the test cases before we package the code.
 
 Maven has something called as Build Life cycle and is defined as a part of Maven Architecture.
 Every Build has a life cycle.
-First we write the code,compile it,run the Test cases,package the Application,install it in a particular Repository or in a shared location where other developers can use the binary.
+First we write the code,compile it,run the Test cases,
+package the Application,install it in a particular Repository or in a shared location where other developers can use the binary.
 Maven has an internal Build Life cycle itself.
 Build Life cycle is split into different phases.
 
@@ -182,7 +182,8 @@ If any of the phase Fails then next phase won't be executed.
 
 install :
 Maven installs the artifact into the local Maven Repository.
-If one project depends on another project artifact then Maven searches for the artifact in the Local Repository and if it does not found then Maven Searches in the Remote Repository.
+If one project depends on another project artifact then Maven searches for the artifact in the Local Repository and 
+if it does not found then Maven Searches in the Remote Repository.
 install helps in publishing the jar into the Local Repository.
 
 deploy:
@@ -192,11 +193,10 @@ Example :
 In order to run any of the phases,navigate to the directory where the pom.xml is present
 
 
-
 *********************************************************************** 5.Adding Dependency	 **************************************************************
 
 Till now we have choosen the archetype for an Application and set up the project structure.
-We alos peroform the Maven Build phases like compile,test,package,install and deploy.
+We also perform the Maven Build phases like compile,test,package,install and deploy.
 Here we add the dependency by changing the pom.xml and Maven to import the jars from the Repository.
 
 Note :
@@ -223,20 +223,20 @@ groupId
 artifactId
 version
 
-When we add the dependency,During the compile phase it will download all the jars which are required and makes them available to th classpath to compile.
+When we add the dependency,during the compilation phase it will download all the jars which are required and makes them available to th classpath to classpath.
 
 Note :
 Default scope is compile i.e dependencies will be available during the compilation phase.
 
-*********************************************************************** 6.Web Application Using Maven ***********************************************************************
+****************************************************************** 6.Web Application Using Maven ****************************************************
 
 
 
 
-*********************************************************************** 7.Compiler Plug In	*********************************************************************************
+****************************************************************** 7.Compiler Plug In	**************************************************************
 
 PlugIns are a way in which we can extend the functionality of Maven.
-Maven Architecture itself is a assembly of PlugIns and is a modular Architecture.
+Maven Architecture itself is an assembly of PlugIns and is a modular Architecture.
 Maven Compiler is a PlugIn inside the Maven system.
 All the core components acts as a PlugIns and make it as a Modular Architecture.
 Advantage of PlugIn Architecture is that we can add PlugIns and we can configure the way we want to extend the functionality.
@@ -264,23 +264,23 @@ To check the default JDK version of Maven we use the below command which shows t
 
 
 
-*********************************************************************** 8.Jetty Plug In  ***********************************************************************************
+********************************************************* 8.Jetty Plug In  ********************************************************************
 
 
 
-*********************************************************************** 9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse  ******************************************
+********************************************************* 9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse  ****************************
 
 Maven has a modular architecture that comprises of lot of plugIns.
-Eclipse is widely used IDE nad even that has modular Architecture.
+Eclipse is widely used IDE and even that has modular Architecture.
 
 
 
-*********************************************************************** 10.Maven Project in Eclipse	***********************************************************************
+*********************************************************** 10.Maven Project in Eclipse	********************************************************
 
 
 
 
-*********************************************************************** Install Maven in Linux ****************************************************************************
+*********************************************************************** Install Maven in Linux *************************************************
 
 
 
