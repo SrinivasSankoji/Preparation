@@ -1,6 +1,6 @@
 1.AWS Free Tier Account												[25-MAY-2021] (Done)
 2.Create an Admin User                                              [25-MAY-2021] (Done)
-3.AWS Billing Alert                                                 [25-MAY-2021] ()
+3.AWS Billing Alert                                                 [27-MAY-2021] (Done)
 4.Install AWS CLI                                                   [25-MAY-2021] ()
 5.Launching EC2 instance                                            [25-MAY-2021] ()
 6.Launching EC2 instance using CLI                                  [25-MAY-2021] ()
@@ -60,8 +60,18 @@ Now we can see all the services which are similar to Admin User.
 ***************************************************************  3.AWS Billing Alert  *************************************************************** 
 
 Login as Root User
-Billing Dashboard  --> Biling preferences --> Select the Recieve Free Tier Usage and Recieve Billing Alerts 
+Billing Dashboard  --> Biling preferences --> Select the Recieve Free Tier Usage Alerts and Recieve Billing Alerts 
 Then Select the Manage Billing Alerts Link
+
+Billing Alerts can be done using CloudWatch.
+Select the Billing --> Create an Alarm --> Select the Threshold Type --> Static,Greater and 5 USD  --> Next
+Select In Alarm, Create a New Topic --> Topic Name and Mail Id --> Click on Create Topic.
+Confirm the Alarm for the given MailId.
+
+
+
+
+
 
 	
 

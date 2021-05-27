@@ -6,3 +6,49 @@
 
 ************************************************** 1.GitHub Actions (Adam Zolyak)  *********************************************************
 
+With GitHub Actions we can automate our workflow from an idea to Production.
+Actions allows us to write scripts that are triggered based on certain events in GitHub Repoitory like 
+creating a new issue,pushing the Request,merging the Pull Request etc.
+An Event here is GitHub WebHook Event.
+
+Automating things based on Events in GitHub Repoitory is not a new Idea.
+For most of the Years we are using CI tools like CircleCI,Travis CI,Jenkins and others to automate things by running scripts in CI jobs.
+GitHub even created probot framework to make it easier to GitHubApps to automate things.
+However each of these aproach requires signing up for additional services,hosting and running scripts,monitoring,maintaining etc.
+The above case will cost the money.
+
+GitHub Actions are 100% contained to GitHub and GitHub Repoitory.
+No Additional tools or services or money is required.
+We can store our Actions code in GitHub Repoitory and GitHub runs the Action Code for us.
+
+The two basic building blocks of GitHub Actions are
+1.Workflow
+2.Action
+
+1.Workflow :
+------------
+Workflow's are triggered based on GitHub WebHook Event.
+Evnet fires when certain things happens in our Repoitory like creating a new issue,commenting on pull Request,merging a Branch etc.
+Workflow runs one or more Actions.
+
+2.Action :
+----------
+An Action is a Docker Container that runs as a part of a Workflow.
+We can store our Acions within our GitHub Repository or we can use other people Actions stored inside public GitHub Repository.
+We can also use prebuilt Docker images from Docker Registry.
+
+Both Workflow and Actions are written as code and stored as a part of our GitHub Repository and 100% Reproducible from the Code.
+GitHub Actions provides a way to automate the repetitive tasks in our Workflow.
+
+
+New Issue Comment - GitHub Action :
+-----------------------------------
+Consider the scenario of creating a basic GitHub Action that demonstrates how to post a welcome comment when new issue is created.
+GitHub Action runs when an Event WebHook is fired on our GitHub Repository.
+Action checks If the Event is of type action=opened and posts a comment to the issue thanking the user for their contribution.
+
+Installation :
+--------------
+
+
+
