@@ -1,4 +1,4 @@
-1.AWS EBS- Elastic Block Store                 (Gaurav Gupta)          [22-MAY-2021]  ()
+1.AWS EBS- Elastic Block Store                 (Gaurav Gupta)          [22-MAY-2021]  (Done)
 2.What is Amazon Elastic Block Store (EBS)	   (Kunal Yadav)           [22-MAY-2021]  ()
 3.What is EBS								   (Eddie Segal)           [22-MAY-2021]  ()
 4.AWS EBS Volumes and Monitoring			   (Aravind G V)           [22-MAY-2021]  ()
@@ -70,10 +70,16 @@ EBS Volume provides a ratio of 3 IOPS per GB with the ability to burst upto 3000
 Note :
 IOPS refers to the Operations on blocks that are upto 256 KB in size. 
 
+Usecase :
+Most workloads such as Virtual Desktop,Dev and Test Environments and low latency interactive Apps.
+
 6.Provisioned IOPS SSD :
 ------------------------
 This is the fastest and most expensive EBS volume.
 Designed foe intensive Applications such as large Relational Databases and No SQL Databases.
+
+Usecase :
+Mission critical Applications,large database workloads such as MongoDB etc.
 
 7.Throughput Optimized HDD :
 ----------------------------
@@ -105,12 +111,40 @@ Should not run the Snapshot while the Application is handling a lot of traffic.
 
 Some Facts about EBS :
 ----------------------
-
-
+1.EBS Volume can only be mounted to a Single EC2 instance at a time.
+If we want to assign a volume to Multiple Instances we use Elastic File System.
+2.Volumes other than root Volumes can be encrypted.
+3.By default root volumes are deleted on termination of instances.
+4.We can copy snapshots between AWS regios to create volumes in different regions.
+5.Size of an EBS Volume can be upto 16 TB.
 
 10.EBS Migration :
 ------------------
+EBS Volumes are specific to Availablity Zone.
+To migrate it to different Availablity Zone 
 
+Snapshot the Volume and make sure that volume is detached before snapshot.
+Copy the Volume to different Region.
+Create the Volume from the Snapshot in the required Availablity Zone.
+
+11.EBS Encryption :
+-------------------
+
+
+12.Encryption: encrypt an unencrypted EBS volume :
+--------------------------------------------------
+
+
+13.EBS vs Instance Store :
+--------------------------
+
+
+14.Pros and Cons :
+------------------
+
+
+15.Point to Note :
+------------------
 
 
 
