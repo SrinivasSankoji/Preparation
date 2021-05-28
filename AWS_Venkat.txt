@@ -2,7 +2,7 @@
 2.Create an Admin User                                              [25-MAY-2021] (Done)
 3.AWS Billing Alert                                                 [27-MAY-2021] (Done)
 4.Install AWS CLI                                                   [25-MAY-2021] ()
-5.Launching EC2 instance                                            [25-MAY-2021] ()
+5.Launching EC2 instance                                            [28-MAY-2021] (Done)
 6.Launching EC2 instance using CLI                                  [25-MAY-2021] ()
 7.Running Web Server in AWS                                         [25-MAY-2021] ()
 
@@ -69,10 +69,120 @@ Select In Alarm, Create a New Topic --> Topic Name and Mail Id --> Click on Crea
 Confirm the Alarm for the given MailId.
 
 
+*************************************************************** 4.Install AWS CLI  ******************************************************************
 
 
 
+*************************************************************** 5.Launching EC2 instance ************************************************************
 
-	
+Whenever we create an AWS Account by default it has VPC and we need to place the resources in the VPC.
+AWS creats a default VPC for us public subnet will be created for each Availability Zone and Region and attached to the Internet Gateway.
+Also it comes with the default Security Group.
+Inbound Traffic is allowed only for Machines within the same Security Group.
+
+Note:
+Any machine which are in the same Security Group can communicate with Each Other.
+
+Security Group are like firewalls.
+We attach the Security Group to an EC2 instance.
+We can also attach Multiple Security Groups to any EC2 instance.
+We can also define what Machines can connect our Machine on which port,How to open the Port etc.
+
+Once we launch the Virtual Machine or EC2 instance we are going to connect via SSH from our Host Machine.
+We need to open the Port 22.
+
+Requirement to create an EC2 instance are
+In which VPC we are going to depoly that
+Which Subnet
+Which Availability Zone
+What Security Group we want to put in that Instance
+Whether we need a Public IP for that Instance
+Finally we need to have a SSH key pair to access the EC2 Instance
+
+Step 1:
+Create the KeyPair
+It will be proviiding a .pem file
+Whenever the Machine is launched AWS put the public key inside the EC2 instance.
+AWS does not store the private key and this is the last chance to store private key. 
+
+Note:
+We can also create the new key pair if required.
+
+Step 2 :
+Select the instances --> Launch the Instance --> Select the AMI --> 
+Herw we can have our own AMI's,community AMI's 
+
+Select Amazon Linux -->
+Her the root device type is EBS.
+Default image includes AWS CLI,Python,Ruby,PERL,Java Repositories include Docker,PHP,MySql,PostgreeSql etc.
+Select t2 micro instance --> Depending on what we select we get the CPU,Storage,Memory and so on  --> Next
+Select the Number of Instances 
+Selct the Network ie VPC where we want to deploy our EC2 instance and select the default VPC.
+Select the subnet as default
+Select Auto Assign Public IP as Subnet City i.e enable Public IP
+Select the Enable Terminate Option i.e we cannot terminate the instance by default.
+If we enter the Commands in the Advanced Configuration --> User Data --> then those commands will be executed at the time of EC2 instance launch.
+
+Step 3 :
+Click on Next Add Storage -->
+By default delete on termination is checked ie if we terminate the EC2 instance EBS will be deleted.
+Let it be checked
+
+Step 4 :
+Click on Add Tags --> env and web
+We can add upto 50 Tags
+
+Step 5 :
+Configure the Security Group
+Here we can create the New Security Group or use the existing Security Group.
+Default Security Group des not have any inbound Rules.
+Create the Security Group --> 
+Type : SSH
+Protocol : TCP
+Port : 22
+Source : Select MyIP .Here if we select the Custom IP then it is publicly Available although it has SSH key value Pair.
+Finally Review and Luanch.
+
+Step 6:
+Here it will ask the Key value pair.
+Selct the existing key value pair and launch the Instance.
+
+Step 7:
+View the Instances
+Here we can create the Alarms but it is cost effective.
+If the CPU percent is above 90 percent in an Hour we can raise an Alarm.
+Select the Volume --> Here EBS Volume got created.
+New Security Group got created.
+New Key Pairs got created
+
+Select the Instances --> Copy the IP Address --> Open the Terminal --> 
+Select the pem file
+Default user for AWS instance ec2-user@Public IP Address
+Run the command user-r
+
+Note:
+Whenever we create a Machine we can configure it and we can make that into an Image.
+
+Note :
+We have an option to enable or disable Auto Assign Public IP.
+Whenever we are creating Machines that does not need an external access or we don't have to log into those machines from Internet
+we can disable those AMchines and we only get the private IP Address but not public IP Address.
+Machine will not be reachable from the Internet.
+
+Usecase :
+Consider the case of Web Two Tier Architecture.
+We have Web Tier and Databse Tier.
+We put the Database Tier on the Private Subnet so that Database Server cannot be accessed directly.
+Web Server will be in the Public Subnet because that needs to be exposed to the public.
+Private Subnet needs to be accessed from the Public Subnet.
+
+Finally 
+Delete the Instance
+Delete the Key Pair
+Delete the Security Group
+
+*************************************************************** 6.Launching EC2 instance using CLI  *************************************************
+
+
 
  
