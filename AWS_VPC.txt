@@ -47,7 +47,7 @@ We can also have multiple route tables in a VPC.
 3.Internet Gateway :
 --------------------
 Internet Gateway allows the user to make the Subnet public by providing a Route to the Internet.
-With the help of Internet Gateway An Instance can be accessed through the Internet and resources outside the instance can access the instance.
+With the help of Internet Gateway an Instance can be accessed through the Internet and resources outside the instance can access the instance.
 Only one Internet Gateway can be attached to a VPC at a time.
 
 4.Creating VPC using AWS Console :
