@@ -8,10 +8,12 @@
 
 8.Configuring Elastic Load Balancer									[19-MAY-2021] ()
 9.Configuring AutoScaling Group with ELB                            [19-MAY-2021] ()
+
 10.Elastic Beanstalk Deploy Application                             [19-MAY-2021] ()
 11.EB CLI for Elastic Beanstalk                                     [19-MAY-2021] ()
 12.Deploying App in BeanStalk Using EB CLI                          [19-MAY-2021] ()
 13.EB CLI Multiple Environments with GIT                            [19-MAY-2021] ()
+
 14.First AWS CodeCommit Repository                                  [19-MAY-2021] ()
 15.AWS CodeCommit Repository From CLI 								[19-MAY-2021] ()
 16.Code Pipeline Demo using CodeCommit and CodeDeploy               [19-MAY-2021] ()
@@ -144,7 +146,7 @@ Create the Security Group -->
 Type : SSH
 Protocol : TCP
 Port : 22
-Source : Select MyIP .Here if we select the Custom IP then it is publicly Available although it has SSH key value Pair.
+Source : From the Dropdown Select MyIP .Here if we select the Custom IP then it is publicly Available although it has SSH key value Pair.
 Finally Review and Luanch.
 
 Step 6:
@@ -196,7 +198,6 @@ Run the command
 	chmod 400 /path to the .pem file
 	ssh -i /path to the .pemfile ubuntu@IpAddress
 	
-
 
 *************************************************************** 6.Launching EC2 instance using CLI  *************************************************
 

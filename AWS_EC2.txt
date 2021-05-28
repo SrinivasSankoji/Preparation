@@ -1,13 +1,13 @@
-1.EC2 Introduction   						   (Vishal Padghan)         [21-APR-2021]  (Done)
-2.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[22-MAR-2021]  ()
-3.EC2 Bootstrap Script          			   ()              		    [22-MAR-2021]  ()
-4.EC2 Windows Instance          			   ()             			[22-MAR-2021]  ()
-5.EC2 Metadata                                 ()              		    [22-MAR-2021]  ()
-6.EC2 Placement Groups                         ()              		    [22-MAR-2021]  ()
-7.EC2 AutoScaling                              ()              		    [22-MAR-2021]  ()
+1.EC2 Introduction   						   (Vishal Padghan)         [21-MAY-2021]  (Done)
+2.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[29-MAY-2021]  (Done)
+3.EC2 Bootstrap Script          			   ()              		    [22-MAY-2021]  ()
+4.EC2 Windows Instance          			   ()             			[22-MAY-2021]  ()
+5.EC2 Metadata                                 ()              		    [22-MAY-2021]  ()
+6.EC2 Placement Groups                         ()              		    [22-MAY-2021]  ()
+7.EC2 AutoScaling                              ()              		    [22-MAY-2021]  ()
 
 
-******************************************************************* 1.EC2 Introduction (Vishal Padghan) **********************************************************************
+******************************************************************* 1.EC2 Introduction (Vishal Padghan) ******************************************************
 
 1.Drawback
 2.Introduction
@@ -250,31 +250,55 @@ Full Upfront
 
 16.AWS EC2 Use Case :
 ---------------------
+Login to AWS Management Console
+Select the Preferred Region
+Select the EC2 Service
+Click on Launch Instance
+Select AMI --> Ubuntu Free Tier
+Select the instance --> t2.micro instance
+
+Configure the Instance Details :
+Number of Instances : 1
+Network : Select the default VPC
+Subnet : Select the default Subnet
+Select Auto Assign Public IP as Subnet City i.e enable Public IP
+Select the Enable Terminate Option i.e we cannot terminate the instance by default.
+
+Add the Storage Details :
+select the default
+
+Tag an Instance :
+key and Value
+Name and Value
+
+Configure the Security Group :
+Create the new Security Group.
+Select the MyIP in the Source Tab
+Then Review and Launch the Instance.
+
+Create Key Pair to launch the Instance.
+Downlod the pem file and save it for future use.
+
+Converting Your Private Key Using PuTTYgen :
+--------------------------------------------
+
+
+
+****************************************** 2.Connect to Linux Instance using SSH (Michael Galarnyk)  *********************************
+
+To connect to the EC2 instance from Ubuntu
+Navigate to the Folder where the pem file is present
+Run the command
+
+	chmod 400 /path to the .pem file
+	ssh -i /path to the .pemfile ubuntu@IpAddress
+	
+
+
 
 
 
 
  
 
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 

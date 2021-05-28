@@ -4,9 +4,9 @@
 4.AWS Services 		 			(AWS Training Center Video)  		[30-DEC-2020]  ()
 5.AWS Introduction	 			(Online Tutorials)					[01-MAR-2021]  (Done)
 6.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  ()
-7.AWS Account Creation			(Guilherme Virtuoso)				[22-APR-2021]  ()
-8.AWS Account Creation			(Kangze Huang)						[22-APR-2021]  ()
-9.AWS Account Creation			(Harriet Ryder)						[22-APR-2021]  ()
+7.AWS Account Creation			(Guilherme Virtuoso)				[22-MAY-2021]  ()
+8.AWS Account Creation			(Kangze Huang)						[22-MAY-2021]  ()
+9.AWS Account Creation			(Harriet Ryder)						[22-MAY-2021]  ()
 
 
 ********************************************************  1.AWS Introduction (thedevcoach) ********************************************
@@ -318,8 +318,23 @@ using virtual Environment
 using bundled scheduler
 
 Installing the AWS CLI Using pip :
+----------------------------------
+Install the python-pip package on your Ubuntu system
 
+	sudo apt update
+	sudo apt -y install python3-pip
+	
+Then upgrade the pip to latest Release
 
+	sudo pip3 install --upgrade pip
+
+Once the package is installed, install awscli  package with pip
+
+	sudo pip3 install awscli
+	
+To upgrade awscli to the latest version
+
+	sudo pip3 install awscli --upgrade
 
 4.How to use AWS CLI :
 ----------------------
