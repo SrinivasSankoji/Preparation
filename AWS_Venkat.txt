@@ -189,6 +189,15 @@ Delete the Instance
 Delete the Key Pair
 Delete the Security Group
 
+To connect to the EC2 instance from Ubuntu
+Navigate to the Folder where the pem file is present
+Run the command
+
+	chmod 400 /path to the .pem file
+	ssh -i /path to the .pemfile ubuntu@IpAddress
+	
+
+
 *************************************************************** 6.Launching EC2 instance using CLI  *************************************************
 
 
