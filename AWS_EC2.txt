@@ -1,13 +1,44 @@
-1.EC2 Introduction   						   (Vishal Padghan)         [21-MAY-2021]  (Done)
-2.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[29-MAY-2021]  (Done)
-3.EC2 Bootstrap Script          			   ()              		    [22-MAY-2021]  ()
-4.EC2 Windows Instance          			   ()             			[22-MAY-2021]  ()
-5.EC2 Metadata                                 ()              		    [22-MAY-2021]  ()
-6.EC2 Placement Groups                         ()              		    [22-MAY-2021]  ()
-7.EC2 AutoScaling                              ()              		    [22-MAY-2021]  ()
+1.EC2 Dashboard									
+2.EC2 Introduction   						   (Vishal Padghan)         [21-MAY-2021]  (Done)
+3.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[29-MAY-2021]  (Done)
+4.EC2 Bootstrap Script          			   ()              		    [22-MAY-2021]  ()
+5.EC2 Windows Instance          			   ()             			[22-MAY-2021]  ()
+6.EC2 Metadata                                 ()              		    [22-MAY-2021]  ()
+7.EC2 Placement Groups                         ()              		    [22-MAY-2021]  ()
+8.EC2 AutoScaling                              ()              		    [22-MAY-2021]  ()
+
+*******************************************************************  1.EC2 Dashboard	**********************************************************************
+
+1.Instances :
+Instances
+Instance Types
+Launch Templates
+Spot Requests
+Savings Plan
+Reserved Instances
+Dedicated Hosts
+Capacity Reservations
+2.Images : 
+AMI
+3.Elastic Block Store :
+Volumes
+Snapshot
+Lifecycle Manager
+4.Network and Security :
+Security Groups
+Elastic Ips
+Placement Groups
+Key Pairs
+Network Interfaces
+5.Load Balancing :
+Load Balancers
+Target Groups
+6.Auto Scaling :
+Launch Configurations
+Auto Scaling Groups
 
 
-******************************************************************* 1.EC2 Introduction (Vishal Padghan) ******************************************************
+******************************************************************* 2.EC2 Introduction (Vishal Padghan) ******************************************************
 
 1.Drawback
 2.Introduction
@@ -293,7 +324,7 @@ Run the command
 	chmod 400 /path to the .pem file
 	ssh -i /path to the .pemfile ubuntu@IpAddress
 	
-
+**************************************************************************************************************************************
 
 
 

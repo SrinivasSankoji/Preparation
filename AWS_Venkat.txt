@@ -123,6 +123,7 @@ To view the number of instances in AWS from cli we use the commad
 	aws ec2 describe-instances
 
 *************************************************************** 5.Launching EC2 instance ************************************************************
+
 Default VPC :
 -------------
 Whenever we create an AWS Account,AWS will create a default VPC and we need to place the resources in that VPC.
