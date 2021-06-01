@@ -1,4 +1,4 @@
-1.OSI Model											[24-APR-2021]  ()
+1.OSI Model											[01-JUN-2021]  (Done)
 2.IP Address                                        [24-APR-2021]  ()
 3.MAC Address                                       [24-APR-2021]  ()
 4.Routing and Switching                             [24-APR-2021]  ()
@@ -101,14 +101,39 @@ Transport Layer will take care of how to get back the original data.
 
 Network layer :
 ---------------
+Network Layer is the "Post Office" of networks.
+Role of Network Layer is to move the packets from source to destination and provides inter networking.
+This is the Layer that the Router Operates on.
+Since Router operates at the Network Level, we can say that IP Address is at the Network Level.
 
+To know the server that stores the homepage of medium.com and where it is located.
+IP protocol uniquely identifies the devices on the network so that destination of each transmission can be located.
+For a browser to connect to the Server across the country there are million paths that the data can take.
+Routing protocol helps the data travel in an efficient path to the destination.
 
 Data Link layer :
 -----------------
+Once the Network Layer identifies where to send the data,Data Link Layer takes care of transferring the data between neighbouring network elements.
+Data Link Layer ensures that data transmission is error free over the physical Layer.
+Functionality implemented in this Layer includes Physical Addressing,Framing and error and flow Control.
 
+Physical Addressing refers to the addressing after the packet has arrived at the local network.
+Machines on the local network can have the same IP Address.
+If this is the case MAC Address can to used to locate the right recepient of the Message.
+
+Framing is a way to make sure that set of bits that are transmitted are understandable to the user.
+This can be done by attaching the special bit patterns to the begining and end of the Frame.
+
+Data Link Layer makes sure that all the Frames arrive at its correct destination when a communication channel is shared by multiple connections.
+Data Link Layer also ensures that all the Frames arrive erro free by detecting and retransmitting damaged and Lost Frames.
 
 Physical layer :
 ----------------
+Physical Layer is the lowest Layer of the OSI Model and also considered as "Hardware Layer".
+Physical Layer is responsible for transfer of bits "on the wire".
+Implementation of this Layer includes the choice of Cable Type,Network Layout and Radio Frequencies.
+
+
 
 
 
