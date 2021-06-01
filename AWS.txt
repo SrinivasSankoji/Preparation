@@ -322,15 +322,15 @@ Installing the AWS CLI Using pip :
 Install the python-pip package on your Ubuntu system
 
 	sudo apt update
-	sudo apt -y install python3-pip
+	sudo apt install python3-pip
 	
 Then upgrade the pip to latest Release
 
 	sudo pip3 install --upgrade pip
 
-Once the package is installed, install awscli  package with pip
+Once the package is installed, install awscli
 
-	sudo pip3 install awscli
+	sudo apt install awscli
 	
 To upgrade awscli to the latest version
 
@@ -338,7 +338,14 @@ To upgrade awscli to the latest version
 
 3.Configuring AWS CLI :
 -----------------------
+To configure the awscli we use the commad  with the options
 
+	aws configure
+	
+AKIAQL2FP5VBVVTMYYEK
+INF2zeJb4BEaLqH/lDLI+2Eec0qzGR9EyP0ZjQx1
+ap-south-1
+json
 
 
 4.How to use AWS CLI :
