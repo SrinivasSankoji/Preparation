@@ -1,4 +1,30 @@
-1.What Is Load Balancing									(Siddhant Singh)			[29-MAY-2021]  ()
-2.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [29-MAY-2021]  ()
-3.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [29-MAY-2021]  ()
+1.What Is Load Balancing									(Siddhant Singh)			[01-JUN-2021]  ()
+2.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
+3.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [01-JUN-2021]  ()
+
+****************************************** 3.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
+
+1.What is Load Balancer
+2.Difference between ALB and NLB					   (Depends on OSI Model)
+3.ALB and NLB Specific Features
+4.HTTP Host and Path Based Routing
+5.Protocols other than HTTP
+6.Dynamic Ports in ALB and NLB
+7.Integrating NLB and ALB with EC2 Container Service   (Depends on ECS)
+
+1.What is Load Balancer :
+-------------------------
+Load Balancer accepts incoming Network traffic from Client 
+and based on some criteria in the traffic it distributes the communication to one or more back end servers.
+Load Balancer plays an important role in building great internet Applications.
+Load Balancer provides the benefits of Redundancy and scalability.
+
+Redundancy :
+As long as there is one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
+
+Scalability :
+By running 2 Servers behind a Load Balancer we can now handle 2X requests from the client.
+Load Balancers provides a way to add more and more Backend Servers if the incoming network traffic increases.
+
+OSI Model :
 

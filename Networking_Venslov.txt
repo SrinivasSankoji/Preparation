@@ -23,5 +23,110 @@
 
 ****************************************************  1.OSI Model	*************************************************************************
 
+OSI (Open Systems InterConnection) Model is a Conceptual Model that characterizes and Standardizes the communication mechanism of
+TeleCommunication or Computing System without regard to its underlying Internal Structure and Technology.
+
+Consider the scenario of without OSI Model.
+Here we have to discuss the infrastructure of each networking system.
+Networks are complex.
+OSI Model uses a Layers to provide a high level description of what is going on within a particular networking System.
+If the Network is broken OSI Model provides a way to quickly resolve the issue.
+Whether it is the problem of Application or Physical Layer.
+
+Network is a complicated system that comprised of numerous hosts,routers,data links,applications,protocols,hardware and software.
+We need a way to understand it from high level.
+This is where the OSI Model comes into picture.
+In other words OSI Model is a tool used by IT Professionals to trace how the data is transferred between the networks.
+How the network systems are supposed to communicate with each other.
+OSI Model breaks down the data transfer procedure into different components called layers.
+These Layers follows a proper order of execution.
+
+Advantages of OSI Model :
+1.It creates a common platform for software developers and hardware manfacturers in the creation of networking products
+that can communicate with each other over the network.
+2.It helps network administrators by dividing a large data exchange process into smaller segments.
+3.Due to the independence of layers changes in one layer does not affect the other layer.
+4.Standardization of network component allows multiple vendor development.
+
+Layers Of OSI Model :
+OSI Model is composed of Seven layers with the Application Layer at the top which is closest to the End User
+and the Physical Layer at the bottom in which actual data transfer happens with the use of a transmission medium.
+
+Application Layer :
+-------------------
+This is the top layer in the OSI Model where the end user interacts with.
+Functionalities implemented at this layer are the ones that user interact with it directly.
+Some of the Applications are Firefox,Skype are Application Level Software.
+Applicaion Layer takes an input and transfers the data over the network.
+When the Data is coming to the Application Layer it works on displaying the data to the end user.
+
+Presentation Layer :
+--------------------
+This is the Layer in which Operating System operates with the data.
+Because data going to and from the Application Layer is often not in the required format and has to be transported over the network.
+It needs to be translated and presented properly to the next layer.
+
+Presentation Layer is also called as "Translation Layer".
+Presentation Layer translates the data from the network format to the Application format or vice versa.
+An example of how secure communication is implemented in HTTPS.
+Data is encrypted before transmission and decrypted upon arrival.
+
+Session layer :
+---------------
+Session Layer manages the "Session" between two Machines.
+For two devices on the network to communicate with each other "session" needs to be created to ensure the Authentication and Security.
+Job of Session Layer is to establish,manage and terminates the session between two devices.
+Whenever we visit a website our computer has to create a session with the web server of that website.
+
+Transport layer :
+-----------------
+Transport Layer is the "traffic" control of the networks.
+Some examples include TCP(Transmission Control Protocol) and UDP(User Datagram Protocol).
+
+This Layer controls host-to-host data transfer and decides how much data can be sent at once,how fast we can send.
+So whenever we are communicating with any website,Transport Layer will decide how much data can be transferred or recieved at any point of time.
+Transportation Layer takes care of data segmentation and reassembly as well as flow and Error Control.
+
+Data Segmentation :
+Whenever data being sent is larger than the maximun transmission unit supported by the network Data Segmentation is needed.
+Data Segmentation means dividing the data into smaller chunks prior to processing.
+Sending the smaller amount of data at a time is beneficial.
+Upon receiving the segmented data Transport Layer takes care of reassembling the data back to its original state.
+
+Flow and Error Control :
+When too much data is being sent at a time network congestion may happen.
+Transport Layer will decide which data needs to be sent first and in which order to send the data to achieve maximum efficiency.
+Sometimes data packest arrive corrupted or out of order.
+Transport Layer will take care of how to get back the original data.
+
+Network layer :
+---------------
+
+
+Data Link layer :
+-----------------
+
+
+Physical layer :
+----------------
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
 
 
