@@ -73,7 +73,54 @@ Confirm the Alarm for the given MailId.
 
 *************************************************************** 4.Install AWS CLI  ******************************************************************
 
+We can install AWS CLI in multiple ways
 
+1.using pip
+2.using virtual Environment
+3.using bundled scheduler
+
+Install the python-pip package on your Ubuntu system
+
+	sudo apt install python3-pip
+
+To check whether the python has installed or not we use the below command and It will show the installation folder.
+
+	python3 --version   (will show the python version)
+	which python3
+
+To check whethet pip has installed or not we use the command
+
+	which pip
+	pip --version
+	
+To install the awscli we use the command
+
+	sudo apt install awscli
+	
+When we install AWSCLI it will be installed in bin directory.
+To interact with AWS Accountb we need to configure the AWS CLI.
+We need to provide the access key,secret key and which region it has to login by default etc.
+Command to configure awscli is
+
+	aws configure
+	
+AKIAQL2FP5VBVVTMYYEK
+INF2zeJb4BEaLqH/lDLI+2Eec0qzGR9EyP0ZjQx1
+ap-south-1
+
+To check the configuration detaills
+
+To see the list of services that we can communicate with AWS CLI we run the command
+
+	aws help
+
+To know the commands which are required for a particular service we use the command
+
+	aws command help  ie aws ec2 help
+	
+To view the number of instances in AWS from cli we use the commad
+
+	aws ec2 describe-instances
 
 *************************************************************** 5.Launching EC2 instance ************************************************************
 Default VPC :
