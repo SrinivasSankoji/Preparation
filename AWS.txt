@@ -305,7 +305,7 @@ Search for the bucket
 Search for the Folder
 Serahc for the File
 3.Automates Process 
-AWS CLI gives the ability to automate the entire process of monitoring and managing the AWS Services through Scripts.
+AWS CLI gives the ability to automate the entire process of monitoring and managing the AWS Services through scripts.
 4.Supports ALL AWS Services 
 AWS control's all the AWS Service from one tool
 
@@ -317,7 +317,7 @@ using pip
 using virtual Environment
 using bundled scheduler
 
-Installing the AWS CLI Using pip :
+Installing the AWS CLI using pip :
 ----------------------------------
 Install the python-pip package on your Ubuntu system
 

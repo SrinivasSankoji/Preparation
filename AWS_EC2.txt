@@ -1,4 +1,4 @@
-1.EC2 Dashboard									
+1.EC2 Dashboard								   (AWS Management Console)	[29-MAY-2021]  (Done)   							
 2.EC2 Introduction   						   (Vishal Padghan)         [21-MAY-2021]  (Done)   (Refer Articles)
 3.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[29-MAY-2021]  (Done)
 4.EC2 Bootstrap Script          			   ()              		    [22-MAY-2021]  ()
@@ -7,7 +7,7 @@
 7.EC2 Placement Groups                         ()              		    [22-MAY-2021]  ()
 8.EC2 AutoScaling                              ()              		    [22-MAY-2021]  ()
 
-*******************************************************************  1.EC2 Dashboard	**********************************************************************
+*******************************************************************  1.EC2 Dashboard	*******************************************************
 
 1.Instances :
 Instances
@@ -38,7 +38,7 @@ Launch Configurations
 Auto Scaling Groups
 
 
-******************************************************************* 2.EC2 Introduction (Vishal Padghan) ******************************************************
+******************************************************************* 2.EC2 Introduction (Vishal Padghan) ***************************************
 
 1.Drawback
 2.Introduction
@@ -143,14 +143,15 @@ GPU instances      : g2
 -----------------------------------
 T2 instances are burstable instances.
 This means CPU performs at a baseline of its Capacity.Consider the case of 20 Percent of CPU.
-When the Application needs more than 20% of the performance of the CPU,then CPU enters into burst mode giving the higher performance for a limited amount of time.
+When the Application needs more than 20% of the performance of the CPU,
+then CPU enters into burst mode giving the higher performance for a limited amount of time.
 Therefore work happens faster.
 
 We get the CPU Credits when the CPU is idle.
 Every time a burst happens in a CPU,CPU credits are used.
 Each CPU credit gives a burst of 1 Minute to the CPU.
 If CPU credits are not used they are credited to your account and stay for 24 Hours.
-Based on Credit Balance we can decide whether t2 instance should be scaled up or scaled down.
+Based on CPU Credit Balance we can decide whether t2 instance should be scaled up or scaled down.
 
 Example :
 Customer Analysis Data i.e Customer's Website Activity should be monitered real time.
@@ -165,7 +166,7 @@ C4,M4 and D2 instances are EBS optimized by default.
 EBS means Elastic Block Storage which is a storage option provided by AWS in which the IOPS rate is high.
 When an EBS Volume is attached to an optimized instance,Single Digit milli seconds latency can be acheived.
 
-IOPS i.e Input Output Operations per Second is a performance measurement used to characterizecomputer storage devices.
+IOPS i.e Input Output Operations per Second is a performance measurement used to characterize computer storage devices.
 
 Example :
 Auto Response Mailing System.
@@ -175,7 +176,7 @@ This can be acheived by using EBS optimized instances where the IOPS is high and
 8.Cluster Networking Instances :
 --------------------------------
 M4,C4,C3,X1,I2,D2,G2 instances support cluster networking.
-The instances are launched into a common placement group are put in a logical group that provides a high bandwidth and 
+The instances that are launched into a common placement group are kept in a logical group that provides a high bandwidth and 
 low latency between all the instances in the group.
 
 Placement group is a Logical Cluster where some selected EC2 instances which are part of that group can utilize upto 10 GB for single flow
@@ -219,7 +220,7 @@ Optons for EBS are
 1.Provisioned IOPS :
 This category is for workloads which are mission critical i.e it provides high IOPS rates.
 2.General Purpose :
-This category is for workload which needs balance of performance and cost effective.
+This category is for workloads which needs balance of performance and cost effective.
 3.Magnetic :
 This category is for workloads where the data is accessed less frequently and retreival time is more.
 
@@ -232,7 +233,7 @@ Finally we can see the console that shows all the settings that we have done,ver
 
 12.Security in AWS EC2 :
 ------------------------
-Whenever we launch the instance we need to provide the Authentication otherwsie Any one can access the EC2 instance.
+Whenever we launch the instance we need to provide the Authentication otherwsie any one can access the EC2 instance.
 To Authenticate the users to their instances AWS offers a key value pair method.
 
 EC2 uses a public-key and private-key cryptography to encrypt and decrypt login information.
@@ -242,8 +243,8 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service designed in AWS EC2 in which we can automatically Launch or terminate instances based on user-defined profiles,
-schedules and health checks.
+Auto Scaling is a service provided in EC2 in which we can automatically launch or terminate instances based on user-defined profiles,
+schedulers and health checks.
 
 14.Elastic Load Balancing :
 ---------------------------
@@ -251,7 +252,7 @@ Elastic Load Balancing automatically distributes incoming Application traffic ac
 Availability zones are the places where Amazon has set up their servers.
 Since they have the customers across the globe they have set up multiple Availability Zones to reduce the latency.
 
-Elastic IP Address are static IP Address that are associated with our AWS Account.
+Elastic IP Address's are the static IP Address's that are associated with our AWS Account.
 They can be used to mask the failure of an instance by automatically remapping our address to another working instance in our Account.
 
 15.AWS EC2 Pricing :
@@ -315,7 +316,7 @@ Converting Your Private Key Using PuTTYgen :
 
 
 
-****************************************** 2.Connect to Linux Instance using SSH (Michael Galarnyk)  *********************************
+****************************************** 2.Connect to EC2 Instance using SSH from Ubuntu (Michael Galarnyk)  *********************************
 
 To connect to the EC2 instance from Ubuntu
 Navigate to the Folder where the pem file is present

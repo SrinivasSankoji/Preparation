@@ -23,22 +23,19 @@
 
 ****************************************************  1.OSI Model	*************************************************************************
 
-OSI (Open Systems InterConnection) Model is a Conceptual Model that characterizes and Standardizes the communication mechanism of
-Communication or Computing System without regard to its underlying Internal Structure and Technology.
+OSI (Open Systems InterConnection) model is a conceptual model that characterizes and standardizes the communication mechanism of
+computing System without regard to its underlying Internal Structure and Technology.
 
 Consider the scenario of without OSI Model.
-Here we have to discuss the infrastructure of each networking system.
-Networks are complex.
+Here we have to discuss the infrastructure of each networking system and moreover Networks are complex.
 OSI Model uses a Layers to provide a high level description of what is going on within a particular networking System.
-If the Network is broken OSI Model provides a way to quickly resolve the issue.
-Whether it is the problem of Application or Physical Layer.
+If the Network is broken,OSI Model provides a way to quickly resolve the issue ie Whether it is the problem of Application or Physical Layer.
 
 Network is a complicated system that comprised of numerous hosts,routers,data links,applications,protocols,hardware and software.
-We need a way to understand it from high level.
-This is where the OSI Model comes into picture.
+We need a way to understand it from high level.This is where the OSI Model comes into picture.
 In other words OSI Model is a tool used by IT Professionals to trace how the data is transferred between the networks.
 How the network systems are supposed to communicate with each other.
-OSI Model breaks down the data transfer procedure into different components called layers.
+OSI Model break downs the data transfer procedure into different components called layers.
 These Layers follows a proper order of execution.
 
 Advantages of OSI Model :
@@ -55,7 +52,7 @@ and the Physical Layer at the bottom in which actual data transfer happens with 
 Application Layer :
 -------------------
 This is the top layer in the OSI Model where the end user interacts with.
-Functionalities implemented at this layer are the ones that user interact with it directly.
+Functionalities implemented at this layer are the one that the user interact with it directly.
 Some of the Applications are Firefox,Skype are Application Level Software.
 Applicaion Layer takes an input and transfers the data over the network.
 When the Data is coming to the Application Layer it works on displaying the data to the end user.
@@ -75,7 +72,7 @@ Session layer :
 ---------------
 Session Layer manages the "Session" between two Machines.
 For two devices on the network to communicate with each other "session" needs to be created to ensure the Authentication and Security.
-Job of Session Layer is to establish,manage and terminates the session between two devices.
+Job of Session Layer is to establish,manage and terminate the session between two devices.
 Whenever we visit a website our computer has to create a session with the web server of that website.
 
 Transport layer :
@@ -94,8 +91,8 @@ Sending the smaller amount of data at a time is beneficial.
 Upon receiving the segmented data Transport Layer takes care of reassembling the data back to its original state.
 
 Flow and Error Control :
-When too much data is being sent at a time network congestion may happen.
-Transport Layer will decide which data needs to be sent first and in which order to send the data to achieve maximum efficiency.
+When too much data is being sent at a time,network congestion may happen.
+Transport Layer will decide which data needs to be sent first and in which order data has to achieve maximum efficiency.
 Sometimes data packest arrive corrupted or out of order.
 Transport Layer will take care of how to get back the original data.
 
@@ -115,7 +112,7 @@ Data Link layer :
 -----------------
 Once the Network Layer identifies where to send the data,Data Link Layer takes care of transferring the data between neighbouring network elements.
 Data Link Layer ensures that data transmission is error free over the physical Layer.
-Functionality implemented in this Layer includes Physical Addressing,Framing and error and flow Control.
+Functionality implemented in this Layer includes Physical Addressing,Framing,error and flow Control.
 
 Physical Addressing refers to the addressing after the packet has arrived at the local network.
 Machines on the local network can have the same IP Address.
@@ -125,7 +122,7 @@ Framing is a way to make sure that set of bits that are transmitted are understa
 This can be done by attaching the special bit patterns to the begining and end of the Frame.
 
 Data Link Layer makes sure that all the Frames arrive at its correct destination when a communication channel is shared by multiple connections.
-Data Link Layer also ensures that all the Frames arrive erro free by detecting and retransmitting damaged and Lost Frames.
+Data Link Layer also ensures that all the Frames arrive error free by detecting and retransmitting damaged and lost Frames.
 
 Physical layer :
 ----------------
@@ -133,8 +130,9 @@ Physical Layer is the lowest Layer of the OSI Model and also considered as "Hard
 Physical Layer is responsible for transfer of bits "on the wire".
 Implementation of this Layer includes the choice of Cable Type,Network Layout and Radio Frequencies.
 
+**************************************************** 2.IP Address  ***************************************************************************
 
-
+ 
 
 
 
