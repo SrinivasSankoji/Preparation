@@ -79,10 +79,12 @@ Transport layer :
 -----------------
 Transport Layer is the "traffic" control of the networks.
 Some examples include TCP(Transmission Control Protocol) and UDP(User Datagram Protocol).
+Encrypted Payload is split into TCP packets.Each packet is a piece of HTTP payload and the metadata which includes source IP and destination IP.
 
-This Layer controls host-to-host data transfer and decides how much data can be sent at once,how fast we can send.
+This Layer controls host-to-host data transfer and decides how much data can be sent at once,how fast we can send etc.
 So whenever we are communicating with any website,Transport Layer will decide how much data can be transferred or recieved at any point of time.
 Transportation Layer takes care of data segmentation and reassembly as well as flow and Error Control.
+
 
 Data Segmentation :
 Whenever data being sent is larger than the maximun transmission unit supported by the network Data Segmentation is needed.

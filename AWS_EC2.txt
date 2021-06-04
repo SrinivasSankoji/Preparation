@@ -248,7 +248,7 @@ schedulers and health checks.
 
 14.Elastic Load Balancing :
 ---------------------------
-Elastic Load Balancing automatically distributes incoming Application traffic across multiple EC2 instances in multiple availability zones.
+ELB accepts the incoming network traffic from the client and distributes the traffic across multiple EC2 instances in multiple availability zones.
 Availability zones are the places where Amazon has set up their servers.
 Since they have the customers across the globe they have set up multiple Availability Zones to reduce the latency.
 

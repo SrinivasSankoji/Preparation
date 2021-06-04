@@ -1,16 +1,18 @@
 1.What Is Load Balancing									(Siddhant Singh)			[01-JUN-2021]  ()
 2.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
-3.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [01-JUN-2021]  ()  (Refer Articles)
+3.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [04-JUN-2021]  (Done)  (Refer Articles)
+4.Introduction to Elastic Load Balancer						(Jayant)					[01-JUN-2021]  ()  	   (Refer Articles)
+5.Difference between ALB and NLB							(Ashish Patel)				[04-JUN-2021]  (Done)  (Refer Articles)
 
 ****************************************** 3.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
 
-1.What is Load Balancer
-2.Difference between ALB and NLB					   (Depends on OSI Model)
-3.ALB and NLB Specific Features
-4.HTTP Host and Path Based Routing
-5.Protocols other than HTTP
-6.Dynamic Ports in ALB and NLB
-7.Integrating NLB and ALB with EC2 Container Service   (Depends on ECS)
+1.What is Load Balancer	 (Done)			
+2.Difference between ALB and NLB	(Done)				   (Depends on OSI Model) (Done)
+3.ALB and NLB Specific Features		()
+4.HTTP Host and Path Based Routing  (Done)
+5.Protocols other than HTTP			(Done)
+6.Dynamic Ports in ALB and NLB		(Done)
+7.Integrating NLB and ALB with EC2 Container Service  ()   (Depends on ECS)  ()
 
 1.What is Load Balancer :
 -------------------------
@@ -20,11 +22,117 @@ Load Balancer plays an important role in building great internet Applications.
 Load Balancer provides the benefits of Redundancy and scalability.
 
 Redundancy :
-As long as there is one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
+As long as there is only one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
 
 Scalability :
 By running 2 Servers behind a Load Balancer we can now handle 2X requests from the client.
 Load Balancers provides a way to add more and more Backend Servers if the incoming network traffic increases.
 
 OSI Model :
+OSI model is a conceptual model that characterizes and standardizes the communication mechanism of computing systems without 
+regard to its underlying infrastructure and technology.
+
+1.At the Application Layer browser constructs the HTTP request which is a small text document.
+HTTP request describes what resource the browser wants to fetch from the Web Server.
+2.In order to make sure the communication between browser and web server is secure,web request is encrypted using SSL/TLS.
+This process takes server's publick key and converts the HTTP request into an unreadable chunk of encrypted data.
+3.To send the encrypted data to the Web server there should be a communication betwenn web browser andd web server.
+This can be done by providing a session between both of them
+4.Transport Layer is also called as "Traffic Control" of the networks.
+Protcolos include in this Layer are TCP and UDP.
+This Layer controls host to host data transfer and decides how much data can be sent at once and how fast we can send etc.
+whenever we are communication with any website Transport Layer will decide how much data can be sent at once etc.
+Transport Layer takes care of Data Segmentation and reassembly as well as flow and error control.
+Here Encrypted Payload is split into TCP packets.Each packet is a piece of HTTP payload and the metadata which includes source IP and destination IP.
+5.Network Layer is the "post office" of networks.
+Role of Network Layer is to move the packets from source to destination.
+This is the layer that the Router Operates.
+Since the Router operates at the network level we can say that IP Address is at Network Level.
+6.Once the destination is identified by the Network Layer,Data Link Layer takes care of controlling the data between network elements.
+Data Link Layer ensures that data transfer is error free over the physical Layer.
+Functionalities implemented in this Layer includes physical addressing,Framing,Error and Floe Control.
+7.Physical Layer is the lowest Layer of the OSI Model and also considered as "Hardware Layer".
+Physical Layer is responsible for transfer of bits 0 and 1 "on the wire".
+
+2.Difference between ALB and NLB :
+----------------------------------
+ALB works at the Application Layer ie Layer 7 of the OSI model where as NLB works at the Transport Layer ie Layer 4 of the OSI Model.
+
+Communication between the Client and the Load Balancer,Load Balancer and the Backend server are hiding a lot of complexity.
+Here Client has to send its communication down the stack,the communication then travels backup the stack untill it finds the Load Balancer,
+Then the Load Balancer sends the communication back down the stack to redirect it to the destination server.
+Finally Destination Server travels the stack up again.
+
+In case of Application Load Balancer network communication must travel all the way back to the Application Layer and
+Application Load Balancer reads the HTTP request to determine where it should be redirected.
+In case of Network Load Balancer network communication must travel all the way to the Transport Layer and
+reads the TCP packet information to redirect to the correct place.
+Here it does not read the content inside those packets.
+
+1.NLB just forward the Request where as ALB reads the content of the HTTP Request Header to determine where to route the Request.
+2.ALB is content based Routing.
+3.NLB cannot assure the Availability of the Application because it completely depends on Transport Layer and has no awareness of Application.
+4.ALB goes much deeper and is capable of determining Availability based on successful HTTP GET.
+
+Note :Consider the Scenario of Deploying Multiple Applications on the same Host sharing IP Address.
+NLB cannot differentiate between Application A and Application B when checking Availability because there should be difference in Ports.
+ALB can differentiate between the Applications by reading the content of the HTTP Request.
+NLB may end up sending requests to an Application that has crashed or is offline where as ALB will never make the mistake.
+
+3.ALB and NLB Specific Features :
+---------------------------------
+Not Completed
+
+4.HTTP Host and Path Based Routing :
+------------------------------------
+If end to end encryption is not needed then we can use the "Host and Path based routing" feature of Level 7 Application Load Balancer.
+In case of Host and Path based routing,Application Load Balancer will read the incoming HTTP request.
+If the path matches with the pattern then Load Balancer redirects the request to one machine.
+If the path matches with other pattern then Load Balancer redirects the request to another machine.
+
+Note:
+This is very useful in case of Microservice or Distributed Archirecture where we have one public API but.
+multiple sections of the same API.
+Example:
+api/users
+api/auth
+
+This type of routing can only be possible with Level 7 Application Load Balancer because it reads the HTTP headers of an incoming request.
+It is not possible in Level 4 Network Load Balancer we only have TCP packets to work with.  
+
+5.Protocols other than HTTP :
+-----------------------------
+Every Application may not built on top of HTTP.
+A Gaming Application might implement its own protocol on top of TCP or UDP for communication between Gaming Client and Gaming Server.
+For such communication Layer 7 Application Load Balancer will not work because Load Balancer at this level expects that all the network traffic would be HTTP.
+
+Here Level 4 Network Load Balancer can be used as it forwards the TCP Packets from Gaming Client to Gaming Server.
+Network Load Balancer has less latency because network communication does not have to go all the way up and back down the network stack at the Load Balancer.
+
+6.Dynamic Ports in ALB and NLB :
+--------------------------------
+One of the Feature that is common in both ALB nad NLB is Dynamic Ports.
+
+Architecture of Traditional Load Balancer :
+Backend Servers behind the Load Balancer will run an identical copy of an Application running on a well known static port.
+Load Balancer distributes the request to the same port number on each instance.
+
+Architecture of Advanced Load Balancer :
+With the rise of Docker Container and bin packaging we can run multiple Applications on a Single Instance.
+Here EC2 instance will be running multiple Containers and each of which has a random port.
+These ports are not static and If the Containers shutdown and restarted they may get a different port number.
+
+Both ALB and NLB supports the dynamic port by using an AWS Resource called "Target Group".
+Target Group tarcks the list of ports that are accepting traffic on each instance and 
+gives the Load Balancer a way to distribute the traffic across the ports.
+
+
+7.Integrating NLB and ALB with EC2 Container Service :
+------------------------------------------------------
+
+
+
+
+
+
 
