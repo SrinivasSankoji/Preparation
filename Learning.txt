@@ -1435,11 +1435,13 @@ AWS CLI											()
 -----------------------------------------   June  2021 -----------------------------------------------
 
 AWS EC2											()
-AWS IAM											()
 AWS CLI											()
-AWS ECS											()
 AWS VPC											()
+
+AWS ECS											()
 AWS EKS											()
+
+AWS IAM											()
 
 Docker Revise									()
 Docker Swarm									()
