@@ -1,8 +1,8 @@
-1.What Is Load Balancing									(Siddhant Singh)			[01-JUN-2021]  ()
-2.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
-3.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [04-JUN-2021]  (Done)  (Refer Articles)
-4.Introduction to Elastic Load Balancer						(Jayant)					[01-JUN-2021]  ()  	   (Refer Articles)
-5.Difference between ALB and NLB							(Ashish Patel)				[04-JUN-2021]  (Done)  (Refer Articles)
+1.AWS ALB and NLB with EC2 Container Service				(Nathan Peck)               [04-JUN-2021]  (Done)  (Refer Articles)
+2.Introduction to Elastic Load Balancer						(Jayant)					[04-JUN-2021]  ()  	   (Refer Articles)
+3.Difference between ALB and NLB							(Ashish Patel)				[04-JUN-2021]  (Done)  (Refer Articles)
+4.What Is Load Balancing									(Siddhant Singh)			[01-JUN-2021]  ()
+5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 
 ****************************************** 3.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
 
@@ -12,7 +12,11 @@
 4.HTTP Host and Path Based Routing  (Done)
 5.Protocols other than HTTP			(Done)
 6.Dynamic Ports in ALB and NLB		(Done)
-7.Integrating NLB and ALB with EC2 Container Service  ()   (Depends on ECS)  ()
+7.Sticky Sessions					()
+8.XFF Header						()
+9.Health Checks of LLB				()
+10.Request Routing					()
+11.Integrating NLB and ALB with EC2 Container Service  ()   (Depends on ECS)  ()
 
 1.What is Load Balancer :
 -------------------------
@@ -20,6 +24,9 @@ Load Balancer accepts incoming Network traffic from Client
 and based on some criteria in the traffic it distributes the communication to one or more back end servers.
 Load Balancer plays an important role in building great internet Applications.
 Load Balancer provides the benefits of Redundancy and scalability.
+Load Balancer can be physical hardware or virtual software.
+ELB must have two Availability Zones.
+ELB cannot be cross Region and can be created one per Region.
 
 Redundancy :
 As long as there is only one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
@@ -123,12 +130,44 @@ Here EC2 instance will be running multiple Containers and each of which has a ra
 These ports are not static and If the Containers shutdown and restarted they may get a different port number.
 
 Both ALB and NLB supports the dynamic port by using an AWS Resource called "Target Group".
-Target Group tarcks the list of ports that are accepting traffic on each instance and 
-gives the Load Balancer a way to distribute the traffic across the ports.
+Target Group tarcks the list of ports that are accepting traffic on each instance and gives the Load Balancer a way to distribute the traffic across the ports.
+
+7.Sticky Sessions :
+-------------------
+Sticky Session binds a user session to a specific EC2 instance.
+It ensures all the requests from that session is sent to that particular instance.
+Here cookies are used to remember which EC2 instance.
+It is typically used with CLB but can be enabled in ALB. 
+
+Example:
+Sticky Session will be used If that particular User data is stored in that EC2 instance.
+
+8.XFF Header :
+--------------
+If the User is accessing the Application and If we want to know the IP Address of the User
+then we check the X-Forwarded-For Header.
+
+9.Health Checks of LLB :
+------------------------
+Health Check directly communicates with instances to know its states and reports back as InService or OutOfService.
+ELB does not terminate the unhealthy instance and only redirects the traffic to the healthy instance.
+For ALB and NLB Health Checks are found on the Target Groups.
+
+10.Request Routing :
+--------------------
+Request routing is specific to Application Load Balancer.It applies rules to the incomig requests and redirects the request.
+Rules can be applied for
+Host Header
+Http Header
+Http Method
+Source IP
+Path
+Query String
 
 
-7.Integrating NLB and ALB with EC2 Container Service :
-------------------------------------------------------
+
+11.Integrating NLB and ALB with EC2 Container Service :
+-------------------------------------------------------
 
 
 
