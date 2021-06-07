@@ -1,8 +1,63 @@
 1.Deploying a Dockerised Web App Using AWS Elastic Container Service      	 (Abdul Rahman)   (Refer Articles)  [25-JUN-2021] ()
-2.A beginner’s guide to Amazon’s Elastic Container Service                   (Dominic Fraser)
+2.A beginner’s guide to Amazon’s Elastic Container Service                   (Dominic Fraser) (Refer Articles)  [25-JUN-2021] ()
 3.AWS ECS: The Dawn of the Micro-Services						             (Alberto Cubeddu)
-4.
-
+4.How AWS ECS Works 														 (Tung Nguyen)
 
 ********************************* 1.Deploying a Dockerised Web App Using AWS Elastic Container Service (Abdul Rahman) *********************************
+
+1.Introduction
+2.Terms and architecture
+3.Task Definition
+4.Task
+5.Service
+6.Cluster
+7.ECS Container Instance
+8.ECS Container Agent
+9.Difference between Run-Task and Service
+
+1.Introduction :
+----------------
+Consider the case of deploying a web application on to an EC2 instance.
+Here we are deploying a single Application on single instance.
+What If the traffic to the application increases or an instance goes shut down.
+This is why we need multiple instances running copies of an Application.
+We also need a Load Balancer ie accepts the incoming trffic request and based on some conditions in the network traffic
+redirect the request to one or more instances.
+Here we also need Auto Scaling ie if the instance goes down,new instance has to be created.
+based on the traffic instance has to be scaled up or scaled down.
+
+If we have created multiple instances and all the instances are shut down at a time.
+This is the scenario where ECS comes into the picture.
+ECS automatically starts up the instances and hosts the web application into that instance.
+ECS monitors the EC2 instances and scales up or scale down the number of instances.
+ECS can also scale up the number of copies of applications based on traffic load,CPU and memory needs.
+
+ECS is Container Management Service that makes it easy to run,manage and stop Docker Containers on a Cluster.
+ECS is highly scalable and fast.
+It is compared to Kubernetes,Docker Swarm and Azure Container Service.
+
+
+ECS runs the containers on a cluster of EC2 instances pre installed with Docker.
+ECS takes care of deploying the containers on cluster of EC2 instances,scale the instances,monitor and manage the instances.
+Specific instance where a Conatiner runs on and maintainance of all the intances is taken care by ECS.
+
+
+2.Terms and architecture :
+--------------------------
+Consider the scenarion of building an Application that runs on two Docker Conatiners.
+Main Application and the other to mange the Metrics.
+If the traffic to an Application is high we might need to run several pairs of Conatiners.
+Terms included are 
+
+Task Definition
+Task
+Service
+Cluster
+ECS Conatiner Service
+ECS Conatiner Agent
+
+3.Task Definition :
+-------------------
+
+
 
