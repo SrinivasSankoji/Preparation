@@ -333,7 +333,7 @@ In case of Bind Mount we use a Physical Location instead of Volume.
 
 ******************************************************   12.Docker Swarm :  ***************************************************************************************
 
-Docker Swarm is a group of Machines that are running Docker and are joined into a Cluster.
+Docker Swarm is a group of Machines that are running Docker.Group of Machines can be considered as Cluster.
 In case of Docker swarm we have multiple Nodes and One Node is the Swarm Manager and the other Nodes are worker Nodes.
 We can have this kind of Architecture where we have multiple Machines that are running Docker and are Connected with each other 
 and we can manage all these nodes from a Single Machine.
