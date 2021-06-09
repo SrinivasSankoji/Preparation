@@ -197,7 +197,7 @@ To establish the connection bewteen the Local Repository and remote Repository w
 	
 origin is the name of the remote Repository.
 Because we want to make sure that we establish the connection between a specific remote Repository.
-We can alos give any name instead of origin.
+We can also give any name instead of origin.
 To check whether the Local Repository is added to the Remote Repository we use the command
 
 	git remote (or) git remote -v
