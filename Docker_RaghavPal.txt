@@ -32,7 +32,6 @@ Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
 
 ******************************************************  5.Docker Basic Commands :  ***************************************************************************
 
-
 docker version        		:  To Check the Docker Client,Docker Server(Docker Engine) and so on
 docker -v :           		:  To Check the Docker Version
 docker --version      		:  To Check the Docker Version
@@ -56,25 +55,23 @@ docker rm [ContainerID]  	: To remove the Docker Container
 
 docker stats 		  		: Memory and Usage Details of Container
 docker system df 	  		: Local Disk Usage for Container
-docker system prune	  		: To delete all the Unused Images and Not Associated with Network 
+docker system prune	  		: To delete all the Unused Images which are not associated with any Network 
 
 ******************************************************  6.Docker Images :  ****************************************************************************************
 
-To pull the image we use the command
+To pull the image we use the command and it will pull the latest version
 
 	docker pull imageName
 	
 To pull the image using version
 
 	docker pull ubuntu:18.04
-	
-Docker images are the templates used to create Docker Containers.
-Docker image conatins the required files to create the Containers.
-Container is a running instanece of an image.
-Docker images can be stored at Local or Remote Registries.
 
-Docker can build images automatically by reading the instructions from the Docker File.
+Docker will build an image by reading the instructions inside the Docker File.
+Docker images are the templates that can be used to create the Docker Containers.
+Container is a running instance of an image.
 Single Docker image can be used to create multiple containers.
+Docker images can be stored at Local or Remote Registries.
 
 Dangling Images :
 -----------------
@@ -98,8 +95,8 @@ Containers run on the same Machine sharing the same OS Kernel.
 
 Docker Containers are the running instances of Docker Images.
 In the Docker Architecture we have a Docker Client,Docker Host(Docker Server) and the Docker Registry.
-Dokcer Client is the place where we are running the Docker Commands.
-Docker Host can be available at our Local System and it contains Docker Containers and Docker Images.
+Dokcer Client is the place where we run the Docker Commands.
+Docker Host can be available at our Local System and it can contain Docker Containers and Docker Images.
 
 When we run the command 
 
@@ -110,8 +107,8 @@ Again we run the command
 
 	docker run ubuntu
 	
-It actually checks for the image into the local system and if it is available creates the container from the image.
-If it is not available then it pulls the image from the Docker Registry.
+It actually checks for the image into the local system and if it is available creates the container from the Image.
+If it is not available then it pulls the image from the Docker Registry and creates the Container from the Image.
 
 Note : Docker build can be used to create the Docker image using Docker file.
 
@@ -135,23 +132,23 @@ docker history [Image Name]     : To check the history of the Image.
 
 ******************************************************  9.Docker File :  *******************************************************************************************
 
-Docker File is a simple text file with instructions to build an image.
+Docker File is a simple text file which contains an instructions to build an image.
 Create a file named Dockerfile.
-When we run  docker build command Docker searches for the file named Dockerfile.
+When we run docker build command,Docker searches for the file named Dockerfile.
 
 mkdir DockerFiles
-nul>DockerFile
+nul>Dockerfile
 
 DockerFile starts with the instruction FROM
 If we want to get the base image from ubuntu
 
 	FROM ubuntu
 	
-Note : we can also add the empty image to the DockerFile and add the instructions to the Empty Image.
+Note : we can also add the empty image to the Dockerfile and add the instructions to the Empty Image.
 
 	FROM scratch
 	
-We can also add the Author Details to the DockerFile.
+We can also add the Author Details to the Dockerfile.
 
 	MAINTAINER srinivas.sankoji<Srinivaschary.chary@gmail.com>
 	
@@ -205,7 +202,7 @@ Product Service
 Cart Service
 Order Service
 
-In MicroServices each Application will have seperate Service,seperate database and seperate Server.
+In MicroServices each Application will have seperate Service i.e seperate database and seperate Server.
 Whenever we want to make changes in one module then it won't reflect the other module.
 Scaling up is very efficient.
 We can also increase the capacity of the services based on requirement.
@@ -223,7 +220,6 @@ create dockoer compose file in any location
 	
 Requirement is to create a basic Web Application.
 For that we need basic WebServer and the Database.
-
 
 Step 3:
 To check the validity of the file using the command
@@ -278,8 +274,9 @@ To scale the services
 ******************************************************   11.Docker Volume :  **************************************************************************************
 
 In Docker when we craete Container there has to be some place where the data inside the Container will be stored.
-If we are not providing any explicit data store then it gets stored within the Container and If we delete the Container then the data stored inside the Container will be lost.
-Whenever we work in any Enterprise Applications,we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
+If we are not providing any explicit data store then it gets stored within the Container and 
+If we delete the Container then the data stored inside the Container will be lost.
+Whenever we work in any Enterprise Applications we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
 We may also require more Containers that can share the same data.
 
 Advantages of Volumes :

@@ -88,7 +88,7 @@ Here AWS run it under the hood of EC2.
 Instance is a Virtual Server for running Application on EC2.
 It can be considered as a tiny part of a large computer,whcih has its own harddrive,network connection,os etc.
 We can have multiple tiny computers on a single physical server and each tiny machine is called as an instance.
-EC2 is a service along with other services like S3.
+EC2 is a service from AWS.Other services include S3,ECS,IAM etc.
 When we use EC2 or any other service we use it through a instance i.e t2.micro instance for EC2.
 
 4.Why EC2 :
