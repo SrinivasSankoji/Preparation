@@ -40,7 +40,7 @@ If we delete the Container,folders we created are also deleted.
 
 Create a new volume
 
-	docker create volume bhaumik
+	docker volume create bhaumik
 	
 Now run the Container with the Volume
 	
@@ -52,7 +52,7 @@ create the text file inside the folder which is present inside the Container.
 
 Navigate to the Container
 
-	docker exec it [COntainerId] ash   --> ls 
+	docker exec it [ContainerId] ash   --> ls 
 
 Here bhaumikdata Folder is created.
 create the Text File inside the /bhaumkdata folder.
@@ -74,9 +74,8 @@ Docker with Web Application (Practice in Linux Machine)
 	
 ********************************************************* 4.Docker Volume (Developers Thought)  *********************************************************
 
-Dcoker Container is an instance of a Docker Image.
 Whenever a new Container is created a seperate process is started.
-Any Data which is craeted or updated under that process,resides in the same process and not available for other Containers.
+Any Data which is created or updated under that process,resides in the same process and not available for other Containers.
 Once the Container is removed Corresponding process will also be removed.
 Data is present inside the File system of the Container until the presence of the Container.
 Writing the Data into the Containers writable layer requires a storage driver to manage the file system which slows dowm the performance.
@@ -199,32 +198,3 @@ make sure BindMount directory is present before running the command.
 Note :
 when we use bind no volume gets created in the Docker host Machine.
 
-
-
-
-
-
-	
-	
-	
-
-	
-	
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-	
- 

@@ -25,7 +25,7 @@ To Deploy multiple spring boot micro services to Multiple Docker Containers we h
 To acheive this we need to perform the steps manually.
 
 Create a custom docker network.
-Start the Containers by adding to the custom network.
+Start the Containers by adding them to the custom network.
 
 The above steps can be automated by using Docker Compose.
 Docker Compose is a tool for defining and running multi container Docker Applications.

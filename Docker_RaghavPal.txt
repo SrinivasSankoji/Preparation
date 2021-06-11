@@ -273,16 +273,16 @@ To scale the services
 
 ******************************************************   11.Docker Volume :  **************************************************************************************
 
-In Docker when we craete Container there has to be some place where the data inside the Container will be stored.
-If we are not providing any explicit data store then it gets stored within the Container and 
+When we create a Container there has to be some place where the data inside the Container will be stored.
+If we are not providing any explicit data store then it gets stored within the Container. 
 If we delete the Container then the data stored inside the Container will be lost.
-Whenever we work in any Enterprise Applications we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
+Whenever we work in any Enterprise Application we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
 We may also require more Containers that can share the same data.
 
 Advantages of Volumes :
 -----------------------
 Volumes can be used to decouple the Container from the storage.
-Share Volume (Storage/Data) among different Containers.
+Share Volume among different Containers.
 Attach Volume to the Container.
 On Deleting Container,Volume does not delete the Data.
 
@@ -296,7 +296,7 @@ Example :
 ---------
 Create the Volume VOL1
 
-	docker create Volume VOL1
+	docker volume create  VOL1
 	
 To inspect the volume 
 
@@ -310,12 +310,11 @@ Now create the new Job in Jenkins
 	
 	TestJob
 	
-Now start the another instance of the Jenkins by attaching the same Volume
+Now start another instance of the Jenkins by attaching the same Volume
 	
 	docker run --name myjenkins1 -p 8082:8080 -d -v VOL1:/var/jenkins_home jenkins/jenkins
 	
 and login with Admin and passowrd in the Jenkins Console.
-
 Here the volume is shared between the Two Containers.
 
 Note :
@@ -332,8 +331,8 @@ In case of Bind Mount we use a Physical Location instead of Volume.
 
 Docker Swarm is a group of Machines that are running Docker.Group of Machines can be considered as Cluster.
 In case of Docker swarm we have multiple Nodes and One Node is the Swarm Manager and the other Nodes are worker Nodes.
-We can have this kind of Architecture where we have multiple Machines that are running Docker and are Connected with each other 
-and we can manage all these nodes from a Single Machine.
+We can have this kind of Architecture where we have multiple Machines that are running Docker and are Connected with each other.
+We can manage all these nodes from a Single Machine.
 Consider the scenario where we have a swarm Manager and 3 worker nodes.
 we create the services in the worker nodes and all the services are managed by the single machine which is a swarm  manager.
 
@@ -342,7 +341,7 @@ Consider the scenario where we have 100 Containers
 
 1.Health check for every Container
 2.Ensure all the Containers are up on every system
-3.scaling the Containers up or down depending on the load
+3.scaling the Containers up or down based on the load
 4.Adding updates/changes to all the Containers
 
 All the above tasks are tedious if we do it manually.
