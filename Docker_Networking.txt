@@ -10,16 +10,16 @@
 
 ********************************************************* 1.Docker Networking (IntelliQ IT Trainings) ***************************************************************
 
-Docker generally uses the following type of Networks 
+Docker has the following type of Networks 
 
 1.Bridge
 2.Host or Host Only
 3.null or NONE
 4.Macvlan   (Used in legacy systems)
-5.Overlay	(Used in Container Orcchestration tools like Docker Swam)
+5.Overlay	(Used in Container Orcchestration tools like Docker Swarm)
 
-When Multiple Docker Containers run on the Single Machine or Single Host,the default network used by Docker is Bridge Network.
-Consider the case we have created Multiple Containers in the Single Host i.e Ubuntu Container,Tomcat Container,PHP Container etc.
+When Multiple Containers are running on the Single Machine or Single Host,the default network used by Docker is Bridge Network.
+Consider the case we have created Multiple Containers in the Single Host ie Ubuntu Container,Tomcat Container,PHP Container etc.
 All these Containers are connected using Bridge Network and can communicate with each other.
 
 Here --link tag is deprecated because of Bridge Network.
@@ -33,7 +33,7 @@ Ghost Container (Blogging Software) can communicate with MySql Container.
 Here we are creating two different architecture for two different Projects.
 Problem with this approach is all these containers are running on the same machine via Bridge Network and can communicate with each other.
 Problem to the solution is we want to restrict certain Containers to communicate among themselves.
-This can be done by virtual bridge networks(Docker Networking).
+This can be done by creating virtual bridge networks(Docker Networking).
 
 Create 2 Bride Networks named Bridge1 and Bridge2.
 Create 3 Busy Box Containers named C1,C2 and C3.
@@ -44,8 +44,8 @@ Here C1 and C2 can communicate with each Other where as C3 cannot Communicate wi
 
 To craete a Docker Network 
 
-	docker network craete --driver bridge Bridge1
-	docker network craete --driver bridge Bridge2
+	docker network create --driver bridge Bridge1
+	docker network create --driver bridge Bridge2
 	
 To view the networks 
 
@@ -88,20 +88,18 @@ To check whether C2 is connected to Bridge2 Attach the C2 Container
 Note :
 Default Network used by Docker when Multiple Containers running on the same Machine is Bridge Network. 
 
-
 ******************************************************************* 2.Docker Networking(aquasec)  *********************************************************************
 
 For Docker Containers to communicate with each other and outside the world via host machine,there has to be a layer of networking involved.
 Docker supports different types of networks,each fit for certain use case.
 
 For example building an Application which runs on a Single Docker Container will have different Network Setup compared to
-Web Application with a cluster of databases,application,load balancers which span multiple containers that needs to communicate with each other.
+Building a Web Application with a cluster of databases,application,load balancers which span multiple Containers.
 
 Docker Default Networking :
 ---------------------------
 When Docker is installed,default bridge network named docker0 is created.
-Each new Docker Container is automatically attached to this network unless,custom network is specified.
-
+Newly added Container is automatically attached to this network unless,custom network is specified.
 Besides docker0 two other networks get created automatically by Docker i.e host and none
 
 Host :

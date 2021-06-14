@@ -15,9 +15,9 @@
 
 *********************************************************  2.Docker Volume (Java home cloud)	*********************************************************
 
-By default any data generated with the Container is deleted along with the Container.
+By default any Data generated within the Container is deleted along with the Container.
 Default volume of Container is associated with Docker Container Life Cycle.
-When Container is created it creates the File sytem similary when the Container is deleted Container delets the File system.
+When Container is created it creates the File sytem similary when the Container is deleted Container deletes the File system.
 This behavior is suitable for stateless Applications like web Applications and not suitable for stateful applications like Database Applications.
 Even If the Container is deleted we want to retain the data so that we can spin up the new Container where the previous Container is left.
 
@@ -158,7 +158,7 @@ Create the Dockerfile
 	FROM ubuntu:latest
 	RUN mkdir/data
 	ARG MESSAGE=Hi
-	ARGE FILENAME=Test
+	ARG FILENAME=Test
 	ENV MESSAGE={MESSAGE}
 	ENV FILENAME={FILENAME}
 	WORKDIR /data
