@@ -91,16 +91,16 @@ Default Network used by Docker when Multiple Containers running on the same Mach
 ******************************************************************* 2.Docker Networking(aquasec)  *********************************************************************
 
 For Docker Containers to communicate with each other and outside the world via host machine,there has to be a layer of networking involved.
-Docker supports different types of networks,each fit for certain use case.
+Docker supports different types of networks each fit for certain use case.
 
-For example building an Application which runs on a Single Docker Container will have different Network Setup compared to
-Building a Web Application with a cluster of databases,application,load balancers which span multiple Containers.
+For example Building an Application which runs on a Single Docker Container will have different Network Setup compared to
+Building a Web Application with a cluster of databases,application,load balancers etc.
 
 Docker Default Networking :
 ---------------------------
-When Docker is installed,default bridge network named docker0 is created.
-Newly added Container is automatically attached to this network unless,custom network is specified.
-Besides docker0 two other networks get created automatically by Docker i.e host and none
+When Docker is installed,default Bridge network named docker0 is created.
+Newly added Container is automatically attached to this network unless custom network is specified.
+Besides docker0 two other networks got created automatically by Docker i.e host and none
 
 Host :
 ------ 
@@ -210,7 +210,6 @@ To create a network							:  docker network create
 To connect the Container to the network 	:  docker network connect Bridge1 C1
 To disconnect the Container to the network	:  docker network disconect Bridge1 C1
 To remove the network 						:  docker network rm Bridge1
-
 
 Docker Networking with Multiple Hosts :
 ---------------------------------------
