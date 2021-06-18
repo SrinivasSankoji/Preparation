@@ -23,11 +23,6 @@ EXPOSE 9102
 ADD ./target/SpringBootDockerImage.jar SpringBootDockerImage.jar
 ENTRYPOINT ["java", "-jar", "/SpringBootDockerImage.jar"]
 
-FROM openjdk:8
-ADD ./target/SpringBootDockerImage.jar SpringBootDockerImage.jar
-EXPOSE 9102
-ENTRYPOINT ["java", "-jar", "SpringBootDockerImage.jar"]
-
 docker build -f SpringBootDockerImage.jar .
 docker build -t SpringBootDockerImage.jar:latest .
 docker build -f SpringBootDockerImage .
@@ -36,7 +31,7 @@ docker build -f Dockerfile -t SpringBootDockerImage .
 
 ********************************************************* 1.Docker File Build Commands(stackify)  ********************************************************
 
-Docker Official's define Dockerfile as a text document that contains all the commands that a user could call the commands on Command line to assemble an image.
+Dockerfile is a text file that contains the commands to build an image.
 
 Dockerignore :
 Always keep the Docker Image as lean as possible.Package only what the Application needs to run.
@@ -69,7 +64,7 @@ First argument to the COPY command is source path and the second argument is des
 	COPY package*.json
 	RUN npm install
 	
-Here we Copy package.json and install our project dependencies using npm install.
+Here we are copying package*.json and install our project dependencies using npm install.
 Docker images are made up of Layers.
 They are created based on the output generated from each Command.
 
@@ -77,12 +72,12 @@ Copying the files that define our app dependencies and install them immideately 
 Main Advantage here is quicker build time.
 
 Exposing a PORT :
-Exposing Port informs the Docker which port the Container is listening at runtime.
+Expose informs the Docker on which port the Container is listening at runtime.
 
 	EXPOSE 8600
 	
 Docker CMD :
-CMD command tells the Docker how to run the Application that we packaged into the image.
+CMD command tells the Docker how to run the Application that we packaged into the image when the Container Starts.
 
 	CMD ["java","-jar","/springboot-mysql.jar"]
 
@@ -99,10 +94,10 @@ To push the image to the Docker Hub using the command
 ********************************************************* 3.Docker File Build Commands(odewahn)  ********************************************************
 
 ADD 					: copies files from host system on to the Container.
-CMD/ ENTRYPOINT 		: CMD tells the Docker that how to run the Application when the Container starts.
+CMD/ ENTRYPOINT 		: CMD tells the Docker that how to run the Application that we packaged into an Image when the Container starts.
 ENV 					: Sets an Environment variable in the new Container.
-EXPOSE 					: EXPOSE informs the Docker which port the Container is listening at runtime.
-FROM 					: Base Image to use the build and must be the first command in the build file.
+EXPOSE 					: EXPOSE informs the Docker on which port the Container is listening at runtime.
+FROM 					: Add the Base Image to the Dockerfile and must be the first command in the Dockerfile.
 MAINTAINER 				: Optional value for the MAINTAINER of the Script.
  
 
@@ -137,7 +132,7 @@ If we want the application to run as background process i.e in detached mode we 
 
 	docker run -d -p 8090:8080 springboot-docker:1.0
 	
-To push the Docker image into the Repository we need to tag the image using the commad 
+To push the Docker image into the Repository we need to retag the image using the username.
 
 	docker tag springboot-docker:1.0 srinivassankoji/springboot-docker:1.0
 	
@@ -290,7 +285,7 @@ then build the springboot-mysql application.
 
 		docker build -t springboot-mysql-second:2.0 .
 
-Build the My Sql COntainer by removing the network.
+Build the My Sql Container by removing the network.
 
 	docker run --name mysql-container-second -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql:latest
 

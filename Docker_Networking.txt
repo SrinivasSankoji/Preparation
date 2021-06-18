@@ -287,11 +287,11 @@ and each Container has to communicate with each other.
 Here employee-producer will be exposing Rest API which will be consumed by the employee-consumer.
 
 Docker has designed in such a way that Docker Container should have only Single running Service.
-Here we will be deploying two micro services into two different Containers and and we make them interact with each other.
+Here we will be deploying two micro services into two different Containers and and we make them communicate with each other.
 
 After starting the two containers if we hit the url on the browser i.e http://localhost:8500/consumer we won't get any output.
 Here we have to make the Containers communicate with each other.
-We wil be using Docker networking to allow multiple Containers to interact with each other.
+We wil be using Docker networking to allow multiple Containers to communicate with each other.
 Here we need to create our own network and add the Containers to the network.
 
 	docker network create producer-consumer
@@ -316,10 +316,3 @@ To run the producer Application
 
 	http://localhost:8601/employee
 	
-
-
-
-
-
-
-
