@@ -21,7 +21,7 @@ As a Java Developer If we know the Architecture of JVM,it enables us to write th
 
 What is JVM :
 -------------
-Java Virtual Machine is a software implementation of a Physical Machine.
+Java Virtual Machine(JVM) is a software implementation of a Physical Machine.
 Java was developed with the concept of WORA i.e Write Once and Run Anywhere,which runs on the VM.
 Compiler compiles the .java File and generates the .class file which is an input to the JVM,which loads and executes the .class File.
 
@@ -54,7 +54,6 @@ C.Application Class Loader :
 ----------------------------
 Responsible for loading the Classes at Application Level i.e path mentioned in the Environment Variable etc.
 
-
 B) Linking :
 ------------
 Verify :
@@ -77,7 +76,7 @@ Here all the static variables will be assigned with original values and the stat
 A) Method Area :
 ----------------
 All the Class level data including static variables are stored here .
-There is only method area per JVM and it is a shared resource.
+There is only one method area per JVM and it is a shared resource.
 
 B)Heap Area :
 -------------

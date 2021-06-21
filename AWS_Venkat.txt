@@ -126,23 +126,23 @@ To view the number of instances in AWS from cli we use the commad
 Default VPC :
 -------------
 Whenever we create an AWS Account,AWS will create a default VPC and we need to place the resources in that VPC.
-Here Subnet will be created for each Availability Zone and Region and is attached to the Internet Gateway.
+Here Subnet will be created for each Availability Zone and Region is attached to the Internet Gateway.
 Internet Gateway allows the User to make the Subnet public by providing a Route to the Internet.
 
 Security Group :
 ----------------
 AWS comes with the default Security Group.
-Security Group are like firewalls.Inbound Traffic is allowed only for Machines which are in the Security Group.
-We attach the Security Group to an EC2 instance.
-We can also attach Multiple Security Groups to an EC2 instance.
+Security Group acts as a firewall to control Inbound and Outbound traffic.
+Each Security Group has rules according to which the traffic is governed.
+Each instance can be assigned upto 5 Security Groups.
 We can also define which Machines can connect to our Machine on which port etc.
-To do this We have to open the Port on our Machine.
+To do this we have to open the port on our Machine.
 
 Note:
 Any machines which are in the same Security Group can communicate with Each Other.
 
 Once we launch the Virtual Machine or an EC2 instance we are going to connect via SSH from our Host Machine.
-To connect to the Machine We need to open the Port on our Machine.
+To connect to the Machine We need to open the port on our Machine.
 
 Requirement to create an EC2 instance are
 1.In which VPC we are going to depoly that
@@ -166,7 +166,7 @@ Select the instances --> Launch the Instance --> Select the AMI -->
 Herw we can have our own AMI's,community AMI's etc.
 
 Select Amazon Linux -->
-Her the root device type is EBS.
+Here the root device type is EBS.
 Default image includes AWS CLI,Python,Ruby,PERL,Java Repositories include Docker,PHP,MySql,PostgreeSql etc.
 Select t2 micro instance --> Depending on what we select we get the CPU,Storage,Memory and so on  --> Next
 Select the Number of Instances  ie 1
@@ -222,7 +222,7 @@ Whenever we create a Machine we can configure it and we can make the machine int
 Note :
 We have an option to enable or disable Auto Assign Public IP.
 If we want to create a Virtual Machine or an Instance that does not need an external access (or)
-If we don't want to log into those machines from Internet thne disable Auto Assign Public IP.
+If we don't want to log into those machines from Internet then disable Auto Assign Public IP.
 If we disable those Machines and we only get the private IP Address but not public IP Address.
 Machine will not be reachable from the Internet.
 

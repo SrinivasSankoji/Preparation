@@ -155,7 +155,7 @@ Based on CPU Credit Balance we can decide whether t2 instance should be scaled u
 
 Example :
 Customer Analysis Data i.e Customer's Website Activity should be monitered real time.
-There will be a time where the tarffic to the website is minimum.
+There will be a time where the traffic to the website is minimum.
 In this Case high processor is not required and is expensive for the company.
 We may use t2 instance beacuse it will give burstable CPU performance.
 Whenever traffic to the website is high CPU performance will be increased automatically.
@@ -225,6 +225,8 @@ This category is for workloads which needs balance of performance and cost effec
 This category is for workloads where the data is accessed less frequently and retreival time is more.
 
 After selecting the suitable option in EBS,provide a name for an instance and then create the Security Group.
+
+Security Group :
 Security Group acts as a firewall to control Inbound and Outbound traffic.
 Each Security Group has rules according to which the traffic is governed.
 Each instance can be assigned upto 5 Security Groups.
@@ -243,7 +245,7 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service provided in EC2 in which we can automatically launch or terminate instances based on user-defined profiles,
+Auto Scaling is a service provided in EC2 using which we can automatically launch or terminate instances based on user-defined profiles,
 schedulers and health checks.
 
 14.Elastic Load Balancing :

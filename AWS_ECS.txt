@@ -43,7 +43,7 @@ ECS can also scale up the number of copies of Containers based on traffic load,C
 It is compared to Kubernetes,Docker Swarm and Azure Container Service.
 
 ECS runs the containers on a cluster of EC2 instances pre installed with Docker.
-ECS takes care of deploying the containers on cluster of EC2 instances,scale the instances,monitor and manage the instances.
+ECS takes care of deploying the containers on cluster of EC2 instances,scale,monitor and manage the instances.
 
 Consider the scenario of building an Application that runs on two Docker Conatiners.
 One Container to manage the Application and the other to mange the Metrics.
@@ -85,7 +85,7 @@ If one Task fails then we have another Two Tasks and the failed Task will be rep
 
 6.Cluster :
 -----------
-ECS Cluster is a logical Group of EC2 instances that we can place Containers into.
+ECS Cluster is a logical Group of EC2 instances where we can place Containers into.
 ECS handles the logic of scheduling,maintaining and scaling the instances.
 ECS also takes care of optimal placement of each Task based on CPU and memory needs.
 
