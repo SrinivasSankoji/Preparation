@@ -1,1 +1,6 @@
 Super  + A  Shows the running Applications
+
+
+File Permissions :
+------------------
+sudo chmod -R ugo+rw /mnt/my-address

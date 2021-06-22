@@ -43,14 +43,14 @@ docker logout         		:  To Logout from the Docker Hub
 docker images         		: To see the List of Images
 docker pull  ubuntu   		: To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      		: To get the Docker Image Id
-docker rmi imageId    		: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
+docker rmi [imageId]    	: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
 docker ps             		: To See the List of Active Containers
 docker ps -a 		 		: To See the List of Containers i.e active,closed etc.
 docker run ubuntu     		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It Wont Start the Container
 docker run -it ubuntu 		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It will Start the Container
-docker start          		: To Start the Container
-docker stop           		: To Stop the Container
+docker start [ContainerID]  : To Start the Container
+docker stop  [ContainerID]  : To Stop the Container
 docker rm [ContainerID]  	: To remove the Docker Container
 
 docker stats 		  		: Memory and Usage Details of Container
