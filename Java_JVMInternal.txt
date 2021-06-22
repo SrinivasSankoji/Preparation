@@ -125,13 +125,13 @@ B)JIT Compiler :
 ----------------
 JIT Compiler neutralizes the disadvantage of Interpreter.
 With the help of Interpreter,Execution Engine interprets the byte Code.
-When the Execution Engine finds repeated code,it uses JIT Compiler which compiles the entire Byte Code and changes it into native code.
+When the Execution Engine finds repeated code,it uses JIT Compiler which compiles the entire Byte Code and converts it into native code.
 This native code will be used directly for the repeated method calls,which improoves the performance of the system.
 
-Intermediate Code Generator : Produces Intermediate code.
-Code Optimizer 				: Responsible for Optimizing the Intermediate code generated above.
+Intermediate Code Generator : Generates Intermediate code.
+Code Optimizer 				: Responsible for optimizing the Intermediate code which is generated above.
 Target Code Generator 		: Responsible for generating Machine code or Native code.
-Profiler 					: A Special componenet,responsible for finding Hotspots i.e whether the method is called multiple times or not.
+Profiler 					: A Special componenet responsible for finding Hotspots i.e whether the method is called multiple times or not.
 
 C)Garbage Collector :
 ---------------------
