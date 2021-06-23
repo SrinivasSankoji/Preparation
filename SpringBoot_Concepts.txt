@@ -1,8 +1,21 @@
-1.Open API 3.0 																[23-JUN-2021]  ()
-2.Dockerize SpringBoot Application using Maven PlugIn                       [23-JUN-2021]  ()
-3.Docker Image without Dockerfile                                           [23-JUN-2021]  ()
-4.SpringBoot Exit Codes                                                     [23-JUN-2021]  ()
-5.Multiple Main Class in SpringBoot                                         [23-JUN-2021]  ()
-6.JaCoCo with SpringBoot                                                    [23-JUN-2021]  ()
-7.Running SpringBoot Application using Terminal                             [23-JUN-2021]  ()
-8.Spring Initializer                                                        [23-JUN-2021]  ()
+1.Open API 3.0 												(Daily Code Buffer)				[23-JUN-2021]  ()
+2.Dockerize SpringBoot Application using Maven PlugIn       (Daily Code Buffer)   			[23-JUN-2021]  ()
+3.Docker Image without Dockerfile                           (Daily Code Buffer)				[23-JUN-2021]  ()
+4.SpringBoot Exit Codes                                     (Daily Code Buffer)				[23-JUN-2021]  ()
+5.Multiple Main Class in SpringBoot                         (Daily Code Buffer)				[23-JUN-2021]  ()
+6.JaCoCo with SpringBoot                                    (Daily Code Buffer)				[23-JUN-2021]  ()
+7.Running SpringBoot Application using Terminal             (Daily Code Buffer)				[23-JUN-2021]  (Done)
+8.Spring Initializer                                        (Daily Code Buffer)				[23-JUN-2021]  ()
+
+
+****************************************  7.Running SpringBoot Application using Terminal  ****************************************************
+
+There are two options to run the Springboot Application from Command Line
+
+1.java -jar [Name of the Jar]
+2.mvn -Dmaven.skip.test=true spring-boot:run
+
+
+
+
+
