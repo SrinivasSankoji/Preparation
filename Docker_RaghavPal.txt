@@ -193,7 +193,7 @@ We can start all the services with a single command  : docker compose up
 we can stop all the services with a single command : docker compose down
 We can scale up selected services when required.
 
-In real world we need to create different services and that has to be intercated with each other.
+In real world we need to create different services that has to comunicate with each other.
 Best suitable example is MicroServices.
 We have different services like 
 
@@ -203,7 +203,7 @@ Cart Service
 Order Service
 
 In MicroServices each Application will have seperate Service i.e seperate database and seperate Server.
-Whenever we want to make changes in one module then it won't reflect the other module.
+Whenever we make change in one module then it won't reflect the other module.
 Scaling up is very efficient.
 We can also increase the capacity of the services based on requirement.
 This kind of Architecture can be implemented by using Docker Compose.
@@ -224,7 +224,7 @@ For that we need basic WebServer and the Database.
 Step 3:
 To check the validity of the file using the command
 
-	docker compose config
+	docker-compose config
 	
 version : '2'
 
@@ -248,7 +248,7 @@ Step 5:
 To expose the web server 
 
 	 ports:
-   -"9090:80:"
+   -"9090:80"
    
 Expose the port 80 of the nginx web server to the 9090 port of Application Service.
  

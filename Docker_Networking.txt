@@ -57,33 +57,43 @@ Run the BusyBox Container C1 and C2 in the Bridge Network Bridge1 and Container 
 	docker run --name C2 -it --network Bridge1 busybox
 	docker run --name C3 -it --network Bridge2 busybox
 
-To come out of the container without exiting and stopping it CTRL+P CTRL+Q
+Note 1 :
+To come out of the container without exiting and stopping it we use te command
+
+	CTRL+P CTRL+Q
+	
+Note 2 :
+To attach to the Container we use the command
+
+		docker attach C2
 
 To identify the IP Address of the container 
 
 	docker inspect C1
 	
-	172.21.0.2	(Bridge1)
+	172.18.0.2	(Bridge1)
 	
 	docker inspect C2
 	
-	172.21.0.3   (Bridge1)
+	172.18.0.3   (Bridge1)
 	
 	dokcer inspect C3
 	
-	172.22.0.2   (Bridge2)
+	172.19.0.2   (Bridge2)
 	
 Scenario Two :
 Single Container can run paralelly on multiple Networks.
-Here C2 Container can run on Bridge1 as well as Bridge2.
+To make the C2 Container can run on Bridge1 as well as Bridge2 we use the command
 
 	docker network connect Bridge2 C2
-	
-To check whether C2 is connected to Bridge2 Attach the C2 Container
-	
-	docker attach C2
 
+To check whether C2 is connected to Bridge2 inspecct the Container
+	
 	docker inspect C2
+	
+We can also check that the Network is attached to how many Conatiners by using the command
+
+	docker network inspect Bridge2
 	
 Note :
 Default Network used by Docker when Multiple Containers running on the same Machine is Bridge Network. 
@@ -128,7 +138,7 @@ Bridge network is the most common Network Type.
 It is limited to containers within a Single host running the Docker Engine.
 Bridge network are easy to create,manage and troubleshoot.
 
-For the Containers on Bridge network to communicate or to be reachable from outside world,port mapping needs to be configured.
+For the Containers on Bridge network to communicate with each other or to be reachable from outside world,port mapping needs to be configured.
 Consider the case we have Docker Container running the Web Service on port 80.
 Because this Container is attached to the Bridge Network on a private subnet,
 port on host system like 8500 needs to be mapped to port 80 on the Container for the outside traffic to reach the Web Service.
@@ -171,28 +181,27 @@ Example :
 After LInking Video
 
 
-Exposing Ports and Forwarding Traffic :
+Exposing Port and Forwarding Traffic :
 ---------------------------------------
-Docker network use private subnets that cannot be accessed from the outside world.
-To allow requests from the internet to reach to the Container,we need to map Container port to the port on the Container Host.
+Docker network uses private subnet that cannot be accessed from the outside world.
+To allow requests from the internet to reach to the Container,we need to map the port on the Container to the port on the Container Host.
 
 	-p 8500:80
 
 Containers Connected to Multiple Networks :
 -------------------------------------------
-Finegrained network policies for connectivity and isolation can be achieved by joining containers to multiple networks.
 By default each Container will be attached to single network.
-More networks can be attached to a Container by creating it first with the 
+More networks can be attached to a Container by connecting to the Network.
 
-	docker create 
+	docker network create --driver bridge Bridge1 
 
-instead of 
+Then run the Container using the run command ie
 
 	docker run 
 
-and then running the command 
+and the Container to the network using the command 
  
-	docker network connect
+	docker network connect Bridge1 C1
 
 How IPv6 Works on Docker :
 --------------------------
@@ -227,6 +236,10 @@ It is not best practice to run the Containers in the Host Network from security 
 To see the Ip Address in Linux 
 
 	ip addr show
+	
+To view only ipaddress we use the command 
+
+	hostname -i
 	
 When we start the Container in the same Network Namespace as host we get the same Ip Address.
 	
