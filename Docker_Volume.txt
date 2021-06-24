@@ -74,12 +74,6 @@ Docker with Web Application (Practice in Linux Machine)
 	
 ********************************************************* 4.Docker Volume (Developers Thought)  *********************************************************
 
-Whenever a new Container is created a seperate process is started.
-Any Data which is created or updated under that process,resides in the same process and not available for other Containers.
-Once the Container is removed Corresponding process will also be removed.
-Data is present inside the File system of the Container until the presence of the Container.
-Writing the Data into the Containers writable layer requires a storage driver to manage the file system which slows dowm the performance.
-
 Volume Mount :
 --------------
 Volumes are stored as part of host file system and managed by Docker.In Linux it is stored at /var/lib/docker/volumes.

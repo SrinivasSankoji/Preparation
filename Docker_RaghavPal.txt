@@ -276,6 +276,10 @@ To scale the services
 When we create a Container there has to be some place where the data inside the Container will be stored.
 If we are not providing any explicit data store then it gets stored within the Container. 
 If we delete the Container then the data stored inside the Container will be lost.
+Default volume of Container is associated with Docker Container Life Cycle.
+When Container is created it creates the File sytem similary when the Container is deleted Container deletes the File system.
+This behavior is suitable for stateless Applications like web Applications and not suitable for stateful applications like Database Applications.
+Even If the Container is deleted we want to retain the data so that we can spin up the new Container where the previous Container is left.
 Whenever we work in any Enterprise Application we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
 We may also require more Containers that can share the same data.
 
