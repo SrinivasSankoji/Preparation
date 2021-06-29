@@ -52,7 +52,7 @@ create the text file inside the folder which is present inside the Container.
 
 Navigate to the Container
 
-	docker exec it [ContainerId] ash   --> ls 
+	docker exec -it [ContainerId] ash
 
 Here bhaumikdata Folder is created.
 create the Text File inside the /bhaumkdata folder.
@@ -79,8 +79,6 @@ Volume Mount :
 Volumes are stored as part of host file system and managed by Docker.In Linux it is stored at /var/lib/docker/volumes.
 Volumes can be explicitly created by docker using the command docker volume create (or) at the time of Container creation if it is sepcified in the docker run command.
 When the volume is mounted to a Conntainer it is the directory which is created by docker volume is actually mounted.
-Volume can be mounted to multiple Containers.
-On removal of Container Volume cannot be removed.
 
 To share data among Multiple Containers i.e log files of each Container.
 Whenever we want backup,restore or migrate data among multiple Docker Hosts i.e In case of Docker swarm where services are deployed on Different Nodes.
@@ -92,7 +90,7 @@ When Bind Mount is used,a file or directory on the host machine is mounted on to
 It involves tight coupling between the host file system and the Container.
 Dcoker CLI cannot be used to manage the bind mounts because Bind Mount is not a Docker Entity.
 
-share the source code or build artifacts between a developer environment on a host machine and Container.
+To share the source code or build artifacts between a developer environment on a host machine and Container.
 when the host machine gaurantees the directory structure required by the Container.
 
 
@@ -122,7 +120,7 @@ Build the Docker Image from the Dockerfile
 	
 Run the Docker Image
 
-	docker run --name volumemount -d srinivas/volumeone:latest
+	docker run --name volumemount -it -d srinivas/volumeone:latest
 	
 Now check the Volume inside the Docker Host i.e File which is present indide the Docker Container is mounted to the Host Machine of the Docker Host or Not.
 Here we have created a Volume named "data".

@@ -2,27 +2,26 @@
 2.Set up Jenkins on Tomcat												[23-05-2020] ()	
 3.Change Home Directory													[23-05-2020] (Done)	
 4.Using CLI																[23-05-2020] ()	
-5.Basic Configuration													[23-05-2020] ()	
-6.Create Users,Manage and assign Roles 									[21-06-2019] (DONE)
+5.Create Users,Manage and assign Roles 									[21-06-2019] (DONE)
+6.Basic Configuration													[23-05-2020] ()	
 7.Job in Jenkins 														[25-06-2019] (Done)
 8.Jenkins Integrating With GIT											[25-06-2019] (Done)
 9.Add GitHub Credentials												[23-05-2020] (Done)
 10.CATLIGHT																[23-05-2020] ()	
 11.Automated Deployment 												[25-06-2019] (Done)
-12.Implementing Automated Deployment (Deploying War on Tomcat)			[23-05-2020] (Done)		
-12.Setting up Tomcat 													[23-05-2020] (Done)															
-13.Sending Email form Jenkins 											[23-05-2020] ()
-14.Pipeline in Jenkins                                                  [23-05-2020] (Done)
-15.Setting Up Delivery PipeLine in Jenkins                              [24-05-2020] (Done)
-16.Setting Up Build PipeLine in Jenkins                                 [24-05-2020] (Done)
-17.Blue Ocean 															[23-05-2020] ()
-18.Trigger Job With Email 												[23-05-2020] ()
-19.Build Monitor View 													[23-05-2020] ()	
-20.Install Jenkins on AWS 												[23-05-2020] ()	
-
-21.Create Jenkins File													[12-MAR-2021] ()
-22.Get Jenkins File from GIT SCM										[12-MAR-2021] ()
-23.Clone a Git Repo Using Jenkind File									[12-MAR-2021] ()
+12.Setting up Tomcat 													[23-05-2020] (Done)	
+13.Implementing Automated Deployment (Deploying War on Tomcat)			[23-05-2020] (Done)		
+14.Sending Email form Jenkins 											[23-05-2020] ()
+15.Pipeline in Jenkins                                                  [23-05-2020] (Done)
+16.Setting Up Delivery PipeLine in Jenkins                              [24-05-2020] (Done)
+17.Setting Up Build PipeLine in Jenkins                                 [24-05-2020] (Done)
+18.Blue Ocean 															[23-05-2020] ()
+19.Trigger Job With Email 												[23-05-2020] ()
+20.Build Monitor View 													[23-05-2020] ()	
+21.Install Jenkins on AWS 												[23-05-2020] ()	
+22.Create Jenkins File													[12-MAR-2021] ()
+23.Get Jenkins File from GIT SCM										[12-MAR-2021] ()
+24.Clone a Git Repo Using Jenkins File									[12-MAR-2021] ()
 
 
 ********************************************** 1.Jenkins Introduction   *******************************************************************
@@ -435,7 +434,7 @@ To Display the Console Select the Option New Window.
 ********************************************** 20.Build Monitor View Jenkins  *****************************************************************
 
 
-**********************************************  21.Build and Deployment	(Siva Reddy) **********************************************************
+**********************************************  Build and Deployment (Siva Reddy)  **********************************************************
 
 Here we need to write the pipeline script or Jenkins File to provide the Sequence of Steps that starts from 
 Cloning the project from GitHub till the Deployment of the War File to the Web Server.
@@ -463,22 +462,3 @@ Create the user in tomcat-users.xml.
 	
 	
 	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

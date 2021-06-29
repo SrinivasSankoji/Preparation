@@ -55,7 +55,8 @@ docker rm [ContainerID]  	: To remove the Docker Container
 
 docker stats 		  		: Memory and Usage Details of Container
 docker system df 	  		: Local Disk Usage for Container
-docker system prune	  		: To delete all the Unused Images which are not associated with any Network 
+docker system prune	  		: To delete all the Unused Images which are not associated with any Network
+docker search imageName     : To Search for the Image in the DockerHub
 
 ******************************************************  6.Docker Images :  ****************************************************************************************
 
@@ -112,7 +113,7 @@ If it is not available then it pulls the image from the Docker Registry and crea
 
 Note : Docker build can be used to create the Docker image using Docker file.
 
-docker run hello-world   		: Chacke the image in the Docker Server and if not found get it from the Docker Hub and creates the Docker Container.
+docker run hello-world   		: Checks the image in the Docker Server and if not found get it from the Docker Hub and creates the Docker Container.
 docker ps -a 		 	 		: To See the List of Containers i.e active,closed etc.
 docker pause   [ContainerID] 	: To pause the Container
 docker unpause [ContainerID] 	: To unpause the Container
@@ -273,11 +274,11 @@ To scale the services
 
 ******************************************************   11.Docker Volume :  **************************************************************************************
 
-When we create a Container there has to be some place where the data inside the Container will be stored.
+Whenever we create a Container there has to be some place where the data inside the Container will be stored.
 If we are not providing any explicit data store then it gets stored within the Container. 
-If we delete the Container then the data stored inside the Container will be lost.
+If we delete the Container then the data stored inside the Container will be also be deleted.
 Default volume of Container is associated with Docker Container Life Cycle.
-When Container is created it creates the File sytem similary when the Container is deleted Container deletes the File system.
+When the Container is created it creates the File sytem similary when the Container is deleted it deletes the File system.
 This behavior is suitable for stateless Applications like web Applications and not suitable for stateful applications like Database Applications.
 Even If the Container is deleted we want to retain the data so that we can spin up the new Container where the previous Container is left.
 Whenever we work in any Enterprise Application we actually doesn't want to delete the data inside the Container when the Conatiner is deleted.
@@ -301,6 +302,10 @@ Example :
 Create the Volume VOL1
 
 	docker volume create  VOL1
+	
+Note :
+Newly created Volume is stored inside /var/lib/docker/volumes/
+Default volume is created inside /var/lib/docker/volumes/4a22c4eba931010edc6e081129791065e3aab81969f9ca9a057c5dc41fcb9270/_data
 	
 To inspect the volume 
 
@@ -328,7 +333,7 @@ We can also use the BindMount i.e a File or directory on the Host Machine is mou
 
 In case of Bind Mount we use a Physical Location instead of Volume.
 
-	docker run --name myjenkins2 -p 8083:8080 -d -v /Users/DELL/Desktop/DockerVolume:/var/jenkins_home jenkins/jenkins
+	docker run --name myjenkins2 -p 8083:8080 -d -v /media/bhaumik/PERSONAL/DockerVolumes:/var/jenkins_home jenkins/jenkins
 	
 
 ******************************************************   12.Docker Swarm :  ***************************************************************************************
