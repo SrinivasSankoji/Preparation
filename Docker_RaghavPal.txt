@@ -92,7 +92,7 @@ docker rmi imageId    					: To remove the Docker image  based on Image Id befor
 
 Container is a light weight,stand alone and executable package of a peice of software that includes every thing to to run it.
 It contains code,runtime,system tools,system libraries etc.
-Containers run on the same Machine sharing the same OS Kernel.
+Containers run on the Machine sharing the same OS Kernel.
 
 Docker Containers are the running instances of Docker Images.
 In the Docker Architecture we have a Docker Client,Docker Host(Docker Server) and the Docker Registry.

@@ -1,0 +1,95 @@
+1.AWS Fargate									 (Vishal Padghan)						[01-JUL-2021] ()
+2.AWS Fargate									 (Chas Deveas)						    [01-JUL-2021] ()
+3.
+
+
+*****************************************   1.AWS Fargate (Vishal Padghan)  ****************************************************
+
+Containerization has transformed Cloud Architecture over the past few years that allows the business to build,deploy and manage Applications at Faster Rate.
+However we need to configure and manage the Cluster of Virtual Machines for the Containers to Run.
+This is where AWS Fargate comes into the picture.
+AWS Fargate is a serverless computing platform for the Containers.
+
+Need for AWS Fargate :
+----------------------
+When we don't have Container Services we deploy the Application on Virtual Machines.
+In case of AWS we deploy the Application on EC2 instance. 
+We package the Application and run it on EC2 instance.
+Then Docker introduced Containers and people started Deploying Application on Containers.
+As the Number of Container's in an EC2 instance increased which in turn increased the number of EC2 instances.
+To resolve this AWS Launched ECS(Elastic Container Service).
+
+ECS is a Container Orchestration Service that makes easy to run ,manage and stop Containers on a Cluster.
+Still we had to manage the underlying instances that hosts the Applications.
+
+AWS comes up with a Service that manages the underlying virtual machines ie AWS Fargate.
+Users can focus on their Applications.
+
+What is AWS Fargate :
+---------------------
+AWS Fargate is a compute Engine for AWS ECS without having provision to configure and scale cluster of instances that hosts the Application.
+AWS Fargate eliminates the need for users to manage EC2 instances on their own.
+In fact user's does not need to use the EC2 instances and Fargate itself acts as a Compute Engine.
+With Fargate Launch type,all we need to do is package the Application into Containers,
+specify the memory and CPU requirements,define IAM policies and launch the Application.
+
+AWS Fargate makes it easy to scale the Application.
+Once we define the Application requirements,Fargate manages all the scaling and infrastructure needed to run the Application
+in highly available manner.
+AWS Fargate seamlessly integrates with ECS and EKS and launches the instances,manages the Containers for us.
+
+Container :
+-----------
+Container is a light weight,stand alone and executable package of a piece of software that includes everything to run the Application.
+It contains code,runtime,system tools and system libraries etc.
+Containers run on the same kernel which the OS shares.
+Container is the running instance of an Image.
+
+Container Image :
+-----------------
+Images are typically build from a Dockerfile which is a simple text file which contains an instructions to run the image.
+Images are stored in a Repository which can be downloaded and run as a Container.
+
+Task Definitions :
+------------------
+Task Definition is the blue print which defines the Docker Containers to run that represents an Application.
+Task Definition contains the details of the Docker Images,CPU and Memory Allocation,environment variables to expose and how Containers
+communicate with each other.
+Task Definition is a kind of docker-compose.yml.
+
+Task :
+------
+Task is an instance of the Task Definition ie running the Containers within the Cluster.
+We have an option to specify how many Tasks can be created within the Cluster.
+Sometimes multiple Tasks can be created by a single Task Definition.
+
+Clusters :
+----------
+Cluster is a logical group of EC2 instances where we can place the Conatiners into.
+If we use AWS fargate launch type the ECS will take care of managing the Cluster Resources.
+ECS will also take care of optimal placement of each Task based on CPU and Memory Management.
+When an Instance launches ECS Agent registers an EC2 instance to a ECS Cluster.
+ 
+If we use EC2 launch type then our Cluster will be a group of EC2 instances that we have to manage.
+
+Steps to deploy an Application on ECS using AWS Fargate :
+1.Build the Container Image and store it in a Registry.
+2.Choose the Container Orchestration service and assign resources to an Application.
+3.Create the Cluster to group all the Resources.
+4.Choose the Fargate launch type.
+5.Now AWS Fargate will launch and run all the Conatiners.
+AWS Fargate will also manage the underlying infrastructure and Clusters for you.
+AWS Fargate scales our Application needs without having to bother about.
+
+
+
+ 
+
+
+
+
+
+
+
+
+

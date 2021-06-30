@@ -83,11 +83,13 @@ Task Definition is the blueprint which defines the Docker Containers to run that
 Task Definition contains the details of the Docker images,CPU and memory allocation,environment variables,ports to expose and
 how Containers communicate with each other.
 Task Definition is a kind of docker-compose.yml file.
+Task definition describes one or more Containers that form our Application.
 
 4.Task :
 --------
-An instance of a Task Definition ie running the Containers within it.
+An instance of a Task Definition ie running the Containers within the Cluster.
 Sometimes Multiple Tasks can be created by one Task Definition.
+We have an option to specify the number of tasks that will run on our cluster.
 
 5.Service :
 -----------
