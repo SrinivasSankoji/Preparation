@@ -177,9 +177,9 @@ Then run the command
 Pull the MySql image from the Docker Hub.
 
 	docker pull MySql:5.7
-	
+		
 Create the Controller,Entity and JpaRepository.
-Add the Database driver details in the properties file.
+Add the Database driver details in the properties file.	
 
 spring:
     datasource:
@@ -216,7 +216,7 @@ Ignore the Junit Test cases by adding the <exclusion> in the pom.xml.
 
 Build the Docker image for the Spring Boot Application.
 
-	docker build -t springboot-mysql:1.0
+	docker build -t springboot-mysql:1.0 .
 
 
 First Approach (Docker Networking) :
@@ -285,7 +285,7 @@ then build the springboot-mysql application.
 
 		docker build -t springboot-mysql-second:2.0 .
 
-Build the My Sql Container by removing the network.
+Build the My Sql Container with the environment parameters.
 
 	docker run --name mysql-container-second -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql:latest
 

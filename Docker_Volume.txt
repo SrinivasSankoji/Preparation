@@ -134,7 +134,7 @@ Navigate to the Directory where the Docker is installed
 	
 Then navigate to the Docker Volume and inside the volume we see the diretory "/data" that containes the "text" file.
 
-Docker Volume Mount using Dcoker RUN Command :
+Docker Volume Mount using Docker RUN Command :
 ----------------------------------------------
 
 To list all the Volumes
