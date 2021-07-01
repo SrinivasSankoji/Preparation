@@ -69,7 +69,7 @@ We may under estimate the requirement which leads to the crash of an Application
 2.Introduction :
 ----------------
 EC2 is a service from Amazon that provides a resizable computing services on the cloud.
-Resizable because we can quickly scale up or scale down the number of server instances we are using,if the computing requirement changes.
+Resizable because we can quickly scale up or scale down the number of server instances that we are using,if the computing requirement changes.
 
 EC2 is way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
@@ -89,9 +89,9 @@ Here AWS run it under the hood of EC2.
 ------------
 Instance is a Virtual Server for running Application on EC2.
 It can be considered as a tiny part of a large computer,whcih has its own harddrive,network connection,os etc.
-We can have multiple tiny computers on a single physical server and each tiny machine is called as an instance.
+We can have multiple tiny computers on a single physical server and each tiny computer is called as an instance.
 EC2 is a service from AWS.Other services include S3,ECS,IAM etc.
-When we use EC2 or any other service we use it through a instance i.e t2.micro instance for EC2.
+When we use EC2 or any other service we use it through an instance i.e t2.micro instance for EC2.
 
 4.Why EC2 :
 -----------
@@ -145,15 +145,16 @@ GPU instances      : g2
 -----------------------------------
 T2 instances are burstable instances.
 This means CPU performs at a baseline of its Capacity.Consider the case of 20 Percent of CPU.
-When the Application needs more than 20% of the performance of the CPU,
+When the Application needs more than 20% of the CPU,
 then CPU enters into burst mode giving the higher performance for a limited amount of time.
 Therefore work happens faster.
 
-We get the CPU Credits when the CPU is idle.
-Every time a burst happens in a CPU,CPU credits are used.
-Each CPU credit gives a burst of 1 Minute to the CPU.
+We get the CPU Credits when we create an Instance.
+Every hour we get certain amount of CPU credits automatically and this depends on type of Instance.
+Every time a burst happens in a CPU,CPU credits are used.Each CPU credit gives a burst of 1 Minute to the CPU.
 If CPU credits are not used they are credited to your account and stay for 24 Hours.
-Based on CPU Credit Balance we can decide whether t2 instance should be scaled up or scaled down.
+If we are out of CPU credits,Instance will work on CPU baseline performance.
+Based on CPU credit balance we can decide whether t2 instance should be scaled up or scaled down.
 
 Example :
 Customer Analysis Data i.e Customer's Website Activity should be monitered real time.
@@ -164,27 +165,28 @@ Whenever traffic to the website is high CPU performance will be increased automa
 
 7.EBS-Optimized Instances : 
 ---------------------------
-C4,M4 and D2 instances are EBS optimized by default.
+C4,M4 and D2 instances are EBS optimized instances by default.
 EBS means Elastic Block Storage which is a storage option provided by AWS in which the IOPS rate is high.
-When an EBS Volume is attached to an optimized instance,Single Digit milli seconds latency can be acheived.
+When an EBS Volume is attached to an instance,Single Digit milli seconds latency can be acheived.
 
-IOPS i.e Input Output Operations per Second is a performance measurement used to characterize computer storage devices.
+Note :
+IOPS(Input Output Operations per Second) is a performance measurement used to characterize computer storage devices.
 
 Example :
 Auto Response Mailing System.
-Here Response should be quick and We would require a system where the response time is as short as possible.
-This can be acheived by using EBS optimized instances where the IOPS is high and low latencies.
+We would require a system where the response time is as short as possible.
+This can be acheived by using EBS optimized instances where the IOPS is high and low latency.
 
 8.Cluster Networking Instances :
 --------------------------------
 M4,C4,C3,X1,I2,D2,G2 instances support cluster networking.
-The instances that are launched into a common placement group are kept in a logical group that provides a high bandwidth and 
+The instances that are launched into a common placement group and kept in a logical group that provides a high bandwidth and 
 low latency between all the instances in the group.
 
 Placement group is a Logical Cluster where some selected EC2 instances which are part of that group can utilize upto 10 GB for single flow
 and 20 GB for multiflow traffic in each direction.
-
 Instances which are not part of placement Group are limited to 5 GBPS speed in Multiflow Traffic.
+
 Note :
 Cluster networking is ideal for high performance analytics system.
 
@@ -197,12 +199,13 @@ To acheive this we need to put them in a placement group and for that we use Clu
 
 9.Dedicated Instances :
 -----------------------
-These are the instances that run on a single tennant-hardware dedicated to a single cutomer.
+These are the instances that run on a single tennant-hardware and dedicated to a single cutomer.
 
 Example :
 Some processes in every organization are highly confidential.
 
 11.How to run systems in EC2 :
+
 ------------------------------
 Login to AWS Account and clck on AWS EC2.
 Under Create instance,Click on Launch Instance.
@@ -229,6 +232,7 @@ This category is for workloads where the data is accessed less frequently and re
 After selecting the suitable option in EBS,provide a name for an instance and then create the Security Group.
 
 Security Group :
+----------------
 Security Group acts as a firewall to control Inbound and Outbound traffic.
 Each Security Group has rules according to which the traffic is governed.
 Each instance can be assigned upto 5 Security Groups.
@@ -237,7 +241,7 @@ Finally we can see the console that shows all the settings that we have done,ver
 
 12.Security in AWS EC2 :
 ------------------------
-Whenever we launch the instance we need to provide the Authentication otherwsie any one can access the EC2 instance.
+Whenever we launch an EC2 instance we need to provide the Authentication otherwise any one can access the EC2 instance.
 To Authenticate the users to their instances AWS offers a key value pair method.
 
 EC2 uses a public-key and private-key cryptography to encrypt and decrypt login information.
@@ -247,8 +251,8 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service provided in EC2 using which we can automatically launch or terminate instances based on user-defined profiles,
-schedulers and health checks.
+Auto Scaling is a service provided in EC2 using which we can automatically launch or terminate instances 
+based on user-defined profiles,schedulers and health checks.
 
 14.Elastic Load Balancing :
 ---------------------------
