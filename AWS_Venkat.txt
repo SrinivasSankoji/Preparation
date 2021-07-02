@@ -165,7 +165,7 @@ Step 2 :
 Select the instances --> Launch the Instance --> Select the AMI --> 
 Herw we can have our own AMI's,community AMI's etc.
 
-Select Amazon Linux -->
+Select Amazon Linux AMI and thr root device type is EBS -->
 Here the root device type is EBS.
 Default image includes AWS CLI,Python,Ruby,PERL,Java Repositories include Docker,PHP,MySql,PostgreeSql etc.
 Select t2 micro instance --> Depending on what we select we get the CPU,Storage,Memory and so on  --> Next
@@ -221,8 +221,8 @@ Whenever we create a Machine we can configure it and we can make the machine int
 
 Note :
 We have an option to enable or disable Auto Assign Public IP.
-If we want to create a Virtual Machine or an Instance that does not need an external access (or)
-If we don't want to log into those machines from Internet then disable Auto Assign Public IP.
+To create a Virtual Machine or an Instance that does not need an external access (or)
+We don't want to log into those machines from Internet then disable Auto Assign Public IP.
 If we disable those Machines and we only get the private IP Address but not public IP Address.
 Machine will not be reachable from the Internet.
 
@@ -236,16 +236,30 @@ Private Subnet needs to be accessed from the Public Subnet.
 Finally 
 Delete the Instance
 Delete the Key Pair
-Delete the Security Group
+Delete the Security Group 
 
 To connect to the EC2 instance from Ubuntu
 Navigate to the Folder where the pem file is present
 Run the command
 
 	chmod 400 /path to the .pem file
-	ssh -i /path to the .pemfile ubuntu@IpAddress
+	ssh -i /path to the .pemfile ubuntu@IpAddress   (for Amazon Linux Machine ec2-user@IpAddress)
 	
+To check the username 
 
+	uname -r
+	
+To access as a root user
+
+	sudo su
+	
+Steps to Delete the Instance :
+------------------------------
+Terminate the Instance
+Delete the Key Pair
+Delete the Security Group
+
+	
 *************************************************************** 6.Launching EC2 instance using CLI  *************************************************
 
 
