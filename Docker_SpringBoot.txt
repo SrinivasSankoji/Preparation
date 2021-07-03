@@ -148,7 +148,7 @@ Note: To customize the name of the jar file we use the command <finalName> in po
 	
 Create the Repository in DockerHub
 
-	srinivassankoji/javadeveloper
+	srinivassankoji/javadevelopera
 
 Then save the image to the DockerHub.
 To push the Docker image into the Repository we need to tag the image using the commad 
