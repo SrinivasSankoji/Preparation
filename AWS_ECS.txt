@@ -49,20 +49,19 @@ Consider the case of deploying a web application on to an EC2 instance.
 Here we are deploying a single Application on single instance.
 What If the traffic to an application increases or an instance goes shut down.
 This is why we need multiple instances running copies of an Application i.e Cluster.
-We also need a LB that accepts the incoming trffic request and based on some conditions in the network traffic redirects the request to one or more instances.
-Here we also need Auto Scaling ie if the instance goes down,new instance has to be created.
+We also need a LB that accepts the incoming trffic and based on some conditions in the network traffic redirects the request to one or more instances.
+Here we also need Auto Scaling ie If the instance goes down new instance has to be created.
 Based on the traffic instance has to be scaled up or scaled down.
 
-If we have created multiple instances and all the instances shut down at a time.
+If we have created multiple instances and what If all the instances shut down at the same time.
 This is the scenario where ECS comes into the picture.
 ECS is Container Management Service that makes it easy to run,manage and stop Docker Containers on a Cluster.
-ECS automatically starts up the instances and hosts the Container into that instance.
+ECS automatically starts the instances and hosts the Container into that instance.
 ECS monitors the EC2 instances and scales up or scale down the number of instances.
 ECS can also scale up the number of copies of Containers based on traffic load,CPU and memory needs.
 It is compared to Kubernetes,Docker Swarm and Azure Container Service.
 
-ECS runs the containers on a cluster of EC2 instances pre installed with Docker.
-ECS takes care of deploying the containers on cluster of EC2 instances,scale,monitor and manage the instances.
+ECS runs the containers on a cluster of EC2 instances pre installed with Docker and scale,monitor and manage the instances.
 
 Consider the scenario of building an Application that runs on two Docker Conatiners.
 One Container to manage the Application and the other to mange the Metrics.
@@ -80,7 +79,7 @@ ECS Conatiner Agent
 3.Task Definition :
 -------------------
 Task Definition is the blueprint which defines the Docker Containers to run that represents the Application.
-Task Definition contains the details of the Docker images,CPU and memory allocation,environment variables,ports to expose and
+Task Definition contains the details of the Docker images,CPU,memory allocation,environment variables,ports to expose and
 how Containers communicate with each other.
 Task Definition is a kind of docker-compose.yml file.
 Task definition describes one or more Containers that form our Application.
@@ -94,7 +93,7 @@ We have an option to specify the number of tasks that will run on our cluster.
 5.Service :
 -----------
 Service gaurantees that some number of Tasks are running all the time.
-If the Task exit's due to some Error or the underlying instance is failed or replaced then ECS Service will replace the Task.
+If the Task exit's due to some Error or the underlying instance is failed then ECS Service will replace the Task.
 This is why we create Cluster so that the Service can have plenty of resources in terms of CPU,Memory and Network Ports to use.
 Service Configuration references to a Task Definition.
 Service is responsible for creating Tasks.
