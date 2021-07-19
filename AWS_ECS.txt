@@ -92,24 +92,22 @@ We have an option to specify the number of tasks that will run on our cluster.
 
 5.Service :
 -----------
-Service gaurantees that some number of Tasks are running all the time.
+Service can be used to ensure minimum and maximum number of Tasks that can run at any point of time.
 If the Task exit's due to some Error or the underlying instance is failed then ECS Service will replace the Task.
-This is why we create Cluster so that the Service can have plenty of resources in terms of CPU,Memory and Network Ports to use.
+This is why we create Cluster so that the Service can have plenty of resources in terms of CPU,Memory,Network and Ports to use.
 Service Configuration references to a Task Definition.
 Service is responsible for creating Tasks.
 
 Example :
 Services are typically used for long running Applications.
-Services can be used to ensure minimum and maximum number of Tasks that can run at any point of time.
-If one Task fails then we have another Two Tasks and the failed Task will be replaced.
 
 6.Cluster :
 -----------
-ECS Cluster is a logical Group of EC2 instances where we can place Containers into.
-ECS handles the logic of scheduling,maintaining and scaling the instances.
+Cluster is a logical Group of EC2 instances where we can place the Containers into.
+ECS takes care of scheduling,maintaining and managing the instances.
 ECS also takes care of optimal placement of each Task based on CPU and memory needs.
 
-When an instance launches ECS-Agent registers an EC2 instance to the ECS Cluster.
+When an instance launches,ECS-Agent registers an EC2 instance to the ECS Cluster.
 Cluster can be configured by setting the ECS_CLUSTER in /etc/ecs/ecs.config.
 
 7.ECS Container Instance :
@@ -119,7 +117,7 @@ Container Instance may run many Tasks from the same or different Services.
 
 8.ECS Container Agent :
 ------------------------
-ECS Container Agent takes care of communication between ECS and Container Instance.
+ECS Container Agent takes care of communication between ECS Cluster and Container Instance.
 ECS Container Agent provides the status of running Conatiners and manages the newly created one.
 
 
