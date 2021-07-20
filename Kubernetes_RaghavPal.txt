@@ -12,12 +12,11 @@
 
 ***********************************************************  1.Kubernetes Introduction	***********************************************************
 
-Kubernetes is a Container Management tool or Container Orchestration tool.
+Kubernetes is a Container Management tool or Container Orchestration tool that manages Containerized Applications i.e 
+Applications deployed on Container platform like Docker.
 Kubernetes was developed by Google Lab and later donated to CNCF (Cloud Native Computing Foundation).
 Kubernetes is open source and written in GO Language.
-
-Container Management tool or Container Orchestration tool automates deploying,scaling and managing containerized application on a group of servers.
-Kubernetes is a Container Management tool that manages Containerized Applications i.e Applications deployed on Container platform like Docker.
+Container Management tool automates deploying,scaling and managing containerized application on a group of servers.
 
 Different process that takes care in the process of Container Management are
 
@@ -36,12 +35,14 @@ Batch Execution
 Rollbacks
 Monitoring
 
-All these process will be very difficult when we perform it manually.we need a tool that takes care of automating all the above process.
+All these process will be very difficult when we perform it manually.
+we need a tool that takes care of automating all the above process.
 Tools are Kubernetes,Docker swarm,Apache Mesos.
 
 *********************************************************** 2.Kubernetes Features Part One  ***********************************************************
 
-Container tool like Docker will create the Containers where as Container Management tool like Kubernetes will manage the Containers in a distributed Manner.
+Container creation tools like Docker will create the Containers where as 
+Container Management tool like Kubernetes will manage the Containers in a distributed Manner.
 
 Features of Kubernetes are
 
@@ -60,9 +61,9 @@ Features of Kubernetes are
 -------------------------
 Consider the case we have 5 Servers and each Server has the Capacity of 10 GB (RAM).
 We have a list of Jobs(Containers) to run on these 5 Servers in the most efficient way so that we do not compromise the resources.
-Every Job has different resource(Memory) requirement.
-Kubernetes will take care of packaging these jobs(Containers) in bins(Servers) in the most efficient way.
-Kubernetes places the Containers based on their resources requirements like CPU & Memory (RAM) while not sacrificing availability by saving Resources.
+Every Job has different Memory requirement.
+Kubernetes will take care of packaging of these jobs(Containers) in bins(Servers) in the most efficient way.
+Kubernetes will place the Containers based on their resources requirements like CPU & Memory (RAM) while not sacrificing availability by saving Resources.
 
 In Kubernetes we do not interact with the Container directly.
 Containers are wrapped into a Single functional unit called Pod.
@@ -70,11 +71,11 @@ Pods can contain a Single Container or Multiple Containers.
 Pods are hosted inside Node.
 
 When we specify a Pod we can optionally specify how much CPU and Memory(RAM) each Container needs.
-When Containers have resource requests specified,the Kubernetes scheduler can make better decission about in which Node Pod has to be placed.
+When Containers have resource requests specified,Kubernetes scheduler can make better decission about in which Node Pod has to be placed.
 
 2.Service Discovery and Load Balancing :
 ----------------------------------------
-Kubernetes does not run the Container directly instead it wraps one or more Containers into a higher level structure called Pod.
+Kubernetes does not run the Container directly instead Containers are wrapped into a Single functional unit called Pod.
 Pods can contain a Single Container or Multiple Containers.
 Every Pod has a unique IP Address.
 
@@ -101,7 +102,8 @@ Kubernetes will take care of lot of processing to monitor the Applications.
 If the Container fails,Kubernetes will take care of restarting the Container.
 If the Node goes down,Kubernetes will replace and reschedule the Pods on the other Available Node.
 Kubernetes has a Monitoring System that will check all the Containers.
-If any Container does not respond to the Monitoring System or the user defined health check,Kubernetes will kill the Container and will take care of availability of the Application.
+If any Container does not respond to the Monitoring System or the user defined health check,
+Kubernetes will kill the Container and will take care of availability of the Application.
 The process that takes care of all these steps is called Replication Controller.
 
 ***********************************************************  3.Kubernetes Features Part Two   *********************************************************** 
@@ -110,10 +112,9 @@ The process that takes care of all these steps is called Replication Controller.
 --------------------------------------
 Kubernetes can manage Rollout's and Rollback's in an Automated way.
 Whenever we make any changes to the Application  i.e by adding new Features to the Application to deploy is called RollOut.
-Whatever new changes that has been made to the Application and has to revert is called Rollback.
+Whatever new changes made to the Application has to revert is called Rollback.
 
-Kubernetes progressively rolls out the changes to the Application or its Configuration,
-while monitoring Application Health to ensure that it does not kill all the instances at the same time.
+Kubernetes progressively rolls out the changes to the Application by monitoring Application Health to ensure that it doesn't kill all instances at the same time.
 If something goes wrong Kubernetes will roll back the changes and ensures there is no downtime during the process.
 
 6.Secret and Configuration Management :
@@ -178,7 +179,7 @@ It keeps on Monitoring the CPU Usage and based on those Metrics it will sends th
 ***********************************************************  4.Kubernetes Architecture Part One  ***********************************************************  
 
 In an Organization we have a Manager,Manager manages the Team Members and together they form the Team.
-In Kubernetes we have a Master and Worker Node together they form a Cluster.
+In Kubernetes we have a Master Node and Worker Node together they form a Cluster.
 When we set up Kubernetes we get a Cluster and Cluster is a Set of Machines called Nodes.
 A Cluster has atleast one worker Node and atleast one Master Node to form a Cluster.
 There can be more than one Master Node in a Cluster to provide a Cluster with fail over and high availability.
@@ -192,7 +193,7 @@ VM on Cloud
 
 Worker Nodes host the Pods that are the Components of an Application.
 Master Node is responsible for monitoring and managing the worker Nodes in the Cluster.
-Whenever there is a failure of the Worker Node,it will move the workload to the other Worker Node.
+Whenever there is a failure of the Worker Node,Master Node will move the workload to the other Worker Node.
 Master Node will take care of the overall working of the Kubernetes Cluster.
 
 Kubernetes can support Clusters with upto 5000 Nodes.
@@ -257,10 +258,10 @@ whenever there is some mismatch or not as per the configuration it will send the
 
 CLOUD-CONTROLLER-MANAGERS :
 
-when we use the infra structure of a cloud provider all the monitor's that needs to run for intercating with cloud service provider
+when we use the infra structure of a cloud provider,all the monitor's that needs to be run for intercating with cloud service provider
 or the infra structure of the cloud service provider is done through cloud control manager.
 
-Cloud control Manager has some monitors that interacts with cloud service providers.
+cloud-controller-maanager has the following Controllers that interacts with cloud service providers.
 
 NodeController 
 Route Controller
@@ -277,30 +278,28 @@ We can disable the controller loops by setting the --cloud--provider flag to ext
 
 4.ETCD :
 --------
-ETCD is a open source,distributed and key value data store in Kubernetes Cluster.
-ETCD is consistent and highly available key value data store used to store all the cluster data in the Kubernetes.
+ETCD is a open source,distributed,consistent and highly available key value data store that can be used to store all the cluster data in the in Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
-
 API server is the only component that intercats with ETCD data store.
 ETCD can be the part of Kubernetes Master or can be configured externally.
 
 WORKER NODE :
 
 Worker Nodes can be a Physical or Virtual Machine where Containers are deployed.
-Every Node in Kubernetes Cluster must run a Container Runtime like Docker.
+Every Worker Node in Kubernetes Cluster must contain a Container Runtime like Docker.
 
-Worker Node has the following Components.
+Worker Node has 3 Components.
 
 1.kubelet
 2.kubeproxy
 3.Container Runtime
 
-These Components run on every Worker Node and responsible for maintaining the Pods and providing the Kubernetes Runtime Environment.
+These 3 Components run on every Worker Node and responsible for maintaining the Pods and providing the Kubernetes Runtime Environment.
 
 1.kubelet :
 -----------
 kubelet is an agent or utility that runs on each Worker Node and is the Component that intercats with Master using API Server.
-kubelet gets the information from Pods specification and based on those specifications it makes sure that Containers are running accordingly on the Pods.
+kubelet gets the information of Pods specification and based on those specifications it makes sure that Containers are running accordingly on the Pods.
 In case if there is any issue with any Pod,kubelet tries to restart the Pod on the same Node or different Node.
 
 Note :
@@ -309,13 +308,13 @@ kubelet does not manage the Containers which are not created by Kubernetes.
 2.kube-proxy :
 --------------
 kube-proxy is the networking component in a Node and it can also intercat with the external world.
-This is the Component or an Agent which is responsible for maintaining the Network Configuration and Rules.
+This is the Component which is responsible for maintaining the Network Configuration and Rules.
 
 All Node runs the Daemon called kube-proxy which watches the API server on the Master Node,
 So that it can communicate with Master Node using API Server and it gets all the information like addition and removal of Services and Endpoints.
 
 Note :
-API Server component of the Master Node interacts with kube-proxy and kubelet Component of worker Node.
+API Server of the Master Node interacts with kube-proxy and kubelet of the worker Node.
 
 3.Container Runtime :
 ---------------------
