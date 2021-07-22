@@ -1,6 +1,6 @@
-1.Introduction to SOAP Web Services                       (30-NOV-2019) (DONE)
-2.Web Services Jargon									  (30-NOV-2019) (DONE)
-3.Stub Generation										  (30-NOV-2019) (DONE)
+1.Introduction to SOAP Web Services                       (30-NOV-2019) (Done)
+2.Web Services Jargon									  (30-NOV-2019) (Done)
+3.Stub Generation										  (30-NOV-2019) (Done)
 4.Calling the Service										
 5.Setting Up												
 6.Eclipse Set Up											
@@ -27,76 +27,75 @@
 ********************************************************  1.Introduction to SOAP Web Services : ********************************************************
 
 There are two types of Web Services SOAP and REST.
-In Java there are two Specifications.For SOAP the Specification is JAX-WS and for Rest the Specification is JAX-RS.
+For SOAP the Specification is JAX-WS and for Rest the Specification is JAX-RS.
 Web Service is nothing but a Service that is made available to the network and is accessible over the network.
-Example Social Media Applications ,ECommerce Applications are nothing but Web Sites.
-Here Web Sites are Used for Human Consumption where as Web Service are Used for Code Consumption or Application Level Consumption.
-Example We Have  Written Web Service for getting List of Products and deployed on Application Server.
-All the Other Services Which are deployed in the Same Application Server are free to call the Products List Web Service.
-In The Application Server we have an MVC Module that Calls Products List Service to show the Products List to the User by Calling the URL.
-If Other User has different Application Server and he Wants To access the Products List Service.
-To do That Products List Service Code has to be Converted into Jar and Deployed in the Other User Application Server.
-Here It Wont Work Because Product List Server has hosted in different Application Server.
-The Second disadvantage is If There Is  Change in the Product List Then The Other User has to redeploy the Jar in his Application Server.
-The Ideal Solution is Other User has to directly Call the Product List Which is deployed in Other Application Server.
+Social Media Applications ,Ecommerce Applications are nothing but Web Sites.
+Web Sites are Used for human Consumption where as Web Service are used for Code Consumption or Application Level Consumption.
+
+For Example we have written a Service for getting List of Products and deployed on Application Server.
+All the Other Services which are deployed in the same Application Server are free to call the Products List Service.
+If Other user which runs on different Application Server and wants to access the Products List Service.
+To do that Products List Service code has to be converted into Jar and deploy in the Other User Application Server.
+The Second disadvantage is if there is  any change in the Product List then the Other user has to redeploy the Jar in his Application Server.
+The Ideal Solution is other user has to directly call the Product List which is deployed in Other Application Server.
 In This Case Product List always get the Updated Data.
-By Using Web Service Two different Applications which are running on two Different Servers can Communicate With each Other.
-The Other advantage of Using Web Service is it uses a Standard Technology and not Specific to any Language.
-By Using Web Service we achieve inter operability i.e Java Piece of Code Can be accessed by using .Net piece of code.
-By Using Web Service we can pick and choose different Technologies to implement business Service and expose it as a Web Service.
+By Using Web Service Two different Applications which are running on two different Servers can Communicate with each Other.
+The Other advantage of Using Web Service is it uses a Standard Technology and not specific to any Language.
+By Using Web Service we achieve inter operability i.e Java piece of code can be accessed by using .Net piece of code.
+By Using Web Service we can choose different technologies to implement business Service and expose it as a Web Service.
 
 
 ******************************************************** 2.Web Services Jargon : ************************************************************************
 JAX-WS :
 --------
-JAX-WS Stands for Java API for XML Web Sevices.
+JAX-WS Stands for Java API for XML and Web Sevices.
 JAX-WS is XML based Java API to build web services server and client Application.
-It is apart of Java Standard API no need to include any thing else while working with it.
+It is a part of Java Standard API and no need to include any thing else while working with it.
 
 WSDL :
 ------
-I have implemented Java Service and want to share the implementation to the Other Developers of the Project.
-The Best Way to Share The Implementation Class is By Using Interface .
-Any Consumer Consumes the Service Implementation By Using Interface.
-Consumer Knows What are the arguments of the Service,Method Name and return type of the Service implementation by Using Interface.
-An Interface is a standard Way to share the contract to the Consumer.
-In Case of Web Service how  we can share the details to the Consumer ?
+I have implemented Java Service and want to share the implementation to the other developers of the Project.
+The best way to share the implementation Class details is by using Interface.
+Any Consumer consumes the service implementation by using Interface.
+Consumer knows what are the arguments of the Service,Method Name and return type of the Service implementation by using Interface.
+An Interface is a standard way to share the contract to the Consumer.
+In case of Web Service how we can share the details to the Consumer ?
 Here Interface wont work because we don't know which technology the consumer is using.
 Here The Contract that has to be shared with consumer should be Technology Independent.
-Here the standard format to share the contract about the Web Service to the Consumer is XML and is Called WSDL.
+Standard format to share the contract about the Web Service to the Consumer is XML and is Called WSDL.
 Web Service Description Language or Web Service Definition Language.
 WSDL Contains the Contract to the Web Service.
 When We Create The Web Service Create the WSDL document for that Web Service and share it to the Consumer.
-There are Tools that Generates the WSDL for that Web Service.
-Here Contents of The Web Service are Similar to interface i.e Methods ,arguments and return type.
+There are tools that generates the WSDL for that Web Service.
+Here contents of the Web Service are similar to interface i.e Methods ,arguments and return type.
 
-UDDI :
-------
+UDDI (Universal Discovery Description and Integration) :
+--------------------------------------------------------
 For Example we have a Client Application that has to call the Web Service.
-We know that one way to get the information about Web Service is the WSDL i.e interface to the Web Service.How do we get hold of the WSDL.
-There are directories of the Web Services where we can query and get the Web Service.Directory is called UDDI i.e Universal Discovery Description and Integration.
-It is a registry where we can register the Web Services here and make them available to the client Applications.
+One way to get the information about Web Service is WSDL.How do we get hold of the WSDL ?
+There are directories of the Web Services where we can query and get the Web Service.
+Directory is called UDDI.
+It is a registry where we can register the Web Services and make them available to the client Applications.
 
 SOAP :
 ------
-Now the Client got The WSDL Document and he has to Call the Web Service.
+Now the Client got The WSDL Document and has to Call the Web Service.
 For Example The Client Code is Written in Java Language and the Web Service accepts String parameter that is written in C++.
 Here Java String can be different from C++ String.
 Here exchange of information can be done irrespective of Technology i.e XML.
 This exchange is nothing but protocol and is called SOAP.
 SOAP is a protocol in which different applications can access Data. 
 
-SEI :
------
-Here Java Object is Converted into SOAP Message and is done By SEI (Service EndPoint Interface) and SEI is Interpreted at the Other End.
-SEI Acts as an Interface to the Web Service End Point.
-We have an Interface at Client Application to the Web Service Which Translates the Web Service Call to a SOAP Message.
+SEI (Service EndPoint Interface) :
+----------------------------------
+Here Java Object is converted into SOAP Message and is done by SEI ie
+We have an interface at Client Application to the Web Service End Point which translates the Web Service call to a SOAP Message.
 So that Web Service End Point can understand the Request.
 
 SEI Can be Generated Automatically for us.
 
 When we are making a Web Service call we don't need to worry about where the Web Service is and where we need to Call.
-All we need to have is Service End Point is Getting Generated and then Call the Method of the Service End Point Interface.
+All we need to have is Service End Point is Getting Generated and then call the Method of the Service End Point Interface.
 The Good thing about Service End Point Interface is we can have an SEI interface specific to what we are developing.
 If We are developing Java Application we can have Service End Point related to Java and It knows how to convert Java Object into SOAP Message.
 SEI can be generated out of WSDL.
@@ -127,35 +126,36 @@ Use The Command wsimport WSDL(File Name)
 
 
 
-******************************************************** 9.Service First and Contract Web Services : ********************************************************
+******************************************************** 9.Service First and Contract First Web Services : ***********************************************
 
 We can create SOAP web Services in RPC Style and Document Style and the difference is the way WSDL file is getting generated.
 By adding @WebServie and @SOAPBinding we are making the service as Web Service and this is a Simple Scenario.
 There will be scenarios where @WebService and @SOAPBinding will not be enough.
-When we write any service do we write interface first or implementation first ?
-For example we have an interface and its implementation class and also Client to call the Web Service.
+
+Do we write interface first or implementation first ?
 Most of the times we write an interface first and then write the implementation.
-The reason behind this is we can change the implementation and even if the business logic changes and the interface remains same.
+The reason behind this is we can change the implementation and even if the business logic changes interface remains same.
 Interface in Web Service Technology is WSDL.
-Client Code refers to the WSDL to find out what the Web Service is providing.i.e What are the input parameters,return type and method name.
+Client Code refers to the WSDL to find out what the Web Service is providing.i.e what are the input parameters,return type and method name.
 We need to lock the WSDL because it will be called by many clients and there will not be any impact.
 We can change the implementation based on requirement.
+
 When ever we are using @WebService to the implementation class,WSDL is getting generated fromm the implementation.
 This Scenario is Called Service First.
-Here we are going through the opposite way i.e writing the implementation first and auto Generating the Web Service.
 If I change the parameters of implementation Class then WSDL also impacted Here.
 Here the Problem is WSDL is not locked.
+
 Here the solution is write the WSDL first and generate the implementation from the WSDL.
 This scenarios is called contract first.
 
 
-********************************************************  10.Understanding WSDL :  ***************************************************************************
+********************************************************  10.Understanding WSDL :  ************************************************************************
 
  
  
 
 
-******************************************************** 21.SOAP Web Service using JAX-WS   ******************************************************************
+******************************************************** 21.SOAP Web Service using JAX-WS   ***************************************************************
 
 
  

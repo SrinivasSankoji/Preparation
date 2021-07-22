@@ -299,7 +299,7 @@ These 3 Components run on every Worker Node and responsible for maintaining the 
 1.kubelet :
 -----------
 kubelet is an agent or utility that runs on each Worker Node and is the Component that intercats with Master using API Server.
-kubelet gets the information of Pods specification and based on those specifications it makes sure that Containers are running accordingly on the Pods.
+kubelet gets the Pods specification from API Server and based on those specifications it makes sure that Containers are running accordingly on the Pods.
 In case if there is any issue with any Pod,kubelet tries to restart the Pod on the same Node or different Node.
 
 Note :
