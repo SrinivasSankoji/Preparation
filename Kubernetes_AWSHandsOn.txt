@@ -232,17 +232,12 @@ Succeded
 ************************************************************* 8.Pod Networking  *************************************************************
 
 lets consider how the Docker Networking works.
-Whenever we run the Docker daemon on any Node it internally creates the default docker0 network.
+Whenever Docker is installed,default Bridge network named docker0 is created.
 This default network gets an IP Address and all the newly created Containers are attached to the default network.
 
-Whenver we create a Container,Dokcer creates a virtual pair of Ethernet and attaches it to the default Docker Network i.e docker0.
-Similar is the case for all the newly created Containers.
-
-Whenever we create the Pod all the Containers within the Pod shares the same Namespace network.They can communicate with each other on the localhost.
-Kubernetes implements the shared network Namespace by running the Container named Pause.
-Pause Container responsibilty is to hold the same Network Namespace for all the remaining Containers.
-
+Whenever we create the Pod all the Containers within the Pod shares the same network Namespace and can communicate with each other using localhost.
 In Kubernetes one Pod can reach out to another Pod using IP Address.
+
 Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other either by using Router or API Gateway.
 Each Node has a corresponding IP Address.
 When we set up the Kubernetes Cluster,Networking PlugIns are not installed and it informs what kind of networking structure it expects.
@@ -251,7 +246,7 @@ If the Network PlugIns are not installed then there will be no next hop and ends
 There is no mechanism to tell how to send the packet from one Node to another Node.
 Here Network PlugIn comes into the picture.
 
-Function of Network PlugIn is to run the Overlay Network across all the Nodes.
+Functionality of Network PlugIn is to run the Overlay Network across all the Nodes.
 Network PlugIn covers all the Bridges which are running on the Node and assigns the IP Address to all the Nodes within the Bridge Network.
 Containers running inside the Pod will get the Sequential IP Address.
 

@@ -253,7 +253,7 @@ It will show the same namespace that the host has i.e Container Network namespac
 
 None Network :
 --------------
-When we start any Container by Default it starts with bridge Network.
+When we start any Container by default it starts with bridge Network.
 If we want to start the Container with no Network at all we use the NONE Network.
 
 	docker run --it --network none centos /bin/bash
@@ -304,7 +304,7 @@ Here we will be deploying two micro services into two different Containers and a
 
 After starting the two containers if we hit the url on the browser i.e http://localhost:8500/consumer we won't get any output.
 Here we have to make the Containers communicate with each other.
-We wil be using Docker networking to allow multiple Containers to communicate with each other.
+We will be using Docker networking to allow multiple Containers to communicate with each other.
 Here we need to create our own network and add the Containers to the network.
 
 	docker network create producer-consumer
