@@ -262,15 +262,14 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  ******************************************************************
 
-Replica Set is a Kubernetes Controller where it ensures the number of Pods are running as per the Configuration.
+Replica Set or Replication Controller ensures the number of Pods are running as per the Configuration.
 Replica Set gaurantees the availability of Pod at any given point of time.
-Earlier version of Kubernetes is called Replication Controller and now it is Replica Set.
 
 Note :
-We never run the pods behind the Replica Set directly 
-There is high level feature which is called Deployment which provides lots more feature than Replica Set.
+We never run the pods behind the Replica Set directly .
+There is a high level feature called Deployment which provides lots more feature than Replica Set.
 Deployment actually creates the Replica Set.
-we cannot generate the yaml file for Replica Set using kubectl command like we created the yaml file for pods.
+we cannot generate the yaml file for ReplicaSet using kubectl command like we created the yaml file for pods.
 
 Here we can create a deployment manifest file and run it as a Replica Set.
 
@@ -310,7 +309,7 @@ To view the Pods
 	kubectl get pods
 
 Note :
-If we define a pod named myreplica then that pod will be automatically acquired by RepliaSet
+If we define a pod named myreplica then that pod will be automatically acquired by ReplicaSet
 and it would be terminated because number of Replica's is already defined in ReplicaSet.
 
 
@@ -328,7 +327,7 @@ To run the Deployment we use the command
 	kubectl apply -f deploy.yaml
 	
 Note :
-When we craete the deployment,Replica Set will be created Automatically.
+When we craete the deployment,ReplicaSet will be created Automatically.
 
 	kubectl get rs or kubectl get Replica Set
 	
@@ -337,7 +336,7 @@ To scale the Deployment using imperative command
 	kubectl scale deployment deploy --replicas=3
 	
 Note:
-When we perform scaling through imperative command then ther will be no change in yaml file.
+When we perform scaling through imperative command then there will be no change in yaml file.
 
 To change the image in the deployment we use the command
 
@@ -348,20 +347,20 @@ To view the the updated image in the deployment we use the command
 	kubectl describe deployment deploy
 	
 Note :
-If we don't specify any strategy then it is Rolling Update.
-To view the rolling update i.e terminates the Pod and creates the New Pod
+If we don't specify any strategy then it is Rolling Update i.e terminates the Pod and creates the New Pod
+To view the rolling update we use the command
 
 	watch kubectl get pods
 	
-If we want to check the Rollout status of the deployment we use the command
+To check the Rollout status of the deployment we use the command
 
 	kubectl rollout status deployment deploy
 	
-To check the rollout history we use the command
+To check the rollout history of the deployment we use the command
 
 	kubectl rollout history deployment deploy
 	
-If we want to see what happen in revision 3 we use the command
+If we want to see what happened in revision 3 we use the command
 
 	kubectl rollout history deployment deploy --revision=3
 	
