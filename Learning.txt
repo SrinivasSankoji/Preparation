@@ -8,77 +8,10 @@ bhaumik@23  ICICI
 Nandini@27  SBI
 Nandini@27  ASM Mail
 
+Not asking credentials every time :
+git remote set-url origin git@github.com:SrinivasSankoji/JavaBasics.git
+
 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
-
-LinkedIn :
-srinivaschary.chary@gmail.com
-bhaumik@23
-
-ASM Mail :
-Srinivas.s@acldigital.com
-Nandini@27
-
-Provident Fund :
-100466302810
-Ch@ry,3681
-THTHA00433550000061779
-
-Dharani Portal :
-7718973681
-Bhaumik@23
-
-6505 1967 9976  Aadhar Number Atthamma
-
-Passbook Number :  T30160080604
-
-
-Act Wifi UserName :
-101423210595
-Wifi Password :
-siri1234
-
-GitHub Credentials :
-SrinivasSankoji
-nandini@27
-
-AWS Credentials Root User :
-SrinivasChary
-srinivaschary.mainframes@gmail.com
-Nandini@27
-
-AWS Credentials IAM User :
-LinuxSystem
-Nandini@27
-Key :  AKIAQL2FP5VBRCO4D3H7
-nHr6Jgjzd76r1aClRr4TzAGkKJBlpD8a9EeYrm2/
-Login URL :  arn:aws:iam::025378680131:user/LinuxSystem
-
-Get It :
---------
-022 79655555
-022 79674357
-
-Udemy AWS Cloud Solution Architect Associate :
-----------------------------------------------
-kthulasikumar@gmail.com
-Proceed@9
-
-Linux File Permission :
------------------------
-sudo chmod -R ugo+rw /mnt/my-address
-
-GoDaddy.com :
--------------
-UserName    :  bhaumik chary
-Customer No :  294032057
-password    :  bhaumik@23
-
-http://www.bhaumikinteriorworks.com/wp-admin
-
-bhaumikinteriorworks
-bhaumik@23
-
-https://videos.godaddy.com/
 
 022629255555 IO-N Internet
 9130395724 --  vijay hdfc bank
@@ -116,37 +49,9 @@ Videos
 Book
 Project	
 
-***************************************** Interview  Questions *****************************************
-Deadlock solution
-InstanceOf() use
-Hashtable convert to ConcurrenHashMap ?
-HashMap object use as Key, how ?
-Concurrency ?
-Hibernate immutable how?
-OutOfMemoryError resolve ?
-permgenspace ?
-How to Handle Handle Memory Leak ?
+***************************************** DevOps Training  ***********************************
 
-EC2 Types
-Why do we use Subnet
-How to Create an EC2 instance ways.
-
-JVM Internal
-Object creation ways
-Object Class Methods
-Serialization
-ArrayList Internal
-HashMap Internal
-Concurrency and Its Implementations
-Spring IOC Lifecycle
-Hibernate Methods
-Hibernate Caching
-Singleton ways and how to break Singleton
-Immutable Object
-
-
-
-
+AWS (EC2 Configuration)
 
 ***************************************** Free Lancer  ***************************************
 
@@ -1084,8 +989,6 @@ WebFlux :
 Rate Limiter
 Emitter
 
-
-
 ----------------------------------------- February-2020 (Web Flux,Server Sent Events,Web Socket,Reactive Programming,Angular,Design Patterns) -------------------
 
 Collectors.joining
@@ -1481,8 +1384,9 @@ Uninstall AWS CLI                               ()
 Create EC2 Instance from AWS CLI                ()
 Uninstall EC2 Instance from AWS CLI             ()
 
-Kubernetes AWS HandsOn							()
-
-
 
 -----------------------------------------   August  2021 -----------------------------------------------
+
+Jenkins 
+Spring IOC
+Hibernate

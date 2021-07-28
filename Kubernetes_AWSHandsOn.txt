@@ -430,10 +430,9 @@ Prerequisite is Master and Worker Node
 
 ************************************************************* 15.Kubernetes Namespace **************************************************************
 
-Namespace can be used for resource seggregation.
+Namespace can be used for resource seggregation i.e running the Pods and Services on one Single Cluster based on different Namespace.
 If we need Performance Cluseter and Development Cluster then it is not required to create two Cluster's by spending lot of Money.
-Smae Cluster can be used as Performance Cluster and Development Cluster by using Namespace.
-We can seggregate the resources i.e running the Pods and Services on one Single Cluster based on namespaces.
+Same Cluster can be used as Performance Cluster and Development Cluster by using Namespace.
 
 Namespace in Kubernetes is similar to Namespace in Linux.
 There will be Storage Namespace,Netwrok Namespace etc.Similarly we have Namespace for Pods in Kubernetes.

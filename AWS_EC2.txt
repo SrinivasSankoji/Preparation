@@ -46,7 +46,7 @@ Auto Scaling Groups
 2.Introduction
 3.Instance
 4.Why EC2
-5.Types of Computing Instances
+5.Types of EC2 Instances
 6.Burstable Performance Instances
 7.EBS-Optimized Instances
 8.Cluster Networking Instances
@@ -68,7 +68,7 @@ We may under estimate the requirement which leads to the crash of an Application
 
 2.Introduction :
 ----------------
-EC2 is a service from Amazon that provides a resizable computing services on the cloud.
+EC2 is a service from AWS that provides a resizable computing services on the cloud.
 Resizable because we can quickly scale up or scale down the number of server instances that we are using,if the computing requirement changes.
 
 EC2 is way of running the computer in the cloud.
@@ -83,7 +83,7 @@ Note :
 Since EC2 is more flexible we don't run everything on EC2.
 If we run the database on EC2 we need to manage ourself.
 AWS offers RDS which takes care of maintaining our own database.
-Here AWS run it under the hood of EC2.
+Here AWS runs it under the hood of EC2.
 
 3.Instance :
 ------------
@@ -102,34 +102,34 @@ We may also need to hire the team to maintain the stack of servers.
 Based on load we cannot scale up or scale down the servers with immideate effect.
 There are some other problems which makes the EC2 stronger.
 
-5.Types of Computing Instances :
+5.Types of EC2 Instances :
 --------------------------------
-Computing is a very broad term and the nature of task decides what kind of computing we need.
+Computing is a very broad term and the nature of Task decides what kind of computing we need.
 AWS EC2 offers 5 types of instances 
 
 General Instances
 Compute Instances
 Memory Instances
 Storage Instances
-GPU instances
+Accelerated Computing instances
 
 General Instances :
-For Applications that require a balance of perfromance and cost effective.
+For an Application that require a balance of perfromance and cost effective.
 Consider the case of Email Responding Systems where we need a prompt response as well as cost effective because it doesn't require much processing.
 
 Compute Instances :
-For Applications that requires a lot of processing from the CPU.
+For an Application that requires a lot of processing from the CPU.
 Example : Analysis of data from a stream of data like Twitter.
 
 Memory Instances :
-For Applications that are heavy in nature and requires a lot of RAM.
+For an Application that are heavy in nature and requires a lot of RAM.
 Consider the scenario where lot of Applications are running in the background i.e multitasking
 
 Storage Instances :
 For an Application that are huge in size or occupies a lot of space.
 
-GPU instances :
-For Applications that requires heavy graphics rendering.
+Accelerated Computing instances :
+For an Application that requires heavy graphics rendering.
 Consider the scenario of 3D modelling etc.
 
 Note :
@@ -139,7 +139,7 @@ General Instances  : t2,m3,m4
 Compute Instances  : c3,c4
 Memory Instances   : r3,x1
 Storage Instances  : i2,d2
-GPU instances      : g2
+Accelerated Computing instances      : g2
 
 6.Burstable Performance Instances :
 -----------------------------------
