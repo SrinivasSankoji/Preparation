@@ -1,3 +1,249 @@
+***************************************** Interview  Topics ********************************************
+Java Memory Model
+Java Memory Management
+JVM Architecture
+OOPS
+Exception Handling
+Lang Package
+Interface and Modifiers
+Collections
+Generics
+Serialization and Externalization
+MultiThreading
+Concurrency
+HashMap Internal 
+Conurrent HashMap Internal
+ArrayList Internal
+Singleton 
+Immutable
+Object Creation Ways
+Deadlock
+OurOfMemory Error
+Memory Leak
+PermGenSpace
+
+Spring IOC
+Spring AOP
+Spring Boot Annotations
+Spring Security
+
+MicroServices Part 1
+MicroServices Part 2
+MicroServices Part 3
+Micro Services Usecase
+Micro Services Architecture
+
+Hibernate
+JPA
+
+SQL Part 1
+SQL Part 2
+
+Maven
+GIT and GitHub
+Jenkins
+Docker
+Kubernetes
+AWS
+Ansible
+
+***************************************  Developer    *****************************************
+
+Block Chain Technology : JavaScript
+						 C ++ or Go Language
+						 Solidity(For Smart Contract Development)
+						 The Block Chain 
+						 Crypt o Economics
+						 Satoshi Nakamoto’s whitepaper of Bitcoin
+						 Go Language
+						 
+						 
+Java :                             Design Patterns :				Spring :
+******  						   *****************				********
+Jdbc   								Observable        				Spring Boot 1 & 2	                       
+Servlet								Iterate							Spring Security
+JSP									Circuit Breaker					Spring Integration
+Struts1								Bulk Head						Spring Batch
+Struts2								Adapter Design Pattern			Spring Cloud	
+JSF																	Spring Factories
+J son																Spring Web Flux
+Data Structure & Algorithms											Spring AOP
+Java JDK Tools : Java papers.com									Spring Data JPA
+Apache CXF
+Apigee
+Jersey
+WADL
+SOAP
+RxJava
+Vertex
+						
+ORM Framework :					  Database :						Front End Technologies :
+***************					  **********						************************
+Hibernate						  Oracle							Java Script
+Open JPA						  DB2								AJAX
+								  PL/SQL							JQuery
+																	BootStrap
+																	Angular Basics
+																	Forms
+																	Material
+																	React Hooks
+			
+Spring Boot :														Dev Ops:
+*************														********
+Profiles in Spring Boot												Git,SVN
+Live Reload in Spring Boot											GitHub & BitBucket
+Reactive and Non Reactive Web application							Jenkins						
+Spring Web Flux to Support Reactive Web application					Bash				
+Spring Boot Actuator Web API Documentation							Chef
+CompletableFuture with Spring Data JPA								Puppet
+Spring Boot – Introduction											Concourse																		
+Spring Boot – Starter parent										Hudson
+Spring Boot – Starter templates										Bamboo			
+Spring Boot – Multi-module project									TeamCity
+Spring Boot – Annotations											AWS
+Spring Boot – Auto configuration									Docker
+Spring Boot – Logging												Vagrant
+Spring Boot – DevTools												New Relic
+Spring Boot – WAR Packaging	
+Spring Boot – Hibernate
+Spring Boot – REST API
+Spring Boot – ResponseBodyEmitter
+Spring Boot – SseEmitter
+Spring Boot – POST with Headers										Streaming :
+Spring Boot – Error Handling										***********
+Spring Boot – HATEOAS												JMS
+Spring Boot – @Async      [08-AUG-2019]  (Done)   					Kafka
+Spring Boot – Async Controller										RabitMQ
+Spring Boot – Caching
+Spring Boot – Retry
+Spring Boot – JUnit
+Spring Boot – BasicAuth												No SQL :
+Spring Boot – MockMVC												********
+Spring Boot – Mockito												Elastic Search
+Spring Boot – H2 Database											Mongo DB
+Spring Boot – Ehcache 3.x											Cassandra
+Spring Boot – Performance Logs										Dynamo DB
+Spring Boot – Test Async Controller									Redis Server
+Spring Boot – TestRestTemplate										HBase
+Spring Boot – RestTemplate GET
+Spring Boot – RestTemplate POST
+Spring Boot – RestTemplate timeout
+Spring Boot – RestTemplate BasicAuth
+			
+Cloud :
+*******
+AWS
+Azure
+PCF
+GCE(Google Container Engine)
+Cloud Native Apps Using PCF
+Spring Cloud Data Flow
+Pivotal Cloud Foundry Developer
+Spring XD
+AWS Lambda
+
+Private Cloud Platform:
+***********************
+Open Shift
+Kubernetes
+Docker
+
+Logging
+*******
+LogBack
+Flogger : LimeGuru
+
+Reactive Streams
+PrtoBuff
+Netty Server
+
+------------------------- GIT Interview Quetsions -----------------------------------------------
+
+1. What is Git & GitHub?
+2. Differences between SVN and GitHub? Differences between CVCS & DVCS?
+3. Branching strategy?
+4. Command to create/delete/rename a tag?
+5. Command to create/delete/rename a branch?
+6. Once git push is done, how to configure a Jenkins job as to run automatically.
+8. Diff between reset, revert, rebasae.
+9. Diff between soft, mixed, hard in reset. Default reset is mixed.
+10. Create a new branch/tag from particular commit-id?
+11. Rename the tag?
+12. Rename the branch?
+13. How to edit commit messages?
+14. gitk command (to check commit log).
+15. Git merge & Resolve merge conflicts. Command is "git add .".
+16. Git unstaged & staged areas?
+17. Move a repository from one organization to another organization.
+18. How to create an orphan branch.
+19. How/why to fork?
+20. What is pull request?
+21. How to protect a branch?
+22. Commit hooks?
+23. How to switch from one branch to another branch?
+
+-------------------------    Elastic Search   ---------------------------------------------------
+
+Query DSL(Conditions)
+Query DSL in SQL Format
+Query DSL in String Format
+Spring Data with Elastic Search
+
+Request Body Search Queries :
+Query
+From/Size
+Sort
+Source Filtering
+Fields
+Script Fields
+Doc Value Fields
+Post Filter
+Highlighting
+Re scoring
+Search Type
+Scroll
+Preference
+Explain
+Version
+Index_Boot
+min_Score
+Named Queries
+Inner Hits
+Filed Collapsing
+Search After
+
+--------------------   Java 8 Features   ----------------------------------
+
+Default and Static Method in Interfaces
+Functional Interfaces
+For Each Method in Iterable Interface
+Java Stream API 
+Java Time API
+Collection API Improvements
+Concurrency API Improvements
+Java IO Improvements
+Optional Class
+Lambda Expression
+Stream Filter
+Collectors Class 
+StringJoiner
+Arrays Parallel Sort
+Type Annotations
+Repeating Annotations
+Completable Future
+PipeLines and Streams
+Nashron Java script Engine
+Concurrent Accumulators
+PermGen Space Removed
+TLS SNI
+ThreadPoolExecutor in Java
+Load Balancer in Java
+Java Anonymous Class Example (Java 8)
+Enum in Switch 
+String Joiner
+Method Reference
+Util Functions
+
 ***************************************** Interview  Questions *****************************************
 Deadlock solution
 InstanceOf() use
@@ -10,6 +256,7 @@ permgenspace ?
 How to Handle Handle Memory Leak ?
 
 EC2 Types
+EC2 Configuration
 Why do we use Subnet
 How to Create an EC2 instance ways.
 
@@ -32,6 +279,21 @@ Spring IOC
 Java Memory Management
 Load Facor in HashMap
 ConcurrentHashMap Internal
-Difference between controller and restcontroller annotation
+Difference between Controller and RestController annotation
 Spring Boot Annotations
 Thread Creation
+Difference betwwen Crud Repository and Jpa Repository
+Remove all the records except on record in SQL
+GET,PUT,POST,DELETE,PATCH
+Merge and Update in Hibernate
+save() and saveUpdate()
+persist()
+load() and get()
+Transaction Propogation
+@EnableAutoConfiguration @ComponentScan
+Dependency Injection
+Constructor and Setter Injection
+OneToMany Mapping
+Immutable Object -- Getter Method Why
+JAX-RS Security for Restful API's.
+

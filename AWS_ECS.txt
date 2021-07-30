@@ -56,12 +56,11 @@ Based on the traffic instance has to be scaled up or scaled down.
 If we have created multiple instances and what If all the instances shut down at the same time.
 This is the scenario where ECS comes into the picture.
 ECS is Container Management Service that makes it easy to run,manage and stop Docker Containers on a Cluster.
+ECS runs the containers on a cluster of EC2 instances pre installed with Docker and scales,monitors and manage the instances.
 ECS automatically starts the instances and hosts the Container into that instance.
 ECS monitors the EC2 instances and scales up or scale down the number of instances.
-ECS can also scale up the number of copies of Containers based on traffic load,CPU and memory needs.
+ECS can also scale up or scale down the Containers into an EC2 instance based on traffic load,CPU and memory needs.
 It is compared to Kubernetes,Docker Swarm and Azure Container Service.
-
-ECS runs the containers on a cluster of EC2 instances pre installed with Docker and scale,monitor and manage the instances.
 
 Consider the scenario of building an Application that runs on two Docker Conatiners.
 One Container to manage the Application and the other to mange the Metrics.
@@ -104,7 +103,7 @@ Services are typically used for long running Applications.
 6.Cluster :
 -----------
 Cluster is a logical Group of EC2 instances where we can place the Containers into.
-ECS takes care of scheduling,maintaining and managing the instances.
+ECS takes care of scheduling,maintaining and monitoring the EC2 instances.
 ECS also takes care of optimal placement of each Task based on CPU and memory needs.
 
 When an instance launches,ECS-Agent registers an EC2 instance to the ECS Cluster.

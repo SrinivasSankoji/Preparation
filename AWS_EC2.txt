@@ -123,7 +123,7 @@ Example : Analysis of data from a stream of data like Twitter.
 
 Memory Instances :
 For an Application that are heavy in nature and requires a lot of RAM.
-Consider the scenario where lot of Applications are running in the background i.e multitasking
+Consider the scenario where lot of Applications are running in the background i.e multitasking.
 
 Storage Instances :
 For an Application that are huge in size or occupies a lot of space.
@@ -133,7 +133,7 @@ For an Application that requires heavy graphics rendering.
 Consider the scenario of 3D modelling etc.
 
 Note :
-Every instance type has a set of instances which are optimized for different work loads.
+Every instance has a set of instance type which are optimized for different work loads.
 
 General Instances  : t2,m3,m4
 Compute Instances  : c3,c4
@@ -157,7 +157,7 @@ If we are out of CPU credits,Instance will work on CPU baseline performance.
 Based on CPU credit balance we can decide whether t2 instance should be scaled up or scaled down.
 
 Example :
-Customer Analysis Data i.e Customer's Website Activity should be monitered real time.
+Customer's Website Activity should be monitered real time.
 There will be a time where the traffic to the website is minimum.
 In this Case high processor is not required and is expensive for the company.
 We may use t2 instance beacuse it will give burstable CPU performance.
@@ -166,7 +166,8 @@ Whenever traffic to the website is high CPU performance will be increased automa
 7.EBS-Optimized Instances : 
 ---------------------------
 C4,M4 and D2 instances are EBS optimized instances by default.
-EBS means Elastic Block Storage which is a storage option provided by AWS in which the IOPS rate is high.
+EBS(Elastic Block Storage) is a persistent block level storage volume that can be used along with EC2 in which IOPS rate is high.
+Here Each Block acts as a Harddrive.
 When an EBS Volume is attached to an instance,Single Digit milli seconds latency can be acheived.
 
 Note :
@@ -207,15 +208,15 @@ Some processes in every organization are highly confidential.
 11.How to run systems in EC2 :
 
 ------------------------------
-Login to AWS Account and clck on AWS EC2.
-Under Create instance,Click on Launch Instance.
+Login to AWS Account and click on AWS EC2.
+Under Create instance Click on Launch Instance.
 Whenever we want to Launch an Instance we have to specify which AMI we want to use.It can be Ubuntu,Windows etc.
 
 Select the AMI.AMI's are Templates of OS and they provide the information needed to Launch an Instance.
 1.AMI's could be preconfigured or we can configure on its own.
 For preconfigured AMI's we have to select it from market place.
 For setting up our own,go to quick start and select one.
-2.While configuring AMI we will reach to a point where we have to select an EBS Storage Option.
+2.While configuring an AMI,we will reach to a point where we have to select an EBS Storage Option.
 
 EBS i.e Elastic Block Storage is a persistent block level Storage Volume that can be used along with EC2.
 Here each block acts as a Hard drive.
@@ -251,7 +252,7 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service provided in EC2 using which we can automatically launch or terminate instances 
+Auto Scaling is a service provided in EC2 using which we can automatically scale up or scale down the instances 
 based on user-defined profiles,schedulers and health checks.
 
 14.Elastic Load Balancing :

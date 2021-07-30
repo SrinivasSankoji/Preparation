@@ -13,6 +13,10 @@ git remote set-url origin git@github.com:SrinivasSankoji/JavaBasics.git
 
 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
 
+Linux File Permission :
+-----------------------
+sudo chmod -R ugo+rw /mnt/my-address
+
 022629255555 IO-N Internet
 9130395724 --  vijay hdfc bank
 
@@ -49,10 +53,6 @@ Videos
 Book
 Project	
 
-***************************************** DevOps Training  ***********************************
-
-AWS (EC2 Configuration)
-
 ***************************************** Free Lancer  ***************************************
 
 Java BPM 
@@ -78,182 +78,8 @@ Apache Tomcat
 
 AWS :
 -----
-Load Balancer,CIDR Notations,IP's,Firewall,ACL,vpc etc.
+Load Balancer,CIDR Notations,IP's,Firewall,ACL,VPC etc.
  
-
-***************************************  Developer    *****************************************
-
-Block Chain Technology : JavaScript
-						 C ++ or Go Language
-						 Solidity(For Smart Contract Development)
-						 The Block Chain 
-						 Crypt o Economics
-						 Satoshi Nakamoto’s whitepaper of Bitcoin
-						 Go Language
-						 
-						 
-Java :                             Design Patterns :				Spring :
-******  						   *****************				********
-Jdbc   								Observable        				Spring Boot 1 & 2	                       
-Servlet								Iterate							Spring Security
-JSP									Circuit Breaker					Spring Integration
-Struts1								Bulk Head						Spring Batch
-Struts2								Adapter Design Pattern			Spring Cloud	
-JSF																	Spring Factories
-J son																Spring Web Flux
-Data Structure & Algorithms											Spring AOP
-Java JDK Tools : Java papers.com									Spring Data JPA
-Apache CXF
-Apigee
-Jersey
-WADL
-SOAP
-RxJava
-Vertex
-						
-ORM Framework :					  Database :						Front End Technologies :
-***************					  **********						************************
-Hibernate						  Oracle							Java Script
-Open JPA						  DB2								AJAX
-								  PL/SQL							JQuery
-																	BootStrap
-																	Angular Basics
-																	Forms
-																	Material
-																	React Hooks
-			
-Spring Boot :														Dev Ops:
-*************														********
-Profiles in Spring Boot												Git,SVN
-Live Reload in Spring Boot											GitHub & BitBucket
-Reactive and Non Reactive Web application							Jenkins						
-Spring Web Flux to Support Reactive Web application					Bash				
-Spring Boot Actuator Web API Documentation							Chef
-CompletableFuture with Spring Data JPA								Puppet
-Spring Boot – Introduction											Concourse																		
-Spring Boot – Starter parent										Hudson
-Spring Boot – Starter templates										Bamboo			
-Spring Boot – Multi-module project									TeamCity
-Spring Boot – Annotations											AWS
-Spring Boot – Auto configuration									Docker
-Spring Boot – Logging												Vagrant
-Spring Boot – DevTools												New Relic
-Spring Boot – WAR Packaging	
-Spring Boot – Hibernate
-Spring Boot – REST API
-Spring Boot – ResponseBodyEmitter
-Spring Boot – SseEmitter
-Spring Boot – POST with Headers										Streaming :
-Spring Boot – Error Handling										***********
-Spring Boot – HATEOAS												JMS
-Spring Boot – @Async      [08-AUG-2019]  (Done)   					Kafka
-Spring Boot – Async Controller										RabitMQ
-Spring Boot – Caching
-Spring Boot – Retry
-Spring Boot – JUnit
-Spring Boot – BasicAuth												No SQL :
-Spring Boot – MockMVC												********
-Spring Boot – Mockito												Elastic Search
-Spring Boot – H2 Database											Mongo DB
-Spring Boot – Ehcache 3.x											Cassandra
-Spring Boot – Performance Logs										Dynamo DB
-Spring Boot – Test Async Controller									Redis Server
-Spring Boot – TestRestTemplate										HBase
-Spring Boot – RestTemplate GET
-Spring Boot – RestTemplate POST
-Spring Boot – RestTemplate timeout
-Spring Boot – RestTemplate BasicAuth
-			
-Cloud :
-*******
-AWS
-Azure
-PCF
-GCE(Google Container Engine)
-Cloud Native Apps Using PCF
-Spring Cloud Data Flow
-Pivotal Cloud Foundry Developer
-Spring XD
-AWS Lambda
-
-Private Cloud Platform:
-***********************
-Open Shift
-Kubernetes
-Docker
-
-Logging
-*******
-LogBack
-Flogger : LimeGuru
-
-Reactive Streams
-PrtoBuff
-Netty Server
-
-Emerging Technologies :
-***********************
-Deeplearning4j
-Splunk
-JHipster
-OpenAPI Specification 3.0
-
--------------------------    Elastic Search   ---------------------------------------------------
-
-Query DSL(Conditions)
-Query DSL in SQL Format
-Query DSL in String Format
-Spring Data with Elastic Search
-
-Request Body Search Queries :
-Query
-From/Size
-Sort
-Source Filtering
-Fields
-Script Fields
-Doc Value Fields
-Post Filter
-Highlighting
-Re scoring
-Search Type
-Scroll
-Preference
-Explain
-Version
-Index_Boot
-min_Score
-Named Queries
-Inner Hits
-Filed Collapsing
-Search After
-
---------------------   Java 8 Features   ----------------------------------
-
-Default and Static Method in Interfaces
-Functional Interfaces
-For Each Method in Iterable Interface
-Java Stream API 
-Java Time API
-Collection API Improvements
-Concurrency API Improvements
-Java IO Improvements
-Optional Class
-Lambda Expression
-Stream Filter
-Collectors Class 
-StringJoiner
-Arrays Parallel Sort
-Type Annotations
-Repeating Annotations
-Completable Future
-PipeLines and Streams
-Nashron Java script Engine
-Concurrent Accumulators
-PermGen Space Removed
-TLS SNI
-
-
 --------------------------------------------------------  December 2018   ------------------------------------------------------
 
 Architecture
@@ -277,7 +103,7 @@ Spring Boot + Spring Data + Elastic Search
 SearchQueryBuilder 
 Redis Server Scenarios(Hash,List.Set,String)
 
------------------------------------------      JANUARY 2019       ----------------------------------------------
+-----------------------------------------  JANUARY 2019  -------------------------------------------------------------
 
 Scala UDF's 
 Scala Basics and Spark SQL
@@ -291,7 +117,7 @@ Ab Inito
 https://www.youtube.com/channel/UCB12jjYsYv-eipCvBDcMbXw/search?query=kafka+
 Spark Submit
 
------------------------------------------ APRIL 2019 ----------------------------------------------
+----------------------------------------- APRIL 2019  -----------------------------------------------------------------
 
 SPARK :
 *******
@@ -338,16 +164,6 @@ Relative Navigation [13-MAY-2019]   (Done)
 Child Routes [14-MAY-2019]   (Done)
 Angular 6 Features 
 Updating to New Angular Version
-
-JAVA 8:
-*******
-
-Java 8 Collectors
-Completable Future in Java
-ThreadPoolExecutor in Java
-Load Balancer in Java
-Java Anonymous Class Example (Java 8)
-Enum in Switch 
 
 Java 8 String Joiner :
 ----------------------
