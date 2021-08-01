@@ -1,30 +1,60 @@
-1.DBUtil File Creation using Singleton Pattern                (Book One)	[01-AUG-2021]  (Done)  
-2.Hibernate Introduction									  (Book One)	[01-AUG-2021]  ()
+1.DBUtil File Creation using Singleton Pattern                (Book One)	[01-AUG-2021]  ()  
+2.Hibernate Introduction									 				  (Book One)	[01-AUG-2021]  (Done)  
 3.Java Persistence Traditional Approach						  (Book One)	[01-AUG-2021]  ()  
-4.Java Persistence ORM Approach								  (Book One)	[01-AUG-2021]  ()  
-5.Architecture of ORM										  (Book One)	[01-AUG-2021]  ()  
-6.Architecture of Hibernate Application						  (Book One)	[01-AUG-2021]  ()  
-7.Persistence Class											  (Book One)	[01-AUG-2021]  ()  
-8.Features of Hibernate										  (Book One)	[01-AUG-2021]  ()  
-9.SessionFactory Interface						 			  (Book One)	[01-AUG-2021]  ()  
-10.Program One												  (Book One)	[01-AUG-2021]  ()  
-11.Configuration File(hbm.xml file)							  (Book One)	[01-AUG-2021]  ()  
-12.get()													  (Book One)	[01-AUG-2021]  ()  
-13.Configuration Object										  (Book One)	[01-AUG-2021]  ()  
-14.Dialect Class											  (Book One)	[01-AUG-2021]  ()  
-15.SessionFactory											  (Book One)	[01-AUG-2021]  ()  
-16.Session                                                    (Book One)	[01-AUG-2021]  ()  
-17.Transaction												  (Book One)	[01-AUG-2021]  ()  
-18.HQL(Hibernate Query Language)							  (Book One)	[01-AUG-2021]  ()  
-19.Parameter Binding rin HQL								  (Book One)	[01-AUG-2021]  ()  
-20.Connection Pooling in Hibernate							  (Book One)	[01-AUG-2021]  ()  
-21.Generators in Hibernate									  (Book One)	[01-AUG-2021]  ()  
-22.Named Parameters in HQL									  (Book One)	[01-AUG-2021]  ()  
-23.Nameless or Anonymous Queries							  (Book One)	[01-AUG-2021]  ()  
-24.Named Queries											  (Book One)	[01-AUG-2021]  ()  
-25.Reverse Engineering										  (Book One)	[01-AUG-2021]  ()  
-26.hbm2ddl.auto												  (Book One)	[01-AUG-2021]  ()  
+4.Java Persistence ORM Approach								  (Book One)	[01-AUG-2021]  ()    
+5.Architecture of ORM										                  (Book One)	[01-AUG-2021]  ()  
+6.Architecture of Hibernate Application			                  (Book One)	[01-AUG-2021]  ()  
+7.Persistence Class											                  (Book One)	[01-AUG-2021]  ()  
+8.Features of Hibernate									                  (Book One)	[01-AUG-2021]  ()  
+9.SessionFactory Interface						 		                  (Book One)	[01-AUG-2021]  ()  
+10.Program One												                  (Book One)	[01-AUG-2021]  ()  
+11.Configuration File(hbm.xml file)					                  (Book One)	[01-AUG-2021]  ()  
+12.get()													                              (Book One)	[01-AUG-2021]  ()  
+13.Configuration Object									                  (Book One)	[01-AUG-2021]  ()  
+14.Dialect Class											                      (Book One)	[01-AUG-2021]  ()  
+15.SessionFactory											                  (Book One)	[01-AUG-2021]  ()  
+16.Session                                                                          (Book One)	[01-AUG-2021]  ()  
+17.Transaction												                      (Book One)	[01-AUG-2021]  ()  
+18.HQL(Hibernate Query Language)				                  (Book One)	[01-AUG-2021]  ()  
+19.Parameter Binding rin HQL						                  (Book One)	[01-AUG-2021]  ()  
+20.Connection Pooling in Hibernate				                  (Book One)	[01-AUG-2021]  ()  
+21.Generators in Hibernate								                  (Book One)	[01-AUG-2021]  ()  
+22.Named Parameters in HQL						                  (Book One)	[01-AUG-2021]  ()  
+23.Nameless or Anonymous Queries			                  (Book One)	[01-AUG-2021]  ()  
+24.Named Queries											                  (Book One)	[01-AUG-2021]  ()  
+25.Reverse Engineering									                  (Book One)	[01-AUG-2021]  ()  
+26.hbm2ddl.auto												                  (Book One)	[01-AUG-2021]  ()  
 
 
-***************************************************** 1.DBUntil File Creation using Singleton Pattern  *****************************************************
+***************************************************** 1.DBUtil File Creation using Singleton Pattern  *****************************************************
+
+
+
+*****************************************************  2.Hibernate Introduction  ***************************************************** *************************
+
+JDBC is a specification that can be used to access the data from the database or to perform CRUD operations at the database.
+All Database operations are performed at one layer ie Data Access Layer.
+
+Hibernate is not Data Access Technology unlike JDBC and not a specification like JDBC.
+Hibernate is an open source Java Application Framework that can be used to perform Data Accessing.
+Hibernate is not a specification and is a Software product that internally uses JDBC.
+Source code of Hibernate is publicly available.
+In JDBC we copy the jar file and place it in the classpath. 
+Any Java Application that uses Hibernate to access data from Database or to perform CRUD operations at Database is nothing but Hibernate Application.
+
+*****************************************************  3.Java Persistence Traditional Approach   **********************************************************
+
+In Java Data is stored in Objects and Object resides in Heap Area.
+There is no permanance for the Objects in Heap Area.
+Which java program is creating object eventhough java program is terminated but object state should be permanent.
+process of storing the object state into file is nothing but Persistence.
+Here the problem is retreival,modification and security.
+We use file system for Non Business Applications.
+
+Process of storing Object state into relational database is nothing but Java Persistence.
+In Java Enterprise Application Business Data is stored in two ways.
+
+Relational (Permanent)
+Object Oriented (processing,transferring and showing)
+Relational representation of Enterprise data provides security,easy retreival and performance.
 
