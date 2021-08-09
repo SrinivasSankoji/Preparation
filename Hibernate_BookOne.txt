@@ -222,16 +222,20 @@ There are 3 Lifecycle states of Persistent Object.
 -------------
 Persistent Object is said to be New State or Transient State If it is not associated with Session nor having mathcin record in the Database.
 In New State or Persistent State there is no link between Session Object and Persistent Object.
+When there is no record in the database then thers is no chance of updating the record.
+In the Transient state we never call the update().
 
 2.Managed State :
 -----------------
 Persistent Object is said to be in Managed State or Persistent State If it is in sync with Database and has matching record in the Database.
 If there are any changes to the Persistent Object,then Hibernate will automatically update the corresponding record in the Database.
+Whatever modifications we do to the Persistent Object that will automatically reflect in the Database and no need to call update().
 
 3.Detached State :
 ------------------
-Persistent Object is said to be in detached State If is not asociated with Session and has a matching record in the Database.
+Persistent Object is said to be in detached State If it is not asociated with Session and has a matching record in the Database.
 Here save() cannot be called because record is there in Database.
+If we want to do any modifications to the Database then we need to call the update().
 
 Dirty Checking :
 ----------------
@@ -303,6 +307,18 @@ For this purpose Transaction Object is created and explicitly committed.
 
 Configuration is a Class and is responsible to load the metadata.
 SessionFactory,Session and Transaction is an Interface and implementation is a part of Hibernate Engine.
+
+Transaction txn=session.beginTransaction();
+beginTransaction() returns different Transaction Object.
+For each and every request new Transaction Object is created.
+
+Transaction txn=session.getTransaction();
+getTransaction() returns the same Transaction Object for every request.
+we need to call the begin() on the getTransaction() to start the Transaction.
+
+Note :
+If an object is modified several times within the same transaction,
+Hibernate will generate only one SQL Update statement at the end of the Transaction containing all the modifications. 
 
 ***************************************************** 17.Connection Pooling in Hibernate *****************************************************
 
