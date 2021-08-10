@@ -1,17 +1,17 @@
 1.JDBC Disadvantages and Advantages									(Book Two)	[03-AUG-2021]  (Done)
 2.Session Interface Methods                                         (Book Two)	[09-AUG-2021]  (Done)
-3.SessionUtil File Creation using Singleton Pattern                 (Book Two)	[03-AUG-2021]  ()
-4.First Level Cache                                                 (Book Two)	[03-AUG-2021]  ()
-5.Second Level Cache                                                (Book Two)	[03-AUG-2021]  ()
-6.Cascade                                                           (Book Two)	[03-AUG-2021]  ()
-7.Fetching Strategies                                               (Book Two)	[03-AUG-2021]  ()
+3.SessionUtil File Creation using Singleton Pattern                 (Book Two)	[09-AUG-2021]  (Done)
+4.First Level Cache                                                 (Book Two)	[09-AUG-2021]  (Done)
+5.Second Level Cache                                                (Book Two)	[09-AUG-2021]  (Done)
+6.Cascade                                                           (Book Two)	[09-AUG-2021]  ()
+7.Fetching Strategies                                               (Book Two)	[09-AUG-2021]  ()
 8.Table Per Class                                                   (Book Two)	[03-AUG-2021]  ()
 9.Table Per Concrete Class                                          (Book Two)	[03-AUG-2021]  ()
 10.Table Per SubClass                                               (Book Two)	[03-AUG-2021]  ()
 11.Joins in Hibernate                                               (Book Two)	[03-AUG-2021]  ()
 12.Derived Properties in Hibernate                                  (Book Two)	[03-AUG-2021]  ()
 13.Performance Tuning in Hibernate                                  (Book Two)	[03-AUG-2021]  ()
-14.Hibernate Mutable                                                 (Book Two)	[03-AUG-2021]  ()
+14.Hibernate Mutable                                                (Book Two)	[03-AUG-2021]  ()
 15.Relationship in Hibernate                                        (Book Two)	[03-AUG-2021]  ()
 
 ***************************************************** 1.JDBC Disadvantages and Advantages	*****************************************************
@@ -225,10 +225,81 @@ Serializable id=session.getIdentifier(account);
 
 ***************************************************** 3.SessionUtil File Creation using Singleton Pattern  *************************************
 
-
+public Class SessionUtil
+{
+	private static SessionFactory sessionFactory;
+	static{
+	try{
+	sessionFactory=new org.hibernate.cfg.configuration().configure().buildSessionFactory();
+	}
+	catch(Excception e)
+	{
+	}
+	public static Session getSession()
+	{
+	return sessionFactory.openSession();
+	}
+}
  
+***************************************************** 4.First Level Cache ********************************************************************
 
+While working with web Application we will face so many problems due to Database,particularly when the Database traffic is very high.
+Hibernate is well used because of its performance only.
+Some techniques are necessary to maintain its performance and one of them is Caching.
+Hibernate Caching is the best technique to solve the problem.
+The Cache actually stores the data already loaded from the Database.
+So that the traffic between the Application and Database will be reduced when the Appliction wants to access the data again.
+Most of the times Application will work with the data in the Cache only and whenever other data is needed,Database will be accessed.
+
+Hibernate uses two different Cache for Objects
+
+First Level Cache
+Second Level Cache
+
+First Level Cache always associated with Session Object.
+Hibernate uses this Cache by default.
+Here it process one Transaction after another Transaction ie won't process one Transaction many times.
+Reduces the no of SQL queries needs to be generated within the given transaction.
+Instead of updating every modification done in one Transaction,
+It updates the modification only at the end of the Transaction.
+
+***************************************************** 5.Second Level Cache *******************************************************************
+
+Second Level Cache always associated with SessionFactory Object.
+While running the Transactions,In between it loads the Object at the SessionFactory Level so that 
+Objects will be available to the entire Application and does not bound to a Single value.
+Since the objects are already loaded in the Cache,whenever an Object has to be returned 
+at that time no need to go for database transaction and gets from the Cache.
+
+***************************************************** 6.Cascade  ****************************************************************************
  
+According to Database rule a Table should not contain more than 250 Columns.
+But in industries so many tables are there which Contains more than 250 Columns.
+In this scenario we have to split the Table to satisfy the Database rules.
+
+Consider the scenario of ACCOUNT Table and ACCOUNT_PLUS Table.
+Whenever we are going to insert the Data in the ACCOUNT Table,first Child Table columns should be inserted by generating a unique number.
+The same unique Number should navigate to the Parent to fill the Columns of the Parent Table for that Account.
+
+Cascade means delegating the Operation to the Child.
+Suppose If we are deleting an Account from Account Table,the same operation should also be affected to its Child nothing but ACCOUNT_PLUS Table.
+
+If we are getting the details from ACCOUNT Table then its Child Table Columns should also be loaded into the Session.
+This can be decided by using fetch Attribute.
+If fetch=lazy means only identifier value of Child table ie ACCOUNT_PLUS is loaded into Session.
+Whenver we are trying to access the non identifier values of ACCOUNT_PLUS,
+then at that time Child Table values are loaded into the Session.
+
+cascade=delete :
+
+
+cascade=delete-orphan :
+
+
+inverse=true :
+
+
+
 
 
 
