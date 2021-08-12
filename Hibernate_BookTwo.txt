@@ -3,15 +3,15 @@
 3.SessionUtil File Creation using Singleton Pattern                 (Book Two)	[09-AUG-2021]  (Done)
 4.First Level Cache                                                 (Book Two)	[09-AUG-2021]  (Done)
 5.Second Level Cache                                                (Book Two)	[09-AUG-2021]  (Done)
-6.Cascade                                                           (Book Two)	[09-AUG-2021]  ()
-7.Fetching Strategies                                               (Book Two)	[09-AUG-2021]  ()
+6.Cascade                                                           (Book Two)	[12-AUG-2021]  (Done)
+7.Fetching Strategies                                               (Book Two)	[12-AUG-2021]  (Done)
 8.Table Per Class                                                   (Book Two)	[03-AUG-2021]  ()
 9.Table Per Concrete Class                                          (Book Two)	[03-AUG-2021]  ()
 10.Table Per SubClass                                               (Book Two)	[03-AUG-2021]  ()
-11.Joins in Hibernate                                               (Book Two)	[03-AUG-2021]  ()
-12.Derived Properties in Hibernate                                  (Book Two)	[03-AUG-2021]  ()
-13.Performance Tuning in Hibernate                                  (Book Two)	[03-AUG-2021]  ()
-14.Hibernate Mutable                                                (Book Two)	[03-AUG-2021]  ()
+11.Joins in Hibernate                                               (Book Two)	[12-AUG-2021]  (Done)
+12.Derived Properties in Hibernate                                  (Book Two)	[12-AUG-2021]  (Done)
+13.Performance Tuning in Hibernate                                  (Book Two)	[12-AUG-2021]  (Done)
+14.Hibernate Mutable                                                (Book Two)	[12-AUG-2021]  (Done)
 15.Relationship in Hibernate                                        (Book Two)	[03-AUG-2021]  ()
 
 ***************************************************** 1.JDBC Disadvantages and Advantages	*****************************************************
@@ -281,34 +281,126 @@ Consider the scenario of ACCOUNT Table and ACCOUNT_PLUS Table.
 Whenever we are going to insert the Data in the ACCOUNT Table,first Child Table columns should be inserted by generating a unique number.
 The same unique Number should navigate to the Parent to fill the Columns of the Parent Table for that Account.
 
-Cascade means delegating the Operation to the Child.
+Cascade attribute is mandatory whenever we are applying reltionship between Objects.
+Cascade attribute transfers the operation done on one Object into its related Child class Objects ie delegating the operation to the Child Class.
 Suppose If we are deleting an Account from Account Table,the same operation should also be affected to its Child nothing but ACCOUNT_PLUS Table.
 
-If we are getting the details from ACCOUNT Table then its Child Table Columns should also be loaded into the Session.
-This can be decided by using fetch Attribute.
+If we write cascade=ALL ie Changes at Parent Class Object will be effected to the Child Class Object.
+All the operations like insert,delete and update at Parent class object will be effected to the Child Class Object.
+If we perform insert operation on Parent class object,then Child class object will also be inserted into the Database.
+
+Default value of Cascade is none ie No operation will be transferred to the Child class.
+Cascade has the values of
+
+none
+save
+update
+save-update
+delete
+all
+all-delete-orphan
+delete-orphan
+
+all-delete-orphan :
+-------------------
+In Hibernate Relationship,If we delete the Parent Object from the Database then the Child Object related to the Parent Object
+will also be loaded into Collection.
+If we delete the Child Object form the Collection then the Relationship between Parent Object and Child Object will be removed.
+But the reocrd in the Database remains as it is.
+If we load the same Parent Object again then deleted Child Object will not be loaded and available in the Database.
+All-Delete-Orphan means breaking the reltionship between Objects and also deleting the Objects from the Database.
+In an Application If the Child record is removed from the Collection and If we want to delete the child record from the Database
+we need to use the cascade attribute all-delete-orphan.
+
+Orphan Record :
+---------------
+Orphan record means it is a record in the Child Table but it does not have any association with its Parent in the Child Application. 
+
+***************************************************** 7.Fetching Strategies  *****************************************************
+
+Hibernate uses fetching strategies to retreive its associated Objects If the Application needs to navigate within the Association.
+Fetching Sretegies can be declared in the O/R mapping Data and can be overridden by a particular HQL query or Criteria Query.
+
 If fetch=lazy means only identifier value of Child table ie ACCOUNT_PLUS is loaded into Session.
 Whenver we are trying to access the non identifier values of ACCOUNT_PLUS,
 then at that time Child Table values are loaded into the Session.
+If we are getting the details from ACCOUNT Table then its Child Table Columns should also be loaded into the Session.
+This can be decided by using fetch Attribute.
 
-cascade=delete :
+Join Fetching :
+---------------
+Hibernate retreives the associated instance or Collection in the same select Query using an Outer Join.
 
+Select Fetching :
+-----------------
+Second select is used to retreive the associated instance or Collection unless we explicitly disable lazy fetching ie lazy=false.
+Second select will only be executed when we access the association.
 
-cascade=delete-orphan :
-
-
-inverse=true :
-
-
-
-
-
-
-
-
+Subselect Fetching :
+--------------------
 
 
+Batch Fetching :
+----------------
+Batch Fetching is an optimization strategy for Select Fetching.
+Hibernate retreives a batch of instances or Collection of instances in a SIngle select by specifying a list of primary keys or foreign keys.
+Batch size is not how many records inside Collection are loaded but how many Collections it should be loaded.
+
+Lazy fetching vs Eager Fetching :
+---------------------------------
+Select Fetching is the Lazy Fetching.
+Purpose of Lazy Fetching is memory Optimization ie save from Heap Error.
+If we are loading too many Objects into Session we should go for Lazy Fetching.
+
+Join Fetching is the Eager Fetcing.
+Purpose of Join Fetching is optiization in terms of time.
+Here Associations are fetched right at the time of Fetching Parent Object.
+In this we don't make Database Call again and again.
 
 
 
+inverse=true
 
- 
+***************************************************** 11.Joins in Hibernate   ***************************************************************
+
+We use joins to select the data from multiple Tables with the SIngle Query when there exists a relationship.
+Hibernate supports 4 types of Relationships.
+
+Left Join
+Right Join
+Full Join
+Inner Join
+
+With Left Join Objects from both sides are selected ie
+Matched records from Left Side Table are selected and unmatched Records from Right Side are selected.
+
+**************************************************** 12.Derived Properties in Hibernate *****************************************************
+
+Hibernate provides us the ability to include properties that do not map to any column in the Database.
+These are the fields that are calculated based on Formua applied on other Columns.
+
+*****************************************************13.Performance Tuning in Hibernate *****************************************************
+
+Dynamic insert attribute tells to Hibernate whether to include null properties in the SQL insert statement or not.
+Default value of Dynamic insert is false ie include null properties in the Hibernate SQL insert statement. 
+When dynamic-insert=true,It won't generate any unnecessary Columns and generates only necessary Coulmns for the insertion.
+
+dynamic-update=true ie it won't include the unmodified properties in the Hibernate SQL Statement.
+SQL Update statement Contains only modified fields.
+Default value of dynamic-update is false ie it includes unmodified properties/fields.
+
+***************************************************** 14.Hibernate Mutable  *****************************************************************              
+
+In Hibernate mutable is set to true in Class and its related Collections.
+It means the Class or Collection are allowed to add,update and delete.
+On the Other hand If the mutable is changed to "false" it has different meaning in Class and its related Collection.
+
+If mutable is set to false or @Immutable is declared in Class element,Updates to the Class will be ignored but
+No Exception will be thrown and only add and delete operations are allowed.
+
+If mutable is set to false or @Immutable is declared for Collection,
+Add and delete-orphan are not allowed for the Collection and throws Exception.
+Update and cascade-delete are allowed.
+When we specify cascade delete ie Parent Class is deleted, all its Child class will be deleted.
+
+***************************************************** 15.Relationship in Hibernate **********************************************************
