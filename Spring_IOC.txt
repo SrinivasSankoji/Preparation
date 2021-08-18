@@ -12,25 +12,25 @@
 10.Guide to Spring Bean Scopes                                              (JavaGuides)        [17-AUG-2021]  (Done)
 11.Singleton and Prototype Scopes                                           (JavaGuides)        [17-AUG-2021]  (Done)
 12.InitializingBean and DisposableBean Example                              (JavaGuides)        [17-AUG-2021]  (Done)
-13.@Bean’s init method and destroyMethod Attributes Example                 (JavaGuides)        [17-AUG-2021]  ()
+13.initMethod and destroyMethod Attributes Example                 			(JavaGuides)        [17-AUG-2021]  (Done)
 14.@Scope annotation with Prototype Scope Example                           (JavaGuides)        [17-AUG-2021]  (Done)
 15.@Scope annotation with Singleton Scope Example                           (JavaGuides)        [17-AUG-2021]  (Done)
 
-16.Spring Annotation Based Container Configuration                          (JavaGuides)        [12-AUG-2021]  ()
-17.Spring @Autowired Annotation with Example                                (JavaGuides)        [12-AUG-2021]  ()
-18.@Primary Annotation Example                                              (JavaGuides)        [12-AUG-2021]  ()
-19.@PostConstruct and @PreDestroy Example                                   (JavaGuides)        [12-AUG-2021]  ()
-20.@Qualifier Annotation Example                                            (JavaGuides)        [12-AUG-2021]  ()
+16.Spring Annotation Based Container Configuration                          (JavaGuides)        [18-AUG-2021]  (Done)
+17.Spring @Autowired Annotation with Example                                (JavaGuides)        [18-AUG-2021]  (Done)
+18.@Primary Annotation Example                                              (JavaGuides)        [18-AUG-2021]  (Done)
+19.@PostConstruct and @PreDestroy Example                                   (JavaGuides)        [18-AUG-2021]  (Done)
+20.@Qualifier Annotation Example                                            (JavaGuides)        [18-AUG-2021]  ()
 
-21.Spring Java Based Configuration Basics                                   (JavaGuides)        [12-AUG-2021]  ()
-22.Spring Java Based Configuration Example                                  (JavaGuides)        [12-AUG-2021]  ()
-23.@Bean Annotation with Example                                     		(JavaGuides)        [12-AUG-2021]  ()
-24.@Configuration Annotation with Example                            		(JavaGuides)        [12-AUG-2021]  ()
-25.@PropertySource Annotation with Example                           		(JavaGuides)        [12-AUG-2021]  ()
-26.@Import Annotation with Example                                          (JavaGuides)        [12-AUG-2021]  ()
-27.@ImportResource Annotation Example                                       (JavaGuides)        [12-AUG-2021]  ()
-28.@Lazy Annotation Example                                                 (JavaGuides)        [12-AUG-2021]  ()
-29.15 Spring Core Annotations                                               (JavaGuides)        [12-AUG-2021]  ()
+21.Spring Java Based Configuration Basics                                   (JavaGuides)        [19-AUG-2021]  (Done)
+22.Spring Java Based Configuration Example                                  (JavaGuides)        [19-AUG-2021]  ()
+23.@Bean Annotation with Example                                     		(JavaGuides)        [19-AUG-2021]  ()
+24.@Configuration Annotation with Example                            		(JavaGuides)        [19-AUG-2021]  ()
+25.@PropertySource Annotation with Example                           		(JavaGuides)        [19-AUG-2021]  ()
+26.@Import Annotation with Example                                          (JavaGuides)        [19-AUG-2021]  ()
+27.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  ()
+28.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  ()
+29.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  ()
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
@@ -307,9 +307,18 @@ Note:
 @PostConstruct and @PreDestroy annotations are considered as a best practice for receiving lifecycle callbacks.
 Using the above annotations means we are not coupled to spring specific interfaces.
              
-************************************************** 13.@Bean’s init method and destroyMethod Attributes Example  *******************************
+************************************************** 13.@Bean’s initMethod and destroyMethod Attributes Example  *******************************
 
+initMethod and destroyMethod can be used to perform certain actions after bean initialization or before bean destruction by the Container.
+As we use init-method and destroy-method in XML Bean Configuration,same way we can use initMethod and destroyMethod in the Java Configuration.
 
+	<bean id="" class="" init-method="init" destroy-method="destroy"></bean>
+
+	@Bean(initMethod="init",destroyMethod="destroy")
+	public DatabaseInitialization databaseInitialization()
+	{
+		return new DatabaseInitialization();
+	}
 
 ************************************************** 14.@Scope annotation with Prototype Scope Example ******************************************
 
@@ -365,21 +374,224 @@ public class SingletonConfiguration {
 
 ************************************************** 16.Spring Annotation Based Container Configuration  ****************************************** 
 
+From Spring 2.5 it is possible to configure the dependency injection using Annotations.
+Instead of XML to perform the bean wiring we can move the bean Configuration to the Component class itself using Annotations at Class Level,Method Level 
+and Field Level.
+Note :
+Annotation Injection is performed before XML Injection.
+Annotation wiring is not turned on Spring Container and we need to enable it in Spring COnfiguration File.
+
+	<context:annotation-config>
+	
+Different Annotations provided by Spring are
+
+@Required
+@Autowired
+@Qualifier
+@Primary
+@Resource
+@PostConstruct and @PreDestroy
+
+@Required Annotation is a method level annotation and is applied to the setter method of a Bean.
+@Required annotation indicates that setter method must be configured to be dependency inejected with value at Configuration time.
 
 
- 
 ************************************************** 17.Spring @Autowired Annotation with Example ************************************************* 
 
+We use @Autowired to mark dependency Injection which Spring is going to resolve.
+We can use this Annotation at Constructor Level Setter Level and Field Level.
 
+Constructor Injection :
+-----------------------
 
+@RestController
+public class CustomerController
+{
+	private CustomerService;
+	
+	@Autowired
+	public CustomerController(CustomerService customerService)
+	{
+		this.customerService=customerService;
+	}
+}
+
+Setter Injection :
+------------------
+@RestController
+public class CustomerController
+{
+	private CustomerService customerService;
+	
+	@Autowired
+	public void setCustomerService(CustomerService customerService)
+	{
+		this.customerService=customerService;
+	}
+}
+
+Filed Injection :
+-----------------
+@RestController
+public class CustomerController
+{
+	@Autowired
+	private CustomerService customerService;
+}
+
+Arbitary Methods :
+------------------
+We can also apply @Autowired annotation to the method with arbitary names.
+@RestController
+public class CustomerController
+{
+	private CustomerService customerService;
+	
+	@Autowired
+	public void prepare(CustomerService customerService)
+	{
+		this.customerService=customerService;
+	}
+}
+
+Array Type :
+------------
+We can also apply @Autowired annotation to the method or annotation that expects an Array type.
+	
+	@Autowired
+	private Movie[] customerService;
+	
+Typed Collections :
+-------------------
+We can also apply @Autowired annotation to the method or annotation that has a return type of Collection.
+	
+	@Autowired
+	private List<Movie> movieService;
+	
+Note:
+When we use @Autowired annotation by default dependency injection is mandatory.
+We can make this as non mandatory by using required attribute.
+
+@RestController
+publci class CustmerController
+{
+	private CustomerService customerService;
+	
+	@Autowired(required=false)
+	public void setCustomerService(CustomerService customerService)
+	{
+	this.customerService=customerService;
+	}
+}	
              
 ************************************************** 18.@Primary Annotation Example  ************************************************************** 
 
+@Primary Annotation can be used to give a higher preference to a bean when there are multiple beans of the same type.
+When we have multile beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
+Here @Qualifier won't applicable at the Configuration time.
+To resolve this issue we use @Primary Annotation.
 
+@Primary Annotation can be applied on any Class diretly or indirectly anootated with @Component or methods annotated with @Bean.
 
-                    
+public interface MessageService {
+
+	public void sendMessage(String message);
+}
+
+@Service("EmailService")
+public class EmailService implements MessageService{
+
+	@Override
+	public void sendMessage(String message) {
+		System.out.println("Email "+message);
+	}
+}
+
+@Service("SMSService")
+@Primary
+public class SMSService implements MessageService{
+
+	@Override
+	public void sendMessage(String message) {
+		System.out.println("SMS "+message);
+	}
+}
+@Service("TwitterService")
+public class TwitterService implements MessageService{
+
+	@Override
+	public void sendMessage(String message) {
+		System.out.println("Twitter "+message);
+	}
+} 
+
+public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				ApplicationConfiguration.class);
+		//ConstructorBasedInjection bean=context.getBean(ConstructorBasedInjection.class);
+		//SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
+		MessageService bean=context.getBean(MessageService.class); // @Primary Annotation Example
+		bean.sendMessage("Setter Based Injection Example");
+		context.close();
+}
+	
 ************************************************** 19.@PostConstruct and @PreDestroy Example  ***************************************************
 
+@PostConstruct annotation is used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
+@PreDestroy method annotation is used on a method that needs to be executed before the instance is being removed by the Container.
 
-          
-************************************************** 20.@Qualifier Annotation Example *************************************************************                    
+	@PostConstruct
+	public void init()
+	{
+	}
+	
+	@PostDestroy
+	publci void destroy()
+	{
+	}
+      
+************************************************** 20.@Qualifier Annotation Example ************************************************************* 
+
+@Qualifier can be used to resolve ambigious problems.
+There may be scenarios where we can have more than one bean of the same type and want to wire only one of them.
+This can be done by using @Qualifier along with @Autowired annotation.
+
+************************************************** 21.Spring Java Based Configuration Basics *************************************************** 
+
+@Bean Annotation is used to indicate that a method instantiates,configures and initializes a new object that has to be managed by the Spring Container.
+We can use @Bean Annotated methods with any @Component Classes.
+Most of the the times we use @Bean with @Configuration Classes.
+
+Annotating a Class with @Configuration indicates that its primary purpose is a source of bean definitions.
+
+We can create Spring Container by instantiating AnnotationConfigApplicationContext by passing Configuration Class.
+This allows the complete XML free usage of the Spring Container.
+
+We can also create Spring Container by instantiating AnnotationConfigApplicationContext with no argument Constructor.
+Configure the Configuration classes by using register().
+This is particulary useful when programatically building an AnnotationConfigApplicationContext.
+
+@ComponentScan annotation enables auto component scanning in Java based Configuration. 
+
+************************************************** 22.Spring Java Based Configuration Example ************************************************** 
+                 
+                 
+************************************************** 23.@Bean Annotation with Example  *********************************************************** 
+
+       
+************************************************** 24.@Configuration Annotation with Example ***************************************************
+
+
+************************************************** 25.@PropertySource Annotation with Example **************************************************
+
+
+************************************************** 26.@Import Annotation with Example  ********************************************************* 
+
+      
+************************************************** 27.@ImportResource Annotation Example ******************************************************* 
+
+   
+************************************************** 28.@Lazy Annotation Example  **************************************************************** 
+
+             
+************************************************** 29.15 Spring Core Annotations   *************************************************************           
