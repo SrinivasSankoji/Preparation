@@ -20,17 +20,17 @@
 17.Spring @Autowired Annotation with Example                                (JavaGuides)        [18-AUG-2021]  (Done)
 18.@Primary Annotation Example                                              (JavaGuides)        [18-AUG-2021]  (Done)
 19.@PostConstruct and @PreDestroy Example                                   (JavaGuides)        [18-AUG-2021]  (Done)
-20.@Qualifier Annotation Example                                            (JavaGuides)        [18-AUG-2021]  ()
+20.@Qualifier Annotation Example                                            (JavaGuides)        [18-AUG-2021]  (Done)
 
 21.Spring Java Based Configuration Basics                                   (JavaGuides)        [19-AUG-2021]  (Done)
-22.Spring Java Based Configuration Example                                  (JavaGuides)        [19-AUG-2021]  ()
-23.@Bean Annotation with Example                                     		(JavaGuides)        [19-AUG-2021]  ()
-24.@Configuration Annotation with Example                            		(JavaGuides)        [19-AUG-2021]  ()
-25.@PropertySource Annotation with Example                           		(JavaGuides)        [19-AUG-2021]  ()
-26.@Import Annotation with Example                                          (JavaGuides)        [19-AUG-2021]  ()
-27.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  ()
-28.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  ()
-29.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  ()
+22.Spring Java Based Configuration Example                                  (JavaGuides)        [19-AUG-2021]  (Done)
+23.@Bean Annotation with Example                                     		(JavaGuides)        [19-AUG-2021]  (Done)
+24.@Configuration Annotation with Example                            		(JavaGuides)        [19-AUG-2021]  (Done)
+25.@PropertySource Annotation with Example                           		(JavaGuides)        [19-AUG-2021]  (Done)
+26.@Import Annotation with Example                                          (JavaGuides)        [19-AUG-2021]  (Done)
+27.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  (Done)
+28.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  (Done)
+29.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
@@ -392,14 +392,10 @@ Different Annotations provided by Spring are
 @Resource
 @PostConstruct and @PreDestroy
 
-@Required Annotation is a method level annotation and is applied to the setter method of a Bean.
-@Required annotation indicates that setter method must be configured to be dependency inejected with value at Configuration time.
-
-
 ************************************************** 17.Spring @Autowired Annotation with Example ************************************************* 
 
-We use @Autowired to mark dependency Injection which Spring is going to resolve.
-We can use this Annotation at Constructor Level Setter Level and Field Level.
+We use @Autowired to mark dependency Injection which Spring is going to resolve and Inject.
+We can use this Annotation at Constructor Level,Setter Level and Field Level.
 
 Constructor Injection :
 -----------------------
@@ -573,25 +569,146 @@ This is particulary useful when programatically building an AnnotationConfigAppl
 
 @ComponentScan annotation enables auto component scanning in Java based Configuration. 
 
-************************************************** 22.Spring Java Based Configuration Example ************************************************** 
-                 
-                 
+************************************************** 22.Spring Java Based Configuration Example **************************************************
+
+We have used @Configuration and @Bean Annotations to develop Spring based Applications.
+@Import annotation can be used to load the bean definitions from another Configuration class.
+
+@Configuration
+@ComponentScan("com.journaldev.ioc.qualifier.service")
+@Import(ImportConfiguration.class)
+public class QualifierConfiguration {
+
+	@Bean(name = "emailService")
+	public MessageService emailService() {
+		return new EmailService();
+	}
+
+	@Bean(name = "smsService")
+	public MessageService smsService() {
+		return new SMSService();
+	}
+}
+
+@Configuration
+@ComponentScan("com.journaldev.ioc.qualifier.service")
+public class ImportConfiguration {
+
+	@Bean(name = "twitterService")
+	public MessageService twitterService() {
+		return new TwitterService();
+	}
+}
+               
 ************************************************** 23.@Bean Annotation with Example  *********************************************************** 
 
-       
+@Bean is a method level Annotation and is a direct analog of XML element </bean>
+@Bean Annotation supports some of the attributes such as init-method,destroy-method,autowiring and name.
+We can use @Bean in the class annotated with @Configuration and @Component.
+
+To declare a bean simply annotate a method with @Bean and 
+It will be registered in the ApplicationContext of the type specified in the method return value.
+By default bean name will be same as the Method name and we can change the Bean name by using name attribute.
+We can also have the scope for the Bean definition and default scope is Singleton.
+
+Note :
+Single Bean can have multiple names ie also called as Bean Aliasing.
+We use the name attribute of the Bean foe Bean aliasing.
+
 ************************************************** 24.@Configuration Annotation with Example ***************************************************
 
+@Configuration Annotation indicates that a class has a @Bean definition methods.
+So that Spring Container process the Classes and generate Spring beans to be used in the Application.
+
+@ComponentScan can be used to automatically pick up all the Spring Components and all the Configuration Classes.
+@Import Annotation can be used to load additional Configuration Class.
+If we have XML based Configuration then we can use @ImportResource Annotation to load XML Configuration Files.
 
 ************************************************** 25.@PropertySource Annotation with Example **************************************************
 
+We can externalize the Configuration to a properties file using @PropertySource Annotation along with @Configuration Annotated Class.
+We can read the Properties file and display the values using Environment and @Value Annotation.
 
-************************************************** 26.@Import Annotation with Example  ********************************************************* 
+spring.datasource.name=Oracle
+spring.datasource.username=System
+spring.datasource.password=Root
+spring.datasource.driver-class-name=OracleDriver
 
-      
+@Configuration
+@PropertySource("classpath:application.properties")
+public class PropertySourceConfiguration {
+
+	@Autowired
+	private Environment environment;
+
+	@Bean
+	public DataSource datasource() {
+		System.out.println(environment.getProperty("spring.datasource.name"));
+		return null;
+
+	}
+}
+
+Note :
+We can also include multiple properties file using @PropertySources Annotation.
+If the Properties is not found then it will throw FileNotFoundException.
+To ignore the not found properties file we use ignoreResourceNotFound-true ie
+
+	@PropertySource(value="classpath:application.properties",ignoreResourceNotFound=true)
+
+************************************************** 26.@Import Annotation with Example  *********************************************************
+
+@Import Annotation indicates one or more Configuration classes to import.
+@Import Annotation can be declared at Class level or at metadata level.
+    
 ************************************************** 27.@ImportResource Annotation Example ******************************************************* 
+
+If XML or other non @Configuration Bean resources needs to be imported we use the @ImportResource Annotation.
+If we want to load config.properties file then we can use @ImportResource Annotation to load respective properties file.
+
+Note :
+In Spring XML based Configuration we use <import> tag to load multiple Spring Configuration Files.
 
    
 ************************************************** 28.@Lazy Annotation Example  **************************************************************** 
 
-             
-************************************************** 29.15 Spring Core Annotations   *************************************************************           
+Spring Container creates and initializes all the Singleton beans at the time of Application start up.
+We can prevent this pre initialization of Singleton by using @Lazy Annotation.
+@Lazy Annotation can be used on any Class annotated with @Component directly or indirectly or methods annotated with @Bean.
+
+	@Bean
+	@Lazy(value = true)
+	public FirstBean firstBean() {
+		return new FirstBean();
+	}
+	
+	@Bean
+	public SecondBean secondBean() {
+		return new SecondBean();
+	}   
+	
+************************************************** 29.15 Spring Core Annotations   *************************************************************
+
+@Required :
+-----------
+@Required Annotation is a method level annotation and is applied to the setter method of a Bean.
+@Required annotation indicates that setter method must be configured to be dependency inejected with a value at Configuration time.
+
+@Value :
+--------
+@Value Annotation can be used to assign default values to variables and method arguments.
+@Value can also be used to read Spring Environment variables as well as System variables.
+
+@Profile :
+----------
+If we want particular @Component Class or @Bean Method to be used only when a specific profile is active then
+we mark it with @Profile Annotation.
+
+	 @Component
+	 @Profile("development")
+	 Class Bile implements Vehicle
+	 
+
+
+
+           

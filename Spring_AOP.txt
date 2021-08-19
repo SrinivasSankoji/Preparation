@@ -3,7 +3,6 @@
 3.Aspect Programming One							   [29-SEP-2019]  (Done)
 4.Aspect Programming Two                               [29-SEP-2019]  (Done)
 5.Point Cuts and Wild Card Expressions				   [29-SEP-2019]  (Done)
-
 6.Few More Point Cut Expressions					   [29-SEP-2019]  (Done)
 7.Join Points and Advice Arguments					   [02-OCT-2019]  (Done)		   
 8.After Advice Type									   [02-OCT-2019]  (Done)
@@ -30,38 +29,9 @@ Execution Time
 Point cut
 Apply Only for Public Methods Scenario
 
-
-Reference Sites :
-*****************
-
-Implementing AOP With Spring Boot and AspectJ
-https://dzone.com/articles/implementing-aop-with-spring-boot-and-aspectj
-
-Spring Boot + Spring AOP Logging Example Tutorial
-https://www.javaguides.net/2019/05/spring-boot-spring-aop-logging-example-tutorial.html
-
-Spring AOP Example Tutorial 
-https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations
-
-Spring Boot + AOP Simple Example
-https://www.javainuse.com/spring/spring-boot-aop
-
-Declaring Pointcut Expressions with Examples
-https://www.dineshonjava.com/pointcuts-and-wildcard-expressions/
-
-Spring AOP pointcut advice example
-https://www.byteslounge.com/tutorials/spring-aop-pointcut-advice-example
-
-Issues in AOP :
-
-https://stackoverflow.com/questions/18469703/log-the-return-value-of-a-method-using-spring-aop
-
-https://subscription.packtpub.com/book/application_development/9781783985807/12/ch12lvl1sec124/measuring-the-execution-time-of-methods-using-an-around-advice
-
-
 ************************************************   1.Introduction  ****************************************************************
 
-Aspect Oriented Programming is One of the Feature Provided by Spring.AOP is Not just a Feature,It is also a Model of Programming.
+Aspect Oriented Programming is one of the feature provided by Spring.AOP is Not just a feature,It is also a Model of Programming.
 AOP is a Programming Paradigm that aims to increase Modularity by allowing the separation of Cross Cutting Concerns.
 It adds the Additional behavior to the existing code without Modification of Existing Code.
 
@@ -509,76 +479,4 @@ If we are Applying Login Advice,Method Name should End with Advice i.e  loggingA
 
 13.Understanding AOP Proxies :
 ******************************
-
-
-
-
-
-
-
-
-
-		
-
-
-
-
-
-
-		
-
-
-
-
-
-
-		
-
-
-
-	
-
-
-
-			
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
 

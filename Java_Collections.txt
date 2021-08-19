@@ -9,7 +9,7 @@
 9.Map Interface Classes                                         [18-JAN-2021]  (Done)
 
 
-***************************************************************   1.Limitation of Arrays	********************************************************************
+***************************************************************   1.Limitation of Arrays	*****************************************************
 
 An Array is an indexed collection of fixed number of Homogenous data elements.
 Main Limitation of Arrays are 
@@ -36,7 +36,7 @@ To resolve all the issues sun people introduced Collections.
 For every requirement readymade method support is available.
 By using Collection we can represent all the elements in sorting order and we can also prevent duplicate object insertion by default.
 
-*************************************************************  2.Comparison between Collections and Arrays  ***************************************************
+*************************************************************  2.Comparison between Collections and Arrays  *********************************************
 
 Arrays :
 --------
@@ -56,7 +56,7 @@ With respect to memory Collections are recomended to use.
 With respect to Performance Collections are not recomended to use.
 Every Collection object has built by using some underlying data structure.
 
-************************************************************* 3.Collections Framework   ***********************************************************************
+************************************************************* 3.Collections Framework   *******************************************************************
 
 Collections Framework defines a group of Classes and Interfaces that can be used for representing a group of Objects as a Single entity.
 Key Interfaces in Collection Framework are 
@@ -82,7 +82,8 @@ Collections is a class which is present in java.lang package which defines sever
 
 2.List :
 --------
-List interface can be used for representing a group of individual objects as a single entity where insertion order is preserved and duplicate objects are allowed.
+List interface can be used for representing a group of individual objects as a single entity where insertion order is preserved 
+and duplicate objects are allowed.
 List interface is the Child interfaace of Collection.
 List implementation classes are 
 
@@ -96,7 +97,8 @@ By means of index we can preserve insertion order and we can differentiate dupli
 
 3.Set :
 -------
-Set interface can be used for representing group of individual objects as a single entity where duplicate objects are not allowed and insertion order is not preserved.
+Set interface can be used for representing group of individual objects as a single entity where duplicate objects are not allowed 
+and insertion order is not preserved.
 insertion order is based on hashCode of the object.
 This is the child interface of collection.
 Set interface implementation classes are
@@ -211,7 +213,7 @@ Stack is the child class of Vector and contains only one Constructor.
 
 	Stack stack=new Stack();
 	
-*************************************************************  6.Cursors in Collection Framework   ****************************************************************
+*************************************************************  6.Cursors in Collection Framework   ******************************************************
 
 Form the collection object to retreive the elements one by one we use the following 3 cursors.
 
@@ -249,7 +251,7 @@ Based on requirement we can move either to the forward diretion or backward dire
 While iterating elements, we can perform replace and add operations in addition to read and remove operation.
 Most powerful cursor is ListIterator but it is applicable only to List interface Implemented classes.
 
-*************************************************************  7.Set Interface Classes  *************************************************************************
+*************************************************************  7.Set Interface Classes  ************************************************************
 
 Set interface can be used to represent a group of individual objects where insertion order is not preserved and duplicate objects are not allowed.
 Set interface is the child interface of Collection.
@@ -306,7 +308,7 @@ An object is said to be comparable if the corresponding class implements Compara
 All wrapper classes and String classes implements comparable interface.
 StringBuffer does not implement Comparable interface.
 
-*************************************************************  8.Comparable and COmparator Interface   *************************************************************
+*************************************************************  8.Comparable and Comparator Interface   **********************************************
 
 Comparable :
 ------------
@@ -335,7 +337,7 @@ Comparator interface defines two methods i.e
 	
 whenever we are implementing Comparator interface we should provide implementation for compare(object obj1,object obj2).
 
-*************************************************************  9.Map Interface Classes  **********************************************************************
+*************************************************************  9.Map Interface Classes  ******************************************************************
 
 If we want to represent a group of individual objects where objects are stored as key value pairs we go for Map interface.
 Map interface provides 3 collection views which allows map content to be viewed as
