@@ -1,0 +1,32 @@
+1.Introduction											(SCJP)      		[20-AUG-2021]  ()
+2.Serialization Object Graph                            (SCJP)      		[20-AUG-2021]  ()
+3.Customized Serialization                              (SCJP)      		[20-AUG-2021]  ()
+4.Inheritance in Serialization                          (SCJP)      		[20-AUG-2021]  ()
+5.Serialization and De-Serialization in Java			(Dzone)     		[20-AUG-2021]  ()
+6.Serialization in Java									(techvidvan)     	[20-AUG-2021]  ()
+
+*********************************************** 1.Introduction(SCJP) **************************************************************	
+
+Serialization is the process of converting state of an Object into ByteStream ie File supported form or Network supported form so that
+It can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
+By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
+
+The process of creating an Object from ByteStream is called Deserialization.
+Byte Stream created is platfrom independent ie Object Serialized in one Platfrom can be deserialized on a different Platform.
+By using FileInputStream and ObjectInputStream we can achieve Serialization.
+
+
+
+
+
+
+
+
+			
+*********************************************** 2.Serialization Object Graph(SCJP) ************************************************
+
+
+*********************************************** 3.Customized Serialization(SCJP) **************************************************
+
+
+*********************************************** 4.Inheritance in Serialization(SCJP) **********************************************
