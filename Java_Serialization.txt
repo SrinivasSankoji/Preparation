@@ -1,9 +1,9 @@
-1.Introduction											(SCJP)      		[20-AUG-2021]  ()
-2.Serialization Object Graph                            (SCJP)      		[20-AUG-2021]  ()
-3.Customized Serialization                              (SCJP)      		[20-AUG-2021]  ()
-4.Inheritance in Serialization                          (SCJP)      		[20-AUG-2021]  ()
-5.Serialization and De-Serialization in Java			(Dzone)     		[20-AUG-2021]  ()
-6.Serialization in Java									(techvidvan)     	[20-AUG-2021]  ()
+1.Introduction											(SCJP)      		[20-AUG-2021]  (Done)
+2.Serialization Object Graph                            (SCJP)      		[20-AUG-2021]  (Done)
+3.Customized Serialization                              (SCJP)      		[20-AUG-2021]  (Done)
+4.Inheritance in Serialization                          (SCJP)      		[20-AUG-2021]  (Done)
+5.Serialization and De-Serialization in Java			(Dzone)     		[20-AUG-2021]  (Done)
+6.Serialization in Java									(techvidvan)     	[20-AUG-2021]  (Done)
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
@@ -13,20 +13,143 @@ By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 
 The process of creating an Object from ByteStream is called Deserialization.
 Byte Stream created is platfrom independent ie Object Serialized in one Platfrom can be deserialized on a different Platform.
-By using FileInputStream and ObjectInputStream we can achieve Serialization.
+By using FileInputStream and ObjectInputStream we can achieve DeSerialization.
 
+An Object is said to be Serializable If the Corresponding Class implements Serializable Interface.
+Serializable Interface is present in java.io package and it does not contain any methods or Fields.
+Serializable Interface is a Marker Interface.
+If we are trying to perform Serialization on a non Serializable Object we will get RuntimeException saying NonSerializableException.
 
+Transient keyword :
+-------------------
+Transient modifier is applicable only for variables but not for methods and Classes.
+At the time of Serialization If we don't want to Serialize the value of a particular variable to meet security constraints,
+we declare those variable as transient.
+While performing Serialization JVM ignores the original values of the transient variables and
+saves the default values to the file.
+Hence Transient means not to Serialize.
 
+transient vs static :
+---------------------
+static variables are not part of Object and hence they won't participate in Serialization.
+Declaring static variables as tarnsient has no impact.
 
-
-
-
-
-			
+final vs transient :
+--------------------
+Final variables will be participated in the Serialization directly by the value.
+Hence declaring final variables as transient has no impact.
+		
 *********************************************** 2.Serialization Object Graph(SCJP) ************************************************
 
+Whenever we are saving an Object to a file all the Objects which are reachable from the Object will be saved by default.
+This group of Objects are called "Object Graph".
+In the Object Graph If any Object is not Serializable we will get RuntimeException saying Not Serializable Exception.
 
 *********************************************** 3.Customized Serialization(SCJP) **************************************************
 
+During default Serialization there may be a chance of loss of information because of transient variables.
+To avoid this we go for customized Serialization.
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		Cat cat=new Cat();
+		System.out.println("Before Serialization ");
+		System.out.println(cat.rat.getI());
+		
+		FileOutputStream fos=new FileOutputStream("Cat.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		oos.writeObject(cat);
+		
+		FileInputStream fis=new FileInputStream("Cat.ser");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Cat cat1=(Cat)ois.readObject();
+		System.out.println("After Serialization ");
+		System.out.println(cat1.rat.getI());
+	}
+
+In case of Custom Serialization we override the callback methods ie writeObject() and readObject().
+
+	public class Cat implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	transient Rat rat = new Rat();
+
+	private void writeObject(ObjectOutputStream oos) throws IOException {
+		int x = rat.getI();
+		oos.writeInt(x);
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		int x = ois.readInt();
+		rat = new Rat();
+		rat.setI(x);
+	}
+}
 
 *********************************************** 4.Inheritance in Serialization(SCJP) **********************************************
+
+If a Parent class is Serializable then by default Child class is Serializable.
+Serializable nature is inherited from Parent to Child.
+
+If the Child class is Serializable and some of the Parent Class is not Serializable then
+JVM creates a seperate Object for every non serializable Parent Class and share its instance variables.
+Here JVM ignores the inherited variables which are coming from non Serializable Parent Class.
+
+Note :
+Non Serializable Parent class should compulsory contain no argument Constructor otherwise we will get RuntimeError.
+
+@Data
+public class Animal  {
+
+	private int a=22;
+}
+
+package com.scjp.durga.scjp;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+import lombok.Data;
+
+@Data
+public class Elephant extends Animal implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private int e=27;
+	
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		Elephant elephant=new Elephant();
+		elephant.setA(23);
+		System.out.println("Before Serialization ");
+		System.out.println(elephant.getA());
+		System.out.println(elephant.getE());
+		FileOutputStream fos=new FileOutputStream("Elephant.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		oos.writeObject(elephant);
+		
+		FileInputStream fis=new FileInputStream("Elephant.ser");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Elephant elephant1=(Elephant)ois.readObject();
+		System.out.println("After Serialization ");
+		System.out.println(elephant1.getA());
+		System.out.println(elephant1.getE());
+	}
+}
+
+*********************************************** 6.Serialization in Java(techvidvan) *************************************************
+
+SerialVersionUID :
+------------------
+Serialization process at runtime associates an Id with each Serializable class which is also known as SerialVersionUID.
+SerialVersionUID can be used to verify the sender and reciever of the Serialized Object.
+To verify this we use SerialVersionUID is used.
+We can also declare our own SerialVersionUID and assign a value.
+It must be of static type along with private and final.
+
+static : without craeting Object it has to be accessed.
+final : we cannot perform reassignment for that variable
+private : It is local to the Class and not publicly available.
