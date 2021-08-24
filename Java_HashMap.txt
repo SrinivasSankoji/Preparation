@@ -14,7 +14,7 @@
 
 ****************************************************************  1.HashMap Internal  (DZone)   ****************************************************************
 
-HashMap is a Map which is used to store key value pairs.
+HashMap is used to store key value pairs.
 HashMap works on the principle of hashing.
 Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
 Hashing functions are used to link the Entry objects in the HashMap.

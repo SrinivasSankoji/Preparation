@@ -1,0 +1,66 @@
+1.Understanding Java Externalization								(codejava)      		[24-AUG-2021]  (Done)
+2.Externalizable interface in Java									(geeksforgeeks)      	[24-AUG-2021]  (Done)
+
+******************************************* 1.Understanding Java Externalization  *********************************************
+
+In case of Serialization JVM takes care of Serialization and deSerialization ie writing and reading the Objects.
+This is useful in most of the cases as Programmer do not have to care about the underlying Serialization process.
+However default Serialization does not protect sensitive information such as passwords and credentials.
+Externalization gives the programmers full control during Serialization and deSerialization.
+Externalizable interface contains two methods ie
+
+	writeExternal(ObjectOutput objectOutput)
+	{
+	}
+	
+	readExternal(ObjectInput objectInput)
+	{
+	}
+	
+	public class User implements Externalizable{
+
+	private int code;
+    private String name;
+    private String password;
+    private Date birthday;
+    private int socialSecurityNumber;
+    
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeInt(code);
+		out.writeObject(name);
+		out.writeObject("*****");
+		out.writeObject(birthday);
+		out.writeInt(0);
+	}
+	
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		this.code=in.readInt();
+		this.name=(String) in.readObject();
+		this.password=(String) in.readObject();
+		this.birthday=(Date) in.readObject();
+		this.socialSecurityNumber=in.readInt();
+	}
+	}
+	
+	FileOutputStream fos=new FileOutputStream("user.ser");
+	ObjectOutputStream oos=new ObjectOutputStream(fos);
+	oos.writeObject(user);
+	oos.close();
+	
+	FileInputStream fis=new FileInputStream("user.ser");
+	ObjectInputStream ois=new ObjectInputStream(fis);
+	User user1=(User)ois.readObject();
+	ois.close();
+
+******************************************* 2.Externalizable interface in Java	***********************************************
+
+Difference between Serializable and Externalizable in Java :
+------------------------------------------------------------
+1.Serializable is a Marker Interface where as Externalizable is not a Marker Interface and it has two Methods.
+writeExternal() and readExternal()
+2.In case of Serializable default Serialization process is used where as In case of Externalization custom Serialization process is used.
+3.In Serialization everything is taken care by JVM where as in Externalization Programmer has full Control.
+4.Externalization can improove the perfromance of Serialization If Proper used.
+5.Serializable uses Reflection to construct Object where as Externalizable requires public No Arg Constructor.
