@@ -1,20 +1,3 @@
-References :
-************
-https://springframework.guru/spring-framework-annotations/
-https://www.javaguides.net/2018/10/spring-boot-annotations.html
-https://www.journaldev.com/16966/spring-annotations
-https://www.tuturself.com/posts/view?menuId=3&postId=1071   (For Example)
-https://www.oodlestechnologies.com/blogs/How-To-Configure-The-Interceptor-With-Spring-Boot-Application/
-https://dzone.com/articles/how-to-configure-the-interceptor-with-spring-boot
-https://netsurfingzone.com/spring/spring-boot-interceptor-example
-https://o7planning.org/en/11689/spring-boot-interceptors-tutorial   (For Example)
-https://www.programering.com/a/MDOxkzMwATk.html
-http://www.mkjava.com/tutorial/filter-vs-interceptor/
-http://www.javabyexamples.com/quick-guide-to-responsebodyadvice-in-spring-mvc/
-https://thoughts-on-java.org/what-is-spring-data-jpa-and-why-should-you-use-it/
-https://www.javapedia.net/Spring-Data-Access/902
-https://bjoernkw.com/2017/08/13/using-spring-jdbctemplate-instead-of-object-relational-mapping/
-
 tuturself :
 ***********
 Spring Boot Caching -- EHCache
@@ -107,8 +90,8 @@ Spring Boot Annotations :
 
 
 
-@Interceptor (springframework.guru):
-************************************
+************************************ @Interceptor (springframework.guru) *********************************************************************
+
 In Spring When a Request is Sent to The Controller,
 It Will Have to Pass Through The Interceptors(Zero or More) Before Being Processed by The Controller.
 Spring Interceptor is a Concept Similar to Servlet Filter.
@@ -174,6 +157,7 @@ Here We Have The Chance Modify the Response Object.
 
 
 **************************************   Spring Core Annotations  *****************************************************
+
 @Configuration :
 ****************
 @Configuration is Defined on Classes That Defines Beans.

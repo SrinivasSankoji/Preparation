@@ -1,3 +1,241 @@
-1.Java Singleton Design Pattern Best Practices 				(Journaldev)     [20-AUG-2021]  ()
+1.Java Singleton Design Pattern Best Practices 				(Journaldev)     [23-AUG-2021]  (Done)
 2.How to break Singleton class in java	                    (codippa)  		 [20-AUG-2021]  ()
-3.How to prevent Singleton Pattern						    (geeksforgeeks)  [20-AUG-2021]  ()
+3.How to prevent Singleton Pattern						    (geeksforgeeks)  [24-AUG-2021]  (Done)
+
+************************************************* 1.Java Singleton Design Pattern Best Practices  *************************************************
+
+Java Singleton Design Pattern is one of the four design patterns and comes under Creational Design Pattern.
+Singleton Pattern restricts the instantiation of the class and ensures that only one instance of a class exists in JVM.
+Singleton Class must provide a global access point to get the instance of a Class.
+Singleton Design Pattern is used for Logging,Driver Objects,Caching and Thread Pool.
+
+Singleton Implementation :
+--------------------------
+private Constructor to restrict the instantiation of class from other classes.
+private static variable of the same class that is the only instance of the class.
+uublic static method that returns the instance of the class ie Global access point for the outer world to get the instance.
+
+Following are the different approaches of Singleton pattern Implementation.
+
+1.Eager Initialization
+2.Static Block Initialization
+3.Lazy Initialization
+4.Thread Safe Singleton
+5.Bill Pugh Singleton Implementation
+6.Reflection to destroy Singleton
+7.Enum Singleton
+8.Serialization and Singleton
+
+1.Eager Initialization :
+------------------------
+In case of Eager Initialization,Instance of Singleton Class is created at the time of Class Loading.
+But the drawback is instance is created even though Client Application might not be using it.
+Alos this method does not provide any optioon for Exception Handling.
+
+	public class EagerInitialization {
+
+	private static final EagerInitialization instance = new EagerInitialization();
+
+	private EagerInitialization() {
+	}
+
+	public static EagerInitialization getInstance() {
+		return instance;
+	}
+	}
+	
+2.Static Block Initialization :
+-------------------------------
+Static block Initialization is similar to Eager Initialization except Instance of a Class is created in the static block and
+provides and option for Exception Handling.
+
+	package com.java.singleton.journaldev;
+
+public class StaticBlockInitialization {
+
+	private static StaticBlockInitialization instance;
+	static {
+		try {
+			instance = new StaticBlockInitialization();
+		} catch (Exception e) {
+			System.out.println("Error in static Block Initialization");
+		}
+	}
+
+	public static StaticBlockInitialization getInstance() {
+		return instance;
+	}
+	}
+	
+3.Lazy Initialization :
+-----------------------
+Singleton instance is created in the global access method in case of Lazy Initialization.
+
+	package com.java.singleton.journaldev;
+
+public class LazyInitialization {
+
+	private static LazyInitialization instance;
+
+	private LazyInitialization() {
+	}
+
+	public static LazyInitialization getInstance() {
+		if (instance == null) {
+			return new LazyInitialization();
+		}
+		return instance;
+	}
+	}
+
+The above method works fine in case of Single Threaded Environment.
+If multilple Threads are inside the If condition at the same time It will break the Singleton Pattern.
+
+4.Thread Safe Singleton :
+-------------------------
+Easier way to create Threadsafe Singleton class is to make the global access method synchronized.
+So that only one Thread can access the method at a time.
+
+	public static synchronized LazyInitialization getInstance() {
+		if (instance == null) {
+			return new LazyInitialization();
+		}
+		return instance;
+	}
+	
+The above implementation works fine and provides the Thread Safety.
+But it reduces the performance of the system because of "synchronized" keyword although few Threads might create the seperate instance.
+To avoid this Double checking principle is used.
+Here Synchronized block is used inside the If Condition with an additional check to ensure only one instance of a Class is created.
+
+	public static LazyInitialization getInstance() {
+		if (instance == null) {
+			synchronized (LazyInitialization.class) {
+				if (instance == null) {
+					return new LazyInitialization();
+				}
+			}
+		}
+		return instance;
+	}
+
+5.Bill Pugh Singleton Implementation :
+--------------------------------------
+When we create Singleton through Lazy Initialization,multiple Threads try to get the instance of the Singleton class at the same time.
+Bill pugh came with a different approach to create the Singleton Class ie using inner static class.
+
+	public class Singleton {
+	private Singleton() {
+	}
+	// BillPugh Singleton Implementation
+	private static class SingletonHelper {
+		private static final Singleton NEW_INSTANCE = new Singleton();
+	}
+	public static Singleton getInstance() {
+		return SingletonHelper.NEW_INSTANCE;
+	}
+	}
+	
+The above approach not required any synchronization.
+Helper class will not be loaded when the class is loaded and will be called when someone calls the getInstance().
+
+6.Reflection to destroy Singleton :
+-----------------------------------
+Reflection can be used to destroy the Singleton Pattern.
+
+	public static void main(String[] args) {
+		LazyInitialization instanceOne = LazyInitialization.getInstance();
+		LazyInitialization instanceTwo = null;
+		try {
+			Constructor<LazyInitialization>[] constructors = (Constructor<LazyInitialization>[]) LazyInitialization.class.getDeclaredConstructors();
+			for (Constructor constructor : constructors) {
+				constructor.setAccessible(true);
+				instanceTwo=(LazyInitialization) constructor.newInstance();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(instanceOne.hashCode());
+		System.out.println(instanceTwo.hashCode());
+	}
+	
+In the above case hashCode of both the instances are not same and destroys the Singleton Pattern.
+
+7.Enum Singleton :
+------------------
+To overcome the problem with Reflection we can use ENUM.
+In Java ENUM can be instantiated only once and can be accessed globally.
+The other drawback is ENUM does not allow lazy Initialization.
+
+8.Serialization and Singleton :
+-------------------------------
+Sometimes we need to implement Serializable interface along with Singleton Class so that it can store its state in the File System.
+Later point of time It can retrieve the Object.
+
+	public class SerializedSingleton implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private static SerializedSingleton instance = null;
+
+	private SerializedSingleton() {
+	}
+
+	public static SerializedSingleton getInstance() {
+		if (instance == null) {
+			synchronized (SerializedSingleton.class) {
+				if (instance == null) {
+					instance = new SerializedSingleton();
+				}
+			}
+		}
+		return instance;
+	}
+	}
+
+Problem with this approach is while deserializing it creates the new Object.
+To reolve the problem we need to override readResolve().
+	
+	protected Object readResolve() {
+		return getInstance();
+	}
+
+
+************************************************* 2.How to break Singleton class in java(codippa)  *******************************************************
+
+     
+************************************************* 3.How to prevent Singleton Pattern(geeksforgeeks) ******************************************************
+
+Process of creating exactly independent duplicate Objects is called Cloning.
+If we clone the Singleton Class then duplicate Singleton Class will be created.
+Then it breaks the nature of Singleton.
+
+		public class CloneableSingleton implements Cloneable {
+
+	private CloneableSingleton() {
+	}
+
+	private static class CloneableSingletonHelper {
+		private static final CloneableSingleton INSTANCE = new CloneableSingleton();
+	}
+
+	public static CloneableSingleton getInstance() {
+		return CloneableSingletonHelper.INSTANCE;
+	}
+
+	protected Object clone() throws CloneNotSupportedException {
+		CloneableSingleton cloneableSingleton = (CloneableSingleton) super.clone();
+		return cloneableSingleton;
+	}
+	}
+	
+Output :
+--------
+Output of two hashCode's is different and it breaks the nature of Singleton.
+To avoid this either throw an Exception or retuen the same instance from the clone().
+
+	protected Object clone() throws CloneNotSupportedException {
+		return getInstance();
+	}
+
+			

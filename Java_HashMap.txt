@@ -6,8 +6,8 @@
 6.HashMap – Compare HashMaps                (howtodoinjava)   			[21-JAN-2021]  ()
 7.HashMap – Iterations                      (howtodoinjava)   			[21-JAN-2021]  ()
 8.HashMap – Cloning                         (howtodoinjava)   			[21-JAN-2021]  ()
+9.HashMap - Internal  						(javaconceptoftheday)   	[21-JAN-2021]  ()
 
-9. HashMap - Internal  						(javaconceptoftheday)   	[21-JAN-2021]  ()
 10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   	[21-JAN-2021]  ()
 11.Initial capacity vs Load Factor			(javaconceptoftheday)   	[21-JAN-2021]  ()
 12.HashSet Internal							(javaconceptoftheday)   	[23-JAN-2021]  (Done)
@@ -17,12 +17,12 @@
 HashMap is a Map which is used to store key value pairs.
 HashMap works on the principle of hashing.
 Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
-Hashing functions are used to link the Entry objects in the  HashMap.
+Hashing functions are used to link the Entry objects in the HashMap.
 HashMap is a data structure which allows us to store objects and retrieve it in constant time O(1) provided we know the key.
 
 How Hashmap Calculates the Index of a Bucket :
 ----------------------------------------------
-HashMap maintains an Array of Bucket to store key value pairs.
+HashMap maintains an rray of bucket to store key value pairs.
 Whenever we store or retrieve any key value pair,HashMap calculates the index of the bucket for each and every operation.
 Key object is used to calculate the index of the Bucket.
 hash value is calculated using hash(key) i.e private method of HashMap.
@@ -75,7 +75,7 @@ All the Entry objects in the LinkedList will have the same hashCode but equals m
 If both the key objects are equal then the value object will be replaced with the key.
 
 
-******************************************************************* 2.HashMap - Internal  (howtodoinjava)  *********************************************************************
+************************************************ 2.HashMap - Internal  (howtodoinjava)  *********************************************
 
 1.What is Hashing :
 -------------------

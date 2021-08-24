@@ -1,0 +1,415 @@
+1.Object Class Introduction											[14-DEC-2020]  (Done)
+2.toString()                                                        [14-DEC-2020]  (Done)
+3.hashCode()                                                        [14-DEC-2020]  (Done)
+4.equals()                                                          [14-DEC-2020]  (Done)
+5.clone()                                                           [15-DEC-2020]  (Done)
+6.getClass()                                                        [15-DEC-2020]  (Done)
+7.finalize()                                                        [15-DEC-2020]  (Done)
+8.wait(),notify() and notifyAll()                                   [15-DEC-2020]  (Done)
+
+************************************************************* 1.Object Class Introduction  ********************************************
+
+In Java we have Several packages like util,sql,io,lang,awt,.net etc.
+Without using java.lang package we cannot write a single program.
+
+Class Test
+{
+  main(String[] args)
+  {
+  System.out.println("Main Method"); 	
+  }
+}
+
+Here it extends Object Class because Class is a Child Class of Object Class.
+System class,String class are available in lang package.
+For writing any Java Program whether it is small or complex most commonly required classes and interfaces are encapsulated into a seperate package 
+which is nothing but java.lang package.
+It is not required to import java.lang package explicitly.
+All classes and interfaces are present in this package and are by default available to every Java Program.
+
+Object Class :
+--------------
+Every Class in Java should be a Child class of Object Class either directly or indirectly.
+Object Class acts as a root Class for all Java Classes.
+Most common required methods for every class are encapsulated into a seperate class nothing but Object Class.
+
+Methods in Object Class :
+-------------------------
+1.public String toString();
+2.public native int hashCode();
+3.public boolean equals(Object o);
+4.protected native Object clone() throws CloneNotSupportedException
+5.protected void finalize() throws Throwable
+6.public final Class getClass();
+7.public final void wait() throws InterruptedException;
+8.public final void wait(long ms) throws InterruptedException;
+9.public final void wait(long ms,long ns) throws InterruptedException;
+10.public final void notify();
+11.public final void notifyAll(;
+
+***************************************************************** 2.toString() ***********************************************************************
+
+public String toString() :
+
+We use toString() to get the String representation of an Object.
+Whenever we are trying to print an Object reference internally Object class toString() is called. 
+If we want to get the meaningful String representation of an Object we need to override the toString().
+Object Class toString() is implemented as below
+
+	public String toString()
+	{
+		return getClass().getName()+"@"+Integer.toHexString(hashCode());
+	}
+
+Example :
+---------
+public class ToStringDemo {
+	private String name;
+	private int rollno;
+	public ToStringDemo(String name, int rollno) {
+		this.name=name;
+		this.rollno=rollno;
+	}
+	public static void main(String[] args) {
+		ToStringDemo demo=new ToStringDemo("Srinivas",36);
+		System.out.println(demo);
+	}
+	@Override
+	public String toString() {
+		return "Name of the Student is "+name +" And his Rollno is "+rollno;
+	}
+}
+
+O/P : Name of the Student is Srinivas And his Rollno is 36
+
+Note :
+------
+In Collection Classes,Wrapper Classes and String Class toString() is overridden for meaningful String representation of an Object.
+It is highly recomended to override toString() in user defined class also.
+
+************************************************************** 3.hashCode()  ***********************************************************************
+
+public native int hashCode() :
+
+hashCode() does not represent an address of an object.
+For every object JVM is going to assign one unique number nothing but hashCode and based on hashCode object will be inserted.
+JVM internally uses hashCode() while storing data into hashing related data structure like HashTable,HashMap,HashSet etc.
+To search for a particular object,what is the hashcode of that object,then directly goes to that object with that hashCode.
+Main advantage of storing objects based on hashCode() is search option will become efficient.
+
+hashCode() returns a unique Integer value for the Object in runtime.
+By default Integer value is mostly derived from Memory address of the Object.
+hashCode() is used for determining the bukcet location when the object needs to be stored in HashTable like Data Structure.
+ 
+Most successful alogorithm is 
+
+Hashing Search  --> Search algorithm is O(1) because it does not depends on number of elements.
+Binay Search    --> Search Algorithm is O(logN/2)
+Linear Search   --> Search Algorithm is O(n)
+
+Hashing is the most powerful Search Algorithm.
+Object class hashCode() generates hashCode based on address of object if we are not overriding.
+Based on our requirement we can override hashCode() in our class.
+While overriding hashCode() for every object we have to generate a unique number and is called proper way of overriding.
+If we generate the same hashcode for every object then search operation is disturbed.
+
+	@Override
+	public int hashCode() {
+		return rollno;
+	}
+
+Contract between hashCode() and equals() :
+------------------------------------------
+It is necessary to override the hashCode() whenever equals() is overridden().
+The general contract for hashCode() and equals() is equal Objects must have equal hashCodes.
+Whenever hashCode() is invoked on the same Object more than once then hashCode() must return the same Integer.
+If two Object are equal using equals() then calling hashCode() on these two Objects must return the same hashCode value.
+If two Objects are not equal using equals() then their hasCode may or may no be the same.
+Producing distinct results for unequal Objects may improove the perfromance of the HashTable.
+
+Note :
+------
+Whenever object class toString() is called it will internally call hashCode() but whenever we are overriding toString() it will not call hashCode().
+
+***************************************************************** 4.equals()  *****************************************************************
+
+public booelan equals(Object obj) :
+
+We use equals() to check equality of two objects i.e given two objects are equal or not.
+equals() can be used to check the content comparison where as == meant for reference comparison.
+In String class equals() is overridden and is meant for content comparison.
+
+public class StringDemo {
+	public static void main(String[] args) {
+		String s1 = new String("Chary");
+		String s2 = new String("Chary");
+		System.out.println(s1 == s2); //false
+		System.out.println(s1.equals(s2)); //true
+	}
+}
+
+In StringBuffer class equals() is not overridden and object class equals method got executed which is meant for reference comparison.
+eventhough content is same it returns false.
+
+		StringBuffer s3 = new StringBuffer("Chary");
+		StringBuffer s4 = new StringBuffer("Chary");
+		System.out.println(s3 == s4);//false
+		System.out.println(s3.equals(s4));//false
+		
+Rules to Override equals() :
+----------------------------
+1.What is the meaning of content comparison i.e we have to check only names or only rollno or we have to check both.
+2.If we pass different type of objects equals() should return false but not ClasscastException.
+3.If we pass null to the equals(),it should return false but not NullPointerException.
+4.Based on which parameter we override equals() same parameter we need to use for hashCode().
+
+public class EqualsDemo {
+
+	String name;
+	int rollno;
+
+	public EqualsDemo(String name, int rollno) {
+		this.name=name;
+		this.rollno=rollno;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		try {
+		int rollno1 = this.rollno;
+		String name1 = this.name;
+
+		EqualsDemo equalsDemo = (EqualsDemo) obj;
+
+		int rollno2 = equalsDemo.rollno;
+		String name2 = equalsDemo.name;
+
+		if (name1.equals(name2) && rollno1 == rollno2) {
+			return true;
+			}
+		}
+		catch (NullPointerException | ClassCastException  e) {
+			return false;
+		}
+		return false;
+	}
+	public static void main(String[] args) {
+
+		EqualsDemo e1=new EqualsDemo("Bhaumik",23);
+		EqualsDemo e2=new EqualsDemo("Bhaumik",23);
+		System.out.println(e1.equals(e2));
+	}
+}
+
+Relation between == operator and equals() :
+-------------------------------------------
+Scenario 1:
+If r1==r2 returns true then r1.equals(r2) is always true.
+Scenario 2:
+If r1==r2 is false then r1.equals(r2) may be true or false
+Scenario 3:
+If r1.equals(r2) is true then r1==r2 may be true or false.
+Scenario 4:
+If r1.equals(r2) is false then r1==r2 is always false.
+
+Difference between == operator and equals() :
+---------------------------------------------
+== operator :
+1.It is an operator applicable for both object and primitive types.
+2.In case of object references == operator always meant for reference comparison.
+3.we cannot override == operator for content comparison.
+4.To use == operator between object types,there must be some relationship between objects i.e
+parent to child or child to parent or same type.
+
+equals method :
+1.It is a method applicable only for object types but not for primitive types.
+2.equals() present in object class is meant for reference comparison.
+3.Based on our requirement we can override equals().
+4.If we apply equals() on two different objects we won't get any CTE but returns false.
+
+
+Note :
+------
+If the Objects are stored based on hashCode,while storing elements we should follow some rules.
+Two different objects must be stored in the same bucket i.e hashCode must be same.
+All objects present within the bukcet need not be same.
+
+**************************************************************** 5.clone()  ****************************************************************
+
+Once we get the object started performing some operations on the object and because of unwanted operation object got destroyed and it is not recoverable.
+To preserve original state as it is we make an object as Clonable.
+Process of creating exactly duplicate object is called Cloning.
+Main purpose of cloning is to maintain backup.
+
+	protected native Object clone()throws CloneNotSupportedException
+
+Rules for Cloning :
+-------------------
+To perform Cloning an Object must be clonable object.
+An Object is said to be clonable If the corresponding Class implements Clonable interface.
+Clonable interface is present in java.lang package and it does not contain any method.It is a Marker Interface.
+If we are trying to perfrom Cloning on Non Clonable objects we get RTE saying CloneNotSupportedExcpetion.
+
+public class CloneDemo implements Cloneable{
+	int i=10;
+	int j=20;
+	public static void main(String[] args) throws CloneNotSupportedException {
+		CloneDemo demo=new CloneDemo();
+		CloneDemo demo2=(CloneDemo) demo.clone();
+		
+		System.out.println(demo==demo2);
+		
+		demo.i=35;
+		demo.j=36;
+		System.out.println(demo2.i +" - "+demo2.j);
+	}
+}
+
+Output : 
+--------
+false
+10 - 20
+
+Shallow Cloning :
+-----------------
+Process of creating bitwise copy of an object is called Shallow Cloning.
+If the Main object contains only primitive variables,then exactly duplicate objects will be created in the cloned object.
+If the Main object contains any reference variables then duplicate object won't be created and 
+reference variable will be created pointing to the old content object.
+By using clone object reference if we perform any changes to the cloned object then those changes will be reflected to the original object.
+By default Object Class clone() menat for Shallow Cloning ie "field by field copy"
+Shallow Cloning is the best choice if the object contains only primitive variables and not recomended when there are any reference variables.
+To overcome this we go for Deep Cloning.
+
+public class Cat {
+	int j;
+	public Cat(int j) {
+		super();
+		this.j = j;
+	}
+}
+
+public class Dog implements Cloneable{
+	int i;
+	Cat cat;
+	public Dog(int i, Cat cat) {
+		super();
+		this.i = i;
+		this.cat = cat;
+	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+}
+
+public class ShallowCloningDemo {
+	public static void main(String[] args) throws CloneNotSupportedException {
+		Cat cat=new Cat(20);
+		Dog dog1=new Dog(30,cat);
+		//Shallow Cloning
+		Dog dog2=(Dog)dog1.clone();
+		System.out.println("Original Object Values "+dog2.i +" And " +dog2.cat.j);
+		dog2.cat.j=40;
+		System.out.println("Cloned Object Values "+dog2.i +" And " +dog2.cat.j);
+		System.out.println("Cat Value "+cat.j);
+	}
+}
+
+Deep Cloning :
+--------------
+Process of creating exactly duplicate independent objects including contained object is called Deep Cloning.
+In Deep cloning if the Main object contains any reference variables then corresponding duplicate object will also be created.
+In Deep Cloning,by using clone object reference If we perform any changes to the main object then those changes will not be reflected to the Main Object.
+
+	public class Employee implements Serializable,Cloneable{
+
+	private static final long serialVersionUID = 1L;
+
+	private String employeeName;
+	private int employeeId;
+	private Department department;
+
+	//Shallow Cloning
+	/**protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}**/
+	
+	//Deep Cloning
+	protected Object clone() throws CloneNotSupportedException {
+		Employee cloned=(Employee)super.clone();
+		cloned.setDepartment((Department)cloned.getDepartment().clone());
+		return cloned;
+	}
+	}
+	
+	public class Department implements Serializable, Cloneable {
+
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+	private String name;
+
+	// Shallow Cloning
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	}
+	
+	public class TestCloning {
+	public static void main(String[] args) throws CloneNotSupportedException {
+		Department department=new Department();
+		department.setName("Software");
+		department.setId(36);
+		
+		Employee original=new Employee();
+		original.setEmployeeName("Java Developer");	
+		original.setEmployeeId(2018);
+		original.setDepartment(department);
+		
+		Employee cloned=(Employee)original.clone();
+		System.out.println(original==cloned);
+		System.out.println(original.getClass()==cloned.getClass());
+		System.out.println(original.equals(cloned));
+		
+		//If we are performing any changes to the cloned Object
+		//then those changes will also be reflected to the Original Object
+		cloned.getDepartment().setName("FullStack");
+		
+		System.out.println(original.getDepartment().getName());
+		System.out.println(cloned.getDepartment().getName());
+	}
+	}
+
+Note :
+------
+Shallow cloning is recomended when the object contains only primitive variables.
+Deep cloning is required when the object contains reference variables.
+When we don't know whether we can call the clone() on a particular class or not we use instanceOf Operator.
+
+	if(original instanceof Cloneable) {
+	Employee cloned=(Employee)original.clone();
+	}
+
+******************************************************************* 6.getClass()  ***************************************************************
+
+public final Class getClass() :
+
+If we want to know the Runtime Class definition of an object we use getClass().
+Connection connection=DriverManager.getConnection("");
+
+To print the Database connection interface vendor implemented ClassName
+
+	connection.getClass().getName();
+	
+
+****************************************************************** 7.finalize()  ***************************************************************
+
+protected void finalize() throws Throwable :
+
+Just before destroying an object Garbage Collector always calls finalize() to perform cleanup activities.
+Once finalize() completes the execution then Garbage collector destroys the object automatically.
+
+****************************************************************** 8.wait(),notify() and notifyAll()  ******************************************
+
+Two Threads can communicate with each other by using above methods.
+Inter Thread Communication can be acheived by using these Methods.
