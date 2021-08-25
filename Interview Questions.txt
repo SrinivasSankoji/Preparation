@@ -285,13 +285,13 @@ Why do we use Subnet
 How to Create an EC2 instance ways.
 
 JVM Internal
-Object creation ways
+Object creation ways			(Done)
 Object Class Methods 			(Done)
 Serialization					(Done)
 ArrayList Internal
 HashMap Internal
 Concurrency and Its Implementations
-Spring IOC Lifecycle				
+Spring IOC Lifecycle			(Done)			
 Hibernate Methods
 Hibernate Caching
 Singleton ways and how to break Singleton   (Done)
@@ -316,8 +316,8 @@ load() and get()
 Transaction Propogation
 @EnableAutoConfiguration
 @ComponentScan
-Dependency Injection
-Constructor and Setter Injection
+Dependency Injection					(Done)
+Constructor and Setter Injection		(Done)
 OneToMany Mapping
 Immutable Object -- Getter Method Why
 JAX-RS Security for Restful API's.
@@ -333,6 +333,7 @@ Java Practice Sites :
 https://www.educative.io/edpresso
 https://www.codejava.net/
 https://codippa.com/
+https://javahungry.blogspot.com/
 
 
 
