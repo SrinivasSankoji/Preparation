@@ -15,6 +15,7 @@
 15.Web server vs Application Server                 [24-DEC-2020]  (Done)
 16.Classpath vs Path                                [24-DEC-2020]  ()
 17.JDK vs JRE                                       [24-DEC-2020]  ()
+18.Object Creation Ways  (geeksforgeeks)			[25-AUG-2020]  (Done)
 
 *************************************************************  1.introduction	***************************************************************************************
 
@@ -331,6 +332,106 @@ GlassFish etc.
 
 
 ***********************************************  17.JDK vs JRE  ****************************************************************************************
+
+
+	
+*********************************************** 18.Object Creation Ways  (geeksforgeeks) ***************************************************************
+
+The no of ways using which we can create Object are
+
+1.new keyword
+2.newInstance
+3.clone()
+4.deserialization
+5.newInstance() of Constructor class
+
+2.newInstance() :
+-----------------
+If we know the name of the Class and It has default Constructor then we can create an Object of the Class using newInstance().
+Class.forName actually loads the class but doesn't create the Object.
+To create an Object of the Class we use newInstance() method of the Class.
+
+	public class NewInstance {
+	String value="hello";
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		Class cls=Class.forName("com.javainterview.objectcreation.NewInstance");
+		NewInstance demo=NewInstance.class.newInstance();
+		System.out.println(demo.value);
+	}
+	}
+	
+3.clone() :
+-----------
+Whenever clone() is called on any Object,JVM actually creates a new Object by copying all the contents of the previous Object.
+Creating an Object usig clone() does not invoke any Constructor.
+To use clone() Class must implement Cloneable Interface.
+
+	public class ClonableInstance implements Cloneable {
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	public static void main(String[] args) throws CloneNotSupportedException {
+		ClonableInstance instanceOne=new ClonableInstance();
+		ClonableInstance instanceTwo=(ClonableInstance)instanceOne.clone();
+		System.out.println(instanceOne.hashCode());
+		System.out.println(instanceTwo.hashCode());
+	}
+	}
+
+4.deserialization :
+-------------------
+Whenever we serialize and deSerialize the Object new Object gets created.
+While performing deserialization JVM does not use any Constructor to create the Object.
+To deSerialize an Object,an Object must implements Serializable interface.
+
+	public class DeSerializableInstance {
+	public static void main(String[] args) {
+		User user=new User();
+		user.setName("Srinivas");
+		user.setId(36);
+		try {
+			FileOutputStream fos=new FileOutputStream("user.ser");
+			ObjectOutputStream oos=new ObjectOutputStream(fos);
+			oos.writeObject(user);
+			oos.close();
+			
+			FileInputStream fis=new FileInputStream("user.ser");
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			User user2=(User)ois.readObject();
+			ois.close();
+			
+			System.out.println(user.hashCode());
+			System.out.println(user2.hashCode());
+		}
+		catch (Exception e) {
+		}
+	}
+	}
+	
+5.newInstance() of Constructor class :
+--------------------------------------
+This is similar to newInstance() of a Class.
+There is one more newInstance() in java.lang.reflect.Constructor class using which we can create new Object.
+newInstance() of Class internally uses newInstance() of Constructor class.
+Both newInstance() are Reflective ways to create an Object.
+
+	public class ConstructorInstance {
+	public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Constructor constructor=ConstructorInstance.class.getDeclaredConstructor();
+		ConstructorInstance instance=(ConstructorInstance) constructor.newInstance();
+		System.out.println(instance.hashCode());
+	}
+	}
+
+
+
+
+
+
+ 
+
+
+	
 
 	
 
