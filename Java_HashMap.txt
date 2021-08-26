@@ -1,19 +1,21 @@
-1.HashMap - Internal  						(DZone Shubham Bansal)   	[22-JAN-2021]  (Done)
-2.HashMap - Internal 						(howtodoinjava)   			[22-JAN-2021]  (Done)
-3.HashMap – Custom Key Design               (howtodoinjava)   			[21-JAN-2021]  ()
-4.HashMap – Synchronize HashMap             (howtodoinjava)   			[21-JAN-2021]  ()
-5.HashMap – Merge HashMaps                  (howtodoinjava)   			[21-JAN-2021]  ()
-6.HashMap – Compare HashMaps                (howtodoinjava)   			[21-JAN-2021]  ()
-7.HashMap – Iterations                      (howtodoinjava)   			[21-JAN-2021]  ()
-8.HashMap – Cloning                         (howtodoinjava)   			[21-JAN-2021]  ()
-9.HashMap - Internal  						(javaconceptoftheday)   	[21-JAN-2021]  ()
-10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   	[21-AUG-2021]  ()
-11.Initial capacity vs Load Factor			(javaconceptoftheday)   	[25-AUG-2021]  (Done)
-12.HashSet Internal							(javaconceptoftheday)   	[23-AUG-2021]  (Done)
-13.HashMap vs HashTable						(javaconceptoftheday)   	[23-AUG-2021]  ()
-14.HashMap Programs & Examples	(15)		(javaconceptoftheday)   	[23-AUG-2021]  ()
-15.ConcurrentHashMap Internal				(DZone Arun Pandey)   		[23-AUG-2021]  ()
-16.ConcurrentHashMap Internal				(javahungry)   				[23-AUG-2021]  ()
+1.HashMap - Internal  						(DZone Shubham Bansal)   			[22-JAN-2021]  (Done)
+2.HashMap - Internal 						(howtodoinjava)   					[22-JAN-2021]  (Done)
+3.HashMap – Custom Key Design               (howtodoinjava)   					[21-JAN-2021]  ()
+4.HashMap – Synchronize HashMap             (howtodoinjava)   					[21-JAN-2021]  ()
+5.HashMap – Merge HashMaps                  (howtodoinjava)   					[26-AUG-2021]  (Done)
+6.HashMap – Compare HashMaps                (howtodoinjava)   					[26-AUG-2021]  (Done)
+
+7.HashMap – Iterations                      (howtodoinjava)   					[21-JAN-2021]  ()
+8.HashMap – Cloning                         (howtodoinjava)   					[21-JAN-2021]  ()
+9.HashMap - Internal  						(javaconceptoftheday)   			[21-JAN-2021]  ()
+10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   			[21-AUG-2021]  ()
+11.Initial capacity vs Load Factor			(javaconceptoftheday)   			[25-AUG-2021]  (Done)
+12.HashSet Internal							(javaconceptoftheday)   			[23-AUG-2021]  (Done)
+13.HashMap vs HashTable						(javaconceptoftheday)   			[26-AUG-2021]  (Done)
+14.HashMap Programs & Examples	(15)		(javaconceptoftheday)   			[26-AUG-2021]  (Done)
+15.ConcurrentHashMap Internal				(DZone Arun Pandey)   				[26-AUG-2021]  (Done)
+16.ConcurrentHashMap Internal				(javahungry)   						[23-AUG-2021]  (Done)
+17.HashMap vs ConcurrentHashMap			    (Medium Chinmay Venkata Sabbam)   	[21-AUG-2021]  (Done)
 
 **************************************************************** 1.HashMap Internal  (DZone Shubham Bansal) ***************************************
 
@@ -194,6 +196,36 @@ hashCode for null is always 0 and such Entry object will be stored inside 0 inde
 ----------------------------------
 As part of the performnace improovement of HashMap in Java 8,LinkedList is replaced by BalancedTree to store the Entry objects in the Array.
 
+**************************************** 5.HashMap – Merge HashMaps (howtodoinjava) **********************************************************
+
+We can merge HashMap's by using putAll().
+As we know that HashMap does not allow duplicate keys.
+When we merge the maps in this way Duplicate Key's in map1 the value is overwritten by value for the same key in map2.
+
+If we want to loose the data and and merge the Values when the duplicate Keys are present we use merge() in Java 8.
+
+**************************************** 6.HashMap – Compare HashMaps (howtodoinjava) ********************************************************
+
+We can compare two HashMap's in Java by Keys,Values,and Key-Value Pairs.
+
+2.Compare HashMap for same Key-Values :
+---------------------------------------
+By default HashMap.equals() compares two HashMap's by Key-Value pairs.
+If both the HashMap instances must have exactly same Key_Value pairs and both must be of same size.
+
+Note :
+------
+Order of Key value pairs can be different and it does not play any role in comparison.
+
+2.Compare HashMap for same Keys :
+---------------------------------
+Two HashMap's will be equal If they have same set of Keys.
+
+3.Compare HashMap for same Values :
+-----------------------------------
+Two HashMap's will be equal If they have same set of Values.
+HashMap allows duplicate Values.
+We can compare two HashSet's with Duplicates or without Duplicates.
 
 **************************************** 11.Initial capacity vs Load Factor (javaconceptoftheday) ********************************************
 
@@ -262,3 +294,46 @@ remove() works in the same manner.
 		map.remove(e)=PRESENT;
 	}
 	
+***************************************** 13.HashMap vs HashTable(javaconceptoftheday) ****************************************************************
+
+1.HashMap is not ThreadSafe where as HashTable is Threadsafe.We can make the HashMap as ThreadSafe by using Collections.synchronizedMap().
+2.HashMap and HashTable both implements Map Interface but HashMap extends AbstractMap Class where as HashTable extends Dictionary Class.
+3.HashMap allows null value as key only once where as HashTable does not allow null key.
+4.HashMap returns only Iterators which can be used to traverse over the elements of the HashMap where as
+HashTable returns Iterator as well as Enumeration which can be used to traverse over the elements of the HashTable.
+5.Iterator returned by HashMap is fail-fast and throws ConcurrentModificationException where as Iterator returned by HashTable is
+fail-safe and does not throw any Exception.
+6.As HashTable is Synchronized this makes HashTbale slower than HashMap.
+7.HashTable is legacy Class and ConcurrentHashMap is better option than HashTable.
+8.HashMap is always recomended to use If we don't want ThreadSafety.
+If we want Thread Safety use either ConcurrentHashMap or make the HashMap Thread Safe by using Collections.synchronizedMap().
+
+***************************************** 14.HashMap Programs & Examples(15) **************************************************************************
+
+Done
+
+***************************************** 15.ConcurrentHashMap Internal(DZone Arun Pandey)	***********************************************************
+
+ConcurrentHashMap is similar to HashMap Class except that ConcurrentHashMap offers internally maintained concurrency.
+We do not need to have synchronized block when accessing ConcurrentHashMap in MultiThreaded Application.
+ConcurrentHashMap allows concurrent access of the Map ie each part of the Map is called Segment and 
+Segment is only getting locked while adding or updating the Map.
+ConcurrentHashMap allows concurrent Threads to read the value without locking at all.
+ConcurrentHashMap has a default capacity of 16 ie 16 Threads are allowed to work on the ConcurrentHashMap at at time.
+	
+***************************************** 16.ConcurrentHashMap Internal	(javahungry)*******************************************************************
+
+ConcurrentHashMap does not allow null value and null key because If map.get(key) returns null we can't detect whether the key explicitly maps to null or
+key is not mapped.
+In a non Concurrent Map we can check this via map.contains(Key) but in a ConcurrentMap Map might have changed between the Calls.
+
+***************************************** 17.HashMap vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) *********************************************
+
+Eventhough both HashTable and ConcurrentHashMap are ThreadSafe,HashTable has the poor performance in Multi Threaded Environment.
+In case of HashTable If one Thread allows to perform any kind of Operation,the Other Thread has to wait until the completion of the Thread.
+HashTable is synchronized ie It acquires the lock on complete HashTable Object.
+To overcome the inefficiency of the HashTable Java introduces ConcurrentHashMap.
+
+
+ 
+
