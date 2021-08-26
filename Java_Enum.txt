@@ -1,0 +1,111 @@
+1.What is enum in Java				(howtodoinjava)   			[26-AUG-2021]  (Done)
+2.enum constructors					(howtodoinjava)   			[26-AUG-2021]  (Done)
+3.enum methods						(howtodoinjava)   			[26-AUG-2021]  (Done)
+4.enum inheritance                  (howtodoinjava)   			[26-AUG-2021]  (Done)
+5.Compare enums                     (howtodoinjava)   			[26-AUG-2021]  (Done)
+6.Enum collections                  (howtodoinjava)   			[26-AUG-2021]  (Done)
+7.Java Enum Examples				(crunchify)   				[26-AUG-2021]  ()
+8.Important points on Java Enum     (crunchify)   				[26-AUG-2021]  ()
+9.Enum DataType                     (crunchify)   				[26-AUG-2021]  ()
+
+****************************************** 1.What is enum in Java( howtodoinjava) **************************************************************
+
+Java enum also called as Java Enumeration Type whose field consists of fixed set of Constants.
+Main purpose of enum is to enforce compile time type safety.
+enum is a reserved keyword in Java ie we cannot define a variable name with enum in Java.
+We should use enum when we know all the possible values of a variable at compile time or design time.
+Though we can add more values in future as and when we identify them.
+enum is a special type of class that always extends java.lang.Enum.
+
+enum Declaration :
+------------------
+
+	public enum Direction
+	{
+		SOUTH,NORTH,EAST,WEST
+	}
+
+Here each enum is an instance of enum type itself.
+JVM internally adds ordinal and value methods to the class which we can call while working with enum.
+
+Note :
+------
+ordinal() returns the order of an enum instance.
+enum instance starts with index "0".
+values() returns all the enums in an enum array.
+To convert String into enum we use valueOf().
+By default enum's are Constants and in Java Constants are defined in Upper Case.
+
+****************************************** 2.enum constructors	(howtodoinjava) ****************************************************************
+
+By default enum doesn't require Constructor because enum values are always defined at the time of declaration.
+We can define Constructors in enum to initialize the state of enum types.
+
+	public enum DirectionConstructor {
+	SOUTH(45), NORTH(0), EAST(90), WEST(70);
+	
+	private DirectionConstructor(final int angle) {
+		this.angle = angle;
+	}
+	
+	private int angle;
+
+	public int getAngle() {
+		return angle;
+	}
+	}
+
+****************************************** 3.enum methods (howtodoinjava) **********************************************************************
+
+enum is a special class type.
+enum can have methods and fields just like any other class.
+We can add both abstract methods and concrete methods.
+
+concrete methods in enum :
+--------------------------
+Adding a concrete method is similar to add a method in class.
+Method in enum can have any access modifier ie private,protected,public.
+enum method returns value and we can perforn any processing logic.
+
+Note:
+When we add abstract methods in enum,we must implement abstract methods at each enum field individually.
+
+****************************************** 4.enum inheritance (howtodoinjava) ******************************************************************
+
+enum extends java.lang.Enum which is an abstract Class.
+Enum class extends Object Class and implements Serializable and Comparable Interface.
+enum types are Singleton by default.
+As enum cannot extend any  other class because it extends java.lang.Enum.
+Java does not support multiple inheritance. 
+
+****************************************** 5.Compare enums(howtodoinjava)  *********************************************************************
+
+All enums are by default implements Comparable Interface.
+We can compare enums with equals() and == operator.
+
+****************************************** 6.Enum collections(howtodoinjava) *******************************************************************
+
+Two classes have been added to java.util package in support of enums ie EnumSet and EnumMap.
+
+EnumSet :
+---------
+All Members of an enum set must be of the same enum typeand come from the Single enum type.
+	
+	Set set=EnumSet.of(Direction.SOUTH,Direction.EAST,Direction.NORTH,Direction.WEST);
+	set.forEach(System.out::println);
+
+EnumMap :
+---------
+All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created.
+
+	Map enumMap = new EnumMap(Direction.class);
+    enumMap.put(Direction.EAST, Direction.EAST.getAngle());
+    enumMap.put(Direction.WEST, Direction.WEST.getAngle());
+    enumMap.put(Direction.NORTH, Direction.NORTH.getAngle());
+    enumMap.put(Direction.SOUTH, Direction.SOUTH.getAngle());
+
+****************************************** 7.Java Enum Examples(crunchify)  ********************************************************************
+ 	
+****************************************** 8.Important points on Java Enum(crunchify)  *********************************************************
+ 	
+****************************************** 9.Enum DataType(crunchify) **************************************************************************  	
