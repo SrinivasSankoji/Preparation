@@ -2,7 +2,7 @@
 2.Set up Jenkins on Tomcat												[23-05-2020] ()	
 3.Change Home Directory													[23-05-2020] (Done)	
 4.Using CLI																[23-05-2020] ()	
-5.Create Users,Manage and assign Roles 									[21-06-2019] (DONE)
+5.Create Users,Manage and assign Roles 									[21-06-2019] (Done)
 6.Basic Configuration													[23-05-2020] ()	
 7.Job in Jenkins 														[25-06-2019] (Done)
 8.Jenkins Integrating With GIT											[25-06-2019] (Done)
@@ -29,14 +29,14 @@
 Jenkins is a Java Application and is platform Independent ie It does not require any platform (Window,Mac or Linux).
 Jenkins is used for Continuous Integration and Continuous Delivery.
 Whenever we work in the team we work with different developers and each developer will do some changes in the code 
-and commit the code in the Repository(GitHub/BitBucket).
+and commit the code in the Repository.
 At the end of the day,there are many developers who are changing the code and check in the code to the Repository
-and now the build has Failed.
+and now the build has failed.
 It is very difficult to identify at which point the build has failed and who has done the Changes.
 To resolve the above situation we use Jenkins.
 As soon as developer commits the code in the shared Repository,Jenkins will pull the latest code and trigger the Build.
 Build Notification will be sent out and If there are any issues we can revert back.
-If the build is successful we can also integrate our Unit Test as a post build action and sent the report Back.
+If the build is successful we can also integrate unit Test as a post build action and sent the report back.
 
 Download Jenkins :
 ------------------

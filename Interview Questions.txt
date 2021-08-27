@@ -8,6 +8,7 @@ Lang Package
 Interface and Modifiers
 Collections
 Generics
+Enum
 Serialization and Externalization
 MultiThreading
 Concurrency
@@ -296,6 +297,11 @@ Hibernate Methods
 Hibernate Caching
 Singleton ways and how to break Singleton   (Done)
 Immutable Object
+Java Pass By Value and Pass By Reference
+Java Marker Interface							
+Java null and NullPointerException
+Java Clone -Shallow Copy and Deep Copy
+Internal vs External Iteration in Java
 
 Venu Interview Questions :
 --------------------------

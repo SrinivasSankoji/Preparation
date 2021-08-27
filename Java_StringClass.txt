@@ -1,24 +1,32 @@
-9.String Class                                                      [16-DEC-2020]  (Done)
-10.StringBuffer                                                     [16-DEC-2020]  (Done)
-11.StringBuilder                                                    [16-DEC-2020]  (Done)
-12.Method Chaining                                                  [16-DEC-2020]  (Done)
+1.String Class                                                     [16-DEC-2020]  (Done)
+2.StringBuffer                                                     [16-DEC-2020]  (Done)
+3.StringBuilder                                                    [16-DEC-2020]  (Done)
+4.Method Chaining                                                  [16-DEC-2020]  (Done)
+5.Why Strings are Immutable in Java (howtodoinjava)
+6.Our Own Immutable Class (howtodoinjava)
 
-******************************************************** 9.String Class *****************************************************************
+******************************************************** 1.String Class *****************************************************************
 
-Once we create a String object we cannot perform any changes in the existing object.
+Once we create a String object we cannot perform any changes to the existing object.
 If we are trying with those changes a new object will be created and it does not have any reference and is eligible for Garbage Collector.
-Non changeable behavior is nothin but Immutable.
+Non changeable behavior is nothing but Immutable.
 
-String s=new String("Chary");
-s.concat("Software");
-System.out.println(s);// Chary
+		String s1=new String("Chary");
+		String s2=new String("Chary");
+		s1.concat("Software");
+		System.out.println(s1); //Chary
+		System.out.println(s1==s2);//false
+		System.out.println(s1.equals(s2));//true
 
-Once we create a StringBuffer object and if we perform any changes,then those changes will be applied on the existing object.
+Once we create a StringBuffer object and If we perform any changes,then those changes will be applied on the existing object.
 This changeable behavior is nothing but mutability of StringBuffer object.
 
-StringBuffer s1=new StringBuffer("Chary");
-s1.append("Software");
-System.out.println(s1);//CharySoftware
+		StringBuffer s3=new StringBuffer("Chary");
+		StringBuffer s4=new StringBuffer("Chary");
+		s3.append("Software");
+		System.out.println(s3);//CharySoftware
+		System.out.println(s3==s4);//false
+		System.out.println(s3.equals(s4));//false
 
 
 Note :
@@ -75,7 +83,7 @@ Example 1 :
 		
 Note :
 ------
-If an object is required to create at Runtime object it is going to create in Heap but not in SCP.
+If an object is required to create at Runtime object then it is going to create in Heap but not in SCP.
 
 Example 2 :
 -----------
@@ -128,7 +136,7 @@ Intern of String Object :
 
 		String s2=s1;
 
-Here s2 points to the Heap Memory.If i want s2 to point to the SCP object we go for intern().
+Here s2 points to the Heap Memory.If I want s2 to point to the SCP object we go for intern().
 We use intern() to get the corresponding SCP object reference for the given object.
 
 		String s3=s1.intern();
@@ -139,14 +147,14 @@ Variables are stored inside the stack where as objects are stored inside Heap an
 If an object is going to create at runtime,then object is going to create in Heap and reference points to the Heap object.
 If i want reference to be pointed to the SCP object we use intern().
 
-Importance od String Content Pool :
+Importance of String Content Pool :
 -----------------------------------
 If any String object is required to use repeatedly it is not recomended to create a seperate object for each requirement.
 Problem in this approach is performance will be impacted and memory utilization will be reduced.
 To resolve this problem we can create only one object and we can reuse the same object with multiple references.
 we can acheive this by using SCP.
 
-Disadvantage of SCP is If a Single object is referred by multiple references,By using one reference if we change the content of the object,
+Disadvantage of SCP is If a Single object is referred by multiple references,By using one reference If we change the content of the object,
 with those changes a new object will be created and reference will be pointed to newly created object.
 
 Note :
@@ -191,12 +199,12 @@ This behavior is nothing but Immutability.
 
 Rules to create a Final Class :
 -------------------------------
-1.Declare the Class as final so that it cannotbe extended.
+1.Declare the Class as final so that it cannot be extended.
 2.Make all the variables as private so that direct access is not allowed.
-3.Don't provide setter method for variables.
 3.Declare the Constructor as public.
-4.Declare the static method and verify the object has created or not.
-5.use the instance method to create the Object.
+4.Don't provide setter method for variables.
+5.Declare the static method and verify the object has created or not.
+6.use the new operator to create the Object.
 
 final class Immutable {
 	private int i;
@@ -240,19 +248,19 @@ only thing is we cannot reassign the variable.
 final is applicable for reference variables where as immutability is applicable for objects.
 
 
-StringBuffer :
---------------
+***************************************************************** 2.StringBuffer ********************************************************
+
 If the content is fixed and won't change frequently we go for String.
 In String for every change a new object will be created.
 If the content is not fixed and keep on changing then we go for StringBuffer.
 In StringBuffer for every change new object will be created and all changes will be doen in the existing object.
 All the methods in StringBuffer are synchronized.
 At a time only one Thread is allowed to operate on the object and performance of the system is going down.
-To resolve this we go fro StringBuilder.
+To resolve this problem we go for StringBuilder.
 
-StringBuilder :
----------------
-Only difference between StringBuffer and StringBUilder is all the methods present in StringBuilder are non synchronized.
+*************************************************************** 3.StringBuilder *********************************************************
+
+Only difference between StringBuffer and StringBuilder is all the methods present in StringBuilder are non synchronized.
 StringBuilder is introduced in Java 1.5.
 
 Method Chaining :
