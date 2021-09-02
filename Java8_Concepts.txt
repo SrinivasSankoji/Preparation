@@ -1,13 +1,13 @@
-1.For Each Method in Iterable Interface
-2.Default and Static Method in Interfaces(Interface Changes)
-3.Functional Interfaces and Lambda Expressions
-4.Java Stream API For Bulk Data Operations on Collections
-5.Java Time API
-6.Collection API Improvements
-7.Concurrency API Improvements
-8.Java IO Improvements
-9.Miscellaneous Core API Improvements
-10.Method References
+1.For Each Method in Iterable Interface													[02-SEP-2021]
+2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
+3.Functional Interfaces and Lambda Expressions                                  		[02-SEP-2021]
+4.Java Stream API For Bulk Data Operations on Collections                       		[02-SEP-2021]
+5.Java Time API                                                                 		[02-SEP-2021]
+6.Collection API Improvements                                                   		[02-SEP-2021]
+7.Concurrency API Improvements                                                  		[02-SEP-2021]
+8.Java IO Improvements                                                          		[02-SEP-2021]
+9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]
+10.Method References                                                            		[02-SEP-2021]
 
 Java 8 Concepts :
 -----------------
@@ -20,20 +20,32 @@ Optional Class
 CopyonWriteArrayList
 Sort in Java 8
 
-2. Default and Static Methods in Interface :
-********************************************
+******************************************** 2. Default and Static Methods in Interface ********************************************
 
-   Before Java8 Interface can have only public and Abstract Methods.
-   It was not Possible to add new Functionality to the Existing Interface
-   without Forcing all the Implementation classes to implement the Interface.
-   It is also not Possible to create Interface with Implementation.
+Before Java8,Interface can have only abstract Methods ie All the Methods of interface are by default public and abstract.
+It was not possible to add new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
+It is also not possible to create interface with implementation.
+From Java8 we have interfaces with default and static Methods.
+
+default method :
+----------------
+By using default Method we can add new methods in the existing interface in such a way that they are Backward Compatible.
+Backward Compatibility is adding new feature without breaking the Code.
+default Methods are declared in the interfaces using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
+   interface Printer
+   {
+	default void print()
+	{
+		System.out.println("This is Interface Printer");
+	}
+   }
    
-   From Java 8 We have Interfaces with Default and Static Methods.
-   
-   
-   Static Method :
-   ---------------
+static Method :
+---------------
+static methods in interface are similar to default method except that we cannot override these methods in the implementation classes.
+since these methods are static.
+To call the static Method we use the interface name.
    
    interface Scanner
    {
@@ -44,38 +56,50 @@ Sort in Java 8
 	  
    }
    
-   This Method is available only inside interface and can be overridden by Its Implementation Classes.
+   Scanner.print(); // calling static Interface Method
    
-   Default Method :
-   ----------------
+Java 8 – Abstract classes vs interfaces :
+-----------------------------------------
+With the introduction of default methods in interfaces,abstract classes are similar to interfaces in Java8.
+Eventhough it is true still we can have differences.
+Abstract classes can have Constructors where as Interfaces can't have Constructors.
+Main purpose of Interface is to provide full abstraction where as Abstract class purpose is to provide partial implementation.
+With the introduction of default methods we can add additional fetaures to the interface without effecting the implementation Classes.
+
+Default Method and Multiple Inheritance :
+-----------------------------------------
+When we have two interfaces with same default Method signature the Multiple inheritance problem can occur.
+To resolve the issue override the default method in the Implementation class.
+
+Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
+-----------------------------------------------------------------------------------------
+Java8 resolves the Multiple inheritance by overriding the default Method in the Implementation Classes.
+Problem is what if the multiple default inetrfaces have implemented by default methods with same signature then which default 
+method is invoked by the implementation class.
+Java8 designers thought of this conflict and have defined resolution rules for such scenario's.
+
+Rule 1: Class takes higher precedence than interface.
+Any method inherited from class or super class will be invoked before any default Method from  Interface.
+Rule 2:
+Derived Interfaces or sub Innterfaces takes higher precedence than Interface with higher hierarchy.
+Rule 3:
+If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override 
+and provide a method with same Method definition.
+We can invoke the specific implementation in Java8 using 
+
+	Interface.super.method
+
+*********************************************** 3.Functional Interface and Lambda Expressions ***********************************************
+ 
+Functional Interfaces are new Concept Introduced in Java8.
+An Interface with only one abstract Method and can have any number of default and static Methods is called Functional Interface.
+@FunctionalInterface is used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
+One of the Major benefits of Functional Interface is that it provides the possibility to use Lambda Expressions to instantiate them.
+We can instantiate an Interface with Anonymous Class but the code looks bulky.
    
-   interface Printer
-   {
-	default void print()
-	{
-		System.out.println("This is Interface Printer");
-	}
-   }
-   
-   Default Methods are declared in the Interfaces using default keyword and can be overridden and Accessible by the 
-   instances of the implementation classes.
-   
-3.Functional Interface and Lambda Expressions :
-***********************************************
-   
-   Functional Interfaces are new Concept Introduced in Java8.
-   An Interface with only one abstract Method and can have any number of default and static Methods
-   is called Functional Interface.
-   @FunctionalInterface is used to mark an interface as Functional Interface so that accidentally 
-   we cannot declare more than one abstract Methods.
-   
-   One of the Major benefits of Functional Interface is that it provides the Possibility to Use
-   Lambda Expressions to instantiate them.
-   
-   We can Instantiate an Interface with Anonymous Class but the code looks Bulky.
-   
-   Thread :
-   --------
+Thread :
+--------
+
    Runnable runnable=new Runnable()
 							  {
 								@override
@@ -85,37 +109,37 @@ Sort in Java 8
 								}
 							  };
 	
-	Since Functional Interfaces has only one method Implementation,Lambda Expression
-	can Easily Provide the Method Implementation.
+Since Functional Interfaces has only one method Implementation,Lambda Expression
+can Easily Provide the Method Implementation.
 	
-	Thread :
-	--------
+Thread :
+--------
+
 	Runnable runnable=() -> {
 							System.out.println("My Runnable");
 							}
 	
-    If we have a single Statement in the Method Implementation the no need  of Curly Braces.
-	
+If we have a single Statement in the Method Implementation the no need  of Curly Braces.
+
 	Interface i1=(s)->System.out.println(s);
 	i1.void("Hello");
-	
-	Finally Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces Easily.
-	To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded
-	Functional Interfaces provided by Java.
-	Mark the Predefined Functional Interface bu using @FunctionalInterface Annotation.
-	@FunctionalInterface is introduced in Java 8.
+
+Finally Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces Easily.
+To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded
+Functional Interfaces provided by Java.
+Mark the Predefined Functional Interface bu using @FunctionalInterface Annotation.
+@FunctionalInterface is introduced in Java 8.
 	
 	@FunctionalInterface
 	interface MyFunctioanlInterface
 	{
 		public int addMethod(int a,int b);
 	}
-	
 	MyFunctioanlInterface myFunctioanlInterface=(a,b)->a+b;
 	System.out.println("Result :"+myFunctioanlInterface.addMethod(12, 100));
 	
-4.Stream API for Bulk Data Operations on Collections :
-******************************************************
+**************************************** 4.Stream API for Bulk Data Operations on Collections *********************************************
+
 Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations with Collection.
 Stream API allows Sequential as well as Parallel Execution.
 Collection Interface has been extended with stream() and paralellStream() default methods to get
@@ -154,13 +178,13 @@ In this case peek() can be Used.
 
 Peek :
 ------
-peek() performs specified Operation on each Element of the Stream and returns a New Stream which can be used Further.
+peek() performs specified Operation on each element of the stream and returns a new Stream which can be used further.
 peek() is an Intermediate Operation.
-peek() can be useful in Visualizing how Stream Operations behave and understanding the complex of intermediate Stream Operations.
-peek() is Mainly used for debugging where we want to see the Elements of the Stream as they flow in the pipeline.
+peek() can be useful in visualizing how stream operations behave and understanding the complex of intermediate stream operations.
+peek() is mainly used for debugging where we want to see the elements of the stream as they flow in the pipeline.
 peek() can also be used to alter the inner state of the element.
 
-Comparison Based Stream Operations :
+Comparison based Stream Operations :
 ------------------------------------
 we use sorted on stream of elements.
 

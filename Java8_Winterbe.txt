@@ -71,7 +71,7 @@ Reduce Method Performs Reduction on the Elements of The Stream.
 Reduce can be Used to get the Sum of Numbers Stored in the Collection,
 Concatenate the String with the Separator.
 
-Java 8 Supports 3 Different Kind of Reduce() Methods.
+Java 8 Supports 3 Different Kind of reduce() Methods.
 
 First :
 First Reduce Method accepts a Binary Operator Accumulator Function i.e BiFunction where Both Operands Share The Same Type.
