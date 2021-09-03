@@ -1,6 +1,6 @@
 Modifying Variable Inside Lambda :
 ----------------------------------
-When we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda Must be Final or Effective Final.
+When we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda must be Final or Effective Final.
 A keyword before a variable makes it final and No final keyword before a variable makes it effectively final provided we never change the value.
 
 1.Introduction 													[27-FEB-2019]  (Done)
@@ -19,7 +19,7 @@ A keyword before a variable makes it final and No final keyword before a variabl
 14.Using Function Interfaces									[09-MAR-2019]  (Done)
 15.More Function Interfaces										[09-MAR-2019]  (Done)
 16.Exception Handling in Lambda									[27-FEB-2019]  ()
-17..Exception Handling Approach									[27-FEB-2019]  ()
+17.Exception Handling Approach									[27-FEB-2019]  ()
 18.Closures														[09-FEB-2019]  (Done)
 19.this															[09-FEB-2019]  ()
 
@@ -43,7 +43,7 @@ Collections Improvement
 Lambdas enables us to write Functional Programming.
 We get Readable and Coincise Code.
 Easier to use API's and Libraries.
-Enables support For parallel processing.
+Enables support for parallel processing.
 
 ************************************************* 3.Functional vs Object Oriented Programming *****************************************
 
@@ -56,9 +56,9 @@ Functional Programming can be used in certain Scenarios where we make the code m
 
 Some of the Problems in Object Oriented Programming are 
 
-Everything is an Object and we cannot have piece of Code or Logic that exists in Isolation.
+Everything in Java is an Object and we cannot have piece of code or logic that exists in isolation.
 It has to be a part of object associated with it.
-While Developing the Code we need to think about problems and each problem is associated with an Object.
+While developing the code we need to think about problems and each problem is associated with an Object.
 Consider the Scenario where we need a function that returns a user name.
 To achieve this we need a Class and Create an Object of that Class and then add the function to it.
 
@@ -83,7 +83,7 @@ To be More Generic Create an Interface
 		System.out.println("From Greeting Implementation");
 	}
 
-Now to call the greet Method we are Passing the Behavior to the greet Method.
+Now to call the greet() we are passing the behavior to the greet().
 Here we can also call the greet() by creating an Object GreetingImpl.
 If we do the same every time it calls the Same GreetingImpl Implementation.
 	
@@ -97,8 +97,8 @@ If we do the same every time it calls the Same GreetingImpl Implementation.
 ************************************************* 5.Introducing Lambda Expressions *************************************************
 
 From the above Scenario we are passing the behavior to call the Method.
-Here we are doing the extra work i.e we are passing the thing that has as a Behavior.
-Possible Solution is we can directly pass an action rather than Class that implements an Action.
+Here we are doing the extra work i.e we are passing the thing that has as a behavior.
+Possible solution is we can directly pass an action rather than Class that implements an Action.
 
 	public void greet(action)
 	{
@@ -116,8 +116,8 @@ We can define a String in line i.e
 
 	String name ="Srinivas";
 	
-when the above line got executed name Variable contains the Value Srinivas.
-Question is can we assign a block of code to a Variable and the value is block of code and not the actual Value.
+when the above line got executed name variable contains the value "Srinivas".
+Question is can we assign a block of code to a variable and the value is block of code and not the actual Value.
 Wherever the variable has to be executed the piece of code has to be executed.
 We write the block of code in java using methods usually.
 Using Lambda we can pass function as a value to a variable and use that variable wherever it is required.
@@ -129,7 +129,7 @@ Using Lambda we can pass function as a value to a variable and use that variable
 
 Here the above code does some extra things when a function is a part of class.
 whether the function is globally accessible or not.
-But if the function exists in isolation it does not make sense to declare it as public.
+But If the function exists in isolation it does not make sense to declare it as public.
 public is not required because the function is accessible whoever has the variable.
 
 
@@ -173,7 +173,7 @@ Here Lambda Expression can also be in line i.e
 
 	greeting(() -> System.out.println("Welcome Lambda Expression"));
 	
-Functions are always not an Empty Parameters and it might contain Parameters,
+Functions are always not an Empty Parameters and it might contain Parameters.
 Consider the Example 
 
 	multipleby2 = public int multipleFunction(int a)
@@ -224,7 +224,42 @@ Lambda Expression for String length count is :
 
 	stringCountFunction = (String name) -> name.length();
 	
-								
+Befor converting into Lambda Function would be
+
+	public int count(String name)
+	{
+		return name.lenghth();
+	}
+	
+//After Remove the Access Modifier
+
+	int count(String name)
+	{
+		return name.lenghth();
+	}
+	
+// After removing the Method Name
+
+	int  (String name)
+	{
+		return name.lenghth();
+	}
+	
+// After removing the return Type
+	
+	(String name)
+	{
+		return name.lenghth();
+	}
+	
+Finally add the Lambda 
+
+	stringCountFunction=(String name) -> return name.lenghth();
+	
+//If the body of the expression is one line then return statement is not required
+
+	stringCountFunction=(String name) -> name.lenghth();
+	
 *************************************************  7.Interface Type	  *************************************************************** 
 
 public static void main(String[] args) 
@@ -371,10 +406,10 @@ printConditionally(people, p -> p.getLastName().startsWith("C"));
 Form the above Code we have created an extra Interface to test.
 Here the Interface accepts the parameter and returns boolean.
 Here it seems Like extra work .
-Here Interface Name and Method Name inside the Interface doe not Matters.
+Here Interface Name and Method Name inside the Interface does not Matters.
 
-Java 8 does not have a Function Type and They hace Created out of Box Interfaces to address some of these Common Scenarios.
-Here the Scenario is Accept an Object and return boolean.
+Java 8 does not have a Function Type and they hace Created out of Box Interfaces to address some of these Common Scenarios.
+Here the Scenario is accept an Object and return boolean.
 
 	private static void printConditionally(List<Person> people,Predicate<Person> predicate) 
 	{
@@ -431,7 +466,7 @@ Here we can change the Behavior while Calling.
 		{
 		@Override
 		public void process(int i) {
-		System.out.println(i+b);	
+		System.out.println(a+b);	
 		}
 	});
 	}
@@ -469,7 +504,7 @@ Java Compiler Freeze the Value of the Variable alon wih Lambda Expression.
 												
 ************************************************* 20.Method References	************************************************************************	
 
-Method Syntax is an Alternative way of Writing Lambda Expression and is very Readable.
+Method Reference is an Alternative way of Writing Lambda Expression and is very Readable.
 
 	public static void main(String[] args) 
 	{
@@ -485,8 +520,7 @@ The above case can be Replaced by Method References.
 Rules for defining Method References are 
 Case 1 :
 --------
-Lambda Expression that does  not accept any argument and executing a Method then
-pass the Class Name with Method Name followed by ::
+If the Lambda Expression does not accept any argument and executing a Method then pass the Class Name with Method Name followed by ::
 
 	public static void main(String[] args) 
 	{
@@ -499,8 +533,8 @@ Case 2 :
 	
 	performConditionally(people,p -> true ,p -> System.out.println(p));
 	
-Here Lambda Expression that is accepting input parameter and executing a Method with that Input Parameter.
-Here we have to take the Instance with Method Name Followed by ::
+If the Lambda Expression is accepting an input parameter and executing a Method with that Input Parameter.
+then we have to take the Instance with Method Name Followed by ::
 
 	performConditionally(people,p -> true ,System.out::println);
 	
@@ -542,7 +576,7 @@ Lambdas work with Streams in order to make the API More Elegeant.
 Stream is a Sequence of Elements Supporting Sequential and Parallel Aggregate Operations.
 
 Let us Consider the Collection of Elements.
-If we want to access the elements of the Collection we need to Iterate over the Collection Every Time.
+If we want to access the elements of the Collection we need to Iterate over the Collection every Time.
 Here we have to go through all the elements of the Collection.
 Consider the case where we need to access only Particular element of the Collection Instead of Complete Iteration  then
 that is not Possible in case of Collection.

@@ -1,26 +1,25 @@
 1.For Each Method in Iterable Interface													[02-SEP-2021]
 2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
-3.Functional Interfaces and Lambda Expressions                                  		[02-SEP-2021]
-4.Java Stream API For Bulk Data Operations on Collections                       		[02-SEP-2021]
+3.Functional Interfaces and Lambda Expressions                  (beginnersbook)         [03-SEP-2021]	(Done)
+4.Java Stream API For Bulk Data Operations on Collections    	(beginnersbook)         [03-SEP-2021]	(Done)
 5.Java Time API                                                                 		[02-SEP-2021]
 6.Collection API Improvements                                                   		[02-SEP-2021]
 7.Concurrency API Improvements                                                  		[02-SEP-2021]
 8.Java IO Improvements                                                          		[02-SEP-2021]
 9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]
 10.Method References                                                            		[02-SEP-2021]
+11.spliterator                                                                          [02-SEP-2021]
+12.Optional Class                                                                       [02-SEP-2021]
+13.CopyonWriteArrayList                                                                 [02-SEP-2021]
+14.Sort in Java 8                                                                       [02-SEP-2021]
+15.StringJoiner                                                                         [02-SEP-2021]
+16.Comparators                                                                          [02-SEP-2021]
+17.Function package                                                                     [02-SEP-2021]
+18.Base64 Encode Decode                                                                 [02-SEP-2021]
+19.SOLID Principles												(javabrahman)			[02-SEP-2021]
 
-Java 8 Concepts :
------------------
-Functional Programming
-Lambda Expression
-Stream
-ParalellStream
-Time API
-Optional Class
-CopyonWriteArrayList
-Sort in Java 8
 
-******************************************** 2. Default and Static Methods in Interface ********************************************
+******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
 Before Java8,Interface can have only abstract Methods ie All the Methods of interface are by default public and abstract.
 It was not possible to add new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
@@ -89,13 +88,14 @@ We can invoke the specific implementation in Java8 using
 
 	Interface.super.method
 
-*********************************************** 3.Functional Interface and Lambda Expressions ***********************************************
- 
-Functional Interfaces are new Concept Introduced in Java8.
+***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
+
 An Interface with only one abstract Method and can have any number of default and static Methods is called Functional Interface.
+We can either use the predefined Functional Interface provided by Java or we can create our own.
+Functional interfaces has only single abstract method and also called as SAM interfaces.	
 @FunctionalInterface is used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
-One of the Major benefits of Functional Interface is that it provides the possibility to use Lambda Expressions to instantiate them.
-We can instantiate an Interface with Anonymous Class but the code looks bulky.
+Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
+We can instantiate an Interface with Anonymous Inner Class but the code looks bulky.
    
 Thread :
 --------
@@ -109,8 +109,7 @@ Thread :
 								}
 							  };
 	
-Since Functional Interfaces has only one method Implementation,Lambda Expression
-can Easily Provide the Method Implementation.
+Since Functional Interfaces has only one method declaration,Lambda Expression can easily provide the Method Implementation.
 	
 Thread :
 --------
@@ -119,15 +118,16 @@ Thread :
 							System.out.println("My Runnable");
 							}
 	
-If we have a single Statement in the Method Implementation the no need  of Curly Braces.
+If the body of the expression is one line then we can remove the curly Braces.
 
 	Interface i1=(s)->System.out.println(s);
 	i1.void("Hello");
-
-Finally Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces Easily.
-To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded
-Functional Interfaces provided by Java.
-Mark the Predefined Functional Interface bu using @FunctionalInterface Annotation.
+	
+We have been using Functional interface prior to Java 8.
+They wer created by using anonymous inner class using interfaces such as Runnable,Comparator etc.
+Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces easily.
+To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded Functional Interfaces provided by Java.
+Mark the Predefined Functional Interface by using @FunctionalInterface Annotation.
 @FunctionalInterface is introduced in Java 8.
 	
 	@FunctionalInterface
@@ -138,33 +138,39 @@ Mark the Predefined Functional Interface bu using @FunctionalInterface Annotatio
 	MyFunctioanlInterface myFunctioanlInterface=(a,b)->a+b;
 	System.out.println("Result :"+myFunctioanlInterface.addMethod(12, 100));
 	
-**************************************** 4.Stream API for Bulk Data Operations on Collections *********************************************
+********************************** 4.Stream API for Bulk Data Operations on Collections (beginnersbook) *********************************************
 
 Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations with Collection.
 Stream API allows Sequential as well as Parallel Execution.
-Collection Interface has been extended with stream() and paralellStream() default methods to get
-the stream for Sequential and Parallel Execution.
+Collection Interface has been extended with stream() and paralellStream() default methods to get the stream for Sequential and Parallel Execution.
 
-Stream does not store the Data.Stream is not a DataStructure and it never Modifies the underlying Data source.
-java.util.stream supports functional style of Operations on Stream of Elements like Map,Reduce and so on.
-Stream has three Parts Data Source ,Zero or More Intermediate Operation and Zero or More Terminal Operation.
-Intermediate Operations get the Elements one by one and process them.
-All Intermediate Operations are Lazy and as a Result No Operations will be Effective until the PipelIne Start to work.
-Terminal Operation Means end of the Stream Life Cycle.
+Stream does not store the Data.
+Stream is not a DataStructure and it never modifies the underlying Data source.
+java.util.stream supports functional style of Operations on Stream of elements like Map,Reduce and so on.
+Stream has three Parts 
+1.Data Source 
+2.Zero or More Intermediate Operation and 
+3.Zero or More Terminal Operation.
 
-forEach() is a Terminal Operation and it loops over the Stream of Elements calling the Supplied Function.
-After the Operation s being performed,Stream pipeline is Considered to be Consumed and No Longer Used.
-Map produces a new Stream after applying a Function to each element of the  other Stream.
+Intermediate Operations get the elements one by one and process them.
+All Intermediate Operations are lazy and as a Result No Operations will be effective until the pipelIne start to work.
+Terminal Operation means end of the Stream Life Cycle.
+
+forEach() is a Terminal Operation and it loops over the Stream of elements calling the Supplied Function.
+After the Operation is being performed,Stream pipeline is Considered to be Consumed and No Longer Used.
+
+Map produces a new Stream after applying a Function to each element of the other Stream.
 Here New Steam can be Different Type.
+
 collect() is one of the common way to get the stuff out from the stream once done with the processing.
-findFirst() is used to return the First object from the Stream other wise it returns null.
+findFirst() is used to return the First Object from the Stream other wise it returns null.
 
 If we want to get an Array form the Stream of Elements we use toArray(Employee[]::new)
 
 FlatMap :
 ---------
-A Stream can Hold Complex Data Structures Like Stream<List<String>>.
-FlaMap helps us to Flatten the dataStructure to Simplify Further Operations.
+A Stream can hold complex Data Structures like Stream<List<String>>.
+FlaMap helps us to flatten the dataStructure to simplify further Operations.
 FlatMap can be used for Asynchronous Operations.
 
 	.flatMap(employeeId -> getEmployeeDetails(employeeId))
@@ -172,8 +178,8 @@ FlatMap can be used for Asynchronous Operations.
 
 For Each :
 ----------
-For Each is a Terminal Operation and Some times we need to perform multiple operations on each element 
-of the Stream before the Terminal Operation is Applied.
+For Each is a Terminal Operation.
+Some times we need to perform multiple operations on each element of the Stream before the Terminal Operation is applied.
 In this case peek() can be Used.
 
 Peek :
@@ -202,8 +208,7 @@ The Most common way of creating IntStream is to call mapToInt().
 
 Specialized Operations :
 ------------------------
-Specialized Streams provide the Additional Operations as compared to the Standard Streams and
-which are quite convenient when dealing with Numbers.
+Specialized Streams provide the additional Operations as compared to the Standard Streams and which are quite convenient when dealing with Numbers.
 
 	employeeList.stream()
 	.mapToDouble(Employee::getSalary)
@@ -213,14 +218,13 @@ The other specialized operations are sum(),range().
 
 Reduction Operations :
 ----------------------
-Reduce Operation (also called as fold) takes a Sequence of input elements and combines them into a Single Result 
-by Repeatedly applying a combining Operation.
+Reduce Operation takes a Sequence of input elements and combines them into a Single Result by repeatedly applying a combining Operation.
 
 	T reduce(T identity,BinaryOperator<T> accumulator)
 	
-Key concepts in Reduce Operation are Identity,Accumulator and Combiner.
+Key concepts in reduce() are Identity,Accumulator and Combiner.
 
-Identity : An Element that is the initial Value of the reduction Operation and is the Default result if the Stream is Empty.
+Identity : This is the initial value of the reduction Operation and is the default result If the Stream is Empty.
 Accumulator : Function that takes two Parameters i.e Partial Result of the Reduction Operation and the Next Element of the Stream.
 
 
@@ -233,11 +237,10 @@ Accumulator : Function that takes two Parameters i.e Partial Result of the Reduc
 				.reduce(0,(total,element)->total+element);
 		System.out.println(result);
 		
-Here (total,element)->total+element is the accumulator Since it takes the Partial sum of the Integer value 
-and next element of the Stream.
+Here (total,element)->total+element is the accumulator Since it takes the partial sum of the Integer value and next element of the Stream.
 
 Combiner : When a Stream is executed in Parallel,Java Runtime Split the Stream into Multiple Sub Streams and 
-in that case we need to use function to combine the result of sub streams into a Single one.
+In that case we need to use function to combine the result of sub streams into a Single one.
 
 	List<Employee> employees = Arrays.asList(new Employee(1, "Srinivas", 22000.00), new Employee(2, "Nandini", 27000.00));
 	System.out.println(employees.stream()
@@ -257,16 +260,16 @@ We can Partition a Stream into two based on whether the elements satisfy the cer
 	 
 groupingBy :
 ------------
-groupingBy Offers advanced Partitioning compared to partitioning.
+groupingBy offers advanced Partitioning compared to Partitioning.
 we can partition the stream into more than two groups.
 It takes the Classification Function as Parameter and applied to each element of the Stream.
 
 	   Map<Character, List<Employee>> groupByAlphabet = empList.stream().collect(
-      Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
+       Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
 	  
-	    Map<Character, List<Integer>> idGroupedByAlphabet = empList.stream().collect(
-      Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
-        Collectors.mapping(Employee::getId, Collectors.toList())));
+	   Map<Character, List<Integer>> idGroupedByAlphabet = empList.stream().collect(
+       Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
+       Collectors.mapping(Employee::getId, Collectors.toList())));
 		
 collectors.mapping :
 --------------------
