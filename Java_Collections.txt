@@ -20,6 +20,7 @@ Main Limitation of Arrays are
 		student[0]=new Student();
 		//student[1]=new Integer  CTE
 		//student[2]="Bhaumik";   CTE		
+		
 We can resolve the above problem by using Object Array.
 		Object[] object=new Object[10];
 		object[0]=new Student();
@@ -28,7 +29,7 @@ We can resolve the above problem by using Object Array.
 		
 By using Object Array we can add Hetergogenous Elements.
 3.For Arrays there is no underlying Data Structure i.e For every requirement we have to write the code explicitly. 
-There is no default raedymade support like sorting,searching etc.
+There is no default readymade support like sorting,searching etc.
 4.We cannot represent Array elements in sorting order by default.
 5.we cannot prevent duplicate elements in Arrays.
 
@@ -73,7 +74,7 @@ Key Interfaces in Collection Framework are
 --------------
 Collection interface is the root interface for entire collection framework.
 Collection interface can be used for representing a group of individual objects as a single entity.
-Collection interface defines the most common general methods which can be applicable for any collection object.
+Collection interface defines the most common methods which can be applicable for any collection object.
 There is no concrete class which implements collection interface directly.
 
 Difference between Collection and Collections :
@@ -82,8 +83,8 @@ Collections is a class which is present in java.lang package which defines sever
 
 2.List :
 --------
-List interface can be used for representing a group of individual objects as a single entity where insertion order is preserved 
-and duplicate objects are allowed.
+List interface can be used for representing a group of individual objects as a single entity 
+where insertion order is preserved and duplicate objects are allowed.
 List interface is the Child interfaace of Collection.
 List implementation classes are 
 
@@ -93,7 +94,7 @@ Vector
 Stack
 
 Vector and Stack classes are reengineered in 1.2 version to fit into collection framework.
-By means of index we can preserve insertion order and we can differentiate duplicate objects.
+By means of Index we can preserve insertion order and we can differentiate duplicate objects.
 
 3.Set :
 -------
@@ -110,7 +111,7 @@ LinkedHashSet
 -------------
 SortedSet interface can be used for representing group of individual objects as a single entity where all the objects are inserted in some sorting order.
 SortedSet is the child interface of Set interface.
-Implementation class of SortedSet are  
+Implementation class of SortedSet is  
 
 TreeSet
 
@@ -129,6 +130,10 @@ Map :
 If we want to represent a group of individual obejcts as key value pairs we go for Map.
 Here both key and value are objects.
 Map interface is not the child interface of collection.
+Implementation class of Map are
+
+HashMap
+LinkedHashMap
 
 SortedMap :
 -----------
@@ -155,7 +160,7 @@ Whenever ArrayList reaches its maximum capacity a new ArrayList object will be c
 	capacity=(currentcapacity*3/2)+1;
 	
 ArrayList and Vector class implements RandomAccess interface so that we can access any element with same speed.
-ArrayList is best suitable if our frequent operation is retreival.
+ArrayList is best suitable If the frequent operation is retreival.
 
 Note :
 Usually Collection object can be used for data transportation operation.
@@ -172,7 +177,7 @@ Heterogenous objects are allowed.
 Implements List,Queue,Serializable and Cloneable interface but not RandomAccess interface.
 
 LinkedList is the best choice if our frequent operation is insertion or deletion in the middle.
-LinkedList is the worst choice if our operation is retreival operation.
+LinkedList is the worst choice If the operation is retreival operation.
 LinkedList does not have initial capacity concept.
 
 Vector :
@@ -183,8 +188,8 @@ Insertion order is presrved.
 null insertion is possibele.
 Hetergogenous objects are allowed.
 Implents Serializable,cloneable and Random Access interface.
-Vector is the best choice if our frequent operation is retreival operation.
-Vector is the worst choice if our frequnet operation is insertion or deletion in the middle.
+Vector is the best choice If the frequent operation is retreival operation.
+Vector is the worst choice If the frequnet operation is insertion or deletion in the middle.
 
 Difference between ArrayList and Vector :
 Every method present inside ArrayList is non synchronized where as every method present inside Vector is Synchronized.
@@ -235,11 +240,11 @@ To overcome this we go for Iterator interface.
 
 2.Iterator :
 ------------
-Itrator is a universal cursor that is applicable for all the elements.
+Itrator is a universal cursor which is applicable for all the Classes.
 By using iterator we can perform removal operations along with read operations.
 
 Limitations of Iterator :
-Enmeration and Iterator are Single direction cursors.They always move to the forward direction.
+Enumeration and Iterator are Single direction cursors.They always move in the forward direction.
 By using Iterator we can perform read and remove operations and we cannot perform replace or addition of new elements.
 To overcome this we go for ListIterator.
 
@@ -300,12 +305,12 @@ creates an empty TreeSet object where the sorting order is specified by the Comp
 
 null acceptance :
 For the Empty TreeSet null insertion is possible.
-But after inserting null if we are tryig to insert any other element we get NPE.
-If the TreeSet already contains some elements and if we are trying to insert null we get NPE.
+But after inserting null If we are tryig to insert any other element we get NPE.
+If the TreeSet already contains some elements and If we are trying to insert null we get NPE.
 
 If we are depending on natural sorting order compulsory objects should be homogenous and comparable otherwise we get RTE.
 An object is said to be comparable if the corresponding class implements Comparable interface.
-All wrapper classes and String classes implements comparable interface.
+All wrapper classes and String classes implements Comparable interface.
 StringBuffer does not implement Comparable interface.
 
 *************************************************************  8.Comparable and Comparator Interface   **********************************************
@@ -323,7 +328,7 @@ returns +ve if the obj1 comes after  obj2.
 returns  0 if both obj1 and obj2 are equal.
 
 Note:
-While inserting objects into the TreeSet JVM internally uses compareTo() if we are depending on natural sorting order.
+While inserting objects into the TreeSet JVM internally uses compareTo() If we are depending on natural sorting order.
 To define our own customized sorting order we go for comparator interface.
 
 Comparator :
@@ -350,7 +355,7 @@ SortedMap is implemented by TreeMap.
 Map.Entry describes access methods to the key value pairs.
 
 
-Number of classes that implement the Map interface are 
+Classes that implement the Map interface are 
 HashMap,LinkedHashMap
 TreeMap
 WeakHashMap,IdentityHashMap

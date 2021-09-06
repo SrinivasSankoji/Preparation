@@ -1,0 +1,227 @@
+1.ArrayList Internal Implementation 					()     						[]  			(Done)
+2.ArrayList Programming Examples						(javaconceptoftheday)		[06-SEP-2021]  	(Done)
+3.Array to ArrayList / ArrayList to Array               (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+4.How to reverse an ArrayList                           (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+5.How to sort an ArrayList                              (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+6.How to remove duplicate elements from ArrayList       (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+7.How to iterate an ArrayList                           (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+
+**************************************************  1.ArrayList Internal Implementation **************************************************
+								
+ArrayList is a Re sizable Array and it is one of the Implementations of ArrayList.
+ArrayList grows Dynamically When the Elements are Added to It.
+If the Size of the Current Element is Greater than Maximum Size,Then Increase the Size of the Array.
+New ArrayList is Created with initial Capacity of 10 and copies all the Old Elements into new Array.
+
+Code :
+------
+Internally ArrayList uses Object[] to add an Elements to the List.
+
+In Java7 or Previous :
+
+private transient object[] elementData;
+
+In Java 8 or Later :
+
+transient object[] elementData;
+In Java 8 private key is removed to provide access to nested Class.
+
+Empty List initialization with default capacity :
+-------------------------------------------------
+
+When an ArrayList Object is Created without Initial Capacity,Constructor of the ArrayList Class is invoked.
+
+ArrayList<String> list=new ArrayList<String>();
+
+In Java 8 or Later :
+
+private static final Object[] EMPTY_ELEMENTDATA={};
+
+private static final Object[] DEFAULT_CAPACITY_EMPTY_ELEMENTDATA={};
+
+public ArrayList()
+{
+  this.elementData=DEFAULT_CAPACITY_EMPTY_ELEMENTDATA;
+}
+
+Empty List initialization with initial capacity :
+-------------------------------------------------
+When the ArrayList Object is Created with initial Capacity,It internally invokes the Constructor 
+to create the internal Array.
+
+ArrayList<String> list=new ArrayList<String>(30);
+
+In Java 8 or Later : 
+
+public ArrayList(int initialCapacity)
+{
+	if(initialCapacity>0)
+	this.elementData=new Object[initialCapacity];
+	if(initialCapacity=0)
+	this.elementData=EMPTY_ELEMENTDATA;
+	if(initialCapacity<0)
+	throw new IllegalArgumentException("Illegal Capacity" +initialCapacity);
+}
+
+Non empty list containing the elements of a specified collection :
+------------------------------------------------------------------
+An Object of ArrayList can be Created on Specific Collection i.e 
+
+ArrayList<String> list=new ArrayList<>(new LinkedList());
+
+public ArrayList(Collection <? extends E>)
+{
+	elementData=cotoArray();
+	int size=elementData.length;
+	
+	if(size!=0)
+	{
+	  if(elementData.getClass()!=Object[].class)
+	  {
+		elementData=Arrays.CopyOf(elementData,size,Object[].class);
+	  }
+	  else
+	  {
+	  this.elementData=EMPTY_ELEMENTDATA;
+	  }
+	}
+}
+
+How the size of ArrayList grows dynamically :
+---------------------------------------------
+
+  public boolean add(Element e)
+  {
+	ensureCapacityInternal(size+1);
+	elementData[size++]=e;
+	return true;
+  }
+ 
+  private void ensureInternalCapacity(int initialCapacity)
+  {
+	if(elementData == DEFAULT_CAPACITY_EMPTY_ELEMENTDATA)
+	{
+		minCapacity=Math.max(DEFAULT_CAPACITY,minCapacity);
+	}
+	ensureExplicitCapacity(minCapacity);
+  }
+
+ 
+  private void ensureExplicitCapacity(int minCapacity)
+  {
+	modCount++;
+	if(minCapacity-elementData.length>0)
+	grow(minCapacity);
+  }
+  
+  private void grow(int initialCapacity)
+  {
+	int oldCapacity=elementData.length;
+	int newCapacity=oldCapacity + (oldCapacity >> 1);
+	if(newCapacity-minCapacity<0)
+	newCapacity=minCapacity;
+	if(newCapacity-MAX_ARRAY_SIZE>0)
+	newCapacity=hugeCapacity(minCapacity);
+	elementData=Arrays.CopyOf(elementData,newCapacity);
+  }
+
+
+**************************************************  ArrayList Programming Examples (javaconceptoftheday) **************************************************
+
+isEmpty() can be used to check whether the collection is empty or not.
+contains() can be used to check whether the ArrayList contains the element or not.
+indexOf() can be used to check the position of the element.
+lastIndexOf() can be used to check the last occurence of the element.
+toArray() cn be used to convert ArrayList to Array.
+clear() can be used to remove all the elements of the ArrayList.
+
+************************************************** 3.Array to ArrayList / ArrayList to Array (javaconceptoftheday) ***************************************
+
+Array to ArrayList :
+--------------------
+
+		String[] array=new String[] {"ANDROID", "JSP", "JAVA", "STRUTS", "HADOOP", "JSF"};
+		ArrayList<String> methodOne=new ArrayList<>(Arrays.asList(array));
+		System.out.println(methodOne);
+		
+		ArrayList<String> methodTwo=new ArrayList<>();
+		Collections.addAll(methodTwo, array);
+		
+		//ArrayList addAll()
+		methodTwo.addAll(Arrays.asList(array));
+		
+		//Streams from Java8
+		List<String> methodFour=Arrays.stream(array).collect(Collectors.toList());
+		System.out.println(methodFour);
+		
+ArrayList to Array :
+--------------------
+toArray() can be used to convert the ArrayList to Array.
+
+		Object[] objectArray=methodFour.toArray();
+		System.out.println(objectArray.length);
+		
+
+************************************************** 4.How to reverse an ArrayList (javaconceptoftheday) **************************************************
+
+Collections.reverse() can be used to reverse() the elements of the ArrayList.
+Collections.reverse() takes list type as an argument.
+
+************************************************** 5.How to sort an ArrayList (javaconceptoftheday) *****************************************************
+
+Collections.sort() can be used to sort the List Implementation Classes.
+To sort the elements using case insensitive we use Collections.sort(l1,String.CASE_INSENSITIVE_ORDER).
+To sort the elements in reverse order we use Collections.reverseOrder().
+To sort the elements of custom Object we use Comparable Interface.
+
+	@Override
+	public int compareTo(Student s1) {
+		return this.id-s1.id;
+	}
+	
+We can also sort the elements using Comparator.
+
+	class NameComparator implements Comparator<Student>
+	{
+	@Override
+	public int compare(Student s1, Student s2) {
+		return s1.getName().compareTo(s2.getName());
+	}
+	}
+	
+************************************************** 6.How to remove duplicate elements from ArrayList **************************************************
+
+To remove the duplicate elemenst from the ArrayList we use HashSet and here insertion order is erased.
+To preserve he insertion order as it is we use LinkedHashSet.
+
+************************************************** 7.How to iterate an ArrayList (javaconceptoftheday) ************************************************
+
+To iterate a List we use the following ways.
+
+Using Normal for loop
+Using Iterator
+Using ListIterator
+Using enhanced For Loop
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

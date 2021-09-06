@@ -12,11 +12,13 @@
 12.Optional Class                                                                       [02-SEP-2021]
 13.CopyonWriteArrayList                                                                 [02-SEP-2021]
 14.Sort in Java 8                                                                       [02-SEP-2021]
-15.StringJoiner                                                                         [02-SEP-2021]
-16.Comparators                                                                          [02-SEP-2021]
+15.StringJoiner   												(beginnersbook)         [02-SEP-2021]
+16.Comparators Java8                             				(javabrahman)           [06-SEP-2021]	(Done)
 17.Function package                                                                     [02-SEP-2021]
 18.Base64 Encode Decode                                                                 [02-SEP-2021]
 19.SOLID Principles												(javabrahman)			[02-SEP-2021]
+20.Collectors Class                                             (javabrahman)           [02-SEP-2021]
+21.Stream Filter                                                (javabrahman)           [02-SEP-2021]
 
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
@@ -289,6 +291,15 @@ Infinite Streams :
 
 File Operations :
 -----------------
+
+***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
+
+Comparator befor Java8 has two methods ie compare() and equals().
+Java8 Comparator has 19 Methods.
+Java8 Comparator now supports declarations via Lambda Expressions as it is a Functional Interface.
+Comparator has now comparing() and comparingThen that supports multiple sorts.
+Comparator also supports natural comparison order and also null handling.
+
 
 
 
