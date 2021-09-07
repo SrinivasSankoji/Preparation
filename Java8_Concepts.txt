@@ -2,23 +2,23 @@
 2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
 3.Functional Interfaces and Lambda Expressions                  (beginnersbook)         [03-SEP-2021]	(Done)
 4.Java Stream API For Bulk Data Operations on Collections    	(beginnersbook)         [03-SEP-2021]	(Done)
-5.Java Time API                                                                 		[02-SEP-2021]
-6.Collection API Improvements                                                   		[02-SEP-2021]
-7.Concurrency API Improvements                                                  		[02-SEP-2021]
-8.Java IO Improvements                                                          		[02-SEP-2021]
-9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]
-10.Method References                                                            		[02-SEP-2021]
-11.spliterator                                                                          [02-SEP-2021]
-12.Optional Class                                                                       [02-SEP-2021]
-13.CopyonWriteArrayList                                                                 [02-SEP-2021]
-14.Sort in Java 8                                                                       [02-SEP-2021]
-15.StringJoiner   												(beginnersbook)         [02-SEP-2021]
-16.Comparators Java8                             				(javabrahman)           [06-SEP-2021]	(Done)
-17.Function package                                                                     [02-SEP-2021]
-18.Base64 Encode Decode                                                                 [02-SEP-2021]
-19.SOLID Principles												(javabrahman)			[02-SEP-2021]
-20.Collectors Class                                             (javabrahman)           [02-SEP-2021]
-21.Stream Filter                                                (javabrahman)           [02-SEP-2021]
+5.Java Time API                                                                 		[02-SEP-2021]	()
+6.Collection API Improvements                                                   		[02-SEP-2021]   ()
+7.Concurrency API Improvements                                                  		[02-SEP-2021]   ()
+8.Java IO Improvements                                                          		[02-SEP-2021]   ()
+9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]   ()
+10.Method References                                                            		[02-SEP-2021]   ()
+11.spliterator                                                                          [02-SEP-2021]   ()
+12.Optional Class                                                                       [02-SEP-2021]   ()
+13.CopyonWriteArrayList                                                                 [02-SEP-2021]   ()
+14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
+15.StringJoiner   												(beginnersbook)         [02-SEP-2021]	()
+16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
+17.Function package                                                                     [02-SEP-2021]	()
+18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
+19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
+20.Collectors Class                                             (javabrahman)           [02-SEP-2021]   ()
+21.Stream Filter                                                (javabrahman)           [02-SEP-2021]   ()
 
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
@@ -292,15 +292,69 @@ Infinite Streams :
 File Operations :
 -----------------
 
+***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
+
+	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
+	/**
+	 * Sorting using Comparator
+	 */
+	list1.sort(Comparator.naturalOrder());
+	System.out.println(list1);
+	
+	/**
+	 * Sorting using stream.sorted
+	 */
+	List<Integer> list2=list1.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+	System.out.println(list2);
+  
+
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
 
 Comparator befor Java8 has two methods ie compare() and equals().
-Java8 Comparator has 19 Methods.
+Java8 Comparator has now 19 Methods.
+Comparator is now an official Functional Interface.
 Java8 Comparator now supports declarations via Lambda Expressions as it is a Functional Interface.
 Comparator has now comparing() and comparingThen that supports multiple sorts.
 Comparator also supports natural comparison order and also null handling.
 
+	public class ComparatorOldWay {
+	
+	static List<Employee> employeeList = 
+		      Arrays.asList(new Employee("Tom Jones", 45), 
+		        new Employee("Harry Major", 35),
+		        new Employee("Harry Major", 25), 
+		        new Employee("Ethan Hardy", 65), 
+		        new Employee("Nancy Smith", 15),
+		        new Employee("Deborah Sprightly", 29));
+	
+	public static void main(String[] args) {
+		Collections.sort(employeeList,new NameComparator());
+		System.out.println(employeeList);
+	}
+	}
+	class NameComparator implements Comparator<Employee>
+	{
+	@Override
+	public int compare(Employee e1, Employee e2) {
+		return e1.getName().compareTo(e2.getName());
+	}
+	}
+	
+Comparator using Lambda Expression ie 
 
+	Comparator<Employee> nameComparator = (Employee e1, Employee e2) -> {
+			return e1.getName().compareTo(e2.getName());
+		};
+		
+Comparator using then Comparing
+		 
+		Comparator<Employee> nameAgeComparing=Comparator.comparing(Employee::getAge).thenComparing(Employee::getName);
+		
+We can also have
 
+	Comparator.nullsFirst(String::compareTo) and
+	Comparator.nullsLast(String::compareTo)
+
+	Comparator<Employee> empNameComparator = Comparator.comparing(Employee::getName, Comparator.nullsFirst(String::compareTo));
 
 
