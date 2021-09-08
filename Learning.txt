@@ -32,7 +32,7 @@ Smart Endpoints and Dumb Pipes
  
 MVN Command :
 -----------
-mvn install:install-file -Dfile=D:\\Software\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=F:\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 
 SQL Developer : 

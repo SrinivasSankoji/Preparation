@@ -12,14 +12,15 @@
 12.Optional Class                                                                       [02-SEP-2021]   ()
 13.CopyonWriteArrayList                                                                 [02-SEP-2021]   ()
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
-15.StringJoiner   												(beginnersbook)         [02-SEP-2021]	()
+15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
 17.Function package                                                                     [02-SEP-2021]	()
 18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
 19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
 20.Collectors Class                                             (javabrahman)           [02-SEP-2021]   ()
 21.Stream Filter                                                (javabrahman)           [02-SEP-2021]   ()
-
+21.Streams                                                 		(winterbe)           	[02-SEP-2021]   ()
+22.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
@@ -306,7 +307,12 @@ File Operations :
 	 */
 	List<Integer> list2=list1.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
 	System.out.println(list2);
-  
+
+***************************************************** 15.StringJoiner (beginnersbook) *************************************************************
+
+StringJoiner is a class introduced in Java8.
+Using StringJoiner we can join multiple Strings with the specified delimiter.
+We can also provide prefix and suffix to the given String.
 
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
 
@@ -357,4 +363,130 @@ We can also have
 
 	Comparator<Employee> empNameComparator = Comparator.comparing(Employee::getName, Comparator.nullsFirst(String::compareTo));
 
+
+***************************************************** 19.SOLID Principles	(javabrahman) *****************************************************
+
+1.Single Responsibility Principle
+2.Open Closed Principle
+3.Liskov Substitution Principle
+4.Interface Segregation Principle
+5.Dependency Inversion Principle
+
+1.Single Responsibility Principle :
+-----------------------------------
+A Class should have a Single Responsibility where Responsibility is nothing but reason to change.
+When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
+When there is a change needed in specific functionality Class needs to be changed.
+
+2.Open Closed Principle :
+-------------------------
+A Module is said to be Open If it is still available for extension.
+It should be possible to add fields to the data structure it contains or new elements to the set of functions it performs.
+
+A Class is said to be closed If it is used by other modules.
+This assumes that module has well definded,stable description.
+One of the basic requirement for a class to be closed is attributes and methods are final because
+If they change all the classes which inherit the base class will be changed.
+
+A Class is said to be Open Closed If it is open for extension and closed for modification.
+Modification means we should not change the original class rather we should override the original class.
+
+3.Liskov Substitution Principle :
+---------------------------------
+As per Liskov substitution principle A Class can be replaced by its subClass.
+Super class reference can be used to hold subClass Object.
+
+4.Interface Segregation Principle :
+-----------------------------------
+
+***************************************************** 22.Map in Java8 (beginnersbook) ************************************************************
+
+1.compute :
+-----------
+compute() of HashMap allows us to update the value with the specified key.
+compute() has two parameters
+1.key and 
+2.reMapping Function ie computes a new value for the specified key.
+
+Note:
+reMapping function takes two arguments and is considered as BiFunction.
+During computation reMapping function should no be able to modify the Map.
+Returns the new value associated with the key or null If no value is associated with the key.
+If the remapping function results null then mapping for the specified key is removed.
+
+		Map<String,String> map=new HashMap<>();
+		map.put("One", "Bhaumik");
+		map.put("Two", "Aadvik");
+		map.compute("One", (key,value)-> value=value+" Chary");
+		map.compute("Two", (key,value)-> value=value+" Chary");
+		
+		/**
+		 * Compute to sum the Values
+		 */
+		Map<String,Integer> map1=new HashMap<>();
+		map1.put("One", 23);
+		map1.put("One", 15);
+		
+		map1.compute("One", (key,value) -> (value == null) ? 1 : value + value);
+		
+2.computeIfAbsent :
+-------------------
+computeIfAbsent() computes a new value and associates with the specified key if the key is not present.
+If the Key is present then computeIfAbsent does not effect the Map.
+
+computeIfAbsent() takes two parameters
+key
+reMapping Function cannot take two arguments and takes single argument.
+
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("key1", 10000);
+		map.put("key2", 55000);
+		map.put("key3", 44300);
+		map.put("key4", 53200);
+		
+		System.out.println(map);
+		map.computeIfAbsent("key5", key -> 87000);
+
+3.computeIfPresent :
+--------------------
+computeIfPresent() computes a new value and associates with the specified key if the key is present.
+If the key is not present the computeIfPresent does not effect the Map.
+
+computeIfPresent() takes two parameters
+key
+reMapping Function can take two arguments and is considered as BiFunction.
+If the reMapping Function returns null then mapping for the specified key is removed.
+
+		map.computeIfPresent("key4",(key,val)-> val+1);
+		System.out.println(map);
+		
+4.merge :
+---------
+merge() is used to combine multiple mapped values for a given key using mapping function.
+
+Note :
+If the key is not present or associated with null,It simply outputs the key along with the corresponding value in the HashMap as a new Entry.
+If the key already holds some value remapping function merges both the old and new value for the given key.
+In case key is null,It always mapped to bucket 0 as hash is not calculated for null keys due to NPE.
+
+		/**
+		 * Merge to sum the Values
+		 */
+		Map<String,Integer> map1=new HashMap<>();
+		map1.put("One", 22);
+		map1.put("Two", 27);
+		
+		Map<String,Integer> map2=new HashMap<>();
+		map2.put("One", 23);
+		map2.put("Two", 15);
+
+		map2.forEach((key,value) -> map1.merge(key, value, (v1,v2) -> v1+v2));
+		System.out.println(map1);
+		
+5.getOrDefault() :
+------------------
+getOrDefault() of HashMap returns the specified default value If the mapping for the specified key is not found.
+
+ 
+	
 
