@@ -9,17 +9,17 @@
 9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]   ()
 10.Method References                                                            		[02-SEP-2021]   ()
 11.spliterator                                                                          [02-SEP-2021]   ()
-12.Optional Class                                                                       [02-SEP-2021]   ()
+12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
 13.CopyonWriteArrayList                                                                 [02-SEP-2021]   ()
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
 15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
-17.Function package                                                                     [02-SEP-2021]	()
+17.Function package 											(javabrahman)           [08-SEP-2021]	()
 18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
 19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
 20.Collectors Class                                             (javabrahman)           [02-SEP-2021]   ()
 21.Stream Filter                                                (javabrahman)           [02-SEP-2021]   ()
-21.Streams                                                 		(winterbe)           	[02-SEP-2021]   ()
+21.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
 22.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
@@ -221,7 +221,7 @@ The other specialized operations are sum(),range().
 
 Reduction Operations :
 ----------------------
-Reduce Operation takes a Sequence of input elements and combines them into a Single Result by repeatedly applying a combining Operation.
+Reduce Operation combines all the elements of the stream into a Single Result.
 
 	T reduce(T identity,BinaryOperator<T> accumulator)
 	
@@ -293,6 +293,66 @@ Infinite Streams :
 File Operations :
 -----------------
 
+***************************************************** 12.Optional Class (beginnersbook) ***********************************************************
+
+Optional Class is present in java.util package whch is introduced in Java 8.
+Optional Class is introduced to avoid NPE that we frequently encounter If we do not perform null check in our code.
+Using Optional Class we can easily check whether a variable has null value or not and by doing we can avoid NPE.
+
+ofNullable() :
+--------------
+ofNullable() of the Optional class returns the non empty Optional If the given Object has the value otherwise returns an empty Optional.
+
+isPresent() :
+-------------
+we can check whether the Optional value is empty or not by using isPresent().
+
+		//declaring the String Array and not initializing the values.By default it will be null.
+		String[] result=new String[10];
+		//String subResult=result[9].substring(2, 5);
+		//System.out.println(subResult); // It will throw NPE as values are not initialized
+		
+		Optional<String> nullCheck=Optional.ofNullable(result[9]);
+		if(nullCheck.isPresent())
+		{
+			String subResult=result[9].substring(2, 5);
+			System.out.println(subResult);
+		}
+		else
+		{
+			System.out.println("Cannot be NUll");
+		}
+
+ifPresent() :
+-------------
+There is another method in Optional Class which only executes If the given Optional Object is non empty.
+
+		Optional<String> valueOne=Optional.ofNullable("This is Non Empty checked using IfPresent Method");
+		Optional<String> valuetwo=Optional.empty();
+		valueOne.ifPresent(System.out::println);
+		valuetwo.ifPresent(System.out::println);
+		
+orElse() and orElseGet() :
+--------------------------
+orElse() and orElseGet() returns the value of the Optional Object If it is non empty.
+If the Object is empty then it returns the default value passed to this method as an argument.
+
+		//Creating Optional object from a String
+        Optional<String> GOT = Optional.of("Game of Thrones");        
+        //Optional.empty() creates an empty Optional object        
+        Optional<String> nothing = Optional.empty();
+        
+        System.out.println(GOT.orElse("Empty Value"));
+        System.out.println(nothing.orElse("Empty Value"));
+        
+        System.out.println(GOT.orElseGet(() -> "Empty Value"));
+        System.out.println(nothing.orElseGet(() -> "Empty Value"));
+
+Note :
+------
+We can also use Map and filter with the Optional Class.
+To filter out the null values from the Stream we use Objects::nonNull as Method reference.
+
 ***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
 
 	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
@@ -362,7 +422,24 @@ We can also have
 	Comparator.nullsLast(String::compareTo)
 
 	Comparator<Employee> empNameComparator = Comparator.comparing(Employee::getName, Comparator.nullsFirst(String::compareTo));
+	
+*****************************************************  17.Function package (javabrahman)  *******************************************************************
 
+For common use cases where a Lambda Expression or a Method Reference is needed these are generally assigned to a target type.
+java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda  definitions 
+which can be used by the programmer in  the code instead of creating new functional interfaces.
+
+Consider the scenario where we need a function that accepts an argument and returns boolean.
+Then function descriptor would be
+
+	(T) -> boolean
+	
+where T is the parameter and boolean is the return type.
+
+Function represents a function that takes one type of argument and returns another type of argument.
+Predicate is a function that predicates against the elements of teh Stream.This can be used to filter out the elements of the Stream.
+Consumer is a function that accepts a single argument and returns no result.
+Supplier is a fucntion that does not take any argument and returns the result.
 
 ***************************************************** 19.SOLID Principles	(javabrahman) *****************************************************
 

@@ -1,1 +1,109 @@
-1.
+1.Java 8 Stream											(winterbe)     	[02-SEP-2021]  	()
+
+
+
+************************************************************ 1.Java 8 Stream  ************************************************************
+
+Java8 Streams are monads thus playing a big part in bringing functional programming to Java.
+In functional programming monad is a structure that represents the computations defined as a sequence of steps.
+
+Stream represents a sequence of elements and supports different kind of operations to perform computation on those elements.
+Stream operations are either intermediate operations or terminal operations.
+Intermediate operations returns a stream so that we can chain multiple intermediate operations.
+Terminate operations returns either void or non stream result.
+
+		List<String> myList=Arrays.asList("a1", "a2", "b1", "c2", "c1");
+		 myList.stream().filter(s -> s.startsWith("a"))
+		 .map(String::toUpperCase)
+		.sorted()
+		.forEach(System.out::println);
+		
+In the above example filter,map and sorted are intermediate operations where as forEach is a terminal operation.
+
+Most of the straem operations accept some kind of Lambda Expression parameter or Functional Interface specifying the exact behavior of the operation.
+These operations must ne non interfering and stateless.
+non interfering means it does not modify the underlying datasource of the stream.
+stateless means it does not depend on any mutable variables.
+
+Ways of creating a Stream :
+---------------------------
+Stream.Of() to create the Stream of Objects.
+
+	Stream.of("a1","a2","a3").findFirst().ifPresent(System.out::println);
+	
+Java8 comes with the special kind of streams for working with primitive data types.
+IntStream,LongStream,DoubleStream etc.
+
+	IntStream.range(1, 4)
+		.forEach(System.out::println);
+		
+Note :
+------
+An important characteristic of intermediate operations is laziness.
+Intermediate operations will only be executed when theterminal operation is present.
+
+Collect :
+---------
+Collect is an extremely useful Terminal Operation to transform the elements of the Stream into different kind of ResultSet.
+collect accepts Collector which consists of four different arguments ie supplier,accumulator and combiner and finisher.
+collect is used to perform many operations like Summation,Grouping,Joining etc.
+Java8 supports various built in Collectors via the Collectors Class.
+For the most common operations we don't need to implement Collectors ourself.
+
+1.To Transform stream of elements into another kind of Result ie basic collect
+
+	List<Person> persons = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
+				new Person("David", 12));
+	List<Integer> result = persons.stream().map(Person::getAge).collect(Collectors.toList());
+	
+2.To group the elements of the Stream based on condition we use groupingBy.
+
+	Student s1 = new Student("Ram", 20, "A");
+	Student s2 = new Student("Shyam", 22, "B");
+	Student s3 = new Student("Mohan", 22, "A");
+	Student s4 = new Student("Mahesh", 20, "C");
+	Student s5 = new Student("Krishna", 21, "B");
+	List<Student> list = Arrays.asList(s1, s2, s3, s4, s5);
+	Map<String, List<Student>> result = list.stream().collect(Collectors.groupingBy(Student::getClassName));
+	List<Student> results = result.entrySet().stream().map(Map.Entry::getValue).flatMap(List::stream).collect(Collectors.toList());
+	results.forEach(s -> System.out.println(s));
+
+3.Collectors are extremely versatile .We can also create aggregations on the stream ofelements.
+
+	List<Integer> list = Arrays.asList(1,2,3,4);
+		Double average=list.stream().collect(Collectors.averagingInt(number->number*2));
+		
+	List<Integer> integerArray=Arrays.asList(25,36,81);
+		IntSummaryStatistics statistics=integerArray.stream().collect(Collectors.summarizingInt(number->number+number));
+
+joining :
+---------
+We can convert the List into String format that can be passed as argument to IN parameter of SQL Statement.
+This can be done by using joining method of Collectors Class.
+To the joining() we can pass the delimiter,prefix and suffix too in concatenation.
+
+	List<String> names=Arrays.asList("Ram","Shyam","Shiv","Mahesh");
+	String result=names.stream().collect(Collectors.joining("','", "['", "']"));
+	System.out.println(result);
+
+Collect to Map :
+----------------
+In order to transfrom the stream of elements into Map,we have to specify both keys and values.
+Here keys must be unique otherwise we get IllegalStateException.
+
+	List<Person> list = new ArrayList<>();
+	list.add(new Person("Mohan", 100));
+	list.add(new Person("Sohan", 200));
+	list.add(new Person("Mahesh", 300));
+	Map<Integer, String> result=list.stream().collect(Collectors.toMap(Person::getAge, Person::getName));
+
+
+FlatMap :
+---------
+To transform the Objects of the stream into another type of Objects we use map operation.
+map is limited because every Object can only be mapped to   exactly another Object.
+But If we want to transform the Object into multiple or none we use flatMap.
+
+Reduce :
+--------
+Reduction operation combines all the elements of the stream into a Single Result.
