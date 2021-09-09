@@ -7,17 +7,16 @@
 7.Concurrency API Improvements                                                  		[02-SEP-2021]   ()
 8.Java IO Improvements                                                          		[02-SEP-2021]   ()
 9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]   ()
-10.Method References                                                            		[02-SEP-2021]   ()
+10.Method References                           					(beginnersbook)         [08-SEP-2021]   (Done)
 11.spliterator                                                                          [02-SEP-2021]   ()
 12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
 13.CopyonWriteArrayList                                                                 [02-SEP-2021]   ()
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
 15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
-17.Function package 											(javabrahman)           [08-SEP-2021]	()
+17.Function package 											(javabrahman)           [08-SEP-2021]	(Done)
 18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
 19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
-20.Collectors Class                                             (javabrahman)           [02-SEP-2021]   ()
 21.Stream Filter                                                (javabrahman)           [02-SEP-2021]   ()
 21.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
 22.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
@@ -293,6 +292,44 @@ Infinite Streams :
 File Operations :
 -----------------
 
+
+***************************************************** 10.Method References  (beginnersbook) ******************************************************
+
+Method reference is an alternative way of writing Lambda Expression.
+The :: operator is used in Method reference to seperate the class or Object from the Method Name.
+Ther are four types of Method References.
+
+1.Method Reference to an Instance Method of a Class.
+
+	public class Example {
+
+	public void myMethod(){  
+		System.out.println("Instance Method");  
+	}
+	public static void main(String[] args) {
+		Example example=new Example();
+		
+		
+		
+		MyInterface reference = () -> example.myMethod();
+		// If the Lambda Expression does not accept any argument and executing a Method
+		// then use the Method Reference.
+		MyInterface reference1 = example::myMethod;
+		
+		reference.disply();
+		reference1.disply();
+	}
+}
+
+interface MyInterface{
+	 void disply();
+}
+
+2.Method Reference to Statci Method of a Class.
+3.Method Reference to the Constructors
+4.Method Reference to an instance Method of an Arbitary Object of a particular Type.
+
+
 ***************************************************** 12.Optional Class (beginnersbook) ***********************************************************
 
 Optional Class is present in java.util package whch is introduced in Java 8.
@@ -428,18 +465,63 @@ We can also have
 For common use cases where a Lambda Expression or a Method Reference is needed these are generally assigned to a target type.
 java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda  definitions 
 which can be used by the programmer in  the code instead of creating new functional interfaces.
-
 Consider the scenario where we need a function that accepts an argument and returns boolean.
-Then function descriptor would be
+
+	public interface Predicate<T>
+	{
+		boolean test(T t);
+	}
+	
+Then function descriptor would 	
 
 	(T) -> boolean
 	
 where T is the parameter and boolean is the return type.
 
-Function represents a function that takes one type of argument and returns another type of argument.
-Predicate is a function that predicates against the elements of teh Stream.This can be used to filter out the elements of the Stream.
-Consumer is a function that accepts a single argument and returns no result.
+Function :
+----------
+Function Interface represents a function that takes one type of argument and returns another type of argument.
+Function Interface implementation is now inlined in the declaration of sum variable rather in seperate Class.
+Function Interface definition would be
+	
+	interface Function<T,R>
+	{
+		public R apply(T parameter)
+	}
+
+	public class FunctionDemo {
+	Function<Integer, Integer> sum= (value -> value+value);
+	public static void main(String[] args) {
+		FunctionDemo demo=new FunctionDemo();
+		Integer addNumbers=demo.sum.apply(5);
+		System.out.println(addNumbers);
+	}
+}
+
+Predicate :
+-----------
+Predicate Interface represents a function that takes a single value as parameter and returns either true or false.
+Predicate Interface definition would be
+
+	public interface Predicate<T>
+	{
+		public boolean test(T t);
+	}
+	
+	Predicate predicate =(value) -> value !=null;
+	
+	
+Consumer :
+----------
+Consumer Interface represents a function that takes a single argument and returns no result.
+
+	Consumer consumer= (value) -> (System.out.println(value));
+
+Supplier :
+----------
 Supplier is a fucntion that does not take any argument and returns the result.
+
+	Supplier supplier= () -> "Supplier Function Called";
 
 ***************************************************** 19.SOLID Principles	(javabrahman) *****************************************************
 

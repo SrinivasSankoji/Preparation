@@ -20,21 +20,21 @@ Custom Actuator
 Actuators is the Concept Created by Spring Boot to Monitor the Production Application.
 Monitoring the Process,Health Check i.e Whether the Application is up or Not,
 Database Connection is Up or Not,database Connection is Successful inside the Process or Not,Heap Size i.e Space in the Particular JVM.
-All these are Taken Care by Actuator.
+All these are taken Care by Actuator.
 Spring Boot Internally is a Web Application.
-Spring Boot has Created a library which Exposes Some Rest End Points.
-so that Different Monitoring tools use these Rest End Points and get the Data out of those Rest End Points.
-By Default Spring Boot Actuator is Security based and they have Some Security Restrictions.
-We can Disable them by Using 
+Spring Boot has created a library which exposes some Rest End Points.
+so that Different Monitoring tools use these Rest End Points and get the data out of those Rest End Points.
+By Default Spring Boot Actuator is Security based and they have some Security Restrictions.
+We can disable them by using 
 		
-		#management.security.enabled=false   and is Deprecated Method
+		#management.security.enabled=false   and is deprecated Method
 		
-By Default Health and Info Actuators are Enabled.
+By default Health and Info Actuators are enabled.
 All the Actuators are not exposed  by default and we can to expose them by Using 
 
 	management.endpoints.web.exposure.include=*
 	
-If we want to Map End Points with a Different Path We Use
+If we want to Map End Points with a different path we use
 
 	management.endpoints.web.base-path=/
 	management.endpoints.web.path-mapping.health=healthcheck
@@ -55,7 +55,7 @@ Info :
 	
 		http://localhost:9876/actuator/info
 		
-Info Provides Information about The Application.		
+Info provides information about the Application.		
 To Get The Complete Information of the Health Actuator we need to define the Property
 	
 		management.endpoint.health.show-details=always
@@ -106,10 +106,10 @@ To See all the Actuator End Points
 
 Health Actuator is Used to Check the Status of an Application.
 Consider the Scenario If the Application is accessing any third Party application and 
-If we want to Check whether the Applications is up or not We need to Implement Custom Health End Point.
+If we want to Check whether the Applications is up or not We need to implement Custom Health End Point.
 
 		try {
-		URL url=new URL("https://www.google.com");/.
+			URL url=new URL("https://www.google.com");/.
 			HttpURLConnection connection=(HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.connect();
@@ -132,7 +132,7 @@ If we want to Check whether the Applications is up or not We need to Implement C
 
 ************************************************* 4.Micro services with Spring Boot Actuator One (Green Learner) ********************************************
 
-Actuator End Points Monitor and Interact with our Application.
+Actuator End Points Monitors and Interact with our Application.
 By Default Health and Info are enabled.
 
 To get The Complete Information of Info EndPoint,Add the Below Properties in properties File.

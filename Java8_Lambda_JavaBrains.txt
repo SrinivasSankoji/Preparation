@@ -504,7 +504,7 @@ Java Compiler Freeze the Value of the Variable alon wih Lambda Expression.
 												
 ************************************************* 20.Method References	************************************************************************	
 
-Method Reference is an Alternative way of Writing Lambda Expression and is very Readable.
+Method Reference is an alternative way of writing Lambda Expression and is very readable.
 
 	public static void main(String[] args) 
 	{
@@ -515,12 +515,12 @@ Method Reference is an Alternative way of Writing Lambda Expression and is very 
 Here the Above Lambda Expression does not have any argument and executing a Method.
 i.e Here it is doing Method Execution with No Parameters.
 We may also get Method Execution with Certain Parameters.
-The above case can be Replaced by Method References.
+The above case can be replaced by Method References.
 
 Rules for defining Method References are 
 Case 1 :
 --------
-If the Lambda Expression does not accept any argument and executing a Method then pass the Class Name with Method Name followed by ::
+If the Lambda Expression does not accept any argument and executing a Method then pass the Class Name with Method Name followed by :: ie Method Reference.
 
 	public static void main(String[] args) 
 	{
@@ -534,14 +534,10 @@ Case 2 :
 	performConditionally(people,p -> true ,p -> System.out.println(p));
 	
 If the Lambda Expression is accepting an input parameter and executing a Method with that Input Parameter.
-then we have to take the Instance with Method Name Followed by ::
+then we have to take the Instance with Method Name followed by ::
 
 	performConditionally(people,p -> true ,System.out::println);
-	
-If the Method that is taking Place of any Consumer that accepts an argument and returns void
-then it should be replaced by Consumer.
-
-							
+		
 ************************************************* 21.For Each Iteration		************************************************************************	
 
 There are Multiple ways to iterate over Collection Prior to Java 8.

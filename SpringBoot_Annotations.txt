@@ -1,59 +1,10 @@
-tuturself :
-***********
-Spring Boot Caching -- EHCache
-Spring Boot With Redis
-Spring Boot With Docker
-application.yml
-How to handle retry with Spring-Retry 
-Difference between @Component, @Repository & @Service annotations in Spring
-Spring Boot JDBC + MySQL + HikariCP example
-SpringBoot : How to Integrate a Filter in Spring Boot Application
-Project spring sandwich | annotated, type-safe interceptors for Spring web controllers
-Spring Boot Log back integration
-Spring Boot SSL [HTTPS] Integration
-Spring Boot 2 and Consul integration with Swagger 2.8.0
-Netflix Zuul: Setup and sample application
-Spring Boot Implementation List (tuturself)
-SpringBoot : How to integrate a Filter in Spring Boot Application
-
-Java By Examples :
-******************
-Logging with Request Correlation using MDC
-Using @RequestBody and @ResponseBody with Spring MVC
-Quick Guide to ResponseBodyAdvice in Spring MVC
-Quick Guide to RequestBodyAdvice in Spring MVC
-Log Incoming Requests using Spring MVC
-Quick Guide to Apache HttpClient 4
-Observer Pattern Java Support
-Observer Pattern in Java
-Decorator Pattern with Lombok @Delegate
-Forwarding Reusable Decorators
-Decorator Pattern in Java
-Task: Secure a Service Using Java Dynamic Proxy
-Securing a Service using Proxy Pattern
-Caching a Service using Proxy Pattern
-Proxy Pattern in Java
-Strategy Pattern, Stateless or Stateful?
-Strategy Pattern in Java
-Comparing Builder Pattern and Fluent Interface
-Adapter Pattern in Java
-Telescoping Constructor in Java
-Builder Pattern using Inheritance and Generics
-Builder Pattern in Java
-Singleton Pattern in Java
-Executors
-PausableExecutor – Executor Implementation
-SerialExecutor – Executor Implementation
-ThreadPerTaskExecutor – Executor Implementation
-DirectExecutor – Executor Implementation
 
 Annotation List :
 *****************
-@Interceptor                                [17-OCT-2019]  (Done)
+@Interceptor                  				(springframework.guru)             [17-OCT-2019]  (Done)
 @ConfigurationProperties
 @Conditional
 Service Locater Factory Bean			  
-
 
 Spring Core Annotations :
 *************************
@@ -77,18 +28,10 @@ Spring Web Annotations :
 
 Spring Stereotype Annotations :
 *******************************
-@Component	
-@Controller
-@Service
-@Repository
-
-Spring Boot Annotations :
-*************************
-
-
-
-
-
+@Component									[17-OCT-2019]  (Done)			
+@Controller                                 [17-OCT-2019]  (Done)
+@Service                                    [17-OCT-2019]  (Done)
+@Repository                                 [17-OCT-2019]  (Done)
 
 ************************************ @Interceptor (springframework.guru) *********************************************************************
 
@@ -276,5 +219,4 @@ This Annotation is Used on Classes Which Directly Access the Database.
 For Example When an Exception Occurs in the @Repository,
 There is a Handler For That Exception and there is no Need to Add Try Catch Block.
 Here We Can Use DataAccessException or ExceptionTranslator to Handle The Exceptions Irrespective pf JPA Vendor.
-
 
