@@ -36,6 +36,15 @@ As soon as developer commits the code into the shared Repository,Jenkins will pu
 Build Notification will be sent out and If there are any issues we can revert back.
 If the build is successful we can also integrate unit Test as a post build action and sent the report back.
 
+Continuous Integration :
+------------------------
+Continuous Integration is Devops software development practice where developers regularly merge their code changes into a central Repository
+after which Automated Builds and Tests are run.
+
+Continuous Delivery :
+---------------------
+Continuous Delivery is Devops software development practice where code changes are automatically prepared for a release to production.
+
 Download Jenkins :
 ------------------
 
