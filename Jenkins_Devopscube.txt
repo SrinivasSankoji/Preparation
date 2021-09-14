@@ -1,11 +1,11 @@
 1.Jenkins Core Features															[14-SEP-2019] (Done)
-2.Jenkins Architecture                                                          [14-SEP-2019] ()
-3.Jenkins Pipeline as Code                                                      [14-SEP-2019] ()
+2.Jenkins Architecture                                                          [14-SEP-2019] (Done)
+3.Jenkins Pipeline as Code                                                      [15-SEP-2019] ()
 4.Jenkins Shared Libary                                                         [14-SEP-2019] ()
 5.Creating Jenkins Shared Library                                               [14-SEP-2019] ()
 6.Parameters in Declarative Pipeline                                            [14-SEP-2019] ()
 7.Java Continuous Integration with Jenkins                                      [14-SEP-2019] ()
-8.Jenkins PR based builds with Github Pull Request Builder Plugin               [14-SEP-2019] ()
+8.Jenkins PR based builds with Github Pull Request Builder PlugIn               [14-SEP-2019] ()
 9.Jenkins Multi-branch Pipeline Detailed Guide for Beginners                    [14-SEP-2019] ()
 10.Building Docker Images Using Kaniko & Jenkins on Kubernetes                  [14-SEP-2019] ()
 
@@ -70,7 +70,99 @@ The key components in Jenkins are
 
 1.Jenkins Server (Master Node) :
 --------------------------------
+Jenkins Server or Master Node holds all the key configurations.
+Master Node is responsible for managing the workflows defined in the Pipeline.
+For example sceduling a Job,Monitoring the Jobs etc.
+
+Jenkins Job :
+-------------
+Job in Jenkins is also referred to as Pipeline.
+Pipeline is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
+Event can be of
+
+Clone the Source Code
+Build the Source Code
+Run the Unit Test Cases
+Run the Shell Script
+Run the Ansible Role
+Execute the Terraform Play etc.
+
+Jenkins PlugIns :
+-----------------
+PlugIns are the community developed Modules that we can install in our Jenkins Server.
+PlugIns helps with more functionalities that are not available in Jenkins.
+
+For example If we want to upload  a file to AWS S3 bucket from Jenkins,use the AWS Jenkins PlugIn 
+instead of writing the file upload code in AWS CLI.
+Here PlugIn takes care of Error and Exception Handling.
+
+Note :
+we can install/upgrade the PlugIns from Jenkins Dashboard.
+We can also download the PlugIn and install it by copying it to the PlugIns directory in var/lib/jenkins folder.
+
+Jenkins Global Security :
+-------------------------
+
+
+Jenkins Credentials :
+---------------------
+
+
+Jenkins Nodes/Clouds :
+----------------------
+We can configure multiple Slave Nodes(Agent Nodes) or Clouds for executing Jenkins Jobs.
+
+Jenkins Global Settings (Configure System) :
+--------------------------------------------
+We can configure global environment variables under this section.
+ 
+Jenkins Logs :
+--------------
+Provides logging information on all Jenkins Server actions including Job Logs,PlugIn Logs etc.
+
+
+2.Jenkins Agent Nodes/Clouds :
+------------------------------
+Agent Nodes are the Worker Nodes that actually executes the steps that are defined in the Job.
+Whenever we create a Job we need to assign an Agent Node for that Job.
+When the Job is triggered on the Master actual execution happens in the Agent Node that is configured for that Job.
+
+Note :
+------
+We can run the Job in Jenkins Server without Agent Node.
+In this case Jenkins Server acts as a Worker Node.
+However recomended approach is Jankins Master-Agent setup for different Job requirements.
+In this case we don't end up corrupting the Jenkins Server for any system wide configuration changes required for a Job.
+
+Jenkins Master-agent Connectivity :
+-----------------------------------
+We can connect Jenkins Master and an Agent in two ways.
+
+Using SSH :
+-----------
+The Connection gets initiated form the Master Server.
+There should be connectivity over port 22 between Master and Agent.
+
+Using JNLP(Java Network Launch Protocol) :
+------------------------------------------
+The Connection gets initiated from the Agent with the Jenkins Master details.
+For this Master Node Firewall should allow connectivity on specified JNLP port.
+
+Note :
+------
+There are two types of Jenkins Agents
+Agent Nodes (Static Agents)
+Agent Clouds (Dynamic Agents)
+
+
+**************************************************** 3.Jenkins Pipeline as Code ********************************************************
+
 
 
 
  
+
+
+
+
+
