@@ -1,1 +1,76 @@
- sasa
+1.Jenkins Core Features															[14-SEP-2019] (Done)
+2.Jenkins Architecture                                                          [14-SEP-2019] ()
+3.Jenkins Pipeline as Code                                                      [14-SEP-2019] ()
+4.Jenkins Shared Libary                                                         [14-SEP-2019] ()
+5.Creating Jenkins Shared Library                                               [14-SEP-2019] ()
+6.Parameters in Declarative Pipeline                                            [14-SEP-2019] ()
+7.Java Continuous Integration with Jenkins                                      [14-SEP-2019] ()
+8.Jenkins PR based builds with Github Pull Request Builder Plugin               [14-SEP-2019] ()
+9.Jenkins Multi-branch Pipeline Detailed Guide for Beginners                    [14-SEP-2019] ()
+10.Building Docker Images Using Kaniko & Jenkins on Kubernetes                  [14-SEP-2019] ()
+
+
+***************************************************** 1.Jenkins Core Features  ************************************************************
+
+The core features of Jenkins are
+
+1.Pipeline as a Code
+2.Shared Libraries
+3.Better UI and UX
+4.Improovements in Security and PlugIns
+5.GitOps With Jenkins X
+
+1.Pipeline as a Code :
+----------------------
+Using Pipeline as a Code we can run paralell builds on a Single Job on different Slaves.
+Also we can have a good programatic control over how and what each Jenkins Job should do.
+Jenkinsfile is the best way to implement Pipeline as a Code.
+There are two types of Pipeline as a Code.
+
+Scripted Pipeline
+Declarative Pipeline
+
+It is recomended to use Declarative Pipeline for all kinds of CI/CD workflows as we have more control and customization over Pipelines.
+
+2.Shared Libraries :
+--------------------
+Shared Library is a great way to reuse the Pipeline as a Code.
+We can create the libraries of our CI/CD which can be referenced in our Pipeline Script.
+The extended Shared Libary allows us to write custom Groovy Code for more Functionality.
+
+Here is how the Shared Library Works 
+
+1.The common Pipeline Shared Library Code is hosted on a version COntrol System like GitHub.
+2.In Jenkins Global Configuration,Shared Library GitHub Repo needs to be configured.
+This enables the access to Library for all the Jenkins Jobs.
+3.In an Individual Jobs we just need to add an import statement to import the Shared Libraries and use it in Pipeline as a Code.
+During Build time Libary files will be checked out.
+
+5.GitOps With Jenkins X :
+-------------------------
+Jenkins X is a project from Jenkins for CI/CD on Kubernetes.
+This project is entirely different from Jenkins.
+
+******************************************************** 2.Jenkins Architecture  *************************************************************
+
+Jenkins is a Open Source Java Application that can be used for CI/CD.
+Jenkins has a huge community support and Ocean of PlugIns that can integrate with many Open Source and enterprise tools.
+
+Jenkins is mostly used for the following
+1.Continuous Integration for Application and Infrastructure Code.
+2.Continuous Delivery to deploy the Application into different Environments using Pipeline as a Code.
+3.Run batch operations using Jenkins Jobs.
+4.Run adhoc operations like backups,cleanups,remote script execution,event triggers etc.
+
+The key components in Jenkins are 
+
+1.Jenkins Server (Master Node)
+2.Jenkins Agent Nodes/Clouds
+3.Jenkins Web Interface
+
+1.Jenkins Server (Master Node) :
+--------------------------------
+
+
+
+ 

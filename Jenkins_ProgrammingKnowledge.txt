@@ -24,7 +24,7 @@ To run the Java based Application,keep the Commands in the Build Tab.
 *****************************   15.Set up Jenkins For Maven   **********************************************************
 
 Add the GitHub Details
-Select the Option GitHub hook trigger for GITScm polling in Build Trigger.
+Select the Option GitHub hook trigger for GIT SCM polling in Build Trigger.
 Select the Option Delete workspace before build starts in Build Environment.
 Then in the Build Section run the Maven Command.
 
@@ -42,10 +42,16 @@ clean package
 
 *****************************   17.Jenkins Pipeline		 **************************************************************
 
-Pipeline is a Script which gives a Series of Jobs or actions in a Pipelined Manner.
-We can define the Pipeline in a Declarative or Scripted Pipeline Syntax.
-In Declarative Pipeline Syntax,pipeline block defines all the work done through out the entire pipeline.
-Pipeline script is a groovy sandbox syntax.
+Pipeline is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
+To implement Jenkins Pipeline we use a file called Jenkinsfile.
+We call the Jenkinsfile as Pipeline as a code.
+Pipeline script is a Groovy sandbox syntax.
+
+Jenkinsfile can be written in two ways.
+1.Declarative Format
+2.Scripted Format
+Scripted Format is the older format and Declarative Format is the more recent way of writing Jenkinsfile.
+Both the format uses Groovy and there is a difference in the structure.
 
 General --> New Job --> GitHub Project --> Mention the GitHub Project URL in the General Tab.
 In the Pipeline Tab --> Select PipelineScript --> Copy the Pipeline Script.

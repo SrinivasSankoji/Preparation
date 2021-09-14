@@ -7,7 +7,7 @@
 7.Execution Time Request												[22-APR-2020]  ()
 8.Logback in Spring Boot				  (Baledung)				 	[05-AUG-2020]  (Done)
 
-*************************************  Logging in Spring Boot (Java Brains)***************************************************
+*************************************  1.Logging in Spring Boot (Java Brains)***************************************************
 
 Logging Framework allows us to configure the behavior rather than doing the things in one way.
 we can set the Log Level,store the Logs into a File,Database etc.
@@ -41,7 +41,7 @@ Spring Boot looks for certain XML Files in the Classpath.
 	
 logback.xml is the standard way of configuring the Logback for Logging Framework.
 
-*************************************  Logging Best Practices  (Brandan Jones) ***************************************************
+*************************************  4.Logging Best Practices  (Brandan Jones) ***************************************************
 
 Logging provides the ability to go back and investigate.
 Best Practice is to use the Log Levels appropriately.

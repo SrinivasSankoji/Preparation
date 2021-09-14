@@ -8,18 +8,17 @@
 8.Java IO Improvements                                                          		[02-SEP-2021]   ()
 9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]   ()
 10.Method References                           					(beginnersbook)         [08-SEP-2021]   (Done)
-11.spliterator                                                                          [02-SEP-2021]   ()
+11.spliterator                                                  ()                      [02-SEP-2021]   ()
 12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
-13.CopyonWriteArrayList                                                                 [02-SEP-2021]   ()
+13.CopyOnWriteArrayList											(howtodoinjava)         [09-SEP-2021]   (Done)
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
 15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
 17.Function package 											(javabrahman)           [08-SEP-2021]	(Done)
 18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
 19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
-21.Stream Filter                                                (javabrahman)           [02-SEP-2021]   ()
-21.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
-22.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
+20.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
+21.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
@@ -390,6 +389,16 @@ Note :
 We can also use Map and filter with the Optional Class.
 To filter out the null values from the Stream we use Objects::nonNull as Method reference.
 
+***************************************************** 13.CopyOnWriteArrayList *********************************************************************
+
+CopyOnWriteArrayList is a Thread Safe variant of ArrayList in which all the modifications are done by creating a fresh copy of the underlying Array.
+CopyOnWriteArrayList implements List,Serializable,Cloneable and RandomAccess Interface.
+Using CopyOnWriteArrayList for updates is very costly because each modification creates a cloned copy of the underlying Array.
+The iterator we create is an immutable snapshot of the original List.
+Each Thread accessing the List sees its own version of snapshot of backing Array created while initializing the iterator first.
+CopyOnWriteArrayList gets the snapshot of underlying Array it won't throw ConcurrentModificationException.
+Iterator on the CopyOnWriteArrayList does not allow mutation operations and throws UnSupportedOperationException.
+ 
 ***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
 
 	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
@@ -558,7 +567,7 @@ Super class reference can be used to hold subClass Object.
 4.Interface Segregation Principle :
 -----------------------------------
 
-***************************************************** 22.Map in Java8 (beginnersbook) ************************************************************
+***************************************************** 21.Map in Java8 (beginnersbook) ************************************************************
 
 1.compute :
 -----------
