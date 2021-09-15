@@ -1,10 +1,12 @@
 1.Jenkins Core Features															[14-SEP-2019] (Done)
 2.Jenkins Architecture                                                          [14-SEP-2019] (Done)
+
 3.Jenkins Pipeline as Code                                                      [15-SEP-2019] ()
 4.Jenkins Shared Libary                                                         [14-SEP-2019] ()
 5.Creating Jenkins Shared Library                                               [14-SEP-2019] ()
 6.Parameters in Declarative Pipeline                                            [14-SEP-2019] ()
-7.Java Continuous Integration with Jenkins                                      [14-SEP-2019] ()
+
+7.Java Continuous Integration with Jenkins                                      [15-SEP-2019] ()
 8.Jenkins PR based builds with Github Pull Request Builder PlugIn               [14-SEP-2019] ()
 9.Jenkins Multi-branch Pipeline Detailed Guide for Beginners                    [14-SEP-2019] ()
 10.Building Docker Images Using Kaniko & Jenkins on Kubernetes                  [14-SEP-2019] ()
@@ -40,7 +42,7 @@ The extended Shared Libary allows us to write custom Groovy Code for more Functi
 
 Here is how the Shared Library Works 
 
-1.The common Pipeline Shared Library Code is hosted on a version COntrol System like GitHub.
+1.The common Pipeline Shared Library Code is hosted on a version Control System like GitHub.
 2.In Jenkins Global Configuration,Shared Library GitHub Repo needs to be configured.
 This enables the access to Library for all the Jenkins Jobs.
 3.In an Individual Jobs we just need to add an import statement to import the Shared Libraries and use it in Pipeline as a Code.
@@ -53,8 +55,8 @@ This project is entirely different from Jenkins.
 
 ******************************************************** 2.Jenkins Architecture  *************************************************************
 
-Jenkins is a Open Source Java Application that can be used for CI/CD.
-Jenkins has a huge community support and Ocean of PlugIns that can integrate with many Open Source and enterprise tools.
+Jenkins is a Open Source Java Application or a Tool that can be used for CI/CD.
+Jenkins has a huge community support and Ocean of PlugIns that can integrate with many Open Source and Enterprise Tools.
 
 Jenkins is mostly used for the following
 1.Continuous Integration for Application and Infrastructure Code.
@@ -131,7 +133,7 @@ Note :
 ------
 We can run the Job in Jenkins Server without Agent Node.
 In this case Jenkins Server acts as a Worker Node.
-However recomended approach is Jankins Master-Agent setup for different Job requirements.
+However recomended approach is Jenkins Master-Agent setup for different Job requirements.
 In this case we don't end up corrupting the Jenkins Server for any system wide configuration changes required for a Job.
 
 Jenkins Master-agent Connectivity :
@@ -161,6 +163,8 @@ Agent Clouds (Dynamic Agents)
 
 
  
+**************************************************** 7.Java Continuous Integration with Jenkins  ***************************************
+
 
 
 

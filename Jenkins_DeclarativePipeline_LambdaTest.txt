@@ -1,0 +1,227 @@
+1.Jenkinsfile													[15-SEP-2021] (Done)
+2.Jenkins Scripted Pipeline                                     [15-SEP-2021] (Done)
+3.Jenkins Declarative Pipeline                                  [15-SEP-2021] (Done)
+4.Running First Declarative Pipeline                            [15-SEP-2021] (Done)
+5.Declarative Pipeline Syntax                                   [15-SEP-2021] (Done)
+6.Stages                                                        [15-SEP-2021] (Done)
+7.Stage                                                         [15-SEP-2021] (Done)
+8.Steps                                                         [15-SEP-2021] (Done)
+9.Parameters                                                    [15-SEP-2021] (Done)
+
+10.Script                                                       [16-SEP-2021] ()
+11.Environment                                                  [16-SEP-2021] ()
+12.When                                                         [16-SEP-2021] ()
+13.Tools                                                        [16-SEP-2021] ()
+14.Paralell                                                     [16-SEP-2021] ()
+15.Post                                                         [16-SEP-2021] ()
+16.Making Build as Unstable                                     [16-SEP-2021] ()
+17.Triggers                                                     [16-SEP-2021] ()
+
+*********************************************** 1.Jenkinsfile *****************************************
+A Job in Jenkins can created using Jenkins UI as a Free Style Jobs.
+These Jobs can be chained together as a sequence called as Pipeline.
+Jenkins 2.0 introduced the new way of creating the Jobs in Jenkins as a Pipeline as a Code.
+In Pipeline as a Code,Jobs are created using a script file that contains the steps that has to be executed.
+The Script File is called Jenkinsfile.
+
+Jenkins provides two ways of developing Pipeline as a Code.
+1.Scripted Pipeline Syntax
+2.Declarative Pipeline Syntax
+
+Jenkinsfile is a text file usually checked in along with the project's source code in Git Repo.
+Ideally every Application has its own Jenkinsfile.
+
+*********************************************** 2.Jenkins Scripted Pipeline ***************************
+Jenkins Pipeline are traditionally written as Scripted Pipeline.
+Scripted Pipeline is written in Groovy.
+
+Scripted Pipeline requires knowledge of Groovy.
+Scripted Pipeline start with word node.
+Scripted Pipeline contains standard programming constructs like If else block and try catch block.
+
+Sample Scripted Pipeline :
+--------------------------
+	node{
+		stage('Welcome')
+		{
+			echo 'Hello'
+		}
+	}
+
+*********************************************** 3.Jenkins Declarative Pipeline ************************
+Jenkins Declarative Pipeline is relatively new and provides a simplified opinonated syntax.
+
+Declarative Pipeline needs to use the predefined constructs to create a Pipeline.
+Hence it is not flexible as Scripted Pipeline.
+Declarative Pipeline starts with word "pipeline".
+Declarative Pipeline does not need the understanding of Groovy Lanmguage.
+
+We can also validat the Declarative Pipeline code before running the Job.
+Hence saves lot of runtime issues with Build Script.
+
+Sample Declarative Pipeline :
+-----------------------------
+
+	pipeline{
+		agent any
+		stages{
+			stage('Welcome Declarative')
+			{
+			    steps{
+			        echo 'Declarative Script in Lambda Test'
+			    }
+			}
+		}
+	}
+
+*********************************************** 4.Running First Declarative Pipeline ******************
+	pipeline{
+		agent any
+		stages{
+			stage('Welcome Declarative')
+			{
+			    steps{
+			        echo 'Declarative Script in Lambda Test'
+			    }
+			}
+		}
+	}
+
+*********************************************** 5.Declarative Pipeline Syntax *************************
+Declarative Pipeline contains one or more Declarative Steps or Dierctives.
+
+Pipeline :
+----------
+Entire Declarative Pipeline should be written inside Pipeline block.
+It is a mandatory block.
+
+	pipeline{
+	}
+	
+agent :
+-------
+Specifies where the Jenkins Build Job should run.
+Agent can be at Pipeline level or at Stage Level.
+Its mandatory to define an agent.
+
+Possible values for the agent are 
+
+1.any 
+Run Job or Stage on any available agent.
+
+	pipeline{
+		agent any
+	}
+
+2.none
+Don't allocate Agent globally for the Pipeline.
+Every Stage should specify their own Agent to run.
+
+	pipeline{
+		agent none
+	}
+
+3.label
+Run the Job in an Agent which matches the given label.
+Jenkins CI/CD can work on Master Agent Architecture.
+Master Nodes delegates the Job to run in Agent Nodes.
+Nodes on creation given a name and label to identify them later.
+Example : All Linux Nodes can be labelled as linux machine.
+
+	pipeline{
+		agent 
+		{
+			label 'linux-machine'
+		}
+	}
+
+4.docker
+Run the Job in a given Docker Container.
+
+*********************************************** 6.Stages **********************************************
+Stages block constitutes different executable stage blocks.
+Atleast one stage block is mandatory inside stages block.
+
+	pipeline{
+		agent 
+		{
+			label 'linux-machine'
+		}
+		stages{
+		}
+	}
+
+*********************************************** 7.Stage ***********************************************
+Stage block contains the actual execution steps.
+Stage block has to be defined within the Stages block.
+It is mandatory to have atleast on stage block inside stages block.
+It is also mandatory to name each stage to the block and this will be shown in Stage View when we run the Job.
+
+	pipeline{
+		agent 
+		{
+			label 'linux-machine'
+		}
+		stages{
+			stage('Welcome')
+			{
+			}
+		}
+	}
+
+*********************************************** 8.Steps ***********************************************
+Step block contains the actual build step.
+It is mandatory to have atleast one step block inside the stage block.
+Depending on the Agent Operating System ie where the Jenkins Job runs we can use shell,bat etc in the steps command.
+
+	pipeline{
+		agent 
+		{
+			label 'linux-machine'
+		}
+		stages{
+			stage('Welcome')
+			{
+				steps{
+					echo 'Welcome to the Step'
+				}
+			}
+		}
+	}
+
+*********************************************** 9.Parameters ******************************************
+Parameters directive provides a way for Jenkins Job to interact with Jenkins CI/CD users during the Job run.
+Parameters can be of the following types.
+
+String
+Text
+Boolean
+Choice
+Password
+
+Note :
+If the Parameter directive is used in the Pipeline then Jenkins changes the option of Build to Build with Parameters.
+
+	pipeline{
+		agent any
+		parameters{
+		string (name: 'NAME',description:'Please Tell me your Name')
+		}
+		stages{
+			stage('Parameters in Declarative Script')
+			{
+				steps{
+				echo "Hello ${params.NAME}"
+				}
+			}	
+		}
+	}
+
+*********************************************** 10.Script *********************************************
+*********************************************** 11.Environment ****************************************
+*********************************************** 12.When ***********************************************
+*********************************************** 13.Tools **********************************************
+*********************************************** 14.Paralell *******************************************
+*********************************************** 15.Post ***********************************************
+*********************************************** 16.Making Build as Unstable ***************************
+*********************************************** 17.Triggers *******************************************

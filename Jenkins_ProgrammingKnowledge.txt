@@ -1,46 +1,48 @@
-9.GitHub and Git Integration with Jenkins						[26-05-2020] [Done]						
-15.Set up Jenkins For Maven                                     [26-05-2020] [Done]
-17.Jenkins Pipeline                                             [26-05-2020] []
-18.Pipeline Script                                              [26-05-2020] []
-19.Slaves/Nodes                                                 [26-05-2020] []
-20.Launch Agent                                                 [26-05-2020] []
-21.Parameterized Jenkins Job                                    [26-05-2020] []
-22.Jenkins CLI                                                  [26-05-2020] []
-24.Multibranch Pipeline                                         [26-05-2020] []
-
+9.GitHub and Git Integration with Jenkins						[26-MAY-2020] [Done]						
+15.Set up Jenkins For Maven                                     [26-MAY-2020] [Done]
+17.Jenkins Pipeline                                             [15-SEP-2021] []
+18.Pipeline Script                                              [15-SEP-2021] []
+19.Slaves/Nodes                                                 [15-SEP-2021] []
+20.Launch Agent                                                 [15-SEP-2021] []
+21.Parameterized Jenkins Job                                    [15-SEP-2021] []
+22.Jenkins CLI                                                  [15-SEP-2021] []
+24.Multibranch Pipeline                                         [15-SEP-2021] []
 
 *****************************  9.GitHub and Git Integration with Jenkins ***********************************************
 
 Craete a New Proejcet and add it to the GitHub.
 In The Sourec Code Management Specify the GitHub Repository Details.
-Here it will pull all the Source Code from Git and place it in the Jenkins Home Directory.
+Here it will pull all the Source Code from Git and place it in the Jenkins Home Directory ie C:\Users\DELL\.jenkins\workspace\GITIntegration
 To run the Java based Application,keep the Commands in the Build Tab.
 
-	D:
-	cd D:/Jenkins/workspace/AutomatedGitHub/DateTest/src/main/java
+	cd DateTest/src/main/java
 	javac com/example/demo/ExceptionDateTest.java
 	java com/example/demo/ExceptionDateTest
 	
-*****************************   15.Set up Jenkins For Maven   **********************************************************
+Note :
+Now the Jenkins Workspace will be C:\Users\DELL\.jenkins\workspace\GITIntegration
+	
+*****************************   15.Set up Jenkins For Maven Project  **********************************************************
 
-Add the GitHub Details
-Select the Option GitHub hook trigger for GIT SCM polling in Build Trigger.
-Select the Option Delete workspace before build starts in Build Environment.
-Then in the Build Section run the Maven Command.
-
+Select New Item --> Free Style Project --> name it as Maven Project.
+Add the GitHub Details in the General Section.
+In Build Trigger --> GitHub hook trigger for GIT SCM polling.
+In Build Environment --> Delete workspace before build starts.
+In Build --> Invoke Top Level Maven Targets.
 Select the Advanced Option in Maven If the pom is Located Somewhere other than Default Path.
 Select the Goal as clean package
 
-In order to use Maven we need to do Some additional COnfiguration inside the Jenkins.
-
-Manage Jenkins --> Configure System -->  
-
 Root POM :
-D:\Jenkins\workspace\MavenProject\BcryptDemo\pom.xml
+BcryptDemo\pom.xml
 Goals Option:
 clean package
 
-*****************************   17.Jenkins Pipeline		 **************************************************************
+Note :
+------
+In order to use user defined Maven we need to do Some additional Configuration inside the Jenkins.
+Manage Jenkins --> Global Tool Configuration --> Add Meven.
+
+***************************************************  17.Jenkins Pipeline *****************************************************************
 
 Pipeline is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
 To implement Jenkins Pipeline we use a file called Jenkinsfile.
@@ -57,11 +59,23 @@ General --> New Job --> GitHub Project --> Mention the GitHub Project URL in the
 In the Pipeline Tab --> Select PipelineScript --> Copy the Pipeline Script.
 
 
-
-	
-
+*************************************************** 18.Pipeline Script ****************************************************************** 
 
 
+            
+*************************************************** 19.Slaves/Nodes *********************************************************************
 
+                	
+*************************************************** 20.Launch Agent *********************************************************************
+
+               
+*************************************************** 21.Parameterized Jenkins Job  *******************************************************
+
+   
+*************************************************** 22.Jenkins CLI **********************************************************************
+
+
+                 
+*************************************************** 24.Multibranch Pipeline  ************************************************************       
 
 

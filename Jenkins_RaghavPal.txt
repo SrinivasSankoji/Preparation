@@ -38,12 +38,12 @@ If the build is successful we can also integrate unit Test as a post build actio
 
 Continuous Integration :
 ------------------------
-Continuous Integration is Devops software development practice where developers regularly merge their code changes into a central Repository
+Continuous Integration is a software development practice where developers regularly merge their code changes into a central Repository
 after which Automated Builds and Tests are run.
 
 Continuous Delivery :
 ---------------------
-Continuous Delivery is Devops software development practice where code changes are automatically prepared for a release to production.
+Continuous Delivery is a software development practice where code changes are automatically prepared for a release to production.
 
 Download Jenkins :
 ------------------
@@ -179,7 +179,7 @@ To Test the Scenario --> Create New Item(Project)
 
 Steps involved in Jobs  are
 
-1.Basic Job Configurations
+1.Basic Job
 2.Run the Job Remotely
 3.Chain Job Execution
 
@@ -234,8 +234,7 @@ Run the Java Program in Jenkins :
 Creeate New Item --> FreeStyle Project 
 To run the java program through Jenkins --> Build --> Windows Batch Command --> 
 
-D:
-cd D:/JavaBasics_Workspace/JavaBasics/DateTest/src/main/java
+cd DateTest/src/main/java
 javac com/example/demo/ExceptionDateTest.java
 java com/example/demo/ExceptionDateTest
 
@@ -304,8 +303,8 @@ Project Set Up :
 ----------------
    --> Developers commit the Code in VCS(GIT).
    --> Build the Project in Jenkins whenever any commit has done in GIT (Build Stage).
-   --> Out come of the Job is Artifact that can be either War or Jar.
-   --> Deploy the Artifact to the Server (Deployment Stage)
+   --> Out come of the Job is an Artifact that can be either War or Jar.
+   --> Deploy an Artifact to the Server (Deployment Stage)
    --> Once the deployment is done we will have different Test jobs that will perform the Testing (Test Stage)
    --> Once Every thing is successful we will release to Production (Release Stage).
 	   Deployment to the Test server and Production Server are the actual Deployment Steps.	   
@@ -472,7 +471,7 @@ To Display the Console --> Select the Option New Window.
 Till now we have created the Jobs on GUI ie from New Item and run the job from GUI.
 PipeLine is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
 To implement Jenkins Pipeline we use a file called Jenkinsfile.
-We call the Jenkinsfile as Pipeline as code.
+We call the Jenkinsfile as Pipeline as a code.
 We write the script to implement the Pipeline which contains all the stages of Continuous Integration and Continuos Delivery.
 We can also add different stages in the Pipeline.
 
@@ -527,7 +526,7 @@ Both the format uses Groovy and there is a difference in the structure.
 
 Note :
 ------
-We can create the Pipeline Script in the GUI or get it from the Repository.
+We can create the Pipeline Script in the GUI or clone it from the Repository.
 
 ********************************************** 23.Get Jenkins File from GIT SCM	 *************************************************************************
 
@@ -543,17 +542,17 @@ In the console we can see the Jenkinsfile is downloaded from Repository.
 
 **********************************************  Build and Deployment (Siva Reddy)  ***********************************************************************
 
-Here we need to write the pipeline script or Jenkins File to provide the Sequence of Steps that starts from 
-Cloning the project from GitHub till the Deployment of the War File to the Web Server.
+Here we need to write the Pipeline script or Jenkinsfile to provide the sequence of steps that starts from 
+Cloning the project from GitHub till the deployment of War File to the Web Server.
 
 Cloning  i.e Get the Project from GitHub
 Packaging i.e Build the War File
 Deploying  i.e Deploy on Tomcat
 Finally Start the Server
 
-These are the Steps we are going to specify in the pipeline script or Jenkins File.
+These are the Steps we are going to specify in the pipeline script or Jenkinsfile.
 Start the Jenkins Server.
-We need to add the Tools For Git and Maven
+We need to add the Tools for Git and Maven
 
 Global Tool Configuration --> Git --> Path to Git  i.e  C:\Program Files\Git\bin\git.execute
 Configure the Maven -->  MAVEN_HOME = D:\apache-maven-3.5.3 and provide the name as apache-maven-3.5.3.
