@@ -7,15 +7,14 @@
 7.Stage                                                         [15-SEP-2021] (Done)
 8.Steps                                                         [15-SEP-2021] (Done)
 9.Parameters                                                    [15-SEP-2021] (Done)
-
-10.Script                                                       [16-SEP-2021] ()
-11.Environment                                                  [16-SEP-2021] ()
-12.When                                                         [16-SEP-2021] ()
-13.Tools                                                        [16-SEP-2021] ()
-14.Paralell                                                     [16-SEP-2021] ()
-15.Post                                                         [16-SEP-2021] ()
-16.Making Build as Unstable                                     [16-SEP-2021] ()
-17.Triggers                                                     [16-SEP-2021] ()
+10.Script                                                       [16-SEP-2021] (Done)
+11.Environment                                                  [16-SEP-2021] (Done)
+12.When                                                         [16-SEP-2021] (Done)
+13.Tools                                                        [16-SEP-2021] (Done)
+14.Paralell                                                     [16-SEP-2021] (Done)
+15.Post                                                         [16-SEP-2021] (Done)
+16.Making Build as Unstable                                     [16-SEP-2021] (Done)
+17.Triggers                                                     [16-SEP-2021] (Done)
 
 *********************************************** 1.Jenkinsfile *****************************************
 A Job in Jenkins can created using Jenkins UI as a Free Style Jobs.
@@ -218,10 +217,367 @@ If the Parameter directive is used in the Pipeline then Jenkins changes the opti
 	}
 
 *********************************************** 10.Script *********************************************
+Script block allows us to write the Groovy code inside the Jenkins Declarative Pipeline.
+
+	pipeline{
+	agent any
+	parameters{
+		string(name:'NAME',description:'Please Tell me Your Name')
+		choice(name:'GENDER',choices:['MALE','FEMALE'],description:'Choose Gender')
+	}
+	stages{
+		stage('Script Block')
+		{
+			steps{
+				script{
+					def name="${params.NAME}"
+					def gender="${params.GENDER}"
+					if(gender=="MALE")
+					{
+					echo "MR $name"
+					}
+				}
+			}
+		}
+	}
+	}
+
 *********************************************** 11.Environment ****************************************
+Environment are the key value pairs which helps in passing the values to the Job during runtime from outside of Jenkinsfile.
+It is one of the way of externalizing configuration.
+
+Usually Jenkins Job will run in Seperate Server.
+We may not be sure where the installation path of the Java in that Server.
+Ideal solution would be configure the Environment Variables and pass during the Job run.
+
+Configure Environment Variable in Jenkins CI/CD portal :
+--------------------------------------------------------
+To refer the environment variable in the Declarative Pipeline using the syntax ${}.
+
+	pipeline{
+		agent any
+		stages{
+			stage('Environment Variables'){
+				steps{
+					echo "${MAVEN_HOME}"
+				}
+			}
+		}
+	
+	}
+
+Creating & Referring Environment Variable in Jenkinsfile :
+----------------------------------------------------------
+We create the environment variables in the environment block.
+It is an optional block under pipeline.
+
+	pipeline{
+		agent any
+		environment{
+			DEPLOY_TO='Production'
+		}
+		stages{
+			stage('Environment Variables'){
+				steps{
+					echo "${MAVEN_HOME}"
+					echo "Deploy to ${DEPLOY_TO}"
+				}
+			}
+		}
+	}
+
+Initialize Environment variables using sh scripts in Jenkinsfile :
+------------------------------------------------------------------
+Consider the case where we need the Timestamp when the Job gets run for logging purpose.
+Here we can create an Environment variable which can hold the stamp and initialize it to the environment variable.
+
+	pipeline{
+		agent any
+		environment{
+		LOGGED_IN=sh (returnStdout: true, script: "date '+%A %W %Y %X'").trim()
+		}
+		stages{
+			stage('Logging the Timestamp')
+			{
+				steps{
+					echo "Logged In Time : ${LOGGED_IN}"
+				}
+			}
+		}
+	}
+
+Load credentials via environment block :
+----------------------------------------
+
+
+
 *********************************************** 12.When ***********************************************
+when acts like If condition to decide whether to run the particular stage or not.
+It is an optional block.
+
+	pipeline{
+		agent any
+		stages{
+			stage('Deployment'){
+				when{
+					branch 'dev'
+				}
+				steps{
+					echo "Woeking on Dev Branch"
+				}
+			
+			}
+		}
+	}
+	
+When block with Groovy Expression :
+-----------------------------------
+
+	pipeline{
+		agent any
+		stages{
+			stage('When Block using Groovy Expression')
+			{
+				when{
+					expression{
+					return env.BRANCH_NAME='dev';
+					}
+				}
+				steps{
+					echo "Working on Dev Branch"
+				}
+			}
+		}
+	}
+	
+When block with environment variables :
+---------------------------------------
+
+	pipeline{
+		agent any
+		environment{
+		DEPLOY_TO='Production'
+		}
+		stages{
+			stage('When using environment variables')
+			{
+				when{
+					environment name:'DEPLOY_TO',value:'Production'
+				}
+				steps{
+				echo "When using Environment Variables"
+				}
+			}
+		}
+	}
+	
+When block with Multiple Conditions and All Condition should be staisfied :
+----------------------------------------------------------------------------
+
+	pipeline{
+		agent any
+		environment{
+		DEPLOY_TO='Production'
+		}
+		stages{
+			stage('When using environment variables')
+			{
+				when{
+					allOf{
+					branch 'dev';
+					environment name:'DEPLOY_TO',value:'Production'
+					}
+				}
+				steps{
+				echo "When using Environment Variables"
+				}
+			}
+		}
+	}
+
+When block with Multiple Conditions and Any of the given Condition should be staisfied :
+----------------------------------------------------------------------------------------
+
+	pipeline{
+		agent any
+		environment{
+		DEPLOY_TO='Production'
+		}
+		stages{
+			stage('When using environment variables')
+			{
+				when{
+					anyOf{
+					branch 'dev';
+					environment name:'DEPLOY_TO',value:'Production'
+					}
+				}
+				steps{
+				echo "When using Environment Variables"
+				}
+			}
+		}
+	}
+
 *********************************************** 13.Tools **********************************************
+tools block allows us to add pre-configured tools like Maven,Java etc.
+To use the tol block they have to pre-configured under the "Global Tools Configuration" Section.
+
+
+	pipeline{
+		agent any
+		tools{
+			maven 'MAVEN_PATH'
+		}
+		stages{
+			stage('Tool Configuration')
+			{
+				steps{
+					bat "mvn -version"
+				}
+			}
+		}
+	}
+
 *********************************************** 14.Paralell *******************************************
+paralell block allows us to run multiple stage blocks concurrently.
+When we have stage blocks that can run independently we define those stage blocks inside paralell block.
+Here stage block will run on its own agent.
+
+	pipeline{
+		agent any
+		stages{
+			stage('Paralell Block')
+			{
+				stage('windows-script')
+				{
+					agent {
+						label "windows"
+					}
+					steps{
+						echo "Running on Windows"
+					}
+				}
+				stage('linux-script')
+				{
+					agent {
+						label "linux"
+					}
+					steps{
+						sh "Running on Linux"
+					}
+				}
+			}
+		}
+	}
+
 *********************************************** 15.Post ***********************************************
+post block can be used to perform additional action on completion of the Pipeline.
+Additionla action incluedes 
+
+always:
+Runs the post block irrespective of the pipeline execution status.
+changed:
+Runs the post block only if the Pipeline execution status is different from the previous build.
+aborted:
+Runs the post block only If the build ia aborted in the middle.
+failure:
+Runs the post block only if the build status is fail
+success:
+Runs the post block only if the build status is success
+unstable :
+Runs the post block If the build is successful but not healthy.
+Consider the scenarion where the test cases ran successfully but code coverage %/% is less than expected.
+Then build can be marked as unstable.
+
+	pipeline{
+		agent any
+		stages{
+			stage('Post Block Execution')
+			{
+				steps{
+					echo "Post Block Execution"
+				}
+			}
+		}
+		post{
+			always{
+				echo "Always Execute the Code"
+			}
+			success{
+				echo "Build is Successful"
+			}
+			unstable{
+				echo "Build is Unstable"
+			}
+			failure{
+				echo "Build is Failed"
+			}
+			
+		}
+	}
+	
 *********************************************** 16.Making Build as Unstable ***************************
+There are scenarios where we dont want to mark the build as failure but want to mark the build as Unstable.
+If the Test coverage does not cross the threshold then mark the build as Unstable.
+
+	pipeline{
+		agent any
+		tools{
+			maven 'MAVEN_PATH'
+			jdk 'jdk8'
+		}
+		stages{
+			stage('Tools initialization'){
+			steps{
+				bat "mvn --version"
+				bat "java -version"
+				}
+			}
+			stage('Checkout the Code'){
+			steps{
+				git branch: 'master',
+				url: "https://github.com/iamvickyav/spring-boot-data-H2-embedded.git"
+				}
+			}
+			stage('Building Application'){
+			steps{
+				bat "mvn clean package"
+				}
+			}
+			stage('Code Coverage'){
+				steps {
+               jacoco(
+                    execPattern: '**/target/**.exec',
+                    classPattern: '**/target/classes',
+                    sourcePattern: '**/src',
+                    inclusionPattern: 'com/iamvickyav/**',
+                    changeBuildStatus: true,
+                    minimumInstructionCoverage: '30',
+                    maximumInstructionCoverage: '80')
+               }
+           }
+		}		
+	}
+	
 *********************************************** 17.Triggers *******************************************
+Instead of triggering the build manually we can cofigure the build to run in certain time intervals using triggers block.
+We can use the special method called cron() within the triggers block to configure the build schedule.
+cron() takes 5 parameters
+Minute(0-50),Hour(0-23),Day(0-31),Month(1-12),Day of the Week(0-7)
+
+	pipeline{
+		agent any
+		triggers{
+			cron('H/2 * * * *')
+		}
+		stages{
+			stage('Trigger Block'){
+				steps{
+					echo "Build Runs in Every 2 Minutes"
+				}
+			}
+		}
+	}
+	
+*********************************************** Completed *******************************************
