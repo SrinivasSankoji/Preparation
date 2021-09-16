@@ -7,8 +7,8 @@ Centralized Version Control System(SVN)
 Distributed Version Control System (GIT)
 
 Centralized Version Control System uses a Central Server to Store all the files and enables Team Collabaration.
-But the Main drawback here is it is a Single Point of Failure i.e 
-If the Central Server fails No One can collabarate and even in the worst case if the proper backup is not taken we will lose the entire history of the project.
+But the main drawback here is that it is a single point of failure i.e 
+If the Central Server fails No one can collabarate and even in the worst case If the proper backup is not taken we will lose the entire history of the project.
 
 Advantages of GIT :
 -------------------
@@ -21,7 +21,7 @@ Advantages of GIT :
 
 2.Fast and Small :
 Most of the operations are performed locally and it gives a huge benefit interms of speed as it does not rely on the Central Server.
-Though GIT mirrors entire Repository,Size of the Data in the Local System(Client Side) is small.
+Though GIT mirrors entire Repository,size of the data in the Local System(Client Side) is small.
 
 3.Implicit Backup :
 The Chances of loosing data is very rare because of multiple copies of data is present in Local System.
@@ -40,7 +40,7 @@ Most of the Operations are performed at Client Side.
 Centralized Version Control System uses a copy mechanism for branching.
 If we Create a New Branch,it Copies all the data into the newly created Branch and it is time Consuming.
 Deletion and Merging of Branches in Centralized Version Control System is complex and time Consuming.
-But Branch Management with GIT is very Simple and it takes only few Seconds to Create,delete and Merge Branches.
+But Branch Management with GIT is very simple and It takes only few Seconds to create,delete and Merge Branches.
 
 Distributed Version Control System (DVCS) Terminologies :
 ---------------------------------------------------------
@@ -59,9 +59,9 @@ Distributed Version Control System (DVCS) Terminologies :
 13.URL
 
 1.Local Repository :
-Every Version Control System provides a private workspace as a Local Repository.
-GIT gives a private workspace as a whole repository where user can add,remove,rename files and commit changes.
-Developers make Changes in their Local Repository and after commit those changes will become part of Working Directory.
+Every Version Control System provides private workspace as a Local Repository.
+GIT gives private workspace as a whole repository where user can add,remove,rename files and commit changes.
+Developers make changes in their Local Repository and after commit those changes will become part of Working Directory.
 
 2.Working Directory or Staging Area or Index :
 Working Directory is the place where all the files are checked out.
@@ -69,7 +69,7 @@ In Other CVCS developers generally make modifications and commmit their Changes 
 But in GIT ,Whenever we Push an operation GIT Looks for the file present in Staging Area 
 and only files present in the Staging area are Considered for Push and not all the modified files.
 
-Lets See The Basic Workflow of GIT :
+Lets see the basic Workflow of GIT :
 
   A.modify a file in the Local Repository.
   B.Add the files to the Staging Area i.e After performing ADD and commit Operation.

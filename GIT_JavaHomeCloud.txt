@@ -141,7 +141,7 @@ To revert back to the previous version we use the command
 	
 *********************************************************************** 10.GIT Blame  *************************************************************************
 
-If we want to view the complete infromation about the file i.e CommitId,Author Name,Time and changes in h the file we use the command
+If we want to view the complete infromation about the file i.e CommitId,Author Name,Time and changes in the file we use the command
 
 	git blame filName
 
