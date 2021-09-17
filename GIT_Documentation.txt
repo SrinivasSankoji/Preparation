@@ -119,8 +119,8 @@ This is used to Store the Changes permanently in the GIT Repository.
 This is same as Commit Operation in SubVersion.
 
 11.HEAD :
-Head is a Pointer which always points to the Latest Commit in the Branch.
-Whenever we Make a Commit ,Head is updated with the Latest Commit.
+Head is a Pointer which always points to the latest Commit in the Branch.
+Whenever we make a Commit,Head is updated with the latest Commit.
 Heads are stored in .git/refs/heads
 
 12.Revision :

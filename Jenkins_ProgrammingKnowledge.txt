@@ -1,14 +1,14 @@
-9.GitHub and Git Integration with Jenkins						[26-MAY-2020] [Done]						
-15.Set up Jenkins For Maven                                     [26-MAY-2020] [Done]
-17.Jenkins Pipeline                                             [15-SEP-2021] []
-18.Pipeline Script from SCM                                     [15-SEP-2021] []
-19.Creating Slaves/Nodes using SSH                              [15-SEP-2021] []
-20.Launch Agent via Java Web Start (Windows Slave)              [15-SEP-2021] []
-21.Parameterized Jenkins Job                                    [15-SEP-2021] []
-22.Jenkins CLI to Build Jobs                                    [15-SEP-2021] []
-24.Multibranch Pipeline                                         [15-SEP-2021] []
+7.GitHub and Git Integration with Jenkins						[26-MAY-2020] [Done]						
+12.Set up Jenkins For Maven  Project                            [26-MAY-2020] [Done]
+14.Jenkins Pipeline                                             [15-SEP-2021] []
+15.Pipeline Script from SCM                                     [15-SEP-2021] []
+16.Creating Slaves/Nodes using SSH                              [15-SEP-2021] []
+17.Launch Agent via Java Web Start (Windows Slave)              [15-SEP-2021] []
+18.Parameterized Jenkins Job FreeStyle                          [17-SEP-2021] [Done]
+19.Jenkins CLI to Build Jobs                                    [15-SEP-2021] []
+20.Multibranch Pipeline (Dzone Krishna Prasad Kalakodimi)      	[17-SEP-2021] [Done]
 
-*****************************  9.GitHub and Git Integration with Jenkins ***********************************************
+*****************************  7.GitHub and Git Integration with Jenkins ***********************************************
 
 Craete a New Proejcet and add it to the GitHub.
 In The Sourec Code Management Specify the GitHub Repository Details.
@@ -22,10 +22,10 @@ To run the Java based Application,keep the Commands in the Build Tab.
 Note :
 Now the Jenkins Workspace will be C:\Users\DELL\.jenkins\workspace\GITIntegration
 	
-*****************************   15.Set up Jenkins For Maven Project  **********************************************************
+*****************************   12.Set up Jenkins For Maven Project  **********************************************************
 
 Select New Item --> Free Style Project --> name it as Maven Project.
-Add the GitHub Details in the General Section.
+Add the GitHub Details in the General Section --> git@github.com:SrinivasSankoji/Jenkins.git/
 In Build Trigger --> GitHub hook trigger for GIT SCM polling.
 In Build Environment --> Delete workspace before build starts.
 In Build --> Invoke Top Level Maven Targets.
@@ -42,7 +42,7 @@ Note :
 In order to use user defined Maven we need to do Some additional Configuration inside the Jenkins.
 Manage Jenkins --> Global Tool Configuration --> Add Meven.
 
-***************************************************  17.Jenkins Pipeline *****************************************************************
+***************************************************  14.Jenkins Pipeline *****************************************************************
 
 Pipeline is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
 To implement Jenkins Pipeline we use a file called Jenkinsfile.
@@ -59,23 +59,36 @@ General --> New Job --> GitHub Project --> Mention the GitHub Project URL in the
 In the Pipeline Tab --> Select PipelineScript --> Copy the Pipeline Script.
 
 
-*************************************************** 18.Pipeline Script ****************************************************************** 
+*************************************************** 15.Pipeline Script From SCM ********************************************************* 
 
 
             
-*************************************************** 19.Slaves/Nodes *********************************************************************
+*************************************************** 16.Slaves/Nodes *********************************************************************
 
                 	
-*************************************************** 20.Launch Agent *********************************************************************
+*************************************************** 17.Launch Agent *********************************************************************
 
                
-*************************************************** 21.Parameterized Jenkins Job  *******************************************************
-
+*************************************************** 18.Parameterized Jenkins Job FreeStyle  *********************************************
+Select --> New Item --> Free Style Projet --> Name the Project.
+Select --> This Project is parameterized in the General section.
+pass the name and default value.  ie Environment and Development.
+In the Build Section --> Select either windows batch command or Execute Shell.
+Then write the command --> echo %Environment%.
+Funally Build the Job with Parameters.
    
-*************************************************** 22.Jenkins CLI **********************************************************************
+*************************************************** 19.Jenkins CLI **********************************************************************
 
 
                  
-*************************************************** 24.Multibranch Pipeline  ************************************************************       
+*************************************************** 20.Multibranch Pipeline  ************************************************************       
+Multibranch Pipeline allows us to automatically create a Pipeline for each Branch on Source Code Management Repository with the help of Jenkinsfile.
+In Multibranch Pipeline project Jenkins automatically discovers,manages ane executes the Pipelines for the branches that are in the SCM Repository.
 
+New Item --> Select MultiBranch Pipeline --> In the Branch Resources Add the Git Repository Details -->
+Select the Mode as by Jenkinsfile in the Script Path.
+Finally Click on Ok.
+
+Now san the MultiBranch Pipeline.
+We will also be able to see the logs in Scan MultiBranch Pipeline Log.
 

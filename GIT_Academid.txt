@@ -70,7 +70,7 @@ To commit the chnages to the branch in the Repository we use the command
 	git commit -m "Changes"
 	
 Above command states that add this code as a version of the Code in the so called Branch.
-once the commit is executed all the changes are pushed to the Repository.
+once the commit is executed all the changes are pushed to the Working Directory.
 To view the committed changes we use the command
 
 	git log
@@ -112,7 +112,7 @@ If we want to go back to the current commit after the checkout commitid,we use t
 	git checkout master
 	
 Consider the Scenario where we have written some code and not performed any add and commit operation i.e not added to the Repository.
-If we want to revert unstaged changes and go bck to the previous commit we use the command	
+If we want to revert unstaged changes and go back to the previous commit we use the command	
 
 	git checkout -- .
 
@@ -242,7 +242,7 @@ To push the changes to the remote Repository we use the command
 
 To get the code from the remote Repository we have 2 options
 
-	git fetch : To get the Code from remote Repository to the remote tarcking Branch.
+	git fetch : To get the Code from remote Repository to the remote tracking Branch.
 	git checkout origin/master : To checkout the code from remote tracking Branch.
 	git merge origin/master : To merge the remote tracking branch to the Local Branch.
 	

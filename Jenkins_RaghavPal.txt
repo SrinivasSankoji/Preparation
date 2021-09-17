@@ -21,7 +21,7 @@
 21.Install Jenkins on AWS 												[23-MAY-2020] ()	
 22.Create Jenkins File													[14-SEP-2021] (Done)
 23.Get Jenkins File from GIT SCM										[14-SEP-2021] (Done)
-24.Clone a Git Repo Using Jenkins File									[14-SEP-2021] ()
+24.Clone a Git Repo Using Jenkinsfile									[14-SEP-2021] ()
 
 
 ********************************************** 1.Jenkins Introduction   *******************************************************************
@@ -40,10 +40,17 @@ Continuous Integration :
 ------------------------
 Continuous Integration is a software development practice where developers regularly merge their code changes into a central Repository
 after which Automated Builds and Tests are run.
+But the Application is not automatically deployed on to the Test Servers in oreder to validate It.
 
 Continuous Delivery :
 ---------------------
-Continuous Delivery is a software development practice where code changes are automatically prepared for a release to production.
+Continuous Delivery is a software development practice where Application is continuously deployed on to the Test Servers.
+We can say that Applcation is ready to release for Production any time.
+
+Continuous Deployment :
+-----------------------
+In case of Continuous Deployment,We are deploying it an Automated Fashion.
+
 
 Download Jenkins :
 ------------------
