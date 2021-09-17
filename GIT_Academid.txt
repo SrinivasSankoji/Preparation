@@ -263,7 +263,7 @@ To remove the connection between the local Repository and remote Repository we u
 Working on a project is always not a staright forward thing.
 We might work on specific feature and try out something and go back to the last commit.
 But we might want to save the changes as a Draft.
-With GIT stash it is easily possible without having to create a new commit for the stash status.
+With GIT stash it is possible without having to create a new commit for the stash status.
 We can avoid dirty commits using GIT stash.
 
 	git stash
