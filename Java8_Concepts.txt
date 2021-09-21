@@ -16,7 +16,7 @@
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
 17.Function package 											(javabrahman)           [08-SEP-2021]	(Done)
 18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
-19.SOLID Principles												(javabrahman)			[02-SEP-2021]   ()
+19.SOLID Principles	(Java Techie)								(javabrahman)			[20-SEP-2021]   (Done)
 20.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
 21.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 
@@ -542,9 +542,10 @@ Supplier is a fucntion that does not take any argument and returns the result.
 
 1.Single Responsibility Principle :
 -----------------------------------
-A Class should have a Single Responsibility where Responsibility is nothing but reason to change.
+Single Responsibility Principle states that A Class should have a Single Responsibility where Responsibility is nothing but reason to change.
 When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
 When there is a change needed in specific functionality Class needs to be changed.
+Implementation of multiple functionalities in a Single class can mesh up the Code.
 
 2.Open Closed Principle :
 -------------------------
@@ -556,16 +557,24 @@ This assumes that module has well definded,stable description.
 One of the basic requirement for a class to be closed is attributes and methods are final because
 If they change all the classes which inherit the base class will be changed.
 
-A Class is said to be Open Closed If it is open for extension and closed for modification.
+A Class is said to be Open Closed If it is open for extension but closed for modification.
 Modification means we should not change the original class rather we should override the original class.
 
 3.Liskov Substitution Principle :
 ---------------------------------
-As per Liskov substitution principle A Class can be replaced by its subClass.
-Super class reference can be used to hold subClass Object.
+As per Liskov substitution principle A Class can be replaced by its subClass ie
+Derived class must be completely substitutable for their base classes.
 
 4.Interface Segregation Principle :
 -----------------------------------
+Interface Segregation principle states that Larger interface can be split into smaller ones.
+Because Implementation classes use only the methods that are required.
+We should not force the client to use the methods that they don't require.
+
+5.Dependency Inversion Principle :
+----------------------------------
+Dependency Inversion Principle states that we must use abstraction Instead of concrete Implementations.
+High level modules should not depend on low level modules but both depends on Abstraction.
 
 ***************************************************** 21.Map in Java8 (beginnersbook) ************************************************************
 

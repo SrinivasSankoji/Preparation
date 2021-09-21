@@ -275,8 +275,9 @@ To get back the changes we use the command
 
 We now has the option to commit the project or keep on working on the stash.
 Which stash we want to display is based on index.
+To see all the stashes we use the command
 
-	git stash 0
+	git stash list
 	
 git stash apply will apply the most recent changes.
 To add the description for the stash we use the command
@@ -300,7 +301,6 @@ Master   m1      m2
 Feature          m2     f1   f2 
 
 Combined m1      m2     m3   featureBranch  
-
 
 Here Master Branch has two commits i.e m1 and m2.
 Create new Branch from the m2 commit of the Master Branch.
@@ -337,7 +337,7 @@ Creating Second Commit in Feature Branch i.e named f2.
 	git merge --squash Feature
 	
 Problem with squash is that we need to manually resolve the Errors and then add and commit the code.
-We had an another approach that can resolve the same issue i.e by using ReBase.
+We had an another approach that can resolve the same issue i.e by using Rebase.
 
 Note : We run the merge command in master Branch. 
 

@@ -69,9 +69,10 @@ We may under estimate the requirement which leads to the crash of an Application
 2.Introduction :
 ----------------
 EC2 is a service from AWS that provides a resizable computing services on the cloud.
-Resizable because we can quickly scale up or scale down the number of server instances that we are using,if the computing requirement changes.
+Other services include S3,ECS,IAM etc.
+Resizable because we can quickly scale up or scale down the number of server instances that we are using,If the computing requirement changes.
 
-EC2 is way of running the computer in the cloud.
+EC2 is a way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
 EC2 is like having a Computer at the push of a Button.
 
@@ -85,13 +86,14 @@ If we run the database on EC2 we need to manage ourself.
 AWS offers RDS which takes care of maintaining our own database.
 Here AWS runs it under the hood of EC2.
 
+Note :
+When we use EC2 or any other service we use it through an Instance i.e t2.micro instance for EC2.
+
 3.Instance :
 ------------
 Instance is a Virtual Server for running Application on EC2.
 It can be considered as a tiny part of a large computer,whcih has its own harddrive,network connection,os etc.
-We can have multiple tiny computers on a single physical server and each tiny computer is called as an instance.
-EC2 is a service from AWS.Other services include S3,ECS,IAM etc.
-When we use EC2 or any other service we use it through an instance i.e t2.micro instance for EC2.
+We can have multiple tiny computers on a single physical server and each tiny computer is called as an Instance.
 
 4.Why EC2 :
 -----------
@@ -104,7 +106,7 @@ There are some other problems which makes the EC2 stronger.
 
 5.Types of EC2 Instances :
 --------------------------------
-Computing is a very broad term and the nature of Task decides what kind of computing we need.
+Computing is a very broad term and the nature of task decides what kind of computing we need.
 AWS EC2 offers 5 types of instances 
 
 General Instances
@@ -145,13 +147,12 @@ Accelerated Computing instances      : g2
 -----------------------------------
 T2 instances are burstable instances.
 This means CPU performs at a baseline of its Capacity.Consider the case of 20 Percent of CPU.
-When the Application needs more than 20% of the CPU,
-then CPU enters into burst mode giving the higher performance for a limited amount of time.
+When the Application needs more than 20% of the CPU,then CPU enters into burst mode giving the higher performance for a limited amount of time.
 Therefore work happens faster.
 
 We get the CPU Credits when we create an Instance.
 Every hour we get certain amount of CPU credits automatically and this depends on type of Instance.
-Every time a burst happens in a CPU,CPU credits are used.Each CPU credit gives a burst of 1 Minute to the CPU.
+Every time a burst happens in a CPU,CPU credits are used.Each CPU credit gives a burst of 1 minute to the CPU.
 If CPU credits are not used they are credited to your account and stay for 24 Hours.
 If we are out of CPU credits,Instance will work on CPU baseline performance.
 Based on CPU credit balance we can decide whether t2 instance should be scaled up or scaled down.
@@ -167,7 +168,7 @@ Whenever traffic to the website is high CPU performance will be increased automa
 ---------------------------
 C4,M4 and D2 instances are EBS optimized instances by default.
 EBS(Elastic Block Storage) is a persistent block level storage volume that can be used along with EC2 in which IOPS rate is high.
-Here Each Block acts as a Harddrive.
+Here Each block acts as a Harddrive.
 When an EBS Volume is attached to an instance,Single Digit milli seconds latency can be acheived.
 
 Note :
@@ -176,7 +177,7 @@ IOPS(Input Output Operations per Second) is a performance measurement used to ch
 Example :
 Auto Response Mailing System.
 We would require a system where the response time is as short as possible.
-This can be acheived by using EBS optimized instances where the IOPS is high and low latency.
+This can be acheived by using EBS optimized instances where the IOPS rate is high and low latency.
 
 8.Cluster Networking Instances :
 --------------------------------
@@ -216,7 +217,7 @@ Select the AMI.AMI's are Templates of OS and they provide the information needed
 1.AMI's could be preconfigured or we can configure on its own.
 For preconfigured AMI's we have to select it from market place.
 For setting up our own,go to quick start and select one.
-2.While configuring an AMI,we will reach to a point where we have to select an EBS Storage Option.
+2.While configuring an AMI,we will reach to a point where we have to select an EBS Option.
 
 EBS i.e Elastic Block Storage is a persistent block level Storage Volume that can be used along with EC2.
 Here each block acts as a Hard drive.
@@ -333,6 +334,19 @@ Run the command
 
 	chmod 400 /path to the .pem file
 	ssh -i /path to the .pemfile ubuntu@IpAddress
+	
+To connect to the EC2 instance from Windows :
+---------------------------------------------
+Select the Instance --> Connect --> Select the Command.
+Navigate to the ppk folder --> then run the selected command.
+Open the Putty --> Paste the Selected URL in the Session --> ubuntu@ec2-3-109-208-224.ap-south-1.compute.amazonaws.com
+Add the UserName in tha Data Section.
+Browse the Generated ppk file in the Auth Section.
+Now it will connect to the EC2 instance.
+
+Reference :
+-----------
+https://www.youtube.com/watch?v=bi7ow5NGC-U
 
 
 ******************************************* 9.Spring Boot Docker EC2  (Simple Programming) *******************************************************

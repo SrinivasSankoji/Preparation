@@ -22,7 +22,7 @@
 20.Deploy Docker Container in AWS EBS                               [19-MAY-2021] ()
 21.Running Jenkins in AWS Part 1                                    [19-MAY-2021] ()
 22.Running Jenkins in AWS Part 2                                    [19-JUN-2021] ()
-23.
+23.Launc AWS EC2 Instances as Jenkins Slaves						
 24.
 25.
 26.
@@ -193,7 +193,7 @@ Create the Security Group -->
 Type : SSH
 Protocol : TCP
 Port : 22
-Source : From the Dropdown Select MyIP .Here if we select the Custom IP then it is publicly Available although it has SSH key value Pair.
+Source : From the Dropdown Select MyIP .Here If we select the Custom IP then it is publicly Available although it has SSH key value Pair.
 Finally Review and Luanch.
 
 Step 6:
@@ -238,8 +238,9 @@ Delete the Instance
 Delete the Key Pair
 Delete the Security Group 
 
-To connect to the EC2 instance from Ubuntu
-Navigate to the Folder where the pem file is present
+To connect to the EC2 instance from Ubuntu :
+--------------------------------------------
+Navigate to the Folder where the .pem file is present
 Run the command
 
 	chmod 400 /path to the .pem file
@@ -252,6 +253,26 @@ To check the username
 To access as a root user
 
 	sudo su
+	
+To connect to the EC2 instance from Windows :
+---------------------------------------------
+Select the Instance --> Connect --> Select the Command.
+Navigate to the ppk folder --> then run the selected command.
+Open the Putty --> Paste the Selected URL in the Session --> ubuntu@ec2-3-109-208-224.ap-south-1.compute.amazonaws.com
+Add the UserName in tha Data Section.
+Browse the Generated ppk file in the Auth Section.
+Now it will connect to the EC2 instance.
+
+Reference :
+-----------
+https://www.youtube.com/watch?v=bi7ow5NGC-U
+
+
+Note :
+------
+To check whether SSH is installed or not.
+Settings --> Apps and Features --> Optional Features --> SSH is installed.
+If it is not added then add the SSH Key.
 	
 Steps to Delete the Instance :
 ------------------------------
