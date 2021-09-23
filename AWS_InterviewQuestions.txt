@@ -1,0 +1,82 @@
+AWS
+-----------
+EC2 
+
+Instances types
+image or AMI 
+Difference between "On demand instance" and "Reserved instance"
+Use of Input data or Input file.
+EBS volumes (means hard disk)
+EBS volume vs Root Volumes  --> scenario If EBS volumes filled
+Usage of Tags 
+Usage Pem file (Without PEM can we connect linux ? and If PEM file missed how to connect linux)
+Security groups(Single PORT) VS NACL(Usage is in IP address level to BULK of restrict PORT)
+EBS types
+Snapshot
+AWS Lamda --> serverless
+
+Auto scaling
+----------------
+
+Creation of Auto scaling (From template)
+Horizontal and vertical Auto scaling
+
+Load balancer
+---------------
+Types
+Application L.B  --> Using this 
+Classis L.B
+Network L.B  --> Related to TCP, UDP , supports Application L.B, Cost is High
+				 No security groups concept
+				 Fast is high
+GateWay  -->				 
+Above all are called OSI layers
+
+--------------------------------------------------------
+
+Public IP   --> To access from Internet
+Private IP  --> With in our Network premises
+Elastic IP 	-->	Static IP (ex- If we restart EC2 public IP will change, so will use )
+--------------------------------------------------------
+
+
+VPC
+---------		 
+VPC ?
+Subnet ?
+Private Subnet and Public Subnet
+NAT gatways 
+NACL
+Rout Tables
+VPC peering connection
+VPC End points
+VPC vs VPN
+
+S3
+-----
+Use of S3  --> using for archiving purpose
+Storage class 
+Default storage class
+Types of Storage class
+Put,Get usage
+Lifecycle 
+bucket storage limit ?
+
+RDS
+-----------------------
+RDS machine creation ?
+Which DB using
+RDS parameter ?
+any clients using in RDS
+how many DBs creation in  RDS
+Backup 
+snapshot vs Backup
+Read replica
+Multi availability zone
+
+Route 53 
+-----------
+Usage
+Different types --> important
+Hosted zone
+Aliases

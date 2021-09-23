@@ -26,7 +26,7 @@ build,publish and deploy.In case of ANT we write the targets.
 Multiple Jars can also be resolved by using Maven.
 
 Maven helps in creating the project structure,managing the dependencies and provides the information about the project etc.
-Maven Helps in resolving the above activities by using maven repository.
+Maven helps in resolving the above activities by using Maven Repository.
 There are Repository's online and Maven talks to them to reolve the issues.
 To check whether the Maven has installed or not we use the command 
 
@@ -40,8 +40,8 @@ To Create an Application using Maven we use the command
 When we run the above commad Maven will download the required plugIns and will open the prompt to choose a Number.
 i.e what kind of Application we want to be created by Maven
 choose version 
-choose group Id i.e Package structure
-choose artifact Id  i.e Application Name
+choose groupId i.e Package structure
+choose artifactId  i.e Application Name
 
 Here Maven has created a folder structure along with pom.xml
 
@@ -51,7 +51,7 @@ They are predefined archetypes available online.
 default is 106.
 Spring Boot : 2689
 
-Here Maven download the dependencies i.e spring-boot-starter-test.
+Here Maven will download the dependencies i.e spring-boot-starter-test.
 If the spring-boot-starter-test is dependent on another Jar then Maven takes care of its related dependencies.
 
 *********************************************************************** 2.Setting Up *******************************************************
@@ -64,7 +64,7 @@ Now run the command
 
 	mvn compile
 	
-Maven takes care of downloading all the dependencies that we mentioned in pom.xml and compile the .java classes of an Application.
+Maven takes care of downloading all the dependencies that we mentioned in the pom.xml and compile the .java files of an Application.
 Here Maven compiles all the classes present in the src directory.
 Maven also compiles the test classes present inside the test directory.
 Once the compilation is done we need to package it and we use the command
@@ -77,7 +77,7 @@ To execute the Application
 
 	java -cp target/springbootmaven-1.0-SNAPSHOT.jar  com.jio.ngo.simple.SampleSimpleApplication.java
 
-Maven Repository has two types of Informations
+Maven Repository has two types of Information
 Archetype Information
 Dependency Information
 
@@ -85,11 +85,11 @@ Dependency Information
 
 The first thing Maven does for us is creating a source code template called Folder Structure. 
 Second thing Maven does is build i.e compile the code and package the Application into a jar File.
-Here We are Generating the source code structure by using the command and the output of this command is the folder structure and pom.xml 
+Here We are Generating the source code structure by using the command "maven archetype: generate" and the output of this command is the folder structure and pom.xml.
 
 	maven archetype: generate 
 	
-This was downloaded from the Maven Repository based on the given input.
+This will download the Folder Structure from the Maven Repository based on the given input.
 
 archetype : 
 This is the information to the Maven that what kind of project we need.
@@ -119,7 +119,7 @@ name :
 Here name can be different from ArtifactId.
 If the name is different then the Application is visible with the Name but Application is built with ArtifactId.
 
-dependency :
+dependencies :
 <dependencies> will have the list of dependencies that the project has.
 
 scope:
@@ -154,7 +154,7 @@ In case of Maven We need to specify one command that will take care of all the o
 In case of ANT we need to specify target for each step ie Every step has to be explicitly mentioned like validate,compile,test,package,install and deploy.
 
 Maven has standrad directory structure and it knows what needs to be done.
-Consider the scenario if we have created any project using maven archetype and it has 2 folders i.e main and test.
+Consider the scenario If we have created any project using maven archetype and it has 2 folders i.e main and test.
 If the code is in the main then Maven assumes that it as the Application Code.
 If the code is in the test then Maven assumes that it as the Test cases.
 Depending on that it compiles the main source code and not the test cases.
@@ -176,7 +176,7 @@ deploy
 
 All these phases will form the Maven Build Life Cycle.
 If we do not configure then Maven will choose the default Build Life Cycle.
-If we specify the Build phase package then Maven Automatically executes the previous phases i.e compile and test.
+If we specify the Build phase as "package" then Maven Automatically executes the previous phases i.e compile and test.
 If any of the phase Fails then next phase won't be executed.
 
 
@@ -201,8 +201,11 @@ Here we add the dependency by changing the pom.xml and Maven to import the jars 
 
 Note :
 target folder is the result of build and compile that we did earlier.
-We can clear the target folder by using the command mvn clean.
-clean is a phase which removes all the classes and the jars that were generated earlier.
+We can clear the target folder by using the below command. 
+
+	mvn clean
+
+clean is a phase in which it removes all the classes and the jars that were generated earlier.
 
 Example :
 consider the scenario of adding the log statement instead of sysout.
@@ -223,7 +226,7 @@ groupId
 artifactId
 version
 
-When we add the dependency,during the compilation phase it will download all the jars which are required and makes them available to th classpath to classpath.
+When we add the dependency,during the compilation phase it will download all the jars which are required and makes them available to the classpath.
 
 Note :
 Default scope is compile i.e dependencies will be available during the compilation phase.
@@ -264,11 +267,11 @@ To check the default JDK version of Maven we use the below command which shows t
 
 
 
-********************************************************* 8.Jetty Plug In  ********************************************************************
+********************************************************* 8.Jetty PlugIn  ********************************************************************
 
 
 
-********************************************************* 9.Eclipse Plug In For Maven and Maven PlugIn for Eclipse  ****************************
+********************************************************* 9.Eclipse PlugIn For Maven and Maven PlugIn for Eclipse  ****************************
 
 Maven has a modular architecture that comprises of lot of plugIns.
 Eclipse is widely used IDE and even that has modular Architecture.

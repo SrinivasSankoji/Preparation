@@ -18,9 +18,9 @@
 
 *********************************************** 1.Jenkinsfile *****************************************
 A Job in Jenkins can created using Jenkins UI as a Free Style Jobs.
-These Jobs can be chained together as a sequence called as Pipeline.
+These Jobs can be chained together in a sequence called as Pipeline.
 Jenkins 2.0 introduced the new way of creating the Jobs in Jenkins as a Pipeline as a Code.
-In Pipeline as a Code,Jobs are created using a script file that contains the steps that has to be executed.
+In case of Pipeline as a Code,Jobs are created using a script file that contains the steps that has to be executed.
 The Script File is called Jenkinsfile.
 
 Jenkins provides two ways of developing Pipeline as a Code.
@@ -48,7 +48,7 @@ Sample Scripted Pipeline :
 	}
 
 *********************************************** 3.Jenkins Declarative Pipeline ************************
-Jenkins Declarative Pipeline is relatively new and provides a simplified opinonated syntax.
+Jenkins Declarative Pipeline is relatively new and provides a simplified opinionated syntax.
 
 Declarative Pipeline needs to use the predefined constructs to create a Pipeline.
 Hence it is not flexible as Scripted Pipeline.
@@ -125,7 +125,7 @@ Run the Job in an Agent which matches the given label.
 Jenkins CI/CD can work on Master Agent Architecture.
 Master Nodes delegates the Job to run in Agent Nodes.
 Nodes on creation given a name and label to identify them later.
-Example : All Linux Nodes can be labelled as linux machine.
+Example : All Linux Nodes can be labelled as linux-machine.
 
 	pipeline{
 		agent 
@@ -154,7 +154,7 @@ Atleast one stage block is mandatory inside stages block.
 Stage block contains the actual execution steps.
 Stage block has to be defined within the Stages block.
 It is mandatory to have atleast on stage block inside stages block.
-It is also mandatory to name each stage to the block and this will be shown in Stage View when we run the Job.
+It is also mandatory to name each stage block and this will be shown in Stage View when we run the Job.
 
 	pipeline{
 		agent 
@@ -473,7 +473,7 @@ Here stage block will run on its own agent.
 
 *********************************************** 15.Post ***********************************************
 post block can be used to perform additional action on completion of the Pipeline.
-Additionla action incluedes 
+Additional action includes 
 
 always:
 Runs the post block irrespective of the pipeline execution status.
@@ -487,7 +487,7 @@ success:
 Runs the post block only if the build status is success
 unstable :
 Runs the post block If the build is successful but not healthy.
-Consider the scenarion where the test cases ran successfully but code coverage %/% is less than expected.
+Consider the scenario where the test cases ran successfully but code coverage %/% is less than expected.
 Then build can be marked as unstable.
 
 	pipeline{
