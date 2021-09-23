@@ -1,1 +1,152 @@
-scscs
+1.Overview Of Maven													[23-SEP-2021] (Done)
+2.Apache Maven Standard Directory Layout                            [23-SEP-2021] ()
+3.Getting Started with Maven                                        [23-SEP-2021] ()
+4.Maven Dependency Mechanism                                        [23-SEP-2021] (Done)
+5.Guide to Maven Repository                                         [23-SEP-2021] (Done)
+6.Difference between Ant, Gradle, and Maven                         [23-SEP-2021] ()
+7.Maven Release to Nexus                                            [23-SEP-2021] ()
+
+8.Guide to Create a Simple Maven Project							[23-SEP-2021] ()
+9.Guide to Create a Simple Maven Web Application                    [23-SEP-2021] ()
+10.How to Create Maven Multi Module using Command Line              [23-SEP-2021] ()
+11.Source Code Quality Checks using PMD Plugin                      [23-SEP-2021] ()
+12.Setting the Java Version in Maven Projects                       [23-SEP-2021] ()
+
+13.How to Create a Simple Maven Project in Eclipse					[23-SEP-2021] ()
+14.How to Create a Web Project Using Maven in Eclipse               [23-SEP-2021] ()
+15.How to Create Multi-Module Maven Project in Eclipse              [23-SEP-2021] ()
+16.How to Convert Java Project to Maven Project in Eclipse          [23-SEP-2021] ()
+
+17.Apache Maven Compiler Plugin										[23-SEP-2021] ()
+18.Maven Surefire Plugin                                            [23-SEP-2021] ()
+19.Maven Failsafe Plugin                                            [23-SEP-2021] ()
+20.Apache Maven Assembly Plugin                                     [23-SEP-2021] ()
+21.Apache Maven Checkstyle Plugin                                   [23-SEP-2021] ()
+22.Apache Maven Dependency Plugin                                   [23-SEP-2021] ()
+23.Apache Maven Help Plugin                                         [23-SEP-2021] ()
+24.Apache Maven PMD Plugin                                          [23-SEP-2021] ()
+25.Apache Maven Resources Plugin                                    [23-SEP-2021] ()
+26.Apache Maven Site Plugin                                         [23-SEP-2021] ()
+27.Apache Maven Source Plugin                                       [23-SEP-2021] ()
+28.Apache Maven Clean Plugin                                        [23-SEP-2021] ()
+29.Apache Maven WAR Plugin                                          [23-SEP-2021] ()
+
+***************************************************** 1.Overview Of Maven *************************************************************
+1.Introduction :
+----------------
+To build a Software Project which typically consists of
+Creatting the Project Structure
+Downloading the dependencies
+Adding the external Jars If required
+Compile the source code
+Running Test Cases
+Package the compiled Code into a Artifact ie either War or Jar
+Deploy these Artifact into an Application Server or Repository.
+
+Apache Maven automates these tasks by minimizing the risk of human errors while building the software and
+seperating the work of compiling and packaging our code from the code Construction.
+
+What is Maven :
+---------------
+Maven is a project Management Tool which includes Project Obejct Model,Set of Standards,Project Lifecycle,Dependency Management System
+and logic for executing PlugIn goals at defined Phases in lifecycle.
+
+What is the Build Tool :
+------------------------
+Build Tool takes care of everything for building a process.
+
+1.Generates the Source Code
+2.Generates the Documentation from the Source Code
+3.Compiles the Source Code
+4.Packages the Compiled Code
+5.Installs the Packaged Code into Local Repository or Remote Repository.
+
+Key features of Maven :
+-----------------------
+1.Convention over Configuration
+Maven knows where the source code is because we followed the configuration.
+Maven Compiler places the byte code in target/classes folder and produces Jar file in target folder.
+2.Dependecny Management
+3.Repository
+4.Extnsible via PlugIn's
+
+Apache Maven :
+--------------
+Maven is declarative ie all we need to do is create the pom.xml file and create the source code in default directory.
+Maven has default life cycle methods which will be invoked when we run the command mvn install.
+Also Maven executes a default PlugIn goals like compile and creating the Jar.
+
+Project Object Model - Pom.xml :
+--------------------------------
+The configuration of a Maven project is done via Project Object Model ie pom.xml.
+POM describes the Project,manages the dependencies and configures the PlugIns for building the Software.
+POM also defines the relationship among other modules.
+
+Project Identifiers :
+---------------------
+Maven uses a set if identifiers also called as coordinates to uniquely identify the project.
+groupId : Unique base name of the company
+artifatId : Application Name
+version : version of the Project
+package : Packaging Method
+
+The first three ie groupId,artifactId and version combine to form the unique Identifier.
+
+Dependencies :
+--------------
+The external libraries that the project use is called Dependencies.
+The Dependecny Management feature in Maven ensures automatic download of those libraries from central Repository.
+
+Repositories :
+--------------
+A Repository in Maven can be used to hold Artifacts or Dependencies of varying types.
+Default Repository is located in .m2/repository.
+
+Properties :
+------------
+Custom Properties makes the pom.xml file easier to read and maintain.
+Consider the scenario of spring boot version.
+
+Build :
+-------
+Build Section provides the information about the default maven goal ie install
+Directory for the compiled project and final name of the Application.
+
+Note :
+------
+Default output folder for compiled artifacts is "target".
+
+Using Profiles :
+----------------
+By using profiles we can customize the build for different environment such as development,production etc.
+To use the profile we use the command
+
+	mvn clean install -Pdevelopment
+
+***************************************************** 2.Apache Maven Standard Directory Layout ******************************************************
+
+
+***************************************************** 4.Maven Dependency Mechanism  *****************************************************************
+There are 6 dependency scopes available
+
+1.compile
+This is the default scope.
+2.provided
+3.runtime
+4.test
+5.system
+6.import
+           
+***************************************************** 5.Guide to Maven Repository  ******************************************************************
+Maven Repository is a directory which contains packaged jar files with pom.xml files.
+There are three types of Maven Repositories and Maven Searches for the dependencies in the following order.
+
+1.Local Repository
+2.Central Repository
+3.Remote Repository
+             
+***************************************************** 6.Difference between Ant, Gradle, and Maven ***************************************************
+
+
+	
+***************************************************** 7.Maven Release to Nexus  *********************************************************************                 
