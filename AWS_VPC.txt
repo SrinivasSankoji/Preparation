@@ -1,5 +1,5 @@
-1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  ()
-2.AWS VPC  				(Mathew Kenny Thomas)  				[22-APR-2021]  () 
+1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  (Done)
+2.AWS VPC  				(Mathew Kenny Thomas)  				[26-SEP-2021]  (Done) 
 3.VPC setup on AWS		(Harshit Sharma)					[20-JUL-2021]  ()   (Refer Articles)
 4.AWS VPC  				(Lewis Gavin)  						[22-APR-2021]  ()
 
@@ -8,9 +8,8 @@
 
 Security becomes more important when some resources needs to be shared with contract employees or third party vendors
 because we run the risk of exposing sensitive data to them.
-Using AWS VPC we will be creating an isolated space on AWS and provide the access to those Users.
-AWS VPC as the name defines It is a private cloud in the AWS Environment that helps us to use all the services by AWS in a defined private space.
-We can also have the control over the virtual network and we can also restrict the incoming traffic using security groups.
+VPC is a private cloud in the AWS Environment that helps us to use all the services by AWS in a defined private space.
+We can also have control over the virtual network and we can restrict the incoming traffic using security groups.
 
 There are two types of VPC
 Default VPC i.e created by Amazon
@@ -31,21 +30,22 @@ This is done because maintenance of smaller networks is easier as compared to la
 It also provides the security to the network from other networks.
 
 Example :
-Consider the scenario of Teams in an Organization.
+Consider the scenario of different Teams in an Organization.
 There are different Teams in an Organization like HR,Finance,Support,Operations etc.
-The Data accessible to the Finance Team cannot be given to the Operations Team etc.
-Here we will create a Subnet such that accessing and maintaining the Network becomes Easier.
+The data accessible to the Finance Team cannot be given to the Operations Team etc.
+Here we will create a Subnet such that accessing and maintaining the Network becomes easier.
 
 2.Route Table :
 ---------------
 Route Table contains set of rules called routes which determines where the traffic has to be redirected.
 Route Table can also be used to add the Internet Gateway to the Subnet.
-We can also have multiple route tables in a VPC.
+There can be Multiple Route Tables in a VPC.
 
 3.Internet Gateway :
 --------------------
+Internet Gateway allows the Instance to connect to the Internet ie
 Internet Gateway allows the user to make the Subnet public by providing a Route to the Internet.
-With the help of Internet Gateway an Instance can be accessed through the Internet and resources outside the instance can access the instance.
+With the help of Internet Gateway an Instance can be accessed through the Internet and resources outside the Instance can access the Instance.
 Only one Internet Gateway can be attached to a VPC at a time.
 
 4.Creating VPC using AWS Console :
@@ -56,5 +56,46 @@ Only one Internet Gateway can be attached to a VPC at a time.
 --------------------------------------------------------------------------------------
 
 ****************************************************  2.AWS VPC (Mathew Kenny Thomas) **************************************************************
+AWS VPC enables us to launch AWS Resources into a virtual network that we have defined.
+This virtual Network closely resembles to a Traditional Network that we would operate in our own Data Center.
+
+Network Address Translation(NAT) :
+----------------------------------
+Since the Subnet is private,the IPAddress assigned to the Instance cannot be used in public.
+NAT maps the private IPAddress to the public IPAddress and vice versa.
+Elastic IpAddress is a static and public IPv4 Address designed for dynamic cloud computing.
+We can associate an Elastic IPAddress with any Instance or Network Interface for any VPC in our Account.
+With an Elastic IPAddress,we can mask the failure of an Instance by rapidly remapping the address to another Instance in our VPC.
+
+Security Groups :
+-----------------
+Security Group acts as a Firewall to control Inbound and Outbound Traffic.
+Each Security Group has rules according to which traffic is governed.
+In Amazon Firewall the only action that can be carried out is allow.
+We cannot create a rule to deny.
+The Destination is always the Instance on which the Service Security Group is running.
+
+Customer Gateway :
+------------------
+Customer Gateway is the resource that is installed on the Client Side and is often linked to the provider side.
+Amazon VPC VPN links our Data Center to our Amazon VPC.
+
+Virtual Private Gateway :
+-------------------------
+Virtual Private Gateway is the VPN Concentrator on the Amazon side.
+We can create a Virtual Private Gateway and attach it to the VPC from which we can create the VPN Connection.
+
+VPN :
+-----
+VPN stands for "Virtual Pair Networking" which is the popular Internet Security Method which was originally designed for large organizations where
+Employee needs to connect to a certain computer from different location.
+
+VPC Peering :
+-------------
+
+
+Network Access Control List :
+-----------------------------
+
 
  

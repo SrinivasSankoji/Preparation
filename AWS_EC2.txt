@@ -235,9 +235,9 @@ After selecting the suitable option in EBS,provide a name for an instance and th
 
 Security Group :
 ----------------
-Security Group acts as a firewall to control Inbound and Outbound traffic.
+Security Group acts as a Firewall to control Inbound and Outbound traffic.
 Each Security Group has rules according to which the traffic is governed.
-Each instance can be assigned upto 5 Security Groups.
+Each Instance can be assigned upto 5 Security Groups.
 
 Finally we can see the console that shows all the settings that we have done,verify and launch the instance.
 
