@@ -3,7 +3,7 @@
 3.Getting Started with Maven                                        [23-SEP-2021] ()
 4.Maven Dependency Mechanism                                        [23-SEP-2021] (Done)
 5.Guide to Maven Repository                                         [23-SEP-2021] (Done)
-6.Difference between Ant, Gradle, and Maven                         [23-SEP-2021] ()
+6.Difference between Ant, Gradle, and Maven                         [24-SEP-2021] (Done)
 7.Maven Release to Nexus                                            [23-SEP-2021] ()
 
 8.Guide to Create a Simple Maven Project							[23-SEP-2021] ()
@@ -17,9 +17,9 @@
 15.How to Create Multi-Module Maven Project in Eclipse              [23-SEP-2021] ()
 16.How to Convert Java Project to Maven Project in Eclipse          [23-SEP-2021] ()
 
-17.Apache Maven Compiler Plugin										[23-SEP-2021] ()
-18.Maven Surefire Plugin                                            [23-SEP-2021] ()
-19.Maven Failsafe Plugin                                            [23-SEP-2021] ()
+17.Apache Maven Compiler Plugin										[24-SEP-2021] (Done)
+18.Maven Surefire Plugin                                            [24-SEP-2021] (Done)
+19.Maven Failsafe Plugin                                            [24-SEP-2021] (Done)
 20.Apache Maven Assembly Plugin                                     [23-SEP-2021] ()
 21.Apache Maven Checkstyle Plugin                                   [23-SEP-2021] ()
 22.Apache Maven Dependency Plugin                                   [23-SEP-2021] ()
@@ -127,15 +127,65 @@ To use the profile we use the command
 
 
 ***************************************************** 4.Maven Dependency Mechanism  *****************************************************************
+There are two types of dependencies in Maven ie Direct and Transitive.
+Direct dependencies are the one which are explicitly included in the project using <dependency> Tag.
+Transitive dependencies are the one required by Direct dependencies.
+
 There are 6 dependency scopes available
 
-1.compile
-This is the default scope.
-2.provided
-3.runtime
-4.test
-5.system
-6.import
+1.compile :
+-----------
+This is the default scope when no other scope is provided.
+Dependencies with this scope are available on the classpath of the project in all build tasks and 
+they are propogated to the dependent projects.
+
+2.provided :
+------------
+This scope is used to mark the dependencies that should be provided at runtime by JDK or container.
+A good usecase will be a web application deployed on container where the container provides some library itself.
+
+	<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+    <scope>provided</scope>
+	</dependency>
+
+Note:
+Provided dependencies are available only at compile-time and in the test classpath of the project. 
+
+3.runtime :
+-----------
+This scope is used to mark the dependencies required at runtime.
+These are the dependencies that are present in the runtime and test classpath but will be missing from compile classpath.
+
+	<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>6.0.6</version>
+    <scope>runtime</scope>
+	</dependency>
+
+4.test :
+--------
+This scope is used to mark the dependencies that are required at standard runtime of the Application but is only used for Test purpose.
+
+	<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+	</dependency>
+
+5.system :
+----------
+System scope is similar to provided scope.
+Main difference is that we need to directly point to a specific jar on the system.
+
+6.import :
+----------
+
+
            
 ***************************************************** 5.Guide to Maven Repository  ******************************************************************
 Maven Repository is a directory which contains packaged jar files with pom.xml files.
@@ -146,7 +196,94 @@ There are three types of Maven Repositories and Maven Searches for the dependenc
 3.Remote Repository
              
 ***************************************************** 6.Difference between Ant, Gradle, and Maven ***************************************************
+Apache Ant :
+------------
+In the beginning Make was the only build Automation Tool.
+Apache ANT is the Java library used for automating build process for Java Applications.
+Additionally ANT can also be used for building Non Java Applications.
+ANT build files are written in XML and by convention they are called build.xml.
+Different phases of build process are called "targets".
+To run the build.xml we use the command
 
+	ant compile
 
+Main benefit of ANT is flexibility and It does not impose any coding conventions or project structures.
+ANT requires developers to write all the commands by themselves and leads to huge build.xml file.
+ANT has no built in support for Dependecny Management.
+To acheive this Apache Ivy was developed as sub project of Apache ANT.
+Due to huge and unmanageable build.xml and no built in support for dependency management leads to the creation of Apache Maven.
+
+Apache Maven :
+--------------
+Apache Maven is a Dependecny Management and Build Automation Tool primarily used for Java Applications.
+Maven continues to use XML files in much more manageable way.
+Maven is said to be convention over configuration.
+
+ANT gives flexibility and requires to be written from scratch where as Maven relies on Convention over Configuration.
+Maven Configuration which consists of build and Dependency Management instrcutions is called pom.xml.
+Also Maven describes a strict project structure where as ANT provides flexibility.
+To compile the code we use the command
 	
-***************************************************** 7.Maven Release to Nexus  *********************************************************************                 
+	mvn compile
+	
+Maven can be considered as PlugIn executable framework since all the work is done by PlugIns.
+
+Gradle :
+--------
+Gradle is a Dependecny Management and Build Automation tool which is similar to Maven.
+Gradle doesn't use xml like ANT or Maven and relies on Domain Specific Language.
+Gradle Configuration file by convention called as build.gradle in Groovy.
+
+ANT -- Target
+Maven -- Phases
+Gradle -- Tasks	
+
+***************************************************** 7.Maven Release to Nexus  *********************************************************************   
+
+
+***************************************************** 17.Apache Maven Compiler Plugin ***************************************************************
+Compiler PlugIn is used to compile the source code of our project.
+Compiler PlugIn has two goals.Both are already bound to their phases in the Maven Lifecycle and are automatically executed during their phase.
+
+compiler:compile
+compiler:testcompile 
+			              
+*****************************************************  18.Maven Surefire Plugin   *******************************************************************
+Surefire PlugIn is used during the Test phase of the build lifecycle to execute the Unit Tests of an Application.
+It generates the reports in two different formats.
+1.Plain Text
+2.XML File
+
+Surefire PlugIn has only one goal
+surefire:test
+
+Note :
+By default Surefire includes all the Test Cases whose name starts with Test or Ends with Test or TestCase.
+We can inclued or exclude the Test cases.
+We can skip the Test cases using the command
+
+	mvn install -DskipTests or mvn install -Dmaven.test.skip=true
+
+             
+*****************************************************  19.Maven Failsafe Plugin  ********************************************************************
+Failsafe PlugIn is designed to run Integration Tests where as Surefire PlugIn is designed to run Unit Tests.  
+             
+*****************************************************  20.Apache Maven Assembly Plugin   ************************************************************  
+      
+*****************************************************  21.Apache Maven Checkstyle Plugin   *****************************************************   
+  
+*****************************************************  22.Apache Maven Dependency Plugin  *****************************************************   
+    
+*****************************************************  23.Apache Maven Help Plugin  *****************************************************      
+       
+*****************************************************  24.Apache Maven PMD Plugin    *****************************************************   
+        
+*****************************************************  25.Apache Maven Resources Plugin  *****************************************************  
+     
+*****************************************************  26.Apache Maven Site Plugin   *****************************************************  
+         
+*****************************************************  27.Apache Maven Source Plugin  *****************************************************  
+        
+*****************************************************  28.Apache Maven Clean Plugin  *****************************************************  
+         
+*****************************************************  29.Apache Maven WAR Plugin  *****************************************************             

@@ -418,8 +418,8 @@ Create the Jobs
 
 We can chain the Jobs either by using the Option in 
 
-Build Triggers --> Build after other Projects are built
-Post Build Actions --> Build Other Projects
+Build Triggers --> "Build after other Projects are built"
+Post Build Actions --> "Build Other Projects"
 
 In the DeployJob --> Select "Build after other Projects are built"  and add Job named BuildJob.
 In the TestJob --> 	 Select "Build after other Projects are built"  and add Job named DeployJob.
