@@ -1,7 +1,8 @@
-1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  (Done)
+1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  (Done)		(Refer Articles)
 2.AWS VPC  				(Mathew Kenny Thomas)  				[26-SEP-2021]  (Done) 
-3.VPC setup on AWS		(Harshit Sharma)					[20-JUL-2021]  ()   (Refer Articles)
-4.AWS VPC  				(Lewis Gavin)  						[22-APR-2021]  ()
+3.AWS VPC  				(Prashant Lakhera)  				[27-SEP-2021]  (Done) 
+4.VPC setup on AWS		(Harshit Sharma)					[20-JUL-2021]  ()   		(Refer Articles)
+5.AWS VPC  				(Lewis Gavin)  						[22-APR-2021]  ()
 
 
 **************************************************** 1.AWS VPC (Vishal Padghan)   *********************************************************
@@ -43,7 +44,7 @@ There can be Multiple Route Tables in a VPC.
 
 3.Internet Gateway :
 --------------------
-Internet Gateway allows the Instance to connect to the Internet ie
+Internet Gateway allows the Instance in VPC to connect to the Internet ie
 Internet Gateway allows the user to make the Subnet public by providing a Route to the Internet.
 With the help of Internet Gateway an Instance can be accessed through the Internet and resources outside the Instance can access the Instance.
 Only one Internet Gateway can be attached to a VPC at a time.
@@ -56,14 +57,15 @@ Only one Internet Gateway can be attached to a VPC at a time.
 --------------------------------------------------------------------------------------
 
 ****************************************************  2.AWS VPC (Mathew Kenny Thomas) **************************************************************
-AWS VPC enables us to launch AWS Resources into a virtual network that we have defined.
-This virtual Network closely resembles to a Traditional Network that we would operate in our own Data Center.
+
+AWS Virtual Private Cloud (VPC) enables us to launch AWS Resources into a virtual network that we have defined.
+This virtual Network closely resembles to a Traditional Network that we operate in our own Data Center with the benefits of using scalable Infrastructure of AWS.
 
 Network Address Translation(NAT) :
 ----------------------------------
 Since the Subnet is private,the IPAddress assigned to the Instance cannot be used in public.
 NAT maps the private IPAddress to the public IPAddress and vice versa.
-Elastic IpAddress is a static and public IPv4 Address designed for dynamic cloud computing.
+Elastic IPAddress is a static and public IPv4 Address designed for dynamic cloud computing.
 We can associate an Elastic IPAddress with any Instance or Network Interface for any VPC in our Account.
 With an Elastic IPAddress,we can mask the failure of an Instance by rapidly remapping the address to another Instance in our VPC.
 
@@ -92,10 +94,35 @@ Employee needs to connect to a certain computer from different location.
 
 VPC Peering :
 -------------
-
+VPC Peering connection allows us to route traffic between two VPC's using IPv4 or IPv6 private Address.
+Instances within the VPC can communicate with each other as they are on the same Network.
+We can create a VPC Peering connection between two VPC's or with a VPC in another AWS Account.
+VPC Peering connection helps us to facilitate the transfer of data. 
 
 Network Access Control List :
 -----------------------------
+An optional layer of security for our VPC that acts as a firewall for controlling traffic in and out of one or more Subnets.
+We might setup NACL rules with similar to security groups in order to add an additional layer os security to VPC.
+Default NACL is configured to allow all traffic to flow in and out of the Subnets to which it is associated.
 
+****************************************************  3.AWS VPC (Prashant Lakhera)  *********************************************************
 
+VPC is a place where we define our own Network which closely resembles to Traditional Data Center with the benefits of using the Scalable Infrastructure
+provided by AWS.
+VPC is private.
+We can choose our own Network/CIDR Range.
+We can get the control of what Subnet can do and what it cannot do.
+
+When we create an AWS Account,AWS provides default VPC.
+This VPC has default Subnet in each Availabilty zone.
+We don't have much control over default VPC.
+Default VPC includes Internet Gateway and public Subnet.
+Consider the scenario where we want to deploy a Database Server and If I don't want the Database Server to talk to the Internet.
+In this case we have to create a custom VPC or non default VPC.
+
+Note :
+------
+If we delete the default VPC there is a way to recover it.
  
+Steps Involved in creating VPC :
+--------------------------------

@@ -1,4 +1,4 @@
-1.VPC Basics											[26-SEP-2021]  ()
+1.VPC Basics											[27-SEP-2021]  (Done)
 2.Public and Private Subnet                             [26-SEP-2021]  ()
 3.NAT Gateway                                           [26-SEP-2021]  ()
 4.NAT EC2 Instance                                      [26-SEP-2021]  ()
@@ -8,3 +8,135 @@
 8.Site to Site VPN Connection                           [26-SEP-2021]  ()
 
 ***************************************************** 1.VPC Basics  ***************************************************
+
+Consider the case we have a Network in an Organization ie private Network.
+We have systems that are connected to the LAN and the Routing between the System happens using Switch.
+Switch works at the lower level protocol called ARP(Address Resolution Protocol).
+Now the Systems within the LAN can communicate wuth each other using MAC Addresses.
+
+We might have other Systems which are connected to other LAN.
+To connect to System in one LAN to the System in another LAN,Using Switch we cannot communicate between these Systems.
+Here we need other device called Router.
+Router can connect the Switches and Router works at higher level protocol called IPAddress protocol.
+It understands the IPAddress and Systems can communicate with each other.
+Finally there will be some other Routers which allows Inbound and Outbound connection to the Internet.
+If we want the same Network in cloud we use AWS VPC.
+
+As per the Definition
+AWS VPC enables us to launch the AWS Resources into a virtual Network that we have defined.
+This virtual Network closely resembles to the Traditional Data Center with the benefits of using scalable Infrastructure of AWS.
+
+Once we have an AWS Account we can use any of the Available Regions.
+Every Region has one or more VPC's.By default Amazon restricts the count to 5 but we can increase.
+We have multiple AWS services and each service has different scope.
+
+Some services works at Global Level ie Billing,IAM,Route53 etc.They have the effect on all the regions.
+There are some services which operate at Regional Level ie S3,CDN,DynamoDB etc.
+Similarly There are some services which works at Availability Zone Level ie EC2,RDS etc.
+Every Region has two or more Availability Zones.
+When we launch an EC2 instance either we create in AZ1 or AZ2.
+Availability Zones are the Physical Data Centers.
+Scope of these services are Availability Zones.
+Load Balancers can span across Availability Zones and can send the traffic across Multiple Availability Zones.
+
+Consider the scenario where we have created a VPC in one Region.
+VPC is private Address space similar to Company's private Network.
+In that Network we have many Host's ie Machines.
+Machines would have IPAddress.
+
+VPC is a big Address space and we can divide this Address space into smaller Address space which is called Subnet.
+Subnet and Availability Zones have one to one Mapping.
+
+Every VPC has a Route Table which takes the routing decission.
+How the traffic flows in and out of VPC.
+
+In any VPC we have two levels of Firewall
+Firewall which works at an instance Level ie Security Group.
+Firewall which works at Subnet Level ie Network Access Control List(NACL).
+
+Internet Gateway allows the Instance in VPC to connect to the Internet.
+Internet Gateway allows the user to make the Subnet public by providing a route to the Internet.
+If we want to connect to any Instance in VPC from the outside world we use Internet Gateway.
+Consider the scenario where we have launched a Web Application in an EC2 instance defined in VPC.
+If we want to access that Application we have to make it publcly available ie attach the VPC to the Internet Gateway.
+
+If we want on premise Data Center to be connected to Amazon Network we use Virtual Private Gateway.
+Suppose If we want the VPC to be secured ie don't want to put the Internet Gateway.
+Still we want to use the Applications hosted inside the VPC over a private IPAddress.
+In this case we need a virtual private Gateway at Amazon Side that provides the VPN concentrator using which we can connect the VPC from Data Center.
+
+VPC Addressing :
+----------------
+Whenver we create a VPC we need to provide the Address Range ie private Address space Range in the CIDR notation.
+CIDR stands for classless InterDomain Routing.
+IPv4 Addresses are 32 bit ie
+	
+	8  8  8  8
+
+Here Any IPAddress would be of range between 0 to 255.
+IN CIDR notation we represent the IPAddress in the form of 
+
+	X.X.X.X/P
+	
+Here P stands for prefix.
+Example : 10.200.0.0/16
+Here 16 bits are for the Network and remaining is for the Host.
+Then the Addresses would be
+
+	10.200.0.0
+	10.200.0.1
+	
+	10.200.0.255
+	
+	10.200.1.0
+	10.200.1.1
+	
+	10.200.1.255
+	
+If we create the Network with this CIDR notation we can have 2 power 16 ie 65536 IPAddress in the Host.
+We have to divide these Address space into smaller Network Address space ie Subnet.
+Whenever we create a Subnet we need to decide the size of the Subnet.
+Consider the case where every Subnet size is of 255.
+
+	10.100.0.0
+	
+	10.100.255.255
+	
+First Subnet Address starts from
+	
+	10.100.0.0
+	10.100.0.255
+	
+Seocnd Subnet starts from 
+
+	10.100.1.0
+	10.100.1.255
+	
+To create the Subnet with size 256 then the CIDR notation would be
+
+	10.100.0.0/24(32-8)
+	
+Similarly To create the Subnet with size 16(Least Size) then the CIDR notation would be
+
+	10.100.0.0/28 (32-4)
+	
+***************************************************** 2.Public and Private Subnet  *****************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
