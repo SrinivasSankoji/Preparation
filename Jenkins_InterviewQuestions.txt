@@ -1,0 +1,53 @@
+------------------------- Jenkins Interview Quetsions -----------------------------------------------
+1. What is Jenkins
+2. What is the difference between Jenkins and Hudson
+3. What SCM tools does Jenkins support
+4. How can you tell what version of Jenkins you are using?
+5. What is continuous integration in Jenkins
+6. What are the pre-requisites for using Jenkins
+7. How can you move or copy Jenkins from one server to another server
+8. Commands to use to start Jenkins manually
+9. What are the most useful plugins in Jenkins
+10. How to create a Jenkins job and what are the types
+11. What are the two components that Jenkins mainly integrate with?
+12. What is the default session timeout value in Jenkins and How can you increase the session timeout value?
+13. Explain about Jenkins security mechanism
+14. How can you pass parameters from one job to another job in Jenkins?
+15. Explain about build pipeline in Jenkins
+16. How can someone execute the jobs in Jenkins without having permissions to execute the job?
+17. How to re-execute a parameterized build job without entering the parameter values when the job fails? Note:- Job should not ask for parameters and it should run with the values of parameters that you entered during previous execution
+18. How to install plugins in Jenkins
+19. How can configure slaves/nodes in Jenkins
+20. How to run jobs in slaves
+
+What are the job templates you are using? How to create a new iteam/job?
+What is the difference between Maven and free-style job and Pipeline templates?
+Where to configure the code repo details? (under SCM section).
+Difference between Build Periodical & Poll SCM, define each?
+How to configure Sonar in Jenkins job?
+Email notification? (Tow types, 1. email notification & Editable Email notification to send attachments too).
+What is the fix for OutOfMemory issue. (increasase HEAP size, need to add it to maven Options).
+Environment varibales?
+How to install a plugin? (two ways)
+Different way of providing access to users? Matrix/Project/Rolebased based security. Which one you are using?
+How to add a user & provide permissions.
+What is minimum required to install Jenkins? (Java should be installed).
+Different types of Build errors/issues you faced in your work environemnt? (3 types. 1-->Network or anyother issues which whould be fixed by ALM/LTS/Support teams, 2-->Some errors which whould be fixed by Build Team, for example, wrong job congiguration, 3-->Some other errors which whould be fixed by Dev Team, for example, Compilation errros, test case failures etc.)
+What are the different types of job templtes you used. Maven, free-style, pipeline, multibranch pipeline etc.
+Up-Stream, Down-Stream jobs (pipeline setup)?
+What is Parameterized job? How to pass the parameters from one job to anotehr job?
+Pipeline script for CI/CD?
+What are the automations you have done? Using groovy script create/rename/delete/disable the Jenkins jobs?
+How to take backup? (backup plugin)
+What is Jenkins node/slave?
+How to creare & configure slave/node in jenkins?
+What arte the plugin you installed?
+How to copy the artifacts from one job to another job?
+How to add Java/Maven/Gradle/Git paths in jenkins? (Global Tool Configuration).
+What is "Manage Plugin"?
+Pipeline scripts: Declarative vs Scripted vs Shared libs
+Sections in Declarative/Scripted pipeline script
+Importance of Shared libs in Jenkins?
+how to configure in Jenkins (Configure System >> Global Pipeline Libraries) ?
+
+

@@ -1,6 +1,6 @@
 1.VPC Basics											[27-SEP-2021]  (Done)
-2.Public and Private Subnet                             [26-SEP-2021]  ()
-3.NAT Gateway                                           [26-SEP-2021]  ()
+2.Public and Private Subnet                             [29-SEP-2021]  (Done)
+3.NAT Gateway                                           [29-SEP-2021]  (Done)
 4.NAT EC2 Instance                                      [26-SEP-2021]  ()
 5.VPC Peering                                           [26-SEP-2021]  ()
 6.VPC Peering Features                                  [26-SEP-2021]  ()
@@ -122,13 +122,55 @@ Similarly To create the Subnet with size 16(Least Size) then the CIDR notation w
 	
 ***************************************************** 2.Public and Private Subnet  *****************************************************
 
+To connect to the EC2 Instance from Windows --> login as ubuntu.
+To check whether we are able to connect an Instance in Private Subnet from an Instance in Public Subnet,we ping the IPAddress of the private EC2 Instance.
+
+	ping 10.100.1.0
+	
+To login to private EC2 instance from public EC2 instance
+--> create the pem file by copying the pem file of private subnet ie 
+
+	vi awstraining-ec2-private-key.pem
+	
+--> Add the permissions to the pem file ie 
+
+	chmod 400 awstraining-ec2-private-key.pem
+	
+Then runn the command
+
+	ssh -i awstraining-ec2-private-key.pem ubuntu@IPAddress
+	
+***************************************************** 3.NAT Gateway   *****************************************************************
+
+If we want to access the Internet in the private Subnet we need to have a Network Address Translation.
+Here we cannot dircetly access the private Subnet.
+Create the NAT Gateway and for that we need public Subnet because NAT needs communication with an Internet 
+and the Instances which are in the public Subnet can communicate with Internet.
+NAT also requires public IPAddress or Elastic IPAddress.
+
+We need to add the NAT Gateway in the Route Table of the Private Subnet to which Internet access has to be enabled.
+
+Note :
+------
+we need to delete the NAT Gateway as it is Billable.
+We also need to delete the NAT Gateway entry in the Private Subnet Route Table.
+
+       
+***************************************************** 4.NAT EC2 Instance  *************************************************************
 
 
+         
+***************************************************** 5.VPC Peering  ******************************************************************
+                
+                
+                
+***************************************************** 6.VPC Peering Features  *********************************************************
 
+      
+***************************************************** 7.VPC EndPoint ******************************************************************
 
-
-
-
+              
+***************************************************** 8.Site to Site VPN Connection  **************************************************
 
 
 

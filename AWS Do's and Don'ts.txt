@@ -1,0 +1,53 @@
+
+DevOps - Dev and Ops
+
+code repo: git (github, gitlab, bitbucket, gerrit, TFS Git, ), SVN , RTC, CVS, PVCS, mercural, etc
+
+Build: maven, gradle, ant, MSBuild, Nant, make, etc
+
+	compile code
+	unit cases
+	code quality check - sonar
+	security san - sonar, xray, varacode scan etc
+	package
+	deploy the package to repo manager - nexus, jfrog etc
+
+Deploy:
+
+	connect to the existing/create server (linux, windows) and then deploy the package to server - AWS/Azure/GCP, ansible, docker, k8s, puppet, chef, salt, IBM UDeploy etc
+
+Testing:
+
+	selenium, tosca etc
+
+-------------------------------------------
+
+Servers (EC2 Instance) - Linux, Windows, macOs etc
+
+Network - VPC, subnet, sg, etc
+
+database - RDS
+
+S3 
+
+infra automation (IaC, IAAC - Infrastructure as Code) - cloud formation, terraform
+
+AWS Do's and Don'ts:
+
+DO's:
+	Use only free tier services as described at https://aws.amazon.com/free/
+	Use the services we discussed during the training sessions.
+	Check the cost before you want to try with new services.
+	Frequently check bill dashboard.
+
+DON'Ts:
+	Leave the EC2 instance as running
+	Leave the EC2 instance as stopped
+	Make your security groups open to the world.
+
+https://aws.amazon.com/about-aws/global-infrastructure/
+
+https://aws.amazon.com/ec2/instance-types/mac/
+
+https://aws.amazon.com/ec2/pricing/on-demand/
+
