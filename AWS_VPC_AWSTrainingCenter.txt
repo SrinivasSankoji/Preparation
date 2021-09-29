@@ -12,12 +12,12 @@
 Consider the case we have a Network in an Organization ie private Network.
 We have systems that are connected to the LAN and the Routing between the System happens using Switch.
 Switch works at the lower level protocol called ARP(Address Resolution Protocol).
-Now the Systems within the LAN can communicate wuth each other using MAC Addresses.
+Now the Systems within the LAN can communicate with each other using MAC Addresses.
 
 We might have other Systems which are connected to other LAN.
 To connect to System in one LAN to the System in another LAN,Using Switch we cannot communicate between these Systems.
 Here we need other device called Router.
-Router can connect the Switches and Router works at higher level protocol called IPAddress protocol.
+Router can connect to the Switches and Router works at higher level protocol called IPAddress protocol.
 It understands the IPAddress and Systems can communicate with each other.
 Finally there will be some other Routers which allows Inbound and Outbound connection to the Internet.
 If we want the same Network in cloud we use AWS VPC.
@@ -28,8 +28,8 @@ This virtual Network closely resembles to the Traditional Data Center with the b
 
 Once we have an AWS Account we can use any of the Available Regions.
 Every Region has one or more VPC's.By default Amazon restricts the count to 5 but we can increase.
-We have multiple AWS services and each service has different scope.
 
+We have multiple AWS services and each service has different scope.
 Some services works at Global Level ie Billing,IAM,Route53 etc.They have the effect on all the regions.
 There are some services which operate at Regional Level ie S3,CDN,DynamoDB etc.
 Similarly There are some services which works at Availability Zone Level ie EC2,RDS etc.
@@ -62,7 +62,7 @@ If we want to access that Application we have to make it publcly available ie at
 
 If we want on premise Data Center to be connected to Amazon Network we use Virtual Private Gateway.
 Suppose If we want the VPC to be secured ie don't want to put the Internet Gateway.
-Still we want to use the Applications hosted inside the VPC over a private IPAddress.
+Still we want to use the Application hosted inside the VPC over a private IPAddress.
 In this case we need a virtual private Gateway at Amazon Side that provides the VPN concentrator using which we can connect the VPC from Data Center.
 
 VPC Addressing :

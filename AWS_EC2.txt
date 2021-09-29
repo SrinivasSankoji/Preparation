@@ -340,7 +340,7 @@ To connect to the EC2 instance from Windows :
 Select the Instance --> Connect --> Select the Command.
 Navigate to the ppk folder --> then run the selected command.
 Open the Putty --> Paste the Selected URL in the Session --> ubuntu@ec2-3-109-208-224.ap-south-1.compute.amazonaws.com
-Add the UserName in tha Data Section.
+Add the UserName in tha Data Section. ie ubuntu
 Browse the Generated ppk file in the Auth Section.
 Now it will connect to the EC2 instance.
 

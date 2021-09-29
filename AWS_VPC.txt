@@ -1,20 +1,21 @@
 1.AWS VPC  				(Vishal Padghan)  					[22-APR-2021]  (Done)		(Refer Articles)
 2.AWS VPC  				(Mathew Kenny Thomas)  				[26-SEP-2021]  (Done) 
-3.AWS VPC  				(Prashant Lakhera)  				[27-SEP-2021]  (Done) 
+3.AWS VPC  				(Prashant Lakhera)  				[27-SEP-2021]  (Done) 		(Refer Articles)
 4.VPC setup on AWS		(Harshit Sharma)					[20-JUL-2021]  ()   		(Refer Articles)
 5.AWS VPC  				(Lewis Gavin)  						[22-APR-2021]  ()
+6.AWS VPC				(varunmanik1)						[22-APR-2021]  ()			(Refer Articles)
 
 
 **************************************************** 1.AWS VPC (Vishal Padghan)   *********************************************************
 
 Security becomes more important when some resources needs to be shared with contract employees or third party vendors
 because we run the risk of exposing sensitive data to them.
-VPC is a private cloud in the AWS Environment that helps us to use all the services by AWS in a defined private space.
-We can also have control over the virtual network and we can restrict the incoming traffic using security groups.
+VPC is a private cloud in the AWS Environment that enables us to launch the AWS Services into a virtual Network that we have defined.
+We can also have control over the virtual network and we can restrict the incoming traffic using Security Groups.
 
 There are two types of VPC
-Default VPC i.e created by Amazon
-Non Default VPC that is created by us to meet the securty needs.
+Default VPC ie created by Amazon.
+Custom VPC ie  created by us to meet the securty needs.
 
 Basic Concepts in VPC :
 
@@ -22,7 +23,7 @@ Basic Concepts in VPC :
 2.Route Table
 3.Internet Gateway
 4.Creating VPC using AWS Console
-5.Creating A Non-Default VPC And Creating A Private And Public Subnet Inside The VPC 
+5.Creating Private and Public Subnet inside the VPC.
 
 1.Subnet and its Utility :
 --------------------------
@@ -31,7 +32,6 @@ This is done because maintenance of smaller networks is easier as compared to la
 It also provides the security to the network from other networks.
 
 Example :
-Consider the scenario of different Teams in an Organization.
 There are different Teams in an Organization like HR,Finance,Support,Operations etc.
 The data accessible to the Finance Team cannot be given to the Operations Team etc.
 Here we will create a Subnet such that accessing and maintaining the Network becomes easier.
@@ -46,7 +46,7 @@ There can be Multiple Route Tables in a VPC.
 --------------------
 Internet Gateway allows the Instance in VPC to connect to the Internet ie
 Internet Gateway allows the user to make the Subnet public by providing a Route to the Internet.
-With the help of Internet Gateway an Instance can be accessed through the Internet and resources outside the Instance can access the Instance.
+With the help of Internet Gateway an Instance inside the VPC can be accessed through the Internet and resources outside the Instance can access the Instance.
 Only one Internet Gateway can be attached to a VPC at a time.
 
 4.Creating VPC using AWS Console :
@@ -107,8 +107,8 @@ Default NACL is configured to allow all traffic to flow in and out of the Subnet
 
 ****************************************************  3.AWS VPC (Prashant Lakhera)  *********************************************************
 
-VPC is a place where we define our own Network which closely resembles to Traditional Data Center with the benefits of using the Scalable Infrastructure
-provided by AWS.
+AWS Virtual Private Cloud (VPC) enables us to launch AWS Resources into a virtual network that we have defined.
+This virtual Network closely resembles to Traditional Data Center with the benefits of using the scalable Infrastructure provided by AWS.
 VPC is private.
 We can choose our own Network/CIDR Range.
 We can get the control of what Subnet can do and what it cannot do.
@@ -116,9 +116,9 @@ We can get the control of what Subnet can do and what it cannot do.
 When we create an AWS Account,AWS provides default VPC.
 This VPC has default Subnet in each Availabilty zone.
 We don't have much control over default VPC.
-Default VPC includes Internet Gateway and public Subnet.
+Default VPC includes Internet Gateway and is public Subnet.
 Consider the scenario where we want to deploy a Database Server and If I don't want the Database Server to talk to the Internet.
-In this case we have to create a custom VPC or non default VPC.
+In this case we have to create a private Subnet inside custom VPC.
 
 Note :
 ------
@@ -126,3 +126,149 @@ If we delete the default VPC there is a way to recover it.
  
 Steps Involved in creating VPC :
 --------------------------------
+1.Choose an IPAddress and CIDR range.
+2.Divide the Network into SubNetworks and this is for high Availabilty.
+3.Routing So that our Network is reachable from Internet(Route Table) and we can send the data to the Internet(Internet Gateway).
+4.Setup Network Filters ie we want which port/protocol/network range to be allowed or denied(Security Group or Network ACL's)
+
+In AWS Console VPC can be found under 
+Networking and Content Delivery --> VPC --> Your VPC's --> Create VPC.
+
+Enter the Name of the VPC under Name Tag ie prashant-lakhera-vpc
+Provide the CIDR block.  (10.123.0.0/16)
+Tenancy as default.
+
+1.Choose an IPAddress and CIDR range :
+--------------------------------------
+Some IP ranges recomended by AWS are
+10.0.0.0 - 10.255.255.255  (Prefix is 8)
+172.16.0.0 - 172.16.255.255 (Prefix is 16)
+192.168.0.0 - 192.168.255.255 (Prefix is 16)
+
+Note :
+------
+One of the most important thing to note is that while choosing the Network range we need to avoid the Network range that overlaps with
+On Premise Network or other VPC's.
+If we require to connect our VPC with Data Center via VPN or create VPC peering between two VPC's these overlapping CIDR range will give conflicts.
+
+As soon as we create VPC,Number of things created for us are 
+
+Route Table :
+-------------
+Route Table contains set of rules called routes which determines where the traffic has to be redirected.
+
+Network Access Control List :
+-----------------------------
+NACL adds an Additional layer of security to our VPC and controls traffic going in and out for one or more Subnet's.
+The default NACL is configured to allow traffic to flow in and out of the Subnets to which it is associated.
+Firewall which works at Subnet level is NACL.
+
+Secutity Group :
+----------------
+Security Group acts as a virtual firewall and is used to control the traffic for its associated instance.
+VPC comes with default Security Group.
+Any Instance If is not associated with any other Security Group during launch is associated with default Security Group.
+Firewall which works at Instance Level is Security Group.
+
+2.Divide the Network into SubNetworks and this is for high Availabilty :
+------------------------------------------------------------------------
+One of the main reason to divide the larger Network into Subnet's is to provide an Application with high Availabilty.
+The allowed block size is between /16 netmask(65536 IPAddress) and /28 netmask(16 IPAddress).
+The smallest Subnet mask we can choose is /28.
+
+Public Subnet :
+10.123.1.0/24
+10.123.2.0/24
+
+Private Subnet :
+10.123.3.0/24
+10.123.4.0/24
+
+Note :
+------
+The first 4 IP and the last IP is not available for use.
+
+If a Subnet with CIDR block 10.0.0.0/24,following 5 IPAddress are not used.
+10.0.0.0 : Netwoek Address
+10.0.0.1 : Resrved by AWS for VPC Router
+10.0.0.2 : Reserved by AWS for Amazon DNS Server
+10.0.0.3 : Reserved by AWS for Future use
+10.0.0.255 : Network Broadcast Address.AWS does not support Broadcast Address.
+
+In the navigation pane,choose Subnet and then choose create Subnet.
+Enter the name of the Subnet under Name Tag ie prashant-lakhera-public-subnet-(availabilityzone)
+From the dropdown select the VPC that we have created.
+Select the Availabilty Zone where we want to create a Subnet.
+In the IPv4 CIDR block select the IPv4 Address range for Subnet.
+
+Note :
+Same set up we need to do for other Availabilty Zones.
+
+3.Internet Gateway :
+--------------------
+Next step is we need to create an Internet Gateway.
+In the left pane click on Internet Gateway and choose to create an Internet Gateway  ie prashnat-lakhera-internetgateway
+By default Internet Gateway is in detached State.
+Attach Internet Gateway to a VPC.
+
+Internet Gateway is horizontally scaled,redundant and highly available VPC component.
+Internet Gateway performs NAT for Instances that have been assigned public IPv4 Address.
+Internet Gateway supports both IPv4 and IPv6 traffic.
+
+How Internet Gateway Works :
+----------------------------
+Main purpose of Internet Gateway is to enable Internet Communication.
+Instance must have public IPv4 Address or Elastic IPAddress that is associated with private IPv4 Address of our Instance.
+Instances are only aware of private IPv4 Address.
+Internet Gateway logically provides one-to-one NAT on behalf of our Instance.
+When the traffic leaves the VPC Subnet and goes to Internet,reply address field is set to public IPv4 Address or Elastic IPAddress and not the private IPAddress.
+Same way when the traffic is reached to the public IPAddress or Elastic IPAddress of an Instance,
+destination Address is translated into private IPv4 Address before the traffic is delivered to the VPC.
+
+Note:
+IPv6 Address are globally unique and therefore public by default.
+
+4.Routing Traffic :
+-------------------
+Route Table contains set of rules called routes which can be used to determine where the traffic has to be directed.
+Default routing rule says traffic destinated from VPC stays within the VPC.
+Each Subnet in the VPC must be associated with Route Table that controls the routing for the Subnets.
+We cannot delete the Main Route Table but we can replace it with custom Route Table.
+If we want to send the traffic to an Internet,we need to create an Internet Gateway and attach to the VPC and then add a route with destination and
+target of the Internet Gateway.
+When we create a Subnet, we automatically associate with the main Route Table for the VPC.
+Main Route Table does not contain a route to an Internet Gateway.
+
+In the left pane,click on Route Tables --> create Route Table --> Name the Route Table and select the VPC.
+First row in the Route Table is "local Route" which enables the Instances within the VPC to communicate.
+This route is present in every Route Table by default and cannot remove it.
+
+Enable the Internet Access --> click on Edit Routes --> Add the route 0.0.0.0/0 which we have created in Internet Gateway.
+This will send the traffic outside the VPC to Internet Gateway.
+Click on Subnet associations and then edit Subnet Association.
+
+Public Subnet :
+10.123.1.0/24
+10.123.2.0/24
+
+Private Subnet :
+10.123.3.0/24
+10.123.4.0/24
+
+Public Subnet :
+---------------
+If the Subnet is associatd with Route Table which has a route to an Internet Gateway, then it is called Public Subnet.
+
+Befor we launch an Instance,under Subnet -> Auto Assign Public Ip is set to NO.
+We want Instance that launched in public Subnet to get Public IP.
+Then modify Auto Assign IP Settings.
+
+
+
+
+
+  
+
+
+
+ 
