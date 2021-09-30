@@ -4,7 +4,10 @@
 4.VPC setup on AWS		(Harshit Sharma)					[20-JUL-2021]  ()   		(Refer Articles)
 5.AWS VPC  				(Lewis Gavin)  						[22-APR-2021]  ()
 6.AWS VPC				(varunmanik1)						[22-APR-2021]  ()			(Refer Articles)
-
+7.VPC Peering 			(Crishantha Nanayakkara)			[30-SEP-2021]  (Done)
+8.VPC Peering 			(Chris Hare)						[30-SEP-2021]  (Done)
+9.AWS VPC Endpoints		(Crishantha Nanayakkara)			[22-APR-2021]  ()
+10.Custom VPCs on AWS	(Crishantha Nanayakkara)			[22-APR-2021]  ()
 
 **************************************************** 1.AWS VPC (Vishal Padghan)   *********************************************************
 
@@ -262,6 +265,89 @@ If the Subnet is associatd with Route Table which has a route to an Internet Gat
 Befor we launch an Instance,under Subnet -> Auto Assign Public Ip is set to NO.
 We want Instance that launched in public Subnet to get Public IP.
 Then modify Auto Assign IP Settings.
+
+**************************************************** 7.VPC Peering (Crishantha Nanayakkara) ****************************************************
+
+VPC Peering provides a Network connection between two VPC's that enables us to route traffic between them privately.
+VPC Peering Connection can be between two VPC's within the same Account or different Account or other Regions.
+VPC Peering Connection's are fault tolerant and there is no single point of failure.
+AWS makes sure that connection is stable irrespective of the load.
+
+VPC Peering uses the existing infrastructure to create the VPC Peering.
+It does not need any extra hardware or even VPN to establish it.
+The communication between two VPC's are done via private IP's.
+
+In order to enable VPC Peering between two Subnet's we are required to add a route in the Route Table that points to the IPAddress range of the Peer VPC.
+Here routes are required at both the Route Tables.
+The connection between VPC's are always point to point.
+
+Note :
+------
+VPC does not support Edge Routing or Transitive Peering ie It cannot connect one VPC from another VPC.
+
+**************************************************** 8.VPC Peering (Chris Hare) ****************************************************************
+
+Depending on the Organization we may have more than one VPC or VPC deployed in more tha one Region.
+There are many cases for multiple VPC :
+
+For different stages in Development process.
+Service deployment in multiple Regions.
+Use different VPC for various Business Units.
+Seggregate the Application based on some criteria like Functions,security level etc.
+
+As we know that AWS comes with default VPC in every supported Region.
+Every default VPC uses the same CIDR block.
+
+Regardless of the reasons for multiple VPC,sometimes we need to connect them together so that they can exchange information.
+There are two methods for achieving this connectivity
+1.VPC Peering
+2.Transit Gateway
+
+1.VPC Peering :
+---------------
+VPC Peering means establishing a Route between two or more VPC's so that they communicate with each other.
+It starts getting complicated when there are more than two VPC's in the peering arrangement.
+
+VPC Peering does not support Transitive Peering.
+Transitive Peering means If VPC A is connected to VPC B and VPC B is connected to VPC C.
+Then VPC A can communicate with the resources present in VPC C via VPC B.
+This Networking arrangement is not supported in VPC Peering Model.
+
+Consequently we can use Mesh Topology to create Peering between Multiple VPC's.
+Eventhough It is referred to as Mesh Topology Each Peering Connection is still Point to Point.
+If there is a Failure between one of the Peering Connections,Traffic cannot be routed across different Connection.
+
+Setting Up :
+------------
+1.Create two VPC's which do not have overlapping of CIDR blocks.
+2.Create Peering connection request between two VPC's.
+3.Owner of the Remote VPC approves the Peering Request
+4.Configure Routes on both VPC
+5.Adjust affected Security Groups
+
+Peering within the Same AWS Account :
+-------------------------------------
+The VPC where the request is made from is known as Requestor VPC and the other is Acceptor VPC.
+When both the Requestor and Acceptor are in the same AWS Account and VPC Peering Request is created using CloudFormation
+Then CloudFormation will attempt to accept the request automatically.
+
+In the Left Pane --> Click on VPC Peering Connection --> Create Peering Connection.
+Then enter the Details 
+
+Name of the Peering Connection
+Requestor
+Acceptor
+Account and Region
+
+
+
+
+
+
+
+
+
+
 
 
 

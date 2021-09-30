@@ -2,9 +2,9 @@
 2.Public and Private Subnet                             [29-SEP-2021]  (Done)
 3.NAT Gateway                                           [29-SEP-2021]  (Done)
 4.NAT EC2 Instance                                      [26-SEP-2021]  ()
-5.VPC Peering                                           [26-SEP-2021]  ()
-6.VPC Peering Features                                  [26-SEP-2021]  ()
-7.VPC EndPoint                                          [26-SEP-2021]  ()
+5.VPC Peering                                           [30-SEP-2021]  (Done)
+6.VPC Peering Features                                  [30-SEP-2021]  ()
+7.VPC EndPoint                                          [30-SEP-2021]  ()
 8.Site to Site VPN Connection                           [26-SEP-2021]  ()
 
 ***************************************************** 1.VPC Basics  ***************************************************
@@ -161,8 +161,10 @@ We also need to delete the NAT Gateway entry in the Private Subnet Route Table.
 
          
 ***************************************************** 5.VPC Peering  ******************************************************************
-                
-                
+
+Create the VPC Peering between the private Subnet of VPC A and private Subnet of VPC B. 
+Configure the Route Tables of the private Subnet's in both VPC A and VPC B with VPC Peering.
+Also modify the Security Group of Private Subnet of VPC B to get the Access of Private Subnet of VPC A.     
                 
 ***************************************************** 6.VPC Peering Features  *********************************************************
 
