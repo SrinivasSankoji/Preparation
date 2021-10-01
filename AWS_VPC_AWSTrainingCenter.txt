@@ -4,8 +4,8 @@
 4.NAT EC2 Instance                                      [26-SEP-2021]  ()
 5.VPC Peering                                           [30-SEP-2021]  (Done)
 6.VPC Peering Features                                  [30-SEP-2021]  ()
-7.VPC EndPoint                                          [30-SEP-2021]  ()
-8.Site to Site VPN Connection                           [26-SEP-2021]  ()
+7.VPC EndPoint                                          [30-OCT-2021]  ()
+8.Site to Site VPN Connection                           [26-OCT-2021]  ()
 
 ***************************************************** 1.VPC Basics  ***************************************************
 
@@ -142,20 +142,18 @@ Then runn the command
 	
 ***************************************************** 3.NAT Gateway   *****************************************************************
 
-If we want to access the Internet in the private Subnet we need to have a Network Address Translation.
-Here we cannot dircetly access the private Subnet.
-Create the NAT Gateway and for that we need public Subnet because NAT needs communication with an Internet 
-and the Instances which are in the public Subnet can communicate with Internet.
+If we want to access the Internet in the private Subnet we need to have a Network Address Translation(NAT) Gateway.
+Here we cannot dircetly access the Internet from the private Subnet.
+Create the NAT Gateway in the public Subnet because because NAT needs communication with an Internet.
+Instances which are in the public Subnet can communicate with Internet(Internet Gateway).
 NAT also requires public IPAddress or Elastic IPAddress.
-
-We need to add the NAT Gateway in the Route Table of the Private Subnet to which Internet access has to be enabled.
+Add the NAT Gateway in the Route Table of the Private Subnet so that Internet access will be enabled.
 
 Note :
 ------
 we need to delete the NAT Gateway as it is Billable.
 We also need to delete the NAT Gateway entry in the Private Subnet Route Table.
-
-       
+    
 ***************************************************** 4.NAT EC2 Instance  *************************************************************
 
 
@@ -164,7 +162,46 @@ We also need to delete the NAT Gateway entry in the Private Subnet Route Table.
 
 Create the VPC Peering between the private Subnet of VPC A and private Subnet of VPC B. 
 Configure the Route Tables of the private Subnet's in both VPC A and VPC B with VPC Peering.
-Also modify the Security Group of Private Subnet of VPC B to get the Access of Private Subnet of VPC A.     
+Also modify the Security Group of Private Subnet of VPC B to get the Access of Private Subnet of VPC A.   
+
+Image :
+-------
+https://images.app.goo.gl/mGBE3SjzZn2ZDSVM9
+
+VPC-ONE
+VPC-ONE CIDR - 10.100.0.0/16
+
+VPC-ONE-IGW  (Internet Gateway)
+
+PUBLIC-SUBNET-VPC-ONE (10.100.0.0/24)
+PRIVATE-SUBNET-VPC-ONE (10.100.1.0/24)
+
+ROUTE-PUBLIC-SUBNET-VPC-ONE (Add the Internet Gateway)
+ROUTE-PRIVATE-SUBNET-VPC-ONE
+
+EC2-PUBLIC-SUBNET-VPC-ONE
+EC2-PRIVATE-SUBNET-VPC-ONE
+
+SG-PUBLIC-SUBNET-VPC-ONE
+SG-PRIVATE-SUBNET-VPC-ONE
+
+EC2-PUBLIC-SUBNET-VPC-ONE-KEY
+
+
+VPC-TWO
+VPC-TWO CIDR - 10.200.0.0/16
+
+EC2-PRIVATE-SUBNET-VPC-TWO
+ROUTE-PRIVATE-SUBNET-VPC-TWO
+
+EC2-PRIVATE-SUBNET-VPC-TWO (10.200.1.0/24)
+
+SG-PRIVATE-SUBNET-VPC-TWO
+
+EC2-PUBLIC-SUBNET-VPC-TWO-KEY
+
+Note :
+Add the CIDR of Private Subnet of VPC A ie 10.100.1.0/24 in the private Subnet of VPC B.
                 
 ***************************************************** 6.VPC Peering Features  *********************************************************
 
