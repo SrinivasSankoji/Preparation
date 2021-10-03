@@ -75,13 +75,12 @@ HashMap calls the equals() on the key object for each Entry.
 All the Entry objects in the LinkedList will have the same hashCode but equals method will test for true equality.
 If both the key objects are equal then the value object will be replaced.
 
-
 ************************************************ 2.HashMap - Internal  (howtodoinjava)  *********************************************
 
 1.What is Hashing :
 -------------------
 HashMap works on the principle of hashing.
-Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
+Hashing is a way of assigning a unique code for any object after applying any formula/algorithm on its properties.
 Hash function should return the same hashCode each and every time when the function is applied on the same or equal objects.
 Two equal objects must produce the same hashCode consistently.
 
@@ -151,7 +150,7 @@ To resolve this issue they have implemented hash() that return the hashValue in 
 	
 	int hash=hash(key.hashCode());
 	
-Now indexFor(hash,table.length) is used to calculatethe index position for storing the Entry object.
+Now indexFor(hash,table.length) is used to calculate the index position for storing the Entry object.
 
 	int i=indexFor(hash,table.length);
 	
@@ -169,7 +168,7 @@ If the object is present in that calculated index,its next attribute is checked.
 if the next attribute is null then the Entry object will become the next node in the LinkedList.
 If the next variable is not null,procedure is followed until the next variable is null.
 
-if we try to insert the Entry object with the same key value,after determinig the index position for that Entry object,
+If we try to insert the Entry object with the same key value,after determinig the index position for that Entry object,
 while iterating over LinkedList HashMap will call the equals() on the key object.
 If both the key objects are same then value object will be replaced with the new value.
  
@@ -194,7 +193,7 @@ hashCode for null is always 0 and such Entry object will be stored inside 0 inde
 
 7.HashMap improvements in Java 8 :
 ----------------------------------
-As part of the performnace improovement of HashMap in Java 8,LinkedList is replaced by BalancedTree to store the Entry objects in the Array.
+As part of the performance improovement of HashMap in Java 8,LinkedList is replaced by BalancedTree to store the Entry objects in the Array.
 
 **************************************** 5.HashMap – Merge HashMaps (howtodoinjava) **********************************************************
 
@@ -202,16 +201,42 @@ We can merge HashMap's by using putAll().
 As we know that HashMap does not allow duplicate keys.
 When we merge the maps in this way Duplicate Key's in map1 the value is overwritten by value for the same key in map2.
 
-If we want to loose the data and and merge the Values when the duplicate Keys are present we use merge() in Java 8.
+If we don't want to loose the data and and merge the Values when the duplicate Keys are present we use merge() in Java 8.
+
+			map2.forEach((key,value) -> map1.merge(key,value, (v1,v2) -> v1.equalsIgnoreCase(v2)?v1:v1+","+v2));
 
 **************************************** 6.HashMap – Compare HashMaps (howtodoinjava) ********************************************************
 
 We can compare two HashMap's in Java by Keys,Values,and Key-Value Pairs.
 
-2.Compare HashMap for same Key-Values :
----------------------------------------
+			HashMap<Integer, String> map1 = new HashMap<>();
+		  
+	        map1.put(1, "A");
+	        map1.put(2, "B");
+	        map1.put(3, "C");
+	         
+	        //Same as map1
+	        HashMap<Integer, String> map2 = new HashMap<>();
+	 
+	        map2.put(3, "C");
+	        map2.put(1, "A");
+	        map2.put(2, "B");
+	         
+	        //Different from map1
+	        HashMap<Integer, String> map3 = new HashMap<>();
+	 
+	        map3.put(1, "A");
+	        map3.put(2, "B");
+	        map3.put(3, "C");
+	        map3.put(4, "D");
+
+2.Compare HashMap for same Key-Value Pairs :
+--------------------------------------------
 By default HashMap.equals() compares two HashMap's by Key-Value pairs.
 If both the HashMap instances must have exactly same Key_Value pairs and both must be of same size.
+
+			System.out.println(map1.equals(map2));  //true
+	        System.out.println(map1.equals(map3));  //false
 
 Note :
 ------
@@ -221,18 +246,29 @@ Order of Key value pairs can be different and it does not play any role in compa
 ---------------------------------
 Two HashMap's will be equal If they have same set of Keys.
 
+			System.out.println(map1.keySet().equals(map2.keySet())); //true
+	        System.out.println(map1.keySet().equals(map3.keySet())); //false
+
 3.Compare HashMap for same Values :
 -----------------------------------
 Two HashMap's will be equal If they have same set of Values.
 HashMap allows duplicate Values.
 We can compare two HashSet's with Duplicates or without Duplicates.
 
+			//Compare HashMap with Values - Duplicates are allowed
+	        System.out.println(new ArrayList<>(map1.values()).equals(new ArrayList<>(map2.values()))); // false
+	        System.out.println(new ArrayList<>(map1.values()).equals(new ArrayList<>(map3.values()))); //false
+			
+			//Compare HashMap with Values - Duplicates are Not allowed
+	        System.out.println(new HashSet<>(map1.values()).equals(new HashSet<>(map2.values()))); //true
+	        System.out.println(new HashSet<>(map1.values()).equals(new HashSet<>(map3.values()))); //false
+
 **************************************** 11.Initial capacity vs Load Factor (javaconceptoftheday) ********************************************
 
 The capacity of a HashMap is the number of Buckets in the Table.
 Initial Capacity is the capacity of the HashMap at the time of creation ie 16.
-Default initial capacity is 16 ad default Load Factor is 0.75f.
-Capacity is doubled each time when it reaches the Threashold.
+Default initial capacity is 16 and default Load Factor is 0.75f.
+Capacity is doubled each time when it reaches the Threshold.
 Threshold of a Hashmap is 
 
 	Threshold = (CurrentCapacity)*(Load Factor)
@@ -245,7 +281,7 @@ How Initial Capacity And Load Factor Affect Performance Of HashMap :
 When HashMap reaches its Threshold Rehashing takes place.
 Rehashing is the process where new HashMap Object with new capacity is created and copies all the Old elements into the new HashMap by recalculating hashCode.
 Process of Rehashing is both space and time consuming.
-Always choose the initial Capacity and Load Factor such that they minimize the number of Rehashing Operations.
+Always choose the initial Capacity and Load Factor such that they minimize the number of rehashing Operations.
 
 *******************************************************************  12.HashSet Internal (javaconceptoftheday)  *********************************************************
 
@@ -275,7 +311,7 @@ Every constructor of HashSet class internally creates one HashMap object.
 	
 How HashSet Works Internally  :
 -------------------------------
-Whenever we insert an element in the HashSet using add() method it actually creates an entry in the backing HashMap object 
+Whenever we insert an element in the HashSet using add() method It actually creates an entry in the backing HashMap object 
 with the element we specified as it's key and constant called PRESENT as it's value.
 "PRESENT" in HashSet is defined as 
 
@@ -308,7 +344,7 @@ fail-safe and does not throw any Exception.
 8.HashMap is always recomended to use If we don't want ThreadSafety.
 If we want Thread Safety use either ConcurrentHashMap or make the HashMap Thread Safe by using Collections.synchronizedMap().
 
-***************************************** 14.HashMap Programs & Examples(15) **************************************************************************
+***************************************** 14.HashMap Programs & Examples(15) (javaconceptoftheday)*****************************************************
 
 Done
 
