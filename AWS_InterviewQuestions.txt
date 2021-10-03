@@ -13,7 +13,6 @@ Usage Pem file (Without PEM can we connect linux ? and If PEM file missed how to
 Security groups(Single PORT) VS NACL(Usage is in IP address level to BULK of restrict PORT)
 EBS types
 Snapshot
-AWS Lamda --> serverless
 
 Auto scaling
 ----------------
@@ -80,3 +79,7 @@ Usage
 Different types --> important
 Hosted zone
 Aliases
+
+AWS Lamda 
+---------
+serverless

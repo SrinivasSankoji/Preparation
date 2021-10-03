@@ -1,12 +1,107 @@
-1.S3 Introduction							(Lewis Gavin)                     [22-MAR-2021]  ()
-2.S3 Introduction                           (AWS and More)           		  [22-MAR-2021]  ()
-3.S3 Introduction                           (Dhaval Nagar)         	          [22-MAR-2021]  ()		(Refer Articles)
-4.S3 Hands On								(Furqan Butt)         	          [22-MAR-2021]  ()
-5.S3 Metadata                               ()         	                      [22-MAR-2021]  ()
-6.S3 Bucket Properties                      ()         	                      [22-MAR-2021]  ()
-7.S3 ACL and Amazon Bucket Policy           ()         	                      [22-MAR-2021]  ()
-8.S3 Glacier                                ()         	                      [22-MAR-2021]  ()
-9.Hosting Static Website on S3				(AWS Training Center)			  [22-MAR-2021]  ()
-10.S3 Tutorial								(Be A Better Dev)				  [22-MAR-2021]  ()
+1.S3 Introduction							(Lewis Gavin)                     [01-OCT-2021]  (Done)
+2.S3 Introduction                           (AWS and More)           		  [01-OCT-2021]  (Done)
+3.S3 Introduction                           (Dhaval Nagar)         	          [01-OCT-2021]  ()		 (Refer Articles)
+4.S3 Hands On								(Furqan Butt)         	          [22-OCT-2021]  ()
+5.S3 Metadata                               ()         	                      [22-OCT-2021]  ()
+6.S3 Bucket Properties                      ()         	                      [22-OCT-2021]  ()
+7.S3 ACL and Amazon Bucket Policy           ()         	                      [22-OCT-2021]  ()
+8.S3 Glacier                                ()         	                      [22-OCT-2021]  ()
+9.Hosting Static Website on S3				(AWS Training Center)			  [22-OCT-2021]  ()
+10.S3 Tutorial								(Be A Better Dev)				  [22-OCT-2021]  ()
 
 *********************************************** 1.S3 Introduction (Lewis Gavin)  **********************************************************
+S3 stands for simple storage service.
+S3 is like Virtual Drive to store and retrieve any amount of Data at any point of time.
+S3 is an Object based storage service for uploading Files.
+File can be of any size from 0 Bytes to 5 Terra Bytes and the storage capacity is effectively unlimited.
+Amazon will continuously increase the size at the Back end.
+It is used in Applications like Dropbox that allows user to store Files of different types in a cloud based File System.
+
+When a File is uploaded to S3 It will be stored in a Bucket.
+Bucket is just like a Folder or Repository which will be the holding point for all Sub Folders and Files.
+S3 has a Universal Namespace ie each Bucket we have created must have unique name that is not being used by anyone in the world.
+This is because Bucket Name makes up part of the S3 URL which must be unique.
+
+Reading and Writing Data To and From S3 :
+-----------------------------------------
+When we upload a new File to S3 It has Read and Write efficiency.
+This means once the file is succesfully written to S3 It is immideately available for reading any where in the world.
+However If we are updating or deleting the File,S3 has eventual Consistency.
+
+Storage Classes :
+-----------------
+Data Stored in S3 can be held in 4 Storage Classes.
+
+Standard S3 :
+This is the most durable Storage Class.
+If the Files are accessed frequently and requires quick access.
+
+S3 InFrequently Accessed :
+As the name suggests If the Files are accessed less frequently and still Available for us.
+
+S3 Redundancy Storage :
+This can be used for the Data that can be reproduced such as Auto generated Docs.
+
+Glacier :
+This has the data archive capability.We can hold the Data here super cheaply.
+However we have to wait upto 3 to 5 hours for Data Access.
+
+Files are stored with the following Attributes
+Key : Filename
+Value : File Data
+VersionId : If the Versioning is turned on,we can keep track of the Current Version.
+Versioning will store all the versions of an Object and is useful for Backup's.
+
+Metadata :
+Data about the Data ie uploadTime,LastAccessedTime etc.
+
+Data LifeCycle Management :
+---------------------------
+As the Data Ages within S3,we can set up the flow through each of the Storage Classes In order to reduce Costs.
+So the Data that is old can be put into Glacier for example.
+Life Cycle Management can be applied to Current and Previous versions of Files.
+We can move the Files into S3 IA after atleast 30 Days and then into Glacier another 30 Days.
+So to move the Files into Glacier Files have to be atleast 60 Days in S3 Storage and S3 IA.
+These Numbers are User Configurable but can't be below the Minimum of 30 Days.
+
+ 
+******************************************************* 2.S3 Introduction (AWS and More) *******************************************************
+
+By default Bucket blocks all the public Access and we have to unblock and give permission publicly.
+Similarly When we Upload the Files It has no public access and we have to provide the public access.
+
+******************************************************* 3.S3 Introduction (Dhaval Nagar) *******************************************************
+
+By default we can create 100 Bukcets in each AWS Account.
+S3 Buckets are HTTP enabled so that we can access the Object Stored inside them with a unique URL.
+
+Version Control :
+-----------------
+By default GET request will retrieve the latest written version Object.
+Older version of an Object can be retrieved by specifying the version in the request.
+When the User performs DELETE operation on an Object,Un Versioned requests will no longer retrieve the Object.
+However all versions of that Object will continue to be preserved in S3 Bucket.
+Only the Owner of the S3 Bucket can permanently DELETE a Version.
+
+Note :
+Once the versioning is enabled It can only be suspended but cannot be disabled.
+S3 considers each version of the Object as a seperate Object for billing.
+
+Static Web Hosting :
+--------------------
+
+S3 Select :
+-----------
+
+S3 Transfer Acceleration :
+--------------------------
+
+******************************************************* 4.S3 Hands On (Furqan Butt) ***********************************************************
+
+
+
+
+
+
+
+
