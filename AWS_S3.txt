@@ -24,7 +24,7 @@ This is because Bucket Name makes up part of the S3 URL which must be unique.
 
 Reading and Writing Data To and From S3 :
 -----------------------------------------
-When we upload a new File to S3 It has Read and Write efficiency.
+When a File is uploaded to S3 It has Read and Write efficiency.
 This means once the file is succesfully written to S3 It is immideately available for reading any where in the world.
 However If we are updating or deleting the File,S3 has eventual Consistency.
 
@@ -87,16 +87,79 @@ Note :
 Once the versioning is enabled It can only be suspended but cannot be disabled.
 S3 considers each version of the Object as a seperate Object for billing.
 
+Data Storage Security :
+-----------------------
+
+
+
+Events :
+--------
+
+
 Static Web Hosting :
 --------------------
 
-S3 Select :
------------
+S3 Lifecycle Management :
+-------------------------
 
 S3 Transfer Acceleration :
 --------------------------
 
+S3 Select :
+-----------
+
+
+
 ******************************************************* 4.S3 Hands On (Furqan Butt) ***********************************************************
+
+
+******************************************************* 9.Hosting Static Website on S3 (AWS Training Center) **********************************
+
+
+******************************************************* 10.S3 Tutorial (Be A Better Dev) ******************************************************
+
+S3 is extremely cost effective.Cost decreases the more that we store on S3.
+When we perform GET request It is cost effective.
+S3 is replicating the Bucket and its content across the availability zones.
+
+Why S3 :
+--------
+S3 is cheap and reliable way to store Objects.
+Low Latency and high throughput.
+Used to host static Websites.
+Can Integrate with SNS,SQS,Lambda for powerful event driven Applications.
+S3 has mechanism to shift away old data into long term storage for cost reduction.
+
+Create Bucket :
+---------------
+Create Bucket --> Bucket Name ie Should not contain Uppercase and Special Characters. 
+Select all the default Values.
+After creating the Bucket --> Upload the File.
+
+Note :
+------
+Make the Bucket and Object as public to access it from the Internet.
+
+S3 Lifecycle Rules :
+--------------------
+
+Create Lifecycle Rule :
+-----------------------
+
+Upload to S3 from Lambda :
+--------------------------
+
+S3 Buckets and Objects Public :
+-------------------------------
+
+SQL to Query S3 Files :
+-----------------------
+
+Download CSV File from AWS S3 :
+-------------------------------
+
+Copy S3 Files between Buckets :
+-------------------------------
 
 
 

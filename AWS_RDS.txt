@@ -1,5 +1,124 @@
-1.AWS RDS  							(Vishal Padghan)  					[04-OCT-2021]  ()		(Refer Articles)
-2.AWS RDS  							(Prashant Lakhera)  				[04-OCT-2021]  ()		(Refer Articles)
+1.AWS RDS  							(Vishal Padghan)  					[04-OCT-2021]  (Done)		(Refer Articles)
+2.AWS RDS  							(Prashant Lakhera)  				[04-OCT-2021]  (Done)		(Refer Articles)
 3.AWS RDS MySql 					(AWS Training Center)  				[04-OCT-2021]  ()		
 4.AWS RDS Multi AZ FailOver 		(AWS Training Center)  				[04-OCT-2021]  ()
 5.AWS RDS Read Replica Access 		(AWS Training Center)  				[04-OCT-2021]  ()	
+
+***************************************************** 1.AWS RDS (Vishal Padghan)  *****************************************************
+
+AWS RDS is a Web Service that makes it easier to set up,operate and scale a Relational Database in the cloud.
+RDS provides cost efficient,resizable capacity in an industry standard relational database and manage common database administration tasks.
+So RDS is not a Database and is a service that manages Database.
+The Database's that RDS can manage are
+
+Amazon Aurora
+MySql
+SQL Server
+Oracle
+MariaDB
+
+Interesting part here is that RDS supports existing Relational Database.
+We need not change the code of an Application or learn new Query Language for using RDS.
+The difference between MySql and MySql which is managed by AWS RDS is that we need not worry about underlying Infrastructure or administration of the database.
+Updation,health monitor of the system on which MySql is installed,regular backup will be managed by AWS RDS.
+
+AWS also offers EC2 Relational Database AMI's.
+EC2 Relational Database AMI's allows us to fully manage our own Relational Database where as AWS RDS manages Database for us.
+
+The Components in AWS RDS are
+
+1.DB Instances
+2.Regions and Availability Zones
+3.Security Groups
+4.DB Parameter Groups
+5.DB Option Groups
+
+1.DB Instances :
+----------------
+DB Instances are the building blocks of RDS.
+It is an isolated Database environment in the cloud which contains multiple User created Database's.
+This can be accessed using the same tools and Applications that the stand alone Database Instance uses.
+DB Instance can be created using AWS Management Console,AWS RDS API or AWS CLI.
+The computation and memory capacity of the DB Instance depends on the DB Instance Class.
+For each DB Instance we can select from 5 GB to 6 TB of associated Storage Capacity.
+Types of DB Instances are
+
+Standard Instances
+Memory Optimized Instances
+Micro Instances
+
+2.Regions and Availability Zones :
+----------------------------------
+AWS Resources are housed in a highly available Date Center which are located across different parts of the world.
+This Area is called Region.
+Each Region has Multiple Availability Zones.
+We can deploy our DB Instance in multiple Availability Zones and this ensures the Failover.
+Failover Instance is called Stand By and the Original Instance is called Primary Instance.
+
+3.Security Groups :
+-------------------
+Security Group control's the access to the Database Instance.
+It can be done by specifying a Range of IP Address or the EC2 Instance that we want to give access.
+
+AWS RDS offers 3 types of Security Groups.
+VPC Security Group : DB Instance inside a VPC
+EC2 Security Group : Controls access to an EC2 Instance and can be used with a DB Instance
+DB Security Group  : Controls the DB Instance that is not in VPC.
+
+4.DB Parameter Groups :
+-----------------------
+It contains the engine configuration values that can be applied to one or more DB Instances of the same type.
+If we don't apply DB Parameter group to an Instance,then default parameter group will be applied which has the default values.
+
+5.DB Option Groups :
+--------------------
+Some DB Engine offers tools that simplify managing our Database's.
+RDS makes these tools available with the use of Option Groups.
+
+AWS RDS Advantages :
+--------------------
+1.When we talk about Database Services CPU,Memory,Storage and IO's are bundled together.
+We cannot control them individually.
+
+with AWS RDS each of these parameters can be tweaked individually.
+2.RDS manages the Database Servers,updates them with the latest software configuration and takes the back up automatically.
+Backup can be taken in two ways.
+Automated Backup's where in we set a time for Backup.
+DB Snapshot's where in we manually take the Backup of our DB.
+
+3.It Automatically creates a second Instance for Failover and provides high availability.
+
+4.AWS RDS supports Read Replica's.
+Snapshot's are created from source DB and all the read traffic to the source Database is distributed among read Replica's.
+This reduces the overall head on the source DB.
+
+5.AWS RDS can be integrated with IAM for giving customized access to the users who will be working on that Database.
+
+6.Updates to the Database in AWS RDS are applied in Maintenance window.
+Maintenance window is defined during the creation of DB Instance.
+When an Update is available for our DB we get the Notification in the RDS Console and we can take one of the following actions.
+Defer the Maintenance Items
+Apply the Maintenance Items Immideately
+Schedule Items for those Maintenance Items
+
+Once the Maintenance starts DB Instance has to be taken offline for Maintenance.
+If the Instance is running in Multi Availability Zone,In that case Stand By Instance is updated first and promoted to primary Instance.
+Then Primary Instance is taken offline for updating.
+This way the Application does not experience any down time.
+
+If we want to scale the DB Instance,the changes to the new DB Instance will also happen during Maintenance window.
+The Application will experience down time If it is in Single Availability Zone.
+
+Hands-On :
+----------
+
+***************************************************** 3.AWS RDS MySql (AWS Training Center)  *****************************************************
+
+
+
+
+
+
+
+
+
