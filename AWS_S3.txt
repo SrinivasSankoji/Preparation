@@ -55,7 +55,7 @@ Versioning will store all the versions of an Object and is useful for Backup's.
 Metadata :
 Data about the Data ie uploadTime,LastAccessedTime etc.
 
-Data LifeCycle Management :
+S3 LifeCycle Management :
 ---------------------------
 As the Data Ages within S3,we can set up the flow through each of the Storage Classes In order to reduce Costs.
 So the Data that is old can be put into Glacier for example.
@@ -68,7 +68,7 @@ These Numbers are User Configurable but can't be below the Minimum of 30 Days.
 ******************************************************* 2.S3 Introduction (AWS and More) *******************************************************
 
 By default Bucket blocks all the public Access and we have to unblock and give permission publicly.
-Similarly When we Upload the Files It has no public access and we have to provide the public access.
+Similarly When we Upload the Files into S3,Files has no public access and we have to provide the public access.
 
 ******************************************************* 3.S3 Introduction (Dhaval Nagar) *******************************************************
 
@@ -99,11 +99,23 @@ Events :
 Static Web Hosting :
 --------------------
 
+
 S3 Lifecycle Management :
 -------------------------
+As the Data Ages within S3,we can set up the flow through each of the Storage Classes In order to reduce Costs.
+So the Data that is old can be put into Glacier for example.
+Life Cycle Management can be applied to Current and Previous versions of Files.
+We can move the Files into S3 IA after atleast 30 Days and then into Glacier another 30 Days.
+So to move the Files into Glacier Files have to be atleast 60 Days in S3 Storage and S3 IA.
+These Numbers are User Configurable but can't be below the Minimum of 30 Days.
 
 S3 Transfer Acceleration :
 --------------------------
+AWS S3 Transfer Acceleration enables fast,easy and secure transfer of files over long distance between our client and S3 Bucket.
+Consider the scenario of video sharing Application.
+User's from differnt parts of the world can upload the data into S3.
+If we have single server collecting the data then different user's have different latency.
+Here S3 Acceleration helps us to use the AWS Edge Location to upload the data into the nearest Data Center and sync back to the original Bucket via Internal LInk. 
 
 S3 Select :
 -----------
@@ -114,6 +126,8 @@ S3 Select :
 
 
 ******************************************************* 9.Hosting Static Website on S3 (AWS Training Center) **********************************
+
+
 
 
 ******************************************************* 10.S3 Tutorial (Be A Better Dev) ******************************************************
@@ -137,7 +151,6 @@ Select all the default Values.
 After creating the Bucket --> Upload the File.
 
 Note :
-------
 Make the Bucket and Object as public to access it from the Internet.
 
 S3 Lifecycle Rules :

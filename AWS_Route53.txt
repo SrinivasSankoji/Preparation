@@ -1,4 +1,4 @@
-1.AWS Route 53  			(Gaurav Gupta)						[06-OCT-2021]  ()
+1.AWS Route 53  			(Gaurav Gupta)						[08-OCT-2021]  (Done)
 2.AWS Route 53 				(Crishantha Nanayakkara)			[06-OCT-2021]  ()
 3.AWS Route 53 				(Prashant Lakhera)					[06-OCT-2021]  ()
 4.AWS Route 53 				(Vishal Padghan)					[06-OCT-2021]  ()
@@ -6,7 +6,7 @@
 ***************************************************  1.AWS Route 53 (Gaurav Gupta)	***************************************************
 
 DNS(Domain Name System) is used to convert Domain Name like http://medium.com into an Internet Protocol IPAddress such as http://10.100.1.0.
-We have two type of IPAddress IPv4(32 Bit) and IPv6(128 Bit).
+We have two type of IPAddress ie (32 Bit) and IPv6(128 Bit).
 
 AWS Route53 is highly available and scalable cloud Domain Name System.
 As we know that DNS is collection of rules and records which helps Clients to understand how to reach to a Server through URL's.
@@ -36,22 +36,89 @@ In Route53 we have many type of records
 
 3.A Record :
 ------------
-
+A Record stands for Address Record.
+This Record is used by the computer to translate the name of the Domain into an IPAddress.
 
 4.CNAME Record :
 ----------------
-
+CNAME stands for Cannonical Records ie URL to URL.
+CNAME points a URL to any other URL.
+we use it only for Non Root Domain.
 
 5.Alias Record :
 ----------------
-
+Alias Record points a URL to an AWS Resource.
+Alias Record are used to map Resource RecordSet in our hosted Zone to Elastic Load Balancer,CloudFront or S3 Bucket Websites.
 
 6.AAAA Record :
 ---------------
-
+AAAA Record maps a Domain Name to the IPAddress(IPv6) of the Computer hosting the Domain.
 
 7.MX Record :
 -------------
+MX Record stands for Mail Exchanger Record.
+MX Record specifies the Mail Server responsible for accepting email Messages on behalf of Domain Name.
+MX Record is a resource record in the DNS.
+It is possible to configure several MX Records typically pointing to an Array of Mail Servers for Load Balancing and redundancy.
+
+Routing Policies :
+------------------
+When we create a record we need to choose the routing policy which determines how Route53 responds to Queries.
+There are total 6 types of Routing Policies 
+
+1.Simple Routing Policy
+2.Weighted Routing Policy
+3.Latency Routing Policy
+4.Failover Routing Policy
+5.Geo Location Routing Policy
+6.Multi Value Routing Policy
+
+1.Simple Routing Policy :
+-------------------------
+This is the default Routing Policy.
+In case of Simple Routing Policy we have only one record with Multiple IPAddresses.
+This Routing Policy randomly selects the Routing path and does not take the resources status into Account.
+Here all the IPAddress are randomly returned to the Client.
+This can be used across Regions.
+Create two Instances in two AWS Regions and add an "A" Record and add both EC2 Instance's Public IPAddress.
+
+2.Weighted Routing Policy :
+---------------------------
+Weighted Routing Policy allows us to split the traffic based on the weights assigned.
+We can associate Health Check with it.
+This approach is heavily used in Blue Green Deployment.
+
+3.Latency Routing Policy :
+--------------------------
+This policy is used when we have resources in Multiple Regions and we want to route traffic to the resources that provides the best latency.
+The response to the request is purely measured by latency and not by the distance to the region of the resource.
+
+4.Failover Routing Policy :
+---------------------------
+Failover Routing Policy allows us to route traffic to a resource when the resource is healthy or to a different resource when the resource is unhealthy.
+For the Primary EndPoint it is required to associate a "Health Check" to do the Monitoring.
+This allows the Routing Policy to route to the Secondary End Point when there is a Failure.
+
+5.Geo Location Routing Policy :
+-------------------------------
+This Routing Policy allows us to route traffic to the resources based on geographic location of the Users ie location that the DNS query originates from.
+Even when the geographic location has very high latency,Route53 always stick to the geographic location only.
+
+6.Multi Value Routing Policy :
+------------------------------
+In case of Simple Routing Policy we have only one record with Multiple IPAddresses.
+Where as in case of Multi value Routing Policy we need to create multiple "A" record sets for each IPAddress that we define.
+With this approach we will be able to monitor each end point better than Simple Routing Policy by having health check attached to each Recordset.
+
+*************************************************** 2.AWS Route 53 (Crishantha Nanayakkara) ***************************************************
+
+
+
+
+
+
+
+
 
 
 
