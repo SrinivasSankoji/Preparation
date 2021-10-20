@@ -6,7 +6,7 @@
 
 ***************************************************** 1.AWS RDS (Vishal Padghan)  *****************************************************
 
-AWS RDS is a Web Service that makes it easier to set up,operate and scale Relational Database in the cloud.
+AWS RDS is a Service that makes it easier to set up,operate and scale Relational Database in the cloud.
 RDS provides cost efficient,resizable and industry standard Relational Database and manages common Database Administration Tasks.
 So RDS is not a Database and is a service that manages Database.
 The Database's that RDS can manage are
@@ -18,7 +18,7 @@ Oracle
 MariaDB
 
 Interesting part here is that RDS supports existing Relational Database.
-We need not change the code of an Application or learn new Query Language for using RDS.
+So We need not change the code of an Application or learn new Query Language for using RDS.
 The difference between MySql and MySql which is managed by AWS RDS is that we need not worry about underlying Infrastructure or Administration of the Database.
 Updation,Health monitor of the system on which MySql is installed,regular backup will be managed by AWS RDS.
 
@@ -49,7 +49,7 @@ Micro Instances
 
 2.Regions and Availability Zones :
 ----------------------------------
-AWS Resources are housed in a highly available Date Center which are located across different parts of the world.
+AWS Resources are housed in a highly available Data Center which are located across different parts of the world.
 This Area is called Region.
 Each Region has Multiple Availability Zones.
 We can deploy our DB Instance in multiple Availability Zones and this ensures the Failover.
