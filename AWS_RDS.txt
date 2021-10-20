@@ -1,8 +1,8 @@
 1.AWS RDS  							(Vishal Padghan)  					[04-OCT-2021]  (Done)		(Refer Articles)
 2.AWS RDS  							(Prashant Lakhera)  				[04-OCT-2021]  (Done)		(Refer Articles)
-3.AWS RDS MySql 					(AWS Training Center)  				[04-OCT-2021]  ()		
+3.AWS RDS MySql 					(AWS Training Center)  				[21-OCT-2021]  (Done)		
 4.AWS RDS Multi AZ FailOver 		(AWS Training Center)  				[04-OCT-2021]  ()
-5.AWS RDS Read Replica Access 		(AWS Training Center)  				[04-OCT-2021]  ()	
+5.AWS RDS Read Replica Across Region(AWS Training Center)  				[04-OCT-2021]  ()	
 
 ***************************************************** 1.AWS RDS (Vishal Padghan)  *****************************************************
 
@@ -36,7 +36,7 @@ The Components in AWS RDS are
 1.DB Instances :
 ----------------
 DB Instances are the building blocks of RDS.
-It is an isolated Database environment in the cloud which contains multiple User created Database's.
+It is an isolated Database Environment in the cloud which contains multiple User created Database's.
 This can be accessed using the tools and Applications similar to the stand alone Database Instance.
 DB Instance can be created using AWS Management Console,AWS RDS API or AWS CLI.
 The computation and memory capacity of the DB Instance depends on the DB Instance Class.
@@ -112,6 +112,61 @@ Hands-On :
 ----------
 
 ***************************************************** 3.AWS RDS MySql (AWS Training Center)  *****************************************************
+
+In this example we will launch RDS Database ie MySQL Engine and we will connect to this Database from an EC2 Instance where we host our Applications.
+Here we need to install MySql Client on EC2 Machine and from here we connect to the RDS Instance and execute the SQL Queries.
+
+Create the VPC
+Create two Subnets ie public Subnet and private Subnet.
+In the Public Subnet install an EC2 Instance and in the private Subnet Install the MySql Engine using RDS.
+
+VPC --> RDS-VPC
+CIDR Block --> 10.200.0.0/16
+
+Create an Internet Gateway -->  RDS-IGWAY.
+Attach the Internet Gateway to the VPC.
+
+Create the Public Subnet --> RDS-PUBLIC-SUBNET --> 10.200.0.0/24
+Create the Route Table --> RDS-PUBLIC-SUBNET-ROUTE-TABLE --> Add the Route to the Internet.
+
+Create the Private Subnet --> RDS-PRIVATE-SUBNET-SOUTH-A --> 10.200.1.0/24
+Create the Route Table --> RDS-PRIVATE-SUBNET-RT-SOUTH 
+
+Create the Private Subnet --> RDS-PRIVATE-SUBNET-SOUTH-B --> 10.200.2.0/24
+No need to create the Route Table and add it to the existing Private Route Table.
+
+Now Launch the RDS MySql Database.
+Navigate to RDS Service --> Create a DB Subenet Group and add the two Private Subnets ie --> RDS-SUBNET-GROUP --> Add the Subnets ie Private Subnets.
+Subnet Group is nothing but Collection of Subnet's where we can launch Databases's in case of Multi Availability Zones.
+Instances --> Create Database --> Launch Free Tier MySql Database Instance.
+DBInstance Identifier --> RDS-MYSQL
+Master
+Password
+Insert the Database Details.
+
+Note:
+Here Traffic to the RDS will come from EC2 Instance and we need to define in the Security Group.
+Change the source to VPC CIDR instead of MyIP ie 10.200.0.0/16
+Every RDS Instance recieves an End Point using which we can connect to the Database.
+
+Launch an EC2 Instance in Public Subenet and install MySql Client using which we can connect to an RDS Database.
+
+$ sudo yum install mysql
+$ mysql -h "your db instance endpoint" -P 3306 -u master -p
+$ show databases;
+$ use rds;
+$ create table awstraining (name VARCHAR(30), batch INT(2), phone VARCHAR(10), email VARCHAR(30));
+$ insert into awstraining  values ('Chetan', 3, '9x2x5x3x6x', 'awstrainingcenter@gmail.com');
+$ select * from awstraining;
+
+*****************************************************  4.AWS RDS Multi AZ FailOver ************************************************************* 
+
+
+
+***************************************************** 5.AWS RDS Read Replica Across Region  *****************************************************
+
+
+
 
 
 
