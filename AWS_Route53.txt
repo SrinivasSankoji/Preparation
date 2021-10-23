@@ -5,18 +5,18 @@
 
 ***************************************************  1.AWS Route 53 (Gaurav Gupta)	***************************************************
 
-DNS(Domain Name System) is used to convert Domain Name like http://medium.com into an Internet Protocol IPAddress such as http://10.100.1.0.
+DNS(Domain Name System) can be used to convert Domain Name like http://medium.com into an IPAddress such as http://10.100.1.0.
+DNS is collection of rules and records which helps Clients to understand how to reach to a Server through IPAddress's.
 We have two type of IPAddress ie (32 Bit) and IPv6(128 Bit).
 
 AWS Route53 is highly available and scalable cloud Domain Name System.
-As we know that DNS is collection of rules and records which helps Clients to understand how to reach to a Server through URL's.
-DNS operates on port 53 so that Amazon decided to call it route53.
-AWS Route53 is a Global Service.
+Since the DNS operates on port 53 so Amazon decided to call it as Route53.
+Route53 is a Global Service.
 We need to buy a Domain in order to work with Route53.
 
-Route53 can be used to provide public Domain Name or private Domain Names that can be resolved by the instances in our VPC.
+Route53 can be used to provide public Domain Name or private Domain Name that can be resolved by the instances in our VPC.
 Route53 has many features such as Load Balancing,Health Checks,Routing Policies etc.
-In Route53 we have many type of records 
+In Route53 we have many type of Records
 
 1.SOA Record
 2.NS Record

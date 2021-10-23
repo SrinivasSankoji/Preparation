@@ -123,31 +123,38 @@ In the Public Subnet install an EC2 Instance and in the private Subnet Install t
 VPC --> RDS-VPC
 CIDR Block --> 10.200.0.0/16
 
-Create an Internet Gateway -->  RDS-IGWAY.
+Create an Internet Gateway -->  RDS-INTERNET-GATEWAY.
 Attach the Internet Gateway to the VPC.
 
 Create the Public Subnet --> RDS-PUBLIC-SUBNET --> 10.200.0.0/24
 Create the Route Table --> RDS-PUBLIC-SUBNET-ROUTE-TABLE --> Add the Route to the Internet.
 
 Create the Private Subnet --> RDS-PRIVATE-SUBNET-SOUTH-A --> 10.200.1.0/24
-Create the Route Table --> RDS-PRIVATE-SUBNET-RT-SOUTH 
+Create the Route Table --> RDS-PRIVATE-SUBNET-ROUTE-TABLE
 
-Create the Private Subnet --> RDS-PRIVATE-SUBNET-SOUTH-B --> 10.200.2.0/24
+Create the Private Subnet --> RDS-PRIVATE-SUBNET-SOUTH-C --> 10.200.2.0/24
 No need to create the Route Table and add it to the existing Private Route Table.
 
+Note:
+Make sure that One Public and one Private Subnet has sme Availability Zone.
+
 Now Launch the RDS MySql Database.
-Navigate to RDS Service --> Create a DB Subenet Group and add the two Private Subnets ie --> RDS-SUBNET-GROUP --> Add the Subnets ie Private Subnets.
+Navigate to RDS Service --> Create a DB Subenet Group and add the two Private Subnets ie --> RDS-VPC-SUBNET-GROUP --> Add the Subnets ie Private Subnets.
 Subnet Group is nothing but Collection of Subnet's where we can launch Databases's in case of Multi Availability Zones.
 Instances --> Create Database --> Launch Free Tier MySql Database Instance.
 DBInstance Identifier --> RDS-MYSQL
-Master
-Password
+Master --> admin
+Password --> password
+Select the created VPC in Connectivity
 Insert the Database Details.
+It will take 5 Minutes to create the RDS Instance.
 
 Note:
-Here Traffic to the RDS will come from EC2 Instance and we need to define in the Security Group.
-Change the source to VPC CIDR instead of MyIP ie 10.200.0.0/16
+Here Traffic to the RDS will come from EC2 Instance and we need to define in the Security Group in RDS.
+Edit Inbound Rules --> Change the source to VPC CIDR instead of MyIP ie 10.200.0.0/16
 Every RDS Instance recieves an End Point using which we can connect to the Database.
+
+	rds-vpc-mysql.c5pm54xhsyey.ap-south-1.rds.amazonaws.com
 
 Launch an EC2 Instance in Public Subenet and install MySql Client using which we can connect to an RDS Database.
 
