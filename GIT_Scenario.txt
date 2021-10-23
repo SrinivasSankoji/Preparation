@@ -50,7 +50,7 @@ git checkout HEAD path/to/your/dir/or/file
 
 -- To Undo the Modified Files
 git reset --hard HEAD
-99;
+
 --Switch From One Branch to Another Branch
 git branch "Branch Name" 
 git checkout replica
@@ -81,3 +81,15 @@ git add -u
 git reset -- main/dontcheckmein.txt
 
 
+Error :
+-------
+Please make sure you have the correct access rights and the repository exists.
+
+Generate the ssh key using the command 
+
+	ssh-keygen -t rsa -C srinivaschary.chary@gmail.com
+	
+Add the key in the GitHub
+Then run the command
+
+	git remote set-url origin git@github.com:SrinivasSankoji/JavaBasics.git

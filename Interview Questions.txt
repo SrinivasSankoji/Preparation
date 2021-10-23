@@ -1,3 +1,24 @@
+
+Java Practice Sites :
+---------------------
+https://www.educative.io/edpresso
+https://www.codejava.net/
+https://codippa.com/
+https://javahungry.blogspot.com/
+https://www.softwaretestinghelp.com/
+
+Java8 Websites :
+----------------
+concretepage
+journaldev
+howtodoinjava
+softwaretestinghelp
+javabrahman
+beginnersbook
+boraji
+javapapers
+
+
 ***************************************** Interview  Topics ********************************************
 Java Memory Model
 Java Memory Management
@@ -49,27 +70,18 @@ AWS
 Ansible
 
 ***************************************  Developer    *****************************************
-
-Block Chain Technology : JavaScript
-						 C ++ or Go Language
-						 Solidity(For Smart Contract Development)
-						 The Block Chain 
-						 Crypt o Economics
-						 Satoshi Nakamoto’s whitepaper of Bitcoin
-						 Go Language
-						 
-						 
-Java :                             Design Patterns :				Spring :
-******  						   *****************				********
-Jdbc   								Observable        				Spring Boot 1 & 2	                       
-Servlet								Iterate							Spring Security
-JSP									Circuit Breaker					Spring Integration
-Struts1								Bulk Head						Spring Batch
-Struts2								Adapter Design Pattern			Spring Cloud	
-JSF																	Spring Factories
-J son																Spring Web Flux
-Data Structure & Algorithms											Spring AOP
-Java JDK Tools : Java papers.com									Spring Data JPA
+					 
+Java :                             	
+******  						   	
+Jdbc   									                      
+Servlet									
+JSP										
+Struts1									
+Struts2									
+JSF																	
+J son																
+Data Structure & Algorithms											
+Java JDK Tools : Java papers.com									
 Apache CXF
 Apigee
 Jersey
@@ -77,87 +89,50 @@ WADL
 SOAP
 RxJava
 Vertex
-						
-ORM Framework :					  Database :						Front End Technologies :
-***************					  **********						************************
-Hibernate						  Oracle							Java Script
-Open JPA						  DB2								AJAX
-								  PL/SQL							JQuery
-																	BootStrap
-																	Angular Basics
-																	Forms
-																	Material
-																	React Hooks
-			
-Spring Boot :														Dev Ops:
-*************														********
-Profiles in Spring Boot												Git,SVN
-Live Reload in Spring Boot											GitHub & BitBucket
-Reactive and Non Reactive Web application							Jenkins						
-Spring Web Flux to Support Reactive Web application					Bash				
-Spring Boot Actuator Web API Documentation							Chef
-CompletableFuture with Spring Data JPA								Puppet
-Spring Boot – Introduction											Concourse																		
-Spring Boot – Starter parent										Hudson
-Spring Boot – Starter templates										Bamboo			
-Spring Boot – Multi-module project									TeamCity
-Spring Boot – Annotations											AWS
-Spring Boot – Auto configuration									Docker
-Spring Boot – Logging												Vagrant
-Spring Boot – DevTools												New Relic
+
+Spring Boot :														
+*************														
+Profiles in Spring Boot												
+Live Reload in Spring Boot											
+Reactive and Non Reactive Web application							
+Spring Web Flux to Support Reactive Web application					
+Spring Boot Actuator Web API Documentation							
+CompletableFuture with Spring Data JPA								
+Spring Boot – Introduction																							
+Spring Boot – Starter parent										
+Spring Boot – Starter templates										
+Spring Boot – Multi-module project									
+Spring Boot – Annotations											
+Spring Boot – Auto configuration									
+Spring Boot – Logging												
+Spring Boot – DevTools												
 Spring Boot – WAR Packaging	
 Spring Boot – Hibernate
 Spring Boot – REST API
 Spring Boot – ResponseBodyEmitter
 Spring Boot – SseEmitter
-Spring Boot – POST with Headers										Streaming :
-Spring Boot – Error Handling										***********
-Spring Boot – HATEOAS												JMS
-Spring Boot – @Async      [08-AUG-2019]  (Done)   					Kafka
-Spring Boot – Async Controller										RabitMQ
+Spring Boot – POST with Headers										
+Spring Boot – Error Handling										
+Spring Boot – HATEOAS												
+Spring Boot – @Async      											[08-AUG-2019]  (Done)   					
+Spring Boot – Async Controller										
 Spring Boot – Caching
 Spring Boot – Retry
 Spring Boot – JUnit
-Spring Boot – BasicAuth												No SQL :
-Spring Boot – MockMVC												********
-Spring Boot – Mockito												Elastic Search
-Spring Boot – H2 Database											Mongo DB
-Spring Boot – Ehcache 3.x											Cassandra
-Spring Boot – Performance Logs										Dynamo DB
-Spring Boot – Test Async Controller									Redis Server
-Spring Boot – TestRestTemplate										HBase
+Spring Boot – BasicAuth												
+Spring Boot – MockMVC												
+Spring Boot – Mockito												
+Spring Boot – H2 Database											
+Spring Boot – Ehcache 3.x											
+Spring Boot – Performance Logs										
+Spring Boot – Test Async Controller									
+Spring Boot – TestRestTemplate										
 Spring Boot – RestTemplate GET
 Spring Boot – RestTemplate POST
 Spring Boot – RestTemplate timeout
 Spring Boot – RestTemplate BasicAuth
+Spring Boot - Exception handling
 			
-Cloud :
-*******
-AWS
-Azure
-PCF
-GCE(Google Container Engine)
-Cloud Native Apps Using PCF
-Spring Cloud Data Flow
-Pivotal Cloud Foundry Developer
-Spring XD
-AWS Lambda
-
-Private Cloud Platform:
-***********************
-Open Shift
-Kubernetes
-Docker
-
-Logging
-*******
-LogBack
-Flogger : LimeGuru
-
-Reactive Streams
-PrtoBuff
-Netty Server
-
 ------------------------- GIT Interview Quetsions -----------------------------------------------
 
 1. What is Git & GitHub?
@@ -318,22 +293,4 @@ Changes Enables Functional Programming
 Method References
 Stream API
 
-Java Practice Sites :
----------------------
-https://www.educative.io/edpresso
-https://www.codejava.net/
-https://codippa.com/
-https://javahungry.blogspot.com/
-https://www.softwaretestinghelp.com/
-
-Java8 Websites :
-----------------
-concretepage
-journaldev
-howtodoinjava
-softwaretestinghelp
-javabrahman
-beginnersbook
-boraji
-javapapers
 

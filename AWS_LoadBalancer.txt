@@ -14,10 +14,10 @@
 4.HTTP Host and Path Based Routing  (Done)
 5.Protocols other than HTTP			(Done)
 6.Dynamic Ports in ALB and NLB		(Done)
-7.Sticky Sessions					()
-8.XFF Header						()
-9.Health Checks of LLB				()
-10.Request Routing					()
+7.Sticky Sessions					(Done)
+8.XFF Header						(Done)
+9.Health Checks of LLB				(Done)
+10.Request Routing					(Done)
 11.Integrating NLB and ALB with EC2 Container Service  ()   (Depends on ECS)  ()
 
 1.What is Load Balancer :
@@ -25,7 +25,7 @@
 Load Balancer plays an important role in building great internet Applications.
 LB accepts incoming Network traffic from Client and based on some criteria in the traffic it distributes the communication to one or more back end servers.
 Load Balancer provides the benefits of Redundancy and scalability.
-Load Balancer can be physical hardware or virtual software.
+Load Balancer can be a physical hardware or virtual software.
 
 Redundancy :
 As long as there is only one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
@@ -154,14 +154,13 @@ For ALB and NLB Health Checks are found on the Target Groups.
 --------------------
 Request routing is specific to Application Load Balancer.It applies rules to the incomig requests and redirects the request.
 Rules can be applied for
+
 Host Header
 Http Header
 Http Method
 Source IP
 Path
 Query String
-
-
 
 11.Integrating NLB and ALB with EC2 Container Service :
 -------------------------------------------------------

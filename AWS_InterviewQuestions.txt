@@ -16,7 +16,6 @@ Snapshot
 
 Auto scaling
 ----------------
-
 Creation of Auto scaling (From template)
 Horizontal and vertical Auto scaling
 
@@ -24,7 +23,7 @@ Load balancer
 ---------------
 Types
 Application L.B  --> Using this 
-Classis L.B
+Classic L.B
 Network L.B  --> Related to TCP, UDP , supports Application L.B, Cost is High
 				 No security groups concept
 				 Fast is high

@@ -170,7 +170,7 @@ Whenever traffic to the website is high CPU performance will be increased automa
 C4,M4 and D2 instances are EBS optimized instances by default.
 EBS(Elastic Block Storage) is a persistent block level storage volume that can be used along with EC2 in which IOPS rate is high.
 Here Each block acts as a Harddrive.
-When an EBS Volume is attached to an instance,Single Digit milli seconds latency can be acheived.
+When an EBS Volume is attached to an EC2 Instance,Single Digit milli seconds latency can be acheived.
 
 Note :
 IOPS(Input Output Operations per Second) is a performance measurement used to characterize computer storage devices.
@@ -345,6 +345,10 @@ Add the UserName in tha Data Section. ie ubuntu
 Browse the Generated ppk file in the Auth Section.
 Now it will connect to the EC2 instance.
 
+Convert pem to ppk :
+--------------------
+open puttygen --> Load the Pem File --> save as private key.
+
 Reference :
 -----------
 https://www.youtube.com/watch?v=bi7ow5NGC-U
@@ -352,13 +356,3 @@ https://www.youtube.com/watch?v=bi7ow5NGC-U
 
 ******************************************* 9.Spring Boot Docker EC2  (Simple Programming) *******************************************************
 
-
-
-
-
-
-
-
- 
-
- 
