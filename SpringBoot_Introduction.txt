@@ -9,7 +9,7 @@
 
 ********************************************************  1.SpringBoot Introduction (hellokoding)  ********************************************************
 
-SpringBoot is a micro java based framework that can be used to build Web applications and and Can also be used for Command Line Applications.
+SpringBoot is a micro java based framework that can be used to build Web applications and and can also be used for Command Line Applications.
 SpringBoot Web Application can be built to a stand alone JAR.
 JAR contains an embeeded web server that can be started with java -jar.
 SpringBoot has the following features.

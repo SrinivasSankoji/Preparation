@@ -4,7 +4,10 @@
 4.What Is Load Balancing									(Siddhant Singh)			[01-JUN-2021]  ()
 5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 6.AWS ALB with Path based Routing 							(AWS Training Center)		[01-JUN-2021]  ()
-7.AWS ALB with Autoscaling Group							(AWS Training Center)		[01-JUN-2021]  ()
+7.Production level Load Balancing 							(Crishantha Nanayakkara)    [22-JUN-2021]  ()
+8.Auto Scaling												(Prabhu Rajendran)
+9.AWS ALB with Autoscaling Group							(AWS Training Center)		[01-JUN-2021]  ()
+10.Auto Scaling												(Crishantha Nanayakkara)    [22-JUN-2021]  ()
 
 ****************************************** 1.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
 
@@ -22,17 +25,18 @@
 
 1.What is Load Balancer :
 -------------------------
-Load Balancer plays an important role in building great internet Applications.
-LB accepts incoming Network traffic from Client and based on some criteria in the traffic it distributes the communication to one or more back end servers.
+Load Balancer plays an important role in building great Internet Applications.
+LB accepts incoming Network traffic from Client and based on some criteria in the traffic it distributes the communication to one or more Back End servers.
+Load Balancer can be of physical hardware or virtual software.
 Load Balancer provides the benefits of Redundancy and scalability.
-Load Balancer can be a physical hardware or virtual software.
 
 Redundancy :
-As long as there is only one Application Server,Load Balancer accepts the incoming request from the client and redirects to the Application Server.
+As long as there is only one Application Server,
+Load Balancer accepts the incoming request from the client and redirects the request to the Application Server.
 
 Scalability :
 By running 2 Servers behind the Load Balancer we can now handle 2X requests from the client.
-Load Balancers provides a way to add more and more Backend Servers if the incoming network traffic increases.
+Load Balancer provides a way to add more and more Backend Servers If the incoming network traffic increases.
 
 Elastic Load Balancer must have two Availability Zones.
 Elastic Load Balancer cannot be cross Region and can be created only one per Region.
@@ -43,14 +47,13 @@ regard to its underlying infrastructure and technology.
 
 1.At the Application Layer browser constructs the HTTP request which is a small text document.
 HTTP request describes what resource the browser wants to fetch from the Web Server.
-2.In order to make sure the communication between browser and web server is secure,web request is encrypted using SSL/TLS.
-This process takes server's publick key and converts the HTTP request into an unreadable chunk of encrypted data.
-3.To send the encrypted data to the Web server there should be a communication betwenn web browser andd web server.
-This can be done by providing a session between both of them.
+2.In order to make sure the communication between web browser and web server is secure,web request is encrypted using SSL/TLS.
+This Layer is called Presentation Layer or Translation Layer.
+3.To send the encrypted data to the Web server there should be a communication between web browser and web server.
+This can be done by providing a session between them.
 4.Transport Layer is also called as "Traffic Control" of the networks.
 Protcolos include in this Layer are TCP and UDP.
-This Layer controls host to host data transfer and decides how much data can be sent at once and how fast we can send etc.
-whenever we are communication with any website Transport Layer will decide how much data can be sent at once etc.
+whenever we are communicating with any website Transport Layer will decide how much data can be sent at once etc.
 Transport Layer takes care of Data Segmentation and reassembly as well as flow and error control.
 Here Encrypted Payload is split into TCP packets.
 Each packet is a piece of HTTP payload and the metadata which includes source IP and destination IP.
@@ -72,13 +75,13 @@ Then the Load Balancer sends the communication back down the stack to redirect i
 Finally Destination Server travels the stack up again.
 
 1.ALB works at the Application Layer ie Layer 7 of the OSI model where as NLB works at the Transport Layer ie Layer 4 of the OSI Model.
-2.In case of ALB,network communication must travel all the way back to the Application Layer and reads the HTTP request to determine where it should be redirect.
-In case of NLB,network communication must travel all the way to the Transport Layer and reads the TCP packet information to redirect to the correct place.
+2.In case of ALB,Network communication must travel all the way back to the Application Layer and reads the HTTP request to determine where it should be redirect.
+In case of NLB,Network communication must travel all the way to the Transport Layer and reads the TCP packet information to redirect to the correct place.
 Here it does not read the content inside those packets.
 3.NLB just forward the request where as ALB reads the content of the HTTP Request Header to determine where to redirect the Request.
 ALB is content based Routing.
 4.NLB cannot assure the availability of the Application because it completely depends on Transport Layer and has no awareness of Application.
-where as ALB goes much deeper and is capable of determining availability based on successful HTTP GET.
+where as ALB is capable of determining availability based on successful HTTP GET.
 
 Note :Consider the scenario of deploying Multiple Applications on the same Host sharing IP Address.
 NLB cannot differentiate between Application A and Application B when checking Availability because there should be difference in Ports.
@@ -91,10 +94,10 @@ Not Completed
 
 4.HTTP Host and Path Based Routing :
 ------------------------------------
-If end to end encryption is not needed then we can use the "Host and Path based routing" one of the feature of Application Load Balancer.
+"Host and Path based routing" is one of the feature of Application Load Balancer.
+If End to End encryption is not needed then we can use "Host and Path based routing".
 In case of Host and Path based routing,Application Load Balancer will read the incoming HTTP request.
-If the path matches with the pattern then Load Balancer redirects the request to one machine.
-If the path matches with other pattern then Load Balancer redirects the request to another machine.
+If the path matches with the pattern then Load Balancer redirects the request to one machine and If doesn't matches redirects the request to Another machine.
 
 Note:
 This is very useful in case of Microservice or distributed Archirecture where we have one public API but multiple sections of the same API.
@@ -102,7 +105,7 @@ Example:
 api/users
 api/auth
 
-This type of routing can only be possible with Application Load Balancer because it reads the HTTP headers of an incoming request.
+This type of routing can only be possible with Application Load Balancer because it reads the HTTP Headers of an incoming request.
 It is not possible in Network Load Balancer because we only have TCP packets to work with.  
 
 5.Protocols other than HTTP :
@@ -128,14 +131,14 @@ Here EC2 instance will be running multiple Containers and each of which has a ra
 These ports are not static and If the Containers shutdown and restarted they may get a different port number.
 
 Both ALB and NLB supports the dynamic port by using an AWS Resource called "Target Group".
-Target Group tarcks the list of ports that are accepting traffic on each instance and gives the Load Balancer a way to distribute the traffic across the ports.
+Target Group tracks the list of ports that are accepting traffic on each instance and gives the Load Balancer a way to distribute the traffic across the ports.
 
 7.Sticky Sessions :
 -------------------
 Sticky Session binds a user session to a specific EC2 instance.
 It ensures all the requests from that session is sent to that particular instance.
 Here cookies are used to remember which EC2 instance.
-It is typically used with CLB but can be enabled in ALB. 
+It is typically used with Class Load Balancer but can be enabled in ALB. 
 
 Example:
 Sticky Session will be used If that particular user data is stored in that EC2 instance.
@@ -166,6 +169,8 @@ Query String
 -------------------------------------------------------
 
 
+
+************************************************* 6.AWS ALB with Path based Routing (AWS Training Center) ***********************************************************
 
 
 
