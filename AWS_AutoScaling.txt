@@ -1,0 +1,96 @@
+1.Auto Scaling												(Prabhu Rajendran)			[26-OCT-2021]  (Done)
+2.AWS ALB with Autoscaling Group							(AWS Training Center)		[01-JUN-2021]  ()
+3.Auto Scaling												(Crishantha Nanayakkara)    [22-JUN-2021]  ()
+
+******************************************************  1.Auto Scaling (Prabhu Rajendran) ******************************************************************
+
+In the traditional world there are limited number of servers to handle the Application Load.
+When the number of request increases,load on the server also increases which cause failures and latency in system.
+
+AutoScaling is a service provided in AWS using which we can automatically scale up or scale down the EC2 instances
+based on user defined profiles,schedulers and health checks.
+AutoScaling helps us to ensure that we have correct number of EC2 instances available to handle the load of an Application.
+
+Collection of EC2 instances is called Auto Scaling Groups.
+Sepcify the minimum number of EC2 instances in each Auto Scaling Group and Auto Scaling Group ensures that never goes below the size.
+Specify the maximum number of EC2 instances in each Auto Scaling Group and Auto Scaling Group ensures that never goes above the size.
+Specify the desired capacity either at the creation time or later ans ensures that group has this many instances.
+Specify the scaling policies so that Auto Scaling can launch or terminate instances based on Application Load.
+
+Components in Auto Scaling :
+----------------------------
+Group
+Configuration Templates
+Scaling Options
+
+Group :
+Each Ec2 instances are organized into Groups so that they can be treated as logical units for the purpose of Auto Scaling and Management.
+When we create a Group we need to specify the minimum,maximum and desired number of EC2 instances.
+
+Configuration Templates :
+Group uses the launch configuration or launch templates for its EC2 instances.
+We can specify the information such as AMI ID,Instance Type,Security Groups,block device mapping etc.
+
+Scaling Options :
+We can configure scale based on occurence of specific conditions or on a schedule.
+
+Auto Scaling Life Cycle :
+-------------------------
+EC2 instance in Auto Scaling Group has lify cycle that differs from other EC2 instances.
+Life Cycle starts when Auto Scaling Group launches an EC2 instance and puts into service.
+Life Cycle ends when Auto Scaling Group terminates the EC2 instance or Auto Scaling Group takes out the instance from service and terminates it.
+
+Scale Out
+Pending
+In Service
+Scale In
+
+Scale Out :
+When Scale Out event occurs,Auto Scaling Group launches the required number of EC2 instances using its launch configuration.
+
+Pending :
+These instances start in pending state.
+When each instance is fully configured and passes EC2 health check,it is attached to Auto Scaling Group and enters the In Service State.
+Now the instance is counted against the desired capacity of the Auto Scaling Group.
+
+In Service :
+Instance remains in In Service state untill one of the following state occurs.
+Scale In Event
+Put the Instance into a Stand By state and Instance in Stand By state is managed by Auto Scaling Group and not active part of Application.
+Detach the instance from Auto Scaling Group
+Instance is removed from Auto Scaling Group If the required number of Health Check fails.
+
+Scale In :
+When Scale In Event occurs Auto Scaling Group detaches one or more instances.
+Auto Scaling Group uses its termination policy to determine which instances to terminate.
+
+Note:
+We create a corresponding scale in event for each scale out event that we create.
+
+Attach an Instance :
+--------------------
+We can attach a running instance that meets certain criteria to our Auto Scaling Group.
+After the instance is attached,It is managed as a part of Auto Scaling Group.
+
+Detach an Instance :
+--------------------
+We can detach an instance from Auto Scaling Group.
+After the instance is detached we can manage it seperately from Auto Scaling Group or attach it to different Auto Scaling Group.
+
+Life Cycle Hook :
+-----------------
+We can add life cycle hook to our Auto Scaling Group so that we can perfrom custom actions when instances launch or terminate.
+
+
+****************************************************** 2.AWS ALB with Autoscaling Group (AWS Training Center) ***********************************************
+
+
+
+
+
+
+
+
+
+
+

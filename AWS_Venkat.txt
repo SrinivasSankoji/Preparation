@@ -334,7 +334,7 @@ To see the list of services
 
 	chkconfig httpd --list
 	
-There is an url that show the metadat about the instance ie 
+There is an url that show the metadata about the instance ie 
 
 	curl http://169.254.169.254/latest/meta-data/
 	

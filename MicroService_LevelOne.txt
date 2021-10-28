@@ -1,5 +1,3 @@
-{Micro Services Level 1 Concepts :
-*********************************
 1.Spring Boot Micro Services 								[04-JUL-2019]  (Done)
 2.Why So Many Technologies   								[04-JUL-2019]  (Done)
 3.Micro Service vs Service Oriented Architecture  			[04-JUL-2019]  (Done)
@@ -32,19 +30,18 @@ Server Side Discovery
 
 1.Spring Boot Micro Services :
 ****************************
-It is Different Way of Building Applications where each Module is Independent of Other and Deployed on different Servers.
+It is different way of Building Applications where each Module is Independent of Other and deployed on different Servers.
 In Case of Monolith Application All the Functionalities/Modules are Bundled as Single Entity(Jar/War) and deployed on a Single Server.
 Both Monolith and Micro Services have the Same Pattern of Writing the Code.
 
-We Create the  Micro Services and Make Them to Communicate With Each Other  
+We Create the  Micro Services and make them to communicate with each Other  
 i.e Consider the Big Monolith Application has divided into Smaller Parts and make them to talk with each Other.
-Here We Use RestTemplate(Hard Coding the URL),Service Discovery(Eureka Server),WebClient(Hard Coding the URL But calls Asynchronously),
-and Eureka Client.
-Some of the Common Cloud Platforms Used to Deploy Micro Services are Spring Cloud,AWS,Google Cloud Platform,Azure and so on.
+Here we use RestTemplate(Hard Coding the URL),Service Discovery(Eureka Server),WebClient(Hard Coding the URL but calls Asynchronously) and Eureka Client.
+Some of the Common Cloud Platforms used to deploy Micro Services are Spring Cloud,AWS,Google Cloud Platform,Azure and so on.
 As an End Result we get Cohesive Piece of Code as Response(Mostly J son) from Micro Service.
 
-Challenges While Creating Micro Services are from Where to Start Because There are lots of Technologies that can be used for
-Developing Micro Services and one of them is Spring Cloud.
+Challenges while creating Micro Services are from where to start because there are lots of Technologies that can be used for
+developing Micro Services and one of them is Spring Cloud.
 In Spring Cloud there are so Many Buzz Words/Features and also Design Patterns to Implement Micro Services.
 
 2.Why So Many Technologies Involved in MicroServices :
@@ -56,25 +53,23 @@ and we have to check Scalability So that there wont be Multiple Copies of Code.
 In Case of Monolith Complexity is hidden with in the Application where as in Case of Micro Services Complexity is between the 
 Micro Services.
 
-The Problem that Comes with Monolith Applications are Specific to that Module where as the Problems with Micro Service are Generic.
+The Problem that Comes with Monolith Application are Specific to that Module where as the Problems with Micro Service are Generic.
 One of  the Example is Load Balancing i.e Here Individual Micro Service is doing what an Application is Supposed to do.
 and the Common Problem is Communicating Between the Micro Services.
 
 There are Lot of Frameworks/Technologies to resolve the Common Problems of Micro Services.
-Eureka Implements Discovery Pattern.
+Eureka Implements Service Discovery Pattern.
 Hystrix Implements  Circuit Breaker  Pattern.
 
 3.Micro Service and Service Oriented Architecture :
 ***************************************************
-Service Discovery is a Pattern i.e when we have an Application Broken into Micro Services and how Microservice Communicate within each Other
-and also How to Discover among them to Communicate With.
+Service Discovery is a Pattern i.e 
+when we have an Application Broken into Micro Services and how Microservice Communicate within each Other and also How to discover among them to Communicate With.
 Eureka is One of the Technology that Implements Service Discovery Pattern.
-Whenever we are Implementing Service Oriented Architecture,We are Building a Service for Re Usability and we don't know where the Service 
-is Going to be Used.
+Whenever we are Implementing Service Oriented Architecture,We are Building a Service for Re Usability and we don't know where the Service  is Going to be Used.
 Using Service Oriented Architecture,We are Going to Create an Utility and we don't have any Application in Mind.
-But In Case of Micro Services we have a Clear Idea of What an Application is Supposed to do and It also can be reused If Requires.
-Service Oriented Architecture has lot of Complexity Involved Because they are More Standardized,have an Explicit Contract and 
-lot of Precautions.
+But In Case of Micro Services we have a Clear Idea of What an Application is Supposed to do and It also can be reused If requires.
+Service Oriented Architecture has lot of Complexity Involved Because they are More Standardized,have an Explicit Contract and lot of Precautions.
 
 4.Application Building :
 ************************
@@ -123,8 +118,7 @@ MovieInfoController --> getMovieInfo(movieId)
 
 9.Configuring Server Port  :
 ****************************
-Change the Server Port in application.properties and
-change all the Ports of Micro Services
+Change the Server Port in application.properties and change all the Ports of Micro Services
 
 10.Coding Third Service (Building the Rating Data Service API) :
 ****************************************************************
@@ -149,13 +143,12 @@ Note: In Micro Services There May be a Chance of Multiple Copies of Same Classes
 RestTemplate restTemplate=new RestTemplate();
 Movie movie=restTemplate.getForObject("http://localhost:5002/movies/"+rating.getRating(), Movie.class);
 
-The Problem in this case is We are HardCoding the URL and We have to Discover the Service at Run Time.
+The Problem in this case is we are hardCoding the URL and We have to discover the Service at Run Time.
 Here We have Created RestTemplate Object.
 We Can Create a RestTemplate Object once,Annotate with @Bean and reuse it using @Autowired Annotation.
 
 12.Using Bean to Create a Rest Template :
 *****************************************
-
 To have Single instance of Rest Template and Used across the Application we use @Bean Annotation.
 In The Spring Boot Application Main Class, Create a Method that returns RestTemplate and Mark the Method as @Bean.
 
@@ -242,14 +235,14 @@ Here Each Micro Service has to Register with Service Discovery.(Mark the Main Me
 Here Discovery Server is kind of Phone Book that Maintains all the URL Details of Each Micro Service.
 Here The Problem is Client Calls the Discovery Server to get Where Exactly the Micro Service is and 
 Once it finds the Address(URL),Then It Calls the Service.
-Here Additional Call is Required Instead of Directly calling The Service.
+Here Additional Call is Required Instead of directly calling The Service.
 This way of Calling is Called Client Side Discovery.
+Spring Cloud Uses Client Side Discovery Server.
 
 Server Side Discovery Server :
 ------------------------------
 In Case of Server Side,Discovery Client Says to the Discovery Server to Call the Service.
-Here Discovery Server is responsible to call Service and Provide Response to The Client.
-Spring Cloud Uses Client Side Discovery Server.
+Here Discovery Server is responsible to call Service and provide Response to The Client.
 
 17.Introducing Eureka :
 ***********************
@@ -281,10 +274,9 @@ eureka.client.register-with-eureka=false
 eureka.client.fetch-registry=false
 
 This Means that Eureka Does not Register With Itself.
-Because Every Eureka Server is also a Eureka Client and When it runs it Not Only Provides a Registry and also 
-tries to register with other Eureka Server.
-We Not Only Have Multiple Instances of Micro Services,we also Have Multiple Instances of Eureka Server and they
-Can Register With Each Other.If One Server Fails other Server Will Provide the Services.
+Because Every Eureka Server is also a Eureka Client and When it runs it Not Only Provides a Registry and also tries to register with other Eureka Server.
+We Not Only Have Multiple Instances of Micro Services,we also Have Multiple Instances of Eureka Server and they Can Register With Each Other.
+If One Server Fails other Server Will Provide the Services.
 Since we Have One Server, Then Stop Behaving as a Client and to and to Make this we added in the Properties File.
 
 19.Creating Eureka Clients :

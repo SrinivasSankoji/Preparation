@@ -254,7 +254,7 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a service provided in EC2 using which we can automatically scale up or scale down the instances 
+Auto Scaling is a Service provided in AWS using which we can automatically scale up or scale down the EC2 instances 
 based on user-defined profiles,schedulers and health checks.
 
 14.Elastic Load Balancing :
