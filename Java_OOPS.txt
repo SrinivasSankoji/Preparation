@@ -26,13 +26,13 @@
 
 **********************************************************  1.Data Hiding  *********************************************************************
 
-Data Hiding Means hiding of Data.
+Data Hiding Means hiding the Data.
 Our internal data sholud not go out diretly i.e outside person is not allowed to access our internal data directly.
 By using private modifier we can acheive Data Hiding.
-Instead of providing the data directly,provide access through method.
+Instead of providing the data directly,provide the access through method.
 Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
 Main advantage of data hiding is security.
-Recomended Modifier for data variable is private.
+Recomended Modifier for data hiding is private.
 
 **********************************************************  2.Abstraction  **********************************************************************
 
@@ -53,15 +53,15 @@ Here we are hiding the data behind the methods is a central concept of Encapsula
 Main Advantage of Encapsulation is we can acheive security and Enhancement will become easy.
 Encapsulation improoves the maintainability and modularity of an Application.
 
-If we want security we should compromise the performance of the Application.
+If we want security we should compromise the performance of an Application.
 Disadvantage of Encapsulation is it increases the length of the code and slows down execution.
 Perfromance of the system will be impacted.
 
 ********************************************************** 4.Tightly Encapsulated Class  **********************************************************
 
 When ever we are very strict about Data Hiding,we go for tightly encapsulatd class.
-A class is said to be tightly Encapsulated class if each and every variable of the class is declared as private.
-Whether the class contains corresponding setter and getter methods or not,whether these methods are declared as public or not.
+A class is said to be tightly Encapsulated class If each and every variable of the class is declared as private.
+Whether the class contains corresponding setter or not,getter methods or not,whether these methods are declared as public or not.
 These things are not required to check.
 
 Note :
@@ -77,7 +77,7 @@ We need to define the common functionality in one class and specific functionali
 This approach improoves the reusability of the code and reduces the development time.
 Entire Java API is implemented based on simple inheritance.
 For all Errors and Exceptions,most common functionality is available in Throwable class.Hence Throwable class acts as a root class for Java Exception Hierarchy.
-Similarly For all Java classes most common required functionality is available in  Object class.
+Similarly For all Java classes most common functionality is available in  Object class.
 Hence Object class acts as a Root Class for all Java Classes.
 
 Example :
@@ -201,7 +201,7 @@ Consider the scenario if we want to build the car ,each part is taken from the t
 Here the disadvantage is if there is a change in Engine, then it will impact the Class Car.
 Has a Relationship increases the dependencies between the components and increases the maintanance problems.
 
-Note : If there is no parent child relationship and still i wnat to acheive reusability of the code we use has a relationship.
+Note : If there is no parent child relationship and still i want to acheive reusability of the code we use has a relationship.
 Composition and Aggregation are both the cases that comes under has a relationship.
 
 Composition :
@@ -218,7 +218,7 @@ Consider the scenario of department.
 Many Professors works under one department.
 There may also be a scenario where the Department has no Professors in it.
 Here without existing container object(Department) there may also be a chance of existing contained object(Professor).
-Container objects and contained objects are weakly associated is called Aggregation.
+Container objects and contained objects are weakly associated with each other and is called Aggregation.
 
 Note :
 ------
@@ -258,7 +258,7 @@ In a Class two Methods with same signature are not allowed.Atleast argument type
 
 ************************************************************* 8.Overloading   ******************************************************************************
 
-Two Methods are said to be overloaded methods if both the methods have the same name and having different argument types i.e
+Two Methods are said to be overloaded methods If both the methods have the same name and having different argument types i.e
 Atleast order of arguments must be different is also applicable.
 
 In C 
@@ -278,13 +278,13 @@ Note :
 ------
 In overloading Method resolution is always taken care by compiler i.e based on reference type.
 Compiler decides which method has to be executed based on reference type.
-Here overloading is called static polymorphism or compile time polymorphism or early Binding.
+Here overloading is called static polymorphism or compile time polymorphism or Early Binding.
 
 public class OverloadingDemo {
 
 	public void m1()
 	{
-		System.out.println("No Argument COnstructor");
+		System.out.println("No Argument Constructor");
 	}
 	public void m1(int i)
 	{
@@ -302,9 +302,14 @@ public class OverloadingDemo {
 	}
 }
 
+Output :
+No Argument Constructor
+Value of Integer Argument is 36
+Value of Integer Argument is 97
+
 Automatic promotion in Overloading :
 ------------------------------------
-While performing Method overloading,if exactly matched method is not found then we don't get compile time error.
+While performing Method overloading,If exactly matched method not found then we don't get compile time error.
 Here Compiler promotes the argument to the next level and checks whether the matched method is available or not.
 This process will be continued untill all the possible promotions.
 Still if the matched method is not avaialbale then we get the compile time Error.
@@ -331,8 +336,7 @@ demo.m1(null);// Priority goes to Child class in case of overloading and output 
 
 Note :
 ------
-In case of overloading Method Resolution if both method matches,then priority goes to the Child class argument over the Parent class argument.
-
+In case of overloading If both method matches,then priority goes to the Child class argument over the Parent class argument.
 
 public void m1(String string)
 {
@@ -348,15 +352,13 @@ demo.m1(null);// CTE
 
 Note :
 ------
-In case of overloading method Resolution,If both methods are at same level we get CTE.
-
+In case of Method Overloading,If both methods are at same level then we get CTE.
 
 VarArg Method :
 ---------------
-
 vararg method came in 1.5 version.
 vararg() can be called by passing any no of arguments including 0 or any.
-In general vararg() will get the least priority i.e if no oher method matches then only vararg() will get the chance.
+In general vararg() will get the least priority i.e If no other method matches then only vararg() will get the chance.
 vararg() is same as default in switch case.
 
 public void m1(int... i)
@@ -369,7 +371,7 @@ demo.m1(35,24);
 
 ***************************************************************** 9.Overriding  *********************************************************************
 
-whatever the methods parent has by default it is avaialbale to the child class.
+whatever methods Parent has by default avaialbale to the Child class.
 If the child class is not satisfied with the parent class method then child class is allowed to redefine the parent class method in the child class based on its requirement.
 Parent class method which is overriden is called overridden method.
 Child class method which is overriding is called overriding method.
@@ -399,10 +401,10 @@ parentChild.marriage();
 
 Flow of execution :
 -------------------
-Here compiler will check whether the marriage method is present or not.
+Here compiler will check whether the marriage() is present or not.
 It again checks whether it is present in Parent class object or Child class Object.
 If it is present in Parent Class Object it will execute the Parent Class method.
-Similarly if it is present in child class object it will execute child class Object.
+Similarly If it is present in child class object it will execute child class Object.
 
 At runtime JVM will check whether the method is overriding in the child class or not.
 If yes child class method will get executed.
@@ -488,13 +490,13 @@ While overriding we cannot reduce the scope of the Access Modifier but we can in
 
 Scenario : Overriding w.r.t Exception :
 ---------------------------------------
-Runtime Exception and its Child Classes and Error and its Child Classes are called unchecked Exceptions.
+Runtime Exception and its Child Classes and Error and its Child Classes are called Unchecked Exceptions.
 Remaining all other are Checked Exceptions.
 
 Note :
 ------
-If a Child Class method throws any Checked Exception then Parent Class Method should thorw that same Checked Exception or its Parent.
-Similarly there is no Restriction for UnChecked Exception.
+If a Child Class method throws any Checked Exception then Parent Class Method should throw that same Checked Exception or its Parent.
+There is no restriction for Unchecked Exception.
 
 Scenario : Overriding w.r.t Static Method :
 -------------------------------------------
@@ -513,7 +515,7 @@ In case of method hiding,method resolution is taken care by compiler based on re
 Overriding w.r.t Vararg Methods :
 ---------------------------------
 We can Override vararg method with another vararg method then it is said to be overriding otherwise it is said to be overloading.
-If we Overriding vararg method with normal method then it is said to be overloading.
+If we are Overriding vararg method with normal method then it is said to be overloading.
 
 public class Parent{
 public void m1(int x)
@@ -530,7 +532,6 @@ public void m1(int... x)
 }
 
 Above case is said to be Overloading.
-
 If we replace the Parent Class m1() with Vararg Method then it is said to be Overriding.
 
 Overriding w.r.t variables :
@@ -544,18 +545,18 @@ Difference between Overloading and Overriding :
 Overloading :
 Method Name should be same.
 Argument Type should be different atleast order
-There is no restrictions on return type.
 We can Overlaod private,static,final methods.
+There is no restrictions on return type.
 There is no restriction on Access Modifier.
 There is no restriction on throws clause.
-Method resolution is always taken care by compiler based on reference type.
-Overlaoding is aloso known as static polymorphism or compile time polymorphism or early binding.
+Method resolution is taken care by compiler based on reference type.
+Overlaoding is also known as static polymorphism or compile time polymorphism or early binding.
 
 Overriding:
 Name of the Method and Argument Type should be same i.e Method Signature should be same including order.
 Return type should be same or Covariant return type
-Access modifier should be increase but cannot decrease
-Overridden method should throw the same execption as parent or its sub type.
+Scope of Access modifier can increase but cannot decrease.
+Overridden method should throw the same Execption as parent or its sub type.
 
 Method Resolution is taken care by JVM based on runtime object.
 Overriding is also known as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
@@ -588,9 +589,9 @@ By using child class reference we can call methods available in both parent and 
 If we konw the exact runtime Object the we go for the above approach.
 
 List list=new ArrayList();
-we can use the list reference to hold any of its implementation class obejcts.
+we can use list reference to hold any of its implementation class obejcts.
 By using parent reference we can call methods available only in parent class and child specific methods we cannot call.
-If we don't know exact runtime object the we go for this approach.
+If we don't know exact runtime object then we go for this approach.
 
 There are two types of polymorphism 
 
@@ -604,7 +605,7 @@ Polymorphism talks about flexibility.
 ******************************************************************* 13.Static Block  **********************************************************************
 
 Static block will be executed at the time of Class Loading.
-Hence at the time of Class Loading if we want to perform any other activity,then we have to define the code inside static block.
+Hence at the time of Class Loading If we want to perform any other activity,then we have to define the code inside static block.
 
 Scenario One :
 --------------
@@ -684,7 +685,7 @@ Class Student
 }
 
 If we are not perfroming initialization then JVM provides the default values.
-Then within the class Student,all the names have the default values null and rollno as 0.
+Then within the class Student,all the names will have the default values null and rollno as 0.
 Object creation is not enough and we need to perfrom initialization then only object is in a position to provide the proper response.
 
 If we perform initialization at the time of declaration, then all the objects have the same values.
@@ -693,14 +694,14 @@ If we perfrom initialization seperately for each block then length of the code w
 
 Whenver we are creating an object some peice of code will be executed to perform initialization.
 Peice of code is nothing but Constructor.
-Main object of constructor is to perform initialization of an object.
+Main objective of constructor is to perform initialization of an object.
 For every object creation instance block and constructor will be executed.
 
 Difference between instance block and Constructor :
 ---------------------------------------------------
 Main purpose of Constructor is to perfrom initialization of an Object.
-Other than initialization activity if we want to perfrom any other activity we need to define inside static block.
-For every Object creation both static block and constructor will be executed but static instance block first followed by contructor.
+Other than initialization activity If we want to perfrom any other activity then we need to define inside static block.
+For every Object creation both static block and constructor will be executed but static block first followed by contructor.
 
 Both Constructor and instance block will have different purpose.
 Replacing one concept with another concept is not possible.
@@ -795,7 +796,7 @@ All these constructors can have same name but different argument types.
 Overloading concept is applicable for Constructors.
 
 Every Class in Java including abstract class contains constructor but interface cannot contain constructor.
-Abstrac Class constructor will be executed whenever we are creating child class object.
+Abstract Class constructor will be executed whenever we are creating child class object.
 
 Note :
 ------
@@ -805,8 +806,7 @@ Inheritance and overriding concept is not applicable for Constructors.
 
 Note :
 ------ 
-Recursive Method Invocation gives Runtime Exception
-where as Recursive Constructor invocation gives Compile Time Error.
+Recursive Method Invocation gives Runtime Exception where as Recursive Constructor invocation gives Compile Time Error.
 
 Note :
 ------
@@ -815,17 +815,17 @@ Whenever we are writing any argument Constructor,it is highly recomended to writ
 
 Constrcutor w.r.t Exception Handling :
 --------------------------------------
-If a Child class Constructor throws some checked Exception then the Parent Class Constructor should throw the same Checked Exception or its Parent.
+If a Child class Constructor throws checked Exception then the Parent Class Constructor should throw the same Checked Exception or its Parent.
 
 ******************************************************************* 18.Singleton Class  **************************************************************************
 
-For any Java Class if we are allowed to create only one Object,then such class is said to be Singleton Object.
+For any Java Class If we are allowed to create only one Object,then such class is said to be Singleton Object.
 Advantage of Singleton Object is instead of creating multiple Objects for the same purpose,create only one object and reuse the same object for every request.
 so that performance and memory utilizations will be improved.
 
 If we want to get runtime object
 
-	Runtime r-Runtime.getRuntime();
+	Runtime r=Runtime.getRuntime();
 	
 Using Runtime object we can communicate with JVM.
 Here getRuntime() verifies is there any object is present or not.
@@ -845,7 +845,6 @@ Rules for creating Singleton :
 1.Declare the private static reference variable of the same class.
 2.Declare the private constructor.
 3.Define the static method and verify the object has created or not.
-
 
 public class SingletonDemo {
 	private static SingletonDemo singleton = null;
@@ -952,7 +951,7 @@ Note :
 ------
 We can mix normal parameter with vararg parameter but vararg parameter should be the last parameter.
 We cannot take more than one vararg parameter.
-vararg method will get the least priority than the general method.
+vararg() will get the least priority than the general method.
 If no other method matches then only vararg method will get executed.
 vararg is same as default case in switch.
 
@@ -972,10 +971,9 @@ Class Test {
 
 }
 
-Whether the Class contains Main Method or Not,Whether it is declared according to the requirement or not,
-These things are not responsibilities of the compiler.
+Whether the Class contains Main Method or Not,Whether it is declared according to the requirement or not,These things are not responsibilities of the compiler.
 But at runtime JVM is responsible to perform these changes.
-If JVM is unable to find the required main() then we will get Runtime Exception saying NoSuchMethodError : main
+If JVM is unable to find the main() then we will get Runtime Exception saying NoSuchMethodError : main
 
 At runtime JVM searches the main() with the following syntax
 
@@ -1018,6 +1016,6 @@ Other overloaded method will be executed as a Normal method.
 Note :
 ------
 Inheritance concept is also applicable for main().
-Hence while executing child class if child class doesnot contain main() then parent class main() will be executed.
+Hence while executing child class If child class doesnot contain main() then parent class main() will be executed.
 Overiding concept is applicable for main() but it is not method overriding,it is method hiding.
 
