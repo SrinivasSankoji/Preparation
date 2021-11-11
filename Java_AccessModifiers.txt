@@ -39,7 +39,7 @@ Before checking method visibility we have to check Class visibility.
 
 *****************************************************************  3.default Modifier  ************************************************************
 
-default modifier is also called package level access.
+default modifier is also called as package level access.
 
 1.If a Class is declared as default then we can access that Class within the current package.
 From outside the package we cannot access.
@@ -102,7 +102,7 @@ final local variable :
 Variables which are declared inside the method or block or constructor is called local variables.
 Main purpose of local variables is to meet the temporary requiremnt of the program.
 For local variables JVM won't provide any default values and compulsory we have to perform initialization before using that variable.
-whether the local variable is declared as final or not before using only we have t perform initialization
+whether the local variable is declared as final or not before using only we have to perform initialization
 otherwise it is not required to perform initialization.
 
 If the instance variable is declared as public,protected,default then it has meaning.
@@ -132,13 +132,13 @@ Applicable only for Classes and Methods but not for variables.
 
 abstract method :
 -----------------
-If we don't know about implementation still we can declare the Class as abstract.
+If we don't know about implementation still we can declare the Method as abstract.
 Abstract method has only declaration but not implementation.
 Advantage of abstract method is to provide guidelines to the child class such that which method it has to provide implementation.
 
 abstract Class :
 ----------------
-For any Java Classes if we don't want to create an obejct then such type of Class should be declared with abstract modifier.
+For any Java Classes If we don't want to create an obejct then such type of Class should be declared with abstract modifier.
 For abstract Classes instatiation is not possible.
 
 If a Class contains atleast one abstract method then corresponding Class should be declared as abstract.
@@ -146,7 +146,7 @@ Because implementation is not completed and has to be provided by the Child Clas
 
 Note :
 ------
-Eventhough Class does not contain any abstract method still the Class can be declared as abstract to avoid instatiation.
+Eventhough Class does not contain any abstract method still the Class can be declared as abstract to avoid instantiation.
 Abstract class can contain zero or more abstract methods.
 
 Abstract Class which does not contain abstract methods are
@@ -157,7 +157,7 @@ GenericServlet
 Scenario One :
 --------------
 In case of Servlet,user defined Servlet extends HttpServlet.
-If the request is for GET Type and if we are not overriding the doGet() in user defined Servlet the Parent Class doGet() will be executed.
+If the request is for GET Type and If we are not overriding the doGet() in user defined Servlet the Parent Class doGet() will be executed.
 HttpServlet doGet() provides the Error information and to avoid this HttpServlet Class is declared as abstract to avoid the Calls to the Method.
 
 final vs abstract :
@@ -230,7 +230,7 @@ In Object Class clone() and finalize() are protected and hence outside the packa
 
 *************************************************************** 9.static modifier  ***************************************************************
 
-static is the modifier applicable for methods and classes but not for classes(Nested Classes can be static).
+static is the modifier applicable for variables and methods but not for classes(Nested Classes can be static).
 If the value of the variable is same for all objects then the variable should be declared as static.
 In case of static variables only one copy will be created and will be shared across all the objects.
 
@@ -285,24 +285,21 @@ In object Class clone() is a native method.
 ***************************************************************  11.synchronized modifier  ******************************************************************
 
 synchronized is a modifier applicable for methods and blocks but not for Classes and variables.
-If a method or block is declared as synchronized then at a time only one Thread is allowed to access the method or block
-so that we can overcome data inconsistency problems.
-
+If a method or block is declared as synchronized then at a time only one Thread is allowed to access the method or block so that we can overcome data inconsistency problems.
 Disadvantage of synchronized keyword is it increases waiting time of threads and creates performance problems.
-Hence if there is no specific requirement then it is never recomended to use ynchronized keyword.
+Hence if there is no specific requirement then it is never recomended to use synchronized keyword.
 
 ***************************************************************  12.Transiemt Modifier  *********************************************************************
 
 Transient is a modifier applicable only for variables but not for classes and methods.
-While performng Serialization if we don't want to serialize the value of the particular variable to meet security constraints 
-we declare the variable as tarnsient variable.
+While performng Serialization if we don't want to serialize the value of the particular variable to meet security constraints we declare the variable as transient variable.
 while performing serialization JVM ignores the transient variable and stores the default value to the file.
 
 ***************************************************************  13.volatile modifier  **********************************************************************
 
 volatile is a modifier applicable only for variables but not for classes and methods.
 If a single variable is accessed by multiple Threads then there may be chance of data inconsistency problems.
-if we use the volatile modifier for the variable for every thread JVM will create the seperate local copy and 
+If we use the volatile modifier for the variable for every thread JVM will create the seperate local copy and 
 all the intermediate modifications performed by the thread will take place in local copy.
 
 Conclusion :

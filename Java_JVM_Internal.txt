@@ -261,11 +261,7 @@ Tips and Tricks For Java Memory Management :
 Class.forName is used to load the class dynamically where we does not know the class name before hand.
 Once the Class is loaded we will use newInstance() to create the object dyanmically.
 
-
-
-
-
-************************************************************ JDK vs JRE vs JVM (guru99)  ************************************************************
+************************************************************ 8.JDK vs JRE vs JVM (guru99)  ******************************************************************
 
 JDK is a software Development Kit,JRE is a software bundle that allows us Java Program to run where as JVM is an environment for executing Byte Code.
 
@@ -274,7 +270,7 @@ JDK :
 JDK contains tools required to write Java Programs and JRE to execute them.Tools like Debugger,Compiler etc.
 It includes Compiler,Application Launcher and AppletViewer etc.
 Compiler converts the code written in Java into Byte Code.
-Java Application Launcher opens JRE which loads the necessary Class ane executes the Main Method.
+Java Application Launcher opens JRE which loads the necessary Classes ane executes the Main Method.
 
 JRE :
 -----
