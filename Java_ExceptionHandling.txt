@@ -26,8 +26,8 @@
 ******************************************************************** 1.Introduction  ***************************************************************************
 
 Abnormal termination of the program is the result of Exception.
-An unwanted or unexpected event that disturbs the  normal flow of execution of the program is nothing but Exception.
-Main purpose of Exception Handling is the graceful termination of the program.
+An unwanted or unexpected event that disturbs the normal flow of execution of the program is nothing but Exception.
+Main purpose of Exception Handling is graceful termination of the program.
 
 Scenario 1:
 -----------
@@ -48,8 +48,8 @@ This way of providing alternative is nothing but Exception Handling.
 ******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
 
 Every Java program contains one Thread.
-For every Thread JVM will create a Seperate Runtime Stack.
-For every Method call perfromed by the Thread one entry will be stored inside the Corresponding Stack.
+For every Thread JVM will create a seperate Runtime Stack.
+For every Method call performed by the Thread one entry will be stored inside the corresponding Stack.
 Each Entry in the Stack is called Activation Record or Stack Frame.
 After completing the Method corresponding entry from the Stack will be removed.
 After completing all the Methods Stack will be empty.
@@ -85,7 +85,7 @@ JVM handovers the responsibility of Exception Handling to the Default ExceptionH
 
 Note :
 ------
-In our program if one program terminate abnormally,then the program termination is always abnormal termination.
+In our program If one method terminates abnormally,then the program termination is always abnormal termination.
 If all the methods are terminate normally then only program will be terminated normally.
 
 ********************************************************************  4.Exception Hierarchy  ***********************************************************************
@@ -97,17 +97,19 @@ It contains following two Child Classes.
 2.Error
 
  
-********************************************************************  5.Exception and Error ***************************************************************************	
+********************************************************************  5.Exception and Error ***************************************************************************
+
 Most of the times Exceptions are caused by programmers and are recoverable.
 If our program requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
-If FileNotFoundException occurs we can provide loacl file so that rest of the program will be continued normally.
+If FileNotFoundException occurs we can provide local file so that rest of the program will be continued normally.
 
 Most of the times Error are caused by lack of system resources and are not recoverable.
 If OutOfMemory occurs as a programmer we cannot do anything and the program will be terminated abnormally.
 
 ******************************************************************** 6.Checked and Unchecked Exception  **************************************************************
+
 Each and every Exception occurs at Runtime.
-The Exception which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
+The Exceptions which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
 In our program sometimes there may be a chance of getting an Exception at Runtime.
 Compiler verifies whether we are handling that Exception or not.i.e writing catch block or not is the only requirement of the compiler.
 
@@ -124,8 +126,7 @@ Remaining are Checked Exception.
 
 Note :
 ------
-Whether the Exception is Checked or UnChecked compulsory it should occur at Runtime only.
-There is no chance of Exception occurig at Compile Time.
+Whether the Exception is Checked or Unchecked compulsory it should occur at Runtime only.There is no chance of Exception occurig at Compile Time.
 
 ******************************************************************** 7.Partially Checked Exception  ********************************************************************
 
@@ -184,14 +185,14 @@ Try with Multiple Catch block is recomended to use.
 Within try block at any point of time there may be a chance of getting only one Exception at a time.
 But we cannot expect exactly which Exception is going to raise.
 
-If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle the Exception.
+If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle that Exception.
 If we are writing try with multiple catch block,order of catch block is important .i.e form Child to Parent.
  
 ******************************************************************** 12.Finally Block   *********************************************************************************
 
-It is never recomended to write the clean up code within the try block because there is no gaurantee for the exeuction of each and every statement.
+It is never recomended to write clean up code within the try block because there is no gaurantee of exeucting each and every statement.
 It is not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
-We required a place to maintain clan up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
+We required a place to maintain the clean up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
 such type of place is nothing but finally block.
 Main purpose of finally block is to maintain clean up code which should be executed always.
 
@@ -213,7 +214,7 @@ Main purpose of finally block is to maintain clean up code which should be execu
 ********************************************************************  13.return vs finally  *****************************************************************************
 
 finally block dominates return statement also.
-Hence if there is any return statement present inside try or catch block,first finally block will be executed then return statement will be executed.
+If there is any return statement present inside try or catch block,finally block will be executed then return statement will be executed.
 
 	public class FinallyDemoTwo {
 	public static void main(String[] args) {
@@ -229,7 +230,6 @@ Hence if there is any return statement present inside try or catch block,first f
 		}
 	}
 	}
-
 
 Special Case :
 --------------
@@ -319,7 +319,7 @@ At any point of time DefaultExceptionHandler can handle only one Exception at a 
 
 Exception object is thrown by the program or method and handovers the exception object to the JVM.
 The method in which an Exception is raised is responsible to create an Exception object and handovers the Exception object to the JVM.
-JVM verifies is there any try catch block is defined inside the method or not and handovers the exception object to the Default Exception Handler.
+JVM verifies is there any try catch block defined inside the method or not otherwise handovers the Exception object to the Default Exception Handler.
 
 	public class ThrowDemoOne {
 	public static void main(String[] args) {
@@ -342,7 +342,7 @@ If not found handovers the Exception object to the Default Exception handler whi
 
 Note :
 ------
-usually we use throws keyword for Customized Exceptions and not for pre defined Exceptions.
+usually we use throw keyword for Customized Exceptions and not for pre defined Exceptions.
 
 	public class ThrowDemoFour {
 	static ArithmeticException exception=new ArithmeticException();
@@ -397,7 +397,7 @@ Here we get Compile Time Error and can be resolved by adding
 	
 ********************************************************************  18.throws keyword  ************************************************************************
 
-In our program if there is any chance of raising checked Exception,compulsory we should handle that checked Exception.
+In our program If there is any chance of raising checked Exception,compulsory we should handle that checked Exception.
 Other wise we get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
 
 	public class ThrowsDemoOne {
@@ -413,7 +413,7 @@ Other wise we get Compile Time Error saying unreported Exception must be caught 
 	}
 	}
 
-Here there is a chance of Thread entering into sleeping state and other Thread have the chance of Interrupting the Thread.
+Here Thread enters into the sleeping state and other Thread have the chance of Interrupting the Thread.
 We get CTE saying Unhandled exception type FileNotFoundException.
 
 We can handle Compile Time Errors either by using Try Catch block or by using throws keyword.
@@ -481,7 +481,7 @@ This rule is applicable only for fully checked Exception.
 Exception Handling keyword summary :
 ------------------------------------
 try : To maintain risky code
-catch : To maintain Exception Handlind code
+catch : To maintain Exception Handling code
 finally : To maintain clean up code
 throw : To hand over our own created Exception object to the JVM.
 throws : To delegate the responsibility of ExceptionHandling to the caller.
@@ -507,7 +507,7 @@ sometimes to meet programmer requirement we have to create our own Exception whi
 	
 public class TooYoungException extends RuntimeException
 
-Here if it is Checked Exception i.e extends Exception we get CTE because it has to be handled.
+Here If it is Checked Exception i.e extends Exception we get CTE because it has to be handled.
 It is highly recomended to define our own exception as unchecked i.e extends RTE and not Exception.
 
 Note :
@@ -528,12 +528,12 @@ Example : NPE,AE,AIOBE etc.
 
 Programatic Exception :
 -----------------------
-These are the Exception which are automatically raised by the programmer to indicate something went wrong is called Programatic Exception.
+Exceptions which are raised by the programmer to indicate something went wrong is called Programatic Exception.
 Example : IllegalArgumentException,TooYoungException etc.
 
 Exception propogation :
 -----------------------
-Inside a method if an Exception raises and if we are not handling that exception,then the exception will be propogated to the caller method.
+Inside a method If an Exception raises and If we are not handling that exception,then the exception will be propogated to the caller method.
 Here caller method is responsible to handle that exception.
 This process is called Exception Propogation.
 

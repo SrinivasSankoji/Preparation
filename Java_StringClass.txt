@@ -83,7 +83,7 @@ Example 1 :
 		
 Note :
 ------
-If an object is required to create at Runtime object then it is going to create in Heap but not in SCP.
+If an object is required to create at Runtime then it is going to create in Heap but not in SCP.
 
 Example 2 :
 -----------
@@ -124,7 +124,7 @@ Note :
 ------
 If both are constants then compiler is responsible to perform concatenation at the time of compilation only and replaces as one constant.
 If one of them is variable at Runtime concatenation is possible.
-If the String is declared as final then at the time of compilation only replaces as one constant.
+If the String is declared as final then at the time of compilation only replaces as constant.
 
 Intern of String Object :
 -------------------------
@@ -192,10 +192,8 @@ If there is no change in the content no new object will be created both in Heap 
 		
 Creation of our Own Immutable Class :
 -------------------------------------
-Once we create a String object we cannot perform any changes in the existing object.
-If we are trying with those changes a new object will be created .
-If there is no change in the content existing object will be reused.
-This behavior is nothing but Immutability.
+Once we create a String object we cannot perform any changes in the existing object.If we are trying with those changes a new object will be created .
+If there is no change in the content existing object will be reused.This behavior is nothing but Immutability.
 
 Rules to create a Final Class :
 -------------------------------
@@ -243,8 +241,7 @@ sb.append(" Software");
 System.out.println(sb);
 sb=new StringBuffer("Naresh");  // CTE
 
-Once we create a StringBuffer object as final we can perform changes in the existing object.
-only thing is we cannot reassign the variable.
+Once we create a StringBuffer object as final we can perform changes in the existing object but we cannot reassign the variable.
 final is applicable for reference variables where as immutability is applicable for objects.
 
 
@@ -253,7 +250,7 @@ final is applicable for reference variables where as immutability is applicable 
 If the content is fixed and won't change frequently we go for String.
 In String for every change a new object will be created.
 If the content is not fixed and keep on changing then we go for StringBuffer.
-In StringBuffer for every change new object will be created and all changes will be doen in the existing object.
+In StringBuffer for every change new object will be created and all changes will be done in the existing object.
 All the methods in StringBuffer are synchronized.
 At a time only one Thread is allowed to operate on the object and performance of the system is going down.
 To resolve this problem we go for StringBuilder.
