@@ -13,15 +13,15 @@
 13.jar vs war vs ear                                [24-DEC-2020]  (Done)
 14.web Application vs Enterprise Application        [24-DEC-2020]  (Done)
 15.Web server vs Application Server                 [24-DEC-2020]  (Done)
-16.Classpath vs Path                                [24-DEC-2020]  ()
-17.JDK vs JRE                                       [24-DEC-2020]  ()
+16.Classpath vs Path                                [24-NOV-2021]  ()
+17.JDK vs JRE                                       [24-NOV-2021]  ()
 18.Object Creation Ways  (geeksforgeeks)			[25-AUG-2020]  (Done)
-19.Class Loaders
-20.Abstract Class and Methods(crunchify)
+19.Class Loaders									[25-NOV-2021]  ()
+20.Abstract Class and Methods(crunchify)			[25-NOV-2021]  ()
 
 *************************************************************  1.introduction	***************************************************************************************
 
-Any service requirement specification is by default considred as an interface.
+Any service requirement specification is by default considred as an Interface.
 
 Definition One :
 ----------------
@@ -44,8 +44,8 @@ Definition Three :
 every method present inside interface should be abstract whether we declare it or not.
 Hence interface is considered as pure abstract Class.
 
-whenver we are implementing an interface for each and every method we have to provide implementation otherwise declare the class as abstract.
-Every method present inside interface is by default public and abstract.
+whenever we are implementing an interface for each and every method we have to provide implementation otherwise declare the class as Abstract.
+Every method present inside interface is by default public and abstract whether we declare it or not.
 
 extends vs implements :
 -----------------------
@@ -58,7 +58,7 @@ Class can extend only one Class and implement any number of interfaces simultane
 
 every method present inside interface is public and abstract.
 To make this method available to every implementation class declared the method as public.
-Here Child class is responsible to provide implementation.
+Here Child class is responsible to provide the implementation then declared the method as abstract.
 
 An interface can contain variable.
 Main purpose of interface variables is to define the requirement level constant.
@@ -86,7 +86,7 @@ we can resolve them by using Interface Names.
 
 *************************************************************  4.marker interface  ********************************************************************************
 
-An interface does not contain any method and by implementing that interface if our object gets some ability then it is said to be Marker interface.
+An interface does not contain any method and by implementing that interface If our object gets some ability then it is said to be Marker interface.
 
 SingleThreadedModel interface
 RandomAccess interface
@@ -146,7 +146,7 @@ If there is no public class then we can give any name for the source file and th
 
 Note :
 ------
-It is highly recomended to write only one class as per source file and name of the program should be same as name of the source file.
+It is highly recomended to write only one class per source file and name of the program should be same as name of the source file.
 Advantage is it increases the readability and maintainability of the program.
 
 *************************************************************  7.import statement  *****************************************************************************
@@ -237,7 +237,7 @@ Various ways for setting Classpath :
 Environment Level :
 ----------------------
 Required whenever we are installing permanent software in our system.
-This way of setting Classpath is preserved even when the Syatem restarts also.
+This way of setting Classpath is preserved even when the System restarts also.
 
 Command Prompt Level :
 ----------------------
@@ -245,7 +245,7 @@ From the command prompt we can set the classpath by using the set command
 
 	set classpath="";
 	
-This way os setting the classpath will be preserved only for that particular command.
+This way of setting the classpath will be preserved only for that particular command.
 Once the Command Prompt closes Classpath will be lost Automatically.
 
 Command Level :
@@ -280,7 +280,7 @@ To display the contents of the Jar file and not to extract
 
 	jar -tvf Test.jar
 	
-If the .class file is present in remote machine and has to bes used in cleint machine
+If the .class file is present in remote machine and has to be used in client machine
 1.Send the request to the server machine and get the .class file.
 2.Make the jar file available to the Client i.e download the jar file.
 
