@@ -1,7 +1,7 @@
 Modifying Variable Inside Lambda :
 ----------------------------------
 When we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda must be Final or Effective Final.
-A keyword before a variable makes it final and No final keyword before a variable makes it effectively final provided we never change the value.
+A final keyword before a variable makes it final and No final keyword before a variable makes it effectively final provided we never change the value.
 
 1.Introduction 													[27-FEB-2019]  (Done)
 2.Why Lambdas													[27-FEB-2019]  (Done)

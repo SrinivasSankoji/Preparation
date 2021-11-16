@@ -1,13 +1,11 @@
-WINTERBE :
-**********
-Streams are Monads thus Playing a Big Part in Bringing Functional Programming to Java.
-Stream Represents a Sequence of Elements and Supports Different Kind of Operations to Perform Computation on Those Elements.
-Stream Operations are Either Intermediate or Terminal.
-Intermediate Operations returns a Stream So that We Can Chain Multiple Intermediate Operations Without Using Semi Colon.
+
+Streams are Monads thus playing a big part in bringing Functional Programming to Java.
+Stream represents a sequence of elements and supports different kind of operations to perform computation on those elements.
+Stream Operations are either Intermediate or Terminal.
+Intermediate Operations returns a Stream so that we can chain Multiple Intermediate Operations Without Using Semi Colon.
 Where as Terminal Operations Either Return Void or Non Stream Result.
 Filter,Map and Sorted are Intermediate Operation Where as ForEach is Terminal Operations.
-Most Stream Operations accept some kind of Lambda Expression Parameter,
-A Functional Interface Specifying the Exact Behavior of the Operation.
+Most Stream Operations accept some kind of Lambda Expression Parameter,A Functional Interface Specifying the Exact Behavior of the Operation.
 Most of these Operations must be Non Interfering ans stateless.
 
 Non Interfering :
@@ -40,8 +38,7 @@ Why Order Matters :
 -------------------
 User Filter First and Then Map.
 Filter will always be Executed if Doesn't Match the Condition also.
-If We are Using any Stateless Operation like sorted 
-Then The Order would be  Filter,Sorted,Map and then The Terminal Operation.
+If We are Using any Stateless Operation like sorted Then The Order would be  Filter,Sorted,Map and then The Terminal Operation.
 
 Reusing Streams :
 -----------------
@@ -68,8 +65,7 @@ Reduce :
 Reduce Operation Combines all the Elements of The Stream into a Single Result i.e 
 Reducing all the ELements of The Stream to Exactly One.
 Reduce Method Performs Reduction on the Elements of The Stream.
-Reduce can be Used to get the Sum of Numbers Stored in the Collection,
-Concatenate the String with the Separator.
+Reduce can be Used to get the Sum of Numbers Stored in the Collection,Concatenate the String with the Separator.
 
 Java 8 Supports 3 Different Kind of reduce() Methods.
 

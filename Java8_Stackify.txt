@@ -1,8 +1,8 @@
 Map :
 -----
-Map Produces a New Stream after applying Function to each element of the original Stream.
-Here The Stream Could be of Any Type.
+Map Produces a new Stream after applying function to each element of the original Stream.
+Here the stream could be of any type.
 
 collect :
 ---------
-It is One Of The Way to get the Stuff Out Of The Stream Once we are Done with all the Processing.
+It is one of the way to get the Stuff out of the Stream once we are done with all the processing.

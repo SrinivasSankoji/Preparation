@@ -22,8 +22,8 @@
 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
-Before Java8,Interface can have only abstract Methods ie All the Methods of interface are by default public and abstract.
-It was not possible to add new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
+Before Java8,Interface can have only abstract Methods ie All the Methods in interface are by default public and abstract.
+It is not possible to add new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
 It is also not possible to create interface with implementation.
 From Java8 we have interfaces with default and static Methods.
 
@@ -43,8 +43,7 @@ default Methods are declared in the interfaces using default keyword and can be 
    
 static Method :
 ---------------
-static methods in interface are similar to default method except that we cannot override these methods in the implementation classes.
-since these methods are static.
+static methods in interface are similar to default method except that we cannot override these methods in the implementation classes.since these methods are static.
 To call the static Method we use the interface name.
    
    interface Scanner
@@ -68,7 +67,7 @@ With the introduction of default methods we can add additional fetaures to the i
 
 Default Method and Multiple Inheritance :
 -----------------------------------------
-When we have two interfaces with same default Method signature the Multiple inheritance problem can occur.
+When we have two interfaces with same default Method signature then Multiple inheritance problem can occur.
 To resolve the issue override the default method in the Implementation class.
 
 Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
@@ -79,22 +78,24 @@ method is invoked by the implementation class.
 Java8 designers thought of this conflict and have defined resolution rules for such scenario's.
 
 Rule 1: Class takes higher precedence than interface.
-Any method inherited from class or super class will be invoked before any default Method from  Interface.
+Any method inherited from class or super class will be invoked before any default Method from Interface.
 Rule 2:
 Derived Interfaces or sub Innterfaces takes higher precedence than Interface with higher hierarchy.
 Rule 3:
-If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override 
-and provide a method with same Method definition.
+If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override and provide a method with same Method definition.
 We can invoke the specific implementation in Java8 using 
 
-	Interface.super.method
+	@Override
+	public void defaultMethod() {
+		StaticInterface.super.defaultMethod();
+	}
 
 ***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
 
 An Interface with only one abstract Method and can have any number of default and static Methods is called Functional Interface.
-We can either use the predefined Functional Interface provided by Java or we can create our own.
+We can use either predefined Functional Interface provided by Java or we can create our own.
 Functional interfaces has only single abstract method and also called as SAM interfaces.	
-@FunctionalInterface is used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
+@FunctionalInterface can used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
 Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
 We can instantiate an Interface with Anonymous Inner Class but the code looks bulky.
    
@@ -124,8 +125,7 @@ If the body of the expression is one line then we can remove the curly Braces.
 	Interface i1=(s)->System.out.println(s);
 	i1.void("Hello");
 	
-We have been using Functional interface prior to Java 8.
-They wer created by using anonymous inner class using interfaces such as Runnable,Comparator etc.
+We have been using Functional interface prior to Java 8.They were created by using anonymous inner class using interfaces such as Runnable,Comparator etc.
 Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces easily.
 To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded Functional Interfaces provided by Java.
 Mark the Predefined Functional Interface by using @FunctionalInterface Annotation.
@@ -141,7 +141,7 @@ Mark the Predefined Functional Interface by using @FunctionalInterface Annotatio
 	
 ********************************** 4.Stream API for Bulk Data Operations on Collections (beginnersbook) *********************************************
 
-Java.util.stream has been introduced in Java 8 to perform filter/map/reduce like operations with Collection.
+Java.util.stream has been introduced in Java 8 to perform operations like filter/map/reduce with Collection.
 Stream API allows Sequential as well as Parallel Execution.
 Collection Interface has been extended with stream() and paralellStream() default methods to get the stream for Sequential and Parallel Execution.
 
@@ -150,18 +150,18 @@ Stream is not a DataStructure and it never modifies the underlying Data source.
 java.util.stream supports functional style of Operations on Stream of elements like Map,Reduce and so on.
 Stream has three Parts 
 1.Data Source 
-2.Zero or More Intermediate Operation and 
-3.Zero or More Terminal Operation.
+2.Zero or More Intermediate Operations and 
+3.Zero or More Terminal Operations.
 
 Intermediate Operations get the elements one by one and process them.
 All Intermediate Operations are lazy and as a Result No Operations will be effective until the pipelIne start to work.
 Terminal Operation means end of the Stream Life Cycle.
 
 forEach() is a Terminal Operation and it loops over the Stream of elements calling the Supplied Function.
-After the Operation is being performed,Stream pipeline is Considered to be Consumed and No Longer Used.
+After the Operation is being performed,Stream pipeline is considered to be consumed and No Longer Used.
 
 Map produces a new Stream after applying a Function to each element of the other Stream.
-Here New Steam can be Different Type.
+Here New Steam can be of different Type.
 
 collect() is one of the common way to get the stuff out from the stream once done with the processing.
 findFirst() is used to return the First Object from the Stream other wise it returns null.
@@ -172,7 +172,7 @@ FlatMap :
 ---------
 A Stream can hold complex Data Structures like Stream<List<String>>.
 FlaMap helps us to flatten the dataStructure to simplify further Operations.
-FlatMap can be used for Asynchronous Operations.
+FlatMap can also be used for Asynchronous Operations.
 
 	.flatMap(employeeId -> getEmployeeDetails(employeeId))
 	.collect(Collectors.toList());
@@ -197,10 +197,9 @@ we use sorted on stream of elements.
 
 allMatch, anyMatch, and noneMatch :
 -----------------------------------
-allMatch() returns true if all the elements of the stream satisfies the condition.
-It returns false as soon as it does not match the predicate.
-anyMatch()  return true if it Matches any one of the element in the Stream.
-nonMatch() returns true if none of the element in stream matches the Predicate.
+allMatch() returns true If all the elements of the stream satisfies the condition.It returns false as soon as it does not match the predicate.
+anyMatch()  return true If it Matches any one of the element in the Stream.
+nonMatch() returns true If none of the element in stream matches the Predicate.
 
 Stream Specializations :
 ------------------------
@@ -296,7 +295,7 @@ File Operations :
 
 Method reference is an alternative way of writing Lambda Expression.
 The :: operator is used in Method reference to seperate the class or Object from the Method Name.
-Ther are four types of Method References.
+There are four types of Method References.
 
 1.Method Reference to an Instance Method of a Class.
 
@@ -311,8 +310,7 @@ Ther are four types of Method References.
 		
 		
 		MyInterface reference = () -> example.myMethod();
-		// If the Lambda Expression does not accept any argument and executing a Method
-		// then use the Method Reference.
+		// If the Lambda Expression does not accept any argument and executing a Method then we use the Method Reference.
 		MyInterface reference1 = example::myMethod;
 		
 		reference.disply();
@@ -324,7 +322,7 @@ interface MyInterface{
 	 void disply();
 }
 
-2.Method Reference to Statci Method of a Class.
+2.Method Reference to Static Method of a Class.
 3.Method Reference to the Constructors
 4.Method Reference to an instance Method of an Arbitary Object of a particular Type.
 
@@ -361,7 +359,7 @@ we can check whether the Optional value is empty or not by using isPresent().
 
 ifPresent() :
 -------------
-There is another method in Optional Class which only executes If the given Optional Object is non empty.
+There is another method in Optional Class which executes only If the given Optional Object is non empty.
 
 		Optional<String> valueOne=Optional.ofNullable("This is Non Empty checked using IfPresent Method");
 		Optional<String> valuetwo=Optional.empty();
@@ -422,7 +420,7 @@ We can also provide prefix and suffix to the given String.
 
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
 
-Comparator befor Java8 has two methods ie compare() and equals().
+Comparator before Java8 has two methods ie compare() and equals().
 Java8 Comparator has now 19 Methods.
 Comparator is now an official Functional Interface.
 Java8 Comparator now supports declarations via Lambda Expressions as it is a Functional Interface.
@@ -462,16 +460,13 @@ Comparator using then Comparing
 		 
 		Comparator<Employee> nameAgeComparing=Comparator.comparing(Employee::getAge).thenComparing(Employee::getName);
 		
-We can also have
-
-	Comparator.nullsFirst(String::compareTo) and
-	Comparator.nullsLast(String::compareTo)
+We can also have Comparator.nullsFirst(String::compareTo) and Comparator.nullsLast(String::compareTo)
 
 	Comparator<Employee> empNameComparator = Comparator.comparing(Employee::getName, Comparator.nullsFirst(String::compareTo));
 	
 *****************************************************  17.Function package (javabrahman)  *******************************************************************
 
-For common use cases where a Lambda Expression or a Method Reference is needed these are generally assigned to a target type.
+For common use cases where a Lambda Expression or a Method Reference is needed Functions are generally assigned to a target type.
 java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda  definitions 
 which can be used by the programmer in  the code instead of creating new functional interfaces.
 Consider the scenario where we need a function that accepts an argument and returns boolean.
@@ -587,7 +582,7 @@ compute() has two parameters
 
 Note:
 reMapping function takes two arguments and is considered as BiFunction.
-During computation reMapping function should no be able to modify the Map.
+During computation reMapping function should not be able to modify the Map.
 Returns the new value associated with the key or null If no value is associated with the key.
 If the remapping function results null then mapping for the specified key is removed.
 
