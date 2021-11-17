@@ -9,11 +9,10 @@
 
 ********************************************************  1.SpringBoot Introduction (hellokoding)  ********************************************************
 
-SpringBoot is a micro java based framework that can be used to build Web applications and and can also be used for Command Line Applications.
-SpringBoot Web Application can be built to a stand alone JAR.
-JAR contains an embeeded web server that can be started with java -jar.
-SpringBoot has the following features.
+SpringBoot is a micro java based framework that can be used to build Web applications and can also be used to build Command Line Applications.
+SpringBoot Web Application can be built on a stand alone JAR.JAR contains an embeeded web server that can be started with java -jar.
 
+SpringBoot has the following features.
 1.Provides Embeded Application Servers such as Tomcat,Jetty and Undertow directly.
 2.Provides starter templates to simplify build configuration.
 3.Auto Configure Spring and Third party dependencies and no need of XML Configuration.
@@ -26,32 +25,35 @@ SpringBoot is highly dependent on Starter templates and Auto Configuration featu
 
 1.SpringBoot Starter Template :
 -------------------------------
-SpringBoot starters are the Templates that contains a collection of all the relative transitive dependencies that are required to start the particular functionality.
+SpringBoot starters are the Templates that contains a collection of all the required dependencies that are required to start the particular functionality.
 For example If we want to build a Web Application we need to include all the required dependencies.
 It leaves the chance of version conflicts which ultimately results in Runtime Exceptions.
 
-With SpringBoot to create such an Application all we need to do is we need to import "spring-boot-starter-web" dependecny
-which internally imports all the required dependencies and adds it to the Project.
+To create Web Application in SpringBoot we need to add "spring-boot-starter-web" dependecny which internally imports all the required dependencies and adds it to the Project.
 Some of the dependencies are directly included while some other refers to other starter templates which transitively downloads more dependencies.
 
-We do not need to provide version information in child dependencies.
-All versions are resolved in relation to starter parent.
+We do not need to provide version information in the child dependencies.All versions are resolved in relation to starter parent.
+Spring Boot Starter Parent is a starter Project that provides the default configuration for Spring based Applications.
+It is added as a parent in the pom.xml.
 
-2.Spring Boot Auto-Configuration :
-----------------------------------
-Auto Configuration scans the classpath,finds the libraries in the classpath and then configures all the beans.
+2.Spring Boot Auto-Configuration (javadevjournal):
+-------------------------------------------------
+To create a Spring MVC Application we need to configure DispatcherServlet in web.xml as part of Configuration.
+For Database Applications we need to add Additional Configurations for Hibernate/JPA along with Datasource.
+We also need to add InternalResourceViewResolver for identifying views.
+These configurations can become complex and might end up with configuring lot of things to start our Application.
+What If the system provides default set up for an Application based on the jars in the classpath along with the options to override based on our requirement.
+Spring Boot Auto Configuration comes with these features.
+
+Auto Configuration scans the classpath,finds the libraries in the classpath and then try to set up the Application with default behavior based on Jar's in the Classpath.
+SpringBoot Auto Configuration logic is implemented in spring-boot-autoconfigure.jar and works on top of @Conditional,@ConditionalOnClass and @ConditionalOnProperty Annotations.
 Auto Configuration will be back away as we define our own Configuration.
-Auto Configuration is always applied to all the user defined beans that have been registered.
-SpringBoot Auto Configuration logic is implemented in spring-boot-autoconfigure.jar and works on top of 
-@Conditional,@ConditionalOnClass and @ConditionalOnProperty Annotations.
-
-Auto Configuration for Spring AOP would be :
-
+Auto Configuration applies to all the user defined beans that have been registered.
+To enable Auto Configuration in SpringBoot we use @AutoConfiguration or @SpringBootApplication Annotation in our Application.
 
 3.Embedded Servers :
 --------------------
-SpringBoot provides embeeded Application servers such as Tomcat,Jetty and Undertow directly.
-By default it is Tomcat.
+SpringBoot provides embeeded Application servers such as Tomcat,Jetty and Undertow directly.By default it is Tomcat.
 It enables us to run any SpringBoot Application from the Command Prompt without including any complex structure.
 
 4.Bootstrapping the Application :
@@ -63,11 +65,5 @@ When we run the Application,Application starts from main().
 @ComponentScan scans all the Configuration classes and other Classes and loads them into ApplicationContext.
 @Configuration can used to configure the user defined beans and load them into ApplicationContext.
 Finally it bootstraps the Application based on properties defined inside application.properties file under resources folder.
-
-5.Advantages of Spring Boot :
------------------------------
-SpringBoot helps in resolving dependency conflict issues.
-SpringBoot has information of compatible version of all the dependencies.
-SpringBoot provides embeeded Application Servers.
 
 

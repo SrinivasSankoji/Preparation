@@ -1,20 +1,34 @@
 
 ***************************************** Java Basics  *****************************************
+
+Java Memory Model
+Java Memory Management
+JVM Architecture
 OOPS
 Exception Handling
 Lang Package
-Interfaces and Modifiers
-MultiThreading
+Interface and Modifiers
+Collections
 Generics
 Enum
-Collections
-Servlets
-Inner Classes
-Object Class
+Serialization and Externalization
+MultiThreading
+Concurrency
+HashMap Internal 
+Conurrent HashMap Internal
+ArrayList Internal
+Singleton 
+Immutable
+Object Creation Ways
+Deadlock
+OurOfMemory Error
+Memory Leak
+PermGenSpace
 
 Java 8
 
 ***************************************** Internal Implementation  *****************************
+
 JVM Architecture
 List Implementation
 Hashing and Salting
@@ -33,20 +47,17 @@ Relationship
 Spring Scheduler
 Spring Security
 Actuator
-
+Spring IOC
 
 ***************************************** Database  ********************************************
 
+SQL Part 1
+SQL Part 2
 SQL Basics
 PL SQL
 
 
 ***************************************** Spring Cloud  ****************************************
-
-
-
-
-***************************************** MicroService  ****************************************
 
 Cloud Introduction
 Eureka Server
@@ -59,13 +70,18 @@ Spring Cloud Gateway
 Zipkin
 Sleuth
 
+***************************************** MicroService  ****************************************
+
+MicroServices Part 1
+MicroServices Part 2
+MicroServices Part 3
+Micro Services Usecase
+Micro Services Architecture
+
 ***************************************** Design Patterns  *************************************
 
 TDD(Test Driven Development)
 BDD(Business Driven Development)
-
-
-
 
 ***************************************** Front End  *******************************************
 
@@ -74,13 +90,11 @@ CSS
 Javascript
 Angular
 
-
 ***************************************** ELK Stack  *******************************************
 
 Elastic Search
 Logstash
 Kibana
-
 
 ***************************************** Concepts  ********************************************
 
@@ -96,13 +110,11 @@ Password Hashing
 SOAP
 Restful Web Services
 
-
 ***************************************** Messaging Queue **************************************
 
 JMS
 Rabit MQ
 Kafka
-
 
 ***************************************** DevOps ***********************************************
 
@@ -114,29 +126,3 @@ Ansible
 NGINIX
 Docker
 Kubernetes
-
-***************************************** Interview  ***********************************************
-
-https://www.javainterviewpoint.com/
-
-Mindgate :
-----------
-JVM Internal Architecture											()		
-Java Memory Management												()	
-A Detailed Breakdown of the JVM										()		
-Heap Memory,Stack Memory						                    ()
-Constructor Chaining                                                ()
-HashMap,Concurrent Hashmap Internal                                 ()
-Thread Safety                                                       ()
-Synchronized                                                        ()
-Has a Relationship                                                  ()
-Spring Bean Life Cycle                                              ()
-Asymmetric Encryption Cryptography in Java                          ()
-Difference between symmetric and asymmetric encryption              ()
-Encryption vs Hashing                                               ()
-Class Loaders                                                       ()
-
-
-
-
-

@@ -18,57 +18,6 @@ beginnersbook
 boraji
 javapapers
 
-
-***************************************** Interview  Topics ********************************************
-Java Memory Model
-Java Memory Management
-JVM Architecture
-OOPS
-Exception Handling
-Lang Package
-Interface and Modifiers
-Collections
-Generics
-Enum
-Serialization and Externalization
-MultiThreading
-Concurrency
-HashMap Internal 
-Conurrent HashMap Internal
-ArrayList Internal
-Singleton 
-Immutable
-Object Creation Ways
-Deadlock
-OurOfMemory Error
-Memory Leak
-PermGenSpace
-
-Spring IOC
-Spring AOP
-Spring Boot Annotations
-Spring Security
-
-MicroServices Part 1
-MicroServices Part 2
-MicroServices Part 3
-Micro Services Usecase
-Micro Services Architecture
-
-Hibernate
-JPA
-
-SQL Part 1
-SQL Part 2
-
-Maven
-GIT and GitHub
-Jenkins
-Docker
-Kubernetes
-AWS
-Ansible
-
 ***************************************  Spring Boot    *****************************************
 													
 Profiles in Spring Boot												
@@ -235,8 +184,8 @@ Java null and NullPointerException
 Java Clone -Shallow Copy and Deep Copy
 Internal vs External Iteration in Java
 
-Venu Interview Questions :
---------------------------
+***************************************** Venu Interview Questions *****************************************
+
 Spring IOC								(Done)
 Java Memory Management
 Load Facor in HashMap                   (Done)
@@ -271,5 +220,26 @@ Java8 Changes :
 Changes Enables Functional Programming
 Method References
 Stream API
+
+***************************************** Interview  ***********************************************
+
+https://www.javainterviewpoint.com/
+
+Mindgate :
+----------
+JVM Internal Architecture											()		
+Java Memory Management												()	
+A Detailed Breakdown of the JVM										()		
+Heap Memory,Stack Memory						                    ()
+Constructor Chaining                                                ()
+HashMap,Concurrent Hashmap Internal                                 ()
+Thread Safety                                                       ()
+Synchronized                                                        ()
+Has a Relationship                                                  ()
+Spring Bean Life Cycle                                              ()
+Asymmetric Encryption Cryptography in Java                          ()
+Difference between symmetric and asymmetric encryption              ()
+Encryption vs Hashing                                               ()
+Class Loaders                                                       ()
 
 

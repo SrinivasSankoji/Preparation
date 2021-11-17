@@ -4,8 +4,11 @@ Annotation List :
 @Interceptor                  				(springframework.guru)             [17-OCT-2019]  (Done)
 @ConfigurationProperties
 @Conditional
+@ConditionalOnClass
+@ConditionalOnProperty
 Service Locater Factory Bean	
-@SpringBootApplication @AutoConfiguration	(howtodoinjava)									  
+@SpringBootApplication 						(howtodoinjava)
+@AutoConfiguration							(howtodoinjava)									  
 
 Spring Core Annotations :
 *************************
@@ -16,6 +19,8 @@ Spring Core Annotations :
 @Primary									[31-OCT-2019]  (Done)
 @Required									[31-OCT-2019]  (Done)
 @Configuration								[31-OCT-2019]  (Done)
+@EnableAutoConfiguration
+@ComponentScan
 
 Spring Web Annotations :
 ************************
@@ -38,7 +43,7 @@ Spring Stereotype Annotations :
 
 In Spring whenever a request is sent to the Controller,It will have to pass through the Interceptors(Zero or More) before being processed by the Controller.
 Spring Interceptor is a concept similar to Servlet Filter.
-Spring Interceptor is applied to the requests that are sending to the Controller.
+Spring Interceptor is applied to all the requests that are sending to the Controller.
 We can use Interceptors to do some activities such as writing Logs,adding or updating Configurations before request is being processed by the Controller.
 
 Our Interceptor must implement org.springframework.web.servlet.HandlerInterceptor (or) org.springframework.web.servlet.hadler.HandlerInterceptorAdaptor Class.
@@ -60,7 +65,7 @@ We need to implement the abstract methods
 Difference between Filter and Interceptor :
 -------------------------------------------
 A Servlet Filter is used in the Web Layer only and we cannot use it outside of the Web Context.
-Interceptors can be used any Where.
+Interceptors can be used any where.
 For Authentication of Web Pages we use Servlet Filter where as for Security Stuff in the Business Layer or Logging/Bug Tracking we use Interceptors.
 Interceptors does not rely on the Servlet Container where as filter depends on Servlet Container.
 HTTP Specification does not openly prevent any HTTP Method for having a Request Body but It is wise not to use Get Method.
@@ -77,8 +82,7 @@ HttpMessageConverter is Responsible for Converting from HttpRequest Message to O
 @ResponseBody (javabyexamples):
 *******************************
 @ResponseBody Annotation Indicates that The Result Type Should be Written Straight into the Response Body
-In What Ever Format We Specify an Internally Uses HttpMessageConverter to Convert The HTTP Message Into
-Specified Format.
+In What Ever Format We Specify an Internally Uses HttpMessageConverter to Convert The HTTP Message Into Specified Format.
 Here We Have to Annotate The Controller Method With @ResponseBody
 
 @RequestBodyAdvice (javabyexamples):
@@ -114,16 +118,15 @@ Here We Have The Chance Modify the Response Object.
 
 @Configuration :
 ****************
-@Configuration is Defined on Classes That Defines Beans.
+@Configuration is defined on Classes that defines Beans.
 @Configuration is an Analog for XML File i.e It is a Configuration Using Java Class.
-Java Class Annotated With @Configuration is a Configuration By Itself and will Have Methods 
-to Instantiate the Configured Dependencies.
+Java Class Annotated with @Configuration is a Configuration by itself and will have methods to instantiate the configured Dependencies.
 
 @Qualifier :
 ************
-By Using @Qualifier,We Can Define Which Beans we want to Use.
-Moreover Spring allows us to Create Custom Annotations For Qualifying the Beans.
-There May Be Scenarios Where We Create More than One Bean of the Same Type and Want to Wire them.
+By using @Qualifier we can define which Beans we want to use.
+Moreover Spring allows us to Create Custom Annotations for Qualifying the Beans.
+There May Be Scenarios where we Create More than One Bean of the Same Type and Want to Wire them.
 Here We Use @Qualifier Annotation along with the Autowired Annotation.
 
 @Bean :
@@ -165,7 +168,7 @@ Which are Annotated with @Bean.
 
 @Primary :
 **********
-@Primary Annotation Can be Used to Give High Preference to a Bean When There are Multiple Beans of The Same Type.
+@Primary Annotation can be used to give high preference to a Bean when there are multiple Beans of the same Type.
 
 @Scope :
 ********
@@ -174,22 +177,20 @@ Here Scope Can be Singleton,Prototype,Request,Session,Global Session or Some Cus
 
 @Profile :
 **********
-By Default Spring Beans are Loaded at the Time of Application Start Up.
-Here Class Can be Annotated with @Component or a Method Can be Annotated With @Bean.
-Here The Requirement is Spring Has to Load the Particular @Component Class or @Bean Method when the Particular 
-Profile is Active then We Use @Profile.
-We Can Configure The Name of The Profile with the Value Argument of the Annotation.
+By Default Spring Beans are loaded at the time of Application Start Up.
+Here Class Can be Annotated with @Component or a Method can be Annotated With @Bean.
+Here The Requirement is Spring has to load the particular @Component Class or @Bean Method when the particular Profile is Active then we use @Profile.
+We Can Configure the name of the Profile with the value argument of the Annotation.
 
 @Import :
 *********
-By Using @Import Annotation We Can Import One or More @Configuration Classes.
-Here The @Beans are Loaded From One Configuration Class to Another Configuration Class i.e 
-To Load The Bean Definitions From One Configuration Class to Another Configuration Class We Use @Import Annotation.
+By using @Import Annotation we can Import one or more @Configuration Classes.
+Here The @Beans are loaded from one configuration class to another Configuration class i.e 
+To load the Bean definitions from One Configuration Class to another Configuration Class we use @Import Annotation.
 
 @ImportResource :
 *****************
-@ImportResource Annotation can be Used to Load The Beans Which are Defined Inside application-context.xml 
-into ApplicationContext.
+@ImportResource Annotation can be Used to Load The Beans Which are Defined Inside application-context.xml into ApplicationContext.
 
 @PropertySource :
 *****************
