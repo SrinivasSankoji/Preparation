@@ -1,26 +1,31 @@
 
-Annotation List :
-*****************
-@Interceptor                  				(springframework.guru)             [17-OCT-2019]  (Done)
-@ConfigurationProperties
-@Conditional
-@ConditionalOnClass
-@ConditionalOnProperty
-Service Locater Factory Bean	
-@SpringBootApplication 						(howtodoinjava)
-@AutoConfiguration							(howtodoinjava)									  
-
 Spring Core Annotations :
 *************************
 @Bean									    [31-OCT-2019]  (Done)
 @Value										[31-OCT-2019]  (Done)
-@Autowired									[31-OCT-2019]  (Done)
-@Qualifier									[31-OCT-2019]  (Done)
-@Primary									[31-OCT-2019]  (Done)
-@Required									[31-OCT-2019]  (Done)
-@Configuration								[31-OCT-2019]  (Done)
-@EnableAutoConfiguration
-@ComponentScan
+@Autowired									[31-OCT-2019]  ()
+@Qualifier									[31-OCT-2019]  (Done)		(IOC)	
+@Primary									[31-OCT-2019]  (Done)		(IOC)
+@Required									[31-OCT-2019]  (Done)		
+@Configuration								[31-OCT-2019]  (Done)		(IOC)
+@EnableAutoConfiguration                    [18-NOV-2021]  (Done)
+@ComponentScan                              [18-NOV-2021]  (Done)
+@DependsOn                                  [31-OCT-2019]  (Done)		(IOC)
+@Lazy                                       [31-OCT-2019]  (Done)		(IOC)
+@Lookup                                     [31-OCT-2019]  ()
+@Scope                                      [31-OCT-2019]  (Done)		(IOC)
+@Profile                                    [31-OCT-2019]  (Done)
+@Import                                     [31-OCT-2019]  (Done)	    (IOC)
+@ImportResource                             [31-OCT-2019]  (Done)		(IOC)
+@PropertySource                             [31-OCT-2019]  (Done)		(IOC)
+@PropertySources                            [31-OCT-2019]  (Done)		(IOC)
+
+Spring Stereotype Annotations :
+*******************************
+@Component									[17-OCT-2019]  (Done)			
+@Controller                                 [17-OCT-2019]  (Done)
+@Service                                    [17-OCT-2019]  (Done)
+@Repository                                 [17-OCT-2019]  (Done)
 
 Spring Web Annotations :
 ************************
@@ -32,12 +37,327 @@ Spring Web Annotations :
 @RequestBodyAdvice						    [18-OCT-2019]  (Done)
 @ResponseBodyAdvice						    [18-OCT-2019]  (Done)
 
-Spring Stereotype Annotations :
-*******************************
-@Component									[17-OCT-2019]  (Done)			
-@Controller                                 [17-OCT-2019]  (Done)
-@Service                                    [17-OCT-2019]  (Done)
-@Repository                                 [17-OCT-2019]  (Done)
+Annotation List :
+*****************
+@Interceptor                  				(springframework.guru)             [17-OCT-2019]  (Done)
+@ConfigurationProperties
+@Conditional
+@ConditionalOnClass
+@ConditionalOnProperty
+Service Locater Factory Bean	
+@SpringBootApplication 						(howtodoinjava)
+@AutoConfiguration							(howtodoinjava)	
+
+**************************************   Spring Core Annotations  *****************************************************
+@Bean :
+-------
+@Bean is a Method Level Annotation and is a direct analog of </bean> in XML.
+@Bean Annotation is applied on a method to specify that it returns a bean to be managed by Spring Application Context.
+@Bean Annotation may be used on any class directly or indirectly annotated with @Component.
+Method annotated with @Bean can be used any where in the Application using @Autowired Annotation.
+
+@value :
+--------
+@value Annotation can be used to assign default values to the variables and Method Arguments.
+@value Annotation can also be used to read read Spring Environment Variables as well as System Variables.
+@Value Annotation also Supports Spring Expression Language.
+@Value Annotation Argument can be String only but Spring tries to convert into specified type.
+
+@Autowired :
+------------
+
+@Qualifier :
+------------
+
+		@Service("userServiceImpl")
+		public class UserServiceImpl implements UserService {
+			@Override
+			public void enableUser() { }
+		}
+		@Service("defaultUserService")
+		public class DefaultUserService implements UserService {
+
+		  @Override
+		  public void enableUser() {}
+		}
+		
+There may be Scenarios where we create more than one bean of the same type and want to Autowire them.
+By using @Qualifier Annotation we can define which beans we want to use.
+Here we use @Qualifier Annotation along with the @Autowired Annotation.
+
+		public class OrderFacade {
+		  
+		  @Qualifier("userServiceImpl")
+		  @Autowired
+		  private UserService userService;
+		}
+		
+Note :
+------
+Without @Qualifier Annotation we can resolve ambiguity problem when we have more than one bean of the same type.
+Spring framework uses the bean name as the default Qualifier value.
+
+		@Service("userService")
+		public class UserServiceImpl implements UserService {
+			@Override
+			public void enableUser() { }
+		}
+		
+		@Service("defaultUserService")
+		public class DefaultUserService implements UserService {
+
+		  @Override
+		  public void enableUser() {}
+		}
+
+		public class OrderFacade {
+		  @Autowired
+		  private UserService userService;
+		}
+
+@Primary :
+----------
+@Primary Annotation can be used to give high preference to a Bean when there are multiple beans of the same Type.
+When we have multile beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
+Here @Qualifier won't be applicable at the Configuration time.
+To resolve this issue we use @Primary Annotation.
+
+@Primary Annotation can be applied on any Class diretly or indirectly anootated with @Component or methods annotated with @Bean.
+
+@Required :
+-----------
+@Required Annotation is a method level annotation and is applied to the setter method of a Bean.
+@Required annotation indicates that setter method must be configured to be dependency inejected with the value at Configuration time.
+
+Note :
+If we are using @Autowired Annotation on our setter Method we need not use @Required Annotation because by default @Autowired Annotation has true value for required Attribute.
+
+	@Data
+	public class Person implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	private College college;
+	}
+
+	@Configuration
+	public class RequiredConfiguration {
+
+	@Bean
+	public College college() {
+		College college = new College();
+		college.setName("Partibha Degree College");
+		college.setLocation("Siddipet");
+		return college;
+	}
+	@Bean
+	public Person person(College college) {
+		Person person = new Person();
+		person.setCollege(college);
+		return person;
+	}
+	}
+	
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				RequiredConfiguration.class);
+		Person person = context.getBean(Person.class);
+		System.out.println(person.getCollege().getName());
+		context.close();
+	}
+	
+@Configuration :
+----------------
+@Configuration is an Analog for XML File i.e It is a Configuration using Java Class.
+@Configuration is defined on Classes that defines one or more Beans.
+Java Class Annotated with @Configuration is a Configuration by itself and will have methods to instantiate the configured dependencies.
+
+@EnableAutoConfiguration :
+--------------------------
+@EnableAutoConfiguration enables automatic configuration features of SpringBoot Application based on the jars defined in the classpath.
+@EnableAutoConfiguration also allows exclusion for us.
+
+@ComponentScan :
+----------------
+@ComponentScan Annotation tells Spring where to pick the Spring Components explicitly.
+The Classes Annotated with @Component,@Controller,@Service,@Repository,@Configuration,@RestController etc will be treated as Spring Components.
+
+@DependsOn :
+------------
+By using @DependsOn Annotation we can force Spring Container to initialize one or more Beans before the bean which is Annotated with @DependOn
+@DependsOn Annotation may be used on any Class directly or inDirectly which has Annotated with @Component or Methods Annotated with @Bean.
+
+	@Bean
+	@DependsOn(value = { "secondBean","thirdBean"})
+	public FirstBean firstBean() {
+		return new FirstBean();
+	}
+
+	@Bean
+	public SecondBean secondBean() {
+		return new SecondBean();
+	}
+
+	@Bean
+	public ThirdBean thirdBean() {
+		return new ThirdBean();
+	}
+
+@Lazy :
+-------
+Spring Container creates and initializes all the beans at the time of Application start up.
+We can prevent this preInitialization of Singleton Bean by using @Lazy Annotation.
+@Lazy Annotation may be used on Any Class directly or indirectly Annotated with @Component or on Methods which are Annotated with @Bean.
+
+	@Bean
+	@Lazy(value = true)
+	public FirstBean firstBean() {
+		return new FirstBean();
+	}
+	
+	@Bean
+	public SecondBean secondBean() {
+		return new SecondBean();
+	}   
+	
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(LazyConfiguration.class);
+		FirstBean firstBean=context.getBean(FirstBean.class);
+		firstBean.test();
+		context.close();
+	}
+	
+At the time of Application Startup Only SecondBean is loaded and when we call the getBean() on FirstBean then FirstBean is loaded into ApplicationContext.
+
+@Lookup :
+---------
+
+@Scope :
+--------
+@Scope Annotation can be applied to define the Scope of a Class Annotated with @Component or a Method annotated with @Bean.
+Here Scope Can be Singleton,Prototype,Request,Session,Global Session or some Custom Type.
+
+	@Bean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+	public UserService userService()
+	{
+		return new UserService();	
+	}
+	
+	@Data
+	@Service
+	@Scope("prototype")
+	public class UserService {
+
+		private String name;
+	}
+
+@Profile :
+----------
+By Default Spring Beans are loaded at the time of Application Start Up.Here Class Can be Annotated with @Component or a Method can be Annotated With @Bean.
+Here the Requirement is Spring has to load the particular @Component Class or @Configuration Class or @Bean Method when the particular Profile is Active then we use @Profile.
+We Can Configure the name of the Profile with the value argument of the Annotation.
+
+	@Configuration
+	@Profile("dev")
+	public class DevConfigurations {
+		// Skipped Configurations
+	}
+	
+Note :
+Spring profiles helps in seggregating Application Configuration and make them available only in certain environments.
+
+@Import :
+---------
+By using @Import Annotation we can Import one or more @Configuration Classes.
+Here The @Beans are loaded from one configuration class to another Configuration class i.e 
+To load the Bean definitions from One Configuration Class to another Configuration Class we use @Import Annotation.
+
+@ImportResource :
+-----------------
+@ImportResource Annotation can be used to load the beans which are defined inside application-context.xml into ApplicationContext.
+
+@PropertySource :
+-----------------
+@PropertySource Annotation provides a convenient and declarative mechanism for adding Properties File to the Spring Environment.
+It has to be used in Conjunction with @Configuration Class.
+By default Spring identifies the application.properties.
+If we want Spring to identify the user defined Properties File we use @PropertySource Annotation that accepts the location of the Properties File.
+
+	@Configuration
+	@PropertySource("classpath:application.properties")
+	public class PropertySourceConfiguration {
+
+@PropertySources :
+------------------
+If we want to identify multiple user defined Properties Files by Spring we use @PropertySources Annotation.
+
+**************************************   Spring Stereotype Annotations  *****************************************************
+ 
+@Component  :
+-------------
+This Annotation is used on Classes to indicate that this is a Spring Component or Spring Bean.
+By Adding @Component Annotation to the Class,Component Scanning Mechanism of Spring adds the Component into the Application Context.
+
+@Controller :
+-------------
+@Controller Annotation is used to indicate the Class is a Spring Controller.
+This Annotation is used to identify Controllers for Spring MVC or Spring Web Flux.
+
+@Service :
+----------
+This Annotation is used on Class.
+@Service marks a Java Class that performs a service such as executes the Business Logic,perform calculations and call External API's.
+This Annotation is a specialized form of @Component Annotation intended to be used in the Service Layer.
+
+@Repository :
+-------------
+This Annotation is used on Classes which directly access the Database.
+@Repository Annotation has Automatic Translation Feature.
+For Example When an Exception Occurs in the @Repository There is a handler for that Exception and there is no need of Try Catch Block.
+Here we can use DataAccessException or ExceptionTranslator to handle the Exceptions irrespective of JPA Vendor.
+
+**************************************   Spring Web Annotations  *****************************************************
+
+@RequestBody (springframework.guru) :
+-------------------------------------
+@RequestBody Annotation Indicates That a Method Parameter Should bound to the value of the HTTP Request Body.
+HttpMessageConverter is Responsible for Converting from HttpRequest Message to Object and assigned to the Variable.
+@RequestBody does not depend on the Media Type.
+
+@ResponseBody (javabyexamples) :
+--------------------------------
+@ResponseBody Annotation Indicates that The Result Type Should be Written Straight into the Response Body
+In What Ever Format We Specify an Internally Uses HttpMessageConverter to Convert The HTTP Message Into Specified Format.
+Here We Have to Annotate The Controller Method With @ResponseBody
+
+@RequestBodyAdvice (javabyexamples) :
+-------------------------------------
+@RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
+Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
+
+We Need To Implement all The Four Methods of Request Body Advice.
+We Have supports()Method Which decides whether the Implementation should run for the Current Request.
+We Have beforeBodyMethod() Method which runs before Spring MVC Reads The Request Body.
+We Have afterBodyRead() Method which Runs After The Body is Read and Converted into an Object.
+In After bodyRead() Method ,We Have an Access to The Converted Object and Cast Into an Appropriate Type
+and We Can Also Modify The Fields.
+
+Finally When The Request Body is Empty, We Can Put Our Custom Logic into handleEmptyBody() Method.
+We Must Return a Value to Use ,Either Provide The Object or an Entirely New Object.
+
+@ResponseBodyAdvice (javabyexamples) :
+--------------------------------------
+By Using @ResponseBodyAdvice We Can Modify the Response Before Spring MVC Writes it to the Response Body.
+Since We are Annotating The Controller with @RestController all the End Point Methods Implicitly will have the 
+@ResponseBody Annotation.
+As A Result Spring MVC will Write the Method Return Value to the Response.
+@ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
+ResponseBodyAdvice has Two Methods :
+Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
+Provides the Return Type and Converter Type.
+beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
+Here We Have The Chance Modify the Response Object.
 
 ************************************ @Interceptor (springframework.guru and o7planning and javainuse) ****************************************************************
 
@@ -60,8 +380,6 @@ We need to implement the abstract methods
 3.afterCompletion() :
 ---------------------
 
-
-
 Difference between Filter and Interceptor :
 -------------------------------------------
 A Servlet Filter is used in the Web Layer only and we cannot use it outside of the Web Context.
@@ -70,165 +388,3 @@ For Authentication of Web Pages we use Servlet Filter where as for Security Stuf
 Interceptors does not rely on the Servlet Container where as filter depends on Servlet Container.
 HTTP Specification does not openly prevent any HTTP Method for having a Request Body but It is wise not to use Get Method.
 Because HTTP Servers and Proxy Servers may discard the Request Body for GET Request and fail in unexpected Ways.
-
-**************************************   Spring Web Annotations  *****************************************************
-
-@RequestBody (springframework.guru):
-************************************
-@RequestBody Annotation Indicates That a Method Parameter Should bound to the value of the HTTP Request Body.
-HttpMessageConverter is Responsible for Converting from HttpRequest Message to Object and assigned to the Variable.
-@RequestBody does not depend on the Media Type.
-
-@ResponseBody (javabyexamples):
-*******************************
-@ResponseBody Annotation Indicates that The Result Type Should be Written Straight into the Response Body
-In What Ever Format We Specify an Internally Uses HttpMessageConverter to Convert The HTTP Message Into Specified Format.
-Here We Have to Annotate The Controller Method With @ResponseBody
-
-@RequestBodyAdvice (javabyexamples):
-************************************
-@RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
-Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
-
-We Need To Implement all The Four Methods of Request Body Advice.
-We Have supports()Method Which decides whether the Implementation should run for the Current Request.
-We Have beforeBodyMethod() Method which runs before Spring MVC Reads The Request Body.
-We Have afterBodyRead() Method which Runs After The Body is Read and Converted into an Object.
-In After bodyRead() Method ,We Have an Access to The Converted Object and Cast Into an Appropriate Type
-and We Can Also Modify The Fields.
-
-Finally When The Request Body is Empty, We Can Put Our Custom Logic into handleEmptyBody() Method.
-We Must Return a Value to Use ,Either Provide The Object or an Entirely New Object.
-
-@ResponseBodyAdvice (javabyexamples):
-*************************************
-By Using @ResponseBodyAdvice We Can Modify the Response Before Spring MVC Writes it to the Response Body.
-Since We are Annotating The Controller with @RestController all the End Point Methods Implicitly will have the 
-@ResponseBody Annotation.
-As A Result Spring MVC will Write the Method Return Value to the Response.
-@ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
-ResponseBodyAdvice has Two Methods :
-Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
-Provides the Return Type and Converter Type.
-beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
-Here We Have The Chance Modify the Response Object.
-
-
-**************************************   Spring Core Annotations  *****************************************************
-
-@Configuration :
-****************
-@Configuration is defined on Classes that defines Beans.
-@Configuration is an Analog for XML File i.e It is a Configuration Using Java Class.
-Java Class Annotated with @Configuration is a Configuration by itself and will have methods to instantiate the configured Dependencies.
-
-@Qualifier :
-************
-By using @Qualifier we can define which Beans we want to use.
-Moreover Spring allows us to Create Custom Annotations for Qualifying the Beans.
-There May Be Scenarios where we Create More than One Bean of the Same Type and Want to Wire them.
-Here We Use @Qualifier Annotation along with the Autowired Annotation.
-
-@Bean :
-*******
-@Bean is a Method Level Annotation and Supports Some of the Attributes such as init-method Using @Lazy,destroy-method,
-Auto wiring Using @Autowired and Bean Name Using @Qualifier.
-@Bean Annotation May Be Used on Any Class Directly or Indirectly Annotated with @Component.
-Method Annotated With @Bean can be Used Any Where in the Application Using @Autowired Annotation.
-
-@Required :
-***********
-@Required Annotation is a Method Level Annotation and Applies to Setter Method of a Bean.
-This Annotation indicates that Setter Method Must be Configured to be Dependency Injected with a Value at Configuration Time.
-
-@value :
-********
-@value Annotation is used to Assign Default Values to the Variables and Method Arguments.
-We Can also Read Spring Environment Variables as well as System Variables Using @Value Annotation.
-Spring @Value Annotation also Supports Spring Expression Language.
-@Value Annotation Argument Can be String Only But Spring Tries to Convert into Specified Type.
-
-@DependsOn :
-************
-By Using @DependsOn Annotation We Can Force Spring IOC Container to Initialize One or More Beans 
-Before The Bean Which is Annotated With @DependOn
-@DependsOn Annotation May Be Used on Any Class Directly or InDirectly Which has Annotated With @Component or
-Methods Annotated With @Bean.
-
-@Lazy :
-*******
-By Default Spring Container Creates and Initializes all Singleton Beans at the Time of Application Start Up.
-We Can Prevent this PreInitialization of Singleton Bean By Using @Lazy Annotation.
-@Lazy Annotation May Be Used on Any Class Directly or Indirectly Annotated with @Component or on Methods 
-Which are Annotated with @Bean.
-
-@Lookup :
-*********
-
-
-@Primary :
-**********
-@Primary Annotation can be used to give high preference to a Bean when there are multiple Beans of the same Type.
-
-@Scope :
-********
-@Scope Annotation Can be Applied to Define The Scope of a Class Annotated With @Component or a Method Annotated With @Bean.
-Here Scope Can be Singleton,Prototype,Request,Session,Global Session or Some Custom Type.
-
-@Profile :
-**********
-By Default Spring Beans are loaded at the time of Application Start Up.
-Here Class Can be Annotated with @Component or a Method can be Annotated With @Bean.
-Here The Requirement is Spring has to load the particular @Component Class or @Bean Method when the particular Profile is Active then we use @Profile.
-We Can Configure the name of the Profile with the value argument of the Annotation.
-
-@Import :
-*********
-By using @Import Annotation we can Import one or more @Configuration Classes.
-Here The @Beans are loaded from one configuration class to another Configuration class i.e 
-To load the Bean definitions from One Configuration Class to another Configuration Class we use @Import Annotation.
-
-@ImportResource :
-*****************
-@ImportResource Annotation can be Used to Load The Beans Which are Defined Inside application-context.xml into ApplicationContext.
-
-@PropertySource :
-*****************
-@PropertySource Annotation Provides a Convenient and Declarative Mechanism For Adding Properties File
-To The Spring Environment.
-It has to be Used in Conjunction with @Configuration Class.
-By Default Spring Identifies the application.properties and If We Want Spring to Identify the User Defined Properties File
-We Use @PropertySource Annotation That Accepts the Location of The Properties File.
-
-@PropertySources :
-******************
-If We Want to Identify Multiple User Defined Properties Files By Spring,We Use @PropertySources Annotation.
-
-
-**************************************   Spring Stereotype Annotations  *****************************************************
- 
-@Component :
-************
-This Annotation is Used on Classes to Indicate that it is a Spring Component or Spring Class as a Bean.
-By Adding @Component Annotation to the Class Component Scanning Mechanism of Spring Can add into the Application Context.
-
-@Controller :
-*************
-@Controller Annotation is Used to Indicate the Class is a Spring Controller.
-This Annotation is Used to Identify Controllers For Spring MVC or Spring Web Flux.
-
-@Service :
-**********
-This Annotation is Used on Class.
-@Service Marks a Java Class that Performs a Service Such as Executes The Business Logic,Perform Calculations and
-Call External API's.
-This Annotation is a Specialized Form of @Component Annotation intended to be Used in the Service Layer.
-
-@Repository :
-*************
-This Annotation is Used on Classes Which Directly Access the Database.
-@Repository Annotation Automatic Translation Feature.
-For Example When an Exception Occurs in the @Repository,
-There is a Handler For That Exception and there is no Need to Add Try Catch Block.
-Here We Can Use DataAccessException or ExceptionTranslator to Handle The Exceptions Irrespective pf JPA Vendor.
-

@@ -49,7 +49,7 @@ Auto Configuration scans the classpath,finds the libraries in the classpath and 
 SpringBoot Auto Configuration logic is implemented in spring-boot-autoconfigure.jar and works on top of @Conditional,@ConditionalOnClass and @ConditionalOnProperty Annotations.
 Auto Configuration will be back away as we define our own Configuration.
 Auto Configuration applies to all the user defined beans that have been registered.
-To enable Auto Configuration in SpringBoot we use @AutoConfiguration or @SpringBootApplication Annotation in our Application.
+To enable Auto Configuration in SpringBoot we use @EnableAutoConfiguration or @SpringBootApplication Annotation in our Application.
 
 3.Embedded Servers :
 --------------------

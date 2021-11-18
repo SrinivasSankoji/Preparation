@@ -207,10 +207,9 @@ To reolve the problem we need to override readResolve().
 ************************************************* 3.How to prevent Singleton Pattern(geeksforgeeks) ******************************************************
 
 Process of creating exactly independent duplicate Objects is called Cloning.
-If we clone the Singleton Class then duplicate Singleton Class will be created.
-Then it breaks the nature of Singleton.
+If we clone the Singleton Class then duplicate Singleton Class will be created.Then it breaks the nature of Singleton.
 
-		public class CloneableSingleton implements Cloneable {
+	public class CloneableSingleton implements Cloneable {
 
 	private CloneableSingleton() {
 	}

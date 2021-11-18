@@ -1,6 +1,6 @@
 1.Dependency Injection Design Pattern           							(DZone)  			[16-AUG-2021]  (Done)
 2.Spring IOC Container Overview												(JavaGuides)		[16-AUG-2021]  (Done)
-3.Spring Bean Life Cycle													(mrbool)			[25-AUG-2021]  (Done)	
+3.Spring Bean Life Cycle													(mrbool)			[25-AUG-2021]  (Done)
 4.Spring IOC Container Java Config Example									(JavaGuides)		[16-AUG-2021]  (Done)
 5.Spring IOC Container XML Config Example                                   (JavaGuides)        [16-AUG-2021]  (Done)
 6.Spring BeanFactory Interface Example                                      (JavaGuides)        [16-AUG-2021]  (Done)
@@ -32,6 +32,7 @@
 28.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  (Done)
 29.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  (Done)
 30.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
+31.5 Types of Autowiring in Spring											(DZone)
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
@@ -312,9 +313,10 @@ To define the bean as Singleton in the XML
 To define the bean as Singleton in Java Configuration Level
 
 	@Configuration
-	@scope("singleton")
 	public class AccountService
 	{
+		@Bean
+		@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 		public UserService userService()
 		{
 			return new UserService();
@@ -325,6 +327,13 @@ Prototype Scope :
 -----------------
 When we define a bean with prototype scope,Spring Container creates a new instance every time when the request is made for that bean.
 As a rule use the prototype scope for stateful beans and singleton scope for stateless beans.
+
+	@Service
+	@Scope("prototype")
+	public class UserService {
+
+		private String name;
+	}
 
 Singleton beans with prototype-bean dependencies :
 --------------------------------------------------
@@ -644,8 +653,7 @@ public class ImportConfiguration {
 @Bean Annotation supports some of the attributes such as init-method,destroy-method,autowiring and name.
 We can use @Bean in the class annotated with @Configuration and @Component.
 
-To declare a bean simply annotate a method with @Bean and 
-It will be registered in the ApplicationContext of the type specified in the method return value.
+To declare a bean simply annotate a method with @Bean and It will be registered in the ApplicationContext of the type specified in the method return value.
 By default bean name will be same as the Method name and we can change the Bean name by using name attribute.
 We can also have the scope for the Bean definition and default scope is Singleton.
 
@@ -659,7 +667,7 @@ We use the name attribute of the Bean foe Bean aliasing.
 So that Spring Container process the Classes and generate Spring beans to be used in the Application.
 
 @ComponentScan can be used to automatically pick up all the Spring Components and all the Configuration Classes.
-@Import Annotation can be used to load additional Configuration Class.
+@Import Annotation can be used to load the Configuration Class into another Configuration Class.
 If we have XML based Configuration then we can use @ImportResource Annotation to load XML Configuration Files.
 
 ************************************************** 26.@PropertySource Annotation with Example **************************************************
@@ -725,12 +733,24 @@ We can prevent this pre initialization of Singleton by using @Lazy Annotation.
 		return new SecondBean();
 	}   
 	
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(LazyConfiguration.class);
+		FirstBean firstBean=context.getBean(FirstBean.class);
+		firstBean.test();
+		context.close();
+	}
+	
+At the time of Application Startup Only SecondBean is loaded and when we call the getBean() on FirstBean then FirstBean is loaded into ApplicationContext.
+
 ************************************************** 30.15 Spring Core Annotations   *************************************************************
 
 @Required :
 -----------
 @Required Annotation is a method level annotation and is applied to the setter method of a Bean.
 @Required annotation indicates that setter method must be configured to be dependency inejected with a value at Configuration time.
+
+Note :
+If we are using @Autowired Annotation on our setter Method we need not use @Required Annotation because by default @Autowired Annotation has true value for required Attribute.
 
 @Value :
 --------
