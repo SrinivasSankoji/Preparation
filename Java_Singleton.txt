@@ -13,7 +13,7 @@ Singleton Implementation :
 --------------------------
 private Constructor to restrict the instantiation of class from other classes.
 private static variable of the same class that is the only instance of the class.
-uublic static method that returns the instance of the class ie Global access point for the outer world to get the instance.
+puublic static method that returns the instance of the class ie Global access point for the outer world to get the instance.
 
 Following are the different approaches of Singleton pattern Implementation.
 
@@ -30,7 +30,7 @@ Following are the different approaches of Singleton pattern Implementation.
 ------------------------
 In case of Eager Initialization,Instance of Singleton Class is created at the time of Class Loading.
 But the drawback is instance is created even though Client Application might not be using it.
-Alos this method does not provide any optioon for Exception Handling.
+Also this method does not provide any optioon for Exception Handling.
 
 	public class EagerInitialization {
 
@@ -46,12 +46,11 @@ Alos this method does not provide any optioon for Exception Handling.
 	
 2.Static Block Initialization :
 -------------------------------
-Static block Initialization is similar to Eager Initialization except Instance of a Class is created in the static block and
-provides and option for Exception Handling.
+Static block Initialization is similar to Eager Initialization except Instance of a Class is created in the static block and provides and option for Exception Handling.
 
 	package com.java.singleton.journaldev;
 
-public class StaticBlockInitialization {
+	public class StaticBlockInitialization {
 
 	private static StaticBlockInitialization instance;
 	static {
@@ -89,7 +88,7 @@ public class LazyInitialization {
 	}
 
 The above method works fine in case of Single Threaded Environment.
-If multilple Threads are inside the If condition at the same time It will break the Singleton Pattern.
+If multilple Threads are inside the If condition at the same time then it will break the Singleton Pattern.
 
 4.Thread Safe Singleton :
 -------------------------
@@ -104,7 +103,7 @@ So that only one Thread can access the method at a time.
 	}
 	
 The above implementation works fine and provides the Thread Safety.
-But it reduces the performance of the system because of "synchronized" keyword although few Threads might create the seperate instance.
+But it reduces the performance of the system because of "synchronized" keyword eventhough few Threads might create the seperate instance.
 To avoid this Double checking principle is used.
 Here Synchronized block is used inside the If Condition with an additional check to ensure only one instance of a Class is created.
 
@@ -170,7 +169,7 @@ The other drawback is ENUM does not allow lazy Initialization.
 8.Serialization and Singleton :
 -------------------------------
 Sometimes we need to implement Serializable interface along with Singleton Class so that it can store its state in the File System.
-Later point of time It can retrieve the Object.
+Later point of time it can retrieve the Object.
 
 	public class SerializedSingleton implements Serializable {
 

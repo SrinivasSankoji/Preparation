@@ -59,7 +59,7 @@ Method annotated with @Bean can be used any where in the Application using @Auto
 @value :
 --------
 @value Annotation can be used to assign default values to the variables and Method Arguments.
-@value Annotation can also be used to read read Spring Environment Variables as well as System Variables.
+@value Annotation can also be used to read Spring Environment Variables as well as System Variables.
 @Value Annotation also Supports Spring Expression Language.
 @Value Annotation Argument can be String only but Spring tries to convert into specified type.
 
@@ -297,7 +297,7 @@ If we want to identify multiple user defined Properties Files by Spring we use @
 @Component  :
 -------------
 This Annotation is used on Classes to indicate that this is a Spring Component or Spring Bean.
-By Adding @Component Annotation to the Class,Component Scanning Mechanism of Spring adds the Component into the Application Context.
+When we add @Component Annotation,Spring Framework will add these Classes for Dependency Injection when Annotation based Configuration and Classpath scanning is used.
 
 @Controller :
 -------------

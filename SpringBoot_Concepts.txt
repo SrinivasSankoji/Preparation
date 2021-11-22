@@ -8,13 +8,15 @@
 8.Spring Initializer                                        (Daily Code Buffer)				[23-JUN-2021]  ()
 
 
-****************************************  7.Running SpringBoot Application using Terminal  ****************************************************
+**************************************** 7.Running SpringBoot Application using Terminal ****************************************************
 
 There are two options to run the Springboot Application from Command Line
 
 1.java -jar [Name of the Jar]
 2.mvn -Dmaven.skip.test=true spring-boot:run
 
+
+**************************************** 8.Spring Initializer (Daily Code Buffer) ***********************************************************
 
 
 

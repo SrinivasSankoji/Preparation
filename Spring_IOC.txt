@@ -79,7 +79,7 @@ public class QuizMasterController {
     }
 }
 
-Here the Architecture is tightly Coupled.
+Here the Architecture is tightly coupled.
 We created the instance of QuizMaster in the QuizMasterService related to Spring.
 If we want to create the instance of QuizMaster in the QuizMasterService related to Struts we need to do the changes in QuizMasterService.
 We can avoid this by using dependency injection design pattern.
@@ -108,13 +108,13 @@ QuizMaster object will never instantiated in the QuizMasterService but we will a
 
 Define the beans.xml
 
-<bean id="springquizmaster" class="com.ioc.dzone.service.SpringQuizMaster"></bean>
-    <bean id="strutsquizmaster" class="com.ioc.dzone.service.StrutsQuizMaster"></bean>
-    <bean id="quizmasterservice" class="com.ioc.dzone.service.QuizMasterService">
-        <property name="quizMaster">
-        <ref local="springquizmaster"/>
-        </property>
-</bean>
+		<bean id="springquizmaster" class="com.ioc.dzone.service.SpringQuizMaster"></bean>
+		<bean id="strutsquizmaster" class="com.ioc.dzone.service.StrutsQuizMaster"></bean>
+		<bean id="quizmasterservice" class="com.ioc.dzone.service.QuizMasterService">
+			<property name="quizMaster">
+				<ref local="springquizmaster"/>
+			</property>
+		</bean>
 
 ************************************************** 2.Spring IOC Container Overview **************************************************
 
@@ -163,6 +163,10 @@ AnnotationConfigWebApplicationContext and XmlWebApplicationContext are use for W
 
 Spring Container Creation :
 ---------------------------
+To create a Spring Container using BeanFactory
+
+	XMLBeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
+	
 To create a Spring Container using XML 
 
 	ApplicationContext context=new ClasspathXmlApplicationContext("applicationContext.xml");
@@ -170,10 +174,6 @@ To create a Spring Container using XML
 To create a Spring Container using Configuration File
 
 	AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(AppConfig.class);
-	
-To create a Spring Container using BeanFactory
-
-	XMLBeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
 	
 Retrieve Bean from Spring Container :
 -------------------------------------
@@ -212,7 +212,7 @@ Spring Container inject's the Bean properties
 Spring Container sets the Bean Name If the Bean implements BeanNameAware interface.
 Spring Container passes the BeanId to the Bean Name.
 4.Set Bean Factory
-Spring Container sets the BeanFactory if the Bean implements BeanFactoryAware interface.
+Spring Container sets the BeanFactory If the Bean implements BeanFactoryAware interface.
 Spring Conatiner passes the BeanFactory to the setBeanFactory().
 5.Pre Initialization :
 This stage is also called Pre Initizlization.
@@ -227,7 +227,7 @@ Now the Bean is ready to use by the Application.
 9.Destroy :
 Bean is destoroyed during this Stage.
 If the Bean implements DisposableBean the Spring Container calls the destroy().
-If the custome destroy method is defined then Container calls the specifc method.
+If the custom destroy method is defined then Container calls the specifc method.
 
 ************************************************** 4.Spring IOC Container Java Config Example **************************************************
 
@@ -260,8 +260,54 @@ Constructor based Dependency Injection
 
 ************************************************** 8.Spring Setter Injection Example  ********************************************************
 
-Setter based Injection is accomplished by the Container calling setter methods on our beans after invloking setter Methods
-to instantiate your bean.
+Setter based Injection is accomplished by the Container calling setter methods on our beans to instantiate your bean.
+
+	@Service("SMSService")
+	public class SMSService implements MessageService{
+
+		@Override
+		public void sendMessage(String message) {
+			System.out.println("SMS "+message);
+		}
+	}
+	
+	@Service("EmailService")
+	public class EmailService implements MessageService{
+
+		@Override
+		public void sendMessage(String message) {
+			System.out.println("Email "+message);
+		}
+	}
+	
+	@Service("TwitterService")
+	public class TwitterService implements MessageService{
+
+		@Override
+		public void sendMessage(String message) {
+			System.out.println("Twitter "+message);
+		}
+	}
+	
+To call the MessageService via Setter Injection MAke any one of the MessageService Implemented class as @Primary
+
+		@Service("TwitterService")
+		@Primary
+		public class TwitterService implements MessageService{
+
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Twitter "+message);
+			}
+		}
+
+		public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				DependencyInjectionConfiguration.class);
+		SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
+		bean.processMessage("Setter Based Injection Example");
+		context.close();
+		}
 	
 ************************************************** 9.Spring Constructor Injection Example  *************************************************** 
 
@@ -269,13 +315,29 @@ Constructor based DI is accomplished by the Container invoking a Constructor wit
 Create a Spring Configuration file ie ApplicationConfiguration which is annotated with @Configuration Annotation.
 This is equivalent to XML Configuration without beans Definition.
 Create the MessageService interface and provide more than two implementations for it.
-If there are multiple implementations for MessageService interface and to avoid ambiguity,lets use @Qualifier Annotation.
+If there are multiple implementations for MessageService interface and to avoid ambiguity we use @Qualifier Annotation.
 To avoid decoupling always use interfaces or Abstract Classes as an instance variable and Constructor arguments.
+
+	@Component
+	public class ConstructorBasedInjection {
+
+	private MessageService messageService;
+
+	@Autowired
+	public ConstructorBasedInjection(@Qualifier("TwitterService") MessageService messageService) {
+		super();
+		this.messageService = messageService;
+	}
+
+	public void processMessage(String message) {
+		messageService.sendMessage(message);
+	}
+	}
   
 ************************************************** 10.@DependsOn Annptation Example ************************************************************
 
 @DependsOn annotation forces the Spring Container to initialize one or more beans before the bean which is annotated by @DependsOn annotation.
-@DependsOn annotation may be used on any class directly or indirectly with @Component or methods annotated with @Bean.
+@DependsOn annotation may be used on any class directly or indirectly with annotated with @Component or methods annotated with @Bean.
 
 ************************************************** 11.Guide to Spring Bean Scopes   ***********************************************************
 
@@ -310,13 +372,13 @@ To define the bean as Singleton in the XML
 
 	<bean id="" name="" scope="singleton"></bean>
 	
-To define the bean as Singleton in Java Configuration Level
+To define the bean as Singleton at Bean Level
 
 	@Configuration
 	public class AccountService
 	{
 		@Bean
-		@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+		@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 		public UserService userService()
 		{
 			return new UserService();
@@ -326,7 +388,7 @@ To define the bean as Singleton in Java Configuration Level
 Prototype Scope :
 -----------------
 When we define a bean with prototype scope,Spring Container creates a new instance every time when the request is made for that bean.
-As a rule use the prototype scope for stateful beans and singleton scope for stateless beans.
+Use the Prototype scope for stateful beans and Singleton scope for stateless beans.
 
 	@Service
 	@Scope("prototype")
@@ -369,10 +431,9 @@ As we use init-method and destroy-method in XML Bean Configuration,same way we c
 
 ************************************************** 15.@Scope annotation with Prototype Scope Example ******************************************
 
-We use @Scope to define the scope of a @Component Class or @Bean definition.
-When a Spring bean is scoped as a prototype,Spring IOC Container creates a new bean instance every time when a request is made for that bean.
-we define the scope of a bean as prototype using @Scope("prototype") or
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+We use @Scope annotation to define the scope of a @Component Class or @Bean definition.
+When a Spring bean is scoped as Prototype,Spring Container creates a new bean instance every time when a request is made for that bean.
+we define the scope of a bean as Prototype using @Scope("prototype") or @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 
 @Service
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -397,8 +458,7 @@ public class SingletonConfiguration {
 
 When a Spring bean is scoped as Singleton,Spring Container exactly creates one instance for that bean definition.
 By Default Spring Container creates and initializes all the beans as Singleton.
-we define the scope of a bean as Singleton using @Scope("singleton") or
-@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
+we define the scope of a bean as Singleton using @Scope("singleton") or@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
 
 @Service
 @Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -422,8 +482,7 @@ public class SingletonConfiguration {
 ************************************************** 17.Spring Annotation Based Container Configuration  ****************************************** 
 
 From Spring 2.5 it is possible to configure the dependency injection using Annotations.
-Instead of XML to perform the bean wiring we can move the bean Configuration to the Component class itself using Annotations at Class Level,Method Level 
-and Field Level.
+Instead of XML to perform the bean wiring we can move the bean Configuration to the Component class itself using Annotations at Class Level,Method Level and Field Level.
 Note :
 Annotation Injection is performed before XML Injection.
 Annotation wiring is not turned on Spring Container and we need to enable it in Spring COnfiguration File.
@@ -533,7 +592,6 @@ publci class CustmerController
 When we have multile beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
 Here @Qualifier won't applicable at the Configuration time.
 To resolve this issue we use @Primary Annotation.
-
 @Primary Annotation can be applied on any Class diretly or indirectly anootated with @Component or methods annotated with @Bean.
 
 public interface MessageService {
@@ -710,7 +768,7 @@ To ignore the not found properties file we use ignoreResourceNotFound-true ie
 ************************************************** 28.@ImportResource Annotation Example ******************************************************* 
 
 If XML or other non @Configuration Bean resources needs to be imported we use the @ImportResource Annotation.
-If we want to load config.properties file then we can use @ImportResource Annotation to load respective properties file.
+If we want to load config.properties file then we can use @Propertysource Annotation to load respective properties file.
 
 Note :
 In Spring XML based Configuration we use <import> tag to load multiple Spring Configuration Files.
@@ -759,8 +817,7 @@ If we are using @Autowired Annotation on our setter Method we need not use @Requ
 
 @Profile :
 ----------
-If we want particular @Component Class or @Bean Method to be used only when a specific profile is active then
-we mark it with @Profile Annotation.
+If we want particular @Component Class or @Bean Method to be used only when a specific profile is active then we mark it with @Profile Annotation.
 
 	 @Component
 	 @Profile("development")

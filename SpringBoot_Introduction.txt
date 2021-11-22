@@ -63,7 +63,7 @@ Behind the scenes it is equivalent to @Configuration,@EnableAutoConfiguration an
 When we run the Application,Application starts from main().
 @EnableAutoConfiguration scans the Classpath,find the libraries in the ClassPath and configures all the beans.
 @ComponentScan scans all the Configuration classes and other Classes and loads them into ApplicationContext.
-@Configuration can used to configure the user defined beans and load them into ApplicationContext.
+@Configuration can be used to configure the user defined beans and load them into ApplicationContext.
 Finally it bootstraps the Application based on properties defined inside application.properties file under resources folder.
 
 
