@@ -7,7 +7,7 @@
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
-Serialization is the process of converting state of an Object into ByteStream ie File supported form or Network supported form so that
+Serialization is the process of converting the state of an Object into ByteStream ie File supported form or Network supported form so that
 It can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
 By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 
@@ -23,10 +23,8 @@ If we are trying to perform Serialization on a non Serializable Object we will g
 Transient keyword :
 -------------------
 Transient modifier is applicable only for variables but not for methods and Classes.
-At the time of Serialization If we don't want to Serialize the value of a particular variable to meet security constraints,
-we declare those variable as transient.
-While performing Serialization JVM ignores the original values of the transient variables and
-saves the default values to the file.
+At the time of Serialization If we don't want to Serialize the value of a particular variable to meet security constraints,we declare those variable as transient.
+While performing Serialization JVM ignores the original values of the transient variables and saves the default values to the file.
 Hence Transient means not to Serialize.
 
 transient vs static :
@@ -47,6 +45,21 @@ In the Object Graph If any Object is not Serializable we will get RuntimeExcepti
 
 *********************************************** 3.Customized Serialization(SCJP) **************************************************
 
+	@Data
+	public class Rat implements Serializable{
+		private static final long serialVersionUID = 1L;
+		
+		private int i=10;
+	}
+	
+	public class Cat implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	transient Rat rat = new Rat();
+	}
+	
+	
 During default Serialization there may be a chance of loss of information because of transient variables.
 To avoid this we go for customized Serialization.
 
@@ -65,6 +78,13 @@ To avoid this we go for customized Serialization.
 		System.out.println("After Serialization ");
 		System.out.println(cat1.rat.getI());
 	}
+	
+Output :
+Before Serialization 
+10
+After Serialization 
+Null Pointer Excpetion
+ 
 
 In case of Custom Serialization we override the callback methods ie writeObject() and readObject().
 
@@ -85,6 +105,12 @@ In case of Custom Serialization we override the callback methods ie writeObject(
 		rat.setI(x);
 	}
 }
+
+Output :
+Before Serialization 
+10
+After Serialization 
+10
 
 *********************************************** 4.Inheritance in Serialization(SCJP) **********************************************
 
@@ -139,6 +165,13 @@ public class Elephant extends Animal implements Serializable{
 		System.out.println(elephant1.getE());
 	}
 }
+Output :
+Before Serialization 
+23
+27
+After Serialization 
+22
+27
 
 *********************************************** 6.Serialization in Java(techvidvan) *************************************************
 
@@ -146,9 +179,7 @@ SerialVersionUID :
 ------------------
 Serialization process at runtime associates an Id with each Serializable class which is also known as SerialVersionUID.
 SerialVersionUID can be used to verify the sender and reciever of the Serialized Object.
-To verify this we use SerialVersionUID is used.
-We can also declare our own SerialVersionUID and assign a value.
-It must be of static type along with private and final.
+We can also declare our own SerialVersionUID and assign a value.It must be of static type along with private and final.
 
 static : without craeting Object it has to be accessed.
 final : we cannot perform reassignment for that variable
