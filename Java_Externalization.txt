@@ -58,9 +58,8 @@ Externalizable interface contains two methods ie
 
 Difference between Serializable and Externalizable in Java :
 ------------------------------------------------------------
-1.Serializable is a Marker Interface where as Externalizable is not a Marker Interface and it has two Methods.
-writeExternal() and readExternal()
+1.Serializable is a Marker Interface where as Externalizable is not a Marker Interface and it has two Methods ie writeExternal() and readExternal()
 2.In case of Serializable default Serialization process is used where as In case of Externalization custom Serialization process is used.
 3.In Serialization everything is taken care by JVM where as in Externalization Programmer has full Control.
 4.Externalization can improove the perfromance of Serialization If Proper used.
-5.Serializable uses Reflection to construct Object where as Externalizable requires public No Arg Constructor.
+5.Serializable uses Reflection to construct Object where as Externalizable requires public No Argument Constructor.
