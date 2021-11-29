@@ -24,8 +24,7 @@ There are two types of Multitasking.
 
 1.Process based Multitasking :
 ------------------------------
-Executing several tasks simultaneously where each task is seperate independent process.
-Such type of multi tasking is called process based multi tasking.
+Executing several tasks simultaneously where each task is seperate independent process.Such type of multi tasking is called process based multi tasking.
 Process based multi tasking is best suitable at OS Level and not at programatic level.
 
 2.Thread based Multitasking :
@@ -101,9 +100,8 @@ No New Thread will be created and Thead class run() will be executed like a norm
 	
 Note :
 ------
-Once runnable object is created and it does not have the start capability .
-someone has to start the runnable object.
-Thread class has the capability to stsrt the runnable object.
+Once runnable object is created and it does not have the start capability.someone has to start the runnable object.
+Thread class has the capability to start the runnable object.
 Best way of definig a Thread is by implementing runnable interface.
 
 Thread Scheduler :
@@ -114,8 +112,7 @@ Due to this we cannot expect the order of execution of Thread.
 
 Difference between start() and run() :
 --------------------------------------
-If two independent jobs are there,job has to be executed.
-In which order it is executed is not important.
+If two independent jobs are there,job has to be executed.In which order it is executed is not important.
 To start the thread If our class does not contain start() then parent class start() will be executed.
 Thread class start() calls the run().
 
@@ -129,7 +126,7 @@ Thread Scheduler is responsible to allocate memory to the Thread.
 finally invokes the run().
 
 Without executing Thread class start() there is no chance of starting new Thread in Java.
-We have to overload run() which will be executed by the thread class start().
+We have to override run() which will be executed by the thread class start().
 If we have overloaded run() then it will be executed just like a normal method.
 
 Not overriding run() :
@@ -152,13 +149,12 @@ Dead State
 
 		Thread t=new Thread();
 		
-When we Create a Thread object then Thread is said to be in new state or born state.
+When we Create a Thread object,Thread is said to be in new state or born state.
 
-when t.start() is excuted then Thread is said to be in ready/runnable state i.e 
-Here start() allocates the memory to the Thread and invokes the run().
-
+		t.start();
+		
+when t.start() is excuted then Thread is said to be in ready/runnable state i.e Here start() allocates the memory to the Thread and invokes the run().
 Once run() starts the execution then Thread will be in running state.
-
 Once run() completes the execution then Thread will enter into dead state.
 
 Note :
@@ -200,7 +196,7 @@ Thread class defines the following methods to set and get the names of the Threa
 If we want to set my own name to the Thread 
 	Thread.currentThread().setName("Bhaumik");
 	
-If we want to know the current executing Thread  
+If we want to know the current executing Thread,we use 
 
 	Thread.currentThread();
 
@@ -216,14 +212,12 @@ Thread.MIN_PRIORITY=1;
 Thread.NORM_PRIORITY=5;
 
 ThreadScheduler will use these priorities while allocating it to the processor.
-Thread which is having the highest priority will get the chance to execute first.c
-If two threads having the same priority then we can't expect the exact behavior.
-It depends on the ThreadScheduler.vcccc
+Thread which is having the highest priority will get the chance to execute first.
+If two threads having the same priority then we can't expect the exact behavior.It depends on the ThreadScheduler.
 Default priority only for main Thread is 5 and for all remaining Threads it will be inheriting form parent to child.
 Whatever priority Parent has same priority will be applicable for Child.
 
-We can get and set the priority of Thread.
-Thread class has the following methods.
+We can get and set the priority of Thread.Thread class has the following methods.
 
 	public final int getPriority();
 	public final void setPriority(int priority);
@@ -241,7 +235,7 @@ we can prevent Thread execution by using the following methods.
 
 public static native void yield() :
 -----------------------------------
-yield() causes to pause the current executing thread and give the chance to remaining waiting threads of same priority.
+yield() causes to pause the current executing thread and gives the chance to remaining waiting threads of same priority.
 If there are no waiting Threads or all Threads have the same priority then same Thread will continue its execution.
 Thread which is yielded to get the chance to execute again is decided by the ThreadScheduler and we cannot expect exactly.
 When yield() is executed,Thread state moves from running state to ready/runnable state.
@@ -291,8 +285,8 @@ Once t2 completes its execution then t1 can start its execution.
 Whenever we are calling join(),Thread enters into waiting state and there may be a chance of other Thread interrupting the Thread.
 Here we get InterruptedException and is a checked Exception.
 We need to handle this either by using try cathc block or throws keyword.
-whne join() is executed,Calling Thread will enter into waiting state and waits for the completion of other Thread and
-if the other Thread completes its execution or time expires then current Thread enters into ready/runnable state.
+when join() is executed,Calling Thread will enter into waiting state and waits for the completion of other Thread and
+If the other Thread completes its execution or time expires then current Thread enters into ready/runnable state.
 
 Scenario One (Main Thread Entering into Waiting State) :
 --------------------------------------------------------
@@ -309,7 +303,7 @@ Scenario One (Main Thread Entering into Waiting State) :
 	public static void main(String[] args) throws InterruptedException {// Creation of Main Thread
 		JoinThread thread = new JoinThread();
 		thread.start();// Starting Child Thread.
-		thread.join();// Calling Thread i. e Main Thread enters into waiting state and gives the chance to Child Thread.
+		thread.join();// Calling Thread i.e Main Thread enters into waiting state and gives the chance to Child Thread.
 		for (int i = 0; i <= 5; i++) {
 			System.out.println("Rama Thread");
 		}
@@ -338,11 +332,11 @@ Here waiting of Child Thread untill the completion of Main Thread.
 Child Thread needs the reference of Main Thread to call the Main Thread.
 
 	public class JoinChildThread extends Thread {
-	static Thread minThread;
+	static Thread mainThread;
 	@Override
 	public void run(){
 		try {
-			minThread.join();
+			mainThread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -354,7 +348,7 @@ Child Thread needs the reference of Main Thread to call the Main Thread.
 	
 	public class JoinChildDemo {
 	public static void main(String[] args) {
-		JoinChildThread.minThread=Thread.currentThread();
+		JoinChildThread.mainThread=Thread.currentThread();
 		JoinChildThread childThread=new JoinChildThread();
 		childThread.start();
 		for (int i = 0; i <= 5; i++) {
@@ -391,7 +385,7 @@ Whenever we are using sleep() compulsory time period should be required.
 Whenever Thread is in sleep() there may be a chance of other Thread interrupting the Thread and raises InterruptedException.
 Here we need to handle either by using try catch block or throws keyword.
 
-If the Thread calls the sleep() then Thread will be enter into sleeping state.
+If a Thread calls sleep() then Thread will enter into sleeping state.
 Sleeping Thread comes into ready/runnable state
 1.If the time expires
 2.If the sleeping Thread got interrupted
@@ -436,8 +430,7 @@ Thread class contains interrupt() to interrupt the sleeping Thread or waiting Th
 	}
 	}
 	
-Whenever Main Thread calling interrupt() on the Child Thread object and if the Child Thread is not in Sleeping state or waiting state
-then there is no impact on interrupt call immideately.
+Whenever Main Thread calling interrupt() on the Child Thread and If the Child Thread is not in Sleeping state or waiting state then there is no impact on interrupt call immideately.
 inetrrupt() will wait untill target method enters into sleeping state or waiting state.
 Once target method enters into sleeping state or waiting state then immideately it will be inetrrupted by the method call and catch block will be executed. 
 	
@@ -461,11 +454,11 @@ sleep : If a Thread wants to perform any operation for a particular amount of ti
 
 *************************************************************   10.Synchronization   *************************************************************
 
-Synchronized is the keyword applicable for methods and blocks and not for classes and variables.
+Synchronized is the modifier applicable for methods and blocks and not for classes and variables.
 If a method or block is declared as synchronized then at a time only one Thread is allowed to execute the method or block on the given object.
 Main Advantage of Synchronized keyword is we can resolve data inconsistency problems.
 Main Limitation of Synchronized keyword is it increases waiting time of Threads.
-Hence if there is no specific requirement it is never recomended to use synchronized keyword.
+Hence If there is no specific requirement it is never recomended to use synchronized keyword.
 
 Object  Level Lock :
 --------------------
@@ -473,20 +466,17 @@ Every object in Java has a unique lock.
 Synchronization is internally impelmented by using lock concept.
 Whenever we are using synchronization then only lock concept will come into picture.
 
-If a Thread wants to execute any synchronized method on the given object ,first it has to get the lock if an object.
+If a Thread wants to execute any synchronized method on the given object ,first it has to get the lock of an object.
 Once Thread gets the lock then it is allowed to execute any synchronized method on the given object.
 Once synchronized method is completely executed then automatically lock will be released.
-
-When a Thread is executing any synchronized mathod on the given object then remaining Threads are not allowed to execute any synchronized mathod
-on the given object simultaneously.
+When a Thread is executing any synchronized mathod on the given object then remaining Threads are not allowed to execute any synchronized mathod on the given object simultaneously.
 But remaining Threads are allowed to execute any non synchronized methods.
 
 Class Level Lock :
 ------------------
 Every class in Java has a unique Lock Concept.
 If a Thread wants to execute any static synchronized method then it requires class level lock.
-If a Thread is executing static synchronized method then remaining Threads are not allowed to execute any static synchronized method 
-on that class simultaneously.
+If a Thread is executing static synchronized method then remaining Threads are not allowed to execute any static synchronized method on that class simultaneously.
 But remaining Threads are allowed to execute normal static methods,normal instance methods,synchronized instance methods.
 
 Synchronized block :
@@ -510,19 +500,18 @@ To get Class level Lock
 *************************************************************  11.Inter Thread Communication  ***************************************************************
 
 Two Threads can communicate with each other by using wait(),notify() and notifyAll() methods.
-The Thread which requires update it has to call wait().
-The Thread which is performing update it has to call notify() so that waiting Thread will get the notification and continues its execution with those updates.
+The Thread which requires update has to call wait().
+The Thread which is performing update has to call notify() so that waiting Thread will get the notification and continues its execution with those updates.
 
 Note :
 ------
-wiat(),notify() and notifyAll() are available in Object class but not in Thread Class because
-Thread can call these methods on any Java Object.
+wiat(),notify() and notifyAll() are available in Object class but not in Thread Class because Thread can call these methods on any Java Object.
 To call any of these methods compulsory Current Thread should be the owner of the object i.e
-Current Threads hould acquire lock of an object i.e current Thread should be in synchronized area.
+Current Thread should acquire lock of an object i.e current Thread should be in synchronized area.
 
 wait(),notify() and notifyAll() should be in synchronized area otherwise we will get RuntimeException saying IllegalArgumentException.
-Once a Thread calls wait() on any object.first it releases the lock of that particular object immidealtely and enters into waiting state.
-Once a Thread calls notify() on any of the object it may not release the lock immideately and does not enter into waiting state.
+Once a Thread calls wait() on any object First it releases the lock of that particular object immidealtely and enters into waiting state.
+Once a Thread calls notify() on any of the object It may not release the lock immideately and does not enter into waiting state.
 Except wait(),notify() and notifyAll() there is no other method where lock is released and will be happened automatically.
 
 *************************************************************  12.Producer Consumer problem  **************************************************************
@@ -534,11 +523,10 @@ After producing items to the Queue,Producer Thread has to call notify() on to th
 Note :
 ------
 On which object we are trying to call wait(),notify() and notifyAll() we have to get the lock of that particular object.
-we can use the notify() to give the notification for only one object.
+we can use notify() to give the notification only for one object.
 If multiple Threads are waiting for notification then only one Thread will get notification and all the remaining Threads are required to wait for further notification.
 But which Thread will get the notification we cannot expect exactly and it depends on JVM.
-we can use notifyAll() to give the notification for all waiting Threads of a paticular object,
-But the execution should be one by one.
+we can use notifyAll() to give the notification for all waiting Threads of a paticular object,But the execution should be one by one.
 
 *************************************************************  13.Daemon Threads  *************************************************************************
 
@@ -548,9 +536,8 @@ We can check whether the Thread is Daemon or Non Daemon by using isDaemon().
 
 	publuc final boolean isDaemon()
 	
-We can change the Daemon nature of the Thread by using setDaemon(boolean b) Thread.
-We can change the Daemon nature of the Thread before starting only otherwise if we are trying to change after starting the Thread we get runtime Exception saying
-IllegalThreadstateException.
+We can change the Daemon nature of the Thread by using setDaemon(boolean b).
+We can change the Daemon nature of the Thread before starting only otherwise we get runtime Exception saying IllegalThreadstateException.
 Main Thread is always non Daemon and is possible to change this nature.
 Daemon nature will be inheriting from Parent to Child i.e If the Parent is Daemon then Child is also Daemon.
 If the Parent is non Daemon then Child is also non Daemon.
@@ -566,7 +553,7 @@ Hence while using synchronized keyword we have to take much care.
 Deadlock vs starvation :
 ------------------------
 In case of Deadlock waiting Thread never ends.
-A long waiting of a Thread which ends at a certain point of time is called starvation.
+A long waiting Thread which ends at a certain point of time is called starvation.
 
 Note :
 ------
@@ -589,8 +576,7 @@ The Threads which are managed completely by the JVM without taking support of OS
  
 2.NativeOS Model :
 ------------------
-The Thread which are managed with the help of underlying OS.
-such type of Thread is called Native Thread.
+The Thread which are managed with the help of underlying OS.such type of Thread is called Native Thread.
 
 ThreadLocal :
 -------------
