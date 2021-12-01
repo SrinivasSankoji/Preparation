@@ -48,6 +48,8 @@ Annotation List :
 Service Locater Factory Bean	
 @SpringBootApplication 						(howtodoinjava)
 @AutoConfiguration							(howtodoinjava)	
+@EnableWebMVC
+HTMLMessageConverter
 
 **************************************   Spring Core Annotations  *****************************************************
 @Bean :

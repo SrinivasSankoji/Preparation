@@ -5,7 +5,7 @@ Simple Rules that need to be followed to annotate a Method with @Scheduled are
 1.Method Should have void return type.
 2.Method Should not Accept any Parameters
 
-To Enable Support For Scheduling we use @EnableScheduling at Class Level.
+To Enable Support For Scheduling we use @EnableScheduling at Configuration Level.
 
 	@EnableScheduling
 	public class SpringConfig {
@@ -21,10 +21,10 @@ Schedule a Task at Fixed Rate :
 	
 	}
 
-FixedRate is used when each Execution of the Task is Independent.
-Scheduled Tasks don't Run in Parallel by Default.
+FixedRate is used when each Execution of the Task is independent.
+Scheduled Tasks don't run in Parallel by Default.
 So If we used Fixed Task, Next Task wont be Invoked until previous one is Done.
-If we want to Achieve the parallel Behavior in scheduled Tasks we need to add @Async Annotation.
+If we want to Achieve the parallel behavior in scheduled Tasks we need to add @Async Annotation.
 To use @Async Annotation we need to define @EnableAsync at Class Level.
 
 	@EnableAsync
@@ -40,12 +40,11 @@ To use @Async Annotation we need to define @EnableAsync at Class Level.
 
 Fixed Rate vs Fixed Delay :
 ---------------------------
-FixedDelay property Makes sure that there is a Delay of n MilliSeconds between the Finish Time and Execution of a Task
-and  Start time of the Next Execution of the Task.
-If we want the Fixed Delay Between the Last Execution and Start of next Execution we use fisedDelay.
-Consider the Task is Taking 3 Seconds to execute and we want the delay of 2 Seconds we need to define fixedDely of 5 Seconds. 
-This Property is Specifically Useful When we need to Make Sure that Only one Instance of the Task Runs all the Time.
-FixedRate Property runs the Scheduled Task at every n MilliSecond and It does not check for Previous Execution of the Task.
+FixedDelay property makes sure that there is a delay of n MilliSeconds between the Finish Time and execution of a Task and Start time of the next execution of the Task.
+If we want the Fixed delay between the last Execution and Start of the next Execution we use fixedDelay.
+Consider the scenario where the Task is taking 3 Seconds to execute and we want the delay of 2 Seconds we need to define fixedDely of 5 Seconds. 
+This Property is specifically useful when we need to make Sure that only one Instance of the Task runs all the Time.
+FixedRate Property runs the Scheduled Task at every n MilliSecond and It does not check for previous execution of the Task.
 
 Schedule a Task with Initial Delay :
 ------------------------------------
