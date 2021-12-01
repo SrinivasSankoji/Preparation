@@ -32,10 +32,11 @@ Spring Web Annotations :
 @ExceptionHandler
 @Controller Advice
 @RequestBody							    [17-OCT-2019]  (Done)		
-@Response Body							    [17-OCT-2019]  (Done)
+@ResponseBody							    [17-OCT-2019]  (Done)
 @RestController
 @RequestBodyAdvice						    [18-OCT-2019]  (Done)
 @ResponseBodyAdvice						    [18-OCT-2019]  (Done)
+@ResponseEntity
 
 Annotation List :
 *****************

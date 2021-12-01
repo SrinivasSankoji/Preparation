@@ -289,7 +289,7 @@ Setter based Injection is accomplished by the Container calling setter methods o
 		}
 	}
 	
-To call the MessageService via Setter Injection MAke any one of the MessageService Implemented class as @Primary
+To call the MessageService via Setter Injection Make any one of the MessageService Implemented class as @Primary
 
 		@Service("TwitterService")
 		@Primary
