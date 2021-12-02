@@ -30,7 +30,7 @@ Defog Tech :
 Parallelism :
 -------------
 Let us Consider an Example
-Here Two Threads are Executing In Parallel and One Method.
+Here Two Threads are executing in parallel and one Method.
 
 	public static void main(String[] args) 
 	{
@@ -237,9 +237,9 @@ so that the Remaining Threads will get The updated Value.
 
 Introduction :
 --------------
-In Java it is Easy to run a Piece of Code or Method Asynchronously by using Threads.
-Consider we have a Main Method which runs on Main Thread and we can run the Task on the Separate Thread.
-Create a Task and the Task has to implement Runnable Interface and override its run() and keep the Method that we want to execute Asynchronously.
+In Java it is easy to run a piece of code or Method Asynchronously by using Threads.
+Consider we have a Main Method which runs on Main Thread and we can run the Task on the separate Thread.
+To create a Task we need to implement Runnable Interface and override its run() and keep the Method that we want to execute Asynchronously.
 
 				public static void main(String[] args) 
 				{
@@ -256,13 +256,12 @@ Create a Task and the Task has to implement Runnable Interface and override its 
 					}
 				}
 
-Here the Flow will be Main Thread will perform these operation from top to bottom and
-at Certain Point of Time It will call start() Method and it will Create a Thread with Name thread-0.
-thread-0 will do its own Operations and once the Operation is Done thread will be killed automatically.
+Here Main Thread will perform the operations from top to bottom and at certain point of time it will call start() Method and it will Create a Thread with name thread-0.
+thread-0 will do its own Operations and once the Operation is done thread will be killed automatically.
 Here Main Thread Continues its execution.
 
 In the Above Example we are Creating Single Task.
-Consider the Scenario where we want to execute 10 Tasks and in this Case we need to Create Thread Using For Loop.
+Consider the Scenario where we want to execute 10 Tasks and in this case we need to Create Thread Using For Loop.
 
 			for(int i=0;i<=10;i++)
 			{
@@ -277,9 +276,9 @@ Here Each time new Thread is being created and will be executed asynchronously.
 once the task is executed successfully thread will be killed automatically.
 
 Problem with this Scenario is in Java One Thread is equal to One Operating System Thread.
-If we run the For loop 1000 Times it will Create 1000 Threads and Creating a Thread is an Extensive Operation.
+If we run the For loop 1000 Times it will Create 1000 Threads and Creating a Thread is an extensive Operation.
 
-If we want Fixed Number of Threads to be Created upfront or can be Called as Thread Pool and then submit the Task to the Thread Pool,
+If we want Fixed Number of Threads to be created upfront or can be Called as Thread Pool and then submit the Task to the Thread Pool,
 Then we use ExecutorService.
 
 			ExecutorService executorService=Executors.newFixedThreadPool(10);
@@ -300,10 +299,9 @@ Ideal Pool Size :
 If we have Created More Number of Threads i.e 1000 ,These Threads will be executed based on Time Slicing.
 Solution is depends on the Type of Task we want to execute.
 
-If the Task is CPU Intensive Operation i.e if the Task is Taking time to Execute 
-then the Ideal Pool Size will be the Same as CPU Core Size.
-Here all the Threads will be executed in the CPU cores independently and none of the Threads are Waiting for anything.
-Consider the Scenario where other applications are running on the CPU and Mostly We wont get all the CPU Cores.
+If the Task is CPU Intensive Operation i.e If the Task is Taking time to Execute then the Ideal Pool Size will be the Same as CPU Core Size.
+Here all the Threads will be executed in the CPU cores independently and none of the Threads are waiting for anything.
+Consider the Scenario where other applications are running on the CPU and mostly we wont get all the CPU Cores.
 
 			int processors=Runtime.getRuntime().availableProcessors();
 			ExecutorService execService=Executors.newFixedThreadPool(processors);
@@ -337,12 +335,11 @@ All these Threads will fetch the Task from the Queue one after the Another.
 			
 Cached Thread Pool :
 --------------------
-Here we don't have Fixed Number of Thread Pool and we also Don't have Queue that holds the Task that we Submit.
-Here Queue is Replaced by Synchronous Queue and has Space for Only Single Item.
-When we Submit the Task,Task Will be Stored inside the Synchronous Queue and Search for the Thread which is already Created 
-or which Thread is available.
+Here we don't have Fixed Number of Thread Pool and we also don't have Queue that holds the Task that we Submit.
+Here Queue is replaced by Synchronous Queue and has Space for Only Single Item.
+When we Submit the Task,Task Will be Stored inside the Synchronous Queue and Search for the Thread which is already Created or which Thread is available.
 If No Such Thread is available it Will Create a New Thread,add it to the Pool and Newly added Thread will execute the Task.
-Cached Thread Pool has  a Mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
+Cached Thread Pool has a Mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
 
 			ExecutorService cachedPool=Executors.newCachedThreadPool();
 			for(int i=0;i<=1000;i++)
@@ -373,11 +370,9 @@ The Tasks will be Distributed based on when the Task needs to be Executed i.e Ti
 
 3.scheduledPool.scheduleAtFixedDelay(10) :
 -----------------------------------------
-If we want to run the Task for every 10 Seconds after the Completion of Previous Task with Delay in Seconds we use
-scheduledPool.scheduleAtFixedDelay(10,15);
+If we want to run the Task for every 10 Seconds after the Completion of Previous Task with Delay in Seconds we use scheduledPool.scheduleAtFixedDelay(10,15);
 Consider the Scenario where the Task itself takes 15 Seconds and we cannot say  that run the Task for every 10 Seconds.
-So Here in case of scheduleAtFixedDelay() it will Complete the Task that Takes 15 Seconds and after that it will delay for 10 Seconds
-and Schedule the next Instance of the Task.
+So Here in case of scheduleAtFixedDelay() it will Complete the Task that Takes 15 Seconds and after that it will delay for 10 Seconds and Schedule the next Instance of the Task.
 
 Single ThreadExecutor :
 -----------------------
@@ -387,9 +382,9 @@ Executor Service Life Cycle Methods :
 -------------------------------------
 
 shutDown() :
-To shutDown the Thread Pool we Use shutDown().
+To shutDown the Thread Pool we use shutDown().
 shutDown() initializes the Executor Service to shutDown the Thread Pool.
-It Will Not shutDown the Thread Pool Immediately and wait for the Tasks to be Executed which are stored inside the Blocking Queue.
+It Will Not shutDown the Thread Pool Immediately and wait for the Tasks to be executed which are stored inside the Blocking Queue.
 After Calling the shutDown() it will not accept any Task and throws RejectionExecutionException.
 
 isShutDown() :
@@ -405,15 +400,15 @@ Terminate the Thread Pool until all the Tasks being Completed or wait until thes
 Once the Time is reached Terminate the Thread Pool.
 
 shutDownNow():
-will Complete all Tasks which are Running by these Threads and it will not Initiate for the Task to get Execute.
-It will Return all those Task which are Stored inside the Blocking Queue.
+will Complete all Tasks which are Running by these Threads and it will not initiate for the Task to get Execute.
+It will Return all those Task which are stored inside the Blocking Queue.
 
 
 ExecutorService Callable/Future :
 ---------------------------------
 We Can Submit the Task by Using execute() of ExecutorsService where as we can define a Task by Using Runnable or Callable Interface.
-By Using Runnable Interface we can define and Submit The Task and it wont return any Result.
-To get the Result Submitted by the Task we use Callable Interface.
+By Using Runnable Interface we can define and Submit The Task and it won't return any Result.
+To get the result submitted by the Task we use Callable Interface.
 
 		ExecutorService executorService=Executors.newFixedThreadPool(4);
 		executorService.execute(new Task());
@@ -427,11 +422,10 @@ To get the Result Submitted by the Task we use Callable Interface.
 	}
 
 execute() expects a Runnable Task where as submit() expects a Callable Task.
-submit() returns Future Object i.e Thread Pool Provides a Place Holder for the Future Object and Once the Value is returned Place Holder is Filled with the New Value.
+submit() returns Future Object i.e Thread Pool provides a Place Holder for the Future Object and once the value is returned place holder is filled with the New Value.
 
-when we submit the task using submit() of ExecutorsService it will Immediately return the Future Object with Place Holder.
-we Can Perform Remaining Operations.
-Once the Main Thread Calls the Future Object then the Thread goes into Blocking State.
+when we submit the task using submit() of ExecutorsService it will Immediately return the Future Object with Place Holder and we can perform remaining operations.
+Once Main Thread calls the Future Object then the Thread goes into Blocking State.
 
 		ExecutorService executorService1=Executors.newFixedThreadPool(4);
 		executorService.submit(new CallableTask());
@@ -456,7 +450,7 @@ get() provides a Overloaded version with Timeout as Parameter.
 we can Specifically cancel the Task by Using cancel() of ExecutorService.
 Thread Pool Immediately cancels the task before Thread Pool has Started Working on it.
 If The Task has Started in one or More Thread then cancel() has No Impact.
-We Can also Check the Current Status of the Task by using isCancelled() and isDone() of ExecutorService.
+We can also check the Current Status of the Task by using isCancelled() and isDone() of ExecutorService.
  
 
 ******************************************** 4.Fork JoinPool ****************************************************************************************

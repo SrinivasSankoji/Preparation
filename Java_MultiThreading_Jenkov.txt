@@ -43,8 +43,7 @@ Java Thread Pool Manages the Pool of Worker Threads.
 It Contains a Queue(Runnable Threads) that contains tasks waiting to get executed.
 We Can also Use ThreadPoolExecutor to create a Thread Pool in Java.
 Threads will execute the Runnable Threads from the Queue.
-Executors is a Utility Class that Provides useful methods to work with ExecutorService,ScheduledExecutorService,ThreadFactory and
-Callable Classes through various Factory Methods.
+Executors is a Utility Class that Provides useful methods to work with ExecutorService,ScheduledExecutorService,ThreadFactory and Callable Classes through various Factory Methods.
 
 ExecutorService :
 *****************
@@ -92,8 +91,8 @@ ExecutorService executor = Executors.newScheduledThreadPool(5);
 
 1.execute(Runnable) :
 ---------------------
-execute() Accepts the Runnable Object and it executes it asynchronously.
-There is no way of obtaining the result of the executed Runnable.We Have to Use Callable to get the Result of Runnable Object.
+execute() accepts the Runnable Object and it executes it asynchronously.
+There is no way of obtaining the result of the executed Runnable.we have to use Callable to get the result of Runnable Object.
 
 2.submit(Runnable) :
 --------------------
@@ -140,7 +139,7 @@ All The Tasks will be executed before Calling the shutDown().
 shutdownNow() :
 ---------------	
 If we want to shutDowm the ExecutorService Immediately,then call the shutdownNow() on the Executor Service.
-All the Executing Tasks will e Closed Immediately and there is no Guarantee of Execution of the Tasks.
+All the Executing Tasks will be Closed Immediately and there is no Guarantee of Execution of the Tasks.
 
 
 
