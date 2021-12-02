@@ -121,7 +121,7 @@ Like Log every request,Checks every request has particular Header or Not.
 While Servlets are mapped to URL's similarly Filters can be applied to All URL's.
 
 Spring Security by default does some of the things :
-1.It adds Mandatory Authentication for all the URL's.
+1.It adds mandatory Authentication for all the URL's.
 2.It adds The Login Form
 3.It handles Login Error
 4.Spring Boot by default comes with an Error Page
@@ -135,50 +135,59 @@ Here we will be creating In Memory Authentication for the Spring Boot Applicatio
 Spring Security Authentication should be done based on bunch of Users we have.In real time we get the Users from Database or LDAP etc.
 Here we create bunch of Users as hardcoded and save them in Memory.
 
-The Way to Configure Authentication in Spring Security is by using Authentication Manager.
+The way to configure Authentication in Spring Security is by using Authentication Manager.
 Authentication Manager manages the Authentication in the Spring Security Application.
-It has the Method called configure() and It returns Successful Authentication and It throws and Exception.
-The Way to effect Authentication Manger is not by Creating Our Own Authentication Manager and is to Configure What Authentication Manager Does By Using Builder Pattern.
-We don't work with AuthenticationManager directly most of the times and we use Builder Class Called AuthenticationManagerBuilder.
+It has the Method called configure() and it returns successful Authentication or throws and Exception.
+The way to effect Authentication Manger is not by creating our own Authentication Manager and is to configure what Authentication Manager does by using Builder Pattern.
+We don't work with AuthenticationManager directly most of the times and we use Builder Class called AuthenticationManagerBuilder.
 We use AuthenticationManagerBuilder to configure what the Authentication Manager is supposed to do.
 
-Steps Here To Configure Authentication is 
-1.Get Hold Of AuthenticationManagerBuilder
-2.Set The Configuration on AuthenticationManagerBuilder
+Steps to Configure Authentication is 
+1.Get hold of AuthenticationManagerBuilder
+2.Set the Configuration on AuthenticationManagerBuilder
 
-After Configuration of AuthenticationManagerBuilder with the Necessary details It will Create a new AuthenticationManager which has the values we mentioned in the Configuration.
+Here we need to create a Configuration Class and that extends WebSecurityConfigurerAdapter and override the default Method ie configure(AuthenticationManagerBuilder builder).
+If we don't override then it will do the default Authentication.
 
-In The Spring Security Class there is a method Called configure(AuthenticationManagerBuilder builder).
-Here We Need to extend The Class and override The configure()and do the Configuration what ever We Want.
-If We Don't Override Then It will do the default Authentication.
-
-Here We Need to create a Configuration Class and that should extends WebSecurityConfigurerAdapterand override The default Method 
-
-		@Override
-		protected void configure(AuthenticationManagerBuilder auth) throws Exception 
+		@EnableWebSecurity
+		public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		{
-			
+			@Override
+			protected void configure(AuthenticationManagerBuilder auth) throws Exception 
+			{
+				auth.inMemoryAuthentication()
+				.withUser("Bhaumik")
+				.password("Bhaumik")
+				.roles("USER");
+			}
+			@Bean
+			public PasswordEncoder getPasswordEncoder()
+			{
+				return NoOpPasswordEncoder.getInstance();
+			}
 		}
 
-AuthenticationManagerBuilder follows The method Chaining pattern to Configure the Authentication.
-Add The Annotation @EnableWebSecurity to the SecurityConfiguration.
-When We are dealing With Passwords We don't Want to Work With clear Text.Clear Text is Saving the password as String.
-Always Deal With hashed Passwords.Spring Security enforces the Password Encoding.
-Here We need To create A bean with PasswordEncoder.NoOpPasswordEncoder is considered as a String By Default.
-If we Want To Configure bunch Of Users We Use and().
+After Configuration of AuthenticationManagerBuilder with the necessary details It will create a new AuthenticationManager which has the values we mentioned in the Configuration.
+AuthenticationManagerBuilder follows the Method Chaining pattern to configure the Authentication.
+Add the Annotation @EnableWebSecurity to the SecurityConfiguration.
+Whenever we are dealing with Passwords we don't want to work with Clear Text.
+Clear Text is Saving the password as String.
+Always deal with hashed Passwords.Spring Security enforces the Password Encoding.
+Here we need to create a bean with PasswordEncoder.NoOpPasswordEncoder is considered as a String by default.
+If we want to configure bunch Of Users we use and().
 
 ********************************************************* 4.Spring Security Authorization :  *********************************************************
 
-Starting Point To Perform Spring Security Authorization is a basic Spring Boot Application With Spring Security Added and It has In Memory Authentication.
-Here Authentication can be In Memory or Database or OAuth Users and So On.
-All We Need a Couple Of Users With Certain roles So That We Can Configure Certain API To Be accessed By One role and so on.
-Here We are Using In Memory Authentication For Learning Purpose.
-Default Behavior of Spring Security is It immediately adds the Authentication to all The API's and Authorizes all The API's.
-Here default behavior is API Needs Authentication and We Want Different API's has Different access Requirements or Different Level of Access Controls.
-Here The Requirement is :
+Starting point to perform Spring Security Authorization is a basic Spring Boot Application with Spring Security added and it has In Memory Authentication.
+Here Authentication can be In Memory or Database or OAuth Users and so on.
+All we need is a couple of users with certain roles so that we can configure certain API to be accessed by one role and so on.
+Here we are using In Memory Authentication for learning purpose.
+Default behavior of Spring Security is it immediately adds the Authentication to all The API's and Authorizes all the API's.
+Here default behavior is API needs Authentication and we want different API's has different access requirements or different level of Access Controls.
+Here the requirement is :
 
-/ has to be accessed By all The Users
-/user has to accessed By all The ROle USER and ADMIN
+/ has to be accessed by all The Users
+/user has to accessed by all the Role USER and ADMIN
 /admin  has to accessed By all The Role ADMIN
 
 If we want to configure these kind of Authorization we use an Object of HttpSecurity.
@@ -187,45 +196,51 @@ Here we need to create a Configuration Class and that should extends WebSecurity
 	@Override
 	protected void configure(HttpSecurity http) throws Exception 
 	{
-		http.authorizeRequests();
+		http.authorizeRequests()
+		.antMatchers("/user").hasRole("SON")
+		.antMatchers("/admin").hasAnyRole("SON","WIFE")
+		.antMatchers("/").permitAll()
+		.and().formLogin();
 	}
 
-Here Use Builder Methods to Configure The Authorizations.
-We Use AntMatchers For the Paths.
-Spring Security has Log Out Page by Using logout.
-To Allow Any Kind Of Users We Use permitAll.
+Here use Builder Methods to configure the Authorizations.
+We use AntMatchers for the Paths.
+Spring Security has LogOut page by using logout.
+To allow any kind of Users we use permitAll.
 
 ********************************************************* 7.Spring Security JDBC Authentication  :  *****************************************************
 
-Here We Are Using In Memory Database H2 For Authentication.
-Here We Can Also Use JDBC API That Interacts with Database and Validates the Authentication Process.
-To Look up the User Details into the Database We Need to Configure the DataSource.
-We Need to @Autowired The Data source and pass the DataSource to the JDBC Authentication i.e 
+Here we are using In Memory Database ie H2 for Authentication.
+Here we can also use JDBC API that interacts with Database and validates the Authentication Process.
+To look up the User details into the Database we need to configure the DataSource.
+We need to Autowired the Datasource and pass the DataSource to the JDBC Authentication i.e 
 
- authenticationManagerBuilder.jdbcAuthentication()
+		@Autowired
+		DataSource dataSource;
+		
+		authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource);
 		
-With This Line We Have Configured Spring Security to Point to the H2  Database.
-When We added an Embedded Database to Spring Boot Application,Spring Boot Internally Creates a Data source For Us.
-Next Step is to Create The Schema in the H2 Database.
-Create The Users That are Populated in the Schema.
-Spring Security has Some Default Opinions Specifically about the User and Authorities Tables.
-If We Provide The Clean Database to Spring Security To Work With,Spring Security Creates the User and Authorities Tables For Us.
+With this line we have configured Spring Security to Point to the H2 Database.
+When we add an Embedded Database to Spring Boot Application,Spring Boot internally creates a Data source for us.
+Next Step is to create the schema in the H2 Database.
+Create the users that are populated in the Schema.
+Spring Security has some default opinions specifically about the User and Authorities Tables.
+If we provide the clean Database to Spring Security to work with,Spring Security Creates the User and Authorities Tables For Us.
 
-	authenticationManagerBuilder.jdbcAuthentication()
+		authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource)
 		.withDefaultSchema();
 
 Now H2 Database is Configured with Default Tables Like User and Authorities.	
-We Also Need to Add The Password Encoder to Avoid The Failure issue.
-We Need to Set Up Some Files That Populates Couple of Schema's and Tables.	
-And At The Time Of Authentication We Would assume That Schema and Tables are Available and
-We Would Be Authenticating Using Database.
+We also need to add the Password Encoder to avoid the failure issue.
+We need to set up some files that populates couple of Schema's and Tables.	
+And at the time of Authentication we would assume that Schema and Tables are available and we would be Authenticating using Database.
 
 https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#user-schema
 
-Create the Schema.sql  in the Resources File That Will Create the DDL Statements For The H2 Database.
-Create The data.sql to Populate The Data in The Database.
+Create the Schema.sql in the resources folder that will create the DDL Statements for the H2 Database.
+Create the data.sql to populate the data in the Database.
 
 authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource)
@@ -238,16 +253,16 @@ authenticationManagerBuilder.jdbcAuthentication()
 				.roles("ADMIN")
 		);
 
-Here We are Working with Default Schema.
-If There are Different Schema We Need to add these Methods to the Data source.
+Here we are working with default schema.
+If there are different Schema we need to add these Methods to the Data source.
 
 		 authenticationManagerBuilder.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery("")
 		.authoritiesByUsernameQuery("");
 		
-These are The Default Return Types that Spring Security Expects and We can also Override the Above Queries.
-If We Want to Connect to External Database Then Add The Dependency in pom.xml and Remove H2 Dependency.
+These are the default return types that Spring Security expects and we can also override the above Queries.
+If we want to connect to the external Database Then add the dependency in pom.xml and remove H2 dependency.
 
 ********************************************************* 8.Spring Security JPA Authentication   : *********************************************************
 

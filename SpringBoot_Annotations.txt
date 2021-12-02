@@ -50,6 +50,11 @@ Service Locater Factory Bean
 @AutoConfiguration							(howtodoinjava)	
 @EnableWebMVC
 HTMLMessageConverter
+@Controller vs @RestController
+@Repository
+@JpaRepository
+@EnableJpaRepositories
+@EntityScan
 
 **************************************   Spring Core Annotations  *****************************************************
 @Bean :

@@ -1311,8 +1311,10 @@ HashMap Internal								()
 MultiThreading DefogTech                        ()
 MultiThreading Jenkov                           ()
 
-Spring Security									()
+Spring Security									(Done)
 Spring AOP										()
+Spring Scheduler								()
+Password Hashing								()
 
 Spring Boot Annotations							()
 
@@ -1326,3 +1328,6 @@ Jenkins                                         ()
 Docker											()
 Kubernetes                                      ()
 AWS                                             ()
+
+SQL Book One									()
+SQL Book Two									()

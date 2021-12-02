@@ -48,8 +48,7 @@ FixedRate Property runs the Scheduled Task at every n MilliSecond and It does no
 
 Schedule a Task with Initial Delay :
 ------------------------------------
-The Task will be Executed for the First Time after the initialDelay Value and 
-will be executed according to the fixedRate or fixedDelay.
+The Task will be Executed for the First Time after the initialDelay Value and will be executed according to the fixedRate or fixedDelay.
 
 
 Parameterizing the Schedule :
