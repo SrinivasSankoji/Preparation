@@ -1,0 +1,149 @@
+
+@ExceptionHandler
+@Controller Advice
+@RequestBody							    									[17-OCT-2019]  (Done)		
+@ResponseBody							    									[17-OCT-2019]  (Done)
+@RestController
+@RequestBodyAdvice						    									[18-OCT-2019]  (Done)
+@ResponseBodyAdvice						    									[18-OCT-2019]  (Done)
+@ResponseEntity
+@Interceptor                  				(springframework.guru)              [17-OCT-2019]  (Done)
+@ConfigurationProperties														[02-DEC-2021]  ()
+@Conditional                                                                    [02-DEC-2021]  ()
+@ConditionalOnClass                                                             [02-DEC-2021]  ()
+@ConditionalOnProperty                                                          [02-DEC-2021]  ()
+Service Locater Factory Bean	                                                [02-DEC-2021]  ()
+@SpringBootApplication 						(howtodoinjava)                     [02-DEC-2021]  ()
+@AutoConfiguration							(howtodoinjava)	                    [02-DEC-2021]  ()
+@EnableWebMVC                                                                   [02-DEC-2021]  ()
+HTMLMessageConverter                                                            [02-DEC-2021]  ()
+@Controller vs @RestController                                                  [02-DEC-2021]  ()
+@Repository                                                                     [02-DEC-2021]  ()
+@JpaRepository                                                                  [02-DEC-2021]  ()
+@EnableJpaRepositories                                                          [02-DEC-2021]  ()
+@EntityScan                                                                     [02-DEC-2021]  ()
+WebMvcConfigurationSupport
+
+***************************************************  @RequestBody (springframework.guru) *************************************************
+
+@RequestBody Annotation indicates that a Method Parameter should bound to the value of the HTTP Request Body.
+HttpMessageConverter is responsible for Converting from HttpRequest Message to Object and assigned to the variable.
+@RequestBody does not depend on the Media Type.
+
+*************************************************** @ResponseBody (javabyexamples) *******************************************************
+
+@ResponseBody Annotation indicates that the result type should be written straight into the Response Body in what ever format we specify.
+Internally uses HttpMessageConverter to convert the HTTP Message into Specified Format.
+Here we vave to Annotate the Controller method With @ResponseBody.
+
+*************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
+
+@RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
+Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
+
+We Need To Implement all The Four Methods of Request Body Advice.
+We Have supports()Method Which decides whether the Implementation should run for the Current Request.
+We Have beforeBodyMethod() Method which runs before Spring MVC Reads The Request Body.
+We Have afterBodyRead() Method which Runs After The Body is Read and Converted into an Object.
+In After bodyRead() Method ,We Have an Access to The Converted Object and Cast Into an Appropriate Type
+and We Can Also Modify The Fields.
+
+Finally When The Request Body is Empty, We Can Put Our Custom Logic into handleEmptyBody() Method.
+We Must Return a Value to Use ,Either Provide The Object or an Entirely New Object.
+
+*************************************************** @ResponseBodyAdvice (javabyexamples) **************************************************
+
+By Using @ResponseBodyAdvice We Can Modify the Response Before Spring MVC Writes it to the Response Body.
+Since We are Annotating The Controller with @RestController all the End Point Methods Implicitly will have the @ResponseBody Annotation.
+As A Result Spring MVC will Write the Method Return Value to the Response.
+@ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
+ResponseBodyAdvice has Two Methods :
+Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
+Provides the Return Type and Converter Type.
+beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
+Here We Have The Chance Modify the Response Object.
+
+*************************************************** @Interceptor (springframework.guru and o7planning and javainuse) **********************
+
+In Spring whenever a request is sent to the Controller it will have to pass through the Interceptors(Zero or More) before being processed by the Controller.
+Spring Interceptor is a concept similar to Servlet Filter.
+Spring Interceptor can be applied to all the requests that are sending to the Controller.
+We can use Interceptors to do some activities such as Authentication,writing Logs,validations of fields in the Header,inclusion of some fields in the Response
+before request is being processed by the Controller.
+
+Our Interceptor must implement org.springframework.web.servlet.HandlerInterceptor
+We need to override the required methods
+
+1.preHandle() :
+---------------
+This method will be invoked by the Container while sending the request to the Controller.
+Typically used If we want to send some other data along with the request data or to modify the request data.
+
+2.postHandle() :
+----------------
+This method will be invoked by the Container while sending the response from the Server.
+We can write some custom logics inside the method If we want to modify the response data.
+
+3.afterCompletion() :
+---------------------
+This method can be used to perform actions after request and response.
+This method can alsobe used for clenup task.
+
+			@Component
+			public class RequestHandlerInterceptor implements HandlerInterceptor{
+
+				@Override
+				public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+						throws Exception {
+					System.out.println("preHandle() is invoked");
+					return true;
+				}
+
+				@Override
+				public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+						ModelAndView modelAndView) throws Exception {
+					System.out.println("postHandle() is invoked");
+				}
+
+				@Override
+				public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+						throws Exception {
+					System.out.println("afterCompletion() is invoked");
+				}
+			}
+
+Create the Configuration class that extends WebMvcConfigurationSupport and add the Interceptors to the InterceptorRegistry.
+
+			@Configuration
+			public class InterceptorConfiguration extends WebMvcConfigurationSupport{
+
+				@Autowired
+				RequestHandlerInterceptor requestHandlerInterceptor;
+				
+				@Override
+				protected void addInterceptors(InterceptorRegistry registry) {
+					registry.addInterceptor(requestHandlerInterceptor);
+				}
+			}
+
+Difference between Filter and Interceptor :
+-------------------------------------------
+A Servlet Filter is used in the Web Layer only and we cannot use it outside of the Web Context.
+Interceptors can be used any where.
+For Authentication of Web Pages we use Servlet Filter where as for Security Stuff in the Business Layer or Logging/Bug Tracking we use Interceptors.
+Interceptors does not rely on the Servlet Container where as filter depends on Servlet Container.
+HTTP Specification does not openly prevent any HTTP Method for having a Request Body but It is wise not to use Get Method.
+Because HTTP Servers and Proxy Servers may discard the Request Body for GET Request and fail in unexpected Ways.
+Filter gets configured in web.xml where as Ineterceptors are configured in the Application.
+
+			@Component
+			public class CustomFilter implements Filter{
+
+				@Override
+				public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+						throws IOException, ServletException {
+					System.out
+					.println("Hey i am Filter. I will get invoked before that Interceptors. doFilter() method is invoked");
+					chain.doFilter(request, response);
+				}
+			}

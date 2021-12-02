@@ -2,10 +2,10 @@ Spring Boot uses @Scheduled Annotation to Schedule the Tasks.
 It Internally uses the TaskScheduler interface for Scheduling the Annotated Methods For Execution.
 
 Simple Rules that need to be followed to annotate a Method with @Scheduled are 
-1.Method Should have void return type.
-2.Method Should not Accept any Parameters
+1.Method should have void return type.
+2.Method should not accept any Parameters
 
-To Enable Support For Scheduling we use @EnableScheduling at Configuration Level.
+To Enable Support for Scheduling we use @EnableScheduling at Configuration Level.
 
 	@EnableScheduling
 	public class SpringConfig {
@@ -21,7 +21,7 @@ Schedule a Task at Fixed Rate :
 	
 	}
 
-FixedRate is used when each Execution of the Task is independent.
+FixedRate is used when each execution of the Task is independent.
 Scheduled Tasks don't run in Parallel by Default.
 So If we used Fixed Task, Next Task wont be Invoked until previous one is Done.
 If we want to Achieve the parallel behavior in scheduled Tasks we need to add @Async Annotation.
