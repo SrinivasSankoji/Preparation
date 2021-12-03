@@ -1,40 +1,59 @@
 
-@ExceptionHandler
-@Controller Advice
-@RequestBody							    									[17-OCT-2019]  (Done)		
-@ResponseBody							    									[17-OCT-2019]  (Done)
-@RestController
-@RequestBodyAdvice						    									[18-OCT-2019]  (Done)
-@ResponseBodyAdvice						    									[18-OCT-2019]  (Done)
-@ResponseEntity
-@Interceptor                  				(springframework.guru)              [17-OCT-2019]  (Done)
-@ConfigurationProperties														[02-DEC-2021]  ()
-@Conditional                                                                    [02-DEC-2021]  ()
-@ConditionalOnClass                                                             [02-DEC-2021]  ()
-@ConditionalOnProperty                                                          [02-DEC-2021]  ()
-Service Locater Factory Bean	                                                [02-DEC-2021]  ()
-@SpringBootApplication 						(howtodoinjava)                     [02-DEC-2021]  ()
-@AutoConfiguration							(howtodoinjava)	                    [02-DEC-2021]  ()
-@EnableWebMVC                                                                   [02-DEC-2021]  ()
-HTMLMessageConverter                                                            [02-DEC-2021]  ()
-@Controller vs @RestController                                                  [02-DEC-2021]  ()
-@Repository                                                                     [02-DEC-2021]  ()
-@JpaRepository                                                                  [02-DEC-2021]  ()
-@EnableJpaRepositories                                                          [02-DEC-2021]  ()
-@EntityScan                                                                     [02-DEC-2021]  ()
-WebMvcConfigurationSupport
+@ExceptionHandler							()								[02-DEC-2021]  ()
+@Controller Advice							()								[02-DEC-2021]  ()
+@RequestBody								(websystique)					[17-OCT-2019]  (Done)		
+@ResponseBody							    (websystique)					[17-OCT-2019]  (Done)
+@RestController                             ()								[02-DEC-2021]  ()
+@RequestBodyAdvice						    ()								[18-OCT-2019]  (Done)
+@ResponseBodyAdvice						    ()								[18-OCT-2019]  (Done)
+@ResponseEntity                             ()								[02-DEC-2021]  ()
+@Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
+@ConfigurationProperties					()								[02-DEC-2021]  ()
+@Conditional                                ()                              [02-DEC-2021]  ()
+@ConditionalOnClass                         ()                              [02-DEC-2021]  ()
+@ConditionalOnProperty                      ()                              [02-DEC-2021]  ()
+Service Locater Factory Bean	            ()                              [02-DEC-2021]  ()
+@SpringBootApplication 						(howtodoinjava)                 [02-DEC-2021]  ()
+@AutoConfiguration							(howtodoinjava)	                [02-DEC-2021]  ()
+@EnableWebMVC                               ()                              [02-DEC-2021]  ()
+HTMLMessageConverter                        ()                              [02-DEC-2021]  ()
+@Controller vs @RestController              (javacodegeeks)                 [02-DEC-2021]  (Done)
+@Repository                                 ()                              [02-DEC-2021]  ()
+@JpaRepository                              ()                              [02-DEC-2021]  ()
+@EnableJpaRepositories                      ()                              [02-DEC-2021]  ()
+@EntityScan                                 ()                              [02-DEC-2021]  ()
+WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
 
-***************************************************  @RequestBody (springframework.guru) *************************************************
+***************************************************  @RequestBody (springframework.guru/websystique) *************************************************
 
-@RequestBody Annotation indicates that a Method Parameter should bound to the value of the HTTP Request Body.
-HttpMessageConverter is responsible for Converting from HttpRequest Message to Object and assigned to the variable.
+If the Method parameter is annotaed with @RequestBody,Spring will bind the incoming HTTP request body to the parameter. 
+Behind the scenes HttpMessageConverter can be used to convert the HttpRequest body into domain Object based on Accept Header present in request.
 @RequestBody does not depend on the Media Type.
+
+The Accept Header is used by Browser to tell the server that what content type they will accept.
+The Server then send's back the response which will include a Content-Type header telling the client that what the content type actually is.
+
+Note :
+------
+If the Post body contains Json or XML and Jackson Library is found in our Classpath,Spring will delegate the conversion to MappingJackson2HttpMessageConverter.
+ResponseEntity represents the entire HTTP Response.
 
 *************************************************** @ResponseBody (javabyexamples) *******************************************************
 
-@ResponseBody Annotation indicates that the result type should be written straight into the Response Body in what ever format we specify.
-Internally uses HttpMessageConverter to convert the HTTP Message into Specified Format.
-Here we vave to Annotate the Controller method With @ResponseBody.
+If a Method is annotated with @ResponseBody Spring will bind the return value to the outgoing Http Response Body.
+Behind the scenes HttpMessageConverter can be used to convert the return value to the HTTP Response Body based on the Content-Type present in the Request Header.
+Here we have to Annotate the Controller method With @ResponseBody.
+
+Note :
+------
+@RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
+
+
+*************************************************** @Controller vs @RestController  *****************************************************
+
+The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
+Job of @Controller is to create a Map of Model Object and find a view.
+But @RestController simply returns the Object and the Object data is directly written into HTTP Response as a Json or XML.
 
 *************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
 
@@ -147,3 +166,5 @@ Filter gets configured in web.xml where as Ineterceptors are configured in the A
 					chain.doFilter(request, response);
 				}
 			}
+			
+

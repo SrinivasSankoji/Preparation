@@ -164,7 +164,7 @@ Map produces a new Stream after applying a Function to each element of the other
 Here New Steam can be of different Type.
 
 collect() is one of the common way to get the stuff out from the stream once done with the processing.
-findFirst() is used to return the First Object from the Stream other wise it returns null.
+findFirst() is used to return the first Object from the Stream other wise it returns null.
 
 If we want to get an Array form the Stream of Elements we use toArray(Employee[]::new)
 
@@ -177,11 +177,11 @@ FlatMap can also be used for Asynchronous Operations.
 	.flatMap(employeeId -> getEmployeeDetails(employeeId))
 	.collect(Collectors.toList());
 
-For Each :
+forEach :
 ----------
-For Each is a Terminal Operation.
+forEach is a Terminal Operation.
 Some times we need to perform multiple operations on each element of the Stream before the Terminal Operation is applied.
-In this case peek() can be Used.
+In this case peek() can be used.
 
 Peek :
 ------
@@ -417,6 +417,23 @@ Iterator on the CopyOnWriteArrayList does not allow mutation operations and thro
 StringJoiner is a class introduced in Java8.
 Using StringJoiner we can join multiple Strings with the specified delimiter.
 We can also provide prefix and suffix to the given String.
+
+	public static void main(String[] args) {
+		int[] intArray = {234, 808, 342};
+		
+		/**
+		 * Joining with Comma Separated Values
+		 */
+		String result = IntStream.of(intArray)
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining("','","'","'"));
+		System.out.println(result);
+		
+		String result1 = IntStream.of(intArray)
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining(","));
+		System.out.println(result1);
+	}
 
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
 
