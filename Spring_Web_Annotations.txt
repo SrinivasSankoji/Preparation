@@ -19,7 +19,7 @@ Service Locater Factory Bean	            ()                              [02-DEC
 HTMLMessageConverter                        ()                              [02-DEC-2021]  ()
 @Controller vs @RestController              (javacodegeeks)                 [02-DEC-2021]  (Done)
 @Repository                                 ()                              [02-DEC-2021]  ()
-@JpaRepository                              ()                              [02-DEC-2021]  ()
+CrudRepository vs JpaRepository             (netsurfingzone)                [03-DEC-2021]  (Done)
 @EnableJpaRepositories                      ()                              [02-DEC-2021]  ()
 @EntityScan                                 ()                              [02-DEC-2021]  ()
 WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
@@ -49,11 +49,28 @@ Note :
 @RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
 
 
-*************************************************** @Controller vs @RestController  *****************************************************
+*************************************************** @Controller vs @RestController  *******************************************************
 
 The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
 Job of @Controller is to create a Map of Model Object and find a view.
 But @RestController simply returns the Object and the Object data is directly written into HTTP Response as a Json or XML.
+
+*************************************************** CrudRepository vs JpaRepository *******************************************************
+
+CrudRepository :
+----------------
+CrudRepository extends JpaRepository Interface.
+CrudRepository provides methods to perform CRUD Operations.
+saveAll() of CrudRepository returns Iterable
+If we want to perform only CRUD Operations use the CrudRepository Interface.
+
+JpaRepository :
+---------------
+JpaRepository extends PagingAndSortingRepository and QueryByExampleExecutor Interface.
+PagingAndSortingRepository further extends CrudRepository.
+JpaRepository provides additional methods like flush(),saveAndFlush() and deleteInBatch().
+saveAll() of JpaRepository returns List
+If we want to perform CRUD operations as well as batch operations use the JpaRepository Interface.
 
 *************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
 

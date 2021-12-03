@@ -11,11 +11,11 @@
 JWT is an Open Standard (RFC 7519) that defines a Compact and Self Contained way for Securely transmitting information between Parties as Json Object.
 This Information can be verified and trusted because It Is digitally Signed.
 
-JWT's Can be Signed Using a Secret key(With HMAC Algorithm) or public/private key Using RSA.
+JWT's Can be Signed using a Secret key(With HMAC Algorithm) or public/private key Using RSA.
 
 Compact :
 ---------
-Because of their smaller size,JWT's Can Be sent through URL,POST parameter or inside HTTP Header.
+Because of their smaller size,JWT's can be sent through URL,POST parameter or inside HTTP Header.
 Additionally smaller size means transmission is Fast.
 
 Self-Contained :
@@ -24,18 +24,18 @@ The Payload Contains all the information about the User,avoiding the need to Que
 
 Authentication :
 ----------------
-This is the most common Scenario For Using JWT.
-Once The User is Logged in and for each subsequent request it will include the JWT along with the User to Access Routes,Services and resources that are permitted with The Token.
-Single Sign on is a feature Widely used now a days using JWT Because of its Small OverHead and its ability to be easily used across different domains.
+This is the most common Scenario for Using JWT.
+Once The User is Logged in and for each subsequent request it will include the JWT along with the User to Access Routes,Services and resources that are permitted with the Token.
+Single Sign on is a feature widely used now a days using JWT because of its small overhead and its ability to be easily used across different domains.
 
 Information Exchange :
 ----------------------
-JWT is Good Way of Securely transmitting the information between the parties because they are Signed using Public/Private Key Pairs.
+JWT is Good Way of Securely transmitting the information between the parties because they are signed using Public/Private Key Pairs.
 Additionally the Signature is Calculated using Header and Payload so that we can verify the Content is Not Tampered With.
 
 3.JWT Structure :
 *****************
-Json Web Token Consists of 3 Parts Which are Separated by Dots.
+Json Web Token consists of 3 parts which are separated by Dots.
 
 1.Header
 2.PayLoad
@@ -99,20 +99,20 @@ base64UrlEncode(payload),
 secret
 )
 
-The Signature of the JWT is used to verify that the Sender of the JWT is Who it says it is and ensure that the Message was not changed along the Way.
+The Signature of the JWT is used to verify that the Sender of the JWT is who it says it is and ensure that the Message was not changed along the way.
 The Output of 3 Base64 Strings is Separated by dots that can be easily passed in HTML and HTTP Environments.
 
 
 4.How Does JWT Work :
 *********************
-When the User Successfully Logged in using their Credentials,A JWT Token will be returned as a part of Response and must be Saved Locally (Local Storage or a Cookie can also be used)
-In The Traditional Approach,We Create a Session in the Server and return the Cookie.
-When the user wants to access the protected route or resource,User Agent Should Send the JWT in the Authorization Header using Bearer Schema.
+When the User Successfully Logged in using their credentials,JWT Token will be returned as a part of Response and must be saved Locally (Local Storage or a Cookie can also be used)
+In The Traditional Approach,we create a Session in the Server and return the Cookie.
+When the user wants to access the protected route or resource,User Agent should send the JWT in the Authorization Header using Bearer Schema.
 
 Authorization : Bearer <Token>
 
 Using JWT is Stateless Authentication mechanism where the user state is never saved in the Server Memory.
-The Server's Protected Resources will Check For a valid JWT in the Authorization Header
+The Server's Protected resources will check for a valid JWT in the Authorization Header
 Once JWT is Present and validated,will be allowed to access the protected Resources.
 AS JWT are Self Contained i.e all the necessary information is present,reducing the need to query the database multiple times.
 
