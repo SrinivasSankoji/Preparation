@@ -41,14 +41,14 @@ docker login          		:  To Login to the Docker Hub
 docker logout         		:  To Logout from the Docker Hub
 
 docker images         		: To see the List of Images
-docker pull  ubuntu   		: To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
+docker pull ubuntu   		: To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      		: To get the Docker Image Id
 docker rmi [imageId]    	: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
 docker ps             		: To See the List of Active Containers
 docker ps -a 		 		: To See the List of Containers i.e active,closed etc.
-docker run ubuntu     		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It Wont Start the Container
-docker run -it ubuntu 		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Here It will Start the Container
+docker run ubuntu     		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Start the Container and and will be closed.
+docker run -it ubuntu 		: First It Will check for the Image Locally and If It is Not Found Then it will pull from DockerHub and Start the Container in interactive Mode.
 docker start [ContainerID]  : To Start the Container
 docker stop  [ContainerID]  : To Stop the Container
 docker rm [ContainerID]  	: To remove the Docker Container
@@ -108,7 +108,7 @@ Again we run the command
 
 	docker run ubuntu
 	
-It actually checks for the image into the local system and if it is available creates the container from the Image.
+It actually checks for the image into the local system and If it is available creates the container from the Image.
 If it is not available then it pulls the image from the Docker Registry and creates the Container from the Image.
 
 Note : Docker build can be used to create the Docker image using Docker file.
@@ -157,7 +157,7 @@ To run the Command on the image
 
 	RUN apt-get update
 	
-If we want to display something on the commad line during container creation
+If we want to display something on the commad line during Container creation
 
 	CMD ["echo","First Docker Image"]
 

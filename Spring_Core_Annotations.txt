@@ -280,7 +280,7 @@ When we add @Component Annotation,Spring Framework will add these Classes for De
 
 @Controller :
 -------------
-@Controller Annotation is used to indicate the Class is a Spring Controller.
+@Controller Annotation can be used to mark the Class as a Spring Controller.
 This Annotation is used to identify Controllers for Spring MVC or Spring Web Flux.
 
 @Service :

@@ -15,7 +15,7 @@
 Service Locater Factory Bean	            ()                              [02-DEC-2021]  ()
 @SpringBootApplication 						(howtodoinjava)                 [02-DEC-2021]  ()
 @AutoConfiguration							(howtodoinjava)	                [02-DEC-2021]  ()
-@EnableWebMVC                               ()                              [02-DEC-2021]  ()
+@EnableWebMVC                               (javapedia)                     [04-DEC-2021]  (Done)
 HTMLMessageConverter                        ()                              [02-DEC-2021]  ()
 @Controller vs @RestController              (javacodegeeks)                 [02-DEC-2021]  (Done)
 @Repository                                 ()                              [02-DEC-2021]  ()
@@ -30,7 +30,7 @@ If the Method parameter is annotaed with @RequestBody,Spring will bind the incom
 Behind the scenes HttpMessageConverter can be used to convert the HttpRequest body into domain Object based on Accept Header present in request.
 @RequestBody does not depend on the Media Type.
 
-The Accept Header is used by Browser to tell the server that what content type they will accept.
+The Accept Header is used by browser to tell the server that what content type they will accept.
 The Server then send's back the response which will include a Content-Type header telling the client that what the content type actually is.
 
 Note :
@@ -48,12 +48,18 @@ Note :
 ------
 @RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
 
-
 *************************************************** @Controller vs @RestController  *******************************************************
 
 The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
 Job of @Controller is to create a Map of Model Object and find a view.
 But @RestController simply returns the Object and the Object data is directly written into HTTP Response as a Json or XML.
+
+*************************************************** @EnableWebMVC  ************************************************************************
+
+Noramlly we use @EnableWebMvc for Spring Application.
+This marks the Application as Web Application and configurers all its related Classes like DispatcherServlet.
+Spring Boot automatically adds the @EnableWebMvc on the classpath.This flags the Application as Web Application and activates the key behaviors such as 
+setting up DispatcherServlet.
 
 *************************************************** CrudRepository vs JpaRepository *******************************************************
 
