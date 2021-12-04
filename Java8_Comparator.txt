@@ -1,0 +1,119 @@
+Comparable :
+------------
+Comparable interface is present in java.lang package.This interface contains only one method.
+By using Comparable Interface we can provide sirting only on field ie either Ascending or Descending.
+If we want to compare based on multiple fields we use Comparator.
+		
+		public int compareTo(Object object)
+		
+obj1.compareTo(obj2)
+returns -ve if the obj1 comes before obj2.
+returns +ve if the obj1 comes after  obj2.
+returns  0 if both obj1 and obj2 are equal.
+
+Note:
+While inserting objects into the TreeSet JVM internally uses compareTo() If we are depending on natural sorting order.
+To define our own customized sorting order we go for Comparator Interface.
+
+Sorting the Primitive Data Types :
+----------------------------------
+
+	int[] intArray= {5,9,1,10};
+	Arrays.sort(intArray);
+	System.out.println(Arrays.toString(intArray));
+	Arrays.stream(intArray).forEach(System.out::println);
+	
+	String[] strArray= {"X", "P", "M", "O", "W"};
+	Arrays.sort(strArray);
+	System.out.println(Arrays.toString(strArray));
+	Arrays.stream(strArray).forEach(System.out::println);
+	
+	List<String> strList=new ArrayList<String>();
+	strList.add("A");
+	strList.add("C");
+	strList.add("B");
+	strList.add("Z");
+	strList.add("E");
+	Collections.sort(strList);
+	strList.stream().forEach(System.out::println);
+	
+Sorting the Object Array :
+--------------------------
+We need to Comparable interface and override the compareTo(Object obj).
+
+	@Override
+	public int compareTo(Employee employee) {
+		return this.getName().compareTo(employee.getName());
+	}
+
+	Employee[] empArr = new Employee[4];
+	empArr[0] = new Employee(10, "Mikey", 25, 10000);
+	empArr[1] = new Employee(20, "Arun", 29, 20000);
+	empArr[2] = new Employee(5, "Lisa", 35, 5000);
+	empArr[3] = new Employee(1, "Pankaj", 32, 50000);
+	Arrays.sort(empArr);
+	Arrays.stream(empArr).forEach(System.out::println);
+
+Comparator :
+------------
+Comparator interface is present in java.util package.
+By using Comparator we can define our own sorting order.
+Comparator interface defines two methods.
+
+	public int compare(object obj1,object obj2)
+	public boolean equals(object obj)
+	
+whenever we are implementing Comparator interface we should provide implementation for compare(object obj1,object obj2).
+We can sort the List of Objects either by using list.sort() or Collections.sort().
+
+Comparator Before Java 8 :
+--------------------------
+
+	public class ComparatorBeforeJava8 {
+	static List<Employee> employeeList = Arrays.asList(new Employee(10, "Mikey", 25, 10000),
+			new Employee(20, "Arun", 29, 20000), new Employee(5, "Lisa", 35, 5000),
+			new Employee(1, "Pankaj", 32, 50000));
+			
+	/**
+	 * Comparator Before Java 8
+	 */
+	public static Comparator<Employee> nameComparator = new Comparator<Employee>() {
+		public int compare(Employee e1, Employee e2) {
+			return e1.getName().compareTo(e2.getName());
+		}
+	};
+
+	public static void main(String[] args) {
+		/**
+		 * Using List Interface sort()
+		 */
+		//employeeList.sort(new NameComparator());
+		/**
+		 * Using Collections Class sort()
+		 */
+		Collections.sort(employeeList, new NameComparator());
+		employeeList.forEach(System.out::println);
+	}
+	}
+
+Comparator After Java 8 using Lambda Expression :
+-------------------------------------------------
+
+	Comparator<Employee> nameComparator = (employee1, employee2) -> employee1.getName().compareTo(employee2.getName());
+	
+Comparator After Java 8 using Method References :
+-------------------------------------------------
+
+	//Collections.sort(employeeList, Comparator.comparing(Employee::getName));
+	Collections.sort(employeeList,Comparator.comparing(Employee::getName).reversed()); // Reverse Order
+	//Collections.sort(employeeList, Comparator.comparing(Employee::getId).thenComparing(Employee::getName));
+	employeeList.stream().forEach(System.out::println);
+
+
+	
+
+
+
+	
+
+	

@@ -325,7 +325,7 @@ returns  0 if both obj1 and obj2 are equal.
 
 Note:
 While inserting objects into the TreeSet JVM internally uses compareTo() If we are depending on natural sorting order.
-To define our own customized sorting order we go for comparator interface.
+To define our own customized sorting order we go for Comparator Interface.
 
 Comparator :
 ------------
