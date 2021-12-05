@@ -1,6 +1,6 @@
 
 @ExceptionHandler							()								[02-DEC-2021]  ()
-@Controller Advice							()								[02-DEC-2021]  ()
+@ControllerAdvice							()								[02-DEC-2021]  ()
 @RequestBody								(websystique)					[17-OCT-2019]  (Done)		
 @ResponseBody							    (websystique)					[17-OCT-2019]  (Done)
 @RestController                             ()								[02-DEC-2021]  ()

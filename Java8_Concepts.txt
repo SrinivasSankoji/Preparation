@@ -30,8 +30,8 @@ From Java8 we have interfaces with default and static Methods.
 
 default method :
 ----------------
-By using default Method we can add new methods in the existing interface in such a way that they are Backward Compatible.
-Backward Compatibility is adding new feature without breaking the Code.
+By using default() we can add new methods in the existing Interface in such a way that they are Backward Compatible.
+Backward Compatibility is adding a new feature without breaking the Code.
 default Methods are declared in the interfaces using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
    interface Printer
@@ -56,11 +56,16 @@ To call the static Method we use the interface name.
 	  
    }
    
-   Scanner.print(); // calling static Interface Method
+   public class StaticImpl implements StaticInterface{
+
+	public static void main(String[] args) {
+		StaticInterface.staticMethod(); // Calling Static Method
+	}
+}
    
 Java 8 – Abstract classes vs interfaces :
 -----------------------------------------
-With the introduction of default methods in interfaces,abstract classes are similar to interfaces in Java8.
+With the introduction of default methods in Interface,abstract classes are similar to interfaces in Java8.
 Eventhough it is true still we can have differences.
 Abstract classes can have Constructors where as Interfaces can't have Constructors.
 Main purpose of Interface is to provide full abstraction where as Abstract class purpose is to provide partial implementation.
@@ -68,7 +73,7 @@ With the introduction of default methods we can add additional fetaures to the i
 
 Default Method and Multiple Inheritance :
 -----------------------------------------
-When we have two interfaces with same default Method signature then Multiple inheritance problem can occur.
+When we have two interfaces that contains default() with the same signature then Multiple inheritance problem can occur.
 To resolve the issue override the default method in the Implementation class.
 
 Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
@@ -95,8 +100,8 @@ We can invoke the specific implementation in Java8 using
 
 An Interface with only one abstract Method and can have any number of default and static Methods is called Functional Interface.
 We can use either predefined Functional Interface provided by Java or we can create our own.
-Functional interfaces has only single abstract method and also called as SAM interfaces.	
-@FunctionalInterface can used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
+Since the Functional interface has only single abstract method It is also called as SAM interfaces.	
+@FunctionalInterface can be used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
 Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
 We can instantiate an Interface with Anonymous Inner Class but the code looks bulky.
    
@@ -123,8 +128,8 @@ Thread :
 	
 If the body of the expression is one line then we can remove the curly Braces.
 
-	Interface i1=(s)->System.out.println(s);
-	i1.void("Hello");
+	StringFunctionInterface stringFunctionInterface=(message) -> System.out.println(message);
+	stringFunctionInterface.displayMessage("Hello World");
 	
 We have been using Functional interface prior to Java 8.They were created by using anonymous inner class using interfaces such as Runnable,Comparator etc.
 Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces easily.
@@ -181,9 +186,9 @@ FlatMap can also be used for Asynchronous Operations.
 forEach :
 ----------
 forEach is a Terminal Operation.
+
 Some times we need to perform multiple operations on each element of the Stream before the Terminal Operation is applied.
 In this case peek() can be used.
-
 Peek :
 ------
 peek() performs specified Operation on each element of the stream and returns a new Stream which can be used further.
@@ -199,8 +204,8 @@ we use sorted on stream of elements.
 allMatch, anyMatch, and noneMatch :
 -----------------------------------
 allMatch() returns true If all the elements of the stream satisfies the condition.It returns false as soon as it does not match the predicate.
-anyMatch()  return true If it Matches any one of the element in the Stream.
-nonMatch() returns true If none of the element in stream matches the Predicate.
+anyMatch() returns true If it Matches any one of the element in the Stream.
+noneMatch() returns true If none of the element in stream matches the Predicate.
 
 Stream Specializations :
 ------------------------
@@ -219,12 +224,11 @@ The other specialized operations are sum(),range().
 
 Reduction Operations :
 ----------------------
-Reduce Operation combines all the elements of the stream into a Single Result.
+Reduce Operation combines all the elements of the stream with the given function and returns Single Result.
 
 	T reduce(T identity,BinaryOperator<T> accumulator)
 	
 Key concepts in reduce() are Identity,Accumulator and Combiner.
-
 Identity : This is the initial value of the reduction Operation and is the default result If the Stream is Empty.
 Accumulator : Function that takes two Parameters i.e Partial Result of the Reduction Operation and the Next Element of the Stream.
 
@@ -364,8 +368,8 @@ There is another method in Optional Class which executes only If the given Optio
 
 		Optional<String> valueOne=Optional.ofNullable("This is Non Empty checked using IfPresent Method");
 		Optional<String> valuetwo=Optional.empty();
-		valueOne.ifPresent(System.out::println);
-		valuetwo.ifPresent(System.out::println);
+		valueOne.ifPresent(System.out::println); //This is Non Empty checked using IfPresent Method
+		valuetwo.ifPresent(System.out::println); //No Output
 		
 orElse() and orElseGet() :
 --------------------------
@@ -416,24 +420,20 @@ Iterator on the CopyOnWriteArrayList does not allow mutation operations and thro
 ***************************************************** 15.StringJoiner (beginnersbook) *************************************************************
 
 StringJoiner is a class introduced in Java8.
-Using StringJoiner we can join multiple Strings with the specified delimiter.
+StringJoiner can be used to join more than one String with the specified delimiter.
 We can also provide prefix and suffix to the given String.
 
+	public class StringJoinerDemo {
 	public static void main(String[] args) {
-		int[] intArray = {234, 808, 342};
-		
 		/**
 		 * Joining with Comma Separated Values
 		 */
-		String result = IntStream.of(intArray)
-                .mapToObj(Integer::toString)
-                .collect(Collectors.joining("','","'","'"));
-		System.out.println(result);
-		
-		String result1 = IntStream.of(intArray)
-                .mapToObj(Integer::toString)
-                .collect(Collectors.joining(","));
-		System.out.println(result1);
+		StringJoiner joiner = new StringJoiner(" ");
+		joiner.add("Srinivas");
+		joiner.add("Chary");
+		joiner.add("Sankoji");
+		System.out.println(joiner);
+	}
 	}
 
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
@@ -482,11 +482,36 @@ We can also have Comparator.nullsFirst(String::compareTo) and Comparator.nullsLa
 
 	Comparator<Employee> empNameComparator = Comparator.comparing(Employee::getName, Comparator.nullsFirst(String::compareTo));
 	
+	String[] strArray = { "aman", "suvam", null, "sahil", null };
+	
+	/**
+	 * nullsFirst for primitive Types
+	 */
+	Arrays.sort(strArray, Comparator.nullsFirst(Comparator.naturalOrder()));
+	Arrays.stream(strArray).forEach(System.out::println);
+	
+	/**
+	 * nullsFirst for Custom Object
+	 */
+	User u1 = new User("Aaman", 25);
+	User u2 = new User("Joyita", 22);
+	User u3 = new User("Suvam", 28);
+	User u4 = new User("mahafuj", 25);
+
+	System.out.println("******************");
+	List<User> list = Arrays.asList(u1, u2, u3, null, u4);
+	
+	list.sort(Comparator.nullsFirst(Comparator.comparing(User::getName)));
+	list.stream().forEach(System.out::println);
+	System.out.println("******************");
+	Collections.sort(list,Comparator.nullsLast(Comparator.comparing(User::getAge)));
+	list.stream().forEach(System.out::println);
+	
 *****************************************************  17.Function package (javabrahman)  *******************************************************************
 
-For common use cases where a Lambda Expression or a Method Reference is needed Functions are generally assigned to a target type.
-java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda  definitions 
-which can be used by the programmer in  the code instead of creating new functional interfaces.
+For common use cases where Lambda Expression or a Method Reference is needed Functions are generally assigned as a target type.
+java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda Expressions
+which can be used by the programmer in the code instead of creating new functional interfaces.
 Consider the scenario where we need a function that accepts an argument and returns boolean.
 
 	public interface Predicate<T>
@@ -511,14 +536,28 @@ Function Interface definition would be
 		public R apply(T parameter)
 	}
 
-	public class FunctionDemo {
-	Function<Integer, Integer> sum= (value -> value+value);
+	public class PredefinedFunctionDemo {
+	Function<Integer, Integer> sum = (value -> value + value);
+	Predicate<String> nullCheck = (value -> value != null && value != "");
+	Consumer<String> display = (value -> System.out.println(value));
+	Supplier<String> fetch = () -> "Get the Value from Supplier";
+
 	public static void main(String[] args) {
-		FunctionDemo demo=new FunctionDemo();
-		Integer addNumbers=demo.sum.apply(5);
-		System.out.println(addNumbers);
+		PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+
+		// Calling Function Interface
+		System.out.println(demo.sum.apply(23));
+
+		// Calling Predicate Interface
+		System.out.println(demo.nullCheck.test(""));
+
+		// Calling Consumer Interface
+		demo.display.accept("Srinivas Sankoji");
+
+		// Calling Supplier Interface
+		System.out.println(demo.fetch.get());
 	}
-}
+	}
 
 Predicate :
 -----------
@@ -530,20 +569,25 @@ Predicate Interface definition would be
 		public boolean test(T t);
 	}
 	
-	Predicate predicate =(value) -> value !=null;
-	
+	Predicate<String> nullCheck=(value -> value!=null && value!="");
+	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+	System.out.println(demo.nullCheck.test(""));
 	
 Consumer :
 ----------
 Consumer Interface represents a function that takes a single argument and returns no result.
 
-	Consumer consumer= (value) -> (System.out.println(value));
+	Consumer<String> display =(value -> System.out.println(value));
+	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+	demo.display.accept("Srinivas Sankoji");
 
 Supplier :
 ----------
 Supplier is a fucntion that does not take any argument and returns the result.
 
-	Supplier supplier= () -> "Supplier Function Called";
+	Supplier<String> fetch=() -> "Get the Value from Supplier";
+	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+	System.out.println(demo.fetch.get());
 
 ***************************************************** 19.SOLID Principles	(javabrahman) *****************************************************
 
@@ -557,36 +601,30 @@ Supplier is a fucntion that does not take any argument and returns the result.
 -----------------------------------
 Single Responsibility Principle states that A Class should have a Single Responsibility where Responsibility is nothing but reason to change.
 When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
-When there is a change needed in specific functionality Class needs to be changed.
+When there is a change needed in specific functionality that Class needs to be changed.
 Implementation of multiple functionalities in a Single class can mesh up the Code.
 
 2.Open Closed Principle :
 -------------------------
-A Module is said to be Open If it is still available for extension.
-It should be possible to add fields to the data structure it contains or new elements to the set of functions it performs.
-
-A Class is said to be closed If it is used by other modules.
-This assumes that module has well definded,stable description.
-One of the basic requirement for a class to be closed is attributes and methods are final because
-If they change all the classes which inherit the base class will be changed.
-
-A Class is said to be Open Closed If it is open for extension but closed for modification.
-Modification means we should not change the original class rather we should override the original class.
+Open Closed Principle states that Software Entities like Class,Module,Functions etc should be able to extend the functionality without modifying it.
+This principal seperates the existing code from the modified code to provide better stability,maintainability and minimizes the changes in the code.
+Open Closed Principe is achieved by using Inheritance and Polymorphism.
 
 3.Liskov Substitution Principle :
 ---------------------------------
-As per Liskov substitution principle A Class can be replaced by its subClass ie
+As per Liskov substitution principle,Class can be replaced by its subClass ie
 Derived class must be completely substitutable for their base classes.
+In Java Super class reference can be used to hold Subclass Object ie Super Class can be replaced by SubClass in a super class reference.
 
 4.Interface Segregation Principle :
 -----------------------------------
-Interface Segregation principle states that Larger interface can be split into smaller ones.
+Interface Segregation principle states that larger interface can be split into smaller ones.
 Because Implementation classes use only the methods that are required.
 We should not force the client to use the methods that they don't require.
 
 5.Dependency Inversion Principle :
 ----------------------------------
-Dependency Inversion Principle states that we must use abstraction Instead of concrete Implementations.
+Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
 High level modules should not depend on low level modules but both depends on Abstraction.
 
 ***************************************************** 21.Map in Java8 (beginnersbook) ************************************************************

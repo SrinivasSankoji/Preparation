@@ -19,10 +19,11 @@
 19.Typecasting                                      [14-DEC-2020]  (Done)
 20.vararg Method                                    [14-DEC-2020]  (Done)
 21.Main Method                                      [14-DEC-2020]  (Done)
-22.Constructor Chaining	
-23.Static Mthods and Variables(crunchify)
-24.
+22.Constructor Chaining								[04-DEC-2021]  ()
+23.Static Mthods and Variables(crunchify)			[04-DEC-2021]  ()
 
+Coding Interview Questions :
+hackertrail
 
 **********************************************************  1.Data Hiding  *********************************************************************
 
@@ -32,7 +33,7 @@ By using private modifier we can acheive Data Hiding.
 Instead of providing the data directly,provide the access through method.
 Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
 Main advantage of data hiding is security.
-Recomended Modifier for data hiding is private.
+Recomended Modifier for Data Hiding is private.
 
 **********************************************************  2.Abstraction  **********************************************************************
 
@@ -44,7 +45,7 @@ Abstraction improoves the easyness to use the system because not required to kno
 
 ********************************************************** 3.Encapsulation  **********************************************************************
 
-If any componenet of java class follows Data Hiding and Abstraction then it is called Encapsulation.
+If any componenet of Java class follows Data Hiding and Abstraction then It is called Encapsulation.
 Binding the data and corresponding functionality together into a single module is called Encapsulation.
 Every Java class is an example of Encapsulation.
 
@@ -59,8 +60,8 @@ Perfromance of the system will be impacted.
 
 ********************************************************** 4.Tightly Encapsulated Class  **********************************************************
 
-When ever we are very strict about Data Hiding,we go for tightly encapsulatd class.
-A class is said to be tightly Encapsulated class If each and every variable of the class is declared as private.
+When ever we are very strict about Data Hiding,we go for Tightly Encapsulatd class.
+A class is said to be Tightly Encapsulated class If each and every variable of the class is declared as private.
 Whether the class contains corresponding setter or not,getter methods or not,whether these methods are declared as public or not.
 These things are not required to check.
 
@@ -77,7 +78,7 @@ We need to define the common functionality in one class and specific functionali
 This approach improoves the reusability of the code and reduces the development time.
 Entire Java API is implemented based on simple inheritance.
 For all Errors and Exceptions,most common functionality is available in Throwable class.Hence Throwable class acts as a root class for Java Exception Hierarchy.
-Similarly For all Java classes most common functionality is available in  Object class.
+Similarly for all Java classes most common functionality is available in  Object class.
 Hence Object class acts as a Root Class for all Java Classes.
 
 Example :
@@ -101,7 +102,7 @@ public class Child extends Parent{
 public class ParentChild {
 	public static void main(String[] args) {
 		Parent parent=new Parent();
-		parent.m1();
+		parent.m1(); // Parent Class Method
 		Child child=new Child();
 		child.m1(); // Parent Class Method
 		child.m2(); // Child Class Method
@@ -120,7 +121,7 @@ Note :
 ------
 1.Whatever methods parent has by default avaialbale to child class.Hence on the child class reference we can call both parent and child class methods.
 2.Whatever methods child has by default avaialbale not avaialbale to the parent class.Hence on the parent class reference we cannot call child class methods.
-3.Parent class reference can be used to hold child class objects but by using this reference we can call methods available in parent class 
+3.Parent class reference can be used to hold child class objects but by using this reference we can call only the methods available in parent class 
 and child class specific methods we cannot call.
 
 	Parent parent1=new Child();
@@ -132,8 +133,8 @@ and child class specific methods we cannot call.
 
 Multiple Inheritance :
 ----------------------
-Java does not support Multiple inheritance through class because there may be a chance of ambiguity problem.
-In Java a class cannot extend more than one class at a time,Hence Java won't provide support for multiple inheritance.
+Java does not support Multiple Inheritance through class because there may be a chance of ambiguity problem.
+In Java a class cannot extend more than one class at a time.Hence Java won't provide support for Multiple inheritance.
 
 Class A
 {
@@ -170,8 +171,8 @@ Interface C extends A,B
 Because for Interface we need to provide Implementation.
 Here Implementation for A is in Seperate Class and B is in Another Class.
 To the Interface C Only one implementation is enough and single implementation acts for both interfaces.There is no chance of ambiguity.
-Eventhough multiple method declarations are present,there should be only one implementation i.e implementation is unique.
-Hence there is no chance of ambiguity Problem in interfaces.
+Eventhough multiple method declarations are present,there should be only one implementation i.e Implementation is unique.
+Hence there is no chance of ambiguity Problem in Interfaces.
 
 Cyclic Interface :
 ------------------
@@ -193,11 +194,11 @@ Class B extends A
 ************************************************************* 6.Has a Relationship  *************************************************************
 
 It is also known as Composition or Aggregation.
-Whenever the common functionality is repeatedly required,write it in one class and call this functionality where ever it is required.
+Whenever the common functionality is repeatedly required,write it in one class and call this functionality whereever it is required.
 There is no specfic keyword to implement has a relationship but most of the times we use new keyword.
 Main Advantage of has a relationship is reusability of the code.
 
-Consider the scenario if we want to build the car ,each part is taken from the third party Vendor.
+Consider the scenario If we want to build the car ,each part is taken from the third party Vendor.
 Here the disadvantage is if there is a change in Engine, then it will impact the Class Car.
 Has a Relationship increases the dependencies between the components and increases the maintanance problems.
 
@@ -231,7 +232,7 @@ In Aggregation,Container Object holds the references of Contained Objects i.e Co
 			
 In Java Method Signature consists of name of the Method and Argument Types.
 Return type is not a part of Method Signature.
-For each call performed by the Thread on the method,corresponding Entry will be stored inside the Stack Area.
+For each call performed by the Thread on the method,One Entry will be stored inside the Stack Area.
 
 public class MethodSignatureDemo {
 
@@ -312,7 +313,7 @@ Automatic promotion in Overloading :
 While performing Method overloading,If exactly matched method not found then we don't get compile time error.
 Here Compiler promotes the argument to the next level and checks whether the matched method is available or not.
 This process will be continued untill all the possible promotions.
-Still if the matched method is not avaialbale then we get the compile time Error.
+Still If the matched method is not Avaialbale then we get the compile time Error.
 Promoting the argument to the next level is nothing but Automatic promotion in Overloading.
 
 Various possible promotions are 
@@ -397,7 +398,7 @@ public class ChildDemo extends ParentDemo{
 }
 
 ParentDemo parentChild=new ChildDemo();
-parentChild.marriage();
+parentChild.marriage();//Love Marriage
 
 Flow of execution :
 -------------------
@@ -456,7 +457,7 @@ public class ChildDemo extends ParentDemo{
 	}
 }
 
-Here it gives the CTE saying cannot override the final method from ParentDemo.
+final methods cannot be overridden and gives CTE.
 We can override non final method as final.
 We can override Parent class abstract method in the Child class to provide implementation.
 
@@ -724,11 +725,11 @@ public class ConstructorDemo {
 	public static void main(String[] args) {
 		ConstructorDemo demo = new ConstructorDemo();
 		ConstructorDemo demo1 = new ConstructorDemo(1);
-		System.out.println(count);
+		System.out.println(count);//2
 	}
 }
 
-For example if we write count in constructor,sometimes to create a Single Object we need to execute more than one Constructor.
+For example If we write count in constructor,sometimes to create a Single Object we need to execute more than one Constructor.
 
 Rules for Writing Constructor :
 -------------------------------

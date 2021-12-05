@@ -1270,7 +1270,6 @@ String Class									(Done)
 Singleton										(Done)
 Serialization                               	(Done)
 Externalization                             	(Done)
-Inner Class										()
 JVM Internal									()
 HashMap Internal								()
 MultiThreading                                  (Done)
@@ -1310,6 +1309,7 @@ JVM Internal									(Done)
 HashMap Internal								()
 MultiThreading DefogTech                        (Done)
 MultiThreading Jenkov                           (Done)
+Java8 Lambda									()
 
 Spring Security									(Done)
 Spring AOP										()
@@ -1333,6 +1333,9 @@ AWS                                             ()
 
 SQL Book One									()
 SQL Book Two									()
+
+Hibernate Book One								()
+Hibernate Book Two								()
 
 javapedia
 netsurfingzone
