@@ -16,9 +16,7 @@
 
 
 *********************************************************  1.Microservice Configuration  *******************************************************************
-
-In this Series we understand the Microservice Configuration Goals
-Some of the Configuration Features in Spring Boot like 
+Some of the Configuration features in Spring Boot like :
 
 value
 ConfigProps
@@ -26,10 +24,7 @@ Actuator
 Spring Profiles
 Environment
 
-Spring Cloud Config Server which is a Project of Spring Cloud
-Dynamic Configuration
-Some of the Industry Best Practices
-
+Spring Cloud Config Server which is a project of Spring Cloud that can be used for Dynamic Configuration
 
 *********************************************************  2.What and Why  **********************************************************************************
 
@@ -38,46 +33,41 @@ It is a best practice to seperate the Application Code and Configuration.
 If parameters are not part of business Logic and they keep on change it is better to make them as configurable.
 Some of the examples of Configuration are 
 
-1.Database Connections
+1.Database details
 2.Credentials like Authentication
 3.Feature Flags like boolean flag
-4.Business Logic Configuration Parameters like discount
+4.Business Logic Configuration parameters like discount
 5.Scenario Testing like increase the trafic of the Application
 6.Spring Boot Configuration like Hystrix Parameters,Connection parameters,error parameters
 
-whenever we want to deploy any production Application it has to go through all the Phases of Lifecycle
-and it has to run all the test Cases,then deploy into production.
-If we want increase the number of threads for a Microservice then no need to build and deploy the Application.
-It has to be Configured here and For Confoguration Changes it has to be moved to the Production without any build and deployment.
-Configuration changes has to be very fast,easy and real time.
+whenever we want to deploy any production Application It has to go through all the phases of Lifecycle and It has to run all the Test Cases,then deploy into production.
+If we want increase the number of threads for a particular Microservice then no need to build and deploy the Application.
+It has to be Configured and for Confoguration Changes no need of Build and Deployment.
+Configuration changes are fast,easy and real time.
 
-
-Different type of Configs are 
-
+Different type of Configs are :
 1.XML Files
 2.properties
 3.yaml
 4.json
 
-These are the File that we save the Configuration and effect the Production.
-Scenario is 
-
+These are the Files that we save the Configuration details taht effects the Production.
+Scenario's are 
 Multiple Microservice Applications
 Multiple instances of each Microservice Application
 
-At the end of the development of Microservice Application we should have
+At the end of the development,Microservice Application should have
 
 1.externalized Configuration
 2.environment Specific Configuration
-3.consistent i.e if we have multiple instance of each microservice then all the Microservice should point to the Same Configuration.
+3.consistent i.e If we have multiple instance of each microservice then all the Microservice should point to the Same Configuration.
 4.version History i.e we can have configuration History
-5.Realtime Management i.e if one Microservice is Consumed by lot of applications then increase the number of threads and it should be affected 
-while all the Microservice are running.
+5.Realtime Management i.e If one Microservice is consumed by lot of applications then increase the number of threads and it should be affect while the Microservice are running.
 
  
 *********************************************************  3.Property File Configuration   ************************************************************************
 
-Firste step to externalize the Microservice Configuration is to actually put them in config File and then read it in our Application.
+First step to externalize the Microservice Configuration is to actually put them in config File and then read it in our Application.
 Create a Spring boot Project 
 	
 		spring-boot-config-brains

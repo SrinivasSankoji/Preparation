@@ -299,7 +299,7 @@ docker volume prune 						: To remove the unused Volumes which are not used by a
 
 Example :
 ---------
-Create the Volume VOL1
+To create the volume VOL1
 
 	docker volume create  VOL1
 	

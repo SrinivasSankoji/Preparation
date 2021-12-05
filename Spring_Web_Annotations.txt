@@ -1,11 +1,11 @@
 
-@ExceptionHandler							()								[02-DEC-2021]  ()
-@ControllerAdvice							()								[02-DEC-2021]  ()
+@ControllerAdvice							(howtodoinjava)					[05-DEC-2021]  (Done)
+@ExceptionHandler							(learnjava)						[05-DEC-2021]  (Done)
 @RequestBody								(websystique)					[17-OCT-2019]  (Done)		
 @ResponseBody							    (websystique)					[17-OCT-2019]  (Done)
 @RestController                             ()								[02-DEC-2021]  ()
-@RequestBodyAdvice						    ()								[18-OCT-2019]  (Done)
-@ResponseBodyAdvice						    ()								[18-OCT-2019]  (Done)
+@RequestBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
+@ResponseBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
 @ResponseEntity                             ()								[02-DEC-2021]  ()
 @Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
 @ConfigurationProperties					()								[02-DEC-2021]  ()
@@ -16,7 +16,7 @@ Service Locater Factory Bean	            ()                              [02-DEC
 @SpringBootApplication 						(howtodoinjava)                 [02-DEC-2021]  ()
 @AutoConfiguration							(howtodoinjava)	                [02-DEC-2021]  ()
 @EnableWebMVC                               (javapedia)                     [04-DEC-2021]  (Done)
-HTMLMessageConverter                        ()                              [02-DEC-2021]  ()
+HTMLMessageConverter                        (websystique)                   [05-DEC-2021]  ()
 @Controller vs @RestController              (javacodegeeks)                 [02-DEC-2021]  (Done)
 @Repository                                 ()                              [02-DEC-2021]  ()
 CrudRepository vs JpaRepository             (netsurfingzone)                [03-DEC-2021]  (Done)
@@ -24,14 +24,41 @@ CrudRepository vs JpaRepository             (netsurfingzone)                [03-
 @EntityScan                                 ()                              [02-DEC-2021]  ()
 WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
 
+*************************************************** @ControllerAdvice(howtodoinjava) ********************************************************************************
+If we want to centralize the Exception Handling logic to one class which is capable of handling the Exceptions thrown form any controller class/handler class
+then we use @ControllerAdvice Annotation.
+We can think of it as an Interceptors for Exception.
+
+*************************************************** @ExceptionHandler(learnjava) ********************************************************************************
+@ExcptionHandler Annotation can be applied to a Method in a Controller Class and handles only Excpeptions that occures in the Controller where it is sepcified.
+
+*************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
+@RequestBodyAdvice allows the customization of the Request Body before it is converted into an Object.
+Additionally we can modify the converted object before it is passed into our controller Methods.
+
+RequestBodyAdvice has 4 Methods :
+We have supports() which decides whether the implementation should run for the Current Request or Not.
+We have beforeBodyRead() which runs before Spring MVC reads the Request Body.
+We Have afterBodyRead() which runs after the body is read and converted into an Object.
+In After bodyRead() we have an access to the Converted Object and cast into an Appropriate Type.we can also modify the fields.
+
+Finally when the Request Body is Empty,we can put our custom logic into handleEmptyBody().
+We must return a value to use,either provide the Object or an entirely New Object.
+
+*************************************************** @ResponseBodyAdvice (javabyexamples) **************************************************
+@ResponseBodyAdvice allows the customization of the Response before Spring writes it to the Response Body.
+Since we are Annotating the controller with @RestController all the End Point methods implicitly will have the @ResponseBody Annotation.
+As a result Spring MVC will write the method return value to the Response.
+
+ResponseBodyAdvice has 2 Methods :
+supports() decides whether the implementation should run for the Current Response or Not.
+beforeBodyWrite() runs after the execution of the Controller Method but before the Response is written.
+Here we have the chance to modify the Response Object.
+
 ***************************************************  @RequestBody (springframework.guru/websystique) *************************************************
-
-If the Method parameter is annotaed with @RequestBody,Spring will bind the incoming HTTP request body to the parameter. 
-Behind the scenes HttpMessageConverter can be used to convert the HttpRequest body into domain Object based on Accept Header present in request.
+If the Method parameter is annotaed with @RequestBody,Spring will bind the incoming Request body to the parameter. 
+Behind the scenes HttpMessageConverter can be used to convert the Request body into domain Object and assign it to a variable.
 @RequestBody does not depend on the Media Type.
-
-The Accept Header is used by browser to tell the server that what content type they will accept.
-The Server then send's back the response which will include a Content-Type header telling the client that what the content type actually is.
 
 Note :
 ------
@@ -39,30 +66,24 @@ If the Post body contains Json or XML and Jackson Library is found in our Classp
 ResponseEntity represents the entire HTTP Response.
 
 *************************************************** @ResponseBody (javabyexamples) *******************************************************
-
-If a Method is annotated with @ResponseBody Spring will bind the return value to the outgoing Http Response Body.
-Behind the scenes HttpMessageConverter can be used to convert the return value to the HTTP Response Body based on the Content-Type present in the Request Header.
+If a Method is annotated with @ResponseBody Spring will bind the response Object to the outgoing Response Body.
+Behind the scenes HttpMessageConverter can be used to convert Object to the Response Body.
 Here we have to Annotate the Controller method With @ResponseBody.
 
-Note :
-------
-@RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
-
 *************************************************** @Controller vs @RestController  *******************************************************
-
 The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
 Job of @Controller is to create a Map of Model Object and find a view.
 But @RestController simply returns the Object and the Object data is directly written into HTTP Response as a Json or XML.
 
-*************************************************** @EnableWebMVC  ************************************************************************
+@RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
 
+*************************************************** @EnableWebMVC  ************************************************************************
 Noramlly we use @EnableWebMvc for Spring Application.
 This marks the Application as Web Application and configurers all its related Classes like DispatcherServlet.
 Spring Boot automatically adds the @EnableWebMvc on the classpath.This flags the Application as Web Application and activates the key behaviors such as 
 setting up DispatcherServlet.
 
 *************************************************** CrudRepository vs JpaRepository *******************************************************
-
 CrudRepository :
 ----------------
 CrudRepository extends JpaRepository Interface.
@@ -78,35 +99,7 @@ JpaRepository provides additional methods like flush(),saveAndFlush() and delete
 saveAll() of JpaRepository returns List
 If we want to perform CRUD operations as well as batch operations use the JpaRepository Interface.
 
-*************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
-
-@RequestBodyAdvice allows the Customization of The Request Body Before It is Converted into an Object.
-Additionally We Can Modify The Converted Object Before It Is Passed into Our Controller Methods.
-
-We Need To Implement all The Four Methods of Request Body Advice.
-We Have supports()Method Which decides whether the Implementation should run for the Current Request.
-We Have beforeBodyMethod() Method which runs before Spring MVC Reads The Request Body.
-We Have afterBodyRead() Method which Runs After The Body is Read and Converted into an Object.
-In After bodyRead() Method ,We Have an Access to The Converted Object and Cast Into an Appropriate Type
-and We Can Also Modify The Fields.
-
-Finally When The Request Body is Empty, We Can Put Our Custom Logic into handleEmptyBody() Method.
-We Must Return a Value to Use ,Either Provide The Object or an Entirely New Object.
-
-*************************************************** @ResponseBodyAdvice (javabyexamples) **************************************************
-
-By Using @ResponseBodyAdvice We Can Modify the Response Before Spring MVC Writes it to the Response Body.
-Since We are Annotating The Controller with @RestController all the End Point Methods Implicitly will have the @ResponseBody Annotation.
-As A Result Spring MVC will Write the Method Return Value to the Response.
-@ResponseBodyAdvice allows the Customization of the Response Object Before Spring MVC Writes it to the Response Body.
-ResponseBodyAdvice has Two Methods :
-Supports() decides whether the Implementation should run for the Current Response.To Perform This Decision Spring MVC 
-Provides the Return Type and Converter Type.
-beforeBodyWrite() runs after the Execution of the Controller Method But Before The Response is Written.
-Here We Have The Chance Modify the Response Object.
-
 *************************************************** @Interceptor (springframework.guru and o7planning and javainuse) **********************
-
 In Spring whenever a request is sent to the Controller it will have to pass through the Interceptors(Zero or More) before being processed by the Controller.
 Spring Interceptor is a concept similar to Servlet Filter.
 Spring Interceptor can be applied to all the requests that are sending to the Controller.
