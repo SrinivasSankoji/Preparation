@@ -50,6 +50,10 @@ Java8 comes with the special kind of streams to work with primitive data types.
 IntStream,LongStream,DoubleStream etc.
 
 	IntStream.range(1, 4).forEach(System.out::println);
+
+To convert IntStream to the Stream we used boxed().
+
+	List<Integer> intList=IntStream.range(1, 4).boxed().collect(Collectors.toList());
 	
 Primitive Streams support the Additional Aggregation Operations like average() and sum().
 

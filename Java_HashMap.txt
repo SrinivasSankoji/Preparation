@@ -38,12 +38,12 @@ Also If the hash value is too large then it converts into a smaller hash value.
 
 Note :
 ------
-If the hash value of key object returns an Integer that is greater than the size of Array then it throws ArrayIndexOutOfBoundsException.
+If the hash value of key object returns an Integer that is greater than the size of an Array then it throws ArrayIndexOutOfBoundsException.
 To handle this situation HashMap reduces the hash value between 0 and n-1 using an expression.
 
 	index=hash(key) & (n-1)
 	
-Now the index value generated is used by HashMap to identify the Bucket Location and can never generate exception as the index value is always between 0 to n-1.
+Now the index value generated is used by the HashMap to identify the Bucket Location and can never generate exception as the index value is always between 0 to n-1.
 
 What put()does :
 ----------------
@@ -56,24 +56,24 @@ To resolve this issue they introduced another hash() function and passed the key
 
 How Collisions are resolved :
 -----------------------------
-As we know that two unequal objects can have the same hashCode ie Two different objects will be stored in the same Array Location and the answer is LinkedList.
+As we know that two unequal objects can have the same hashCode ie Two different objects will be stored in the same Bucket Location and the answer is LinkedList.
 Entry class has an attribute "next".
 This attribute always points to the next object in the chain.
 This is the exactly the behavior of LinkedList.
 
 Entry objects are stored in the form of LinkedList.
 When an Entry object needs to be stored in a particuar Index,HashMap checks whether there is already Entry present in the index.
-If no Entry is present then Entry object is stored in that index.
+If no Entry is present in the index then Entry object is stored in that index.
 
-If there is an Entry object sitting on that calculated index,its next attribute is checked.
+If there is an Entry object sitting on that calculated index then its next attribute is checked.
 If it is null then the current Entry object becomes the next node in the LinkedList.
 If the "next" variable is not null,the procedure is followed untill the next is evaluated as null.
 
 If we add an Entry object with the same key that is already present in the index,
 HashMap calls the equals() on the key object for each Entry.
 
-All the Entry objects in the LinkedList will have the same hashCode but equals method will test for true equality.
-If both the key objects are equal then the value object will be replaced.
+All the Entry objects in the LinkedList will have the same hashCode but equals() will test for true equality.
+If both key objects are equal then the value object will be replaced.
 
 ************************************************ 2.HashMap - Internal  (howtodoinjava)  *********************************************
 
@@ -87,13 +87,13 @@ Two equal objects must produce the same hashCode consistently.
 Note :
 ------
 All objects in Java inherit default implementation of hashCode() defined in Object class.
-This hashCode() method produces hashCode by typically converting the internal address of the object into an Integer.
+This hashCode() produces hashCode by typically converting the internal address of the object into an Integer.
 Thus producing differrent hashCode for different objects.
 
 2. Entry class in HashMap :
 ---------------------------
 Map by definition is an Object that maps keys to values.
-There must be some Mechanism in HashMap to store this key value pair.
+There must be some mechanism in HashMap to store this key value pair.
 HashMap has a nested class Entry to insert key value pair.
 
 	static class Entry<K,V> implements Map.Entry<K,V>
@@ -162,7 +162,7 @@ Two different objects can have the same hashcode and the answer is LinkedList.
 Entry class has an attribute "next".
 This always points to the next object in the chain.
 
-whenever an Entry object needs to be stored in a particular index,First it checks if the object is already present or not.
+whenever an Entry object needs to be stored in a particular index,First it checks If the object is already present or not.
 If the object is not present then the Entry object will be stored in that index.
 If the object is present in that calculated index,its next attribute is checked.
 if the next attribute is null then the Entry object will become the next node in the LinkedList.
@@ -322,7 +322,7 @@ with the element we specified as it's key and constant called PRESENT as it's va
 		map.put(e,PRESENT)=null;
 	}
 	
-add() method of HashSet internally calls put() of backing HashMap object by passing the element as key and constant "PRESENT" as its value.
+add() of HashSet internally calls put() of backing HashMap object by passing the element as key and constant "PRESENT" as its value.
 remove() works in the same manner.
 
 	public remove(E e)
@@ -342,7 +342,7 @@ fail-safe and does not throw any Exception.
 6.As HashTable is Synchronized this makes HashTbale slower than HashMap.
 7.HashTable is legacy Class and ConcurrentHashMap is better option than HashTable.
 8.HashMap is always recomended to use If we don't want ThreadSafety.
-If we want Thread Safety use either ConcurrentHashMap or make the HashMap Thread Safe by using Collections.synchronizedMap().
+If we want Thread Safety we can use either ConcurrentHashMap or make the HashMap Thread Safe by using Collections.synchronizedMap().
 
 ***************************************** 14.HashMap Programs & Examples(15) (javaconceptoftheday)*****************************************************
 
@@ -352,15 +352,13 @@ Done
 
 ConcurrentHashMap is similar to HashMap Class except that ConcurrentHashMap offers internally maintained concurrency.
 We do not need to have synchronized block when accessing ConcurrentHashMap in MultiThreaded Application.
-ConcurrentHashMap allows concurrent access of the Map ie each part of the Map is called Segment and 
-Segment is only getting locked while adding or updating the Map.
+ConcurrentHashMap allows concurrent access of the Map ie each part of the Map is called Segment and Segment is only getting locked while adding or updating the Map.
 ConcurrentHashMap allows concurrent Threads to read the value without locking at all.
 ConcurrentHashMap has a default capacity of 16 ie 16 Threads are allowed to work on the ConcurrentHashMap at at time.
 	
 ***************************************** 16.ConcurrentHashMap Internal	(javahungry)*******************************************************************
 
-ConcurrentHashMap does not allow null value and null key because If map.get(key) returns null we can't detect whether the key explicitly maps to null or
-key is not mapped.
+ConcurrentHashMap does not allow null value and null key because If map.get(key) returns null we can't detect whether the key explicitly maps to null or key is not mapped.
 In a non Concurrent Map we can check this via map.contains(Key) but in a ConcurrentMap Map might have changed between the Calls.
 
 ***************************************** 17.HashMap vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) *********************************************

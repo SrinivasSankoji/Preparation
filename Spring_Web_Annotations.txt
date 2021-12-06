@@ -6,7 +6,7 @@
 @RestController                             ()								[02-DEC-2021]  ()
 @RequestBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
 @ResponseBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
-@ResponseEntity                             ()								[02-DEC-2021]  ()
+@ResponseEntity                             (baledung)								[07-DEC-2021]  ()
 @Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
 @ConfigurationProperties					()								[02-DEC-2021]  ()
 @Conditional                                ()                              [02-DEC-2021]  ()
@@ -63,12 +63,20 @@ Behind the scenes HttpMessageConverter can be used to convert the Request body i
 Note :
 ------
 If the Post body contains Json or XML and Jackson Library is found in our Classpath,Spring will delegate the conversion to MappingJackson2HttpMessageConverter.
-ResponseEntity represents the entire HTTP Response.
+ResponseEntity represents the entire HTTP Response including Header,Body and Response.
 
 *************************************************** @ResponseBody (javabyexamples) *******************************************************
-If a Method is annotated with @ResponseBody Spring will bind the response Object to the outgoing Response Body.
+If a Method is annotated with @ResponseBody Spring will bind the response data to the outgoing Response Body.
 Behind the scenes HttpMessageConverter can be used to convert Object to the Response Body.
 Here we have to Annotate the Controller method With @ResponseBody.
+
+*************************************************** @ResponseEntity *********************************************************************************
+
+ResponseEntity represents the whole HTTP Response ie status code,headers and body.
+As a result we can fully configure the HTTP Response.
+If we want to use it we have to return from the EndPoint and Spring takes care of the rest.
+
+ 
 
 *************************************************** @Controller vs @RestController  *******************************************************
 The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.

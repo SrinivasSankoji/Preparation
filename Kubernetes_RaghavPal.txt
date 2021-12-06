@@ -20,7 +20,7 @@ Container Management tool automates deploying,scaling and managing containerized
 
 Different process that takes care in the process of Container Management are
 
-Deploying
+Deployment or RollOut's
 Scheduling  i.e Where to deploy the Pod on the Worker Node.
 Scaling
 Load Balancing
@@ -41,8 +41,7 @@ Tools are Kubernetes,Docker swarm,Apache Mesos.
 
 *********************************************************** 2.Kubernetes Features Part One  ***********************************************************
 
-Container creation tools like Docker will create the Containers where as 
-Container Management tool like Kubernetes will manage the Containers in a distributed Manner.
+Container creation tools like Docker will create the Containers where as Container Management tool like Kubernetes will manage the Containers in a distributed Manner.
 
 Features of Kubernetes are
 
