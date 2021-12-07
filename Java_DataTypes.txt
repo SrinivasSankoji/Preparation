@@ -1,0 +1,46 @@
+1.Java DataTypes						(interviewgrid)   [07-DEC-2021]  ()
+2.
+
+****************************************************** 1.Java DataTypes  **************************************************
+
+Primitive data types are the data types that are pre defined in java programming language and named by reserved keyword. 
+Memory allocate to the primitive data types are :
+
+	byte - 8
+	char - 16
+	int - 32
+	long - 64
+	float - 32
+	double - 64
+	short - 16
+	boolean -  1
+	void - 0
+	
+When the smaller value is assigned to bigger data type then it is implicit type casting.
+
+	int i=200;
+	long l=i;
+	
+When the larger value is  assigned to a smaller data type then it is explicit type casting.
+
+	float f= 234.235f;
+	int i=(int)f;
+	
+AutoBoxing is the automatic conversion of primitive data types into corresponding Wrapper classes by Java Compiler.
+Java Compiler applies Auto Boxing when a primitive data type is assigned to the variable of the corresponding Wrapper class or
+Primitive data type is assigned as an argument to the method which expects an object of corresponding wrapper class.
+
+	Integer.valueOf(i);
+	
+Auto Unboxing is the automatic conversion of an object of wrapper type to its corresponding primitive value by the Java Compiler.
+Java Compiler applies Auto Unboxing when a wrapper Object is assigned to the variable of the corresponding primitive type.
+
+	Integer wrappedInt = new Integer(200); 
+	int primitiveInt = wrappedInt; //Unboxing through assignment
+
+Float takes 4 bytes of Memory where as double takes 8 bytes of Memory.
+Float is single precision floating point decimal number where as double is double precision decimal number.
+Float can represent upto 7 digits accurately after decimal point where as double can represent upto 15 digits accurately after decimal point.
+default value of boolean is false.
+
+

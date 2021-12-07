@@ -179,7 +179,7 @@ It keeps on Monitoring the CPU Usage and based on those Metrics it will sends th
 
 In an Organization we have a Manager,Manager manages the Team Members and together they form the Team.
 In Kubernetes we have a Master Node and Worker Node together they form a Cluster.
-When we set up Kubernetes we get a Cluster and Cluster is a Set of Machines called Nodes.
+When we set up the Kubernetes we get a Cluster and Cluster is a Set of Machines called Nodes.
 A Cluster has atleast one worker Node and atleast one Master Node to form a Cluster.
 There can be more than one Master Node in a Cluster to provide a Cluster with fail over and high availability.
 There can be Multiple Clusters in Kubernetes Architecture.

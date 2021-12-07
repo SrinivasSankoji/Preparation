@@ -244,6 +244,9 @@ sb=new StringBuffer("Naresh");  // CTE
 Once we create a StringBuffer object as final we can perform changes in the existing object but we cannot reassign the variable.
 final is applicable for reference variables where as immutability is applicable for objects.
 
+private constructor :
+---------------------
+
 
 ***************************************************************** 2.StringBuffer ********************************************************
 

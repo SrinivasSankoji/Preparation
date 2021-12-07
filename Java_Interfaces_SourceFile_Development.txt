@@ -70,9 +70,47 @@ variables present inside interface should perform initialization at the time of 
 method naming conflicts :
 -------------------------
 If two interfaces contains a method with same signature and same return type then in the implementation class only one method implementation is enough.
+
+	public interface A {
+	public String draw();
+	}
+	
+	public interface B {
+	public String draw();
+	}
+	
+	public class C implements A,B {
+
+	public static void main(String[] args) {
+		C c=new C();
+		System.out.println(c.draw());//Hello
+	}
+
+	@Override
+	public String draw() {
+		return "Hello";
+	}
+	}
+	
 If two interfaces contains a method with same signature but different argment types then in the implementation class we have to provide implementation for two methods.
 If two interface contains a method with same signature and different return types, then it is impossible to provide implementation in the same class.
 we have to provide different implementation class for the two interfaces.
+
+	public interface P {
+	public String read();
+	}
+	
+	public interface Q {
+	public void read();
+	}
+	
+	public class R implements P,Q{
+	public static void main(String[] args) {
+	}
+	@Override
+	public void read() { //CTE
+	}
+	}
 
 Note :
 ------
