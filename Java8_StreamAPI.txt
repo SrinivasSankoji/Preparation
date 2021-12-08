@@ -171,13 +171,24 @@ Map is limited because Object can only be mapped to exactly another Object.
 
 FlatMap can be used to flatten/convert the Stream of Collections to a Stream of Objects.
 The Objects are combined from all the Collections into the Original Stream.
-Consider the scenario of conevrting List of List to List.
+
+1.Consider the scenario of conevrting List of List to List.
 
 	List<Integer> list1 = Arrays.asList(1, 2, 3);
 	List<Integer> list2 = Arrays.asList(4, 5, 6);
 	List<Integer> list3 = Arrays.asList(7, 8, 9);
 	List<List<Integer>> listOfLists = Arrays.asList(list1, list2, list3);
 	List<Integer> result = listOfLists.stream().flatMap(List::stream).collect(Collectors.toList());
+	
+2.Consider the scenario of word count of the given string.
+
+	String str = "This this is is done by Saket Saket";
+	List<String> resList = Stream.of(str).map(x -> x.split("\\s")).flatMap(Arrays::stream).collect(Collectors.toList());
+	
+3.FlatMap can also be used for Asynchronous Operations.
+
+	.flatMap(employeeId -> getEmployeeDetails(employeeId))
+	.collect(Collectors.toList());
 
 ************************************************************ Reduce **************************************************************
 

@@ -6,7 +6,7 @@
 @RestController                             ()								[02-DEC-2021]  ()
 @RequestBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
 @ResponseBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
-@ResponseEntity                             (baledung)								[07-DEC-2021]  ()
+@ResponseEntity                             (baledung)						[07-DEC-2021]  (Done)
 @Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
 @ConfigurationProperties					()								[02-DEC-2021]  ()
 @Conditional                                ()                              [02-DEC-2021]  ()
@@ -23,6 +23,7 @@ CrudRepository vs JpaRepository             (netsurfingzone)                [03-
 @EnableJpaRepositories                      ()                              [02-DEC-2021]  ()
 @EntityScan                                 ()                              [02-DEC-2021]  ()
 WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
+@Componenet vs @Bean						(danvega)						[08-DEC-2021]  (Done)
 
 *************************************************** @ControllerAdvice(howtodoinjava) ********************************************************************************
 If we want to centralize the Exception Handling logic to one class which is capable of handling the Exceptions thrown form any controller class/handler class
@@ -191,4 +192,33 @@ Filter gets configured in web.xml where as Ineterceptors are configured in the A
 				}
 			}
 			
+*************************************************** @Componenet vs @Bean  ***************************************************
+
+@Component :
+------------
+If a Class is Annotated with @Componenet Annotation or any other Stereotype Annotation then these classes will be auto detected using classpath scanning.
+As long as these classes are in under the base package,A new Bean will be created for each of these classes.
+There is an implicit one-to-one mapping between the Annotated class and the Bean.
+Stereotype type Annotations are class level Annotations.
+
+@Bean :
+-------
+@Bean Annotation can be used to explicitly declare a Single Bean rather than Spring doing it automatically.
+Method Annotated with @Bean Annotation produces a Bean that has to be managed by Spring Container.
+It decouples the declaration of the Bean from the Class Definition.
+@Bean Annotation cannot be declared at Class Level.
+Typically @Bean Methods are declared within @Configuration classes.
+By default it will use the name of the Method as the Bean Id/Name.
+
+
+
+
+
+
+
+
+
+
+
+ 
 

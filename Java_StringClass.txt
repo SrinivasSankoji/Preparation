@@ -31,7 +31,7 @@ This changeable behavior is nothing but mutability of StringBuffer object.
 
 Note :
 ------
-In String Class equals() is overridden for conetnt comparison Hence if the content is same equals() returns true otherwise returns false.
+In String Class equals() is overridden for conetnt comparison Hence If the content is same equals() returns true otherwise returns false.
 In StringBuffer Class equals() is not overridden and is meant for reference comaprison.
 Due to this even though content is same it returns false.
 
@@ -201,7 +201,7 @@ Rules to create a Final Class :
 2.Make all the variables as private so that direct access is not allowed.
 3.Declare the Constructor as public.
 4.Don't provide setter method for variables.
-5.Declare the static method and verify the object has created or not.
+5.Declare the Factory method and verify the object has created or not.
 6.use the new operator to create the Object.
 
 final class Immutable {
@@ -253,7 +253,7 @@ private constructor :
 If the content is fixed and won't change frequently we go for String.
 In String for every change a new object will be created.
 If the content is not fixed and keep on changing then we go for StringBuffer.
-In StringBuffer for every change new object will be created and all changes will be done in the existing object.
+In StringBuffer for every change new object won't be created and all changes will be done in the existing object.
 All the methods in StringBuffer are synchronized.
 At a time only one Thread is allowed to operate on the object and performance of the system is going down.
 To resolve this problem we go for StringBuilder.

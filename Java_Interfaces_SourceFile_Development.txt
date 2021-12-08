@@ -17,7 +17,7 @@
 17.JDK vs JRE                                       [24-NOV-2021]  ()
 18.Object Creation Ways  (geeksforgeeks)			[25-AUG-2020]  (Done)
 19.Class Loaders									[25-NOV-2021]  ()
-20.Abstract Class and Methods(crunchify)			[25-NOV-2021]  ()
+20.Abstract Class and Methods(crunchify)			[09-DEC-2021]  ()
 
 *************************************************************  1.introduction	***************************************************************************************
 
@@ -36,15 +36,14 @@ Definition Two :
 Client come up with the set of services.
 From the Client point of view,Interface defines the set of services what the Client is expecting where as
 From the Service provider point of view Interface defines the set of services what he is offering.
-
-Here Interface acts as a contract between Client and Service.
+Here Interface acts as a contract between Client and Service Provider.
 
 Definition Three :
 ------------------
-every method present inside interface should be abstract whether we declare it or not.
+every method present inside interface should be public and abstract whether we declare it or not.
 Hence interface is considered as pure abstract Class.
 
-whenever we are implementing an interface for each and every method we have to provide implementation otherwise declare the class as Abstract.
+whenever we are implementing an Interface,we have to provide implementation for each and every method otherwise declare the class as Abstract.
 Every method present inside interface is by default public and abstract whether we declare it or not.
 
 extends vs implements :
@@ -56,9 +55,9 @@ Class can extend only one Class and implement any number of interfaces simultane
 
 *************************************************************  2.interface methods  *******************************************************************************
 
-every method present inside interface is public and abstract.
-To make this method available to every implementation class declared the method as public.
-Here Child class is responsible to provide the implementation then declared the method as abstract.
+every method present inside interface is by default public and abstract.
+To make this method available to every implementation class then declare the method as public.
+Here Child class is responsible to provide the implementation then declare the method as abstract.
 
 An interface can contain variable.
 Main purpose of interface variables is to define the requirement level constant.
@@ -118,9 +117,27 @@ Java class can implement any number of interfaces simultaneously except interfac
 
 variable naming conflicts :
 ---------------------------
-every variable present inside interface is public static final.
+every variable present inside Interface is public static final.
 If Two interfaces contains a variable with same name then we may get the variable name conflicts.
-we can resolve them by using Interface Names.
+we can resolve this by using Interface Name.
+
+	public interface A {
+	public String draw();
+	
+	int x=23;// By default it is public static final
+	}
+	
+	public interface B {
+	public String draw();
+	
+	int x=15;// By default it is public static final
+	}
+	
+	public static void main(String[] args) {
+		C c=new C();
+		System.out.println(c.draw());// Hello
+		System.out.println(B.x);// 15
+	}
 
 *************************************************************  4.marker interface  ********************************************************************************
 
@@ -137,7 +154,7 @@ By implementing Serializable interface we can be able to send the object across 
 By implementing Clonable interface our object can be able to produce exactly duplicate object.
 
 To send the object across the network 3 to 4 langauges are required and several line of coding is required.
-If some one is there to provide the ability to send the object across the network then implementation is not required.
+If someone is there to provide the ability to send the object across the network then implementation is not required.
 JVM is responsible to provide the ability.
 It is also possible to create marker interface but customization of JVM is required.
 
@@ -154,7 +171,7 @@ interface vs abstract class :
 -----------------------------
 interface :
 -----------
-1.If we don't know about implementation and we have a requirement specification we go for interface.
+1.If we don't know about implementation and we have a requirement specification then we go for Interface.
 2.every method present inside interface is by default public and abstract.
 3.we cannot declare interface method with other modifiers except public and abstract.
 4.every variable present interface is public,static and final.
@@ -164,7 +181,7 @@ interface :
 
 abstract class :
 ----------------
-1.If we know about implementation but not completely then we go for abstract class.
+1.If we know the implementation but not completely then we go for abstract class.
 2.There is no restriction for methods present inside abstract class.
 3.we can declare abstract methods with other modifiers.
 4.There is no restriction for variables present in abstract class.
@@ -230,7 +247,7 @@ implicit class import
 
 *************************************************************  9.extended for loop  ****************************************************************************
 
-Extended for loop introduced in 1.5 version.
+Extended for loop is introduced in 1.5 version.
 It is the most convenient loop to retreive the elements of Arrays and Collections.
 
 It is not a general purpose loop.
@@ -268,6 +285,7 @@ Classpath represents the location where the .class file is present.
 javac and JVM will use the classpath to locate required .class files.
 By default javac and JVM will look for the .class files in the current working directory.
 By setting the classpath we are conveying javac and JVM that required .class files are present in this location.
+If the particular .class file is not found then we get ClassNotFoundException.
 
 Various ways for setting Classpath :
 ------------------------------------
@@ -283,8 +301,8 @@ From the command prompt we can set the classpath by using the set command
 
 	set classpath="";
 	
-This way of setting the classpath will be preserved only for that particular command.
-Once the Command Prompt closes Classpath will be lost Automatically.
+This way of setting the classpath will be preserved till the Command Prompt is open.
+Once the Command Prompt is closed then Classpath will be lost automatically.
 
 Command Level :
 ---------------
@@ -295,12 +313,10 @@ By using the command we set the Classpath.
 	
 Note :
 ------
-Once we set the Classpath,JVM will not search for the .class files in the current working directory and 
-it searches for the required .class files in the Classpath.
+Once we set the Classpath,JVM will not search for the .class files in the current working directory and It searches for the required .class files in the Classpath.
 
 If several dependent .class files are required never recomended to set the classpath individually.
-we have to group all the .class files into a single zip file.
-zip file is nothing but jar file.
+we have to group all the .class files into a single zip file.zip file is nothing but jar file.
 To develop a Servlet all the required dependencies are present in servlet-api.jar file.
 
 *************************************************************  11.Jar file Creation  ******************************************************************
@@ -318,7 +334,7 @@ To display the contents of the Jar file and not to extract
 
 	jar -tvf Test.jar
 	
-If the .class file is present in remote machine and has to be used in client machine
+If the .class file is present in the remote machine and has to be used by client machine
 1.Send the request to the server machine and get the .class file.
 2.Make the jar file available to the Client i.e download the jar file.
 
@@ -356,7 +372,7 @@ Web Server provides only support for web related technologies like Servlet,JSP H
 Some of the Web Servers are Tomcat,Nginix etc.
 
 Application Server provides an environment to run Enterprise Application.
-Application Server provide support for any technology like Servlet,JSP,EJB,JMS etc.
+Application Server provides support for any technology like Servlet,JSP,EJB,JMS etc.
 Some of the Application Server are
 WebLogic
 WebSphere
@@ -463,17 +479,6 @@ Both newInstance() are Reflective ways to create an Object.
 	}
 	}
 
-
-
-
-
-
- 
-
-
-	
-
-	
 
 
 
