@@ -12,8 +12,8 @@
 12.Producer Consumer problem								[12-JAN-2021]  (Done)
 13.Daemon Threads                               			[12-JAN-2021]  (Done)
 14.ThreadGroup                                  			[12-JAN-2021]  (Done)
-15.DeadLock	(geeksforgeeks)
-16.Deadlock Prevention and Avoidance (geeksforgeeks)
+15.DeadLock	(geeksforgeeks)									[09-DEC-2021]  ()
+16.Deadlock Prevention and Avoidance (geeksforgeeks)		
 
 
 *************************************************************   1.Introduction	 ****************************************************************************
@@ -562,7 +562,7 @@ Note :
 Least priority Thread has to wait until completing all the Threads.
 But this long waiting Thread should compulsory ends at certain point of time.
 
-*************************************************************  14.ThreadGroup  ***********************************************************************
+************************************************************* 14.ThreadGroup  ***********************************************************************
 
 Based on the functionality we can group the Threads into a single unit which is nothing but ThreadGroup.
 ThreadGroup provides a convenient way to perform common operations for all the Threads belongs to a particular Group.
@@ -588,4 +588,6 @@ RaceCondition :
 ---------------
 If multiple Threads are operating on the same object simultaneously then there may be a chance of data inconsistency problems.
 The situation is called Race Condition and we can resolve Race Condition by using synchronized keyword.
+
+************************************************************* 15.DeadLock	(geeksforgeeks) *************************************************************
 

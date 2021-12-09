@@ -90,18 +90,28 @@ Aspect vs Aspect Oriented Programming
 Altimetrik :
 ------------
 String in HashMap and String in Thread
-Iterate Map using For Loop
+Iterate Map using For Loop and while loop
 Design Patterns in Spring
 Factory Design Pattern
 LinkedList Program to find last 4th Element
-Renove spaces in the String without replace
-Convert List to String
+Renove spaces in the String without replace  using split("\\s")
+Convert List to String ie using Collectors.joining()
 DeadLock
 ThreadDump
 Singleton ThreadSafe
 Iterator and ListIterator
 Calling Rest API  Frequently and getting the same response,How to handle this scenario.
 @RequestMapping
+
+ValueLabs :
+-----------
+ExecutorsService
+Same Request Multiple Times what will be the scenario.
+
+GSpann :
+--------
+wait(),sleep() and notify()
+Immutable Class
 
 
 

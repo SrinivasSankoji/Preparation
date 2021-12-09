@@ -1,6 +1,8 @@
-1.Constructor Basics 							(SCJP)     	[13-DEC-2020]  	(Done)
-2.
-
+1.Constructor Basics 									(SCJP)     				[13-DEC-2020]  	(Done)
+2.Copy Constructor in Java								(geeksforgeeks)     	[09-DEC-2021]  	()
+3.Constructor Overloading                               (geeksforgeeks)     	[09-DEC-2021]  	()
+4.Constructor Chaining                                  (geeksforgeeks)     	[09-DEC-2021]  	(Done)
+5.Private Constructors and Singleton Class              (geeksforgeeks)     	[09-DEC-2021]  	()
 
 *******************************************************************  1.Constructor Basics(SCJP)  *******************************************************************
 
@@ -142,3 +144,27 @@ Whenever we are writing any argument Constructor,it is highly recomended to writ
 Constrcutor w.r.t Exception Handling :
 --------------------------------------
 If a Child class Constructor throws checked Exception then the Parent Class Constructor should throw the same Checked Exception or its Parent.
+
+******************************************************* 4.Constructor Chaining (geeksforgeeks) *******************************************************
+
+Constructor chaining is the process of calling one Constrcutor from another Constrcutor with respect to current Object.
+Constrcutor chaining can be done in two ways.
+Within the Same class using this()
+From the Base Class by using super() keyword to call the Constructor from the derived class.
+
+Constructor Chaining occurs through Inheritance.
+Sub Class Constructor task is to call Super Class Constructor First.
+This ensures the creation of Subclass Object start's with the initialization of data members of the Super class.
+
+Why Constructor Chaining :
+--------------------------
+This process is used whenever we want to perform multiple tasks in a Single Constructor.
+Create a seperate Constructor for each Task and make their chain which makes the program more readable.
+
+Instance Block :
+----------------
+Whenever certain amount of code has to be executed with every constructor we can place the code inside Instance Block.
+
+ 
+
+
