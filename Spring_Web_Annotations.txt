@@ -24,6 +24,7 @@ CrudRepository vs JpaRepository             (netsurfingzone)                [03-
 @EntityScan                                 ()                              [02-DEC-2021]  ()
 WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
 @Componenet vs @Bean						(danvega)						[08-DEC-2021]  (Done)
+PUT vs POST 								(baeldung)						[10-DEC-2021]  ()
 
 *************************************************** @ControllerAdvice(howtodoinjava) ********************************************************************************
 If we want to centralize the Exception Handling logic to one class which is capable of handling the Exceptions thrown form any controller class/handler class
@@ -210,9 +211,14 @@ It decouples the declaration of the Bean from the Class Definition.
 Typically @Bean Methods are declared within @Configuration classes.
 By default it will use the name of the Method as the Bean Id/Name.
 
+*************************************************** PUT vs POST  **********************************************************
 
+POST method can be used to create a Child Resource where as PUT method will either create a new Resource or update the existing one.
+PUT is idempotent where as POST is not.
+If we call the PUT method multiple times either it will create the new resource or update the existing one.
+Similarly If we call the POST method multiple times It will create the same resource multiple times.
 
-
+ 
 
 
 

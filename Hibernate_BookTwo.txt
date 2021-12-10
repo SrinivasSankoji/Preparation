@@ -17,9 +17,8 @@
 ***************************************************** 1.JDBC Disadvantages and Advantages	*****************************************************
 
 1.Large Projects are not suitable.
-2.JDBC does not support Polymorphism,Abstraction and Polymorphism.
-3.JDBC Exceptions are Checked Exceptions ie we need to handle Checked Exceptions.
-Should be written in try catch block.
+2.JDBC does not support Abstraction and Polymorphism.
+3.JDBC Exceptions are Checked Exceptions ie we need to handle Checked Exceptions ie should be written in try catch block.
 Exceptions in ORM are unchecked Exceptions.
 4.SQLExceptionTranslator converts propriatory Database Vendor Exceptions into user defined Exceptions supported by ORM
 where as it is not supported by JDBC.
@@ -227,26 +226,25 @@ Serializable id=session.getIdentifier(account);
 
 public Class SessionUtil
 {
-	private static SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory=null;
+	
 	static{
 	try{
-	sessionFactory=new org.hibernate.cfg.configuration().configure().buildSessionFactory();
+		sessionFactory=new org.hibernate.cfg.configuration().configure().buildSessionFactory();
 	}
 	catch(Excception e)
 	{
 	}
 	public static Session getSession()
 	{
-	return sessionFactory.openSession();
+		return sessionFactory.openSession();
 	}
 }
  
 ***************************************************** 4.First Level Cache ********************************************************************
 
 While working with web Application we will face so many problems due to Database,particularly when the Database traffic is very high.
-Hibernate is well used because of its performance only.
-Some techniques are necessary to maintain its performance and one of them is Caching.
-Hibernate Caching is the best technique to solve the problem.
+Hibernate is well used because of its performance only.Some techniques are necessary to maintain its performance and one of them is Caching.
 The Cache actually stores the data already loaded from the Database.
 So that the traffic between the Application and Database will be reduced when the Appliction wants to access the data again.
 Most of the times Application will work with the data in the Cache only and whenever other data is needed,Database will be accessed.
@@ -260,16 +258,14 @@ First Level Cache always associated with Session Object.
 Hibernate uses this Cache by default.
 Here it process one Transaction after another Transaction ie won't process one Transaction many times.
 Reduces the no of SQL queries needs to be generated within the given transaction.
-Instead of updating every modification done in one Transaction,
-It updates the modification only at the end of the Transaction.
+Instead of updating every modification done in one Transaction,It updates the modification only at the end of the Transaction.
 
 ***************************************************** 5.Second Level Cache *******************************************************************
 
 Second Level Cache always associated with SessionFactory Object.
 While running the Transactions,In between it loads the Object at the SessionFactory Level so that 
 Objects will be available to the entire Application and does not bound to a Single value.
-Since the objects are already loaded in the Cache,whenever an Object has to be returned 
-at that time no need to go for database transaction and gets from the Cache.
+Since the objects are already loaded in the Cache,whenever an Object has to be returned at that time no need to go for database transaction and gets from the Cache.
 
 ***************************************************** 6.Cascade  ****************************************************************************
  

@@ -1,44 +1,43 @@
-1.Design Pattern Introduction									[20-JAN-2021]  (Done)						
-2.Composite Design Pattern                                      [02-JAN-2021]  ()
-3.Startegy Design Pattern                                       [02-JAN-2021]  ()
-4.Command Pattern                                               [02-JAN-2021]  ()
-5.MultpPlatform                                                 [02-JAN-2021]  ()
+1.Design Pattern Introduction							()								[20-JAN-2021]  (Done)						
+2.Composite Design Pattern                              ()      						[02-JAN-2021]  ()
+3.Startegy Design Pattern                               ()      						[02-JAN-2021]  ()
+4.Command Pattern                                       ()      						[02-JAN-2021]  ()
+5.MultpPlatform                                         ()      						[02-JAN-2021]  ()
 
-6.Creation Design Pattern                                       [02-JAN-2021]  ()
-7.Singleton Design Pattern                                      [02-JAN-2021]  ()
-8.Builder Pattern                                               [02-JAN-2021]  ()
-9.Factory Method Pattern                                      	[02-JAN-2021]  ()
-10.Abstract Factory Pattern                                     [02-JAN-2021]  ()
-11.Prototype Pattern                                            [02-JAN-2021]  ()
+6.Creation Design Pattern                               ()     							[02-JAN-2021]  ()
+7.Singleton Design Pattern                              ()     							[02-JAN-2021]  ()
+8.Builder Pattern                                       ()     							[02-JAN-2021]  ()
+9.Factory Method Pattern								(geeksforgeeks)                 [10-DEC-2021]  (Done)
+10.Abstract Factory Pattern                             ()      						[02-JAN-2021]  ()
+11.Prototype Pattern                                            						[02-JAN-2021]  ()
 
-12.Structural Design Pattern                                    [02-JAN-2021]  ()
-13.Facade Design Pattern                                        [02-JAN-2021]  ()
-14.Adapter Pattern                                              [02-JAN-2021]  ()
-15.Decorator Pattern                                            [02-JAN-2021]  ()
-16.Bridge Pattern                                               [02-JAN-2021]  ()
-17.Composite Pattern                                            [02-JAN-2021]  ()
-18.Proxy pattern                                                [02-JAN-2021]  ()
-19.Flyweight Pattern                                            [02-JAN-2021]  ()
+12.Structural Design Pattern                            ()       						[02-JAN-2021]  ()
+13.Facade Design Pattern                                ()     							[02-JAN-2021]  ()
+14.Adapter Pattern                                      ()     							[02-JAN-2021]  ()
+15.Decorator Pattern                                    ()     							[02-JAN-2021]  ()
+16.Bridge Pattern                                       ()    							[02-JAN-2021]  ()
+17.Composite Pattern                                    ()     							[02-JAN-2021]  ()
+18.Proxy pattern                                        ()     							[02-JAN-2021]  ()
+19.Flyweight Pattern                                    ()     							[02-JAN-2021]  ()
 
-20.Behavioral Design Pattern                                    [02-JAN-2021]  ()
-21.command Pattern                                              [02-JAN-2021]  ()
-22.Strategy Pattern                                             [02-JAN-2021]  ()
-23.Visitor Pattern                                              [02-JAN-2021]  ()
-24.Observer Pattern                                             [02-JAN-2021]  ()
-25.Memento Pattern                                              [02-JAN-2021]  ()
-26.Mediator Pattern                                             [02-JAN-2021]  ()
-27.Chain of responsibility Pattern                              [02-JAN-2021]  ()
-28.State Pattern                                                [02-JAN-2021]  ()
-29.Templatte Method Pattern                                     [02-JAN-2021]  ()
-30.Inversion Of Control Pattern                                 [02-JAN-2021]  ()
-31.Data Transfer Object Pattern                                 [02-JAN-2021]  ()
-
+20.Behavioral Design Pattern                            ()      						[02-JAN-2021]  ()
+21.command Pattern                                      ()     							[02-JAN-2021]  ()
+22.Strategy Pattern                                     ()     							[02-JAN-2021]  ()
+23.Visitor Pattern                                      ()     							[02-JAN-2021]  ()
+24.Observer Pattern                                     ()     							[02-JAN-2021]  ()
+25.Memento Pattern                                      ()     							[02-JAN-2021]  ()
+26.Mediator Pattern                                     ()     							[02-JAN-2021]  ()
+27.Chain of responsibility Pattern                      ()     							[02-JAN-2021]  ()
+28.State Pattern                                        ()     							[02-JAN-2021]  ()
+29.Templatte Method Pattern                             ()     							[02-JAN-2021]  ()
+30.Inversion Of Control Pattern   						(geeksforgeeks)                 [10-DEC-2021]  (Done)
+31.Data Transfer Object Pattern                         ()       						[02-JAN-2021]  ()
+32.Delegation Design Pattern							()								[02-JAN-2021]  ()
 
 ******************************************************** 1.Introduction ************************************************************************************
 
 Business Analyst will create the System Design.
-Before Creating the System Design He will review the requirement,
-Identify the problems in each of the requirement and for each problem he will design the solution.
+Before creating the System Design he will review the requirement,identify the problems in each of the requirement and for each problem he will design the solution.
 Here for every requirement the common thing is to identify the problem and design the solution.
 Each Pattern describes a problem which occurs over and over again and then describes the core solution to that problem.
 
@@ -76,42 +75,16 @@ Is the Pattern Right Choice
 Can Include Language and Implementation Issues.
 Choose the Correct Pattern by Understanding the Consequences.
 
-By Using Design Pattern Certain Level of Abstraction is Required and its Not About HashMap,List and Arrays.
-Design Pattern is Not for Entire Application and it is For Specific Problem.
-Patterns are Not Primitive Building Blocks.
-Don't Fit Every Thing in One Pattern.
+By using Design Pattern certain level of Abstraction is required and its not about HashMap,List and Arrays.
+Design Pattern is not for Entire Application and it is for specific problem.
+Patterns are not Primitive Building Blocks.Don't fit every thing in one Pattern.
 
-Delegation Design Pattern :
----------------------------
-Here One Object delegates the functionality to another Element.
-Here the benefit is it promotes reusability.
-
-Delegator -----------------  Delegate
-
-Delegate Object can be reused later.
-We can also limit the Number of Class definitions by bundle all the delegates in One Class.
-We can also reduce Inheritance.
-
-Interface :
------------
-Service Definition is bundled into one Interface.
-Loose Coupling between Client ans Service Implementation.
-
-Immutable Definition :
-----------------------
-Immutable Object is an Object defined with Certain State and State is Initialized During the Start Up.
-Afterwards State does not change any More.
-State is Passed through Object Creation as Reference.
-
-Design Pattern Catalog is Large Catalog of Design Patterns and we need to identify the Pattern.
-Design Patterns are Categorized into 3 Parts
-
+Design Patterns are Categorized into 3 Parts :
 1.Creation Design Pattern
 2.Structural Design Pattern 
 3.Behavioral Design Pattern
 
-Design Patterns can be created by using either Class definition or object creation.
-
+Design Patterns can be created by using either Class definition or Object creation.
 
 1.Creation  Pattern :
 Factory Method					(Class)
@@ -143,17 +116,66 @@ Facade							(Object)
 FlyWeight						(Object)
 Proxy							(Object)
 
-Inversion of Control
-Data Transfer Object
 
+******************************************************** 9.Factory Method Pattern (geeksforgeeks)  ********************************************************************
 
+It is a Creational Design Pattern which talks about the creation of an Object.
+Factory design pattern says that define an Interface or Abstract Class and let the subclasss decide which Object it has to instantiate.
+It is one of the best way to create an Object where the Object creation logic is hidden to the Client.
 
-******************************************************** 9.Factory Method Pattern  ********************************************************************
+Implementation :
+----------------
+Define a Factory method inside an interface.
+Let the Subclass implements the abstract factory method and decide which object it has to create.
+In java Constructor's are not polymorphic.But by allowing subclass to create an Object we are adding polymorphic behavior to the Instantiation.
 
+		public interface Notification {
+			void notifyUser();
+		}
 
+		public class SMSNotification implements Notification {
+			@Override
+			public void notifyUser() {
+			System.out.println("Sending an SMS notification");
+		}
+		}
 
-                                     	
+		public class SMSNotification implements Notification {
+			@Override
+			public void notifyUser() {
+				System.out.println("Sending an SMS notification");
+			}
+		}
 
+		public class SMSNotification implements Notification {
+			@Override
+			public void notifyUser() {
+				System.out.println("Sending an SMS notification");
+			}
+		}
+
+		public class NotificationFactory {
+			public Notification createNotification(String channel) {
+				if (channel == null || channel == "")
+					return null;
+				if (channel == "SMS")
+					return new SMSNotification();
+				if (channel == "Email")
+					return new EmailNotification();
+				if (channel == "Push")
+					return new PushNotification();
+				return null;
+			}
+		}
+
+		public class FactoryDemo {
+			public static void main(String[] args) {
+				NotificationFactory factory=new NotificationFactory();
+				Notification notification=factory.createNotification("SMS");
+				notification.notifyUser();
+			}
+		}
+                               
 ******************************************************** 18.Facade Pattern  ***************************************************************************
 
 It can be used as an Interface for Complex Sub Systems.
@@ -178,9 +200,30 @@ Abstract complex System from Client.
 Drawback :
 An Extra Programming Layer.
 
-******************************************************** 51.Inversion of Control **********************************************************************
+******************************************************** 32.Delegation Design Pattern   ******************************************************************************
 
+Here One Object delegates the functionality to another Element.
+Here the benefit is it promotes reusability.
 
+Delegator -----------------  Delegate
+
+Delegate Object can be reused later.
+We can also limit the Number of Class definitions by bundle all the delegates in One Class.
+We can also reduce Inheritance.
+
+******************************************************** 51.Inversion of Control(geeksforgeeks) **********************************************************************
+
+Dependecny Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,extendable and maintainable.
+Dependency Injection can be implemented by using
+1.Runtime Polymorphism
+2.Has a Relationship
+
+In Spring Dependency Injection can be done in two ways
+Setter Injection
+Constructor Injection
+
+Inversion of Control is a general concept stating that we don't create Objects manually but instead we describe that how they should be created.
+IOC Container will instantiate the required classes.
 
 ******************************************************** 54.Data Transfer Object **********************************************************************
 
