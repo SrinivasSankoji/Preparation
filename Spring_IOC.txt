@@ -165,7 +165,7 @@ Spring Container Creation :
 ---------------------------
 To create a Spring Container using BeanFactory
 
-	XMLBeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
+	BeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
 	
 To create a Spring Container using XML 
 
