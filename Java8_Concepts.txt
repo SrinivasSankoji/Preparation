@@ -1,4 +1,4 @@
-1.For Each Method in Iterable Interface													[02-SEP-2021]
+1.For Each Method in Iterable Interface							(geeksforgeeks)			[13-DEC-2021]	(Done)
 2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
 3.Functional Interfaces and Lambda Expressions                  (beginnersbook)         [03-SEP-2021]	(Done)
 4.Java Stream API For Bulk Data Operations on Collections    	(beginnersbook)         [03-SEP-2021]	(Done)
@@ -21,6 +21,23 @@
 21.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 22.PermGen														()						[03-DEC-2021]	()
 
+
+********************************************  1.For Each Method in Iterable Interface **************************************************************
+
+foreach loop :
+--------------
+foreach loop in java does not use any Lambda Operations.
+The operations can be applied on any value outside the List that we are using for Iteration in the foreach loop.
+foreach loop can be used only for Collection and Arrays and we cannot retrieve the specific element.
+
+"return" statement works within the for loop ie function can return the value at any point of time within the loop.
+
+stream.foreach() :
+------------------
+In stream.forEach() lambda's are used and thus operations aon variables outside the loop are not allowed.
+stream.forEach() can be used to access the Collections and Arrays.
+"return" statement doesn't work within the forEach loop.
+ 
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
 Before Java8,Interface can have only abstract Methods ie All the Methods in interface are by default public and abstract.

@@ -1,8 +1,8 @@
 Comparable :
 ------------
 Comparable interface is present in java.lang package.This interface contains only one method.
-By using Comparable Interface we can provide sirting only on field ie either Ascending or Descending.
-If we want to compare based on multiple fields we use Comparator.
+By using Comparable Interface we can perform sorting only on field ie either Ascending or Descending.
+If we want to compare based on multiple fields we use Comparator Interface.
 		
 		public int compareTo(Object object)
 		

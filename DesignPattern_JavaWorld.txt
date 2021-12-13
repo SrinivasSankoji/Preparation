@@ -8,7 +8,7 @@
 7.Singleton Design Pattern                              ()     							[02-JAN-2021]  ()
 8.Builder Pattern                                       ()     							[02-JAN-2021]  ()
 9.Factory Method Pattern								(geeksforgeeks)                 [10-DEC-2021]  (Done)
-10.Abstract Factory Pattern                             (geeksforgeeks)      			[02-DEC-2021]  ()
+10.Abstract Factory Pattern                             (geeksforgeeks)      			[10-DEC-2021]  ()
 11.Prototype Pattern                                            						[02-JAN-2021]  ()
 
 12.Structural Design Pattern                            ()       						[02-JAN-2021]  ()
@@ -178,9 +178,11 @@ In java Constructor's are not polymorphic.But by allowing subclass to create an 
 
 ******************************************************** 10.Abstract Factory Pattern (geeksforgeeks)  *************************************************
 
-
-
-                             
+Abstract Factory Design Pattern is one of the creational design pattern.
+Abstract Factory Design Pattern is similar to Factory Design Pattern and is considered as another layer of abstraction over Factory pattern.
+Absttract Factory Design Pattern works around the Super Factory which creates other Factories.
+So at Runtime,Abstract Factory is coupled with any desired concrete factory which can create the Objects of the desired type.
+                        
 ******************************************************** 18.Facade Pattern  ***************************************************************************
 
 It can be used as an Interface for Complex Sub Systems.

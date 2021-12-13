@@ -1,11 +1,219 @@
-1.MultiRow Functions						(Vijay)		[12-DEC-2021]  ()
-2.GroupBy                                   (Vijay)		[12-DEC-2021]  ()
-3.Joins                                     (Vijay)		[12-DEC-2021]  ()
-4.Set Operators                             (Vijay)		[12-DEC-2021]  ()
-5.Pseudo Columns                            (Vijay)		[12-DEC-2021]  ()
-6.Sub Queries                               (Vijay)		[12-DEC-2021]  ()
-7.OrderBy Clause                            (Vijay)		[12-DEC-2021]  ()
-8.Having Clause                             (Vijay)		[12-DEC-2021]  ()
+1.MultiRow Functions						(Vijay)						[12-DEC-2021]  (Done)
+2.GroupBy                                   (Vijay)						[13-DEC-2021]  (Done)
+3.Joins                                     (Vijay & databasestar)		[13-DEC-2021]  (Done)
+4.Set Operators                             (Vijay)						[12-DEC-2021]  ()
+5.Pseudo Columns                            (Vijay)						[12-DEC-2021]  ()
+6.Sub Queries                               (Vijay)						[12-DEC-2021]  ()
+7.OrderBy Clause                            (Vijay)						[12-DEC-2021]  ()
+8.Having Clause                             (Vijay)						[12-DEC-2021]  ()
+
+************************************************* 1.MultiRow Functions (Vijay) *************************************************
+
+Source : https://www.w3resource.com/sql/sql-table.php
+
+https://www.databasestar.com/sql-group-by/
+
+select * from Agents;
+select * from customer;
+select * from Orders;
+
+These functions will process the group of records and returns the single value from the group.
+Multirow fucntions are alos called as Group functions or Aggregate functions.
+Single row functions are also called as scalar functions.
+
+Max
+Min
+Sum
+Avg
+Count
+
+Max :
+-----
+Max() returns Max value of a given Expression.
+Max() is applied to Single column in a Table ie Max() accepts Single Argument and returns Single value from the group of values.
+
+	select  max(ord_amount) from Orders;  // 4500
+	
+Note:
+All the Aggregate function takes only one argument.
+
+Greatest() and Max() both returns the greatest values.
+From the group of records who has taken the Maximum value,we use Max().
+From the group of records who has taken the maximum value columnwise we use greatest().
+
+	select  greatest(ord_amount) from Orders;
+	
+	o/p :			
+	1000
+	4000
+	1000
+	2000
+	3000
+	4500
+
+Greatest() takes multiple arguments from the group of records and retrieves multiple values in a single column.
+
+
+Min() :
+-------
+Min() returns minimum value of a given Expression.
+
+	select  min(ord_amount) from Orders;
+	
+Note:
+-----
+Max and Min cannot be applied to String and Dates.
+	
+Sum() :
+-------
+Returns the total value of a given Record based on Columnwise.
+
+	select  SUM(ord_amount) from Orders;
+	
+Avg() :
+-------
+Returns the Average value of a given record based on column wise.
+
+	select  Avg(ord_amount) from Orders;
+	
+Count() :
+---------
+Retunrns the Number of values present in a Columns
+
+	select  Count(ord_amount) from Orders;
+	
+Count() function ignores null values and considers only not null values.
+
+Note :
+------
+Aggregate Functions returns only summarized data where as Aggregate Functions with Analytical Functions returns Summarized Data and Detailed Data.
+If Aggregate Function is used as Analytical Function then select Statement returns detailed data along with summarized data.
+
+************************************************************ 2.GroupBy ****************************************************************************
+
+GroupBy clause is used to group the records based on one or more columns to calculate the Aggregate values like Max(),Min(),Avg(),Sum() etc.
+Aggregate Functions without Group By returns a Single value from the Group of Records ie 
+
+	select  max(ord_amount) from Orders;
+	
+If we want to find the Aggregate value for each value of X we can group by X to find it.
+The select statement would be
+
+	select colimns 
+	from Table
+	Where Condition
+	Group By Columns
+	Having Condition
+	Order By Columns
+
+//select * from sample_group_table;
+
+If we want to find the maximum score for each subject
+
+	select subject_id,max(student_grade) from sample_group_table group by subject_id order by subject_id desc;
+	
+We can also use more than one column in group by clause.
+consider the scenario where we want to sum of all the student grades for all years
+
+	select student_id,school_year,sum(student_grade) from sample_group_table group by student_id,school_year order by student_id;
+	
+To find the number of employees in each department
+
+	select department_id,count(*)  from employee group by department_id;
+	
+Note :
+------
+In Group By clause only GroupBy Column and Aggregate Function should appear.
+If any column is present other than this we get error in sql statement.
+
+************************************************************ 3.Joins (Vijay & databasestar) ***********************************************************
+
+Using Mormalization we store the data into multiple Tables.
+For retrieval purpose we need to gather the data from all the Tables.For this purpose we use Joins.
+Join is a data retrieval operation and this operation is performed to get the data from multiple Tables.
+
+Types of Joins :
+----------------
+Inner Join
+Non EquiJoin
+Self Join 
+Left Outer Join
+Right Outer Join
+Full Outer Join
+Natural Join
+Cross Join
+
+EquiJoin or Inner Join :
+------------------------
+Joining the Two Tables based on common column is called EquiJoin.
+To perform EquiJoin there must be common Columns in both the Tables and we use = operator.
+Name of the common Column need not be same and Primary key and Foreign Key realtionship is not mandatory.
+ 
+	select e.full_name,e.job_role,d.department_name from employee e join department d on e.department_id=d.department_id;
+	
+Non EquiJoin :
+--------------
+If two Tables are given to us we have to decide whether to perform EquiJoin or NonEquiJoin.
+If Two Tables are joined not based on common column ie other than = operator then it is called Non EquiJoin.
+
+Self Join :
+-----------
+Joining a Table to itself is called Self Join.
+Self Join is not really an explicit Joinn Type.It is a way of implementing one of the Join Types.
+Self Join is nothing but an EquiJoin within the same Table.
+To perform Self Join the Table must be listed twice.
+
+	select e.employee_id,e.full_name,e.department_id,m.full_name as "Manager" from employee e join employee m  on e.manager_id=m.manager_id;
+	
+Outer Join :
+------------
+Join is used to relate the data.
+While performing EquiJoin we get only matching records and If I want to get the unmatched records we perform Outer Join.
+Outer Join is of three Types 
+
+Left Outer Join
+Right Outer Join
+Full Outer Join
+
+Left Outer Join :
+-----------------
+Left Outer Join returns the matching records and unmatching records from the Left Table and only matching records from the Right Table.
+
+Right Outer Join :
+------------------
+Right Outer Join returns the matching and unmatching records from the Right Table and only matching records from the Left Table.
+
+Full Outer Join :
+-----------------
+Returns all the records ie matching and unmatching records from both the Tables.
+But the Rule is applicable to perfrom only one Join.
+If the natch is found then it displays the matching records If not displays null values.
+
+Natural Join :
+--------------
+Natural Join is similar to EquiJoin.
+Natural Join can be perfromed only If common column name is same.
+We can't use where clause in a Natural Join and If we do we get an Error.
+
+	SELECT employee_id, full_name, job_role, department_id, department_name FROM employee NATURAL JOIN department;
+	
+Cross Join :
+------------
+If we don't mention the Join in Oracle then Oracle by default performs Cross Join.
+Whenever there is a requirement to combine each record of Table 1 to echa record record of Table 2.
+
+***********************************************************  4.Set Operators (Vijay) ***********************************************************
+
+	
+	
+
+
+
+
+
+
+
+
 
 
 

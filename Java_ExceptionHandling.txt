@@ -25,7 +25,7 @@
 
 ******************************************************************** 1.Introduction  ***************************************************************************
 
-Abnormal termination of the program is the result of Exception.
+Abnormal termination of the program is the result of an Exception.
 An unwanted or unexpected event that disturbs the normal flow of execution of the program is nothing but Exception.
 Main purpose of Exception Handling is graceful termination of the program.
 
@@ -42,7 +42,7 @@ Here program terminates abnormally without closing the connection.
 If 10 connections are opened and program terminates the program without closing the connection,resources are wasted.
 Eventhough program terminates abnormally,close the DB connection and stop the program.
 
-Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue the rest of the program normally.
+Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue to the rest of the program normally.
 This way of providing alternative is nothing but Exception Handling.
 
 ******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
@@ -70,13 +70,18 @@ public class ExceptionDemoOne {
 	public static void doStuff()
 	{
 		doMoreStuff();
-		System.out.println(10/0);
+		System.out.println(10/0); // Creates an Exception Object and handovers to the JVM
 	}
 	public static void doMoreStuff()
 	{
 		System.out.println("Hello");
 	}
 }
+
+Output :
+--------
+Hello
+Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 After creating an Exception object by the Method,This Method hand overs the Exception object to the JVM.
 JVM will check in which method problem raises,This Method has Exception Handling code or not.
@@ -86,16 +91,20 @@ JVM handovers the responsibility of Exception Handling to the Default ExceptionH
 Note :
 ------
 In our program If one method terminates abnormally,then the program termination is always abnormal termination.
-If all the methods are terminate normally then only program will be terminated normally.
+If all the methods are terminated normally then only program will be terminated normally.
 
 ********************************************************************  4.Exception Hierarchy  ***********************************************************************
 
 Throwable Class acts as a Root Class for Java Exception Hierarchy.
 It contains following two Child Classes.
 
-1.Exception
-2.Error
-
+											Exception                                        								Error
+RuntimeException   			IOException 			InterruptedException  	RemoteException  				VirtualMachineError StackOverflowError
+ArithematicException		FileNotFoundException
+NullPointerException		EOFException
+ClassCastException			InterruptedIOException
+IllegalArgumentException 
+IndexOutOfBoundException
  
 ********************************************************************  5.Exception and Error ***************************************************************************
 
@@ -103,7 +112,7 @@ Most of the times Exceptions are caused by programmers and are recoverable.
 If our program requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
 If FileNotFoundException occurs we can provide local file so that rest of the program will be continued normally.
 
-Most of the times Error are caused by lack of system resources and are not recoverable.
+Most of the times Errors are caused by lack of system resources and are not recoverable.
 If OutOfMemory occurs as a programmer we cannot do anything and the program will be terminated abnormally.
 
 ******************************************************************** 6.Checked and Unchecked Exception  **************************************************************
@@ -121,8 +130,7 @@ Example :
 ArithematicException
 NullPointerException
 
-RuntimeException and its Child Classes and Error and its Child Classes are Unchecked Exception.
-Remaining are Checked Exception.
+RuntimeException and its Child Classes and Error and its Child Classes are Unchecked Exception.Remaining are Checked Exception.
 
 Note :
 ------
@@ -161,6 +169,11 @@ The code which makes the program termination is called risky code and should be 
 	}
 	}
 	
+Output:
+Statement 1
+5
+Statement 3
+	
 ******************************************************************** 9.Control flow in try catch block  ******************************************************************
 
 1.Within the try block If any where an exception is raised,rest of the try block won't be executed even though we handled the exception.
@@ -182,7 +195,7 @@ The way of Handling the Exception varies from Exception to Exception.
 For every Exception it is recomended to take seperate catch block.
 Try with Multiple Catch block is recomended to use.
 
-Within try block at any point of time there may be a chance of getting only one Exception at a time.
+Within the try block at any point of time there may be a chance of getting only one Exception at a time.
 But we cannot expect exactly which Exception is going to raise.
 
 If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle that Exception.
@@ -210,10 +223,15 @@ Main purpose of finally block is to maintain clean up code which should be execu
 		}
 	}
 	}
+	
+Output :
+Try
+Catch
+Finally
 
 ********************************************************************  13.return vs finally  *****************************************************************************
 
-finally block dominates return statement also.
+finally block dominates the return statement also.
 If there is any return statement present inside try or catch block,finally block will be executed then return statement will be executed.
 
 	public class FinallyDemoTwo {
@@ -230,6 +248,10 @@ If there is any return statement present inside try or catch block,finally block
 		}
 	}
 	}
+	
+Output :
+Try
+Finally
 
 Special Case :
 --------------
@@ -301,6 +323,9 @@ If the control won't enter into the try block then finally block won't be execut
 		}
 	}
 	}
+	
+Output :
+Exception in thread "main" java.lang.ArithmeticException: / by zero
 	
 Note :
 ------
@@ -401,7 +426,7 @@ In our program If there is any chance of raising checked Exception,compulsory we
 Other wise we get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
 
 	public class ThrowsDemoOne {
-	public static void main(String[] args) {zm3
+	public static void main(String[] args) {
 		PrintWriter writer=new PrintWriter("abc.txt"); // CTE saying Unhandled exception type FileNotFoundException
 		writer.println("Hello");
 	}
@@ -477,6 +502,9 @@ This rule is applicable only for fully checked Exception.
 		}
 	}
 	}
+
+Output :
+Hello
 	
 Exception Handling keyword summary :
 ------------------------------------
@@ -587,12 +615,11 @@ throws can be used to throw Multiple Exceptions.
 1.If the Super Class method does not throw any Exception then subclass method can throw any unchecked Exception.
 2.If the Super Class method does not throw any Exception then subclass method cannot throw any CheckedException.
 3.If the Super Class method throws any checked Exception then sub class method can throw the same exception or its subclass.
-4.If super class method throws any Unchecked Exception/RuntimeException then subclass method cannot throw any Exception.
+4.If the super class method throws any Unchecked Exception then subclass method cannot throw any Exception.
 
 finally block :
 ---------------
-Whenever Exception is occured in try block and corresponding catch and finally block has the return statement,
-then finally block return statement will be executed.
+Whenever Exception is occured in try block and corresponding catch and finally block has the return statement,then finally block return statement will be executed.
 
  
 
