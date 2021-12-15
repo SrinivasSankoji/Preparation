@@ -32,7 +32,7 @@ Max :
 Max() returns Max value of a given Expression.
 Max() is applied to Single column in a Table ie Max() accepts Single Argument and returns Single value from the group of values.
 
-	select  max(ord_amount) from Orders;  // 4500
+	--select  max(ord_amount) from Orders;  // 4500
 	
 Note:
 All the Aggregate function takes only one argument.
@@ -41,7 +41,7 @@ Greatest() and Max() both returns the greatest values.
 From the group of records who has taken the Maximum value,we use Max().
 From the group of records who has taken the maximum value columnwise we use greatest().
 
-	select  greatest(ord_amount) from Orders;
+	--select  greatest(ord_amount) from Orders;
 	
 	o/p :			
 	1000
@@ -58,7 +58,7 @@ Min() :
 -------
 Min() returns minimum value of a given Expression.
 
-	select  min(ord_amount) from Orders;
+	--select  min(ord_amount) from Orders;
 	
 Note:
 -----
@@ -68,19 +68,19 @@ Sum() :
 -------
 Returns the total value of a given Record based on Columnwise.
 
-	select  SUM(ord_amount) from Orders;
+	--select  SUM(ord_amount) from Orders;
 	
 Avg() :
 -------
 Returns the Average value of a given record based on column wise.
 
-	select  Avg(ord_amount) from Orders;
+	--select  Avg(ord_amount) from Orders;
 	
 Count() :
 ---------
 Retunrns the Number of values present in a Columns
 
-	select  Count(ord_amount) from Orders;
+	--select  Count(ord_amount) from Orders;
 	
 Count() function ignores null values and considers only not null values.
 
@@ -94,7 +94,7 @@ If Aggregate Function is used as Analytical Function then select Statement retur
 GroupBy clause is used to group the records based on one or more columns to calculate the Aggregate values like Max(),Min(),Avg(),Sum() etc.
 Aggregate Functions without Group By returns a Single value from the Group of Records ie 
 
-	select  max(ord_amount) from Orders;
+	--select  max(ord_amount) from Orders;
 	
 If we want to find the Aggregate value for each value of X we can group by X to find it.
 The select statement would be
@@ -110,16 +110,16 @@ The select statement would be
 
 If we want to find the maximum score for each subject
 
-	select subject_id,max(student_grade) from sample_group_table group by subject_id order by subject_id desc;
+	--select subject_id,max(student_grade) from sample_group_table group by subject_id order by subject_id desc;
 	
 We can also use more than one column in group by clause.
 consider the scenario where we want to sum of all the student grades for all years
 
-	select student_id,school_year,sum(student_grade) from sample_group_table group by student_id,school_year order by student_id;
+	--select student_id,school_year,sum(student_grade) from sample_group_table group by student_id,school_year order by student_id;
 	
 To find the number of employees in each department
 
-	select department_id,count(*)  from employee group by department_id;
+	--select department_id,count(*)  from employee group by department_id;
 	
 Note :
 ------
@@ -149,7 +149,7 @@ Joining the Two Tables based on common column is called EquiJoin.
 To perform EquiJoin there must be common Columns in both the Tables and we use = operator.
 Name of the common Column need not be same and Primary key and Foreign Key realtionship is not mandatory.
  
-	select e.full_name,e.job_role,d.department_name from employee e join department d on e.department_id=d.department_id;
+	--select e.full_name,e.job_role,d.department_name from employee e join department d on e.department_id=d.department_id;
 	
 Non EquiJoin :
 --------------
@@ -163,7 +163,7 @@ Self Join is not really an explicit Joinn Type.It is a way of implementing one o
 Self Join is nothing but an EquiJoin within the same Table.
 To perform Self Join the Table must be listed twice.
 
-	select e.employee_id,e.full_name,e.department_id,m.full_name as "Manager" from employee e join employee m  on e.manager_id=m.manager_id;
+	--select e.employee_id,e.full_name,e.department_id,m.full_name as "Manager" from employee e join employee m  on e.manager_id=m.manager_id;
 	
 Outer Join :
 ------------
@@ -195,24 +195,75 @@ Natural Join is similar to EquiJoin.
 Natural Join can be perfromed only If common column name is same.
 We can't use where clause in a Natural Join and If we do we get an Error.
 
-	SELECT employee_id, full_name, job_role, department_id, department_name FROM employee NATURAL JOIN department;
+	--SELECT employee_id, full_name, job_role, department_id, department_name FROM employee NATURAL JOIN department;
 	
 Cross Join :
 ------------
 If we don't mention the Join in Oracle then Oracle by default performs Cross Join.
 Whenever there is a requirement to combine each record of Table 1 to echa record record of Table 2.
 
-***********************************************************  4.Set Operators (Vijay) ***********************************************************
+***********************************************************  4.Set Operators (Vijay) **************************************************************************
+
 
 	
 	
 
+***********************************************************  5.Pseudo Columns (Vijay)  ************************************************************************
 
 
 
 
+***********************************************************  6.Sub Queries  ***********************************************************************************
+A Query embeeded in another Query is called SubQuery.
+There are two types of Queries.
+Inner Query / Sub Query/Child Query
+Outer Query / Main Query / Parent Query
 
+The result of Inner Query is an Input to Outer Query.
+Inner Query is executed First and then Outer Query is executed.
+Outer Query can be create,select,update,delete where as Inner Query must be only select.
+Here we have to use an operator that must return Single value.
 
+We use Sub Queries when Where clause is based on unknown Condition.
+
+Types of Sub Queries :
+Single Row Sub Query
+Multi Row Sub Query
+Nested Query
+Multi Column Query
+Correlated Query
+
+Single Row Sub Query :
+----------------------
+If the Inner Query returns only one value then Outer query also returns only one value.
+If the Sub Query returns only one value then it is said to be Single Row SubQuery.
+
+//Query to get Employee records whose Job is Clerk
+
+--select * from Employee where job='CLERK';
+
+//Query to get Employee records whos Job is Job of Smith and earning more than Smith
+
+-- Select * from Employee where job=(select Job from Employee ename='Smith' and sal >(select sal from Employee where ename='Smith'));
+
+// Query to get Name of Employee earning Maximum Salary
+
+	select ename from employee where sal=(select max(sal) from Employee);
+
+// Query to get the Name of the Employee having Max Experience
+
+-- select ename from Employee where hiredate=(select min(hiredate) from Employee);
+
+// Query to Disply the Last record in an Employee
+
+-- Select * from employee where rowid=(select max(rowid) from Employee);
+
+// Query to Display all the Records except Last Record
+
+	select * from Employee where rowid<(select max(rowid) from Employee);
+
+Sub Query with between Operator :
+---------------------------------
 
 
 

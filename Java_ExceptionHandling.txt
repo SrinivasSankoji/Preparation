@@ -613,9 +613,60 @@ throws is followed by the name of the Exception.
 throws can be used to throw Multiple Exceptions.
 
 1.If the Super Class method does not throw any Exception then subclass method can throw any unchecked Exception.
+
+	public class Super {
+	public void method() {
+	    System.out.println("SuperClass");
+	  }
+	}
+	class SubClass extends Super
+	{
+		public void method() throws RuntimeException{
+			System.out.println("SubClass");
+		  }
+	}
+
 2.If the Super Class method does not throw any Exception then subclass method cannot throw any CheckedException.
-3.If the Super Class method throws any checked Exception then sub class method can throw the same exception or its subclass.
-4.If the super class method throws any Unchecked Exception then subclass method cannot throw any Exception.
+
+	public class Super {
+	public void method() {
+	    System.out.println("SuperClass");
+	  }
+	}
+	class SubClass extends Super
+	{
+		public void method() throws Exception{ // CTE
+			System.out.println("SubClass");
+		  }
+	}
+
+3.If the Super Class method throws any checked Exception then sub class method can throw the same exception or its subclass or no Exception in the SubClass.
+
+	public class Super {
+	public void method() throws Exception{
+	    System.out.println("SuperClass");
+	  }
+	}
+	class SubClass extends Super
+	{
+		public void method() {
+			System.out.println("SubClass");
+		  }
+	}
+
+4.If the super class method throws any Unchecked Exception then subclass method can throw the same exception or its subclass or no Exception in the SubClass.
+
+	public class Super {
+	public void method() throws RuntimeException{
+	    System.out.println("SuperClass");
+	  }
+	}
+	class SubClass extends Super
+	{
+		public void method() {
+			System.out.println("SubClass");
+		  }
+	}
 
 finally block :
 ---------------

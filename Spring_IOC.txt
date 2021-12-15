@@ -36,7 +36,18 @@
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
+IOC is a principle which states that we don't create the Objects manually instead we describe that how they should be created.
+Spring Container will instantiate the required classes.
 IOC is a principle which is implemented using Dependency Injection Design Pattern.
+
+Dependecny Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,extendable and maintainable.
+Dependency Injection can be implemented by using
+1.Runtime Polymorphism
+2.Has a Relationship
+
+In Spring Dependency Injection can be done in two ways
+Setter Injection
+Constructor Injection
 
 public interface QuizMaster {
 
@@ -189,8 +200,8 @@ Both BeanFactory and ApplicationContext interface provides getBean() to retreive
 BeanFactory vs ApplicationContext in Spring :
 ---------------------------------------------	
 Difference between BeanFactory and ApplicationContext interface is that
-BeanFactory instantiates the Bean whenever we call the getBean() ie Lazy Loading whereas
-ApplicationContext instantiates the Bean whenever the Container is started ie Eager Loading.
+BeanFactory based Container instantiates the Bean whenever we call the getBean() ie Lazy Loading whereas
+ApplicationContext based Container instantiates the Bean whenever the Container is started ie Eager Loading.
 
 ************************************************** 3.Spring Bean Life Cycle (mrbool) ***********************************************************
 
@@ -243,8 +254,8 @@ Done
  
 ************************************************** 7.Guide to Dependency Injection in Spring ****************************************************
 
-Dependency Injection is a process where Objects define their dependencies through Constructor arguments,arguments to a factory method or
-properties that are set on the Object Instance.
+Dependency Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,maintainable and extendable.
+Using Dependency Injection we define the dependencies through Constructor arguments,arguments to a factory method or properties that are set on the Object Instance.
 The Container then inject those dependencies when it creates the Bean.
 The process is fundementally inverse hence the name Inversion of Control.
 The Bean itself is controlling the instantiation or location of its dependencies on its own by using direct Construction of Classes or Service Locator Pattern.
@@ -289,7 +300,7 @@ Setter based Injection is accomplished by the Container calling setter methods o
 		}
 	}
 	
-To call the MessageService via Setter Injection Make any one of the MessageService Implemented class as @Primary
+To call the MessageService via Setter Injection make any one of the MessageService Implemented class as @Primary or use @Qualifier Annotation along with @Autowired Annotation
 
 		@Service("TwitterService")
 		@Primary
@@ -300,14 +311,34 @@ To call the MessageService via Setter Injection Make any one of the MessageServi
 				System.out.println("Twitter "+message);
 			}
 		}
+		
+					(or)
+		
+		@Component
+		public class SetterBasedInjection {
 
-		public static void main(String[] args) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				DependencyInjectionConfiguration.class);
-		SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
-		bean.processMessage("Setter Based Injection Example");
-		context.close();
+			private MessageService messageService;
+
+			@Autowired
+			@Qualifier("TwitterService")
+			public void setMessageService(MessageService messageService) {
+				this.messageService = messageService;
+			}
+			
+			public void processMessage(String message) {
+				messageService.sendMessage(message);
+			}
 		}
+
+		public class SetterInjectionController {
+		public static void main(String[] args) {
+			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+					DependencyInjectionConfiguration.class);
+			SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
+			bean.processMessage("Setter Based Injection Example");
+			context.close();
+		}
+	}
 	
 ************************************************** 9.Spring Constructor Injection Example  *************************************************** 
 
@@ -320,17 +351,24 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 
 	@Component
 	public class ConstructorBasedInjection {
-
-	private MessageService messageService;
-
-	@Autowired
-	public ConstructorBasedInjection(@Qualifier("TwitterService") MessageService messageService) {
-		super();
-		this.messageService = messageService;
+		private MessageService messageService;
+		@Autowired
+		public ConstructorBasedInjection(@Qualifier("TwitterService") MessageService messageService) {
+			super();
+			this.messageService = messageService;
+		}
+		public void processMessage(String message) {
+			messageService.sendMessage(message);
+		}
 	}
-
-	public void processMessage(String message) {
-		messageService.sendMessage(message);
+	
+	public class ConstructorInjectionController {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				DependencyInjectionConfiguration.class);
+		ConstructorBasedInjection constructorBasedInjection=context.getBean(ConstructorBasedInjection.class);
+		constructorBasedInjection.processMessage("Constructor Injection ");
+		context.close();
 	}
 	}
   
@@ -339,24 +377,49 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 @DependsOn annotation forces the Spring Container to initialize one or more beans before the bean which is annotated by @DependsOn annotation.
 @DependsOn annotation may be used on any class directly or indirectly with annotated with @Component or methods annotated with @Bean.
 
+	@Configuration
+	public class DependsOnConfiguration {
+
+		@Bean
+		@DependsOn(value = { "secondBean","thirdBean"})
+		public FirstBean firstBean() {
+			return new FirstBean();
+		}
+
+		@Bean
+		public SecondBean secondBean() {
+			return new SecondBean();
+		}
+
+		@Bean
+		public ThirdBean thirdBean() {
+			return new ThirdBean();
+		}
+	}
+
 ************************************************** 11.Guide to Spring Bean Scopes   ***********************************************************
 
 Spring Framework supports following Bean Scopes.
 
 1.Singleton
 Scopes a Single bean definition to Single Object instance per Spring Container.
+
 2.prototype
 Scopes a Single bean definition to any number of Object instances.
+
 3.request
 Scopes a Single bean definition to the lifecycle of a single HttpRequest.
 Each HttpRequest has its own instance of a bean craeted.
 Only applicable in the context of Web Aware Spring Application Context.
+
 4.session
 Scopes a Single bean definition to the life cycle of a HttpSession.
 Only applicable in the context of Web Aware Spring Application Context.
+
 5.application
 Scopes a Single bean definition to the lifecycle of ServletContext.
 Only applicable in the context of Web Aware Spring Application Context.
+
 6.websocket
 Scopes a Single bean definition to the lifecycle of a WebSocket.
 Only applicable in the context of Web Aware Spring Application Context.
@@ -364,7 +427,7 @@ Only applicable in the context of Web Aware Spring Application Context.
 Singleton Scope :
 -----------------
 When we define a bean with Singleton Scope,Spring Container creates exactly one instance of the Object.
-Single instance is stored in the Cache and all subsequent requests for that bean will be returned from the Cache.
+Here the Instance is stored in the Cache and all the subsequent requests for that bean will be returned from the Cache.
 Spring Singleton beans are not ThreadSafe.
 Default scope of Spring Bean is Singleton.
 
@@ -372,7 +435,7 @@ To define the bean as Singleton in the XML
 
 	<bean id="" name="" scope="singleton"></bean>
 	
-To define the bean as Singleton at Bean Level
+To define the bean as Singleton at Bean Level :
 
 	@Configuration
 	public class AccountService
@@ -385,8 +448,8 @@ To define the bean as Singleton at Bean Level
 		}
 	}
 	
-Prototype Scope :
------------------
+To define the bean as Singleton at Class Level :
+
 When we define a bean with prototype scope,Spring Container creates a new instance every time when the request is made for that bean.
 Use the Prototype scope for stateful beans and Singleton scope for stateless beans.
 
@@ -432,7 +495,7 @@ As we use init-method and destroy-method in XML Bean Configuration,same way we c
 ************************************************** 15.@Scope annotation with Prototype Scope Example ******************************************
 
 We use @Scope annotation to define the scope of a @Component Class or @Bean definition.
-When a Spring bean is scoped as Prototype,Spring Container creates a new bean instance every time when a request is made for that bean.
+When a Spring bean is scoped as Prototype,Spring Container creates a new instance every time when a request is made for that bean.
 we define the scope of a bean as Prototype using @Scope("prototype") or @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 
 @Service
@@ -457,8 +520,8 @@ public class SingletonConfiguration {
 ************************************************** 16.@Scope annotation with Singleton Scope Example ******************************************
 
 When a Spring bean is scoped as Singleton,Spring Container exactly creates one instance for that bean definition.
-By Default Spring Container creates and initializes all the beans as Singleton.
-we define the scope of a bean as Singleton using @Scope("singleton") or@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
+By Default Spring Container instantiates and initializes all the beans as Singleton.
+we define the scope of a bean as Singleton by using @Scope("singleton") or @Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
 
 @Service
 @Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -638,8 +701,8 @@ public static void main(String[] args) {
 	
 ************************************************** 20.@PostConstruct and @PreDestroy Example  ***************************************************
 
-@PostConstruct annotation is used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
-@PreDestroy method annotation is used on a method that needs to be executed before the instance is being removed by the Container.
+@PostConstruct Annotation is used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
+@PreDestroy Annotation is used on a method that needs to be executed before the instance is being removed by the Container.
 
 	@PostConstruct
 	public void init()
