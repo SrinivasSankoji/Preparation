@@ -701,7 +701,7 @@ public static void main(String[] args) {
 	
 ************************************************** 20.@PostConstruct and @PreDestroy Example  ***************************************************
 
-@PostConstruct Annotation is used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
+@PostConstruct Annotation can be used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
 @PreDestroy Annotation is used on a method that needs to be executed before the instance is being removed by the Container.
 
 	@PostConstruct
@@ -717,7 +717,7 @@ public static void main(String[] args) {
 ************************************************** 21.@Qualifier Annotation Example ************************************************************* 
 
 @Qualifier can be used to resolve ambigious problems.
-There may be scenarios where we can have more than one bean of the same type and want to wire only one of them.
+There may be scenarios where we can have more than one bean of the same type and want to Autowire only one of them.
 This can be done by using @Qualifier along with @Autowired annotation.
 
 ************************************************** 22.Spring Java Based Configuration Basics *************************************************** 

@@ -198,13 +198,13 @@ Filter gets configured in web.xml where as Ineterceptors are configured in the A
 @Component :
 ------------
 If a Class is Annotated with @Componenet Annotation or any other Stereotype Annotation then these classes will be auto detected using classpath scanning.
-As long as these classes are in under the base package,A new Bean will be created for each of these classes.
+As long as these classes are under the base package,A new Bean will be created for each of these classes.
 There is an implicit one-to-one mapping between the Annotated class and the Bean.
 Stereotype type Annotations are class level Annotations.
 
 @Bean :
 -------
-@Bean Annotation can be used to explicitly declare a Single Bean rather than Spring doing it automatically.
+@Bean Annotation can be used to explicitly declare a Bean rather than Spring doing it automatically.
 Method Annotated with @Bean Annotation produces a Bean that has to be managed by Spring Container.
 It decouples the declaration of the Bean from the Class Definition.
 @Bean Annotation cannot be declared at Class Level.
