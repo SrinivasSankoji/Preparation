@@ -16,33 +16,34 @@
 
 
 *********************************************************  1.Microservice Configuration  *******************************************************************
-Some of the Configuration features in Spring Boot like :
+Some of the Configuration features in Spring Boot are :
 
-value
+@Value
+@Environment
 ConfigProps
 Actuator
 Spring Profiles
-Environment
 
-Spring Cloud Config Server which is a project of Spring Cloud that can be used for Dynamic Configuration
+Spring Cloud Config Server can be used for Dynamic Configuration.
 
 *********************************************************  2.What and Why  **********************************************************************************
 
 Configuration is essential for any Production Application.
-It is a best practice to seperate the Application Code and Configuration.
-If parameters are not part of business Logic and they keep on change it is better to make them as configurable.
+It is the best practice to seperate the Application Code and Configuration.
+If the parameters are not part of business Logic and they keep on change it is better to make them as configurable.
 Some of the examples of Configuration are 
 
 1.Database details
 2.Credentials like Authentication
 3.Feature Flags like boolean flag
 4.Business Logic Configuration parameters like discount
+
 5.Scenario Testing like increase the trafic of the Application
-6.Spring Boot Configuration like Hystrix Parameters,Connection parameters,error parameters
+6.Spring Boot Configuration like Hystrix Parameters,Connection parameters,Error parameters
 
 whenever we want to deploy any production Application It has to go through all the phases of Lifecycle and It has to run all the Test Cases,then deploy into production.
-If we want increase the number of threads for a particular Microservice then no need to build and deploy the Application.
-It has to be Configured and for Confoguration Changes no need of Build and Deployment.
+If we want to increase the number of threads for a particular Microservice then no need of build to deploy the Application.
+For this Application has to be Configured and for Configuration changes no need of Build and Deployment.
 Configuration changes are fast,easy and real time.
 
 Different type of Configs are :
@@ -51,7 +52,7 @@ Different type of Configs are :
 3.yaml
 4.json
 
-These are the Files that we save the Configuration details taht effects the Production.
+These are the files that we save the Configuration details that effects the Production.
 Scenario's are 
 Multiple Microservice Applications
 Multiple instances of each Microservice Application
@@ -62,23 +63,22 @@ At the end of the development,Microservice Application should have
 2.environment Specific Configuration
 3.consistent i.e If we have multiple instance of each microservice then all the Microservice should point to the Same Configuration.
 4.version History i.e we can have configuration History
-5.Realtime Management i.e If one Microservice is consumed by lot of applications then increase the number of threads and it should be affect while the Microservice are running.
+5.Realtime Management i.e If one Microservice is consumed by lot of applications then increase the number of threads and it should effect while the Microservice are running.
 
  
 *********************************************************  3.Property File Configuration   ************************************************************************
 
-First step to externalize the Microservice Configuration is to actually put them in config File and then read it in our Application.
+First step to externalize the Microservice Configuration is to actually put them in config file and then read it in our Application.
 Create a Spring boot Project 
 	
-		spring-boot-config-brains
+		spring-boot-config
 		
-Spring provids the value from the Property instead of we asking for the Property.
-This is called value Injection.
+Spring provides the value from the Property file instead of we asking for the Property.This is called value Injection.
 
 	private String greetingMesage;
 	
-We can ask the Spring to inject the value fo the property into the above variable.
-This can bedone by using @Value annotation.
+We can ask the Spring to inject the value from the property file into the above variable.
+This can be done by using @Value annotation.
 
 	@Value("${test.greeting}")
 	private String greetingMesage;
@@ -86,64 +86,58 @@ This can bedone by using @Value annotation.
 Another thing about property File is that we can refer one property from another directly in our property file.
 
 	test.greeting=${test.description}
-
-	test.name=Configuration 
 	test.description= Welcome to Spring Boot ${test.name}
+	test.name=Configuration 
 	
 Here we have taken only the Configuration out from the Code.
-Property File is inside the Jar and to effect the Changes it has to build and deploy.
-
+Property File is inside the Jar and to effect the Changes Application has to build and deploy.
 
 *********************************************************  4.External Property Sources   **************************************************************************
 
-Most of the Cases we put the Configuration in our Spring boot Application and then we build the Application.
-Here the Property File is Sitting inside the Jar.
-If we want to change the Property no need to compress the Jar and do the Changes.
-We can have the Spring Boot Application with the Jar intact and look for the Configuration Outside without having to do anything with the Jar.
+Most of the cases we put the Configuration in our Spring boot Application and then we build the Application.
+Here the Property file is inside the Jar.
+If we want to change the Property value in the properties file no need to compress the Jar and do the Changes.
+We can have Spring Boot Application with the Jar and looks for the Configuration outside the Jar without having to do anything with the Jar.
 One way to run the Spring Boot Application is to run the Jar File.
 
 	java -jar jarName
 	
-Create application.propertie here and override the Values.
-Now the Values are overidden by the Spring Boot when we run the Jar.
-Property File outside the Jar is Overridden inside the Jar.
-We have an Opportunity Create a MicroService with Some Default Property and push it to all the nodes where it needs to run 
-and any time i need to override it,Create another application.properties next to it.
-We have one Step more for the Configuration.
-Different host can have different values Configured for the Properties File.
-This ia another way of overriding the Configuration.
+Create application.properties here and override the values.
+Now the values are overidden by the Spring Boot when we run the Jar.
+Property File outside the Jar is overridden inside the Jar.
+We have an opportunity to create a MicroService with some default properties and push it to all the nodes where it needs to be run.
+Any time If we want to override it,Create another application.properties next to it.
+We have one step more for the Configuration.
+Different host can have different values Configured for the Properties File.This is another way of overriding the Configuration.
 
 We not only override the application.properties externally,we can also override the property in the application.properties file using command Line.
 
-	java -jar jarName  test.greeting="Form Command Line Argument"
+	java -jar jarName  test.greeting="From Command Line Argument"
 
 @Value Annotation also looks for the System Properties as well.
-There are lot of sources Spring looks for the property in the Configuration File
-and there are differnet levels where we can override them.
-
+There are lot of sources Spring looks for the property in the Configuration file and there are different levels where we can override them.
 
 *********************************************************  5.Value Annotation   *********************************************************************************
  
-@Value Annotation is an Essential way to get the Value from Properties File.
-By Using @Value Annotation we get some static String.
+@Value Annotation is an essential way to get the value from the Properties File.
+By using @Value Annotation we can assign some static String to the variable.
 
 	@Value("Welcome Bhaumik Chary")
 	private String message;
 	
-There are some Cases where we need a default Value if the property does not exist.
-Here Application wont Start.
-Possible Solution is application should get the Default value if the property does not exist.
+There are some cases where we need a default value for the property and If the property does not exist in the properties file.
+Here Application wont start.Possible Solution is Application should get the default value If the property does not exist.
 
 	@Value("${message:Welcome Bhaumik Sankoji}")
 	private String defaultMessage;
 	
-Sometimes we assign multiple values to the property in properties File.
+Sometimes we assign multiple values to the property in the properties File.
 If we want to read the property as List we use the @Value Annotation.
 
 	@Value("${test.names}")
 	private List<String> names;
 	
-We can also define the key value pair in Properties File and get them using @Value Annotation.
+We can also define the key value pair in Properties File and read them using @Value Annotation.
 
 	@Value("#{${test.dbdetails}}")
 	private Map<String,String> dbdetails;
@@ -153,20 +147,21 @@ Here # treats as a Spring Expression Language
 
 *********************************************************   6.Configuration Properties  ***************************************************************************
 
-@ConfigurationProperties is a sepcific Annotation related to Configuration and pull the properties from the Configuration File.
-This is sepcifically used when we have a group of Configuration Values that we want to pull up at once and make it available throughout the Application.
-Consider the case we have define some properties in the Configuration File.
+@ConfigurationProperties is an Annotation related to Configuration and can be used to pull the properties from the Configuration File.
+This is sepcifically used when we have a group of Configuration values that we want to pull up at once and make it available throughout the Application.
+Consider the case we have defined some properties in the Configuration file.
 All the properties are prefix with db.
 
 	db.driver=OracleDriver
 	db.username=system
 	db.password=bhaumik23
 	
-Create a Class that conatins all the Properties and add the Annotation @ConfigurationProperties("db") to the Class.
-Here it will automatically read the propertis from the Properties File.
+Create a Class that conatins all the properties and add the Annotation @ConfigurationProperties("db") to the Class.
+Here it will automatically read the propertis from the Properties file.
 
 	@ConfigurationProperties("db")
 	@Data
+	@Component
 	public class DbDetails 
 	{
 		private String driver;
@@ -174,13 +169,13 @@ Here it will automatically read the propertis from the Properties File.
 		private String password;
 	}
 
-Now Autowire the DbDetails ,then we get all the Properties of db at one time.
-If we change the type of the property in the properties File then we get an exception at the time of application Start up.
+Now Autowire the DbDetails ,then we get all the properties of db at one time.
+If we change the type of the property in the properties file then we get an exception at the time of application Start up.
 
-If we want to group the properties and can be used in Multiple Places we use ConfigurationProperties
+If we want to group the properties and want to use in Multiple places we use @ConfigurationProperties.
 If we want to use for a Single property we use @Value.
 
-Add the Actuator dependency to see all the Endpoints.
+Add the Actuator dependency to see all the End Points.
 Add the below property in the proprties File.
 
 	management.endpoints.web.exposure.include=*
@@ -192,10 +187,10 @@ Then Hit the following URL
 
 *********************************************************   7.Yaml Files   *****************************************************************************************
 
-properties file is one way of Configuration and another way of configuration is YAML File.
+properties file is one way of Configuration and another way of configuration is YAML file.
 YAML stand for Yet Another Markup Language or YAML Ain't Markup Language.
-It is a Language to store data Elements like Configuration.
-YAML has the Syntax of key:value.
+It is a Language to store data elements like Configuration.
+YAML has the syntax of key:value.
 YAML has support for different data types.
 True benefit of YAML is in its Nesting Structure.
 There must be space between keys and values in YAML.

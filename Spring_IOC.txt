@@ -701,7 +701,7 @@ public static void main(String[] args) {
 	
 ************************************************** 20.@PostConstruct and @PreDestroy Example  ***************************************************
 
-@PostConstruct Annotation can be used on a method that needs to be executed after the Spring Container has perfromed instantiation of an Object.
+@PostConstruct Annotation can be used on a method that needs to be executed after the Spring Container has performed instantiation of an Object.
 @PreDestroy Annotation is used on a method that needs to be executed before the instance is being removed by the Container.
 
 	@PostConstruct
@@ -717,29 +717,30 @@ public static void main(String[] args) {
 ************************************************** 21.@Qualifier Annotation Example ************************************************************* 
 
 @Qualifier can be used to resolve ambigious problems.
-There may be scenarios where we can have more than one bean of the same type and want to Autowire only one of them.
-This can be done by using @Qualifier along with @Autowired annotation.
+There may be scenarios where we have more than one bean of the same type and want to Autowire only one of them.
+This can be done by using @Qualifier along with @Autowired Annotation.
 
 ************************************************** 22.Spring Java Based Configuration Basics *************************************************** 
 
-@Bean Annotation is used to indicate that a method instantiates,configures and initializes a new object that has to be managed by the Spring Container.
-We can use @Bean Annotated methods with any @Component Classes.
+If we want to explicitly declare a Bean rather than Spring doing it automatically we use @Bean Annotation.
+Method Annotated with @Bean produces a Bean that has to be managed by the Spring Container.
+It decouples the declaration of the Bean from the Class Definition.
+@Bean Annotation cannot be declared at Class Level.
 Most of the the times we use @Bean with @Configuration Classes.
-
-Annotating a Class with @Configuration indicates that its primary purpose is a source of bean definitions.
+Annotating a Class with @Configuration indicates that its primary purpose is a source of Bean definitions.
+By default it will use the name of the Method as the Bean Id/Name.
 
 We can create Spring Container by instantiating AnnotationConfigApplicationContext by passing Configuration Class.
 This allows the complete XML free usage of the Spring Container.
-
 We can also create Spring Container by instantiating AnnotationConfigApplicationContext with no argument Constructor.
-Configure the Configuration classes by using register().
+Then configure the Configuration classes by using register().
 This is particulary useful when programatically building an AnnotationConfigApplicationContext.
 
 @ComponentScan annotation enables auto component scanning in Java based Configuration. 
 
 ************************************************** 23.Spring Java Based Configuration Example **************************************************
 
-We have used @Configuration and @Bean Annotations to develop Spring based Applications.
+We have used @Configuration and @Bean Annotations to develop a Spring based Applications.
 @Import annotation can be used to load the bean definitions from another Configuration class.
 
 @Configuration
@@ -770,17 +771,17 @@ public class ImportConfiguration {
                
 ************************************************** 24.@Bean Annotation with Example  *********************************************************** 
 
-@Bean is a method level Annotation and is a direct analog of XML element </bean>
+If we want to explicitlitly declare a Bean rather than Spring doing it automatically we use @Bean Annotation.
+@Bean is a method level Annotation and is a direct analog of XML element </bean>.
 @Bean Annotation supports some of the attributes such as init-method,destroy-method,autowiring and name.
-We can use @Bean in the class annotated with @Configuration and @Component.
+Most of the the times we use @Bean with @Configuration Classes.
 
-To declare a bean simply annotate a method with @Bean and It will be registered in the ApplicationContext of the type specified in the method return value.
-By default bean name will be same as the Method name and we can change the Bean name by using name attribute.
+By default Bean name will be same as the Method name and we can change the Bean name by using name attribute.
 We can also have the scope for the Bean definition and default scope is Singleton.
 
 Note :
 Single Bean can have multiple names ie also called as Bean Aliasing.
-We use the name attribute of the Bean foe Bean aliasing.
+We use the name attribute of the Bean for Bean aliasing.
 
 ************************************************** 25.@Configuration Annotation with Example ***************************************************
 
@@ -793,7 +794,7 @@ If we have XML based Configuration then we can use @ImportResource Annotation to
 
 ************************************************** 26.@PropertySource Annotation with Example **************************************************
 
-We can externalize the Configuration to a properties file using @PropertySource Annotation along with @Configuration Annotated Class.
+We can externalize the Configuration to a properties file using @PropertySource Annotation.
 We can read the Properties file and display the values using Environment and @Value Annotation.
 
 spring.datasource.name=Oracle
@@ -812,26 +813,24 @@ public class PropertySourceConfiguration {
 	public DataSource datasource() {
 		System.out.println(environment.getProperty("spring.datasource.name"));
 		return null;
-
 	}
 }
 
 Note :
 We can also include multiple properties file using @PropertySources Annotation.
-If the Properties is not found then it will throw FileNotFoundException.
-To ignore the not found properties file we use ignoreResourceNotFound-true ie
+If the Property is not found then it will throw FileNotFoundException.
+To ignore the not found properties file we use ignoreResourceNotFound=true ie
 
-	@PropertySource(value="classpath:application.properties",ignoreResourceNotFound=true)
+	@PropertySources(value="classpath:application.properties",ignoreResourceNotFound=true)
 
 ************************************************** 27.@Import Annotation with Example  *********************************************************
 
-@Import Annotation indicates one or more Configuration classes to import.
-@Import Annotation can be declared at Class level or at metadata level.
+@Import Annotation can be used to load the bean definitions from another Configuration class.
+@Import Annotation can be declared at Class level or at Metadata level.
     
 ************************************************** 28.@ImportResource Annotation Example ******************************************************* 
 
-If XML or other non @Configuration Bean resources needs to be imported we use the @ImportResource Annotation.
-If we want to load config.properties file then we can use @Propertysource Annotation to load respective properties file.
+If XML or other non Configuration Bean resources needs to be imported we use @ImportResource Annotation.
 
 Note :
 In Spring XML based Configuration we use <import> tag to load multiple Spring Configuration Files.
@@ -840,8 +839,8 @@ In Spring XML based Configuration we use <import> tag to load multiple Spring Co
 ************************************************** 29.@Lazy Annotation Example  **************************************************************** 
 
 Spring Container creates and initializes all the Singleton beans at the time of Application start up.
-We can prevent this pre initialization of Singleton by using @Lazy Annotation.
-@Lazy Annotation can be used on any Class annotated with @Component directly or indirectly or methods annotated with @Bean.
+We can prevent this pre initialization of Bean by using @Lazy Annotation.
+@Lazy Annotation can be used on any Class Annotated with @Component directly or indirectly or methods annotated with @Bean.
 
 	@Bean
 	@Lazy(value = true)
@@ -861,22 +860,22 @@ We can prevent this pre initialization of Singleton by using @Lazy Annotation.
 		context.close();
 	}
 	
-At the time of Application Startup Only SecondBean is loaded and when we call the getBean() on FirstBean then FirstBean is loaded into ApplicationContext.
+At the time of Application Startup Only SecondBean is loaded and when we call the getBean() then FirstBean is loaded into ApplicationContext.
 
 ************************************************** 30.15 Spring Core Annotations   *************************************************************
 
 @Required :
 -----------
 @Required Annotation is a method level annotation and is applied to the setter method of a Bean.
-@Required annotation indicates that setter method must be configured to be dependency inejected with a value at Configuration time.
+@Required annotation indicates that setter method must be configured to be dependency inejected with the value at Configuration time.
 
 Note :
 If we are using @Autowired Annotation on our setter Method we need not use @Required Annotation because by default @Autowired Annotation has true value for required Attribute.
 
 @Value :
 --------
-@Value Annotation can be used to assign default values to variables and method arguments.
-@Value can also be used to read Spring Environment variables as well as System variables.
+@Value Annotation can be used to assign default values to the variables and method arguments.
+@Value Annotation can also be used to read Spring Environment variables as well as System variables.
 
 @Profile :
 ----------
