@@ -1,12 +1,6 @@
-
-References :
-************
-
-Spring Cloud- REST call using Netflix Feign Client
-https://www.javainuse.com/spring/spring-cloud-netflix-feign-tutorial
-
-Spring Cloud Feign Example :
-https://www.devglan.com/spring-cloud/spring-cloud-feign-example
+1.How to Implement Feign Client in Microservices			    (javatechonline)      [03-JAN-2022]  ()
+2.Netflix Feign Client											(javainuse)           [03-JAN-2022]  ()
+3.Spring Cloud Feign Example									(devglan)             [03-JAN-2022]  ()
 
 Rest API testing with Spring Cloud Feign Clients
 https://www.blazemeter.com/blog/Rest-API-testing-with-Spring-Cloud-Feign-Clients/
@@ -20,16 +14,30 @@ http://www.appsdeveloperblog.com/spring-feign-client-http-request-example/
 Feign as a REST client 
 http://javaonfly.blogspot.com/2017/07/microservices-communication-feign-as.html (Step 1)
 
-What is Feign :
-***************
-Feign is a Declarative Web Service Client That Makes of Writing Web Service Clients Easier.
-We Use The Different Annotations Provided by Spring Framework Such as @RequestMapping,@PathVariable
-in Java Interface to define the abstract implementation of our actual API.
-Feign Internally process these Annotations into a Templatized Request to the Actual Web Service.
-Spring Cloud Provides out of Box Integration with Ribbon and Eureka While Using Feign.
 
-By Using Feign Client We Can Make a Request to a Micro Service that has registered with Discovery Server or
-Make a Request to an External Web Service.
+*********************************** 1.How to Implement Feign Client in Microservices(javatechonline) ************************************************************
+
+When two Web Applications communicate with each other for Data Exchange they follow Producer-Consumer technique.
+An Application which produces data is called Producer Application where as an Application which consumes data is called Consumer Application.
+As a Java Developer we use the REST API as the producer Application where as RestTemplate for Consumer Application.
+Similarly in case of Micro Services,two micro services needs to be communicated with each other.
+Here we use Feign Client instead of RestTemplate in order to minimize our coding effort.
+Apart from consuming Rest Services in an easy way,Feign Client when combined with Eureka Server offers the Load Balancing.
+
+Feign is a declarative Rest Client that makes of writing Web Service Clients easier.
+In order to use Feign,create an Interface and annotate it.It internally generates the proxy class at runtime using Dynamic Proxy Pattern.
+We use the different Annotations provided by Spring Framework such as @RequestMapping,@PathVariable in Java Interface to define the abstract implementation of our actual API.
+Feign Internally process these Annotations into a Templatized Request to the Actual Web Service.
+Feign Client actually gets the Application name from Eureka and supports making HTTP call.
+
+Spring Cloud Provides out of box Integration with Ribbon and Eureka while using Feign.
+By Using Feign Client we can make a Request to a Micro Service that has registered with Discovery Server or make a Request to an external Web Service.
+We need to use two Annotations in order to use Feign Client.
+
+@EnableFeignClient to the starter class.
+@FeignClient(name="Application Name") To define an interface for a Consumer.
+
+
 
 
 

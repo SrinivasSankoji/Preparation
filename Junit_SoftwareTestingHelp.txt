@@ -1,16 +1,124 @@
-1.Introduction
-2.Install Junit
-3.Junit TestCase
-4.Junit TestFixture
-5.Ways to Execute Junit TestCases
-6.Junit Annotations
-7.Junit Ignore TestCase
-8.Junit Test Suite
-9.Junit Test Execution Order
-10.@RepeatedTest
-11.@Nested
-12.Custom Display Name and @Conditional
-13.Junit vs TestNG
-14.Junit Additional Classes
-15.Junit Assertions
-16.Grouped Assertions
+1.Introduction										[16-JAN-2022]  (Done)	
+2.Install Junit                                     [16-JAN-2022]  (Done)
+3.Junit TestCase                                    [16-JAN-2022]  (Done)
+4.Junit TestFixture                                 [16-JAN-2022]  ()
+5.Ways to Execute Junit TestCases                   [16-JAN-2022]  ()
+6.Junit Annotations                                 [16-JAN-2022]  ()
+7.Junit Ignore TestCase                             [16-JAN-2022]  ()
+8.Junit Test Suite                                  [16-JAN-2022]  ()
+9.Junit Test Execution Order                        [16-JAN-2022]  ()
+10.@RepeatedTest                                    [16-JAN-2022]  ()
+11.@Nested                                          [16-JAN-2022]  ()
+12.Custom Display Name and @Conditional             [16-JAN-2022]  ()
+13.Junit vs TestNG                                  [16-JAN-2022]  ()
+14.Junit Additional Classes                         [16-JAN-2022]  ()
+15.Junit Assertions                                 [16-JAN-2022]  ()
+16.Grouped Assertions                               [16-JAN-2022]  ()
+
+********************************************************** 1.Introduction ******************************************************************************************
+
+In a typical Test Driven Approach(TDD) Developers focus on unit testing every chunk of code they develop.
+The better the Testing of the Product the better the Quality of the Product.
+We all know that Testing should go paralelly with each phase of the SDLC.
+
+Unit Testing :
+--------------
+Unit Testing is testing a small logic or code to verify the output of the code is as expected on the input of the specific data on satisfying certain conditions.
+Usually Unit Tests are supposed to be independent of other Tests.
+Unit Tests are not feasible to test complex interfaces with another Application or third party/external services.
+Unit Tests helps the developer discover the issues in the current logic and any regression failures due to the current change.
+Unit Tests also provides the insight how the current code could impact the future implementation.
+
+Test Coverage :
+---------------
+The percentage of the code that is tested by the Unit Tests is called Test Coverage.
+Running Test Cases automatically helps us to identify software regression issues introduced by the changes in the current code.
+
+Manual Testing vs Unit Testing :
+--------------------------------
+Unit Testing can be done in two approaches.
+
+1.Manual Testing
+2.Automation Testing
+
+In both the Approaches workflow remains the same
+Create the Test Case
+Review the Test Case
+Rework If the correction is needed
+Execute the Test Case
+Analyze the Test Results
+
+When a Test case is executed manually without an intervention of a tool is called Manual Testing.
+Similarly when a Test case is executed with the help of a tool without much manual intervention is called Automation Testing.
+
+Unit Test Framework :
+---------------------
+Developers use the Unit Test Framework to create the Automated Unit Test Cases.
+Junit is an open source Unit Test Framework that is used for writing and executing Unit Tests in Java Programming Language.
+It is one of the best known Unit Testing Frameworks.
+
+Examples of Junit TestCase :
+----------------------------
+
+	public class HelloWorldTest {
+		@Test
+		public void test() {
+			assertEquals("Hello world", "Hello world");
+		}
+	
+		@Test
+		public void testHelloWorld() {
+			HelloWorld helloWorld=new HelloWorld("Hello world");
+			assertEquals(helloWorld.getMessage(), "Hello world");
+		}
+	}
+
+********************************************************** 2.Install Junit  ******************************************************************************************
+
+Junit5 works with Java8 or above.Hence it supports Lambda Expression of Java Code as well.
+It is the next generation of Junit that comes with different versions named as 
+
+Junit Platfrom
+Junit Jupiter
+Junit Vintage
+
+Junit Platfrom :
+----------------
+Junit Platform for Junit 5 works with the usage of two API's.
+One that enables the user to create the Testing Framework.
+Another helps the user to launch the Test through the IDE or through the command line.
+
+Junit Jupiter :
+---------------
+junit-jupiter-api is the main module where all the core annotations are located such as @Test,Lifecycle method annotations and Assertions.
+junit-jupiter-engine has the Test Engine implementation which is required at runtime to execute the Tests.
+junit-jupiter-params supports for parameterized tests in Junit 5.
+
+Junit Vintage :
+---------------
+Sometimes we need the older version of the Junit Code to be worked alon with the current Code.
+This can be done by using Junit Vintage API.
+
+********************************************************** 3.Junit TestCase ********************************************************************************************
+
+	public class HelloWorldTest {
+		@Test
+		public void test() {
+			assertEquals("Hello world", "Hello world");
+		}
+	
+		@Test
+		public void testHelloWorld() {
+			HelloWorld helloWorld=new HelloWorld("Hello world");
+			assertEquals(helloWorld.getMessage(), "Hello world");
+		}
+	}
+	
+********************************************************** 4.Junit TestFixture ****************************************************************************************
+
+
+
+
+ 
+
+                                

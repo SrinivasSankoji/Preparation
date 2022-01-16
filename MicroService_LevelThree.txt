@@ -182,7 +182,7 @@ Add the below property in the proprties File.
 	
 Then Hit the following URL 
 
-	http://localhost:3001/actuator/configprops
+	http://localhost:3001/actuator/configpropsss
 	
 
 *********************************************************   7.Yaml Files   *****************************************************************************************
@@ -205,14 +205,14 @@ Goals that the MicroService should have in terms of Configuration.
 4.Version History
 5.RealTime Management
 
-With Properties File or YAML we have made the Configuration externalized.
-If we seperate the Properties File from the Jar then we get environment Specific Configuration.
+With Properties file or YAML we have made the Configuration externalized.
+If we seperate the Properties file from the Jar then we get environment specific Configuration.
 Here the drawback is it is outside the Source Control.
 It also needs a Manual Maangement across different Environments.
 
 we can specify environment specific Configuration usig Spring Profiles.
-When we run the Application without Profiles we get No Active Profile Set in the Console and falls back to default Profile.
-Profile is nothing but a set of Configuration Values that is applicable to specific environment.
+When we run the Application without profiles we get No Active Profile Set in the Console and falls back to default Profile.
+Profile is nothing but a set of Configuration values that is applicable to specific environment.
 To create a Profile Name we use the below format.
 
 	application-profile.properties
@@ -224,7 +224,7 @@ To Specify which Configuartion has to pickup by the Spring we need to mention th
 			active:
 			- test
 			
-By default Default Profile is active always i.e application.properties or application.yml and 
+By default default Profile is active always i.e application.properties or application.yml and 
 From the default Profile we specify the Configuration which profile has to pick up.
 At any point of time we have Two Active Profiles if we specify the profile.
 We have different Profile for different Environments.
@@ -249,15 +249,14 @@ We can also select the Beans by Profile Name.
 	}
 	
 Beans have different instantiation based on Profiles.
-If the Profile Annotation is not set for the Bean by Default it takes the default profile.
-
+If the Profile Annotation is not set for the Bean by default it takes the default profile.
 
 *********************************************************   9.Environment Object   *********************************************************************************
 
-By Usig @Value and @Configprops we are asking Spring to inject the Configuration Values.
-By Using Environment Class we are looking up for the Configuration Values.
+By usig @Value and @Configprops we are asking Spring to inject the Configuration Values.
+By using Environment Class we are looking up for the Configuration Values.
 We need to Autowire the Environment and look up for the Configuration values.
-By Using Environment we can get the Active profiles in our Application.
+By using Environment we can get the Active profiles in our Application.
 
 	@Autowired
 	Environment env;	
@@ -273,21 +272,21 @@ We should not look up for profiles or properties and better to avoid Environment
 
 *********************************************************  10.Spring Cloud Config Server   **************************************************************************
 
-we use properties File to Confifure Spring Boot Applications.
+we use properties file to Confifure Spring Boot Application.
 Consistency is more important in Configuration in the context of MicroServices.
-Consider the Case we have Multiple MicroServices and we need to make sure that all the MicroService refers to the Same Configuration File.
+Consider the case we have Multiple MicroServices and we need to make sure that all the MicroService refers to the same Configuration File.
 All we need to do is take out the Configuration from all the MicroServices and make it as a Configuration Server.
 Here all the MicroServices refer to the same Configuration Server.
 Each MicroService can ask the value for the Configuration Server varies i.e at the time of Application Startup etc.
-Some of the Technologies to Implement Config as a Service are
+Some of the technologies to implement Configuration as a Service are
 
 1.Apache Zookeeper
-2.ETCD -distributed key value store
+2.ETCD - distributed key value store
 3.Hashicorp Consul
 4.Spring Cloud Configuration Server
 
 Configuration Server stores the Configuration in the Repository.
-Here Changes to the Config should happen without a build.
+Here changes to the Config should happen without build.
 Spring Cloud Config Server can connect to various different data Sources.
 
 ********************************************************* 11.Set up Spring Cloud Config Server   ********************************************************************

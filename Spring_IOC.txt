@@ -31,8 +31,9 @@
 27.@Import Annotation with Example                                          (JavaGuides)        [19-AUG-2021]  (Done)
 28.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  (Done)
 29.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  (Done)
-30.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
-31.5 Types of Autowiring in Spring											(DZone)
+30.@Profile Annotation														(amitph)			[02-JAN-2022]  ()
+31.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
+32.5 Types of Autowiring in Spring											(DZone)
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
@@ -862,7 +863,75 @@ We can prevent this pre initialization of Bean by using @Lazy Annotation.
 	
 At the time of Application Startup Only SecondBean is loaded and when we call the getBean() then FirstBean is loaded into ApplicationContext.
 
-************************************************** 30.15 Spring Core Annotations   *************************************************************
+*********************************************************** 30.@Profile Annotation(amitph)  ********************************************************************
+
+If we want particular @Component Class or @Bean Method to be used only when a specific profile is active then we mark it with @Profile Annotation.
+
+	 @Component
+	 @Profile("development")
+	 Class Bike implements Vehicle
+	 
+Spring Profiles helps in seggregating Application Configurations and make them available only in certain environments.
+An Application may run on different environments.
+For example Dev,QA,Test,Stage and Production Environments.
+An Application may need different Configuration on different Environment.
+
+Using @Profile on Configuration Class :
+---------------------------------------
+
+	@Configuration
+	public class DefaultConfiguration{
+	}
+	
+	@Configuration
+	@Profile("dev")
+	public class DevelopmentConfiguration{
+	}
+	
+	@Configuration
+	@Profile("prod")
+	public class ProductionConfiguration{
+	}
+	
+Using @Profile on @Bean Methods :
+---------------------------------
+
+	@Bean
+	@Profile("oracle")
+	public DataSource oracleDataSource()
+	{
+		DataSource dataSource;
+		return dataSource;
+	}
+Assigning a Spring Profile To a Bean :
+--------------------------------------
+We can also assign Profile to the Spring Bean.
+Spring will register the Spring Bean only when the specific profile is active.
+
+
+	@Component
+	@Profile("prod")
+	public class EmployeeServiceImpl implements EmployeeService{
+	}
+	
+We can also create Spring profiles using logical operations.
+
+	@Component
+	@Profile("dev | prod")
+	public class EmployeeServiceImpl implements EmployeeService{
+	}
+	
+	@Component
+	@Profile("dev & prod")
+	public class EmployeeServiceImpl implements EmployeeService{
+	}
+	
+	@Component
+	@Profile("!dev")
+	public class EmployeeServiceImpl implements EmployeeService{
+	}
+	
+************************************************** 31.Spring Core Annotations   *************************************************************
 
 @Required :
 -----------
@@ -877,13 +946,9 @@ If we are using @Autowired Annotation on our setter Method we need not use @Requ
 @Value Annotation can be used to assign default values to the variables and method arguments.
 @Value Annotation can also be used to read Spring Environment variables as well as System variables.
 
-@Profile :
-----------
-If we want particular @Component Class or @Bean Method to be used only when a specific profile is active then we mark it with @Profile Annotation.
 
-	 @Component
-	 @Profile("development")
-	 Class Bile implements Vehicle
+	 
+
 	 
 
 
