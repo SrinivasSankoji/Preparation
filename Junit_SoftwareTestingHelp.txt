@@ -1,19 +1,21 @@
 1.Introduction										[16-JAN-2022]  (Done)	
 2.Install Junit                                     [16-JAN-2022]  (Done)
 3.Junit TestCase                                    [16-JAN-2022]  (Done)
-4.Junit TestFixture                                 [16-JAN-2022]  ()
-5.Ways to Execute Junit TestCases                   [16-JAN-2022]  ()
-6.Junit Annotations                                 [16-JAN-2022]  ()
-7.Junit Ignore TestCase                             [16-JAN-2022]  ()
-8.Junit Test Suite                                  [16-JAN-2022]  ()
-9.Junit Test Execution Order                        [16-JAN-2022]  ()
-10.@RepeatedTest                                    [16-JAN-2022]  ()
-11.@Nested                                          [16-JAN-2022]  ()
-12.Custom Display Name and @Conditional             [16-JAN-2022]  ()
-13.Junit vs TestNG                                  [16-JAN-2022]  ()
-14.Junit Additional Classes                         [16-JAN-2022]  ()
-15.Junit Assertions                                 [16-JAN-2022]  ()
-16.Grouped Assertions                               [16-JAN-2022]  ()
+4.Junit TestFixture                                 [16-JAN-2022]  (Done)
+
+5.Ways to Execute Junit TestCases                   [17-JAN-2022]  (Done)
+6.Junit Annotations                                 [17-JAN-2022]  (Done)
+7.Junit Ignore TestCase                             [18-JAN-2022]  (Done)
+8.Junit Test Suite                                  [17-JAN-2022]  ()
+9.Junit Test Execution Order                        [17-JAN-2022]  ()
+10.@RepeatedTest                                    [17-JAN-2022]  ()
+
+11.@Nested                                          [18-JAN-2022]  ()
+12.Custom Display Name and @Conditional             [18-JAN-2022]  ()
+13.Junit vs TestNG                                  [18-JAN-2022]  ()
+14.Junit Additional Classes                         [18-JAN-2022]  ()
+15.Junit Assertions                                 [18-JAN-2022]  ()
+16.Grouped Assertions                               [18-JAN-2022]  ()
 
 ********************************************************** 1.Introduction ******************************************************************************************
 
@@ -116,7 +118,125 @@ This can be done by using Junit Vintage API.
 	
 ********************************************************** 4.Junit TestFixture ****************************************************************************************
 
+When there are multiple Test Cases in the Junit Class there could be a common Object or Objects used by all the Test cases.
+Here the common Object can be a specific function that might be a common function throughout all the Test Cases.
 
+Test Fixture is a set of fixed steps in a Code that can be used as pre condition or post condition for all the Test Cases.
+The main purpose of Test Fixture is to eliminate the duplication of the code for all the Test Cases.
+
+With @BeforeEach Annotation Framework will run the setUp() before every TestCase.
+With @AfterEach Annotation Framework will run the tearDown() after every TestCase.
+With @BeforeAll Annotation Framework will run the preClass() only Once Before All the Test Cases.
+With @AfterAll Annotation Framework will run the postClass() only Once After All the Test Cases.
+
+Note :
+------
+@BeforAll and @AfterAll must be declared as static.
+
+The names setUp() and tearDown() are just user defined names and we may set any method name.
+
+	
+	@BeforeAll
+	public static void preClass() {
+		System.out.println("This is the preClass() that executes only Once Before All the Test Cases");
+	}
+	
+	@BeforeEach
+	public void setUp() {
+		System.out.println("This is the setUp() that executes Before every Test case");
+	}
+
+	@Test
+	public void test1() {
+		System.out.println("This is the testcase test1() in this class");
+	}
+
+	@Test
+	public void test2() {
+		System.out.println("This is the testcase test2() in this class");
+	}
+
+	@Test
+	public void test3() {
+		System.out.println("This is the testcase test3() in this class");
+	}
+
+	@AfterEach
+	public void tearDown() {
+		System.out.println("This is the tearDown() that executes After every Test case");
+		System.out.println("\n");
+	}
+	
+	@AfterAll
+	public static void postClass() {
+		System.out.println("This is the postClass() that executes only Once After All the Test Cases");
+	}
+	
+Order of Execution will be
+
+@BeforeAll
+@Before
+@Test
+@After
+@AfterAll
+
+********************************************************** 5.Ways to Execute Junit TestCases ***********************************************************************
+
+In order to execute Junit Test Cases there are certain ways where in we could run a Single Class which contains one or more Test Methods through the following Options.
+
+1.Run as Junit Test option.
+2.Run using the shortcut key ie ALT+SHIFT+X T
+3.To execute only one Test method in the Class	ie Right Click on the Test Method and run as Juint Test
+4.Run the Junit Tests from the Command Line
+5.Run the Junit Tests using Testrunner Class
+6.Run the Junit Tests using Maven
+
+5.Run the Junit Tests using Testrunner Class :
+----------------------------------------------
+
+
+
+********************************************************** 6.Junit Annotations  ************************************************************************************
+
+A Test execution goes through different stages of life cycle.
+Before starting a Test there are certain activities to be performed on the initialization of the Class.
+Certain other activities to be performed before Test case begins.
+Certain other activities to be performed during the Test Execution or after the Test Execution.
+All the above scenarios can be done using the below Annotations.
+
+@BeforeAll
+@BeforEach
+@Test
+@AfterEach
+@AfterAll
+
+Other Annotations are
+
+@TestMethodOrder and @Order
+@ExtendWith
+@TestFactory
+@Nested
+@Tag
+@ParameterizedTest and @ValueSource
+@RepeatedTest
+@DisplayName
+@TestInstance
+
+********************************************************** 7.Junit Ignore TestCase *********************************************************************************
+
+Sometimes we get the requirement where we need not run the Test Cases or not supposed to run all the Test Cases.
+In this case we need to ignore the Test Cases and that can be done by using @Ignore in Junit 4 and @Disabled in Junit 5.
+@Ignore or @Disabled Annotation can be used at Test Level or at Class Level.
+
+********************************************************** 8.Junit Test Suite **************************************************************************************
+
+
+
+
+
+
+
+ 
 
 
  
