@@ -2,16 +2,16 @@
 2.Install Junit                                     [16-JAN-2022]  (Done)
 3.Junit TestCase                                    [16-JAN-2022]  (Done)
 4.Junit TestFixture                                 [16-JAN-2022]  (Done)
-
 5.Ways to Execute Junit TestCases                   [17-JAN-2022]  (Done)
 6.Junit Annotations                                 [17-JAN-2022]  (Done)
 7.Junit Ignore TestCase                             [18-JAN-2022]  (Done)
-8.Junit Test Suite                                  [17-JAN-2022]  ()
-9.Junit Test Execution Order                        [17-JAN-2022]  ()
-10.@RepeatedTest                                    [17-JAN-2022]  ()
 
-11.@Nested                                          [18-JAN-2022]  ()
-12.Custom Display Name and @Conditional             [18-JAN-2022]  ()
+8.Junit Test Suite & Filtering Test Cases           [27-JAN-2022]  ()
+9.Junit Test Execution Order                        [27-JAN-2022]  ()
+10.@RepeatedTest                                    [27-JAN-2022]  ()
+11.@Nested                                          [27-JAN-2022]  ()
+12.Custom Display Name and @Conditional             [27-JAN-2022]  ()
+
 13.Junit vs TestNG                                  [18-JAN-2022]  ()
 14.Junit Additional Classes                         [18-JAN-2022]  ()
 15.Junit Assertions                                 [18-JAN-2022]  ()
@@ -193,8 +193,65 @@ In order to execute Junit Test Cases there are certain ways where in we could ru
 
 5.Run the Junit Tests using Testrunner Class :
 ----------------------------------------------
+In realtime scenario executing one Test Case at a time is the least preferred option.
+Consider the scenario where in we need to run a group of related/un related Test Cases.
+Here we need to create and execute regression Test Suites or smoke Test Suites.
+The  different Annotations that can be used in JUnit4 to create and execute the Test Suites are
+
+@Suite
+@SuiteClasses
+ 
+The overall process for executing the Test Suite using the Test Runner is as follows
+1.Create the JUnit classes
+2.Create the Test Suite Class fro grouping the Test Cases
+3.Create the Test Runner class to invoke the Test Suite created
+4.Execute the Test Runner class
+
+		public class TestCaseOne {
+
+			int x = 36;
+
+			@Test
+			public void compareInteger() {
+				int y = 23;
+				Assertions.assertEquals(x, y);
+			}
+
+		}
+		
+		public class TestCaseTwo {
+
+			String name1 = "Bhaumik";
+
+			@Test
+			public void compareString() {
+				String name2 = "Aadvik";
+				Assertions.assertEquals(name1, name2);
+			}
+		}
+		
+In JUnit4 To group multiple Junit Test Classes and bind them into a single Test Suite we use the Annotations 
+@Suite
+@SuiteClasses
 
 
+		import org.junit.Before;
+		import org.junit.runner.RunWith;
+		import org.junit.runners.Suite;
+		import org.junit.runners.Suite.SuiteClasses;
+
+		@RunWith(Suite.class)
+		@SuiteClasses({ TestCaseOne.class, TestCaseTwo.class })
+		public class TestSuiteDemo {
+
+			@Before
+			public static void runJunitTestSuite() {
+				System.out.println("Running Junit Test Suite for Test Cases TestCaseOne and TestCaseTwo");
+			}
+		}
+		
+6.Run the Junit Tests using Maven :
+-----------------------------------
 
 ********************************************************** 6.Junit Annotations  ************************************************************************************
 
@@ -228,7 +285,32 @@ Sometimes we get the requirement where we need not run the Test Cases or not sup
 In this case we need to ignore the Test Cases and that can be done by using @Ignore in Junit 4 and @Disabled in Junit 5.
 @Ignore or @Disabled Annotation can be used at Test Level or at Class Level.
 
-********************************************************** 8.Junit Test Suite **************************************************************************************
+		@Test
+		@Disabled
+		public void testHelloWorld() {
+			HelloWorld helloWorld = new HelloWorld("Hello world");
+			assertEquals(helloWorld.getMessage(), "Hello world");
+		}
+
+********************************************************** 8.Junit Test Suite & Filtering Test Cases *****************************************************************
+
+The Annotations @RunWith,@SelectClasses and @SelectPackages helps us to create a Test Suite by grouping multiple Junit Test Cases in Junit5.
+
+To create a Test Suite by grouping Multiple Test Classes in Junit5
+
+		@RunWith(JUnitPlatform.class)
+		@SelectClasses(PaymentTest.class)
+		public class IncludePackages_TestSuite_Test {
+		}
+		
+To create a Test Suite using @SelectPackages in Junit5
+
+		@RunWith(JUnitPlatform.class)
+		@SelectPackages("com.javabydeveloper.payment")
+		public class IncludePackages_TestSuite_Test {
+		}
+
+		
 
 
 
