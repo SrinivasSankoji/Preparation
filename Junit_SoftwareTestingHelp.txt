@@ -303,13 +303,19 @@ To create a Test Suite by grouping Multiple Test Classes in Junit5
 		public class IncludePackages_TestSuite_Test {
 		}
 		
-To create a Test Suite using @SelectPackages in Junit5
+To create a Test Suite for a Single Package or Multiple Packages using @IncludePackages and @SelectPackages in Junit5
 
+		
 		@RunWith(JUnitPlatform.class)
 		@SelectPackages("com.javabydeveloper.payment")
 		public class IncludePackages_TestSuite_Test {
 		}
 
+Filtering Test Suite :
+----------------------
+
+
+		
 		
 
 
