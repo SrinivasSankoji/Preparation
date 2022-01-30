@@ -22,7 +22,8 @@
 21.SOAP Web Service using JAX-WS (Journaldev)
 22.SOAP web Service using Apache Axis (Journaldev)
 23.JAX-WS Web Service Deployment on Tomcat Server (Journaldev)
-24.Spring Boot SOAP Webservice Example (howtodoinjava)					(29-Jan-2022) ()
+24.Spring Boot SOAP Webservice Example (howtodoinjava)					(29-Jan-2022) (Done)
+25.Spring Boot SOAP Client – WebServiceTemplate (howtodoinjava)			(30-Jan-2022) (Done)
 
 SOAP Service Installation
 
@@ -105,20 +106,19 @@ SEI can be generated out of WSDL.
 
 ******************************************************** 3.Stub Generation *********************************************************************************
 
-Here we are going to write Java Application that consumes the Web Service i.e We are writing a Web Service Client.
+Here we are going to write the Java Application that consumes the Web Service i.e We are writing the Web Service Client.
 There are few Web Services that are free for Online
 
 http://www.webservicex.net/geoipservice.asmx?WSDL
 
 Create a Java Project that locates the country based on IP.
-In case of Normal Java Application we have an Interface and we call the method of that Interface to get the country based on IP.
-
-Since we are calling a remote web service we need to have a SEI to call the Web Service.
+In case of normal Java Application we have an Interface and we call the method of that Interface to get the country based on IP.
+Since we are calling a remote Web Service we need to have a SEI to call the Web Service.
 To call the Web Service Stub has to be generated locally and based on Stub we call the Web Service.
 We generate the Stub using the Java Tools and Stub internally calls the Web Service.
 Copy the Source Code that is getting generate form the WSDL and paste it into the project structure.
 
-Use The Command wsimport WSDL(File Name)
+Use the Command wsimport WSDL(File Name)
 
 ******************************************************** 4.Calling the Service : ****************************************************************************
 
@@ -131,21 +131,21 @@ Use The Command wsimport WSDL(File Name)
 ******************************************************** 9.Service First and Contract First Web Services : ***********************************************
 
 We can create SOAP web Services in RPC Style and Document Style and the difference is the way WSDL file is getting generated.
-By adding @WebServie and @SOAPBinding we are making the service as Web Service and this is a Simple Scenario.
+By adding @WebServie and @SOAPBinding we are making the Service as Web Service and this is a Simple Scenario.
 There will be scenarios where @WebService and @SOAPBinding will not be enough.
 
-Do we write interface first or implementation first ?
-Most of the times we write an interface first and then write the implementation.
-The reason behind this is we can change the implementation and even if the business logic changes interface remains same.
+Do we write Interface first or implementation first ?
+Most of the times we write an interface first and then we write the Implementation.						
+The reason behind this is we can change the implementation and even If the business logic changes interface remains same.
 Interface in Web Service Technology is WSDL.
 Client Code refers to the WSDL to find out what the Web Service is providing.i.e what are the input parameters,return type and method name.
 We need to lock the WSDL because it will be called by many clients and there will not be any impact.
 We can change the implementation based on requirement.
 
-When ever we are using @WebService to the implementation class,WSDL is getting generated fromm the implementation.
-This Scenario is Called Service First.
+Whenever we are using @WebService to the implementation class,WSDL is getting generated fromm the Implementation.
+This Scenario is called Service First.
 If I change the parameters of implementation Class then WSDL also impacted Here.
-Here the Problem is WSDL is not locked.
+Here the problem is WSDL is not locked.
 
 Here the solution is write the WSDL first and generate the implementation from the WSDL.
 This scenarios is called contract first.
@@ -212,11 +212,70 @@ Add SOAP Web Service Configuration Beans
 Create a Configuration class to hold the Bean Definitions
 
 The Configuration Class extends WsConfigurerAdapter which configures annotation driven Spring Web Service Programming Model.
+
 MessageDispatcherServlet can be used for handling SOAP Requests.
 We need to inject ApplicationContext to the MessageDispatcherServlet so that Spring Web Service can find other Servlets.
 MessageDispatcherServlet can also be used to declare the URL Mapping for the Requests.
+The Configuration also uses the transformed WSDL Location ie servlet.setTransformWsdlLocations(true).
+If we see the exported WSDL then we have the local Addrees.
+Similarly If we see the WSDL using the public facing IPAddress then we see the IPAddress instead of Localhost.
+So the  EndPoint URL will be dynamic based on the deployment Environment
+
+	@Bean
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) 
+    {
+        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        servlet.setApplicationContext(applicationContext);
+        servlet.setTransformWsdlLocations(true);
+        return new ServletRegistrationBean(servlet, "/service/*");
+    }
+
+DefaultWsdl11Definition exposes a Standard WSDL 1.1 using XSD Schema.
+The bean Name StudentDetails will be the WSDL Name and It will be exposed under http://localhost:8080/service/studentDetails.wsdl/
+This is the simple approach to expose the Contract First WSDL in Spring.
+
+	@Bean(name = "studentDetailsWsdl")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) 
+    {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("StudentDetailsPort");
+        wsdl11Definition.setLocationUri("/service/student-details");
+        wsdl11Definition.setTargetNamespace("http://www.howtodoinjava.com/xml/school");
+        wsdl11Definition.setSchema(countriesSchema);
+        return wsdl11Definition;
+    }
+	
+	@Bean
+    public XsdSchema countriesSchema() 
+    {
+        return new SimpleXsdSchema(new ClassPathResource("school.xsd"));
+    }
 
 
+******************************************************** 25.Spring Boot SOAP Client – WebServiceTemplate (howtodoinjava) *****************************************************
+
+Before running SOAP Client we need to have one SOAP Service ready which will invoke from the Client Code.
+Once we run the SOAP Service we get the WSDL from the project.
+Download the WSDL and copy it into the resources Folder.
+
+Step 1 :
+--------
+Generate the SOAP Domain Classes ie
+maven-jaxb2-plugIn can be used to generate the JAXB Annotated Stub Classes.
+Here PlugIn will generate the Classes in the specified directory.
+PlugIn will check the generated Timestamp of the Classes so that classes are generated only when there is a change in WSDL.
+
+Step 2 :
+--------
+Create a SOAP Client with WebServiceTemplate.
+Create a SOAP Connector class that extends WebServiceGatewaySupport which will act as a generic Web Service Client for all the requests to the Web Service.
+
+Step 3 :
+--------
+Spring Bean Configuration
+Create the Configuration Class which will have the required Bean Definitions required for the SOAP Connector to work properly.
+WebServiceGatewaySupport requires Marshaller and UnMarshaller which are instances of Jaxb2Marshaller Class.
+Jaxb2Marshaller cna be used to Marshaller/UnMarshaller of the SOAP Connector Bean.
 
 
 

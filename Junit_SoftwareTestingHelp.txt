@@ -5,8 +5,8 @@
 5.Ways to Execute Junit TestCases                   [17-JAN-2022]  (Done)
 6.Junit Annotations                                 [17-JAN-2022]  (Done)
 7.Junit Ignore TestCase                             [18-JAN-2022]  (Done)
+8.Junit Test Suite & Filtering Test Cases           [30-JAN-2022]  (Done)
 
-8.Junit Test Suite & Filtering Test Cases           [27-JAN-2022]  ()
 9.Junit Test Execution Order                        [27-JAN-2022]  ()
 10.@RepeatedTest                                    [27-JAN-2022]  ()
 11.@Nested                                          [27-JAN-2022]  ()
@@ -313,6 +313,21 @@ To create a Test Suite for a Single Package or Multiple Packages using @IncludeP
 
 Filtering Test Suite :
 ----------------------
+Sometimes we need to filter out Test Cases and execute a particular set of Test Cases as per our needs.
+Consider the scenario where some of the Test Cases are identified for Regression Testing,Smoke Testing,Unit Testing and so on.
+We need to include or exclude Test Cases from certain packages or Classes or Categories etc.
+The Annotations that can be used to Filtering the Test Cases are 
+
+@IncludeTags
+@ExcludeTags
+@IncludePackages
+@ExcludePakcages
+@IncludeClassNamePatterns
+@ExcludeClassNamePatterns
+
+
+
+
 
 
 		
