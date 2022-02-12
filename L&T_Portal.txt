@@ -116,11 +116,72 @@ Technologies :
 --------------
 SOAP 
 Junit
+Mockito
 Spring Boot Testing
 Integration Testing
 System Testing
 Regression Testing
 Logging
+
+Locker -- Vecos Releezme Web System API
+Occupancy -- Point Grab
+Access Control -- Schneider Electric Band
+
+mohith
+mohith@123
+
+7406362415 Fayas Jaffer L&T
+9008644412 Chetan GB
+
+Transport
+WebSocketHttpHeaders
+SockJSClient
+WebSocketStompClient
+
+StompSessionHandler
+WebSocketHttpHeaders
+stompClient.connect()
+
+returns ListenableFuture<StompSession> connect()
+
+Agile Methodology :
+-------------------
+JIRA
+Azure
+TFS
+
+Thursday
+
+Locker -- Vecos Releezme Web System API :
+-----------------------------------------
+Which Environment we want use for Development
+Credentials
+Where It has to be implemented
+
+Messaging 5.3.15
+Stomp 5.5.8
+
+Locker Share
+Locker Release
+
+Tomcat 8.5 or 9.0
+Java8
+STS
+Eclipse
+Postman
+NotePad++
+BeyondCompare
+SSMS
+MSSQL Server 14
+
+
+
+
+
+
+
+
+
 
 
 

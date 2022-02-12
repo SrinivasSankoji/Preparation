@@ -1,6 +1,105 @@
-1.Mockito Framework for Mocking in Unit Testing									[27-JAN-2022]  ()
+1.Mockito Framework for Mocking in Unit Testing									[31-JAN-2022]  ()
 2.Creating Mocks and Spies in Mockito                                           [27-JAN-2022]  ()
 3.Different Types of Matchers Provided by Mockito                               [27-JAN-2022]  ()
 4.Mocking Private, Static and Void Methods Using Mockito                        [27-JAN-2022]  ()
 5.Top 12 Mockito Interview Questions                                            [27-JAN-2022]  ()
+5.SpringBoot Junit and Mockito (howtodoinjava)									[12-FEB-2022]  (Done)
+6.SpringBoot Junit and Mockito (javainuse)										[27-JAN-2022]  ()
+7.Spring Boot Applications with JUnit 5 (developer.okta.com)					[27-JAN-2022]  ()
+
+************************************************* 1.Mockito Framework for Mocking in Unit Testing	*********************************************************
+
+Unit Testing is Simple and effective technique to gain a good level of confidence in the code that has to be shipped.
+Moreover it avoids regression issues with every piece of code that gets checked In.
+With MicroServices kind of Architecture ie even for simple structure involving Database calls straitforward Unit Testing does not suffice.
+What we need to do is mock the dependencies and test the actual logic of the method under the Test.
+
+Mock/Stub is a term that people commonly hear while creating the Unit Test Cases in Particular.
+Mocking is nothing but providing a Controlled Instance or providing the implementation of the dependency that the code under the Test depends on in order to execute the Test Cases.
+Here behavior of the dependency can be programmed or controlled as it is required for the code under the Test.
+
+Almost every Application has primarily 3 Layers
+User Interface
+Business Layer
+Data Access Layer
+
+Consider the case of an Application like Google Maps can have dependencies on
+Actual Data Store like MySql or any other No SQL Database which stores Map data.
+An External Service like CoordinateService which provides Longitude and Latitude of a Location.
+An External Service like TrafficService which provides real Traffic Information for a given Coordinate Pair.
+
+If someone is trying to validate the Core business logic using Unit Test untill and unless they have working implementation of those dependencies the Test Cases could not run. 
+Mock comes in these situations whether no Matter your dependency is up and running or Not.
+Always gauranteed to run the business logic with controlled Response for the dependency that's being called from the Code under Test.
+
+Types of Test Doubles :
+-----------------------
+Mock is a type of "Test Double" ie It is a tech Jargon.
+"Test Double" essentially means an Object which is replaced by equivalent real Object instance or dependency.
+There are 4 types of Test Doubles 
+
+Fake
+Stubs
+Spies
+Mocks
+
+Fake :
+------
+Fake is a working implementation similar to real dependency expect the fact that it is local to the system under Test.
+Consider the scenario where we want to hit the Database instead of that Test uses the Collection or In Memory to store the Data.
+
+Stubs :
+-------
+Stubs are preconfigured responses when a dependency is called from the System Under Test.
+
+Spies :
+-------
+As the Name suggests it is the real function call with some watching Mechanism.
+Post the call It can be verified whether the call was actually triggered or not along with parameters.
+
+Mocks :
+-------
+Mocks are special instances of Objects on which Stubbed/Pre Configured response can be specified.
+The fact that the Mock got called can be verified as an Assert in the Test.
+Consider the scenario of Report generator function which sends an Email to a specified Address during Execution.
+As we don't want to send the Mail again and again during Testing,EmailService is Mocked ie The Method which sends the Email is configured to do nothing when it is called.
+At the end of the Test we can verify that EmailService method got called through Mocked Object.
+
+Example :
+---------
+Consider the scenario where we are trying to Unit Test an Application which calculates the Total marks for a Student in all the Subjects ie calculateSumAndStore()
+and stores it into Database.
+If we want to write a Unit Test for a Method ie calculateSumAndStore() then we might have a real implementation of a Database and store that Total.
+In this case we won't be able to Unit Test this function.
+But with Mock we can simply mock the Database Service and validate the rest of the logic.
+
+
+************************************************* 5.SpringBoot Junit and Mockito (howtodoinjava) **********************************************************
+
+We can create a Test class in two ways
+
+1.MockitoJunitRunner :
+----------------------
+MockitoJunitRunner class automatically initializes all the Objects annotated with @Mock and @InjectMocks Annotations.
+
+2.MockitoAnnotations.openMocks() :
+----------------------------------
+We can also use the static Method ie MockitoAnnotations.initMocks().
+This method upon initialization of Junit Tests initializes the Mock Objects.
+
+@Mock :
+-------
+@Mock Annotation creates the Mock implementation for the class it is Annotated with.
+
+@InjectMocks :
+--------------
+@InjectMocks creates the Mock Implementation for the class it is Annotated with it and aditionally it injects the dependent Mocks that are Annotated with
+the Annotations @Mock into it.
+
+
+
+
+
+
+
 

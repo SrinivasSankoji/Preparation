@@ -1,21 +1,22 @@
-1.Introduction										[16-JAN-2022]  (Done)	
-2.Install Junit                                     [16-JAN-2022]  (Done)
-3.Junit TestCase                                    [16-JAN-2022]  (Done)
-4.Junit TestFixture                                 [16-JAN-2022]  (Done)
-5.Ways to Execute Junit TestCases                   [17-JAN-2022]  (Done)
-6.Junit Annotations                                 [17-JAN-2022]  (Done)
-7.Junit Ignore TestCase                             [18-JAN-2022]  (Done)
-8.Junit Test Suite & Filtering Test Cases           [30-JAN-2022]  (Done)
+1.Introduction														[16-JAN-2022]  (Done)	
+2.Install Junit                                     				[16-JAN-2022]  (Done)
+3.Junit TestCase                                    				[16-JAN-2022]  (Done)
+4.Junit TestFixture                                 				[16-JAN-2022]  (Done)
+5.Ways to Execute Junit TestCases                   				[17-JAN-2022]  (Done)
+6.Junit Annotations                                 				[17-JAN-2022]  (Done)
+7.Junit Ignore TestCase                             				[18-JAN-2022]  (Done)
+8.Junit Test Suite & Filtering Test Cases           				[30-JAN-2022]  (Done)
 
-9.Junit Test Execution Order                        [27-JAN-2022]  ()
-10.@RepeatedTest                                    [27-JAN-2022]  ()
-11.@Nested                                          [27-JAN-2022]  ()
-12.Custom Display Name and @Conditional             [27-JAN-2022]  ()
+9.Junit @Tag and Filtering tagged tests (javabydeveloper)			[30-JAN-2022]  (Done)
+10.Junit Test Execution Order                        				[27-JAN-2022]  ()
+11.@RepeatedTest                                    				[27-JAN-2022]  ()
+12.@Nested                                          				[27-JAN-2022]  ()
+13.Custom Display Name and @Conditional             				[27-JAN-2022]  ()
 
-13.Junit vs TestNG                                  [18-JAN-2022]  ()
-14.Junit Additional Classes                         [18-JAN-2022]  ()
-15.Junit Assertions                                 [18-JAN-2022]  ()
-16.Grouped Assertions                               [18-JAN-2022]  ()
+14.Junit vs TestNG                                  				[18-JAN-2022]  ()
+15.Junit Additional Classes                         				[18-JAN-2022]  ()
+16.Junit Assertions                                 				[18-JAN-2022]  ()
+17.Grouped Assertions                               				[18-JAN-2022]  ()
 
 ********************************************************** 1.Introduction ******************************************************************************************
 
@@ -318,6 +319,7 @@ Consider the scenario where some of the Test Cases are identified for Regression
 We need to include or exclude Test Cases from certain packages or Classes or Categories etc.
 The Annotations that can be used to Filtering the Test Cases are 
 
+@Tag
 @IncludeTags
 @ExcludeTags
 @IncludePackages
@@ -325,8 +327,22 @@ The Annotations that can be used to Filtering the Test Cases are
 @IncludeClassNamePatterns
 @ExcludeClassNamePatterns
 
+@Tag :
+------
+Test Classes and Methods can be tagged in the Junit5 using @Tag Annotation.
+Those Tags can later be used to filter out the Test discovery and Execution.
 
 
+
+
+********************************************************** 9.Junit @Tag and Filtering tagged tests (javabydeveloper) **********************************************
+
+
+
+
+
+
+**********************************************************  10.Junit Test Execution Order  *************************************************************************
 
 
 

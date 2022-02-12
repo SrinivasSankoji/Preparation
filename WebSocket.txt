@@ -10,15 +10,12 @@
 Web sockets are defined as a Two way communication between the server and client over a single TCP Connection.
 i.e both parties communicate with each other and exchange data at the same time.
 Web socket provides a full duplex communication from the ground.
-web socket works on the principle of HandShake and
-It is a process that ensures that server is in sync with its clients.
+web socket works on the principle of HandShake and It is a process that ensures that server is in sync with its clients.
 Key points are true concurrency and optimization of Performance resulting in more responsive and rich web applications. 
-Web socket protocol is standardized and  a 
-web application can speed up with the help of this Protocol Technology.
+Web socket protocol is standardized and a web application can speed up with the help of this Protocol Technology.
 The Only requirement to use the web socket is , on the browser side we need to run a Java script library 
-that interrupts the web socket handshake , establish and maintain the web socket connection.
-Web socket first establishes a regular HTTP connection to the server and then converts it to a bidirectional web socket connection 
-by sending an Upgrade Header.
+that interrupts the web socket handshake,establish and maintain the web socket connection.
+Web socket first establishes a regular HTTP connection to the server and then converts it to a bidirectional web socket connection by sending an Upgrade Header.
 
 WebSocket Configuration :
 The First Step is to configure the WebSocket EndPoint and Message Broker.
@@ -28,9 +25,7 @@ First We Need to register a web socket EndPoint that the client will use to Conn
 Second We Need to Configure a Messaging Broker that will be used to route Messages from One Client To Another.
 WebSocket is A communication protocol and it does not define things like :
  
-How to Send a Message Only to Users who are subscribed to a Particular Topic,
-How to Send a Message to a Particular User.
-
+How to send a Message only to Users who are subscribed to a Particular Topic,How to send a Message to a Particular User.
 Here we Need STOMP(Simple Text Oriented Messaging Protocol).
 STOMP is a Messaging Protocol that defines the rules and format for data Exchange.
 
@@ -70,12 +65,10 @@ RealTime Web Socket Implementation :
 www.gdax.com/trade/BTC_USD
 https://socket.io/demos/chat/
 
-When Not to Use Web Socket :
-----------------------------
+When not to use WebSocket :
+---------------------------
 Whenever we want to Retrieve Old Information then Web Socket is Not Required.
-Web Socket Create a Socket and Keeps it alive until we close the Connection.
-
-
+WebSocket creates a Socket and keeps it alive until we close the Connection.
 
 ********************************************************* 3.Configuring WebSocket Support on the Server Side ******************************************************
 
