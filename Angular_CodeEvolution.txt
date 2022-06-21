@@ -33,18 +33,18 @@
 
 ################################################### 1.Introduction	####################################################################
 
-It is a JavsScript Framework and is used to Build Client Side Applications.
-Angular is Specially used to Build Single Page Applications i.e without refreshing the Entire Page.
-Angular Provides Modular Approach and Hence the Application we Build has a Clear Structure.
-By Making use of Components which is a Feature of Angular,we have lot of Re usability of Code.
-Angular has so Many Features Like Routing which makes Development Quicker and Faster.
-Angular Even Provides Support For Unit Testing.
-Angular is From Google and uses MicroSoft Typescript Language.
+It is a JavsScript Framework and is used to build Client Side Applications.
+Angular is specially used to build Single Page Applications i.e without refreshing the entire page.
+Angular Provides Modular Approach and hence the Application we build has a Clear Structure.
+By making use of Components which is a feature in Angular we have lot of reusability of Code.
+Angular has so many features like Routing which makes development quicker and faster.
+Angular even provides support for Unit Testing.
+Angular is from Google and uses MicroSoft Typescript Language.
 
 ######################################################### 2.Getting Started #########################################################
 
-PreRequisite For Angular are Basics of HTML,CSS and JavaScript.
-We need to Set Up Development Environment i.e  Install
+PreRequisite for Angular are basics of HTML,CSS and JavaScript.
+We need to Setup Development Environment i.e  install
 
 	Node
 	Npm
@@ -58,17 +58,17 @@ Once the Node is Installed,In the Command Prompt run the Command
 	npm -v
 	
 Install the Angular CLI i.e Command Line Interface.
-Angular CLI generates the Building Block of Angular Application by Typing the Commands.
-Angular CLI makes the Development Quicker and Easier by Following Best Practices.
-To Install Angular CLI 
+Angular CLI generates the building Block of Angular Application by typing the Commands.
+Angular CLI makes the development quicker and easier by following best practices.
+To install Angular CLI 
 
 	npm install -g @angular/cli
 	
-To Check Whether the Angular CLI is Installed or Not,Run the Command
+To Check whether the Angular CLI is installed or not,run the command
 
 	ng - v
 
-To Install the Latest Version of Angular 
+To install the latest version of Angular 
 
 	npm install --no-save @angular/cli@^8.3.15
 	
@@ -76,17 +76,17 @@ To Install the Latest Version of Angular
 	
 ############################################# 3.Hello World #############################################
 
-To Create Hello World Angular Application we Make use of Angular CLI.
+To create Hello World Angular Application we make use of Angular CLI.
 In Visual Studio Code we have an Integrated Terminal where we can run the Commands.
 
-	View -> Terminal -> 	Make Sure we are Inside the Angular Folder.
+	View -> Terminal -> Make sure we are inside the Angular Folder.
 	
-To Create a New Angular Project use the Command 
+To create a New Angular Project we use the Command 
 	
 	ng new Angular
 
-Here the Above Command takes time to run and once it is Completed it Will Create the Folder Angular.
-Now Change the Application Folder to Angular
+Here the above command takes time to run and once it is completed it will create the folder Angular.
+Now change the Application folder to Angular
 
 	cd Angular
 
@@ -94,7 +94,7 @@ To run the Application run the Command
 
 	ng serve
 
-To Check the Application in the Browser
+To check the Application in the Browser
 
 	localhost:4200
 	

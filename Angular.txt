@@ -15,27 +15,29 @@ ng serve (Run The Application)
 
 -- Always include the Selector in appComponenet.HTML
 
---In line Template  
+-- In line Template  
 -- Interpolation  --> from Class to Template
---Event Binding
---Template Reference Variables
+-- Event Binding
+-- Template Reference Variables
 -- Component Interaction
 
-Practice Styles,Classes,Pipes and Read Services and Dependency Injection
+Practice Styles,Classes,Pipes and read Services and Dependency Injection
 Creating a Service : ng g s employeeService,declare service in constructor and use it in ngOnInit() to call the Service
 
 Routing :
 ---------
-Declaring the Components in App Module i.e in declarations Array and also in App Routing Module we are Duplicating.
-We have Same Import Statements in App Module and App Routing Module.
+Declaring the Components in App Module i.e in declarations Array and also in App Routing Module we are duplicating.
+We have same Import Statements in App Module and App Routing Module.
 
 Forms :
 *******
-To Add Bootstrap Classes to Our Project.
+To add Bootstrap Classes to our Project.
 https://getbootstrap.com/docs/4.3/getting-started/introduction/
-Copy The CSS URL and add in index.HTML
+Copy the CSS URL and add it in index.html
 
-To create a Model class in Angular ng generate class user 
+To create a Model class in Angular 
+
+	ng generate class user 
 
 
 Angular Basics (Code Evolution) :
