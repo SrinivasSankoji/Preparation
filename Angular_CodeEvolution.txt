@@ -100,46 +100,42 @@ To check the Application in the Browser
 	
 Flow of Execution :
 -------------------
-Angular apps are Modular in Nature i.e Angular Application is a Collection of Many Individual Modules.
-Every Module represents the Feature area in the Application and also Angular Modules are Imported and exported.
+Angular apps are modular in nature i.e Angular Application is a collection of many individual modules.
+Every module represents the feature area in the Application and also Angular Modules are imported and exported.
 
-	user Module 
+	User Module 
 	Admin Module
 	
-Every Angular Application has One Module which is the root Module & By Naming Convention it is app Module.
-Each Module in turn consists of Components and Services.
-Component Controls a Portion of the view in the Browser.
+Every Angular Application has one Module which is the root Module & by naming convention it is App Module.
+Each Module inturn consists of Components and Services.
+Component controls a portion of the view in the Browser.
 
-						
-				********************************
-				Component 1   -->   Navigation Bar
+		(Component 1)        Navigation Bar
 					
-				***							
-				***
-	-->			***   		Main Board
-	Side Bar	***			Component 3
-	Component 2	***
+										
 				
-Every Angular Application has One Component which is the root Component of the Application and is Called app Component.
-All Other Components will be nested inside the app Component.
+							 Main Board
+		Side Bar			(Component 3)
+		(Component 2)
+				
+Every Angular Application has one Component which is the root Component of the Application and is Called App Component.
+All other Components will be nested inside the App Component.
 Each Component have HTML Template and Class.
-HTML Template to represent the view in the Browser and Class that Contains the logic of that Particular View.
+HTML Template to represent the view in the Browser and Class that Contains the logic of that particular view.
 
-Modules can also have Services i.e a Class that Contains the Business Logic of an Application.
-In Addition to Components and Services,Module can also have few more Pieces of the Angular Application.
-Modules can be exported and Imported as and when required and  render the view to the Browser.
+Modules can also have Services i.e. Class that contains the Business Logic of an Application.
+In Addition to Components and Services,Module can also have few more pieces of the Angular Application.
+Modules can be exported and imported as and when required and render the view to the Browser.
 
 File Structure :
 ----------------
-package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules 
-which are required for an Angular Application to Work.
-
+package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules which are required for an Angular Application to Work.
 Packages listed in the development dependencies are installed when we run the command 
 
 	ng new Helloworld (While Creating an Angular Application)
 	
 All the Packages are installed in the Node Modules.
-We also have some of the Scripts that can be used to run the Application
+We also have some of the scripts that can be used to run the Application.
 	
 		ng serve
 		
@@ -150,17 +146,14 @@ we also have app Folder inside src folder.
 app Folder contains app.module.ts which is the Root Module for an Angular Application.
 app Folder also contains app.component.ts which is the Root Component for an Angular Application.
 
-
 Flow of Execution :
 -------------------
-When we run the Command i.e 
+When we run the below command to start an Angular Application i.e 
 
 	ng serve 
 
-to start an Angular Application,Execution starts from main.ts.
-main.ts Bootstrap the App Module and App Module in turn BootStrap the App Component.
-App Component has two Things 
-HTML template to represent the view in the Browser and Class that Controls the Logic of that Particular view.
+Execution starts from main.ts i.e. main.ts bootstrap the App Module and App Module in turn bootStrap the App Component.
+App Component has two things i.e HTML template to represent the view in the browser and Class that controls the logic of that particular view.
 
   import {Component } from '@angular/core'
   @Component({
@@ -174,49 +167,48 @@ HTML template to represent the view in the Browser and Class that Controls the L
 	title ='Helloworld';
   }
   
-At Runtime HTML Property gets Replaced by Class Property.
-Whenever we Change the Value in the Class it Will Automatically Reflect in the Browser.
+At runtime HTML property gets replaced by Class Property.
+Whenever we change the value in the Class it will automatically reflects in the Browser.
 
 Note :
-Component renders Different Portions of the View in the Browser.
+Component renders different portions of the view in the Browser.
 
 ######################################################## 4.Component Detail  ######################################################################
 
 
 	Template   +  Class  + Meta Data
 	
-Template represents the View in the Browser and is Created by Using HTML.
-Template will be the User Interface for the Application.
+Template represents the view in the browser and is created by using HTML.
+Template will be the User Interface for an Application.
 
-Class supports the view in the Browser and is Created by Using TypeScript.
-Class in Angular is Similar to any other Programming Language Class that Contains Properties and Methods 
-to Control the Logic of the View.
+Class supports the view in the Browser and is created by using TypeScript.
+Class in Angular is similar to any other Programming Language Class that contains properties and methods to control the logic of the View.
 
 Example :
-We Have a Class that Contains a Method to Show or Hide Element based on the Value of the Property.
+We have a Class that contains a method to show or hide the element based on the value of the Property.
 
 A Component can also have Metadata Attached to it.
-This is the Information that the Angular needs to decide whether Particular Class is a Angular Component or Not.
-Metadata is defined Using Decorator and is a Feature in TypeScript.
+This is the information that the Angular needs to decide whether particular Class is an Angular Component or Not.
+Metadata is defined using Decorator and is a feature in TypeScript.
 
-Decorator Annotation Provides information about the Class Attached to it.
+Decorator Annotation provides information about the Class Attached to it.
 For Component we use Component Decorator.
 
 Example :
 ---------
-In the app.component.ts we have one Class Named AppComponent and it Contains one Data Property
+In the app.component.ts we have one Class named AppComponent and it Contains one data Property
 
 	export class AppComponent
 	{
 		title='Code Evolution';
 	}
 
-To the Above Class we have Attached the Meta Data in the form of Component Decorator.
+To the above class we have attached the Meta Data in the form of Component Decorator.
 @Component tells the Angular that this is not the plain Class and is a Angular Component.
 
 @Component attaches the Meta Data to the Class right below it.
-Component Decorator Pattern Contains both the Metadata and the Class that Supports the View.
-As Part of Metadata We Have 
+Component Decorator Pattern contains both the Metadata and the class that supports the view.
+As part of Metadata we have 
 
 Selector 
 TemplateUrl
@@ -224,18 +216,18 @@ StyleUrls
 
 Selector  :
 -----------
-Selector is a Custom HTML Tag that can be used in HTML to Represent that this is an Angular Component.
-When we Specify the Selector in the HTML, Angular Renders the Component Template in its View.
+Selector is a custom HTML Tag that can be used in HTML to represent that this is an Angular Component.
+When we specify the Selector in the HTML, Angular renders the Component Template in its View.
 
 	<Body>
 	<app-root></app-root>
 	</Body>
 
-But what Exactly Here is the Template for this Component and can be Specified by Using templateURL.
-TemplateUrl Points to the HTML File that Represents the Component.
+But what exactly here is the Template for this Component and can be specified by using templateURL.
+TemplateUrl points to the HTML file that represents the Component.
 In app.component.html we have title and title is the Property in the Class app.component.ts.
 
-To Create a New Component from Angular CLI we use the Command
+To Create a new Component from Angular CLI we use the command
 
 	ng g c Helloworld
 	
