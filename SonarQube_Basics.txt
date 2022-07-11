@@ -1,0 +1,141 @@
+1.What is SonarQube and configuring Maven Project for Code Coverage (Tech Primers)            [10-JUL-2022]  (Done)
+2.Java Source code Analysis using SonarQube (Java Techie)									  [11-JUL-2022]  (Done)
+3.Sonarqube Introduction and Server Setup and Integration with Spring Boot (Green Learner)	  [10-JUL-2022]  ()
+4.Sonarqube Installation and analyze Sonarqube Report for a Basic Java Project (Siva Reddy)   [10-JUL-2022]  ()
+5.How to analyze code quality using Sonarqube (Engineer)									  [10-JUL-2022]  ()
+
+
+
+********************************  1.What is SonarQube and configuring Maven Project for Code Coverage (Tech Primers)  *******************************************
+
+Sonarqube is an open source continuous code quality intergartion tool with which we can identify the code vulnerabilities,bugs and the code quality in the code base.
+Sonarqube offers reports on duplicated code,coding standards,Junit tests,code coverage,code complexity,comments,bugs and security vulnerabilities.
+Sonarqube can track all the Repositories at the common place.
+We can have a profile set in the Sonarqube and based on the profile code base can be scanned and vulnerabilities can be identified.
+We can add/edit rules to the profile based on technologies.
+All these rules are configured at the common place and we don't need to worry at the code base level.
+
+Sonarqube online instance :
+---------------------------
+Sonarqube has the online version and we can move the code to the sonar cloud for free.
+So we don't have to manage the Sonarqube instance locally If we are working for open source projects.
+
+Configuring Sonarqube locally :
+-------------------------------
+Once we download the Sonar we have two files in the conf folder
+
+wrapper.config  --> Here we can pass the JVM arguments to the Sonar Instance.
+sonar.properties --> Contains the port information and the Database information with which the Sonarqube can connect to.
+
+As Sonarqube can collect information from different Code bases,these can be stored in memory or in Database.
+We can configure these in sonar.properties file.
+By default Sonarqube runs on the port 9000.
+To run the Sonarqube we use the command "F:\sonarqube-9.5.0.56709\sonarqube-9.5.0.56709\bin\windows-x86-64\StartSonar.bat"
+
+Local Sonarqube Dashboard walkthrough :
+---------------------------------------
+
+
+
+
+
+Sonarqube documentation walkthrough :
+-------------------------------------
+
+
+Significance of jacoco plugin and how to configure it :
+-------------------------------------------------------
+
+
+
+******************************** 2.Java Source code Analysis using SonarQube (Java Techie)  ****************************************************************
+
+Sonarqube offers reports on duplicated code,coding standards,Junit tests,code coverage,code complexity,comments,bugs and security vulnerabilities.
+Download the Sonarqube 
+
+https://www.sonarqube.org/downloads/
+Select the Community option and download the Sonarqube
+Change the wrapper.conf file in F:\sonarqube-9.5.0.56709\sonarqube-9.5.0.56709\conf folder
+
+	#wrapper.java.command=/path/to/my/jdk/bin/java
+    wrapper.java.command=C:\Program Files\Java\jdk-11.0.4\bin\java
+	
+run the command in the command prompt
+
+	F:\sonarqube-9.5.0.56709\sonarqube-9.5.0.56709\bin\windows-x86-64\StartSonar.bat
+	
+Password :
+----------
+bhaumik@23
+
+Create the project and add the dependencies to the project.
+
+	<plugin>
+		<groupId>org.sonarsource.scanner.maven</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+		<version>3.9.1.2184</version>
+	</plugin>
+	<plugin>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.8</version>
+	</plugin>
+
+To run the jacoco plugin we use the command i.e.
+
+	clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+	
+To run the sonar command
+
+	sonar:sonar
+	
+once it is executed successfully we can see the project into the Sonar Dashboard.
+
+
+******************************** 3.Sonarqube Introduction and Server Setup and Integration with Spring Boot (Green Learner) ********************************
+
+Sonarqube is one such tool such that it can review the code.
+If the Sonarqube is analyzing the code without any test cases then it is called as static code analysis.
+These analysis can be done by using the rules configured in the Sonar Server.
+Sonarqube performs the automatic reviews.
+
+Note 1 :
+--------
+If we want some piece of code to be ignored by Sonar Scanner we  can comment the line with NOSONAR. 
+	
+	public class DefaultImpl implements DefaultInterface,StaticInterface{
+
+	public static void main(String[] args) {
+		DefaultImpl impl=new DefaultImpl();
+		impl.defaultMethod();
+		//impl.defaultM1();
+		//StaticInterface.staticMethod();
+	}
+
+	@Override
+	public void defaultM1() {
+		System.out.println("Calling abstract Method");//NOSONAR
+	}
+
+	@Override
+	public void defaultMethod() {
+		StaticInterface.super.defaultMethod();
+	}
+	}
+	
+Note 2 :
+--------
+If the variable is duplicated in all the classes then create the variable in one Base class and extend to all other classes.
+
+Note 3 :
+--------
+
+
+
+
+
+
+	
+
+
+	
