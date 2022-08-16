@@ -1,0 +1,55 @@
+1.Azure Storage      (AdamMarczak)     [16-AUG-2022]     ()
+
+
+
+************************************************** 1.Azure Storage (AdamMarczak) **************************************************
+
+One of the most important and critical tasks during the first stages of the project is picking the right storage solution.
+Azure Storage is one of the most powerful one for storage.
+
+Azure storage offers highly scalable object store for data Objects,File system for the cloud,Messaging store for reliable messaging and a NoSQL store.
+Azure Storage is 
+
+1.Durable i.e. Microsoft is handling all the Hardware Failure's.
+2.Secure i.e. All the data is encrypted.
+3.Scalabale i.e. It can handle all kind of data up to Peta bytes of data.
+4.Managed
+5.Accessible i.e. bunch of API's and SDK's allowing us to connect to the Storage.
+
+There are current 4 services which are part of Storage Account.
+1.Blob Storage
+2.File Storage
+3.Queue Storage
+4.Table Storage
+
+1.Blob Storage :
+----------------
+Blob storage is highly scalable object store for text and binary data.
+Any kind of file that can be kept here.
+Blob storage is ideal for
+Serving images or documents directly to a browser.
+Storing files for distributed access.
+Streaming audio and video.
+Storing data for back up and restore,disaster recovery and archiving.
+Storing data for Analysis by an on premises or Azure hosted service.
+
+Blob Storage is seperated in Containers.
+Containers are similar to partition in the drive.
+Containers are the entry point for the data.
+Each Containers contains one or more files.
+Containers are just a flat hierarchy of files.
+
+Blob Storage Access Tier :
+--------------------------
+Azure Storage provides different options for accessing blob data based on usage patterns.
+Hot : optimized for frequent access of Objects.The hotter the storage,higher the cost.
+Cool : optimized for storing large amounts of data that is infrequently accessed and stored for at least 30 days.
+Here we need to pay additional fee for retrieving the data.
+Archive : optimized for data that can tolerate several hours of retrieval latency and will remain in the archive for 180 days.
+Here we don't expect our data to be retrieved at all.
+
+2.File Storage :
+----------------
+
+ 
+
