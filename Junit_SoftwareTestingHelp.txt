@@ -20,22 +20,23 @@
 
 ********************************************************** 1.Introduction ******************************************************************************************
 
-In a typical Test Driven Approach(TDD) Developers focus on unit testing every chunk of code they develop.
-The better the Testing of the Product the better the Quality of the Product.
-We all know that Testing should go paralelly with each phase of the SDLC.
+In a typical Test Driven Development(TDD) Approach,Developers focus on writing the unit test cases for every chunk of code they developed.
+The better the testing of the Product,the better the Quality of the Product.
+We all know that testing should go paralelly with each phase of the SDLC.
 
 Unit Testing :
 --------------
-Unit Testing is testing a small logic or code to verify the output of the code is as expected on the input of the specific data on satisfying certain conditions.
-Usually Unit Tests are supposed to be independent of other Tests.
+Unit Testing is nothing but testing a small piece of code or logic to verify the output of the code is as expected on the the specific input data by satisfying certain conditions.
+Unit Tests helps the developer to find out the issues in the current logic and any regression failures due to the current change.
+Unit Tests also provides the insight on how the current code could impact the future implementation.
+
 Unit Tests are not feasible to test complex interfaces with another Application or third party/external services.
-Unit Tests helps the developer discover the issues in the current logic and any regression failures due to the current change.
-Unit Tests also provides the insight how the current code could impact the future implementation.
+Usually Unit Tests are supposed to be independent of other Tests.
 
 Test Coverage :
 ---------------
-The percentage of the code that is tested by the Unit Tests is called Test Coverage.
-Running Test Cases automatically helps us to identify software regression issues introduced by the changes in the current code.
+The percentage of the code that is tested by the Unit Test Cases is called Test Coverage.
+Running the Test Cases automatically helps us to identify the software regression issues introduced by the changes in the current code.
 
 Manual Testing vs Unit Testing :
 --------------------------------
@@ -56,9 +57,9 @@ Similarly when a Test case is executed with the help of a tool without much manu
 
 Unit Test Framework :
 ---------------------
-Developers use the Unit Test Framework to create the Automated Unit Test Cases.
-Junit is an open source Unit Test Framework that is used for writing and executing Unit Tests in Java Programming Language.
-It is one of the best known Unit Testing Frameworks.
+Developers use the Unit Test Framework to write the Automated Unit Test Cases.
+Junit is an open source Unit Test Framework that is used for writing and executing Unit Test Cases in Java Programming Language.
+It is one of the best known Unit Testing Framework.
 
 Examples of Junit TestCase :
 ----------------------------
@@ -87,9 +88,9 @@ Junit Vintage
 
 Junit Platfrom :
 ----------------
-Junit Platform for Junit 5 works with the usage of two API's.
+Junit Platform for Junit 5 works with the help of two API's.
 One that enables the user to create the Testing Framework.
-Another helps the user to launch the Test through the IDE or through the command line.
+Another that helps the user to launch the Test through IDE or through the command line.
 
 Junit Jupiter :
 ---------------
@@ -99,7 +100,7 @@ junit-jupiter-params supports for parameterized tests in Junit 5.
 
 Junit Vintage :
 ---------------
-Sometimes we need the older version of the Junit Code to be worked alon with the current Code.
+Sometimes we need the older version of the Junit Code to be worked along with the current Code.
 This can be done by using Junit Vintage API.
 
 ********************************************************** 3.Junit TestCase ********************************************************************************************
@@ -119,8 +120,8 @@ This can be done by using Junit Vintage API.
 	
 ********************************************************** 4.Junit TestFixture ****************************************************************************************
 
-When there are multiple Test Cases in the Junit Class there could be a common Object or Objects used by all the Test cases.
-Here the common Object can be a specific function that might be a common function throughout all the Test Cases.
+When there are multiple Test Cases in the Junit Class,there could be a common Object or Objects used by all the Test cases.
+Here the common Object can be a specific function that might be common function throughout all the Test Cases.
 
 Test Fixture is a set of fixed steps in a Code that can be used as pre condition or post condition for all the Test Cases.
 The main purpose of Test Fixture is to eliminate the duplication of the code for all the Test Cases.
@@ -134,7 +135,7 @@ Note :
 ------
 @BeforAll and @AfterAll must be declared as static.
 
-The names setUp() and tearDown() are just user defined names and we may set any method name.
+The names setUp() and tearDown() are just user defined names and we can set any name for the Method.
 
 	
 	@BeforeAll
@@ -183,7 +184,7 @@ Order of Execution will be
 
 ********************************************************** 5.Ways to Execute Junit TestCases ***********************************************************************
 
-In order to execute Junit Test Cases there are certain ways where in we could run a Single Class which contains one or more Test Methods through the following Options.
+In order to execute Junit Test Cases there are certain ways where in we could run a Single Test Class which contains one or more Test Methods through the following Options.
 
 1.Run as Junit Test option.
 2.Run using the shortcut key ie ALT+SHIFT+X T
@@ -196,17 +197,16 @@ In order to execute Junit Test Cases there are certain ways where in we could ru
 ----------------------------------------------
 In realtime scenario executing one Test Case at a time is the least preferred option.
 Consider the scenario where in we need to run a group of related/un related Test Cases.
-Here we need to create and execute regression Test Suites or smoke Test Suites.
-The  different Annotations that can be used in JUnit4 to create and execute the Test Suites are
+Here we need to create and execute Test Suites.
+The different Annotations that can be used in JUnit4 to create and execute the Test Suites are
 
 @Suite
 @SuiteClasses
  
 The overall process for executing the Test Suite using the Test Runner is as follows
-1.Create the JUnit classes
-2.Create the Test Suite Class fro grouping the Test Cases
-3.Create the Test Runner class to invoke the Test Suite created
-4.Execute the Test Runner class
+1.Create the Test Suite Class for grouping the Test Cases
+2.Create the Test Runner class to invoke the Test Suite created
+3.Execute the Test Runner class
 
 		public class TestCaseOne {
 
@@ -301,12 +301,11 @@ To create a Test Suite by grouping Multiple Test Classes in Junit5
 
 		@RunWith(JUnitPlatform.class)
 		@SelectClasses(PaymentTest.class)
-		public class IncludePackages_TestSuite_Test {
+		public class IncludeClass_TestSuite_Test {
 		}
 		
 To create a Test Suite for a Single Package or Multiple Packages using @IncludePackages and @SelectPackages in Junit5
 
-		
 		@RunWith(JUnitPlatform.class)
 		@SelectPackages("com.javabydeveloper.payment")
 		public class IncludePackages_TestSuite_Test {
@@ -314,7 +313,7 @@ To create a Test Suite for a Single Package or Multiple Packages using @IncludeP
 
 Filtering Test Suite :
 ----------------------
-Sometimes we need to filter out Test Cases and execute a particular set of Test Cases as per our needs.
+Sometimes we need to filter out the Test Cases and execute a particular set of Test Cases as per our needs.
 Consider the scenario where some of the Test Cases are identified for Regression Testing,Smoke Testing,Unit Testing and so on.
 We need to include or exclude Test Cases from certain packages or Classes or Categories etc.
 The Annotations that can be used to Filtering the Test Cases are 
