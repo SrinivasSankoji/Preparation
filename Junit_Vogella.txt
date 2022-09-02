@@ -1,0 +1,160 @@
+1.Overview															[29-AUG-2022]  (Done)
+2.Assertions and Assumptions                                        [02-SEP-2022]  (Done)
+3.Dynamic and Parameterized Tests                                   [29-AUG-2022]  ()
+4.Additional Information about Junit5 Usage                         [29-AUG-2022]  ()
+5.Writing a JUnit 5 test with Maven and Eclipse                     [29-AUG-2022]  ()
+7.Writing JUnit5 unit tests                                         [29-AUG-2022]  ()
+8.Develop unit tests for email verification                         [29-AUG-2022]  ()
+9.Testing exceptions and conditional enablement                     [29-AUG-2022]  ()
+10.Writing nested tests to group tests for display                  [29-AUG-2022]  ()
+11.Testing multiple parameter                                       [29-AUG-2022]  ()
+12.Testing with multiple input parameter                            [29-AUG-2022]  ()
+13.@TempDir annotation to create temporary files and paths          [29-AUG-2022]  ()
+14.Testing for annotations                                          [29-AUG-2022]  ()
+15.Create test reports                                              [29-AUG-2022]  ()
+17.Overview of JUnit5 annotations                                   [29-AUG-2022]  ()
+
+********************************************************** 1.Overview **************************************************************************
+
+Unit Testing is nothing but Testing small piece of code or logic to verify the output of the code is as expected based on the specified input data by satisfying certain conditions.
+We can define the metheod as Test method by using the Annotation @Test.
+
+To define the Test case for another class :
+-------------------------------------------
+	public class Calculator {
+
+	public int multiply(int a, int b) {
+		return a * b;
+	}
+	}
+	
+	package com.junit.vogella;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+
+class CalculatorTest {
+
+	Calculator calculator;
+
+	@BeforeEach
+	void setUp() {
+		calculator = new Calculator();
+	}
+
+	@Test
+	@DisplayName("Simple multiplication should work")
+	void testMultiply() {
+		calculator = new Calculator();
+		assertEquals(50, calculator.multiply(10, 5), "10*5 must be 50");
+	}
+
+	@RepeatedTest(5)
+	@DisplayName("Ensure correct handling of zero")
+	void testMultiplyWithZero() {
+		assertEquals(0, calculator.multiply(0, 5), "Multiple with zero should be zero");
+		assertEquals(0, calculator.multiply(5, 0), "Multiple with zero should be zero");
+	}
+	}
+	
+Junit5 allows us to use static imports for its assertStatements to make the test code short and easy to read.
+
+********************************************************** 2.Assertions and Assumptions **********************************************************
+
+Assert statement allows us to check for true,false or equality conditions.
+All of them are static methods from Assertions package.
+Messages can also be created via Lambda Expressions.
+
+assertEquals
+assertTrue
+assertFalse
+assertNull
+assertNotNull
+
+Testing for Exceptions :
+------------------------
+If we want to write the Test case when an exception is thrown we use expectThrows() assert statement.
+expectThrows() accept the Exception class and the the Message.
+
+	@Test
+	void exceptionTest() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Integer.parseInt("One");
+		}, "Number Format Exception is expected");
+	}
+	
+Testing Multiple Assertions :
+-----------------------------
+If an assert fails in the Test,Junit will stop executing the Test and additional are not checked.
+If we want to ensure that all the asserts are checked we can use assertAll.
+In the Grouped Assertions all the assertions are executed even after failure.The Error messages get also grouped together.
+
+	@Test
+	public void groupedTest() {
+		assertAll("Grouped Assertions", 
+				() -> assertEquals("Bhaumik", "Bhaumik"),
+				() -> assertEquals("Aadvik", "Aadvik"));
+	}
+	
+Defining Timeout in Tests :
+---------------------------
+assertTimeout() asserts the  Test case has to be failed when it is not done in certain amount of time.
+
+	@Test
+	void timeOutTest() {
+		assertTimeout(Duration.ofSeconds(3), () -> getValue());
+	}
+
+	String getValue() throws InterruptedException {
+		TimeUnit.SECONDS.sleep(2);
+		return "";
+	}
+
+We can also get the return value from the assertTimeout().
+
+	@Test
+	void timeNotExceededTest() {
+		String result = assertTimeout(Duration.ofSeconds(3), () -> getValue());
+		assertEquals("Time Not Exceeded", result);
+	}
+	
+How to disable tests :
+----------------------
+The @Disabled Annotation makes the Test case as disabled.
+This is useful when the underlying code has changed or the implementation has not done or the Test case has the incorrect behavior.
+It is best practice to provide description for the @Disabled Annotation.
+
+Alternatively we can use Assumptions.assumeFalse or Assumptions.assumeTrue to define a condition for Test execution.
+Assumptions class has the following methods.
+
+assumeTrue()
+assumeFalse()
+assumingThat()
+
+assumeTrue() validates the given assumption to be true and if the assumption is true,the Test proceeds otherwise Test execution is aborted.
+
+	@Test
+	@DisplayName("Simple multiplication should work")
+	void testMultiply() {
+		calculator = new Calculator();
+		System.setProperty("ENV", "PROD");
+		Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")), CalculatorTest::message);
+		assertEquals(50, calculator.multiply(10, 5), "10*5 must be 50");
+	}
+	
+********************************************************** 3.Dynamic and Parameterized Tests **********************************************************
+
+
+
+
+
+
+
+
+
+
+
