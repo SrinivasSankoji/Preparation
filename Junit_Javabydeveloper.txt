@@ -1,0 +1,173 @@
+1.Junit5 with Maven											 [03-SEP-2022]  ()
+2.Junit5 with Gradle                                         [03-SEP-2022]  ()
+3.Display Name for Tests                                     [03-SEP-2022]  ()
+4.@Test Instance                                             [03-SEP-2022]  ()
+5.Assumptions Class Example                                  [03-SEP-2022]  ()
+6.@Disabled Example                                          [03-SEP-2022]  ()
+7.Conditional Test                                           [03-SEP-2022]  ()
+8.Repeated Test                                              [03-SEP-2022]  ()
+9.Timeout                                                    [03-SEP-2022]  ()
+10.Order of Test                                             [03-SEP-2022]  ()
+11.Parameterized Test                                        [05-SEP-2022]  ()
+12.Console Launcher                                          [03-SEP-2022]  ()
+13.Allure Reports                                            [03-SEP-2022]  ()
+14.Dynamic Tests                                             [03-SEP-2022]  (Done)
+15.Nested Tests                                              [03-SEP-2022]  ()
+16.Parameter Resolver and Dependency Injection               [03-SEP-2022]  ()
+17.@Tag Annotation                                           [03-SEP-2022]  ()
+18.Paralell Execution                                        [03-SEP-2022]  ()
+19.SpringBoot Junit5                                         [03-SEP-2022]  ()
+20.JunitPlatform Runner                                      [03-SEP-2022]  ()
+
+
+
+********************************************************** 11.Parameterized Test *********************************************************************
+
+Sometimes we may need to run the same test with different parameters or different values.
+Parameterized Test makes it posssible to run the test multiple times with different arguments.
+Parameterized Test can be declared by using the Annotation @ParameterizedTest instead of @Test Annotation.
+
+	@ParameterizedTest
+	@ValueSource(ints = { 2, 4, 6, 8, 10 })
+	void testArrayWithParameters(int arguments) {
+		System.out.println("Parameterized Test with Integer Array " + arguments);
+	}
+	
+We can also customize the display name of the Parameterized Test.
+By default display name of the Parameterized Test invocation contains the invocation index and the String representation of all the arguments for the specific invocation.
+	
+	@ParameterizedTest(name = "{index}.testArrayWithParameters with value - {arguments} ")
+	@ValueSource(ints = { 2, 4, 6, 8, 10 })
+	void testArrayWithParameters(int arguments) {
+		System.out.println("Parameterized Test with Integer Array " + arguments);
+	}
+	
+Argument sources for parameterized tests :
+------------------------------------------
+
+
+
+
+********************************************************** 14.Dynamic Tests **************************************************************************
+
+All the Tests that are annotated with @Test are static Test cases.
+A Dynamic Test is a Test that is generated at runtime by factory method using @TestFactory Annotation.
+The method marked with @TestFactory is not a Test case,rather it is a factory of Test Cases.
+
+Rules to create Dynamic Tests :
+-------------------------------
+@TestFactory method must not be private and static.
+@TestFactory method must return Stream,Collection,Iterable,Iterator or Array of Dynamic Node instances.
+@TestFactory method can also return sub class of Dynamic Node i.e. they are DynamicContainer and DynamicTest.
+
+	@TestFactory
+	DynamicTest dynamicTest() {
+		return DynamicTest.dynamicTest("Single Dynamic Test",
+				() -> Assertions.assertEquals(25, MathUtils.addAndCheck(5, 20)));
+
+	}
+	
+	@TestFactory
+	List<DynamicTest> dynamicTestFromCollection() {
+		List<DynamicTest> list = new ArrayList<>();
+		list.add(dynamicTest("1st List<DynamicTest>", () -> Assertions.assertEquals(25, 23)));
+		list.add(dynamicTest("2nd List<DynamicTest>", () -> Assertions.assertEquals(5, 5)));
+		return list;
+	}
+
+	@TestFactory method must return Subclass of Dynamic Node i.e.they are DynamicContainer and DynamicTest.
+
+	@TestFactory
+	DynamicContainer dynamicTestFromContainer() {
+		return DynamicContainer.dynamicContainer("Dynamic Container",
+				Stream.of(DynamicTest.dynamicTest("1st Dynamic Container", () -> Assertions.assertEquals(25, 25))));
+	}
+	
+Lifecycle methods for Dynamic tests :
+-------------------------------------
+In the Dynamic Test @BeforeEach and @AfterEach lifecycle methods are executed for each @TestFactory method but not for each Dynamic Tests.
+
+	public class DynamicTestLifecycleTest {
+
+	@BeforeEach
+	public void setUp() {
+		System.out.println("Before Class Execution");
+	}
+
+	@TestFactory
+	List<DynamicTest> dynamicTestFromList() {
+		return Arrays.asList(DynamicTest.dynamicTest("First Dynamic Test", () -> assertTrue(true)),
+				DynamicTest.dynamicTest("Second Dynamic Test", () -> assertTrue(true)));
+	}
+
+	@AfterEach
+	public void tearDown() {
+		System.out.println("After Class Execution");
+	}
+	}
+	
+Hierarchy or nesting dynamic tests  :
+-------------------------------------
+
+
+Timeout in Dynamic tests :
+--------------------------
+Declaring @TimeOut on a @TestFactory method checks that the factory method returns within the specified duration or not 
+but it does not verify the execution time of each individual DynamicTest generated by the factory.
+For that purpose we use assertTimeout() or assertTimeoutPrremptively().
+
+	@TestFactory
+	Collection<DynamicTest> timeoutInDynamicTest() {
+		return Arrays.asList(DynamicTest.dynamicTest("First Timeout", () -> {
+			assertTimeout(Duration.ofSeconds(5), () -> TimeUnit.SECONDS.sleep(5));
+		}));
+	}
+
+Execution order in dynamic tests :
+----------------------------------
+The execution order for the Dynamic Test does not depends on @TestMethodOrder declared on Top level Test Class.
+To control the Order of Dynamic Tests we have to implement Custom Sort.
+
+	@TestFactory
+	Collection<DynamicTest> executionOrderInDynamicTest() {
+		List<DynamicTest> dynamicTests = Arrays.asList(
+				DynamicTest.dynamicTest("First Dynamic Test", () -> assertEquals(6, MathUtils.addAndCheck(2, 4))),
+				DynamicTest.dynamicTest("Second Dynamic Test", () -> assertEquals(6, MathUtils.addAndCheck(2, 4))),
+				DynamicTest.dynamicTest("Third Dynamic Test", () -> assertEquals(6, MathUtils.addAndCheck(2, 4))));
+		sortDynamicTests(dynamicTests);
+		return dynamicTests;
+	}
+
+	static void sortDynamicTests(List<DynamicTest> dynamicTests) {
+		dynamicTests.sort((DynamicTest d1, DynamicTest d2) -> d2.getDisplayName().compareTo(d1.getDisplayName()));
+	}
+
+Parallel Test execution in Dynamic tests :
+------------------------------------------
+
+
+Parameterized dynamic tests :
+-----------------------------
+To create a Parameterized Dynamic Tests,we simply loop over the data and calls the Test Method with It.
+
+
+********************************************************** 15.Nested Tests **********************************************************
+
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+
+
+ 
+

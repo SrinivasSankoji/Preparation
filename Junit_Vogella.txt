@@ -1,18 +1,18 @@
 1.Overview															[29-AUG-2022]  (Done)
 2.Assertions and Assumptions                                        [02-SEP-2022]  (Done)
-3.Dynamic and Parameterized Tests                                   [29-AUG-2022]  ()
-4.Additional Information about Junit5 Usage                         [29-AUG-2022]  ()
-5.Writing a JUnit 5 test with Maven and Eclipse                     [29-AUG-2022]  ()
-7.Writing JUnit5 unit tests                                         [29-AUG-2022]  ()
-8.Develop unit tests for email verification                         [29-AUG-2022]  ()
-9.Testing exceptions and conditional enablement                     [29-AUG-2022]  ()
-10.Writing nested tests to group tests for display                  [29-AUG-2022]  ()
-11.Testing multiple parameter                                       [29-AUG-2022]  ()
-12.Testing with multiple input parameter                            [29-AUG-2022]  ()
-13.@TempDir annotation to create temporary files and paths          [29-AUG-2022]  ()
-14.Testing for annotations                                          [29-AUG-2022]  ()
-15.Create test reports                                              [29-AUG-2022]  ()
-17.Overview of JUnit5 annotations                                   [29-AUG-2022]  ()
+3.Dynamic and Parameterized Tests                                   [03-SEP-2022]  ()
+4.Additional Information about Junit5 Usage                         [02-SEP-2022]  ()
+5.Writing a JUnit 5 test with Maven and Eclipse                     [02-SEP-2022]  ()
+7.Writing JUnit5 unit tests                                         [02-SEP-2022]  ()
+8.Develop unit tests for email verification                         [02-SEP-2022]  ()
+9.Testing exceptions and conditional enablement                     [02-SEP-2022]  ()
+10.Writing nested tests to group tests for display                  [02-SEP-2022]  ()
+11.Testing multiple parameter                                       [02-SEP-2022]  ()
+12.Testing with multiple input parameter                            [02-SEP-2022]  ()
+13.@TempDir annotation to create temporary files and paths          [02-SEP-2022]  ()
+14.Testing for annotations                                          [02-SEP-2022]  ()
+15.Create test reports                                              [02-SEP-2022]  ()
+17.Overview of JUnit5 annotations                                   [02-SEP-2022]  ()
 
 ********************************************************** 1.Overview **************************************************************************
 
@@ -147,6 +147,26 @@ assumeTrue() validates the given assumption to be true and if the assumption is 
 	}
 	
 ********************************************************** 3.Dynamic and Parameterized Tests **********************************************************
+
+Dynamic Test :
+--------------
+Junit5 supports the creation of dynamic Tests via code.
+Dynamic test methods are annotated with @TestFactory and allows us to create multiple Tests of type DynamicTest with our code.
+DynamicTest can return 
+
+Iterable
+Collection
+Stream
+
+
+
+
+Parameterized Test :
+--------------------
+We can also run Test with a set of different input values with Parameterized Tests.
+
+
+
 
 
 
