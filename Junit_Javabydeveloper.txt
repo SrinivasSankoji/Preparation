@@ -8,8 +8,8 @@
 8.Repeated Test                                              [03-SEP-2022]  ()
 9.Timeout                                                    [03-SEP-2022]  ()
 10.Order of Test                                             [03-SEP-2022]  ()
-11.Parameterized Test                                        [05-SEP-2022]  ()
-12.Console Launcher                                          [03-SEP-2022]  ()
+11.Parameterized Test                                        [08-SEP-2022]  (Done)
+12.Console Launcher                                          [03-SEP-2022]  (Done)
 13.Allure Reports                                            [03-SEP-2022]  ()
 14.Dynamic Tests                                             [03-SEP-2022]  (Done)
 15.Nested Tests                                              [03-SEP-2022]  ()
@@ -20,8 +20,25 @@
 20.JunitPlatform Runner                                      [03-SEP-2022]  ()
 
 
+********************************************************** 5.Assumptions Class Example **************************************************************
 
-********************************************************** 11.Parameterized Test *********************************************************************
+
+********************************************************** 6.@Disabled Example  *********************************************************************
+
+
+********************************************************** 7.Conditional Test ***********************************************************************
+
+
+********************************************************** 8.Repeated Test **************************************************************************
+
+
+********************************************************** 9.Timeout ********************************************************************************
+
+
+********************************************************** 10.Order of Test *************************************************************************
+
+
+********************************************************** 11.Parameterized Test ********************************************************************
 
 Sometimes we may need to run the same test with different parameters or different values.
 Parameterized Test makes it posssible to run the test multiple times with different arguments.
@@ -42,8 +59,151 @@ By default display name of the Parameterized Test invocation contains the invoca
 		System.out.println("Parameterized Test with Integer Array " + arguments);
 	}
 	
-Argument sources for parameterized tests :
-------------------------------------------
+Here index starts with 1.
+	
+@valueSource Arguments :
+------------------------
+@valueSource allows us to specify the Single Array of literal values and can be used only for providing for single argument for ParameterizedTest invocation.
+We can also pass Empty and Null Parameters using @EmptySource and @NullSource Annotations.
+
+	@ParameterizedTest(name = "{index} With String argument {0}")
+	@ValueSource(strings = { "Peter King", "Arthur King", "Martin King" })
+	void testWithStringParameters(String input) {
+		String searchKey = "King";
+		System.out.println("String Arguments :" + input);
+		assertTrue(input.contains(searchKey));
+	}
+	
+@EnumSource Arguments :
+-----------------------
+@EnumSource provides a convinient way to use Enum Constants.
+@EnumSource provides an optional names attribute that allows us to specify which constants it should consider.
+By default names attribute will keep only the matched Enum Constants.
+We can use the mode attribute which supports EXCLUDE,INCLUDE,MATCH_ALL,MATCH_ANY.
+
+	@ParameterizedTest(name = "{index} Enum values are : {arguments}")
+	@EnumSource(value = Role.class, names = { "ADMIN", "SUBSCRIBER" })
+	void testWithEnumParameters(Role role) {
+		assertNotNull(role);
+	}
+
+@MethodSource Arguments :
+-------------------------
+By using @ValueSource or @EnumSource it is not possible to pass complex type as an argument.
+@MethodSource allows us to pass the Factory Methods of the Test class as an argument. 
+Here Factory Method should be static and it does not accept any argument.
+Every Factory Method should generate stream of arguments and each set of values will be provided to the Test Method.
+If we do not provide the Factory Method to the @MethodSource,It will search for the Factory Method with the same name as ParameterizedTest.
+
+	@ParameterizedTest(name = "{index} Method Source with parameters {arguments}")
+	@MethodSource("getNames")
+	void testWithMethodSource(String arguments) {
+		assertNotNull(arguments);
+	}
+
+	static Stream<String> getNames() {
+		return Stream.of("ADMIN", "SUBSCRIBER", "OBSERVER", "AUTHOR", "PUBLISHER", "ANONYMOUS");
+	}
+	
+	@ParameterizedTest(name = "{index} Method with Multiple Paraeters {arguments}")
+	@MethodSource
+	void stringIntAndListProvider(String str, int num, List<String> list) {
+		System.out.println("str => " + str + "; num =>" + num + "; list => " + list);
+		assertTrue(str.length() > 0);
+		assertTrue(num >= 1 && num <= 3);
+		assertTrue(!list.isEmpty());
+	}
+	
+	static Stream<Arguments> stringIntAndListProvider() {
+		return Stream.of(Arguments.arguments("Peter", 1, Arrays.asList("admin", "author")));
+	}
+
+@CSVSource Arguments :
+----------------------
+@ValueSource and @EnumSource does not allow us to provide Multiple Parameters for Parameterized Test.
+@CSVSource allow us to provide argument list as comma seperated values.
+@CSVSource accepts an Array of comma seperated values and each entry corresponds to a line in a CSV File.
+
+	@ParameterizedTest
+	@CsvSource({"Bhaumik,Chary,23", "Aadvik,Chary,15"})
+	void testWithCSVSource(String firstName, String lastName, Integer dateOfBirth) {
+		assertTrue(firstName != null);
+		assertTrue(lastName != null);
+		assertTrue(dateOfBirth > 0);
+	}
+
+@CSVFileSource Arguments :
+--------------------------
+
+@ArgumentSource :
+-----------------
+To support advanced approach,Junit5 supports custome reusable ArgumentProvider to provide Test arguments.
+
+	@ParameterizedTest(name = "{index}. Custom Argument Provider values {arguments}")
+	@ArgumentsSource(CustomArgumentProvider.class)
+	void testWithArgumentSource(String name, Integer date, List<?> details) {
+		assertTrue(name != null);
+		assertTrue(date > 0);
+		assertTrue(!details.isEmpty());
+	}
+	
+	public class CustomArgumentProvider implements ArgumentsProvider {
+
+	@Override
+	public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+		return Stream.of(Arguments.arguments("Bhaumik", 23, Arrays.asList("Aadvik", 15)));
+	}
+	}
+
+@Argument Conversion :
+----------------------
+Impicit Conversion :
+--------------------
+Junit5 supports built-in implicit type conversion.
+The conversion process depends on the declared type of each method parameter.
+For example If we are provide Parameterized Test annotated with @ValueSource(ints={2,4,5}),then method argument can be int,long,float,double.
+This is called implicit conversion.
+
+	@ParameterizedTest(name = "{index}. Implicit Conversion for Parameter {arguments}")
+	@ValueSource(strings = { "2017-11-23", "2022-04-15" })
+	void testWithImplicitConversion(LocalDate localDate) {
+		System.out.println("Local Date " + localDate.toString());
+		assertTrue(localDate != null);
+	}
+
+
+Explicit Conversion :
+---------------------
+Instead of relying on implicit conversion,we can create explicit conversion by using ArgumentConverter and @ConvertWith Annotations.
+
+	@ParameterizedTest(name = "{index}.Explicit Conversion for parameters {arguments}")
+	@ValueSource(strings = {"23-11-2107","15-04-2021"})
+	void testWithExplicitConversion(@ConvertWith(DateConverter.class) LocalDate localDate) {
+		System.out.println("Local Date " + localDate.toString());
+		assertTrue(localDate != null);
+	}
+	
+	public class DateConverter implements ArgumentConverter {
+
+	@Override
+	public Object convert(Object source, ParameterContext context) throws ArgumentConversionException {
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		return LocalDate.parse(source.toString(), format);
+	}
+	}
+
+@Argument Accessor :
+--------------------
+
+Custom Argument Aggregators :
+-----------------------------
+
+
+
+
+	
+
+
 
 
 
