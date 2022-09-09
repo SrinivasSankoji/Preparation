@@ -2,14 +2,14 @@
 2.Junit5 with Gradle                                         [03-SEP-2022]  ()
 3.Display Name for Tests                                     [03-SEP-2022]  ()
 4.@Test Instance                                             [03-SEP-2022]  ()
-5.Assumptions Class Example                                  [03-SEP-2022]  ()
-6.@Disabled Example                                          [03-SEP-2022]  ()
-7.Conditional Test                                           [03-SEP-2022]  ()
+5.Assumptions Class Example                                  [09-SEP-2022]  (Done)
+6.@Disabled Example                                          [09-SEP-2022]  (Done)
+7.Conditional Test                                           [09-SEP-2022]  (Done)
 8.Repeated Test                                              [03-SEP-2022]  ()
 9.Timeout                                                    [03-SEP-2022]  ()
 10.Order of Test                                             [03-SEP-2022]  ()
 11.Parameterized Test                                        [08-SEP-2022]  (Done)
-12.Console Launcher                                          [03-SEP-2022]  (Done)
+12.Console Launcher                                          [03-SEP-2022]  ()
 13.Allure Reports                                            [03-SEP-2022]  ()
 14.Dynamic Tests                                             [03-SEP-2022]  (Done)
 15.Nested Tests                                              [03-SEP-2022]  ()
@@ -22,11 +22,126 @@
 
 ********************************************************** 5.Assumptions Class Example **************************************************************
 
+Assumptions are collection of utility methods that supports conditional test execution based on Assumptions.
+Failed Assumption does not result in the Test failure but results in a Test being aborted.
+Assumptions basically means don't run this Test if the condition doesnt apply.
+Assumptions class provides the overloaded methods.
+
+Assumptions.assumeTrue() : If the condition is true then run the Test else abort the Test.
+Assumptions.false() : If the Condition is false then run the Test else abort the Test.
+Assumptions.assumingThat() : If the condition is true then run the Test else do not abort the Test and continue rest of the code in the Test.
+
+	@Test
+	void testOnlyForDevelopment() {
+		assumeTrue("Development".equals("Production"),() -> "Aborting Test Since It is Not Development");
+		User user = new User(1, "Peter", "peterm@email.com");
+        UserService.saveOrUpdate(user);
+        assertTrue(UserService.users.get(1l) == user);
+	}
+	
+	@Test
+	void testOnlyForDevelopment() {
+		assumeFalse("Development".equals("Production"));
+		User user = new User(1, "Peter", "peterm@email.com");
+        UserService.saveOrUpdate(user);
+        assertTrue(UserService.users.get(1l) == user);
+	}
+	
+	@Test
+	void testOnlyIfNotProduction() {
+		assumingThat("Development".equals("Production"), () -> {
+			UserService.saveOrUpdate(new User(1, "Peter", "peterm@email.com"));
+		});
+		User user = new User(2, "Srinivas", "Srinivas@email.com");
+		UserService.saveOrUpdate(user);
+		System.out.println(UserService.users.get(2l));
+		assertTrue(UserService.users.get(2l) == user);
+	}
+	
 
 ********************************************************** 6.@Disabled Example  *********************************************************************
 
+During the development we may want to disable or skip some Test case from execution because of the known issue in the functionality or Module.
+To ignore a Test in Junit we use @Disbaled Annotation.
+It is always good to include every Test case whether it is failed or skipped or passed.
+We can disable the Test case at Class Level and at Method Level.
+It is best parctice to provide the description for the @Disabled Annotation. 
+
 
 ********************************************************** 7.Conditional Test ***********************************************************************
+
+Junit supports several Condition based Annotations that allows the Developers to enable or disable the Test Cases based on Condition.
+These Test Cases are considered as Declarative Test Cases.
+One such Condition is Disabled Condition which supports @Disabled Annotation.
+The Conditional Annotations in Junit are
+
+Operating System Conditions
+Java Runtime Environment Conditions
+System Property Conditions
+Environment Variable Conditions
+Custom Conditions
+
+Operating System Conditions :
+-----------------------------
+To Enable or Disable the Test cases based on Operating System we use the Annotations @EnabledOnOS and @DisabledOnOs
+
+	@Test
+	@EnabledOnOs(OS.WINDOWS)
+	void windowsOSTset() {
+		assertTrue(System.getProperty("os.name").equalsIgnoreCase("Windows 10"));
+	}
+	
+	@Test
+	@DisabledOnOs(OS.WINDOWS)
+	void linuxOSTset() {
+		assertTrue(System.getProperty("os.name").equalsIgnoreCase("Linux"));
+	}
+	
+Java Runtime Environment Conditions :
+-------------------------------------
+To enable or disable Test cases based on Java Runtime Environment we use the Annotations @EnabledOnJre or @DisabledOnJre.
+
+	@Test
+	@EnabledOnJre(JRE.JAVA_11)
+	void java11Test() {
+		System.out.println(System.getProperty("java.version"));
+		System.out.println(System.getProperty("java.runtime.version"));
+		assertTrue(System.getProperty("java.runtime.version").contains("11.0.4"));
+	}
+
+System Property Conditions :
+----------------------------
+To enable or disable the Test cases based on the named value from the System Property.
+We use the Annotations @EnabledIfSystemProperty and @DisabledIfSystemProperty.
+
+	@Test
+	@EnabledIfSystemProperty(named = "os.name", matches = "Windows 10")
+	void runOnWindowsOS() {
+		assertTrue(System.getProperty("os.name").equalsIgnoreCase("Windows 10"));
+	}
+
+Environment Variable Conditions :
+---------------------------------
+To enable or disable the Test cases based on the named value from the System Environment Variable.
+We use the Annotations @EnabledIfEnvironmentVariable  and @DisabledIfEnvironmentVariable .
+
+	@Test
+	@EnabledIfEnvironmentVariable(named = "USERNAME", matches = "DELL")
+	void runIfUserIsDell() {
+		assertTrue(System.getenv("USERNAME").equalsIgnoreCase("DELL"));
+	}
+
+Custom Conditions :
+-------------------
+We can create Custom Annotations in Junit5 in two ways.
+1.Combination of two built in Conditional Annotations.
+2.Create our own custom Condition Annotation by implementing ExecutionCondition.
+
+	@Test
+	@RunOnlyOnWindows10
+	void runOnWindows10() {
+		assertTrue(System.getProperty("os.name").equalsIgnoreCase("Windows 10"));
+	}
 
 
 ********************************************************** 8.Repeated Test **************************************************************************
