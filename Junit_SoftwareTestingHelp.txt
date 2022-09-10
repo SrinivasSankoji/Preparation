@@ -5,17 +5,16 @@
 5.Ways to Execute Junit TestCases                   				[17-JAN-2022]  (Done)
 6.Junit Annotations                                 				[17-JAN-2022]  (Done)
 7.Junit Ignore TestCase                             				[18-JAN-2022]  (Done)
-8.Junit Test Suite & Filtering Test Cases           				[30-JAN-2022]  (Done)
-9.Junit @Tag and Filtering tagged tests (javabydeveloper)			[30-JAN-2022]  (Done)
+8.Junit Test Suite & Filtering Test Cases           				[30-AUG-2022]  (Done)
+9.Junit @Tag and Filtering Tagged tests (javabydeveloper)			[30-AUG-2022]  (Done)
 10.Junit Test Execution Order                        				[28-AUG-2022]  (Done)
 11.@RepeatedTest                                    				[28-AUG-2022]  (Done)
-
-12.@Nested                                          				[28-AUG-2022]  ()
-13.Custom Display Name and @Conditional             				[28-AUG-2022]  ()
+12.@Nested                                          				[17-SEP-2022]  ()
+13.Custom Display Name and @Conditional             				[10-SEP-2022]  (Done)
 
 14.Junit vs TestNG                                  				[18-JAN-2022]  ()
-15.Junit Additional Classes                         				[18-JAN-2022]  ()
-16.Junit Assertions                                 				[18-JAN-2022]  ()
+15.Junit Additional Classes                         				[11-SEP-2022]  ()
+16.Junit Assertions (howtodoinjava)                                 [11-SEP-2022]  ()
 17.Grouped Assertions                               				[02-SEP-2022]  (Done)
 
 ********************************************************** 1.Introduction ******************************************************************************************
@@ -463,15 +462,15 @@ Junit5 also supports custom orders by implementing the interface MethodOrder.
 
 ********************************************************** 11.@RepeatedTest  **********************************************************
 
-The term repeated Test means to repeat the execution of specific Tests or Tests for a certain number of times.
-The same purpose can be achieved in parameterization also.
-The only difference between the parameterization Test and repeated Test is that Parameterized Test works with data variations while RepeatedTest works with the same data.
+The term Repeated Test means to repeat the execution of specific Test Case or Test Method for certain number of times.
+The same purpose can be achieved in Parameterized Test also.
+The only difference between the Parameterized Test and Repeated Test is that Parameterized Test works with data variations while Repeated Test works with the same data.
 
 Consider the scenario of Banking Application.
 When we click on the Payment Link,It shows an Exception saying that "Page cannot be displayed".
 This disappears after 4 Clicks and this is consistent and known issue for the Client.
 Here we cannot have Tests failure for such Environmental Issues and that would not accepted by the Client.
-The solution could be either we have to write the Logic within the Test itself to handle the Clicking of the Payment Link for 5 times and have our Test Proceed.
+The solution could be either we have to write the logic within the Test case itself to handle the Clicking of the Payment Link for 5 times and have our Test Proceed.
 The other Solution is use the @RepeatedTest Annotation.
 
 Syntax :
@@ -495,7 +494,7 @@ Rules :
 	}
 }
 
-In order to understand the format of usage of the Annotatio, we first need to understand the place holders supported by @RepeatedTest Annotation.
+In order to understand the usage of the Annotation,we first need to understand the place holders supported by @RepeatedTest Annotation.
 
 CURRENT_REPETITION_PLACEHOLDER : Returns the count of the current repetition.
 TOTAL_REPETITIONS_PLACEHOLDER :  Returns the total count of total petetions. 
@@ -504,7 +503,7 @@ DISPLAY_NAME_PLACEHOLDER : Returns the value that has passed as a parameter to t
 	public class RepeatedTestDemo {
 
 	@DisplayName("Test case for Multiplication")
-	@RepeatedTest(value = 5)
+	@RepeatedTest(value = 5,name = RepeatedTest.LONG_DISPLAY_NAME)
 	void multiply(TestInfo testInfo) {
 		int a = 10;
 		int b = 20;
@@ -613,6 +612,15 @@ Disable Or Enable Tests Based On The Environment Variables :
 Disable Or Enable Tests Based On System Property :
 --------------------------------------------------
 
+********************************************************** 14.Junit vs TestNG  ************************************************************
+
+1********************************************************** 5.Junit Additional Classes ****************************************************
+
+********************************************************** 16.Junit Assertions ************************************************************
+
+Assertions helps us to validate the expected output with the actual output for a specific Test case.
+Writing Assertions is the fastest and effective way to detect and fix the bugs.
+Someties assertions work as a pre condition or post condition for a function call.
 
 
 

@@ -1,24 +1,108 @@
 1.Junit5 with Maven											 [03-SEP-2022]  ()
-2.Junit5 with Gradle                                         [03-SEP-2022]  ()
-3.Display Name for Tests                                     [03-SEP-2022]  ()
-4.@Test Instance                                             [03-SEP-2022]  ()
+3.Display Name for Tests                                     [10-SEP-2022]  (Done)
+4.@Test Instance                                             [10-SEP-2022]  (Done)
 5.Assumptions Class Example                                  [09-SEP-2022]  (Done)
 6.@Disabled Example                                          [09-SEP-2022]  (Done)
 7.Conditional Test                                           [09-SEP-2022]  (Done)
-8.Repeated Test                                              [03-SEP-2022]  ()
-9.Timeout                                                    [03-SEP-2022]  ()
-10.Order of Test                                             [03-SEP-2022]  ()
+8.Repeated Test                                              [10-SEP-2022]  (Done)
+9.Timeout                                                    [10-SEP-2022]  (Done)
+10.Order of Test                                             [10-SEP-2022]  (Done)
 11.Parameterized Test                                        [08-SEP-2022]  (Done)
-12.Console Launcher                                          [03-SEP-2022]  ()
-13.Allure Reports                                            [03-SEP-2022]  ()
+12.Console Launcher                                          [18-SEP-2022]  ()
+13.Allure Reports                                            [18-SEP-2022]  ()
 14.Dynamic Tests                                             [03-SEP-2022]  (Done)
-15.Nested Tests                                              [03-SEP-2022]  ()
-16.Parameter Resolver and Dependency Injection               [03-SEP-2022]  ()
-17.@Tag Annotation                                           [03-SEP-2022]  ()
+15.Nested Tests                                              [17-SEP-2022]  ()
+
+16.Parameter Resolver and Dependency Injection               [11-SEP-2022]  ()
+17.@Tag Annotation                                           [11-SEP-2022]  ()
 18.Paralell Execution                                        [03-SEP-2022]  ()
 19.SpringBoot Junit5                                         [03-SEP-2022]  ()
 20.JunitPlatform Runner                                      [03-SEP-2022]  ()
 
+
+********************************************************** 3.Display Name for Tests *****************************************************************
+
+@DisplayName Annotation can be used to set the description for Test Classes and Test Methods.
+
+	@Test
+	@DisplayName("Test case for MUltiplication")
+	void addTest() {
+		assertEquals(20, MathUtil.multiple(4, 5));
+	}
+	
+Junit supports custom display name generators for the Test cases and that can be done by using @DisplayNameGeneration that accepts DisplayNameGenerator.
+
+	@DisplayNameGeneration(DisplayNameGenerator.Standard.class)
+	public class DisplayNameTest {
+	@Test
+	void multiplyTest() {
+		assertEquals(20, MathUtil.multiple(4, 5));
+	}
+	}
+	
+We can also create the custom display names using @DisplayNameGenerator.
+We can also set the default Global Display Name generator for the Test Cases.
+Here not required to write the @DisplayName Annotation for every Test cases.
+
+********************************************************** 4.@Test Instance *************************************************************************
+
+Junit creates a new instance of each Test class before executing each Test Method.
+The default behavior of Junit is Life Cycle per Method.
+This can be changed  by usig @TestInstance Annotation.
+JUnit supports two LifeCycle Methods
+
+Life cycle per method.
+Life cycle per class.
+
+Lifecycle per-method :
+----------------------
+This is the default behavior from Junit where a new Test Instance will be created for every Test Method.
+
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class TestInstanceTest {
+
+	private int result = 5;
+
+	@Test
+	void addTest() {
+		result = MathUtil.add(result, 5);
+		System.out.println("addTest(5,5) => " + result);
+		assertEquals(10, result);
+	}
+
+	@Test
+	void multiplyTest() {
+		result = MathUtil.multiple(result, 5);
+		System.out.println("multiplyTest(5,5) => " + result);
+		assertEquals(25, result);
+	}
+
+	@Test
+	void divideTest() {
+		result = MathUtil.devide(result, 5);
+		System.out.println("divideTest(5,5) => " + result);
+		assertEquals(1, result);
+	}
+	}
+	
+Output :
+--------
+divideTest(5,5) => 1
+addTest(5,5) => 6
+multiplyTest(5,5) => 30
+
+Note :
+------
+If the Lifecycle mode is Lifecycle.PER_METHOD then @BeforeAll and @AfterAll life cycle methods must be static otherwise it must be non static.
+
+	@BeforeAll
+	static void beforeAll() {
+		System.out.println("--- Before starting tests --- ");
+	}
+
+We can also change the life cycle mode globally by mentioning it in the properties file.
+By default @BeforeAll and @AfterAll lifecycle methods are not allowed in Netsted Classes.
+If the Life cycle mode is LifeCycle.PER_CLASS for the Netsed class then we can write the life cycle methods in the Nested Class.
 
 ********************************************************** 5.Assumptions Class Example **************************************************************
 
@@ -146,12 +230,82 @@ We can create Custom Annotations in Junit5 in two ways.
 
 ********************************************************** 8.Repeated Test **************************************************************************
 
+RepeatedTest can be used to execute the Test case for repeated no of times.
+
+	@RepeatedTest(value = 3, name = "{displayName} - {currentRepetition}/{totalRepetitions}")
+	@DisplayName("Test case for Division")
+	void divideTest() {
+		System.out.println("divideTest()");
+		assertEquals(5, MathUtil.devide(25, 5));
+	}
+
+Note :
+------
+We can also create the custom RepeatedTest Annotation.
 
 ********************************************************** 9.Timeout ********************************************************************************
 
+Junit5 Timeout allows us to declare the Test cases should fail if its execution time exceeds the given duration and will get
+java.util.concurrent.TimeoutException as a result.
+Timeunit for the duration defaults to Seconds but its configurable.
+
+Junit supports several ways for Timeouts 
+1.@Timeout Annotation
+2.assertTimeout() or assertTimeoutPreemptively()
+3.Configuration Parameters
+
+1.@Timeout Annotation :
+-----------------------
+If the @Timeout is applicable at class level,then it is applicable to all the Test methods.
+But it is not applicable to lifecycle callback methods.
+If @Timeout is applied to lifecycle call back methods and if the timeout fails then all the Test cases will be aborted.
+
+	@Test
+	void addTimeout() {
+		assertTimeout(Duration.ofSeconds(5), () -> {
+			TimeUnit.SECONDS.sleep(4);
+			assertEquals(5, MathUtil.add(3, 2));
+			System.out.println("addTimeout");
+		});
+	}
+
+2.assertTimeout() or assertTimeoutPreemptively() :
+--------------------------------------------------
+assertTimeout() will fail the Test case if the Test case is not executed within the Timeout duration but it completes the execution process.
+The below Test case fails but it completes the process and executes the remaining statements of the Test case.
+
+	@Test
+	void multiplyTimeout() {
+		assertTimeout(Duration.ofSeconds(5), () -> {
+			TimeUnit.SECONDS.sleep(6);
+			assertEquals(6, MathUtil.multiple(3, 2));
+			System.out.println("multiplyTimeout");
+		});
+	}
+	
+assertTimeoutPreemptively() will fail the Test case if it is not executed within the Time duration but it will not execute the remaining Test cases.
+This is useful in Transaction Management tests to ensure that abort the Transaction operation if it exceeds the time.
+
+Note :
+------
+Declaring @Timeout on a @TestFactory method checks that factory method returns within the specified amount of time or not but it will not check for the 
+execution of each individual Dynamic Test generated by the factory.
 
 ********************************************************** 10.Order of Test *************************************************************************
 
+Although it is trye that Junit Tests should not rely on the Order in which they are executed.
+But there are some cases where it is necessary to enforce the order and the output of one Test case is an input to another Test case.
+In Junit 5,by default Test method execution order is not defined.
+To control the order of the execution of the Test methods we use @TestMethOrder Annotation.
+
+@TestMethOrder Annotation supports 3 values
+AlphaNumeric
+OrderAnnotation
+Random
+
+Note :
+------
+We can also define our own custom method order to execute the Test cases.
 
 ********************************************************** 11.Parameterized Test ********************************************************************
 
