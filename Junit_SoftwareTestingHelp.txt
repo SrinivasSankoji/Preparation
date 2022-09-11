@@ -14,7 +14,7 @@
 
 14.Junit vs TestNG                                  				[18-JAN-2022]  ()
 15.Junit Additional Classes                         				[11-SEP-2022]  ()
-16.Junit Assertions (howtodoinjava)                                 [11-SEP-2022]  ()
+16.Junit Assertions (howtodoinjava)                                 [11-SEP-2022]  (Done)
 17.Grouped Assertions                               				[02-SEP-2022]  (Done)
 
 ********************************************************** 1.Introduction ******************************************************************************************
@@ -329,6 +329,7 @@ The Annotations that can be used to filter out the Test Cases are
 
 Test Classes and Methods can be tagged in Junit5 using @Tag Annotation.
 Those Tags can later be used to filter out the Test discovery and Execution.
+We can also include multiple tags using @Tags Annotation.
 
 Rules for creating the Tag :
 ----------------------------
@@ -349,7 +350,7 @@ public class TagTest {
 		System.out.println("Acceptance Test");
 	}
 
-	@Tag("Accessibility")
+	@Tag("Accessibility")exc
 	@Test
 	void accessibilityTest() {
 		System.out.println("Accessibility Test");
@@ -380,6 +381,10 @@ public class TagTest {
 	}
 
 }
+
+Note :
+------
+We can also create our own cusom tags.
 
 **********************************************************  10.Junit Test Execution Order  *************************************************************************
 
@@ -621,8 +626,6 @@ Disable Or Enable Tests Based On System Property :
 Assertions helps us to validate the expected output with the actual output for a specific Test case.
 Writing Assertions is the fastest and effective way to detect and fix the bugs.
 Someties assertions work as a pre condition or post condition for a function call.
-
-
 
 ********************************************************** 17.Grouped Assertions  **********************************************************
 

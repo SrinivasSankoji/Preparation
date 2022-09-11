@@ -1,7 +1,70 @@
 1.JavaCoCo Code Coverage with Maven   [11-SEP-2022]  ()
-2.Assertions 						  [11-SEP-2022]  ()
+2.Assertions 						  [11-SEP-2022]  (Done)
+3.Generating HTML Reports			  [11-SEP-2022]  ()
+4.Tag Annotation 					  [11-SEP-2022]  (Done)
+
+
+********************************************************** 1.JavaCoCo Code Coverage with Maven ************************************
+
 
 
 ********************************************************** 2.Assertions  **********************************************************
+
+Assertions helps us to validate the expected output with the actual output of the specified Test case.
+Failed Assertion will throw an AssertionFailedError or a subclass of it.
+
+
+1.assertEquals() and assertNotEquals() :
+--------------------------------------
+It verifies the expected value and actual value are equal.
+It has overloaded methods.
+
+2.assertArrayEquals() :
+-----------------------
+assertEquals() asserts that expected Array and actual Array are equal.
+
+3.assertIterableEquals() :
+--------------------------
+assertIterableEquals() asserts that expected and actual Itrables are deeply equal.
+Deeply equal means that number and order of elemnts in the collection must be same and iterable elements must be equal.
+
+4.assertLinesMatch() :
+----------------------
+assertLinesMatch() asserts that expected List of Strings matches the actual List.
+
+5.assertNotNull() and assertNull() :
+------------------------------------
+assertNotNull asserts that expected value and actual value must nit be Null.
+
+6.assertNotSame() and assertSame() :
+------------------------------------
+assertSame() asserts that expected Object and actual Object refers to the same Object.
+
+7.assertTimeout() and assertTimeoutPreemptively() :
+---------------------------------------------------
+assertTimeout() asserts that Test case will be failed If it is not executed in the specified duration.
+assertTimeout() will execute the remaining Statements even if the Test case is failed.
+The only difference between assertTimeout() and assertTimeoutPreemptively() is that It will not execute the remaining statements If the Test case is failed.
+
+8.assertTrue() and assertFalse() :
+----------------------------------
+assertTrue() asserts that supplied condition is true where as assertFalse() asserts that supplied condition is false.
+
+9.assertThrows() :
+------------------
+assertThrows() asserts that expected Exception and execution of the supplied Exception must be same.
+
+10.fail() :
+-----------
+fail() fails the Test.
+
+********************************************************** 3.Generating HTML Reports **********************************************************
+
+
+
+********************************************************** 4.Tag Annotation  ******************************************************************
+
+Test classes and Methods can be tagged using @Tag Annotation.
+Those Tags can later be used to filter out the Test cases.
 
 

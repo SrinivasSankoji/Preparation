@@ -14,7 +14,7 @@
 15.Nested Tests                                              [17-SEP-2022]  ()
 
 16.Parameter Resolver and Dependency Injection               [11-SEP-2022]  ()
-17.@Tag Annotation                                           [11-SEP-2022]  ()
+17.@Tag Annotation                                           [11-SEP-2022]  (Done)
 18.Paralell Execution                                        [03-SEP-2022]  ()
 19.SpringBoot Junit5                                         [03-SEP-2022]  ()
 20.JunitPlatform Runner                                      [03-SEP-2022]  ()
@@ -584,6 +584,7 @@ To create a Parameterized Dynamic Tests,we simply loop over the data and calls t
 
 
 
+********************************************************** 16.Parameter Resolver and Dependency Injection ***************************
 
 
 
