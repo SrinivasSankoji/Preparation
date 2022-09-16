@@ -1,0 +1,44 @@
+1.Introduction to Spring MVC Test Framework  										[16-SEP-2022]  (Done)	
+2.Best Way to configure Spring MVC Test Framework                                   [16-SEP-2022]  ()
+3.Writing Unit Test for Normal Spring MVC Controller Configuration                  [16-SEP-2022]  ()
+4.Sample Controller Test Case 101                                                   [16-SEP-2022]  ()
+5.Returning Single Item                                                             [16-SEP-2022]  ()
+6.Returning List                                                                    [16-SEP-2022]  ()
+7.Forms                                                                             [16-SEP-2022]  ()
+8.Writing Unit Test for Rest API Configuration                                      [16-SEP-2022]  ()
+9.Returning Single Item                                                             [16-SEP-2022]  ()
+10.Returning List                                                                   [16-SEP-2022]  ()
+11.Writing Data                                                                     [16-SEP-2022]  ()
+
+
+************************************************* 1.Introduction to Spring MVC Test Framework  *************************************************
+
+What is Spring MVC Test Framework :
+-----------------------------------
+Spring MVC Test is a Testing Framework which provides support for testing Spring MVC Controllers.
+We can write the Test cases by using Junit4,Junit5 or TestNG.
+We can also use other Testing Frameworks which provides support for Spring MVC Test Framework or we can use stand alone configuration.
+Since Spring MVC Test framework is built on top of Servlet API mock objects provided by the spring-test module,it does not require Servlet Container.
+Spring MVC Test Framework internally uses the DispatcherServlet that provides full support for Spring MVC runtime behavior.
+We can configure the System under Test either by using Stand alone Configuration or Web Application context based Configuration.
+
+Key Components of Spring MVC Test Framework :
+---------------------------------------------
+MockMvc class acts as an Entry point for our Unit and Integration Tests.
+To be more specific we will use this class whenever we want to send the HTTP request to the system under Test.
+
+MockMvcBuilders class provides static factory methods that can be used to create new MockMvc Objects.
+
+MockMvcRequestBuilders class provides static factory methods that can be used for creating the HTTPRequest to be sent to the System under Test.
+
+MockMvcResultMatchers class provides static factory methods that can be used to write assertions for the returned HTTPResponse.
+
+MockMvcResultHandlers class provides static factory method that can be used 
+whenever we want to print the returned HTTP response to a log file by using apache commons Logging Library.
+
+
+************************************************* 2.Best Way to configure Spring MVC Test Framework  *************************************************
+
+
+
+
