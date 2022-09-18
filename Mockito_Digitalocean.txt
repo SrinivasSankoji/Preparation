@@ -1,1 +1,24 @@
-c
+1.Introduction								[18-SEP-2022]  (Done)
+2.Mockito Mock creation                     [18-SEP-2022]  ()
+3.Mockito behavior verification             [18-SEP-2022]  ()
+4.Mockito verify interaction                [18-SEP-2022]  ()
+5.Mockito Stub Concrete Class               [18-SEP-2022]  ()
+6.Mockito Spy                               [18-SEP-2022]  ()
+
+
+************************************************* 1.Introduction ***********************************************************
+
+Mockito is a Java based mocking framework used in conjuction with other Testing Frameworks such as Junit and TestNG.
+Mockito internally uses Java Reflection API and allows us to create Objects of an service.
+Mock obejct returns dummy data and avoids external dependencies.
+Mockito simplifies the development of the Test cases by mocking the external dependencies.
+
+To implement mockito based Test cases into our project we need to add the below dependencies.
+mockito-core
+mockito-junit-jupiter
+
+************************************************* 2.Mockito Mock creation  **************************************************
+
+
+
+ 

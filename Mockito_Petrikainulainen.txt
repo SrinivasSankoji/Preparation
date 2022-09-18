@@ -1,10 +1,10 @@
 1.Introduction to Spring MVC Test Framework  										[16-SEP-2022]  (Done)	
-2.Best Way to configure Spring MVC Test Framework                                   [16-SEP-2022]  ()
-3.Writing Unit Test for Normal Spring MVC Controller Configuration                  [16-SEP-2022]  ()
-4.Sample Controller Test Case 101                                                   [16-SEP-2022]  ()
-5.Returning Single Item                                                             [16-SEP-2022]  ()
-6.Returning List                                                                    [16-SEP-2022]  ()
-7.Forms                                                                             [16-SEP-2022]  ()
+2.Best Way to configure Spring MVC Test Framework                                   [17-SEP-2022]  (Done)
+3.Writing Unit Test for Normal Spring MVC Controller Configuration                  [17-SEP-2022]  ()
+4.Sample Controller Test Case 101                                                   [17-SEP-2022]  ()
+5.Returning Single Item                                                             [17-SEP-2022]  ()
+6.Returning List                                                                    [17-SEP-2022]  ()
+7.Forms                                                                             [17-SEP-2022]  ()
 8.Writing Unit Test for Rest API Configuration                                      [16-SEP-2022]  ()
 9.Returning Single Item                                                             [16-SEP-2022]  ()
 10.Returning List                                                                   [16-SEP-2022]  ()
@@ -36,8 +36,107 @@ MockMvcResultMatchers class provides static factory methods that can be used to 
 MockMvcResultHandlers class provides static factory method that can be used 
 whenever we want to print the returned HTTP response to a log file by using apache commons Logging Library.
 
+Note :
+------
+If we are using Maven we need to define the spring-test dependency in pom.xml.
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<scope>test</scope>
+		<version>5.3.15</version>
+	</dependency>
 
 ************************************************* 2.Best Way to configure Spring MVC Test Framework  *************************************************
+
+Before writing Test cases for the Spring MVC Controllers we have to configure the system under Test.
+We need to find out the best way to configure the Unit Tests.
+
+Whenever we use Spring MVC Test Framework we have to create a MockMvc object that allows us to send the HTTPRequest to the System under Test.
+We can create MockMvc object by using static factory method of MockMvcBuilders class.
+We can configure the Spring MVC Test Framework by using any of the following two options.
+
+1.Web Application Context :
+---------------------------
+Web Application Context based configuration loads the Spring Application Context using Java Configuration or XML Configuration and 
+configures the System under Test using the loaded Application Context.
+
+2.Stand alone configuration :
+-----------------------------
+Stand alone configuartion allows us to configure the Spring MVC infrastructure programatically.
+This option provides the minimum configuration that allows the DispatcherServlet to serve the HTTPRequest which are processed by Spring MVC Controller.
+
+Independent and isolated :
+--------------------------
+A Unit Test must not dependent on another Unit Test.
+Unit Test must have clean state.
+We must isolate the System under Test from its external dependencies such as HTTP API's or Database.
+
+Repeatable :
+------------
+A Unit Test must be non determenistic.
+This means If we run the Test case every time the result of Unit Test must be same every time when we run it.
+
+Not a class Test :
+------------------
+Some people might think that one Test case must test only one Method of the Class.
+There are some cases where we must increase the size of the Tested Methods.
+Consider the scenario where we want to write a Test case for a Service that internally calls the Third Party API by sending HTTP Requests with the RestTemplate.
+Here we sholud use WireMock because it allows us to verify that correct HTTP Request was sent to the External API when our Unit Test invoked the tested Method.
+
+Here we can also Mock the RestTemplate Class.
+If we use this technique,then we are writing Shallow Test cases.
+We are only verifying the System under the Test invokes the correct method of the RestTemplate by passing expected Method Parameters.
+Here we cannot make sure that System under Test sends the correct HTTPRequest to the external API.
+
+If we are writing Test cases for the Spring MVC Controller,We should use Spring MVC Test Framework because it provides the Spring MVC runtime behavior.
+We can ensure that our HTTPRequest are processed by the correct controller method.
+We can also verify that method parameters of our controller method are parsed from the incoming HTTP Request.
+We can also ensure that validation logic is working as expected and can write the assertions for the returned response.
+
+Design Tool :
+-------------
+If we do the TDD (Test Driven Development) Unit Test helps us to write few lines of production code as possible.
+Unit Test also makes clear that System under Test has how many dependencies.
+
+Fast :
+------
+Unit Test is the first line of defence that's why it should be as fast as possible.
+
+Choosing the Best Way to Configure the Spring MVC Test Framework :
+------------------------------------------------------------------
+If we want to write the Test cases which will fulfil our requirement we have to configure the Test cases by using Stand alone configuration.
+Because Stand alone configuration provides minimum configuration that can be customized by using fluent API.
+
+1.We don't have to write test cases if it does not make any sense.
+For example If we are writing Test cases for the controller method which simply returns the infromation from the Database.
+Here we can use real service and replace its dependencies with Test doubles.
+Even if the Test case fails it is easy to debug the failed Test case because we know on which component it is running.
+
+2.We have to create and configure the external dependencies of the System under Test in our Test class before the Test case is being executed.
+This has a huge benefit because of these two reasons.
+Test Doubles are created before the Test Method run's i.e. Every Test method gets the clean Test Doubles.
+This approach helps us to write the deterministic Test cases and ensures that each Test case state is not shared with another Test case.
+
+3.Stand alone configuration is fast because it does not load the ApplicationContext and scans the Spring Beans from the classpath.
+
+What Components Do We Need :
+----------------------------
+
+
+
+
+
+**************************************** 3.Writing Unit Test for Normal Spring MVC Controller Configuration ****************************************
+
+Whenever we are writing the Test cases for Spring MVC using Spring MVC Test Framework we need to configure the System under Test using Stand alone configuration.
+Stand alone configuration allows us to configure the Spring MVC Framework Programatically.
+Stand alone configuration provides the minimal configuration that allows the DispatcherServlet to serve the HTTPRequest which are processed by the Spring MVC Controller.
+
+ 
+
+
+
 
 
 

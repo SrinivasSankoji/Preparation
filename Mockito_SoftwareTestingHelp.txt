@@ -3,9 +3,7 @@
 3.Different Types of Matchers Provided by Mockito                               [27-JAN-2022]  ()
 4.Mocking Private, Static and Void Methods Using Mockito                        [27-JAN-2022]  ()
 5.Top 12 Mockito Interview Questions                                            [27-JAN-2022]  ()
-6.SpringBoot Junit and Mockito (howtodoinjava)									[12-FEB-2022]  (Done)
-7.SpringBoot Junit and Mockito (javainuse)										[27-JAN-2022]  ()
-8.Spring Boot Applications with JUnit 5 (developer.okta.com)					[27-JAN-2022]  ()
+
 
 ************************************************* 1.Mockito Framework for Mocking in Unit Testing	*********************************************************
 
@@ -76,75 +74,9 @@ In this case we won't be able to Unit Test this function.
 But with Mock we can simply mock the Database Service and validate the rest of the logic.
 
 
-************************************************* 5.SpringBoot Junit and Mockito (howtodoinjava) **********************************************************
+************************************************* 2.Creating Mocks and Spies in Mockito  ****************************************************
 
-We can create a Test class in two ways
 
-1.MockitoJunitRunner :
-----------------------
-MockitoJunitRunner class automatically initializes all the Objects which are annotated with @Mock and @InjectMocks Annotations.
-
-2.MockitoAnnotations.openMocks() :
-----------------------------------
-We can also use the Method to initialzie all the Objects which are annotated with @Mock and @InjectMocks i.e. MockitoAnnotations.openMocks().
-
-@Mock :
--------
-@Mock Annotation creates the Mock implementation for the class which is specified with it.
-
-@InjectMocks :
---------------
-@InjectMocks creates the Mock Implementation for the class which is specified with it and aditionally it injects the dependent Mocks that are Annotated with @Mock into it.
-
-	@RestController
-	@RequestMapping(path = "/employees")
-	public class EmployeeController {
-	@Autowired
-	private EmployeeDao employeeDao;
-
-	@GetMapping(path = "/", produces = "application/json")
-	public List<EmployeeVO> getEmployees() {
-		return employeeDao.getEmployeeList();
-	}
-
-	@PostMapping(path = "/", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Object> addEmployee(@RequestBody EmployeeVO employee) {
-
-		// add resource
-		employeeDao.addEmployee(employee);
-
-		// Create resource location
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(employee.getEmployeeId()).toUri();
-
-		// Send location in response
-		return ResponseEntity.created(location).build();
-	}
-	}
-	
-	@ExtendWith(MockitoExtension.class)
-	class EmployeeControllerTest {
-
-	@InjectMocks
-	EmployeeController employeeController;
-
-	@Mock
-	EmployeeDao employeeDao;
-
-	@Test
-	public void testAddEmployee() {
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-		when(employeeDao.addEmployee(ArgumentMatchers.any(EmployeeVO.class))).thenReturn(true);
-
-		EmployeeVO employee = new EmployeeVO(1, "Lokesh", "Gupta", "howtodoinjava@gmail.com");
-		ResponseEntity<Object> responseEntity = employeeController.addEmployee(employee);
-
-		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-		assertThat(responseEntity.getHeaders().getLocation().getPath()).isEqualTo("/1");
-	}
-	}
 	
 
 
