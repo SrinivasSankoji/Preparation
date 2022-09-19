@@ -1,14 +1,14 @@
 1.Introduction								[18-SEP-2022]  (Done)
-2.Mockito Mock creation                     [18-SEP-2022]  ()
-3.Mockito behavior verification             [18-SEP-2022]  ()
-4.Mockito verify interaction                [18-SEP-2022]  ()
-5.Mockito Stub Concrete Class               [18-SEP-2022]  ()
-6.Mockito Spy                               [18-SEP-2022]  ()
+2.Mockito Mock creation                     [19-SEP-2022]  (Done)
+3.Mockito behavior verification             [19-SEP-2022]  (Done)
+4.Mockito verify interaction                [19-SEP-2022]  (Done)
+5.Mockito Stub Concrete Class               [19-SEP-2022]  (Done)
+6.Mockito Spy                               [19-SEP-2022]  (Done)
 
 
 ************************************************* 1.Introduction ***********************************************************
 
-Mockito is a Java based mocking framework used in conjuction with other Testing Frameworks such as Junit and TestNG.
+Mockito is a Java based mocking framework ans is used in conjuction with other Testing Frameworks such as Junit and TestNG.
 Mockito internally uses Java Reflection API and allows us to create Objects of an service.
 Mock obejct returns dummy data and avoids external dependencies.
 Mockito simplifies the development of the Test cases by mocking the external dependencies.
@@ -19,6 +19,124 @@ mockito-junit-jupiter
 
 ************************************************* 2.Mockito Mock creation  **************************************************
 
+Mockito framework allows us to create Mock Objects either by using @Mock Annotation or by using static mock() method.
+
+	class CalcServiceOneTest {
+
+	@Test
+	void calcTest() {
+		CalcService calcService;
+		AddService addService;
+
+		addService = Mockito.mock(AddService.class);
+		calcService = new CalcService(addService);
+
+		int num1 = 11;
+		int num2 = 12;
+		int expected = 23;
+
+		when(addService.add(num1, num2)).thenReturn(expected);
+		int actual = calcService.calc(num1, num2);
+		assertEquals(expected, actual);
+	}
+	}
+	
+	@ExtendWith(MockitoExtension.class)
+	public class CalcServiceTwoTest {
+
+	@InjectMocks
+	CalcService calcService;
+
+	@Mock
+	AddService addService;
+
+	@Test
+	void calcTest() {
+		int num1 = 11;
+		int num2 = 12;
+		int expected = 23;
+
+		when(addService.add(num1, num2)).thenReturn(expected);
+		int actual = calcService.calc(num1, num2);
+		assertEquals(expected, actual);
+	}
+	}
+
+Note :
+------
+To initialize the mocks that are annotated with @Mock,@Spy,@Captor or @InjectMocks we use @ExtendWith(MockitoExtension.class) at Class Level.
+
+************************************************* 3.Mockito behavior verification  ************************************************* 
+
+To add a behavior to the mocked class we use when() and thenReturn() functions.
+It means that when the Mock object is called for the method,it should return the value stored in the expected variable.
+Here CalcService has dependency on AddService.It uses AddService method to perform its operation.
+Since we are doing the Unit Testing for CalcService,we have to mock the AddService instance.
+
+		when(addService.add(num1, num2)).thenReturn(expected);
+		
+************************************************* 4.Mockito verify interaction  ****************************************************
+
+Mockito framework keeps track of all the method calls and their parameters to the Mock Object.
+verify() on the Mock Object verifies that the method is called with right parameters.
+We can also specify the number of invocation logic.
+We can use VerificationModeFactory for number of invocation times logic.
+
+	@Test
+	public void testMethod() {
+		@SuppressWarnings("unchecked")
+		List<String> mockedList = Mockito.mock(List.class);
+
+		mockedList.add("first-element");
+		mockedList.add("second-element");
+		mockedList.add("third-element");
+		mockedList.add("third-element");
+		mockedList.clear();
+
+		verify(mockedList).add("first-element");
+		verify(mockedList).add("second-element");
+		verify(mockedList, VerificationModeFactory.times(2)).add("third-element");
+
+		verify(mockedList).clear();
+	}
+	
+************************************************* 5.Mockito Stub Concrete Class **************************************************
+
+To add a behavior to the mocked class we use when() and thenReturn() fucntions.
+Using when() and thenReturn() functions we can also Mock the concrete/implementation class and also single element of a collection.
+
+	@SuppressWarnings("unchecked")
+	List<String> mockedList = Mockito.mock(List.class);
+
+	@Test
+	void testStub() {
+		when(mockedList.get(0)).thenReturn("first-element");
+		System.out.println(mockedList.get(0));
+		assertEquals(mockedList.get(0), "first-element");
+		System.out.println(mockedList.get(1));
+	}
+	
+************************************************* 6.Mockito Spy *****************************************************************
+
+Whenever we call the method of a spied Object,real Method will be called unless predefined behavior was defined.
+If the behavior is defined using when() and thenReturn(),then it won't call the actual method call.
+
+	@Test
+	void testSpy() {
+		List<String> list = new ArrayList<>();
+		List<String> listSpy = spy(list);
+
+		listSpy.add("spy-element");
+		System.out.println(listSpy.get(0));
+		assertEquals("spy-element", listSpy.get(0));
+		
+		when(listSpy.get(0)).thenReturn("second-element");
+		assertEquals("second-element", listSpy.get(0));
+	}
 
 
- 
+
+
+
+
+
