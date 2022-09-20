@@ -4,6 +4,12 @@
 4.Mockito verify interaction                [19-SEP-2022]  (Done)
 5.Mockito Stub Concrete Class               [19-SEP-2022]  (Done)
 6.Mockito Spy                               [19-SEP-2022]  (Done)
+7.Mockito InjectMocks						[19-SEP-2022]  ()
+8.Mockito Mock Void Method                  [19-SEP-2022]  ()
+9.Mockito Mock Static Method                [19-SEP-2022]  ()
+10.Mockito Argument Matchers                [19-SEP-2022]  ()
+11.Mockito Argument Captor                  [19-SEP-2022]  ()
+12.Mockito Iterator                         [19-SEP-2022]  ()
 
 
 ************************************************* 1.Introduction ***********************************************************
@@ -19,7 +25,11 @@ mockito-junit-jupiter
 
 ************************************************* 2.Mockito Mock creation  **************************************************
 
-Mockito framework allows us to create Mock Objects either by using @Mock Annotation or by using static mock() method.
+Mockito framework allows us to create Mock Objects either by using 
+
+@ExtendWith(MockitoExtension.class)
+@Mock Annotation
+mock() method.
 
 	class CalcServiceOneTest {
 

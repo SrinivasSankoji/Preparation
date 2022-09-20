@@ -36,6 +36,7 @@ We can also use the Method to initialzie all the Objects which are annotated wit
 	@Autowired
 	private EmployeeDao employeeDao;
 
+
 	@GetMapping(path = "/", produces = "application/json")
 	public List<EmployeeVO> getEmployees() {
 		return employeeDao.getEmployeeList();
