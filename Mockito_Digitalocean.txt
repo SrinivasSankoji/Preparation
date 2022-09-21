@@ -1,15 +1,17 @@
-1.Introduction								[18-SEP-2022]  (Done)
-2.Mockito Mock creation                     [19-SEP-2022]  (Done)
-3.Mockito behavior verification             [19-SEP-2022]  (Done)
-4.Mockito verify interaction                [19-SEP-2022]  (Done)
-5.Mockito Stub Concrete Class               [19-SEP-2022]  (Done)
-6.Mockito Spy                               [19-SEP-2022]  (Done)
-7.Mockito InjectMocks						[19-SEP-2022]  ()
-8.Mockito Mock Void Method                  [19-SEP-2022]  ()
-9.Mockito Mock Static Method                [19-SEP-2022]  ()
-10.Mockito Argument Matchers                [19-SEP-2022]  ()
-11.Mockito Argument Captor                  [19-SEP-2022]  ()
-12.Mockito Iterator                         [19-SEP-2022]  ()
+1.Introduction														[18-SEP-2022]  (Done)
+2.Mockito Mock creation                     						[19-SEP-2022]  (Done)
+3.Mockito behavior verification             						[19-SEP-2022]  (Done)
+4.Mockito verify interaction                						[19-SEP-2022]  (Done)
+5.Mockito Stub Concrete Class               						[19-SEP-2022]  (Done)
+6.Mockito Spy                               						[19-SEP-2022]  (Done)
+7.Mockito InjectMocks												[19-SEP-2022]  ()
+8.Mockito Mock Void Method                  						[22-SEP-2022]  (Done)
+9.Mockito Mock Static Method                						[19-SEP-2022]  ()
+10.Mockito Argument Matchers                						[19-SEP-2022]  ()
+11.Mockito Argument Captor  (davidvlijmincx)                 		[19-SEP-2022]  ()
+12.Mockito Iterator                         						[19-SEP-2022]  ()
+13.Difference between thenReturn and thenAnswer(stacktraceguru)		[19-SEP-2022]  ()
+14.do When (stacktraceguru)											[19-SEP-2022]  ()
 
 
 ************************************************* 1.Introduction ***********************************************************
@@ -143,6 +145,76 @@ If the behavior is defined using when() and thenReturn(),then it won't call the 
 		when(listSpy.get(0)).thenReturn("second-element");
 		assertEquals("second-element", listSpy.get(0));
 	}
+
+************************************************* 7.Mockito InjectMocks	**********************************************************
+
+
+************************************************* 8.Mockito Mock Void Method *****************************************************
+
+Most of the times we use Mockito when() and is good enough to mock an object behavior.
+But when we have to mock the void method then in this case we can't use when().
+Mockito provides the following methods that can be used to mock void methods.
+
+doAnswer(Answer)
+doThrow()
+doNothing()
+doCallRealMethod()
+
+1.doAnswer() :
+--------------
+Whenever we want to stub a void method to let it perform the other behavior i.e. we use Mockito's doAnswer() to change the behavior.
+
+	@Test
+	void mockitoDoAnswerTest() {
+		doAnswer((i) -> {
+			System.out.println("Employee Name is " + i.getArgument(0));
+			assertTrue("Bhaumik".equals(i.getArgument(0)));
+			return null;
+		}).when(employee).setName(ArgumentMatchers.anyString());
+		employee.setName("Bhaumik");
+	}
+
+2.doThrow() :
+-------------
+we use doThrow() whenever we want to stub a void method that has to throw an Exception.
+
+	@Test
+	void mockitoDoThrowTest() {
+		doThrow(IllegalArgumentException.class).when(employee).setName(null);
+		assertThrows(IllegalArgumentException.class, () -> employee.setName(null));
+	}
+	
+
+3.doNothing() :
+---------------
+If we want to completely ignore the void method call we use doNothing().
+In Mocking,for every method of Mocked Object doNothing() is the default behavior.
+
+	@Test
+	void mockitoDoNothingTest() {
+		doNothing().when(employee).setName(null);
+		employee.setName(null);
+	}
+	
+4.doCallRealMethod() :
+----------------------
+Sometime sit is necessary to call the real method from the mocked Object.
+In such cases we use doCallRealMethod().
+Default is the doNothing() behavior.
+
+	@Test
+	void mockitoCallRealMethodTest() {
+		doCallRealMethod().when(employee).setName("Bhaumik");
+		employee.setName("Bhaumik");
+	}
+	
+*************************************************  9.Mockito Mock Static Method  *******************************************************
+
+
+
+
+
+
 
 
 
