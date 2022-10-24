@@ -1,10 +1,57 @@
-1.Unit Testing with Spring Boot												[20-SEP-2022]  ()
+1.Unit Testing with Spring Boot												[24-OCT-2022]  (Done)
 2.Testing Spring MVC Web Controllers with Spring Boot and @WebMvcTest       [20-SEP-2022]  ()
 3.Testing JPA Queries with Spring Boot and @DataJpaTest                     [20-SEP-2022]  ()
 4.Integration Tests with @SpringBootTest                                    [20-SEP-2022]  ()
 5.Mocking with (and without) Spring Boot									[20-SEP-2022]  ()
 
 ***************************************************  1.Unit Testing with Spring Boot	************************************************************
+
+If we have written any Test cases with Spring or Spring Boot,we probably say that we don't need Spring to write Unit Tests.
+For a Simple API to unit test it will take around 5 seconds.
+But a good Unit Test will have to take only milli seconds.
+Execution of the Test case will take only milli seconds but to start the whole application and load it into Application Context it will take 5 seconds.
+We start the whole application to be loaded because of the dependencies.
+It will take even more time if the Application gets bigger and Spring has to load all the Beans into the ApplicationContext.
+
+Creating a Testable Spring Bean :
+---------------------------------
+
+	@Service
+	public class RegisterUseCase {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	public User registerUser(User user) {
+		return userRepository.save(user);
+	}
+	}
+	
+Field Injection is Evil.
+This class cannot be unit tested without Spring because it provides no way to pass in the UserRepository interface.
+Use the Constructor Injection to provide the dependencies.
+We can also reduce the Boiler Plate code by using Lombok.
+
+Using Mockito to Mock Dependencies :
+------------------------------------
+If we don't want to rely on the real thing,we mock the objects.
+We have to tell Mockito to return something when the actual method is called.
+
+An alternative way of creating mock objects is using Mockito's @Mock Annotation in combination with @MockExtension for Junit Jupiter.
+@Mock Annotation specifies the fields in which Mockito has to mock the Objects.
+@MockitoExtension tells Mockito to evaluate those @Mock Annotations because Junit does not do this automatically.
+Instead of cosntructing the Object manually,we can alos use @InjectMocks Annotation on the same Test class itself.
+
+
+***************************************************  2.Testing Spring MVC Web Controllers with Spring Boot and @WebMvcTest ******************************************
+
+
+
+
+ 
+
+
+
 
 
 

@@ -7,7 +7,7 @@
 7.Mockito InjectMocks												[19-SEP-2022]  ()
 8.Mockito Mock Void Method                  						[22-SEP-2022]  (Done)
 9.Mockito Mock Static Method                						[19-SEP-2022]  ()
-10.Mockito Argument Matchers                						[19-SEP-2022]  ()
+10.Mockito Argument Matchers                						[24-SEP-2022]  (Done)
 11.Mockito Argument Captor  (davidvlijmincx)                 		[19-SEP-2022]  ()
 12.Mockito Iterator                         						[19-SEP-2022]  ()
 13.Difference between thenReturn and thenAnswer(stacktraceguru)		[19-SEP-2022]  ()
@@ -16,8 +16,8 @@
 
 ************************************************* 1.Introduction ***********************************************************
 
-Mockito is a Java based mocking framework ans is used in conjuction with other Testing Frameworks such as Junit and TestNG.
-Mockito internally uses Java Reflection API and allows us to create Objects of an service.
+Mockito is a Java based mocking framework and is used in conjuction with other Testing Frameworks such as Junit and TestNG.
+Mockito internally uses Java Reflection API and allows us to create Objects of a service.
 Mock obejct returns dummy data and avoids external dependencies.
 Mockito simplifies the development of the Test cases by mocking the external dependencies.
 
@@ -29,9 +29,11 @@ mockito-junit-jupiter
 
 Mockito framework allows us to create Mock Objects either by using 
 
-@ExtendWith(MockitoExtension.class)
-@Mock Annotation
 mock() method.
+@ExtendWith(MockitoExtension.class) and @Mock Annotation
+
+Using mock() method :
+---------------------
 
 	class CalcServiceOneTest {
 
@@ -52,6 +54,9 @@ mock() method.
 		assertEquals(expected, actual);
 	}
 	}
+
+Using @ExtendWith(MockitoExtension.class) and @Mock Annotation :
+----------------------------------------------------------------
 	
 	@ExtendWith(MockitoExtension.class)
 	public class CalcServiceTwoTest {
@@ -90,7 +95,7 @@ Since we are doing the Unit Testing for CalcService,we have to mock the AddServi
 ************************************************* 4.Mockito verify interaction  ****************************************************
 
 Mockito framework keeps track of all the method calls and their parameters to the Mock Object.
-verify() on the Mock Object verifies that the method is called with right parameters.
+verify() on the Mock Object verifies that the method is called with the right parameters.
 We can also specify the number of invocation logic.
 We can use VerificationModeFactory for number of invocation times logic.
 
@@ -115,7 +120,8 @@ We can use VerificationModeFactory for number of invocation times logic.
 ************************************************* 5.Mockito Stub Concrete Class **************************************************
 
 To add a behavior to the mocked class we use when() and thenReturn() fucntions.
-Using when() and thenReturn() functions we can also Mock the concrete/implementation class and also single element of a collection.
+It meaans that when the Mock object is called for the method,it should return the value stored in the expected variable.
+Using when() and thenReturn() function we can also Mock the concrete/implementation class and also single element of a collection.
 
 	@SuppressWarnings("unchecked")
 	List<String> mockedList = Mockito.mock(List.class);
@@ -123,9 +129,9 @@ Using when() and thenReturn() functions we can also Mock the concrete/implementa
 	@Test
 	void testStub() {
 		when(mockedList.get(0)).thenReturn("first-element");
-		System.out.println(mockedList.get(0));
+		System.out.println(mockedList.get(0));  // first-element
 		assertEquals(mockedList.get(0), "first-element");
-		System.out.println(mockedList.get(1));
+		System.out.println(mockedList.get(1)); // null
 	}
 	
 ************************************************* 6.Mockito Spy *****************************************************************
@@ -139,7 +145,7 @@ If the behavior is defined using when() and thenReturn(),then it won't call the 
 		List<String> listSpy = spy(list);
 
 		listSpy.add("spy-element");
-		System.out.println(listSpy.get(0));
+		System.out.println(listSpy.get(0)); // spy-element
 		assertEquals("spy-element", listSpy.get(0));
 		
 		when(listSpy.get(0)).thenReturn("second-element");
@@ -151,9 +157,9 @@ If the behavior is defined using when() and thenReturn(),then it won't call the 
 
 ************************************************* 8.Mockito Mock Void Method *****************************************************
 
-Most of the times we use Mockito when() and is good enough to mock an object behavior.
-But when we have to mock the void method then in this case we can't use when().
-Mockito provides the following methods that can be used to mock void methods.
+Most of the times we use Mockito's when() and thenReturn() function to add a behavior to the Mocked class.
+But when we have to mock the void method,In this case we can't use when() and thenReturn() function.
+Mockito provides the following methods that can be used to mock the methods which has return type void.
 
 doAnswer(Answer)
 doThrow()
@@ -184,7 +190,6 @@ we use doThrow() whenever we want to stub a void method that has to throw an Exc
 		assertThrows(IllegalArgumentException.class, () -> employee.setName(null));
 	}
 	
-
 3.doNothing() :
 ---------------
 If we want to completely ignore the void method call we use doNothing().
@@ -198,8 +203,7 @@ In Mocking,for every method of Mocked Object doNothing() is the default behavior
 	
 4.doCallRealMethod() :
 ----------------------
-Sometime sit is necessary to call the real method from the mocked Object.
-In such cases we use doCallRealMethod().
+Sometimes it is required to call the real method from the mocked Object.In that case we use doCallRealMethod().
 Default is the doNothing() behavior.
 
 	@Test
@@ -210,6 +214,49 @@ Default is the doNothing() behavior.
 	
 *************************************************  9.Mockito Mock Static Method  *******************************************************
 
+Mockito allows us to create mock objects and stub the behavior for our Test case.
+Since static method belongs to class there is no way in mockito to mock the static methods.
+However we can use powermock along with Mockito framework to mock the static methods.
+
+************************************************* 10.Mockito Argument Matchers ********************************************************
+
+Mockito allows us to create mock objects and stub the behavior for our Test case.
+We usually mock the behavior using when() and thenReturn() on the mock object.
+Sometimes we may want to mock the behavior for an argument of the given type in that case we use Mockito Argument Matchers.
+
+	@ExtendWith(MockitoExtension.class)
+	class FooTest {
+
+	@Mock
+	Foo mockFoo;
+
+	@Test
+	public void boolTest() {
+		when(mockFoo.bool(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt(), ArgumentMatchers.any()))
+				.thenReturn(true);
+		assertTrue(mockFoo.bool("A", 1, "A"));
+		assertTrue(mockFoo.bool("B", 10, new Object()));
+	}
+	}
+	
+Argument Matcher - eq() :
+-------------------------
+When we use Argument matchers then all the arguments should use matchers.
+If we want to use specific value for an argument then we can use eq() of Argument matchers.
+
+	@Test
+	public void boolEqualsTest() {
+		when(mockFoo.bool(ArgumentMatchers.eq("false"), ArgumentMatchers.anyInt(), ArgumentMatchers.any()))
+				.thenReturn(true);
+		assertTrue(mockFoo.bool("false", 1, "A"));
+	}
+	
+Note :
+------
+There are Argument matchers for List,Set and Map too.
+Mockito Argument matchers can be used only with when() and verify() methods.
+
+************************************************* 11.Mockito Argument Captor **********************************************************
 
 
 
