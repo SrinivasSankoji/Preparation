@@ -11,8 +11,9 @@
 ********************************************************** 2.Assertions  **********************************************************
 
 Assertions helps us to validate the expected output with the actual output of the specified Test case.
+Writing Assertions is the fastest and effective way to detect and fix the bugs.
 Failed Assertion will throw an AssertionFailedError or a subclass of it.
-
+Someties assertions work as a pre condition or post condition for a function call.
 
 1.assertEquals() and assertNotEquals() :
 --------------------------------------
@@ -34,7 +35,7 @@ assertLinesMatch() asserts that expected List of Strings matches the actual List
 
 5.assertNotNull() and assertNull() :
 ------------------------------------
-assertNotNull asserts that expected value and actual value must nit be Null.
+assertNotNull asserts that expected value and actual value must not be Null.
 
 6.assertNotSame() and assertSame() :
 ------------------------------------

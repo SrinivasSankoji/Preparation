@@ -10,7 +10,7 @@ If we have written any Test cases with Spring or Spring Boot,we probably say tha
 For a Simple API to unit test it will take around 5 seconds.
 But a good Unit Test will have to take only milli seconds.
 Execution of the Test case will take only milli seconds but to start the whole application and load it into Application Context it will take 5 seconds.
-We start the whole application to be loaded because of the dependencies.
+When we start the whole application will be loaded because of the dependencies.
 It will take even more time if the Application gets bigger and Spring has to load all the Beans into the ApplicationContext.
 
 Creating a Testable Spring Bean :
@@ -40,7 +40,7 @@ We have to tell Mockito to return something when the actual method is called.
 An alternative way of creating mock objects is using Mockito's @Mock Annotation in combination with @MockExtension for Junit Jupiter.
 @Mock Annotation specifies the fields in which Mockito has to mock the Objects.
 @MockitoExtension tells Mockito to evaluate those @Mock Annotations because Junit does not do this automatically.
-Instead of cosntructing the Object manually,we can alos use @InjectMocks Annotation on the same Test class itself.
+Instead of cosntructing the Object manually,we can also use @InjectMocks Annotation on the same Test class itself.
 
 
 ***************************************************  2.Testing Spring MVC Web Controllers with Spring Boot and @WebMvcTest ******************************************

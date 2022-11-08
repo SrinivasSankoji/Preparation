@@ -32,9 +32,9 @@ Unit Tests also provides the insight on how the current code could impact the fu
 Unit Tests are not feasible to test complex interfaces with another Application or third party/external services.
 Usually Unit Tests are supposed to be independent of other Tests.
 
-Test Coverage :
+Code Coverage :
 ---------------
-The percentage of the code that is tested by the Unit Test Cases is called Test Coverage.
+The percentage of the code that is tested by the Unit Test Cases is called Code Coverage.
 Running the Test Cases automatically helps us to identify the software regression issues introduced by the changes in the current code.
 
 Manual Testing vs Unit Testing :
@@ -51,7 +51,7 @@ Rework If the correction is needed
 Execute the Test Case
 Analyze the Test Results
 
-When a Test case is executed manually without an intervention of a tool is called Manual Testing.
+When the Test case is executed manually without an intervention of a tool is called Manual Testing.
 Similarly when a Test case is executed with the help of a tool without much manual intervention is called Automation Testing.
 
 Unit Test Framework :
@@ -120,8 +120,7 @@ This can be done by using Junit Vintage API.
 ********************************************************** 4.Junit TestFixture ****************************************************************************************
 
 When there are multiple Test Cases in the Junit Class,there could be a common Object or Objects used by all the Test cases.
-Here the common Object can be a specific function that might be common function throughout all the Test Cases.
-
+Here the common Object can be a specific function that might be common throughout all the Test Cases.
 Test Fixture is a set of fixed steps in a Code that can be used as pre condition or post condition for all the Test Cases.
 The main purpose of Test Fixture is to eliminate the duplication of the code for all the Test Cases.
 
@@ -281,9 +280,9 @@ Other Annotations are
 
 ********************************************************** 7.Junit Ignore TestCase *********************************************************************************
 
-Sometimes we get the requirement where we need not run the Test Cases or not supposed to run all the Test Cases.
+Sometimes we might get the requirement where we need not run the Test Cases or not supposed to run all the Test Cases.
 In this case we need to ignore the Test Cases and that can be done by using @Ignore in Junit 4 and @Disabled in Junit 5.
-@Ignore or @Disabled Annotation can be used at Test Level or at Class Level.
+@Ignore or @Disabled Annotation can be used at Test Method Level or at Class Level.
 
 		@Test
 		@Disabled
@@ -388,7 +387,7 @@ We can also create our own cusom tags.
 
 **********************************************************  10.Junit Test Execution Order  *************************************************************************
 
-Test Methods does not follow any specific order by default.
+Test cases does not follow any specific order by default.
 Test cases does not execute in the order in which they have written.
 There are different ways or modes to set the order of execution for the Test cases.
 
@@ -401,7 +400,7 @@ MethodSorters.NAME_ASCENDING
 The package org.junit.runners.* needs to be imported to include the class MethodSorters.
 
 	@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Junit4OrderTest {
+    public class Junit4OrderTest {
 
 	@Test
 	public void Testcase_3() {
@@ -502,7 +501,7 @@ Rules :
 In order to understand the usage of the Annotation,we first need to understand the place holders supported by @RepeatedTest Annotation.
 
 CURRENT_REPETITION_PLACEHOLDER : Returns the count of the current repetition.
-TOTAL_REPETITIONS_PLACEHOLDER :  Returns the total count of total petetions. 
+TOTAL_REPETITIONS_PLACEHOLDER :  Returns the count of the total repetition. 
 DISPLAY_NAME_PLACEHOLDER : Returns the value that has passed as a parameter to the @DisplayName Annotation.
 
 	public class RepeatedTestDemo {
@@ -555,7 +554,7 @@ RepeatedTest is an Interface that fetches the details about the @RepeatedTest An
 
 Nested Class as the name suggests it is the class that is placed inside another class and is arranged in hierarchical structure.
 There could be a situation where a Test class contains several Tests that include complex logic.
-In such cases Nested classes or classes may be used.This option is not available in Junit4.
+In such cases Nested classes may be used.This option is not available in Junit4.
 
 Here the complex and multiple Test cases can be broken down in such a way that each Test case could be smaller and modularized.
 The related Tests can be grouped under each seperate class and embeeded under the main group.
