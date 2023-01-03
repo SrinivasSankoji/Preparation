@@ -12,8 +12,7 @@
 Logging Framework allows us to configure the behavior rather than doing the things in one way.
 we can set the Log Level,store the Logs into a File,Database etc.
 Spring Boot comes with its own Logging framework and we need to add the starter dependency.
-Logging is Built in with Many Starter Dependencies.
-Basic  way to add the Logger is to use the LoggerFactory and it has a Method Called getLogger that accepts the Class as an argument.
+Basic  way to add the Logger is to use the LoggerFactory and it has a method Called getLogger that accepts the Class as an argument.
 SLF4J is the standard Logging Framework that Spring Boot Internally Uses.
 
 	Logger logger=LoggerFactory.getLogger(LoggingController.class);

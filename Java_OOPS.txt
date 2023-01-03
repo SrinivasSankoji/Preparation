@@ -4,6 +4,7 @@
 4.Tightly Encapsulated Class                        [02-DEC-2020]  (Done)
 5.Is a Relationship                                 [10-DEC-2020]  (Done)
 6.Has a Relationship                                [10-DEC-2020]  (Done)
+
 7.Method Signature                                  [10-DEC-2020]  (Done)
 8.Overloading                                       [10-DEC-2020]  (Done)
 9.Overriding                                        [13-DEC-2020]  (Done)
@@ -28,7 +29,7 @@ hackertrail
 **********************************************************  1.Data Hiding  *********************************************************************
 
 Data Hiding Means hiding the Data.
-Our internal data sholud not go out diretly i.e outside person is not allowed to access our internal data directly.
+Our internal data sholud not go out diretly i.e outside person is not allowed to access the internal data directly.
 By using private modifier we can acheive Data Hiding.
 Instead of providing the data directly,provide the access through method.
 Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
@@ -39,28 +40,28 @@ Recomended Modifier for Data Hiding is private.
 
 Hiding the internal implementation and highlighting the set of services i.e required information is called as Abstraction.
 All the Operations are performed internally by highlighting the set of services.
-Bank people will highlight the set of services what they are offering by hiding the internal implementation.
+Bank people will highlight the set of services what they are offer by hiding the internal implementation.
 Abstraction improoves the maintainability and modularity of an application.
 Abstraction improoves the easyness to use the system because not required to know about the internal implementation.
 
 ********************************************************** 3.Encapsulation  **********************************************************************
 
-If any componenet of Java class follows Data Hiding and Abstraction then It is called Encapsulation.
-Binding the data and corresponding functionality together into a single module is called Encapsulation.
+If any componenet of Java class follows both Data Hiding and Abstraction then It is called Encapsulation.
+Binding the data and corresponding functionalities together into a single module is called Encapsulation.
 Every Java class is an example of Encapsulation.
 
-In case of Encapsulation,we does not aware which code it got executed and where it is executed.
-Here we are hiding the data behind the methods is a central concept of Encapsulation.
+In case of Encapsulation,we are not aware which code it got executed and where it is executed.
+Here we are hiding the data behind the methods i.e. It is a main concept of Encapsulation.
 Main Advantage of Encapsulation is we can acheive security and Enhancement will become easy.
 Encapsulation improoves the maintainability and modularity of an Application.
 
 If we want security we should compromise the performance of an Application.
-Disadvantage of Encapsulation is it increases the length of the code and slows down execution.
+Disadvantage of Encapsulation is it increases the length of the code and slows down the execution.
 Perfromance of the system will be impacted.
 
 ********************************************************** 4.Tightly Encapsulated Class  **********************************************************
 
-When ever we are very strict about Data Hiding,we go for Tightly Encapsulatd class.
+Whenever we are very strict about Data Hiding,we go for Tightly Encapsulatd class.
 A class is said to be Tightly Encapsulated class If each and every variable of the class is declared as private.
 Whether the class contains corresponding setter or not,getter methods or not,whether these methods are declared as public or not.
 These things are not required to check.
@@ -76,10 +77,9 @@ Advantage is reusability of code.
 If several components have the same functionality then it is not recomended to define that common functionality in every component.
 We need to define the common functionality in one class and specific functionality in the child class.
 This approach improoves the reusability of the code and reduces the development time.
-Entire Java API is implemented based on simple inheritance.
+Entire Java API is implemented based on Simple inheritance.
 For all Errors and Exceptions,most common functionality is available in Throwable class.Hence Throwable class acts as a root class for Java Exception Hierarchy.
-Similarly for all Java classes most common functionality is available in  Object class.
-Hence Object class acts as a Root Class for all Java Classes.
+Similarly for all Java classes most common functionality is available in  Object class.Hence Object class acts as a Root Class for all Java Classes.
 
 Example :
 ---------
@@ -115,7 +115,7 @@ public class ParentChild {
 				Exception   Errors                          Byte  Short Integer
 			RTE  IOE        OutOfMemoryError
 
-Object class contains 11 Methods that contains common functionality which is avaialbale for all the Classes.
+Object class contains 11 Methods that contains most common functionality which is avaialbale for all the Classes.
 
 Note :
 ------
@@ -134,7 +134,7 @@ and child class specific methods we cannot call.
 Multiple Inheritance :
 ----------------------
 Java does not support Multiple Inheritance through class because there may be a chance of ambiguity problem.
-In Java a class cannot extend more than one class at a time.Hence Java won't provide support for Multiple inheritance.
+In Java a class cannot extend more than one class at a time.
 
 Class A
 {

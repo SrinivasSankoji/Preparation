@@ -28,11 +28,11 @@
 
 **************************************************** 1.Introduction Part One  : ******************************************************************************
 
-PL SQL is an extension of SQL designed for seamless processing of SQL stattements,enhancing the security,portability and robustness of the database.
+PL SQL is an extension to SQL designed for seamless processing of SQL stattements,enhancing the security,portability and robustness of the database.
 PL SQL combines the data manipulation power of SQL with the processing power of procedural language to create super powerful SQL queries.
 PL SQL means what to do with SQL and how to do through its procedural way.
-Similar to other database languages PL SQL gives more control to the programmers by using loops,conditions and object oriented concepts.
-PL SQL stands for Procedural Language Extension To SQL.
+PL SQL gives more control to the programmers by using loops,conditions and object oriented concepts.
+PL SQL stands for Procedural Language Extension to SQL.
 
 Architecture of PL/SQL :
 ------------------------

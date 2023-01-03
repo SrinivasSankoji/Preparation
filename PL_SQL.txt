@@ -1,0 +1,67 @@
+1.Views	  					  (TechTFQ)					[04-DEC-2022]  (Done)
+2.Materialized Views	  	  (TechTFQ)					[05-NOV-2022]  ()
+3.Procedures				  (TechTFQ)					[26-NOV-2022]  ()
+4.With Clause				  (TechTFQ)					[26-NOV-2022]  ()
+
+************************************************************* 1.Views ************************************************************** 
+
+View is a Database Object which is created over SQL Query.
+View just represnts the data that is returned by the SQL Query.
+View does not store any Data and executes the underlying Query.
+
+View is similar to a Table and can be seen as virtual Table.
+Difference between View and Table is that a Table can store data where as View doesnot store any data.
+Every time we call the View it ineternally executes the underlying SQL query.
+
+If we are sharing the query to the Client or third party, we are sharing the Database information to the them which is not recomended.
+The solution is to create a view and share the View.
+To create a View we use the command
+
+	create or replace view order_summary
+	as
+	"Some select statements";
+	
+View only stores the structure of the View.
+Execution of the View and SQL Query is the same.
+View dosenot improove any performance.If we call the View 100 times it will execute the Query 100 times.
+
+Advantages of Views :
+---------------------
+1.Security
+2.Simplify Complex SQL Queries
+
+If we share the View Client should be able to see the Structure of the View.
+But in reality we do not share any Database credentials to the Client or Third party Vendors.
+Here we will create the User and that User has specific rights.
+By hiding the Queries used to generate the View.
+
+Sharing a View is better than sharing the Complex Query.
+
+Create and Modify a View :
+--------------------------
+If we use only create command to create the View It will give an Error.
+replace command will check whether the view is present or not.If the View is present it will replace the View or else It will create the View.
+
+If we use create or replace command to create the View, We cannot change the 
+Order of the Column
+Column Data Type
+Column
+
+Note :
+------
+View Query cannot have Distinct clause.
+View Query cannot have Group By Clause.
+View Query cannot have WITH Clause.
+View Query cannot have WINDOW Functions.
+
+
+************************************************************* 2.Materialized Views  *************************************************************
+
+
+
+
+
+
+
+
+

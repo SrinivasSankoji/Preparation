@@ -18,6 +18,7 @@ Also while retreiving Collection we need to perform type casting.
 To resolve the above problems i.e type safety and type casting we go for Generics.
 If we declare the ArrayList with String type then we can add only String type of objects.
 
+
 	ArrayList<String> array=new ArrayList<String>();
 	
 Also at the time of reterival no need toperform type casting.
