@@ -4,9 +4,9 @@
 4.Tightly Encapsulated Class                        [02-DEC-2020]  (Done)
 5.Is a Relationship                                 [10-DEC-2020]  (Done)
 6.Has a Relationship                                [10-DEC-2020]  (Done)
-
 7.Method Signature                                  [10-DEC-2020]  (Done)
 8.Overloading                                       [10-DEC-2020]  (Done)
+
 9.Overriding                                        [13-DEC-2020]  (Done)
 10.Polymorphism                                     [13-DEC-2020]  (Done)
 11.Coupling                                         [02-DEC-2020]  ()
@@ -232,13 +232,14 @@ In Aggregation,Container Object holds the references of Contained Objects i.e Co
 			
 In Java Method Signature consists of name of the Method and Argument Types.
 Return type is not a part of Method Signature.
-For each call performed by the Thread on the method,One Entry will be stored inside the Stack Area.
+For each call performed by the Thread,One Entry will be stored inside the Stack Area.
 
 public class MethodSignatureDemo {
 
 	public void m1(int i)
 	{
 		System.out.println("Integer Value is "+i);
+
 	}
 	
 	public void m1(double d,int i)
@@ -259,7 +260,7 @@ In a Class two Methods with same signature are not allowed.Atleast argument type
 
 ************************************************************* 8.Overloading   ******************************************************************************
 
-Two Methods are said to be overloaded methods If both the methods have the same name and having different argument types i.e
+Two Methods are said to be overloaded methods If both the methods have the same name and different argument types i.e
 Atleast order of arguments must be different is also applicable.
 
 In C 
@@ -277,7 +278,7 @@ But Java supports overlaoding and reduces the complexity of the program.
 
 Note :
 ------
-In overloading Method resolution is always taken care by compiler i.e based on reference type.
+In overloading Method resolution is always taken care by compiler based on reference type.
 Compiler decides which method has to be executed based on reference type.
 Here overloading is called static polymorphism or compile time polymorphism or Early Binding.
 
@@ -310,7 +311,7 @@ Value of Integer Argument is 97
 
 Automatic promotion in Overloading :
 ------------------------------------
-While performing Method overloading,If exactly matched method not found then we don't get compile time error.
+While performing Method overloading,If exactly matched method is not found then we don't get any compile time error.
 Here Compiler promotes the argument to the next level and checks whether the matched method is available or not.
 This process will be continued untill all the possible promotions.
 Still If the matched method is not Avaialbale then we get the compile time Error.
@@ -333,11 +334,11 @@ public void m1(String string)
 	System.out.println("String Argument");
 }
 
-demo.m1(null);// Priority goes to Child class in case of overloading and output is "String Argument".
+demo.m1(null);// "String Argument".
 
 Note :
 ------
-In case of overloading If both method matches,then priority goes to the Child class argument over the Parent class argument.
+In case of overloading If both the method matches,then priority goes to the Child class argument over the Parent class argument.
 
 public void m1(String string)
 {
@@ -353,11 +354,11 @@ demo.m1(null);// CTE
 
 Note :
 ------
-In case of Method Overloading,If both methods are at same level then we get CTE.
+In case of Method Overloading,If both the methods are at same level then we get CTE.
 
 VarArg Method :
 ---------------
-vararg method came in 1.5 version.
+vararg() method is introduced in 1.5 version.
 vararg() can be called by passing any no of arguments including 0 or any.
 In general vararg() will get the least priority i.e If no other method matches then only vararg() will get the chance.
 vararg() is same as default in switch case.
