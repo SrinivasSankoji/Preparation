@@ -110,7 +110,7 @@ We have to create a Stream Supplier to construct a new Stream with all Intermedi
 		
 ************************************************************ 2.Collect ************************************************************
 
-Collect is an extremely useful Terminal Operation to get the stuff out from the Stream once donw with the peocessing.
+Collect is an extremely useful Terminal Operation to get the stuff out from the Stream once done with the peocessing.
 collect accepts Collectors which consists of four different arguments ie Supplier,Accumulator,Combiner and Finisher.
 collect is used to perform many operations like Summation,Grouping,Joining etc.
 Java8 supports various built in Collectors via the Collectors Class.

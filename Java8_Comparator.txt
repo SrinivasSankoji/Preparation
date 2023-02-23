@@ -1,7 +1,7 @@
 Comparable :
 ------------
 Comparable interface is present in java.lang package.This interface contains only one method.
-By using Comparable Interface we can perform sorting only on field ie either Ascending or Descending.
+By using Comparable Interface we can perform sorting on the fields ie either Ascending or Descending.
 If we want to compare based on multiple fields we use Comparator Interface.
 		
 		public int compareTo(Object object)
@@ -12,7 +12,7 @@ returns +ve if the obj1 comes after  obj2.
 returns  0 if both obj1 and obj2 are equal.
 
 Note:
-While inserting objects into the TreeSet JVM internally uses compareTo() If we are depending on natural sorting order.
+While inserting the objects into the TreeSet JVM internally uses compareTo() If we are depending on natural sorting order.
 To define our own customized sorting order we go for Comparator Interface.
 
 Sorting the Primitive Data Types :
@@ -20,8 +20,8 @@ Sorting the Primitive Data Types :
 
 	int[] intArray= {5,9,1,10};
 	Arrays.sort(intArray);
-	System.out.println(Arrays.toString(intArray));
-	Arrays.stream(intArray).forEach(System.out::println);
+	System.out.println(Arrays.toString(intArray)); //[1, 5, 9, 10]
+	Arrays.stream(intArray).forEach(System.out::println); // 1 5 9 10
 	
 	String[] strArray= {"X", "P", "M", "O", "W"};
 	Arrays.sort(strArray);
@@ -34,13 +34,14 @@ Sorting the Primitive Data Types :
 	strList.add("B");
 	strList.add("Z");
 	strList.add("E");
-	Collections.sort(strList);
-	strList.stream().forEach(System.out::println);
+	Collections.sort(strList,Comparator.reverseOrder());
+    strList.stream().sorted(Comparator.naturalOrder()).forEach(System.out::println);
 	
 Sorting the Object Array :
 --------------------------
 We need to Comparable interface and override the compareTo(Object obj).
 
+	// Not required to override when using Comparator
 	@Override
 	public int compareTo(Employee employee) {
 		return this.getName().compareTo(employee.getName());
@@ -52,7 +53,7 @@ We need to Comparable interface and override the compareTo(Object obj).
 	empArr[2] = new Employee(5, "Lisa", 35, 5000);
 	empArr[3] = new Employee(1, "Pankaj", 32, 50000);
 	Arrays.sort(empArr);
-	Arrays.stream(empArr).forEach(System.out::println);
+	Arrays.stream(empArr).sorted(Comparator.comparing(Employee::getAge).reversed()).forEach(System.out::println);
 
 Comparator :
 ------------

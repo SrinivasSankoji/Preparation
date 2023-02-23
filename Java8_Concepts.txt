@@ -24,32 +24,33 @@
 
 ********************************************  1.For Each Method in Iterable Interface **************************************************************
 
-foreach loop :
+Foreach loop :
 --------------
-foreach loop in java does not use any Lambda Operations.
-The operations can be applied on any value outside the List that we are using for Iteration in the foreach loop.
+Foreach loop in java does not use any Lambda Operations.
+The operations can be applied on the variables outside the List that we are using for Iteration in the foreach loop.
 foreach loop can be used only for Collection and Arrays and we cannot retrieve the specific element.
 
 "return" statement works within the for loop ie function can return the value at any point of time within the loop.
 
 stream.foreach() :
 ------------------
-In stream.forEach() lambda's are used and thus operations aon variables outside the loop are not allowed.
+In stream.forEach() lambda's are used and thus operations on the variables outside the loop are not allowed.
 stream.forEach() can be used to access the Collections and Arrays.
-"return" statement doesn't work within the forEach loop.
+
+"return" statement doesn't work within the stream.foreach().
  
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
-Before Java8,Interface can have only abstract Methods ie All the Methods in interface are by default public and abstract.
-It is not possible to add new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
+Before Java8,Interface can have only abstract Methods ie All the Methods in the interface are by default public and abstract.
+It is not possible to add any new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
 It is also not possible to create interface with implementation.
 From Java8 we have interfaces with default and static Methods.
 
 default method :
 ----------------
 By using default() we can add new methods in the existing Interface in such a way that they are Backward Compatible.
-Backward Compatibility is adding a new feature without breaking the Code.
-default Methods are declared in the interfaces using default keyword and can be overridden and accessible by the instances of the implementation classes.
+Backward Compatibility is adding a new feature without breaking the existing Code.
+default Methods are declared in the interfaces by using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
    interface Printer
    {
@@ -82,11 +83,11 @@ To call the static Method we use the interface name.
    
 Java 8 – Abstract classes vs interfaces :
 -----------------------------------------
-With the introduction of default methods in Interface,abstract classes are similar to interfaces in Java8.
+With the introduction of default methods in the Interface,abstract classes are similar to interfaces in Java8.
 Eventhough it is true still we can have differences.
 Abstract classes can have Constructors where as Interfaces can't have Constructors.
 Main purpose of Interface is to provide full abstraction where as Abstract class purpose is to provide partial implementation.
-With the introduction of default methods we can add additional fetaures to the interface without effecting the implementation Classes.
+With the introduction of default methods in Interface,we can add additional fetaures to the interface without effecting the implementation Classes.
 
 Default Method and Multiple Inheritance :
 -----------------------------------------
@@ -95,9 +96,8 @@ To resolve the issue override the default method in the Implementation class.
 
 Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
 -----------------------------------------------------------------------------------------
-Java8 resolves the Multiple inheritance by overriding the default Method in the Implementation Classes.
-Problem is what if the multiple default inetrfaces have implemented by default methods with same signature then which default 
-method is invoked by the implementation class.
+Java8 resolves the Multiple inheritance by overriding the default() in the Implementation Classes.
+Problem is what If the multiple inetrfaces have default methods with same signature then which default method is invoked by the implementation class.
 Java8 designers thought of this conflict and have defined resolution rules for such scenario's.
 
 Rule 1: Class takes higher precedence than interface.
@@ -115,17 +115,14 @@ We can invoke the specific implementation in Java8 using
 
 ***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
 
-An Interface with only one abstract Method and can have any number of default and static Methods is called Functional Interface.
-We can use either predefined Functional Interface provided by Java or we can create our own.
-Since the Functional interface has only single abstract method It is also called as SAM interfaces.	
+An Interface with single abstract method and can have any number of default and static Methods is called Functional Interface.
+We can use either predefined Functional Interface provided by Java or we can create on our own.
+Since the Functional interface has single abstract method It is also called as SAM interfaces.	
 @FunctionalInterface can be used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
 Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
 We can instantiate an Interface with Anonymous Inner Class but the code looks bulky.
-   
-Thread :
---------
 
-   Runnable runnable=new Runnable()
+	Runnable runnable=new Runnable()
 							  {
 								@override
 								public void run()
@@ -133,67 +130,84 @@ Thread :
 								System.out.println("My Runnable")
 								}
 							  };
-	
-Since Functional Interfaces has only one method declaration,Lambda Expression can easily provide the Method Implementation.
-	
-Thread :
---------
+   	
+	@FunctionalInterface
+	public interface StringFunctionInterface {
 
-	Runnable runnable=() -> {
-							System.out.println("My Runnable");
-							}
-	
+		 void displayMessage(String message);
+	}
+
+Since Functional Interfaces has only one method declaration,Lambda Expression can easily provide the Method Implementation.
 If the body of the expression is one line then we can remove the curly Braces.
 
 	StringFunctionInterface stringFunctionInterface=(message) -> System.out.println(message);
 	stringFunctionInterface.displayMessage("Hello World");
 	
-We have been using Functional interface prior to Java 8.They were created by using anonymous inner class using interfaces such as Runnable,Comparator etc.
+We have been using Functional interface prior to Java 8.
+They were created by using anonymous inner class such as Runnable,Comparator etc.
+
+	 Runnable runnable=new Runnable()
+							  {
+								@override
+								public void run()
+								{
+								System.out.println("My Runnable")
+								}
+							  };
+
 Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces easily.
+
+	Runnable runnable=() -> {
+							System.out.println("My Runnable");
+							}
+							
 To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded Functional Interfaces provided by Java.
 Mark the Predefined Functional Interface by using @FunctionalInterface Annotation.
 @FunctionalInterface is introduced in Java 8.
 	
 	@FunctionalInterface
-	interface MyFunctioanlInterface
-	{
-		public int addMethod(int a,int b);
-	}
-	MyFunctioanlInterface myFunctioanlInterface=(a,b)->a+b;
-	System.out.println("Result :"+myFunctioanlInterface.addMethod(12, 100));
+	public interface AddFunctionalInterface {
+
+		public int add(int a, int b);
+	}	
+	
+	AddFunctionalInterface addFunctionalInterface=(a,b) -> a+b;
+	System.out.println(addFunctionalInterface.add(23,15));
 	
 ********************************** 4.Stream API for Bulk Data Operations on Collections (beginnersbook) *********************************************
 
 Java.util.stream has been introduced in Java 8 to perform operations like filter/map/reduce with Collection.
-Stream API allows Sequential as well as Parallel Execution.
-Collection Interface has been extended with stream() and paralellStream() default methods to get the stream for Sequential and Parallel Execution.
+Stream API allows sequential as well as parallel execution.
+Collection interface has been extended with stream() and paralellStream() default methods to get the stream for sequential and parallel execution.
 
 Stream does not store the Data.
-Stream is not a DataStructure and it never modifies the underlying Data source.
-java.util.stream supports functional style of Operations on Stream of elements like Map,Reduce and so on.
+Stream is not a data structure and it never modifies the underlying data source.
+
+java.util.stream supports functional style of operations on the stream of elements like Map,Reduce and so on.
 Stream has three Parts 
 1.Data Source 
-2.Zero or More Intermediate Operations and 
+2.Zero or More Intermediate Operations and
 3.Zero or More Terminal Operations.
 
-Intermediate Operations get the elements one by one and process them.
-All Intermediate Operations are lazy and as a Result No Operations will be effective until the pipelIne start to work.
+
+Intermediate operations get the elements one by one and process them.
+All Intermediate Operations are lazy and as a result no operations will be effective until the pipelIne start to work.
 Terminal Operation means end of the Stream Life Cycle.
 
-forEach() is a Terminal Operation and it loops over the Stream of elements calling the Supplied Function.
-After the Operation is being performed,Stream pipeline is considered to be consumed and No Longer Used.
+stream.forEach() is a terminal operation and it loops over the stream of elements by calling the supplied Function.
+After the operation is being performed,stream pipeline is considered to be consumed and no longer Used.
 
-Map produces a new Stream after applying a Function to each element of the other Stream.
-Here New Steam can be of different Type.
+Map produces a new stream after applying a function to each element of the other Stream.
+Here the new stream can be of different Type.
 
 collect() is one of the common way to get the stuff out from the stream once done with the processing.
 findFirst() is used to return the first Object from the Stream other wise it returns null.
 
-If we want to get an Array form the Stream of Elements we use toArray(Employee[]::new)
+If we want to get an Array form the stream of elements we use toArray(Employee[]::new)
 
 FlatMap :
 ---------
-A Stream can hold complex Data Structures like Stream<List<String>>.
+A Stream can hold complex data structures like List<List<String>>.
 FlaMap helps us to flatten the dataStructure to simplify further Operations.
 FlatMap can also be used for Asynchronous Operations.
 
@@ -204,14 +218,15 @@ forEach :
 ----------
 forEach is a Terminal Operation.
 
-Some times we need to perform multiple operations on each element of the Stream before the Terminal Operation is applied.
-In this case peek() can be used.
 Peek :
 ------
-peek() performs specified Operation on each element of the stream and returns a new Stream which can be used further.
+Some times we need to perform multiple operations on each element of the stream before the Terminal operation is applied.
+In this case peek() can be used.
+
+peek() performs specified operation on each element of the stream and returns a new stream which can be used further.
 peek() is an Intermediate Operation.
 peek() can be useful in visualizing how stream operations behave and understanding the complex of intermediate stream operations.
-peek() is mainly used for debugging where we want to see the elements of the stream as they flow in the pipeline.
+peek() is mainly used for debugging where we want to see how the elements of the stream flow in the pipeline.
 peek() can also be used to alter the inner state of the element.
 
 Comparison based Stream Operations :
@@ -221,7 +236,7 @@ we use sorted on stream of elements.
 allMatch, anyMatch, and noneMatch :
 -----------------------------------
 allMatch() returns true If all the elements of the stream satisfies the condition.It returns false as soon as it does not match the predicate.
-anyMatch() returns true If it Matches any one of the element in the Stream.
+anyMatch() returns true If it matches with any one of the element in the Stream.
 noneMatch() returns true If none of the element in stream matches the Predicate.
 
 Stream Specializations :
@@ -246,9 +261,8 @@ Reduce Operation combines all the elements of the stream with the given function
 	T reduce(T identity,BinaryOperator<T> accumulator)
 	
 Key concepts in reduce() are Identity,Accumulator and Combiner.
-Identity : This is the initial value of the reduction Operation and is the default result If the Stream is Empty.
-Accumulator : Function that takes two Parameters i.e Partial Result of the Reduction Operation and the Next Element of the Stream.
-
+Identity : This is the initial value of the reduction operation and is the default value If the Stream is Empty.
+Accumulator : Function that takes two parameters i.e partial result of the reduction operation and the next element of the stream.
 
 	employeeList.stream()
 	.map(Employee::getSalary)
@@ -259,10 +273,10 @@ Accumulator : Function that takes two Parameters i.e Partial Result of the Reduc
 				.reduce(0,(total,element)->total+element);
 		System.out.println(result);
 		
-Here (total,element)->total+element is the accumulator Since it takes the partial sum of the Integer value and next element of the Stream.
+Here (total,element)->total+element is the accumulator since it takes the partial sum of the Integer value and next element of the stream.
 
-Combiner : When a Stream is executed in Parallel,Java Runtime Split the Stream into Multiple Sub Streams and 
-In that case we need to use function to combine the result of sub streams into a Single one.
+Combiner : When a stream is executed in parallel,java runtime split the stream into multiple sub streams.
+In that case we need to use the function to combine the result of sub streams into a single one.
 
 	List<Employee> employees = Arrays.asList(new Employee(1, "Srinivas", 22000.00), new Employee(2, "Nandini", 27000.00));
 	System.out.println(employees.stream()
@@ -274,7 +288,7 @@ Advanced collect :
 
 partitioningBy :
 ----------------
-We can Partition a Stream into two based on whether the elements satisfy the certain criteria or Not.
+We can partition a stream into two based on whether the elements satisfy the certain criteria or not.
 
 	List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
 	Map<Boolean,List<Integer>> resultMap=intList.stream().collect(Collectors.partitioningBy(i-> i%2 ==0));
@@ -282,9 +296,9 @@ We can Partition a Stream into two based on whether the elements satisfy the cer
 	 
 groupingBy :
 ------------
-groupingBy offers advanced Partitioning compared to Partitioning.
+groupingBy offers advanced partitioning compared to partitioning.
 we can partition the stream into more than two groups.
-It takes the Classification Function as Parameter and applied to each element of the Stream.
+It takes the classification function as parameter and applied to each element of the stream.
 
 	   Map<Character, List<Employee>> groupByAlphabet = empList.stream().collect(
        Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
@@ -319,9 +333,14 @@ Method reference is an alternative way of writing Lambda Expression.
 The :: operator is used in Method reference to seperate the class or Object from the Method Name.
 There are four types of Method References.
 
+	interface MyInterface{
+	 void disply();
+	}
+
 1.Method Reference to an Instance Method of a Class.
 
 	public class Example {
+
 
 	public void myMethod(){  
 		System.out.println("Instance Method");  
@@ -332,7 +351,7 @@ There are four types of Method References.
 		
 		
 		MyInterface reference = () -> example.myMethod();
-		// If the Lambda Expression does not accept any argument and executing a Method then we use the Method Reference.
+		// If the Lambda Expression does not accept any argument and executing a method then we use the Method Reference.
 		MyInterface reference1 = example::myMethod;
 		
 		reference.disply();
@@ -340,12 +359,8 @@ There are four types of Method References.
 	}
 }
 
-interface MyInterface{
-	 void disply();
-}
-
 2.Method Reference to Static Method of a Class.
-3.Method Reference to the Constructors
+3.Method Reference to the Constructors.
 4.Method Reference to an instance Method of an Arbitary Object of a particular Type.
 
 
@@ -353,7 +368,7 @@ interface MyInterface{
 
 Optional Class is present in java.util package whch is introduced in Java 8.
 Optional Class is introduced to avoid NPE that we frequently encounter If we do not perform null check in our code.
-Using Optional Class we can easily check whether a variable has null value or not and by doing we can avoid NPE.
+Using Optional Class we can easily check whether a variable has null value or not and by doing that we can avoid NPE.
 
 ofNullable() :
 --------------
@@ -398,11 +413,11 @@ If the Object is empty then it returns the default value passed to this method a
         //Optional.empty() creates an empty Optional object        
         Optional<String> nothing = Optional.empty();
         
-        System.out.println(GOT.orElse("Empty Value"));
-        System.out.println(nothing.orElse("Empty Value"));
+        System.out.println(GOT.orElse("Empty Value")); //Game of Thrones
+        System.out.println(nothing.orElse("Empty Value")); //Empty Value
         
-        System.out.println(GOT.orElseGet(() -> "Empty Value"));
-        System.out.println(nothing.orElseGet(() -> "Empty Value"));
+        System.out.println(GOT.orElseGet(() -> "Empty Value"));  //Game of Thrones
+        System.out.println(nothing.orElseGet(() -> "Empty Value")); //Empty Value
 
 Note :
 ------
@@ -459,7 +474,7 @@ Comparator before Java8 has two methods ie compare() and equals().
 Java8 Comparator has now 19 Methods.
 Comparator is now an official Functional Interface.
 Java8 Comparator now supports declarations via Lambda Expressions as it is a Functional Interface.
-Comparator has now comparing() and comparingThen that supports multiple sorts.
+Java8 Comparator has now comparing() and comparingThen() that supports multiple sorts.
 Comparator also supports natural comparison order and also null handling.
 
 	public class ComparatorOldWay {
@@ -545,7 +560,7 @@ where T is the parameter and boolean is the return type.
 Function :
 ----------
 Function Interface represents a function that takes one type of argument and returns another type of argument.
-Function Interface implementation is now inlined in the declaration of sum variable rather in seperate Class.
+Function Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
 Function Interface definition would be
 	
 	interface Function<T,R>
@@ -592,7 +607,7 @@ Predicate Interface definition would be
 	
 Consumer :
 ----------
-Consumer Interface represents a function that takes a single argument and returns no result.
+Consumer Interface represents a function that accepts an argument and returns no result.
 
 	Consumer<String> display =(value -> System.out.println(value));
 	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
@@ -616,7 +631,7 @@ Supplier is a fucntion that does not take any argument and returns the result.
 
 1.Single Responsibility Principle :
 -----------------------------------
-Single Responsibility Principle states that A Class should have a Single Responsibility where Responsibility is nothing but reason to change.
+Single Responsibility Principle states that a Class should have a Single Responsibility where responsibility is nothing but reason to change.
 When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
 When there is a change needed in specific functionality that Class needs to be changed.
 Implementation of multiple functionalities in a Single class can mesh up the Code.
@@ -629,8 +644,7 @@ Open Closed Principe is achieved by using Inheritance and Polymorphism.
 
 3.Liskov Substitution Principle :
 ---------------------------------
-As per Liskov substitution principle,Class can be replaced by its subClass ie
-Derived class must be completely substitutable for their base classes.
+As per Liskov substitution principle,Class can be replaced by its subClass i.e. Derived class must be completely substitutable for their base classes.
 In Java Super class reference can be used to hold Subclass Object ie Super Class can be replaced by SubClass in a super class reference.
 
 4.Interface Segregation Principle :
@@ -664,6 +678,7 @@ If the remapping function results null then mapping for the specified key is rem
 		map.put("Two", "Aadvik");
 		map.compute("One", (key,value)-> value=value+" Chary");
 		map.compute("Two", (key,value)-> value=value+" Chary");
+		System.out.println(map); //{One=Bhaumik Chary, Two=Aadvik Chary}
 		
 		/**
 		 * Compute to sum the Values
@@ -673,10 +688,11 @@ If the remapping function results null then mapping for the specified key is rem
 		map1.put("One", 15);
 		
 		map1.compute("One", (key,value) -> (value == null) ? 1 : value + value);
+		System.out.println(map1); //{One=30, Two=23}
 		
 2.computeIfAbsent :
 -------------------
-computeIfAbsent() computes a new value and associates with the specified key if the key is not present.
+computeIfAbsent() computes a new value associated with the specified key if the key is not present.
 If the Key is present then computeIfAbsent does not effect the Map.
 
 computeIfAbsent() takes two parameters
@@ -691,6 +707,7 @@ reMapping Function cannot take two arguments and takes single argument.
 		
 		System.out.println(map);
 		map.computeIfAbsent("key5", key -> 87000);
+		System.out.println(map); //{key1=10000, key2=55000, key5=87000, key3=44300, key4=53200}
 
 3.computeIfPresent :
 --------------------
@@ -703,14 +720,14 @@ reMapping Function can take two arguments and is considered as BiFunction.
 If the reMapping Function returns null then mapping for the specified key is removed.
 
 		map.computeIfPresent("key4",(key,val)-> val+1);
-		System.out.println(map);
+		System.out.println(map); // {key1=10000, key2=55000, key5=87000, key3=44300, key4=53201}
 		
 4.merge :
 ---------
 merge() is used to combine multiple mapped values for a given key using mapping function.
 
 Note :
-If the key is not present or associated with null,It simply outputs the key along with the corresponding value in the HashMap as a new Entry.
+If the key is not present,It simply outputs the key along with the corresponding value in the HashMap as a new Entry.
 If the key already holds some value remapping function merges both the old and new value for the given key.
 In case key is null,It always mapped to bucket 0 as hash is not calculated for null keys due to NPE.
 
@@ -726,7 +743,7 @@ In case key is null,It always mapped to bucket 0 as hash is not calculated for n
 		map2.put("Two", 15);
 
 		map2.forEach((key,value) -> map1.merge(key, value, (v1,v2) -> v1+v2));
-		System.out.println(map1);
+		System.out.println(map1); //{One=45, Two=42}
 		
 5.getOrDefault() :
 ------------------
