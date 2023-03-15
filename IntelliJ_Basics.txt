@@ -1,0 +1,70 @@
+1.IntelliJ Idea Features and Shortcuts (1 & 2)			(Tech Primers)     				[15-MAR-2020]  (Done)
+2.IntelliJ Idea Features and Plugins 					(Tech Primers)     				[15-MAR-2020]  ()
+3.Java Development with IntelliJ IDE					(softwaretestinghelp)     		[15-MAR-2020]  ()
+4.GIT in IntelliJ										(Tech Primers)     				[15-MAR-2020]  ()
+5.IntelliJ Tricks (1 & 2)								(Tech Primers)     				[15-MAR-2020]  ()
+6.Lombok in IntelliJ                                    (Tech Primers)     				[15-MAR-2020]  ()
+7.Spring Initializer in Initializer                     (Tech Primers)     				[15-MAR-2020]  ()
+8.Maven Dependency Issues in IntelliJ                   (Tech Primers)     				[15-MAR-2020]  ()
+9.IntelliJ First Java Program							(javatpoint)     				[15-MAR-2020]  ()
+10.IntelliJ Window Elements                             (javatpoint)     				[15-MAR-2020]  ()
+11.IntelliJ Code Editor                                 (javatpoint)     				[15-MAR-2020]  ()
+12.Intellij Scratches                                   (javatpoint)     				[15-MAR-2020]  ()
+13.Intellij Running Projects                            (javatpoint)     				[15-MAR-2020]  ()
+14.Intellij Plugins                                     (javatpoint)     				[15-MAR-2020]  ()
+15.Intellij Code refactoring                            (javatpoint)     				[15-MAR-2020]  ()
+16.Intellij Code Inspection                             (javatpoint)     				[15-MAR-2020]  ()
+17.Intellij Version Control                             (javatpoint)     				[15-MAR-2020]  ()
+18.Intellij Debugging                                   (javatpoint)     				[15-MAR-2020]  ()
+19.Intellij Testing                                     (javatpoint)     				[15-MAR-2020]  ()
+20.Intellij Build Tools                                 (javatpoint)     				[15-MAR-2020]  ()
+21.Intellij Profiling                                   (javatpoint)     				[15-MAR-2020]  ()
+22.Intellij Migrating from Eclipse                      (javatpoint)     				[15-MAR-2020]  ()
+
+
+################################################### 1.IntelliJ Idea Features and Shortcuts ###################################################
+
+In Eclipse we have the Workspace where as in IntelliJ we have window.
+Unfortunately we can have only one project in the window.We can even import the other projects inside.
+We can also decompile the class file.
+
+
+To search for a particular class - CTRL+N
+To search for a particular class and particular line - SR:4
+To search for all the files - CTRL+SHIFT+N
+To open the Terminal - ALT+F12
+To go inside the class - CTRL+B
+To come back  from the class - CTRL+ALT+<
+To show the imports - ALT+ENTER
+To create the local variable for the method - ALT+ENTER
+To open the recently opened class - CTRL+E
+To see the copied history - CTRL+SHIFT+V
+To extract the lines of code into the method - CTRL+ALT+M
+To extract the string into variable declaration - CTRL+ALT+V
+To copy the line or group of lines - CTRL+D 
+To generate the code for Model class - ALT+INSERT
+
+To go the the declaration - CTRL+B
+To open the implementation Class - CTRL+ALT+B
+To see the methods in the class - CTRL+F12
+To search for any class - CTRL+O
+To serach the class in the folder - CTRL+SHIFT+O
+
+
+To search everywhere - Double Shift
+To format the code inside the method - CTRL+ALT+I
+To format the complete code - CTRL+ALT+L
+To check the validation at variable level i.e. whether the variable is regular expression or not - ALT+ENTER
+To automatically identify the Obejct - CTRL+SHIT+SPACE
+To check what argument that method or variable accepts - CTRL+P
+To move the line up and down - CTRL+SHIFT+UP or CTRL+SHIFT+DOWN
+
+################################################### 2.IntelliJ Idea Features and Plugins ###################################################
+
+
+
+
+
+
+
+

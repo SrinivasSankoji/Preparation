@@ -20,6 +20,7 @@
 20.HTTP and Observables												[21-FEB-2019]  (Done)
 21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
 22.HTTP Error Handling												[21-FEB-2019]  ()
+
 23.Routing and Navigation											[06-APR-2020]  (Done)
 24.Wild Card Route and Redirecting Routes							[06-APR-2020]  (Done)
 25.Route Parameters													[12-APR-2020]  (Done)
@@ -28,7 +29,10 @@
 27.Optional Route Parameters										[28-MAY-2020]  ()
 28.Relative Navigation												[28-MAY-2020]  ()
 29.Child Routes														[28-MAY-2020]  ()
-30.Angular 6 Features												[13-APR-2020]  ()
+30.Angular 6 Features												[10-MAR-2023]  ()
+
+31.Updating App to Angular 6										[13-MAR-2023]  ()
+32.Angular 8 Features                                               [13-MAR-2023]  ()
 
 
 ################################################### 1.Introduction	####################################################################
@@ -37,14 +41,14 @@ It is a JavsScript Framework and is used to build Client Side Applications.
 Angular is specially used to build Single Page Applications i.e without refreshing the entire page.
 Angular Provides Modular Approach and hence the Application we build has a Clear Structure.
 By making use of Components which is a feature in Angular we have lot of reusability of Code.
-Angular has so many features like Routing which makes development quicker and faster.
+Angular has so many features like Routing which makes the development quicker and faster.
 Angular even provides support for Unit Testing.
 Angular is from Google and uses MicroSoft Typescript Language.
 
 ######################################################### 2.Getting Started #########################################################
 
 PreRequisite for Angular are basics of HTML,CSS and JavaScript.
-We need to Setup Development Environment i.e  install
+We need to Setup the Development Environment i.e  install
 
 	Node
 	Npm
@@ -67,11 +71,21 @@ To install Angular CLI
 To Check whether the Angular CLI is installed or not,run the command
 
 	ng - v
+	
+To Uninstall Angular CLI :
+
+	npm uninstall -g @angular/cli
+	npm cache clean --force
+	
+To Uninstall node and npm 
+	
+To Install Specific version of Angular 
+
+	npm install -g @angular/cli@^8.0.0
 
 To install the latest version of Angular 
 
-	npm install --no-save @angular/cli@^8.3.15
-	
+	npm install --no-save @angular/cli@8.3.15
 	ng update @angular/cli @angular/core --next
 	
 ############################################# 3.Hello World #############################################
@@ -81,7 +95,7 @@ In Visual Studio Code we have an Integrated Terminal where we can run the Comman
 
 	View -> Terminal -> Make sure we are inside the Angular Folder.
 	
-To create a New Angular Project we use the Command 
+To create New Angular Project we use the Command
 	
 	ng new Angular
 
@@ -118,30 +132,30 @@ Component controls a portion of the view in the Browser.
 		Side Bar			(Component 3)
 		(Component 2)
 				
-Every Angular Application has one Component which is the root Component of the Application and is Called App Component.
+Every Angular Application has one Component which is the root Component and by naming convention it is is App Component.
 All other Components will be nested inside the App Component.
-Each Component have HTML Template and Class.
+Each Component will have HTML Template and Class.
 HTML Template to represent the view in the Browser and Class that Contains the logic of that particular view.
 
-Modules can also have Services i.e. Class that contains the Business Logic of an Application.
-In Addition to Components and Services,Module can also have few more pieces of the Angular Application.
+Modules can also have Services i.e. The class that contains the Business Logic of an Application.
+In Addition to Components and Services,Module also has some more features.
 Modules can be exported and imported as and when required and render the view to the Browser.
 
 File Structure :
 ----------------
-package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules which are required for an Angular Application to Work.
-Packages listed in the development dependencies are installed when we run the command 
+package.json contains the dependencies,development dependencies (which are nothing but libraries) and Modules which are required for an Angular Application to work.
+Packages listed in the development dependencies are installed when we run the command
 
 	ng new Helloworld (While Creating an Angular Application)
 	
 All the Packages are installed in the Node Modules.
-We also have some of the scripts that can be used to run the Application.
+package.json has some scripts that can be used to run the Application.
 	
 		ng serve
 		
 src Folder :
 ------------
-In the src Folder we have main.ts which is an entry Point for an Angular Application.
+In the src folder we have main.ts which is an entry Point for an Angular Application.
 we also have app Folder inside src folder.
 app Folder contains app.module.ts which is the Root Module for an Angular Application.
 app Folder also contains app.component.ts which is the Root Component for an Angular Application.
@@ -189,7 +203,7 @@ We have a Class that contains a method to show or hide the element based on the 
 
 A Component can also have Metadata Attached to it.
 This is the information that the Angular needs to decide whether particular Class is an Angular Component or Not.
-Metadata is defined using Decorator and is a feature in TypeScript.
+Metadata is defined using Decorator Annotation and is a feature in TypeScript.
 
 Decorator Annotation provides information about the Class Attached to it.
 For Component we use Component Decorator.
@@ -198,6 +212,11 @@ Example :
 ---------
 In the app.component.ts we have one Class named AppComponent and it Contains one data Property
 
+	@Component({
+	  selector: 'app-root',
+	  templateUrl: './app.component.html',
+	  styleUrls: ['./app.component.css']
+	})
 	export class AppComponent
 	{
 		title='Code Evolution';
@@ -223,7 +242,7 @@ When we specify the Selector in the HTML, Angular renders the Component Template
 	<app-root></app-root>
 	</Body>
 
-But what exactly here is the Template for this Component and can be specified by using templateURL.
+But what Component is can be specified by using templateURL.
 TemplateUrl points to the HTML file that represents the Component.
 In app.component.html we have title and title is the Property in the Class app.component.ts.
 
@@ -231,56 +250,55 @@ To Create a new Component from Angular CLI we use the command
 
 	ng g c Helloworld
 	
-When we run the above Command,new Files will be Created and it will update the App Module.
+When we run the above Command,new files will be created and it will update the App Module.
 In the app Folder,Hellworld Folder has been Created and it Contains HTML,CSS,TS and spec.ts Files.
 When we Create a Any Component,Angular Should aware of this i.e In the App Module import the Helloworld Component and add it to the Declarations Array.
 
 Declaration array Contains all the Components used by the Application.
 To include this Component in the HTML,Just add Custom HTML tag that Represents the Selector in app.component.html.
 
-	<app-helloworld></app-helloworld>
+	<app-hello-world></app-hello-world>
 
 Changes that can be made to any of the Component are selector and templateUrl.
 There are 3 ways to Specify the Selector :
 
 1.selector:'app-test'
-
-	It can be Used as a Custom HTML Tag.
+This can be used as a Custom HTML Tag in the HTML.
+	
 	<app-test></app-test>
 
 2.selector : '.app-test'
+If we begin the selector with . then this can be used as a Class Name in Custom HTML Tag.
 	
-	Begin the Selector with . and that can be used as a Class Name in Custom HTML Tag.
-	<div class="app-test">
-	</div>
+	<div class="app-test"></div>
 	
 3.selector:'[app-test]'
-	We can also have the Selector between the Square Brackets.
-	This can be Used as an Attribute in custom HTML Tag.
-	<div app-test>
-	</div>
+We can also have the selector between the Square Brackets.
+This can be used as an Attribute in custom HTML Tag.
+
+	<div app-test></div>
 	
 Template :
 ----------
-We have a TemplateUrl Property in the Component Decorator that Points to the File that Contains the HTML.
+We have a TemplateUrl property that points to the HTML file that represents the Component.
 
 Case 1 :
 --------
-In Any Component it is Possible to Specify the Template InLine i.e in the Same Type Script File.
+In Any Component it is possible to specify the Template InLine i.e in the same Type Script File.
 For that Purpose we use template Property.
 
 	template : '<div>InLine Template</div>'
 	
 case 2: 
 -------
-Some Times our In line Template Might Span Couple of Lines and For that We Make use of ` Symbol.
+Some Times our Inline Template might Span couple of lines and for that we make use of ` Symbol.
 
 	template:	`
 				<div>
 				InLine Template
 				</div>
 				`
-Similar is the Case with Styles.
+Similar is the case with Styles.
 
 ################################################### 5.Interpolation ####################################################################
 
@@ -301,28 +319,26 @@ In the Interpolation Component Use the In line Template  i.e
  
 Change the app.component.html i.e add the interpolation Selector in app.component.html.
 The Problem here is Interpolation is Dynamic.
-Here Interpolation May Come From Web Service or Web API and Value may Change at any Point of Time.
-To Make the Value Dynamic,we Create the New Property in the Class.
+Here Interpolation may come from Web service or Web API and value may change at any point of time.
+To make the value dynamic,we create the new property in the Class.
 
   public name ="Interpolation by Srinivas";
   
-we get the Value into HTML Template by Using Interpolation i.e {{}}
+we get the value into HTML Template by using Interpolation i.e {{}}
 
   Welcome {{name}}
   
-By Using Interpolation we are asking Angular to evaluate the Content inside the curly braces and display the value when the Content is rendered to the Browser.
+By using Interpolation we are asking the Angular to evaluate the Content inside the curly braces and display the value when the Content is rendered to the Browser.
 
-Consider the Scenario {{2+2}}
-Angular Evaluates the Expression and Displays the Result in the Browser. i.e 4
+Consider the scenario {{2+2}}
+Angular evaluates the expression and displays the result in the browser. i.e 4
+Consider the scenario  {{"Welcome " + name}} here it performs String Concatenation.
+Consider the scenario where we are using Java Script properties and methods in the curly braces.
 
-Consider the Scenario  {{"Welcome " + name}} Here it Performs String Concatenation.
-
-Consider the Scenario where we are Using Java Script Properties and Methods in the Curly Braces.
 	<h2>{{name.length}}</h2> 
-
-	 <h2>{{name.toUpperCase()}}</h2> 
+	<h2>{{name.toUpperCase()}}</h2> 
 	 
-Apart from Built in Java Script Methods we can also use User Defined Methods defined in Component Class.
+Apart from Built in Java Script Methods we can also use User defined methods defined in Component Class.
 	
   <h2>{{greetUser()}}</h2>  
   greetUser()
@@ -350,13 +366,14 @@ To access the Global Variable,Create the Local Variable and assign the Global Va
 
 ################################################### 6.Property Binding ####################################################################
 
-Before Understanding Property Binding it is Important to understand the Difference Between HTML Attribute and DOM Property.
+Before understanding Property Binding it is important to understand the difference between HTML Attribute and DOM Property.
 
 	@Component({
   selector: 'propertybinding',
+
   template: `
   <h2> welcome {{topicName}}
-  <input type="text" value="vishwas"></input>
+   <input type="text" value="Vishwas"/>
   `,
   styleUrls: ['./propertybinding.component.css']
 	})
@@ -366,43 +383,50 @@ Inspect the Element in the Browser then
 $0.getAttribute('value') --> Vishwas
 $0.value --> Vishwas
 
-If I Change the Text from Vishwas to CodeEvolution in the Input Element of the Browser 
+If I Change the Text from Vishwas to CodeEvolution in the Input element of the Browser i.e. in the Text Box
 
 $0.getAttribute('value') --> Vishwas
 $0.value --> CodeEvolution
 
-Attribute Property Wont Change where as the Value Property Changes.
+Attribute Property won't change where as the property value changes.
 
 Points To Remember :
 --------------------
-Attributes and Property Both are Not Same.
-Attributes are Defined by Using HTML where as Property are Defined by Using Document Object Model.
-Attributes initialize DOM Properties and they are Done and Attribute Value Cannot Change Once they are Initialized.
-Property Value However Can Change.
-With Property Binding It Looks Like we are Binding the Property to the HTML Property But Actually In Angular We are Binding the Property to the DOM Element.
+Attributes and Property both are not same.
+Attributes are defined by using HTML where as Property are defined by using Document Object Model.
+Attributes initialize DOM Properties and they are done and Attribute value cannot change once they are initialized.
+Property value however can change.
+HTML attribute value specifies the initial value.DOM value property value is the current value.
+Attribute value remains the same where as DOM value will change.
+With Property Binding It looks like we are binding the property to the HTML Property but actually we are binding the property of the DOM Element.
 
 Consider the Example :
 Create a Property in the Class i.e 
-	
+
 	public myId="TestId";
 	
-We need to bind this myId to the id Property of the HTML input Element.
-If we inspect the Element id is set to TestId which is the Value of the myId Property.
+We need to bind this myId value to the HTML id property of the input Element.
+
+	<input [id]="myId" type="text" value="Vishwas"/>
 	
+If we inspect the element id is set to TestId which is the Value of the myId Property.
 We can also use Interpolation for Property Binding.
 
-	<input id="{{myId}}" type="text" value="vishwas">
+	    <input id={{myId}} type="text" value="Vishwas"/>
 	
-Problem with Interpolation is that it Only works with String Elements.
-There are Some HTML Properties that we may need to bind to.
-Consider an Example of disabled attribute of an HTML Element and by Default it is set to False.
+Problem with Interpolation is that it only works with String Elements.
+There are some HTML properties that we may need to bind to.
+Consider an Example of disabled attribute of an HTML Element and by default it is set to false.
+
+	<input disabled id={{myId}} type="text" value="Vishwas"/>
+
+If we make the disabled attribute to true,Then the value in the Text Box is disabled.
 
 	  <input disabled="true" id="{{myId}}" type="text" value="vishwas">
-Then the Value in the Text Box is disabled.
 
-	<input disabled="false" id="{{myId}}" type="text" value="vishwas">
-	Here Setting the Value to false has No Effect and Still Value in the Text Box is disabled.
-	
+	  <input disabled="false" id="{{myId}}" type="text" value="vishwas">
+	  
+Here Setting the value to false has No Effect and still the value in the Text Box is disabled.
 Here the Problem is disabled attribute expects the boolean value and it is getting the String Value.
 Even Interpolation does not work here.
 
@@ -411,15 +435,14 @@ Even Interpolation does not work here.
 Solution here is to use Property Binding.
 
 	<input [disabled]="false" id="{{myId}}" type="text" value="vishwas">
-	Now the Value in the Text Box is Enabled.
-	
-from the Above cases Hard Coding true or false is Not Recommended and use the Property Variable.
-Declare the Variable 
 
-	public isDisabled=false;
+Now the value in the Text Box is enabled.	
+from the above use case hard coding true or false is not recommended and use the Property Variable.
+Declare the variable 
+
+	public isdisabled=false;
 
 	<input [disabled]="isDisabled" id="{{myId}}" type="text" value="vishwas">
-	
 	
 There is an Alternate Syntax for Property Binding instead of []
 We can also use bind-attributeName
@@ -438,16 +461,17 @@ Example :
 
 ################################################### 9.Event Binding ####################################################################
 
-Till Now we Have seen the Data Flow from Component Class to HTML Template.
-Any Update to the Class Property will Reflect the HTML Template.
-Sometimes to respond to User Events Like Mouse Click ,Key Board Events We Need the Data Flow in the Other Direction as Well i.e from HTML Template to Component Class.
-To Capture Events we Use Event Binding.
+Till now we have seen the data flow from Component class to HTML Template.
+Any update to the Class property will reflect in the HTML Template.
+Sometimes to respond to the User Events like Mouse click ,Key Board Events we need the data to be flown in the other direction as well 
+i.e from HTML Template to Component Class.
+To capture events we use Event Binding.
 
 	<button>Greet</button>
 
-When the User Clicks on the Button we want to Display Hello User in the Console.
-Here we need to Listen to the Click event on the Button.
-events in Angular are enclosed within ()
+When the user clicks on the button we want to display Hello User in the Console.
+Here we need to listen to the click event on the Button.
+Events in Angular are enclosed within ()
 
 	<button (click)="onclick()">Greet</button>
 	 
@@ -462,7 +486,7 @@ It is also Possible to set the Properties to the Events i.e Click Events.
 	public name ="";
 	 
 	Define the Function 
-	onclick()
+	greet()
     {
     this.name="Srinivas Event Binding";
     }
@@ -482,30 +506,30 @@ For that Simply Send the Parameter in the Event Handler. i.e $event and is a Spe
 	}
 	
 In the Console It displays all the Information About the Event.
-Finally Some times when we are Working with Event Binding,Separate Event Handler May Not Be Necessary.
-In the Above Example Method Body is Very Small.
+Finally sometimes when we are working with Event Binding,separate Event Handler may not be necessary.
+In the above example Method body is very Small.
 We can have this as Template Statement in the HTML itself.
 
 <button (click)="name ='Template Statement'">Greet</button> {{name}}
 
-Event Binding Captures Some Event and Displays the Information about the Event.
+Event Binding Captures some event and displays the information about the Event.
 
 
 ################################################### 10.Template Reference Variables ###################################################
 
-When there is a User Interaction We Might Want Some Data to be Flown form View to the Class to Perform Some Operation.
-We May Require a Value from input Field to Perform validations.
-To Easily Access DOM Elements and their Properties Angular Provides Template Reference Variables.
+Whenever there is a user Interaction we might want some data to be flown form view to the Class to perform some operation.
+We may require a value from in an input field to perform validations.
+To easily access DOM elements and their properties Angular provides Template Reference Variables.
   
 Consider the Scenario	
 
-  <input type="text">   
-  <button>Log</button>  	
+  <input type="text">
+  <button>Template Reference Variable</button> 	
   
-What we want to achieve here is whatever the User Enters the Text we need to Display it into the Console.
-For that we Need to bind Click Event to the Button.
-Declare the Event for Click and Pass the Value that User has Entered.
-The way we pass the User Entered Text is by Using Template Reference Variables.
+Here whatever the User enters the text we need to display it into the Console.
+For that we need to bind the click event to the button.
+Declare the event for click and pass the value that user has entered.
+The way we pass the user entered Text is by using Template Reference Variables.
 
 	<input #userInput type="text">
 	
@@ -520,23 +544,25 @@ Case : When we pass only userInput then input Element is Passed.
 
 ################################################### 11.Two Way Binding ####################################################################
 
-When ever we Want to Work with Angular Forms,Model and View are in Sync.Otherwise Data Might not be Consistent.
-	Consider 	View has User name and Password.
-				Class Has User name and Password.
-Whenever User Updates input Controls  Model and Property Should Automatically Receive those Values.
-Similarly When there is an Update in the Model or Property Value,View Should Automatically Reflect the Updated Value.
-This Can be Achieved by Using Two Way Binding.
-Two Way Binding allows us to Update the Property and at the Same Time Display the Value of the Property.
-We can achieve two way Binding by Using ngModel Directive.
+When ever we want to work with Angular Forms,Model and View are in sync.otherwise data might not be consistent.
+Consider the case where
+View has User name and Password.
+Class has User name and Password.
+
+Whenever user updates input text,Model and Property should automatically receive those values.
+Similarly when there is an update in the Model or Property value,View Should automatically reflect the updated value.
+This can be achieved by using Two Way Binding.
+Two Way Binding allows us to update the property and at the Same Time displays the value of the property.
+We can achieve two way Binding by using ngModel directive.
 
 	<input type="text">
 	{{name}}
 	
 	public name="";
 	
-Here Whenever User Enters Some Text in the Text Box,Automatically it has to be Displayed in the Browser.
-From the Above Code Does Not Work and we need to use ngModel Directive.
-Angular is Not Aware of ngModel Directive because it is in Separate module Called Forms Module.
+Here Whenever user enters Some Text in the Text Box,automatically it has to be displayed in the Browser.
+From the above code it does not work and we need to use ngModel Directive.
+Angular is not aware of ngModel directive because it is in separate module called Forms Module.
 
 
 Add Forms Module in app.module.ts 
@@ -547,13 +573,13 @@ and add it to the imports Array
 	
 	FormsModule
 
-	<input [(ngModel)]="name" type="text">  {{name}}
+	<input [(ngModel)]="name" type="text"> {{name}}
 	
 
 ################################################### 12.ngIf #####################################################################################
 
-Structural Directives can be Used to add or Remove HTML Elements from the DOM.
-3 Common Built in Structural Directives are 
+Structural Directives can be used to add or remove HTML Elements from the DOM.
+3 common built in structural directives are 
 
 	ngIf
 	ngSwitch
@@ -575,20 +601,20 @@ ngFor is used to render the List of Elements.
 
 ################################################### 15.Component Interaction ####################################################################
 
-From the Last few Examples we are Working on Some Component and that Component is Nested inside app Component.
-Here app Component is the Parent Component and the Other Component is the Child Component.
-Some times we may get a Requirement of Two Components need to Interact with Each Other.
-Parent Component might Send some data to the Child Component similarly Child Component send some data to the Parent Component.
+From the last few examples we are working on some Components and that Component are nested inside App Component.
+Here App Component is the Parent Component and the other Component is the Child Component.
+Some times we may get a requirement that two Components needs to interact with each Other.
+Parent Component might send some data to the Child Component similarly Child Component might send some data to the Parent Component.
 Here Components interact with each other using @Input and @Output Decorator.
-Using @Input Decorator Child Component will accept input from the Parent Component.
-Similarly Using @Output Decorator Parent Component will accept the data from the Child Component.
-Using @Output Decorator Child will send some events to the Parent Component to indicate Something.
+Using @Input Decorator Child Component will accept the input from the Parent Component.
+Similarly using @Output Decorator Parent Component will accept the data from the Child Component.
+Using @Output Decorator Child Component will send some events to the Parent Component to indicate Something.
 
 Consider the Scenario :
 
 Case 1 :
 --------
-Parent Component Send some data to the Child Component i.e name  and in the Child Component display the name Send by the Parent Component.
+Parent Component sends some data to the Child Component i.e name  and in the Child Component display the name Send by the Parent Component.
 To Send the Data from Parent Component to Child Component i.e app Component to parentchild Component.
 
 Create Variable in the app Component i.e 
@@ -598,12 +624,13 @@ Create Variable in the app Component i.e
 In the app.component.html where we bind the Child Component i.e 
 where we include the Child Component Selector in the Parent Component HTML.
 
+
 	 <parentchild [parentData]="name"></parentchild>
 	 
-Now declare the Same Variable in the Child Component that we Have declared in the Parent Component.
+Now declare the same Variable in the Child Component that we have declared in the Parent Component.
 
-Here In the Child Component We Need to Provide Information that the Variable is Not a Normal Variable and We are Receiving it from the Parent Property.
-This can be Done by Using @Input Decorator.
+Here In the Child Component we need to provide information about the variable that it is not a normal variable and we are receiving it from the Parent Property.
+This can be done by using @Input Decorator in the ts file.
 
 		 @Input() public parentData;
 		 
@@ -611,42 +638,42 @@ This can be Done by Using @Input Decorator.
 		 <h2>{{"Hello "+parentData}}</h2>
 		 </div>
 	
-Some times we have a Requirement of Using Different Name which is Coming from Parent Component.
-In this Case we Use alias Name of @Input Decorator.
+Some times we have a requirement of using different name which is coming from Parent Component.
+In this case we use alias Name of @Input Decorator.
 
 		 @Input('parentData') public name;
 
 Case 2: 
 -------
-Child Component Sending  some Data to Parent Component.
+Child Component sending  some data to Parent Component.
 
-In Case of Parent to Child Component Interaction,Parent Component HTML have the Child Component Selector So that we Can Easily Bind the Parent Component Data to the Child Component.
-Where as In the Child Component HTML We Don't have Parent Component Selector.
-The Way a Child Component Sends the Data to the Parent Component is by Using Events.
+In Case of Parent to Child Component,Parent Component HTML will have the Child Component selector so that we can easily bind the Parent Component data to the Child Component.
+Where as in the Child Component HTML we don't have any Parent Component Selector.
+The way a Child Component sends the data to the Parent Component is by using Events.
 
-Create an Event by Using EventEmitter Class so that We Can send an Event to the Parent.
+Create an Event by using EventEmitter Class so that we can send an Event to the Parent.
 
 	 public childEvent= new EventEmitter(); 
 	 
-To Send the Child Component Data to the Parent Component we use @Output Decorator.
+To send the Child Component data to the Parent Component we use @Output Decorator.
 
 	@Output() public childEvent= new EventEmitter();
 
-Now We have Added an Event and Fire this Event on Button Click.
+Now we have added an Event and fire this event on button click.
 
 	<button (click)="sendEvent()">Send Event</button>
 	
 	sendEvent()
 	{
-    this.childEvent.emit("Hi Parent From Child");
+		this.childEvent.emit("Hi Parent From Child");
 	}
 
-Now the Event is Emitted from the Child Component.
-We Need to Capture in the Parent Component.
+Now the Event is emitted from the Child Component.
+We need to capture in the Parent Component.
 
 	<parentchild (childEvent)="message=$event" [parentData]="name"></parentchild>
 
-Also Declare the Variable in the Parent Component i.e public message="";
+Also declare the variable in the Parent Component i.e public message="";
 
 
 ################################################### 16.Pipes #####################################################################################
@@ -674,24 +701,24 @@ In the Employee List Component to render the Name of Employees
       <li>{{employee.name}}</li>
     </ul>
 	
-To get the Employee name in the Employee Detail Component We have to Write the Same Code Again.
-Here we are Violating the Principle of  DRY Principle i.e Do Not Repeat Your Self and Single Responsibility Principle.
-Here Component Class Should have Only One Responsibility i.e To Control the View Logic.
-In Our Case It is also Responsible For Creating an Employee Array in Employee List and Employee Detail Component.
+To get the Employee name in the Employee Detail Component again we have to write the same code.
+Here we are violating the principle of DRY i.e Do Not Repeat Your Self and Single Responsibility Principle.
+Here Component Class should have only one responsibility i.e To control the view Logic.
+In Our case it is also responsible for creating an Employee Array  i.e. both in Employee List and Employee Detail Component.
 
-The Solution is Service and Advantage of Services are :
-A Class with Specific Service
-To Share the Data Across the Multiple Components
-To Implement Business Logic
-To Connect with Database.
+The solution is service and advantage of Services are 
+A Class with specific service
+To share the data across multiple Components
+To implement Business Logic
+To connect with Database.
 
-We Can Implement Services by Using Dependency Injection.
+We can implement services by using Dependency Injection.
 
 ################################################### 18.Dependency Injection ####################################################################
 
-Dependency Injection can be Implemented in 3 Ways
+Dependency Injection can be implemented in 3 Ways
 
-1.Code Without DI and its drawbacks
+1.Code without DI and its drawbacks
 2.DI as Design Pattern
 3.DI as Framework
 
@@ -703,7 +730,7 @@ Dependency Injection can be Implemented in 3 Ways
 		constructor(parameter)
 	}
 	
-	Class Tyree 
+	Class Tyre
 	{
 		constructor(parameter)
 	}
@@ -719,15 +746,15 @@ Dependency Injection can be Implemented in 3 Ways
 		}
 	}
 
-To Create an Object of Car We need to pass the Parameter of Engine Type.	
-The Problem with this Approach is If Engine has Extra Parameter then Car wont Create the Object.
-Similar is the Case with Tyree.
-Here the Code is Not Flexible because If Dependencies has Changed Dependent has to be Changed.
-Also we get the Same kind of Object every Time.
+To create an Object of Car we need to pass the parameter of type Engine.	
+The problem with this approach is If the Engine has extra parameters then we cannot create the Object of Car .
+Similar is the case with Tyre.
+Here the code is not flexible because If dependencies has changed dependent has to be changed.
+Also we get the same kind of Object every time.
 
-2.DI as Design Pattern :
------------------------
-In Case of DI as Design Pattern a Class receives its Dependencies from external resources rather than craeting itself.
+2.DI as a Design Pattern :
+--------------------------
+In case of Dependency Injection as Design Pattern a class receives its dependencies from external resources rather than craeting itself.
 
 	Class Car 
 	{
@@ -740,22 +767,22 @@ In Case of DI as Design Pattern a Class receives its Dependencies from external 
 		}
 	}
 	
-Problem with Dependency Injection as a Design Pattern is as a Developer We Have to Manually Create the Dependency and Dependent Objects.
-If the Number of Objects increases,Maintenance will be Difficult for the Developer.
+Problem with Dependency Injection as a Design Pattern is as a Developer we have to manually create the Dependency and Dependent Objects.
+If the number of Objects increases,Maintenance will be difficult for the Developer.
 Solution is DI as a Framework.
 
 3.DI as Framework :
 -------------------
-DI Framework has Something Called Injector which registers all the Dependencies.
-Injector acts like a Container for all the Dependencies.
-DI Framework Manages all the Dependencies and makes the Developer Job More Simple.
+Dependency Injection as a Framework has something called Injector which registers all the dependencies.
+Injector acts like a Container for all the dependencies.
+Injector manages all the dependencies and makes the developer job more Simple.
 
-If the Component Depends on Number of Services,We Register all the Services with Injector.
-When the Component is Initialized all the Dependencies will be initialized Automatically.
+If the Component depends on number of Services,we register all the Services with Injector.
+When the Component is initialized all the dependencies will be initialized automatically.
 
 Create Employee Service Class
 Register with Injector
-Declare as a Dependency in Employee List and Employee Detail Component.
+Declare as a dependency in Employee List and Employee Detail Component.
 
 ################################################### 19.Using Service ###########################################################################
 
@@ -792,17 +819,15 @@ To use this Service in the Component Declare as an Array i.e
 	
 Step 2 :
 Now Register the Service with Angular.
-If we don't register the Service,then service is Like Regular Class in Angular.
-There are Multiple places where we can register the Service and is Important because 
-Angular has Hierarchical Dependency Injection System.
+If we don't register the Service,then service is like regular Class in Angular.
+There are multiple places where we can register the Service and is important because Angular has hierarchical Dependency Injection System.
 
-If we Register in Employee List Component then it is applicable to Employee List Component and its Dependent Components.
-If We Register in app Component it is applicable to its dependent Components and Not applicable for other Modules.
-Here Each Module is a Feature area in our Application.
-It is better to register the Service in app Module.
+If we register in Employee List Component then it is applicable to Employee List Component and its Dependent Components.
+If we register in App Component it is applicable to its dependent Components and not applicable for other Modules.
+Here each Module is a feature area in our Application.It is better to register the Service in app Module.
 
-If we Register the Service in app Module,Components under the App Module can use the Service.
-To Register the Service we use the Provider Metadata.
+If we register the Service in App Module,Components under the App Module can use the Service.
+To register the Service we use the Providers Metadata.
 Add the Service to the Providers Metadata.
 	
 	 providers: [EmployeeService]
@@ -812,7 +837,7 @@ import the Employee Service
 	import {EmployeeService} from './employee.service';
 
 Step 3:
-Declare as Dependency in the Employee List and Employee Detail Component.
+Declare as dependency in the Employee List and Employee Detail Component.
 Dependency is specified in the Constructor.
 
 	constructor(private _employeeservice: EmployeeService) 
@@ -829,58 +854,56 @@ It is a Life Cycle Method and will be Called when Component has been initialized
 @Injectable Decorator :
 -----------------------
 Injectable tells Angular that this Service might itself has Injected Dependencies.
-So If we want to inject service into another Service Injectable Decorator is Must.
+So If we want to inject service into another Service Injectable Decorator is must.
 
-Right Now Employee Service does  not have any Dependencies and Injectable Decorator is not Necessary.
-But Employee Service Might have Dependencies in the Future and in that Case Injector is Mandatory.
-It is Recommended to add Injectable Decorator as soon as When we create the Service.
+Right now Employee Service does not have any dependencies and Injectable Decorator is not Necessary.
+But Employee Service might have Dependencies in the future and in that Case Injector is Mandatory.
+It is recommended to add Injectable Decorator as soon as when we create the Service.
 
-Here we are Not Using Injectable Decorator in Employee List and Employee Detail Classes and 
-these Class Still Makes use of the Employee Service.
-This is because of Component Decorator and it tells Angular that It May or May not Use Dependency Injection System.
-But For Service We don't have Component Decorator.
+Here we are not using Injectable Decorator in Employee List and Employee Detail Classes and these Class still makes use of Employee Service.
+This is because of Component Decorator and it tells Angular that It may or may not Use Dependency Injection System.
+But for Service We don't have Component Decorator.
 If we remove Injectable then the Service becomes plain typescript Class.
-Injectable is required Only for Service and Not For Component.
+Injectable is required only for Service and not for Component.
 
 
 ################################################### 20.HTTP and Observables ####################################################################
 
-In Real World Application we need to fetch the data from the Web Server / Web Service.
-We make a HTTP request to the API.
-The Response we get from the HTTP is Observable.
+In real world Application we need to fetch the data from the Web Server / Web Service.
+We make a HTTP request to the API.The response we get from the HTTP is Observable.
 
 Here Employee Service makes an HTTP Request to the API and we get the Observable as Response.
 We need to cast an Observable into an Array of Employees and return the same to the Component.
 
-Observable is Nothing but Sequence of Items that arrive Asynchronously Over Time.
-But from HTTP call we get Single Item instead of Sequence of Item.
-Here Single item is nothing But HTTP Response.
+Observable is nothing but a sequence of items that arrive asynchronously over time.
+But from the HTTP call we get the single item instead of sequence of items.
+Here Single item is nothing but HTTP Response.
 
-An Observable is Nothing But an HTTP Response that arrives Asynchronously.
-Observable is not in format that we can use Readily in our Application.
+An Observable is nothing but an HTTP Response that arrives asynchronously.
+Observable is not in format that we can use it readily in our Application.
 Once we receive the Observable we need to convert into an Employee Array.
-After Conversion the data is ready to Provide for the Component.
-We Only Provide the data for the Component that Subscribe the Service.
+After Conversion the data is ready to provide for the Component.
+We only provide the data for the Component that subscribes the Service.
 
 ################################################### 21.Fetch Data Using HTTP ####################################################################
 
-Steps to Fetch the Data Using HTTP 
+Steps to fetch the data Using HTTP 
 
-1.Get Request from Employee Service
-2.Receive the Observable and Cast it into Employee Array
+1.Get request from Employee Service
+2.Receive the Observable and cast it into Employee Array
 3.Subscribe to the Observable from the Component
 4.Assign the Employee to the Local Variable
 
 Step 1:
 -------
-Till Angular 4 we are Using HTTP Module But from Angular 5 we are Using HTTPClient Module.
-In the app Module Add the HTTP Client Module and it to the Import Statement
-By Importing HTTP Client Module we are also Registering the HTTP Service with Angular Injector.
+Till Angular 4 we are using HTTP Module but from Angular 5 we are using HTTPClient Module.
+In the App Module add the HTTP Client Module and it to the import Statement
+By importing HTTP Client module we are also registering the HTTP Service with Angular Injector.
 
-Here we don't have Web Service Now.Lets Create a New Folder named data inside assets and add the Employee JSON.
-We call the data from this File Instead of Actual Service.
+Here we don't have Web Service now.Lets create a new Folder named Data inside assets and add the Employee JSON.
+We call the data from this file instead of actual service.
 
-To use the HTTP Service in the Employee Service,declare as a Dependency in the Employee Service Constructor.
+To use the HTTP Service in the Employee Service,declare as a dependency in the Employee Service Constructor.
 
 	constructor(private http:HttpClient) { }
 	
@@ -891,9 +914,9 @@ To use the HTTP Service in the Employee Service,declare as a Dependency in the E
 	
 Step 2:
 -------	
-Here get() returns an Observable and For Our Application Observable needs to be cast into Format that Represents an Employee Array.
-For that we need to Create an Employee Interface.
-In the app Folder create a New File employee.ts and then add the code for an Employee Interface		
+Here get() returns an Observable and for our Application Observable needs to be cast into format that represents an Employee Array.
+For that we need to create an Employee Interface.
+In the App Folder create a new File employee.ts and then add the code for an Employee Interface.	
 	
 	app -> employee.ts
 	
@@ -906,21 +929,23 @@ In the app Folder create a New File employee.ts and then add the code for an Emp
 	
 Then in the Service Change the return type of Service.
 
+	  private url="/assets/data/employee.json";
+
 	 getEmployees():Observable<IEmployee[]>
 	{
-    return this.http.get<IEmployee[]>(this.url);
+		return this.http.get(`${this.url}`);
 	}
 	
 Step 3 :
 --------
-Subscribe the Observable from the Component and assign them to a Local Variable.
+Subscribe the Observable from the Component and assign them to a local variable.
 
 	public employees=[];
 	
 	constructor(private employeeservice:EmployeeService) { }
 
 	ngOnInit(): void {
-    this.employeeservice.getEmployees().subscribe(data =>this.employees=data);
+     this.employees=this._employeeservice.getEmployees().subscribe( (data: any) => this.employees =data);
 	}
 
 ################################################### 22.HTTP Error Handling ####################################################################

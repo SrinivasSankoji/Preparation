@@ -8,6 +8,7 @@
 8.static import                                     [24-DEC-2020]  (Done)
 9.extended for loop                                 [24-DEC-2020]  (Done)
 10.Classpath                                        [24-DEC-2020]  (Done)
+
 11.Jar file Creation                                [24-DEC-2020]  (Done)
 12.System properties                                [24-DEC-2020]  (Done)
 13.jar vs war vs ear                                [24-DEC-2020]  (Done)
@@ -21,29 +22,29 @@
 
 *************************************************************  1.introduction	***************************************************************************************
 
-Any service requirement specification is by default considred as an Interface.
-
 Definition One :
 ----------------
-JDBC API acts as a requirement specification to develop database driver.
-To develop our own database driver we have to implement JDBC API.
+Any service requirement specification is by default considred as an Interface.
 
-Servlet API acts as a requirement specification to develop web server.
-Any web server vendor has to provide implementation to develop web server.
+JDBC API acts as a requirement specification to develop Database driver.
+To develop our own Database driver we have to provide implementation for JDBC API.
+
+Servlet API acts as a requirement specification to develop Web server.
+To develop our own Web server we have to provide implementation for Servlet API.
 
 Definition Two :
 ----------------
 Client come up with the set of services.
 From the Client point of view,Interface defines the set of services what the Client is expecting where as
-From the Service provider point of view Interface defines the set of services what he is offering.
+From the Service Provider point of view Interface defines the set of services what they are offering.
 Here Interface acts as a contract between Client and Service Provider.
 
 Definition Three :
 ------------------
-every method present inside interface should be public and abstract whether we declare it or not.
-Hence interface is considered as pure abstract Class.
+every method present inside interface is public and abstract whether we declared it or not.
+Hence an Interface is considered as pure abstract Class.
 
-whenever we are implementing an Interface,we have to provide implementation for each and every method otherwise declare the class as Abstract.
+Whenever we are implementing an Interface,we have to provide implementation for each and every method otherwise declare the class as Abstract.
 Every method present inside interface is by default public and abstract whether we declare it or not.
 
 extends vs implements :
@@ -56,11 +57,11 @@ Class can extend only one Class and implement any number of interfaces simultane
 *************************************************************  2.interface methods  *******************************************************************************
 
 every method present inside interface is by default public and abstract.
-To make this method available to every implementation class then declare the method as public.
-Here Child class is responsible to provide the implementation then declare the method as abstract.
+To make this method available to every implementation class we declare the method as public.
+Since Child class is responsible to provide the implementation we declare the method as abstract.
 
 An interface can contain variable.
-Main purpose of interface variables is to define the requirement level constant.
+Main purpose of interface variables is to define the global level constant.
 every variable present inside interface is by default public static and final whether we are declaring it or not.
 variables present inside interface should perform initialization at the time of declaration only other wise we get CTE.
 
@@ -91,8 +92,8 @@ If two interfaces contains a method with same signature and same return type the
 	}
 	}
 	
-If two interfaces contains a method with same signature but different argment types then in the implementation class we have to provide implementation for two methods.
-If two interface contains a method with same signature and different return types, then it is impossible to provide implementation in the same class.
+If two interfaces contains a method with same signature but different argument types then we have to provide implementation for two methods.
+If two interfaces contains a method with same signature but different return types,  then it is impossible to provide implementation in the same class.
 we have to provide different implementation class for the two interfaces.
 
 	public interface P {
@@ -113,7 +114,7 @@ we have to provide different implementation class for the two interfaces.
 
 Note :
 ------
-Java class can implement any number of interfaces simultaneously except interface contains a method with same name but different return types.
+Java class can implement any number of interfaces simultaneously except interface contains a method with same signature but different return types.
 
 variable naming conflicts :
 ---------------------------
@@ -171,7 +172,7 @@ interface vs abstract class :
 -----------------------------
 interface :
 -----------
-1.If we don't know about implementation and we have a requirement specification then we go for Interface.
+1.If we don't know about the implementation and we have a requirement specification then we go for Interface.
 2.every method present inside interface is by default public and abstract.
 3.we cannot declare interface method with other modifiers except public and abstract.
 4.every variable present interface is public,static and final.
@@ -240,11 +241,6 @@ System is a class present in java.lang package.
 out is a static variable of type printStream present in System class.
 println() is a method present in printStream class.
 
-while resolving static members compiler always gives the following precedence.
-current class static members
-explicit class import
-implicit class import
-
 *************************************************************  9.extended for loop  ****************************************************************************
 
 Extended for loop is introduced in 1.5 version.
@@ -252,7 +248,7 @@ It is the most convenient loop to retreive the elements of Arrays and Collection
 
 It is not a general purpose loop.
 It is applicable only for Collections and Arrays.
-By using for each we can retreive all the elements of Arrays and Collections and we cannot retreive particular set of values.
+By using extended For Loop we can retreive all the elements of Arrays and Collections and we cannot retreive particular set of values.
 
 *************************************************************  10.Classpath  ***********************************************************************************
 
@@ -285,15 +281,18 @@ Classpath represents the location where the .class file is present.
 javac and JVM will use the classpath to locate required .class files.
 By default javac and JVM will look for the .class files in the current working directory.
 By setting the classpath we are conveying javac and JVM that required .class files are present in this location.
-If the particular .class file is not found then we get ClassNotFoundException.
+If the particular .class file is not found then we will get ClassNotFoundException.
 
 Various ways for setting Classpath :
 ------------------------------------
+Environment Level
+Command Prompt Level
+Command Level
 
 Environment Level :
-----------------------
+-------------------
 Required whenever we are installing permanent software in our system.
-This way of setting Classpath is preserved even when the System restarts also.
+This way of setting the Classpath is preserved even when the System restarts also.
 
 Command Prompt Level :
 ----------------------

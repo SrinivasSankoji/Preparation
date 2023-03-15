@@ -1,6 +1,3 @@
-									Angular Component Interaction Code Evolution:
-								   **********************************************
-								   
 1.Introduction    					[04-AUG-2019]  (Done)
 2.Class and Template 				[04-AUG-2019]  (Done)
 3.Binding 							[04-AUG-2019]  (Done)
@@ -17,8 +14,8 @@
 14.Using a Service					
 
 
-1.Introduction : 
-****************
+************************************************ 1.Introduction ************************************************
+
 Components are the Building Blocks of an Angular Application.
 We Start with Root Component and create Different Components for different parts of the Application.
 Although Each Component Serves Specific Purpose,Some times Component needs to interact with Each Other to get the Job Done.
@@ -29,8 +26,8 @@ Child Component
 Parent Component 
 Communication Between Components using Services
 
-2.Single Component Class and Template :
-***************************************
+************************************************ 2.Single Component Class and Template ************************************************
+
 Binding
 Split Two Way Binding 
 Getters and Setters
@@ -38,8 +35,8 @@ ViewChild()
 
 These Concepts are Important to under stand the Concept of Inter Component Interaction
 
-3.Binding :
-***********
+************************************************ 3.Binding **********************************************************
+
 A Single Angular Component has a Class and a Template that Represents the View.
 To Handle Push and Pull Logics  From Class and Template,Angular Provides 4 Forms of Binding.
 Each Form has Binding to The DOM or From the DOM or in Both Directions.
@@ -68,8 +65,8 @@ Declare the Variable name:String in the interaction.ts File
 In the HTML Create the Text Box with Name Attribute.
 For TwoWay Data Binding We Use ngModel Directive with Banana in the Box and Assign the Property i.e [ngModel]="userName".
 
-4.Split Two Way Binding  :
-**************************
+************************************************ 4.Split Two Way Binding  ************************************************
+
 Some Times when the Template and Component Class Interacts We Might want to Execute few Additional Lines of Code.
 For Example We have an Input Element and We need to Consistently Keep Track on Change of the Input Element 
 So That Value Can be Submitted to Server When Required For that Purpose we use Two Way Binding.
@@ -96,8 +93,8 @@ greetUser(updatedValue) // Split Two Way Binding
     }
  }
 
-5.Getters and Setters :
-***********************
+************************************************ 5.Getters and Setters ************************************************
+
 Here We see the Same Thing as Splitting Two Way Data Binding that Execute Some Piece of Code when Property Value Changes
 By Using Setters and Getters.
 
@@ -117,8 +114,8 @@ set customerName(value:String)
 
 And add the Piece of Code which we want to Execute while Setting the Value.
 
-6.View Child Decorator :
-************************
+************************************************ 6.View Child Decorator ************************************************
+
 To Access DOM element in the Template from the Component Class We use View Child Decorator.
 In The Previous Example we have 3 input Elements i.e name,UserName and CustomerName.
 We have the Requirement that on Page Load, We need a focus on the Name input Element. 
@@ -142,8 +139,8 @@ Finally Implement ngAfterViewInit() Life Cycle Method.
 this.nameElementRef is Like a Wrapper around the DOM Element and Access the Native Element Property 
 and then call the focus().
 
-7..Parent and Child :
-*********************
+************************************************ 7.Parent and Child ************************************************
+
 Now We Have a Good Understanding of Interaction within a Component 
 Lets See the Interaction Between Different Components i.e Parent and Child Component.
 
@@ -154,8 +151,8 @@ Lets See the Interaction Between Different Components i.e Parent and Child Compo
   and ViewChild Decorator.
 4.Interaction with Parent Component i.e emitting Events From a Child Component to Communicate Information using eventEmitter.
   
-8.Input Decorator :
-*******************
+************************************************ 8.Input Decorator ************************************************
+
 Angular Components are Reusable and it is natural that Components are nested inside each other.
 This establishes the Parent Child Relationship.
 For Example :
@@ -184,8 +181,8 @@ In the Child Component Declare Two Paragraphs and based on Parent Message show t
 To do this declare the variable i the Child Class i.e declared same as in the Parent Class i.e
 @Input('loggedIn') loggedUser;
 
-9.Intercept The Changes While Sending Data From Parent To Child Using Getters and Setters :
-*******************************************************************************************
+********************** 9.Intercept The Changes While Sending Data From Parent To Child Using Getters and Setters *******************************
+
 
 
 

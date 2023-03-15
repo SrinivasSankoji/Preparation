@@ -4,7 +4,6 @@
 4.Adding Form to HTML                       [14-APR-2020]  (Done)
 5.Binding Data with ngForm                  [14-APR-2020]  (Done)
 6.Binding Data to Model                     [14-APR-2020]  (Done)
-
 7.Tracking State and Validity               [14-APR-2020]  (Done)
 8.Validation with Visual Feedback           [15-APR-2020]  (Done)
 9.Displaying Error Messages                 [15-APR-2020]  (Done)
@@ -14,9 +13,7 @@
 
 13.Express Server to recieve Form Data      [16-APR-2020]  ()
 14.Error Handling                           [16-APR-2020]  ()
-
-15.TDF andReactive Approach                 [16-APR-2020]  ()
-
+15.TDF and Reactive Approach                [16-APR-2020]  ()
 
 ***********************************************   1.Forms	******************************************************************************************
 
@@ -105,7 +102,7 @@ To run the Project
 	ng serve
 	
 First Step is to add Bootstrap Styling to our Project.
-Bootstrap is a CSS Framework that gives a Variety of Classes that can be Applied to Make the HTML Better.
+Bootstrap is a CSS Framework that gives a variety of classes that can be applied to make the HTML better.
 To add Bootstrap CSS
 
 https://getbootstrap.com/  --> Click on Get Started -->  and Copy the CSS Path.
@@ -128,7 +125,7 @@ Add the Path in index.html at the End of the <HEAD>.
             <input type="tel" class="form-control">
          </div>
 		 
-To create a Dropdown Create the Array of Elements in test.component.ts.
+To create a dropdown Create an Array of elements in test.component.ts.
 
 	topics =['Angular','Javascript','Forms'];
 	

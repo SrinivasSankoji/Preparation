@@ -3,11 +3,12 @@
 
 Java Memory Model
 Java Memory Management
-JVM Architecture
 OOPS
 Exception Handling
 Lang Package
 Interface and Modifiers
+Java_AccessModifiers
+String Class
 Collections
 Generics
 Enum
@@ -18,14 +19,30 @@ HashMap Internal
 Conurrent HashMap Internal
 ArrayList Internal
 Singleton 
+Inner Class
 Immutable
 Object Creation Ways
 Deadlock
 OurOfMemory Error
 Memory Leak
 PermGenSpace
+Constructors 
+Object Class 
 
-Java 8
+Java8 Concepts 
+Java8 Comparator 
+Java8 Stream API 
+Java8 Lambda Java Brains ()
+
+***************************************** Front End  *******************************************
+
+HTML
+CSS
+Javascript ()
+Angular (Code Evolution,Codedamn)
+Angular Component Interaction (Code Evolution)
+Angular Forms (Code Evolution)
+Angular Full Stack (Romanian Coder)
 
 ***************************************** Internal Implementation  *****************************
 
@@ -49,6 +66,9 @@ Spring Security
 Actuator
 Spring IOC
 
+Spring Core Annotations
+Spring Web Annotations
+
 ***************************************** Database  ********************************************
 
 SQL Part 1
@@ -56,6 +76,10 @@ SQL Part 2
 SQL Basics
 PL SQL
 
+***************************************** Testting  ********************************************
+
+Junit
+Mockito
 
 ***************************************** Spring Cloud  ****************************************
 
@@ -82,13 +106,6 @@ Micro Services Architecture
 
 TDD(Test Driven Development)
 BDD(Business Driven Development)
-
-***************************************** Front End  *******************************************
-
-HTML
-CSS
-Javascript
-Angular
 
 ***************************************** ELK Stack  *******************************************
 

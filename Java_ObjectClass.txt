@@ -248,11 +248,11 @@ To preserve original state as it is we make an object as Clonable.
 Process of creating exactly duplicate object is called Cloning.
 Main purpose of cloning is to maintain backup.
 
-	protected native Object clone()throws CloneNotSupportedException
+	protected native Object clone() throws CloneNotSupportedException
 
 Rules for Cloning :
 -------------------
-To perform Cloning an Object must be clonable object.
+To perform Cloning,an Object must be clonable object.
 An Object is said to be clonable If the corresponding Class implements Clonable interface.
 Clonable interface is present in java.lang package and it does not contain any method.It is a Marker Interface.
 If we are trying to perfrom Cloning on Non Clonable objects we get RTE saying CloneNotSupportedExcpetion.
@@ -264,18 +264,13 @@ public class CloneDemo implements Cloneable{
 		CloneDemo demo=new CloneDemo();
 		CloneDemo demo2=(CloneDemo) demo.clone();
 		
-		System.out.println(demo==demo2);
+		System.out.println(demo==demo2); // false
 		
 		demo.i=35;
 		demo.j=36;
-		System.out.println(demo2.i +" - "+demo2.j);
+		System.out.println(demo2.i +" - "+demo2.j); //10 - 20
 	}
 }
-
-Output : 
---------
-false
-10 - 20
 
 Shallow Cloning :
 -----------------
