@@ -258,7 +258,7 @@ Although these Classes helps us to provide the Visual Feedback Angular also prov
 For each of the Classes Angular Provides its associated property on ngModel Directive.
 The properties are the same but with the removal of ng.
 we can acces the properties of the ngModel directive by creating the reference of the ngModel Directive.
-Here #name Template refernec variable points to the input element in the DOM.
+Here #name Template reference variable points to the input element in the DOM.
 By assigning a value of ngModel reference variable to name,Now name points to the ngModel of this particular form-control.
 
 	 <input type="text" #name="ngModel" required class="form-control" name="userName" [(ngModel)]="userModel.userName">
@@ -272,37 +272,45 @@ A good User Experience when filling out forms is to visually indicate to the use
 In Angular we apply validation to the Form Fields by applying some of the Classes to visually indicate the User that the Form is invalid.
 
 There are Two approaches.
-We can use own Class with the necessary Styles that has to be applied to the form-control or
-We can use the Validation Classes that has been provided by CSS Framework.
-For invalid state the Class provided by Bootstrap is is-Invalid.
+1.We can use our own Class with the necessary Styles that has to be applied to the form-control.
+2.We can use the Validation Classes that has been provided by CSS Framework.
+
+For invalid state the Class provided by Bootstrap is is-invalid.
 We have to apply the Class Conditionally i.e only when the form-control is invalid.
-The Class provided by the Bootstrap for invalid state is is-Invalid.
 
 	input type="text" #name="ngModel"  required class="form-control is-invalid" name="userName" [(ngModel)]="userModel.userName">    
 
-But it will be applied on the page Load itself.	
+Here the Output will be Text Box with red border and is applied on the page load itself.	
 we have to make this when the form is invalid.
-For that we make use of ngModel properties coupled with class binding.
+For that we make use of ngModel properties coupled with class binding i.e 
 
-	[class.is-invalid]="name.is-invalid"
+	[class.is-invalid]="name.invalid"
 	
 	<input type="text" required #name="ngModel" [class.is-invalid]="name.invalid"  class="form-control" name="userName" [(ngModel)]="userModel.userName">
 
 apply the Class is-invalied when the name form control is invalid.
 
-Consider the Case where the Form is Not Prefilled with Data.
-In this Case On Page load itself It wiil perform validation on the page Load itself.
-In addition to check whether the form controlis invalid we also need to check whether the user has visited the form or not.
+Scenario 2 :
+------------
+Consider the case where the Form is not prefilled with data i.e make the name variable to empy in componenet class i.e.
+	
+	userModel=new User('','srinivaschary.chary@gmail.com','7718973681','Angular');
+
+In this case it wiil perform validation on the page Load itself.
+In addition to check whether the form-control is invalid we also need to check whether the user has visited the form or not.
 
 	[class.is-invalid]="name.invalid && name.touched"
 	
-we can also perform the pattern matching validation for the form fields.
-we can add any basic regular expression we want to add to and create a pattern that the form field must satisfy.
-Consider password must be between 8 to 15 Characters with one Special Character.
-Pin Code,Phone Number in Specific format and so on.
+	<input type="text" #name="ngModel" required class="form-control" [class.is-invalid]="name.invalid && name.touched" name="userName" [(ngModel)]="userModel.userName">
+	
+Scenario 3 :
+------------
+we can also perform pattern matching validation for the form fields.
+we can add any basic regular expression we want to add and create a pattern that the form field must satisfy.
+Consider the case password must be between 8 to 15 Characters with one special character,Pin Code,Phone Number in specific format and so on.
 
-We apply the Regular Expression for the Phone Number.
-First thing is to get the reference to the ngModel directive.
+Consider the case of applying the Regular Expression for the Phone Number.
+First thing is to get the reference to the ngModel directive i.e. #phone="ngModel"
 Then add the Pattern attribute with the Regular Expression.
 
 <input type="tel" #phone="ngModel" pattern="^\d{10}$"  [class.is-invalid]="phone.invalid && phone.touched"
@@ -310,46 +318,49 @@ Then add the Pattern attribute with the Regular Expression.
 
 However when the form field is invalid we need to display an appropriate Error Message.
 
-
 ***********************************************  9.Displaying Error Messages   	**********************************************************************************
 
-Here we are going to display the Error Messages when the Form Field is invalid.
+Here we are going to display the Error Message when the Form Field is invalid.
 In the Test.component.html add the small Tag.
 
 	 <small>Name is required</small>
 	 
-This Message has to be Displayed only when the Form Field is invalid.
-Here we can use Either ngIf or Class Binding.
-For Class Binding we will use the class d-none which is a Bootstrap Class for setting the display property to None.
+This Message has to be displayed only when the Form Field is invalid.
+
+There are Two approaches.
+1.Class Binding.
+2.ngIf
+
+For Class Binding we will use the class d-none which is a Bootstrap Class for setting the display property to none.
 
 	<small [class.d-none]="name.valid || name.untouched">Name is required</small>
 	
-Do Not Show the Error Message when the Name Form Control is valid or untouched.
-To Make the Message appaear like an Error Message we use the Class text-danger
+Do not show the Error Message when the name form-control is valid or untouched.
+To make the message appaear like an Error Message we use the Class text-danger.
 
 	<small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
 	
-we might getthe scenario where we have more than one validation for the same Field.
+we might get the scenario where we have more than one validation for the same Field.
 
 	<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone Number is required and Should Have 10 Digits</small>
 	
-We can also display the Error Messages based on error Properties of the ngModel.
+We can also display the Error Messages based on error properties of the ngModel.
 Comment the existing Error Messages.
 Add the <div> and this <div> will be conditionally rendered based on whether the phone Number is valid or Not.
 Here we use ngIf Directive along with ngModel Properties.
 
-	<div *ngIf="phone.errors && (phone.invalid || phone.touched)">
-            <small class="text-danger" *ngIf="phone.errors.required">Phone Number is Required</small>
-            <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number Must be 10 Digits</small>
-    </div> 
+	 <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+        <small class="text-danger" *ngIf="phone.errors?.['required']">Phone Number is Required</small>
+        <small class="text-danger" *ngIf="phone.errors?.['pattern']">Phone Number Must be 10 Digits</small>
+     </div>
 
 
 ***********************************************  10.Select Control validation  	**********************************************************************************
 
-Here we perform Validation on Select Control Field.
-Topic Should be Any other Value except Iam Interested in.
+Here we perform validation on Select Control Field.
+Topic Should be any other value except Iam Interested in.
 
-If the User Intercats with Select Control and Leaves the Option then we should provide an Error Message Please Choose the Topic.
+If the User Intercats with Select Control and leaves the Option then we should provide an Error Message Please Choose the Topic.
 Simpleset way to perform select Control Validation is make use of required attribute.
 Create a reference of ngModel so that we can make use of ngModel Properties to appply a Class to the Select Element and also display the Error Messages. 
 
@@ -359,7 +370,7 @@ This works only when the Value is Empty i.e
 
 	 <option value="">Iam Interested In </option>
 	 
-If we have the Default Value then the Validation Fails.
+If we have the default value then the Validation Fails.
 Here we need to provide the custom Validation for the Select Control.
 we listen to the blur event and change event of the select Control and In the Event Handler we are going to check the value.
 If the value is the default value then set an Error Flag to true.
@@ -381,11 +392,11 @@ Finally remove the Required attribute to work with the Functionlaity.
 
 ***********************************************  11.Form Validation   	******************************************************************************************
 
-So Far we have seen individual Form Control.
+So far we have seen individual form-control.
 Angular also helps us to do the Form Level Validation.
-whenever we use the <form> element in the HTML Angular automatically attaches the ngForm Directive to the Form Tag.
-we can get the reference of the ngForm Tag with the Template Reference Variable.
-Like wise we have properties on ngModel Directive we have the same properties on ngForm Directive.
+whenever we use the <form> tag,Angular automatically attaches the ngForm Directive to the <form>.
+we can get the reference of the ngForm with the Template Reference Variable i.e. #userForm="ngForm"
+Like wise we have properties on ngModel Directive similarly we have the same properties on ngForm Directive.
 
 	{{userForm.form.valid}}
 	
