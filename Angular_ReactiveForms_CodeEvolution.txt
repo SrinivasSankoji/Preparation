@@ -1,0 +1,18 @@
+15.TDF and Reactive Approach                [16-APR-2020]  ()
+
+
+***********************************************  15.TDF and Reactive Approach   	******************************************************************************
+
+In case of Template Driven Form approach ngForm Directive gives the entire information about the enrollment Form.
+To the ngSubmit event pass the reference variabe of the ngForm as parameter.
+
+	 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+	 
+	public onSubmit(userForm)
+	{
+    console.log(userForm);
+	}
+	
+If we see the log in the console an object ngForm is Displayed.
+we see lot of properties of ngForm.
+value property contains the values of the different form fields.

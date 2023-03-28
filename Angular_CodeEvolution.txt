@@ -25,12 +25,11 @@
 24.Wild Card Route and Redirecting Routes							[06-APR-2020]  (Done)
 25.Route Parameters													[12-APR-2020]  (Done)
 26.ParamMap Observable												[12-APR-2020]  (Done)
-
 27.Optional Route Parameters										[28-MAY-2020]  ()
 28.Relative Navigation												[28-MAY-2020]  ()
 29.Child Routes														[28-MAY-2020]  ()
-30.Angular 6 Features												[10-MAR-2023]  ()
 
+30.Angular 6 Features												[10-MAR-2023]  ()
 31.Updating App to Angular 6										[13-MAR-2023]  ()
 32.Angular 8 Features                                               [13-MAR-2023]  ()
 
@@ -517,8 +516,8 @@ Event Binding Captures some event and displays the information about the Event.
 
 ################################################### 10.Template Reference Variables ###################################################
 
-Whenever there is a user Interaction we might want some data to be flown form view to the Class to perform some operation.
-We may require a value from in an input field to perform validations.
+Whenever there is a user Interaction where we might want some data to be flown form view to the Class to perform some operation.
+We may require a value from an input field to perform validations.
 To easily access DOM elements and their properties Angular provides Template Reference Variables.
   
 Consider the Scenario	
@@ -526,7 +525,7 @@ Consider the Scenario
   <input type="text">
   <button>Template Reference Variable</button> 	
   
-Here whatever the User enters the text we need to display it into the Console.
+Here whatever the User enters we need to display it into the Console.
 For that we need to bind the click event to the button.
 Declare the event for click and pass the value that user has entered.
 The way we pass the user entered Text is by using Template Reference Variables.
