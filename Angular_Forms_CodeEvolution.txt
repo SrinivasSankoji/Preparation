@@ -111,10 +111,10 @@ Add the Path in index.html at the End of the <HEAD>.
 
 
 ***********************************************  4.Adding Form to HTML	**********************************************************************************************
-
+		
 		<div class="container-fluid mb-5">
 		  <h1>Bootcamp Enrollment Form</h1>
-		<form>
+		<form #userForm="ngForm">
 		<div class="form-group">
 		  <label>Name</label> 
 		  <input type="text" class="form-control">
@@ -150,7 +150,7 @@ In app.module.ts
 
 	import {FormsModule} from '@angular/forms'
 	
-Anytime If we use the <Form> ,Angular attaches <ng-form> directive to <Form> which gives the valuable information about the <Form>.
+Anytime If we use the <form> ,Angular attaches ngForm directive to <form> which gives the valuable information about the <form>.
 It Tells what are the values of different form-control and whether the values are valid or not.
 We get the reference of the whole <form> using Template Reference Variable.
 	
@@ -357,38 +357,77 @@ Here we use ngIf Directive along with ngModel Properties.
 
 ***********************************************  10.Select Control validation  	**********************************************************************************
 
-Here we perform validation on Select Control Field.
-Topic Should be any other value except Iam Interested in.
+Here we need to perform validation on Select Control Field.Topic Should be any other value except Iam Interested in.
+If the User interacts with Select Control and leaves the Option then we should provide an Error Message Please Choose the Topic.
+Simpleset way to perform select Control Validation is make use of required attribute of the <select>.
+Create a reference of ngModel so that we can make use of ngModel properties to appply a Class to the Select Element and also display the Error Messages. 
 
-If the User Intercats with Select Control and leaves the Option then we should provide an Error Message Please Choose the Topic.
-Simpleset way to perform select Control Validation is make use of required attribute.
-Create a reference of ngModel so that we can make use of ngModel Properties to appply a Class to the Select Element and also display the Error Messages. 
-
-	<small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please Choose the Topic</small>
+	<div class="form-group">
+        <select required #topic="ngModel" class="form-control" [class.is-invalid]="topic.invalid && topic.touched" 
+        class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+            <option value="">Iam Interested In </option>
+            <!-- <option selected>Iam Interested In </option> -->
+            <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+        <br>
+        <small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please Select the Topic</small>
+      </div>
 	
-This works only when the Value is Empty i.e 
+This works only when the value is Empty i.e.
 
 	 <option value="">Iam Interested In </option>
 	 
-If we have the default value then the Validation Fails.
+If we have the default value then the Validation Fails .i.e 
+
+	<option selected>Iam Interested In </option> -->
+
 Here we need to provide the custom Validation for the Select Control.
-we listen to the blur event and change event of the select Control and In the Event Handler we are going to check the value.
+we need to listen the blur event and change event of the select Control and In the Event Handler and we are going to check the value.
 If the value is the default value then set an Error Flag to true.
 we use this error flag to conditionally apply the Classes.
 
-	(blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)"
-	
+	 <!-- Topics -->
+    <div class="form-group">
+        <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)"
+        #topic="ngModel" class="form-control" [class.is-invalid]="topicHasError && topic.touched" 
+        class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+            <option value="">Iam Interested In </option>
+            <!-- <option selected>Iam Interested In </option> -->
+            <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+        <br>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please Select the Topic</small>
+      </div>
+	  
+	  export class FormVisualValidationComponent {
+
+	  userModel=new User('Bhaumik','srinivaschary.chary@gmail.com','7718973681','');
+	  topics =['Angular','Javascript','Forms'];
+	  topicHasError=true;
+
+	  validateTopic(value:any)
+	  {
+		if(value=="")
+		{
+		  this.topicHasError=true;
+		}
+		else{
+		  this.topicHasError=false;
+		}
+
+	  }
+	}
+
 passing the Selected value to the events.
 
 	 [class.is-invalid]="topicHasError && topic.touched"
 	 
-If the topicHasError and is touched then Display the Error Message.
+If the topicHasError and is touched then display the Error Message.
 
 	[class.d-none]="!topicHasError || topic.untouched">
 	
-If there is No Error and Topic has not Touched then Display the None class to the Error Message.
-
-Finally remove the Required attribute to work with the Functionlaity.
+If there is No Error and Topic has not touched then display the None class to the Error Message.
+Finally remove the required attribute to work with the Functionlaity.
 
 ***********************************************  11.Form Validation   	******************************************************************************************
 
