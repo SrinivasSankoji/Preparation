@@ -1,0 +1,30 @@
+15.TDF and Reactive Approach              (CodeEvolution)  [01-APR-2023]  ()
+16.Reactive Forms                         (CodeEvolution)  [01-APR-2023]  ()
+17.Adding Form to HTML                    (CodeEvolution)  [01-APR-2023]  ()
+18.Creating Form Model                    (CodeEvolution)  [01-APR-2023]  ()
+19.Nesting Form Groups                    (CodeEvolution)  [01-APR-2023]  ()
+20.Managing Control Values                (CodeEvolution)  [01-APR-2023]  ()
+21.Form Builder Service                   (CodeEvolution)  [01-APR-2023]  ()
+22.Simple Validation                      (CodeEvolution)  [01-APR-2023]  ()
+23.Custom Validation                      (CodeEvolution)  [01-APR-2023]  ()
+24.Cross Field Validation                 (CodeEvolution)  [01-APR-2023]  ()
+25.Conditional Validation                 (CodeEvolution)  [01-APR-2023]  ()
+26.Dynamic Form Controls                  (CodeEvolution)  [01-APR-2023]  ()
+27.Submitting Form Data                   (CodeEvolution)  [01-APR-2023]  ()
+
+
+***********************************************  15.TDF and Reactive Approach   	******************************************************************************
+
+In case of Template Driven Form approach ngForm Directive gives the entire information about the enrollment Form.
+To the ngSubmit event pass the reference variabe of the ngForm as parameter.
+
+	 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+	 
+	public onSubmit(userForm)
+	{
+    console.log(userForm);
+	}
+	
+If we see the log in the console an object ngForm is Displayed.
+we see lot of properties of ngForm.
+value property contains the values of the different form fields.

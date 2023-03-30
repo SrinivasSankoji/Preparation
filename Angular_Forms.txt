@@ -1,19 +1,17 @@
-1.Forms										[14-APR-2020]  (Done)
-2.Template Driven Forms                     [14-APR-2020]  (Done)
-3.Setting Up Project                        [14-APR-2020]  (Done)
-4.Adding Form to HTML                       [14-APR-2020]  (Done)
-5.Binding Data with ngForm                  [14-APR-2020]  (Done)
-
-6.Binding Data to Model                     [14-APR-2020]  (Done)
-7.Tracking State and Validity               [14-APR-2020]  (Done)
-8.Validation with Visual Feedback           [15-APR-2020]  (Done)
-9.Displaying Error Messages                 [15-APR-2020]  (Done)
-10.Select Control validation                [15-APR-2020]  (Done)
-
-11.Form Validation                          [15-APR-2020]  (Done)
-12.Submitting Form Data                     [15-APR-2020]  (Done)
-13.Express Server to recieve Form Data      [16-APR-2020]  ()
-14.Error Handling                           [16-APR-2020]  ()
+1.Forms										(CodeEvolution)  [14-APR-2020]  (Done)
+2.Template Driven Forms                     (CodeEvolution)  [14-APR-2020]  (Done)
+3.Setting Up Project                        (CodeEvolution)  [14-APR-2020]  (Done)
+4.Adding Form to HTML                       (CodeEvolution)  [14-APR-2020]  (Done)
+5.Binding Data with ngForm                  (CodeEvolution)  [14-APR-2020]  (Done)
+6.Binding Data to Model                     (CodeEvolution)  [14-APR-2020]  (Done)
+7.Tracking State and Validity               (CodeEvolution)  [14-APR-2020]  (Done)
+8.Validation with Visual Feedback           (CodeEvolution)  [15-APR-2020]  (Done)
+9.Displaying Error Messages                 (CodeEvolution)  [15-APR-2020]  (Done)
+10.Select Control validation                (CodeEvolution)  [15-APR-2020]  (Done)
+11.Form Validation                          (CodeEvolution)  [15-APR-2020]  (Done)
+12.Submitting Form Data                     (CodeEvolution)  [15-APR-2020]  (Done)
+13.Express Server to recieve Form Data      (CodeEvolution)  [16-APR-2020]  ()
+14.Error Handling                           (CodeEvolution)  [16-APR-2020]  ()
 
 
 ***********************************************   1.Forms	******************************************************************************************
@@ -445,9 +443,9 @@ To the Button add the disabled Property and bind it to the invalid state of the 
 	<button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Submit</button>
 	
 This works fine if we dont have any custom validations that ngForm is not Tracking.
-But in our Case we have custom select validation and If we click on submit Button check the value of the Selected Field
-and then proceed with submitting the form.
-To the Disbaled property of Button add one more condition.
+But in our Case we have custom select validation.
+If we click on submit Button check the value of the Selected Field and then proceed with submitting the form.
+To the disbaled property of Button add one more condition.
 
 	<button [disabled]="userForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit</button>
 	
@@ -469,26 +467,36 @@ Now to send the Data to the Service we need to create a Service.
 
 	ng g s enrollment
 	
-Then import the HttpClient and inject it to the constructor.
-we also need to add the HttpClient in the imports Array.
-Now we are in a Position to make Http Request.
-create a Method in enrollment service that accepts the user and submit the Post Request with url and User.
+Then import the HttpClientModule and inject it to the constructor.
+we also need to add the HttpClient in the imports Array of app.module.ts.
 
-	 public enroll(user:User)
+	import { Injectable } from '@angular/core';
+	import { HttpClientModule } from '@angular/common/http';
+
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class UserFormService {
+
+	  constructor(private _http: HttpClient) { }
+	}
+Now we are in a position to make the Http Request.
+create a method in enrollment service that accepts the user and submit the Post request with url and User.
+
+	public enroll(user:User)
 	{
-    this._http.post<any>(this._url,user);
+    return this._http.post<any>(this._url,user);
 	}
 
 Call the enroll Srevice from the onSubmit() in test.component.ts
 
-	public onSubmit()
-	{
-    this.enrollmentService.enroll(this.userModel)
-    .subscribe(data => console.log('Success!',data),
-               error => console.log('Error!',error)
-    );
-	}
-
+	 onSubmit()
+	 {
+		// console.log(this.userModel);
+		this.userForService.enroll(this.userModel)
+		.subscribe(data => console.log('Success',data),
+		  error => console.log('Error',error))
+	 }
 
 ***********************************************  13.Express Server to recieve Form Data   	**********************************************************************
 
