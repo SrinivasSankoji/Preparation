@@ -1,7 +1,8 @@
-15.TDF and Reactive Approach              (CodeEvolution)  [01-APR-2023]  ()
-16.Reactive Forms                         (CodeEvolution)  [01-APR-2023]  ()
-17.Adding Form to HTML                    (CodeEvolution)  [01-APR-2023]  ()
-18.Creating Form Model                    (CodeEvolution)  [01-APR-2023]  ()
+15.TDF and Reactive Approach              (CodeEvolution)  [01-APR-2023]  (Done)
+16.Reactive Forms                         (CodeEvolution)  [01-APR-2023]  (Done)
+17.Adding Form to HTML                    (CodeEvolution)  [01-APR-2023]  (Done)
+18.Creating Form Model                    (CodeEvolution)  [01-APR-2023]  (Done)
+
 19.Nesting Form Groups                    (CodeEvolution)  [01-APR-2023]  ()
 20.Managing Control Values                (CodeEvolution)  [01-APR-2023]  ()
 21.Form Builder Service                   (CodeEvolution)  [01-APR-2023]  ()
@@ -13,18 +14,152 @@
 27.Submitting Form Data                   (CodeEvolution)  [01-APR-2023]  ()
 
 
-***********************************************  15.TDF and Reactive Approach   	******************************************************************************
+***********************************************  15.TDF and Reactive Approach ************************************************
 
-In case of Template Driven Form approach ngForm Directive gives the entire information about the enrollment Form.
+In case of Template Driven Form approach ngForm Directive gives the entire information about the Form.
 To the ngSubmit event pass the reference variabe of the ngForm as parameter.
 
 	 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
 	 
-	public onSubmit(userForm)
-	{
-    console.log(userForm);
-	}
+	 public onSubmit(userForm)
+	 {
+	   console.log(userForm);
+	 }
 	
-If we see the log in the console an object ngForm is Displayed.
+If we see the log in the console an object ngForm is displayed.
 we see lot of properties of ngForm.
 value property contains the values of the different form fields.
+
+Similarly ngForm has another important property called form property.
+This form property is of type FormGroup.
+Form Group contains a property called controls property.
+This controls property is of type Form Control.
+Form control has properties like validator,pristine,touched etc.
+
+Form Group and Form Control are the building blocks of Reactive Forms.
+Template Driven Forms behind the scenes is the Model Driven Forms or Reactive Forms with the Models automatically created for us by Angular.
+Angular abstracts the complexity by providing us with the ngModel and ngModelGroup Directives.	 	
+This maps to Form Group and Form Control in Reactive Forms.
+
+*********************************************** 16.Reactive Forms ***********************************************************
+
+In reactive Forms much of the code and logic resides in the Component Class.
+This is different from Template Driven Forms which is much focus on HTML Template.
+
+There is no Two way binding in Reactive Forms.
+Instead we need to react to user inputs to update the values.
+Angular also provides the methods to update the Form Control values from the Component Class.
+
+Reactive Forms are well suited for Complex scenarios.
+We might want form fields to be dynamic.
+For example I would like to allow the user to enter the Phone Number and also give an option to enter an additional field called Alternative Phone Number.
+
+Custom Validation with certain Form Fields.
+For example Password and Confirm Password.
+
+Dynamic Validation.
+For Example If i want to subscribe to the Updates I want Email field to be Mandatory.
+
+Reactive Forms also makes us possible to write the Unit Tests since the Logic resides in the Component Class.
+Reactive Forms approach requires more coding.
+
+*********************************************** 17.Adding Form to HTML ******************************************************
+
+form-group and form-control are Bootstrap Classes.
+
+	<div class="container-fluid">
+	<h2>Registration Form</h2>
+	<form>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Confirm Password</label>
+			<input type="password" class="form-control">
+		</div>
+		<button class="btn btn-primary" type="button">Register</button>
+	</form>
+	</div>
+	
+When it comes to HTML, In Both Reactive Forms and Template Driven Forms both are Same.
+Now we need to create a Model for the above form which makes the data exchange possible between the Template and the Class.
+
+*********************************************** 18.Creating Form Model  ***************************************************
+
+To work with Reactive Forms we need to add the ReactiveFormsModule to the imports Array in app.module.ts.
+ReactiveFormsModule allows us to access different classes and directives that are necessary to build Reactive Forms.
+The two building blocks of Reactive Forms are 
+
+FormGroup
+FormControl
+
+In Reactive Forms, The Form is represented by the Model in the Component Class.
+In our Application we have 3 form fields. i.e. 
+
+Username
+Password
+Confirm Password
+
+Each of these Form Fields are defined as an instance of FormControl Class.
+The Overall Form is defined as an instance of the FormGroup.
+
+Now we need to create an Object of the FormGroup that represents the User Registration Form.
+Next step is to initialize the Object with the Form Controls which are present in User Registration Form.
+
+
+	import { Component } from '@angular/core';
+	import { FormControl, FormGroup } from '@angular/forms';
+
+
+	@Component({
+	  selector: 'app-user-registration',
+	  templateUrl: './user-registration.component.html',
+	  styleUrls: ['./user-registration.component.css']
+	})
+	export class UserRegistrationComponent {
+
+	  registrationForm = new FormGroup({
+		userName: new FormControl('Bhaumik'),
+		password: new FormControl(''),
+		confirmPassword: new FormControl('')
+	}); 
+
+	}
+	
+<div class="container-fluid">
+<h2>Registration Form</h2>
+<form [formGroup]="registrationForm">
+    <div class="form-group">
+        <label>Username</label>
+        <input formControlName="userName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input formControlName="password" type="password" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input formControlName="confirmPassword" type="password" class="form-control">
+    </div>
+    <button class="btn btn-primary" type="button">Register</button>
+</form>
+</div>
+
+Here what we have done is one to one mapping between the Form Group,Form Control and the corresponding HTML Elements.
+
+*********************************************** 19.Nesting Form Groups  ***********************************************
+
+
+
+
+
+ 
+
+
+
+
