@@ -1,20 +1,57 @@
-15.TDF and Reactive Approach              (CodeEvolution)  [01-APR-2023]  (Done)
-16.Reactive Forms                         (CodeEvolution)  [01-APR-2023]  (Done)
-17.Adding Form to HTML                    (CodeEvolution)  [01-APR-2023]  (Done)
-18.Creating Form Model                    (CodeEvolution)  [01-APR-2023]  (Done)
+1.TDF and Reactive Approach              					(CodeEvolution)   [01-APR-2023]  (Done)
+2.Reactive Forms                         					(CodeEvolution)   [01-APR-2023]  (Done)
+3.Adding Form to HTML                    					(CodeEvolution)   [01-APR-2023]  (Done)
+4.Creating Form Model                    					(CodeEvolution)   [01-APR-2023]  (Done)
+5.Nesting Form Groups                    					(CodeEvolution)   [04-APR-2023]  (Done)
+6.Managing Control Values                					(CodeEvolution)   [05-APR-2023]  (Done)
+7.Form Builder Service                   					(CodeEvolution)   [05-APR-2023]  (Done)
+8.Simple Validation                      					(CodeEvolution)   [08-APR-2023]  (Done)
+9.Custom Validation                      					(CodeEvolution)   [01-APR-2023]  ()
+10.Cross Field Validation                					(CodeEvolution)   [09-APR-2023]  ()
+11.Conditional Validation                					(CodeEvolution)   [08-APR-2023]  ()
+12.Dynamic Form Controls                 					(CodeEvolution)   [09-APR-2023]  (Done)
+13.Submitting Form Data                  					(CodeEvolution)   [08-APR-2023]  ()
 
-19.Nesting Form Groups                    (CodeEvolution)  [01-APR-2023]  ()
-20.Managing Control Values                (CodeEvolution)  [01-APR-2023]  ()
-21.Form Builder Service                   (CodeEvolution)  [01-APR-2023]  ()
-22.Simple Validation                      (CodeEvolution)  [01-APR-2023]  ()
-23.Custom Validation                      (CodeEvolution)  [01-APR-2023]  ()
-24.Cross Field Validation                 (CodeEvolution)  [01-APR-2023]  ()
-25.Conditional Validation                 (CodeEvolution)  [01-APR-2023]  ()
-26.Dynamic Form Controls                  (CodeEvolution)  [01-APR-2023]  ()
-27.Submitting Form Data                   (CodeEvolution)  [01-APR-2023]  ()
+14.Creating FormGroup inside FormGroup in Angular			(concretepage)    [01-APR-2023]  ()
+15.Creating FormGroup inside FormArray in Angular           (concretepage)    [01-APR-2023]  ()
+16.Angular FormArray Example                                (concretepage)    [01-APR-2023]  ()
+17.Angular FormGroup setValue and patchValue                (concretepage)    [01-APR-2023]  ()
+18.Disable Angular FormControl                              (concretepage)    [01-APR-2023]  ()
+19.Angular FormControl focus and blur Event                 (concretepage)    [01-APR-2023]  ()
+20.Angular FormControl setValue()                           (concretepage)    [01-APR-2023]  ()
+21.Angular FormGroup addControl() and removeControl()       (concretepage)    [01-APR-2023]  ()
+22.Angular File Upload Example                              (concretepage)    [01-APR-2023]  ()
+23.Angular FormArray setValue() and patchValue()            (concretepage)    [01-APR-2023]  ()
+24.Angular Template-Driven Forms                            (concretepage)    [01-APR-2023]  ()
+25.Angular Reactive Forms                                   (concretepage)    [01-APR-2023]  ()
+26.Angular Select Option Set Selected Dynamically           (concretepage)    [01-APR-2023]  ()
+27.Angular Select Option using Reactive Form                (concretepage)    [01-APR-2023]  ()
+28.Angular valueChanges and statusChanges                   (concretepage)    [01-APR-2023]  ()
+29.Angular FormBuilder Example                              (concretepage)    [01-APR-2023]  ()
+30.Angular Radio Button and Checkbox Example                (concretepage)    [01-APR-2023]  ()
+31.Angular Select + Multi Select + Validation using TDF     (concretepage)    [01-APR-2023]  ()
+32.Angular FormGroup Example                                (concretepage)    [01-APR-2023]  ()
+33.Angular FormControl Example                              (concretepage)    [01-APR-2023]  ()
+34.Angular NgForm with NgModel Directive Example            (concretepage)    [01-APR-2023]  ()
+
+35.Angular Forms Tutorial: Fundamental & Concepts			(tektutorialshub) [01-APR-2023]  ()
+36.Template-Driven Forms in Angular                         (tektutorialshub) [10-APR-2023]  (Done)
+37.Set Value in Template Driven forms in Angular            (tektutorialshub) [12-APR-2023]  (Done)
+38.Reactive Forms in Angular                                (tektutorialshub) [12-APR-2023]  (Done)
+39.FormBuilder in Reactive Forms                            (tektutorialshub) [12-APR-2023]  (Done)
+40.SetValue & PatchValue in Angular                         (tektutorialshub) [12-APR-2023]  (InProgress) //After Component Intercation
+41.StatusChanges in Angular Forms                           (tektutorialshub) [01-APR-2023]  (InProgress) // After Observables
+42.ValueChanges in Angular Forms                            (tektutorialshub) [01-APR-2023]  (InProgress) // After Observables
+43.FormControl                                              (tektutorialshub) [01-APR-2023]  (InProgress) // After Observables
+44.FormGroup                                                (tektutorialshub) [01-APR-2023]  (InProgress) // After Observables
+
+45.FormArray Example                                        (tektutorialshub) [13-APR-2023]  ()
+46.Build Dynamic or Nested Forms using FormArray            (tektutorialshub) [13-APR-2023]  ()
+47.SetValue & PatchValue in FormArray                       (tektutorialshub) [13-APR-2023]  ()
+48.Select Options Dropdown                                  (tektutorialshub) [13-APR-2023]  ()
 
 
-***********************************************  15.TDF and Reactive Approach ************************************************
+***********************************************  1.TDF and Reactive Approach ************************************************
 
 In case of Template Driven Form approach ngForm Directive gives the entire information about the Form.
 To the ngSubmit event pass the reference variabe of the ngForm as parameter.
@@ -41,7 +78,7 @@ Template Driven Forms behind the scenes is the Model Driven Forms or Reactive Fo
 Angular abstracts the complexity by providing us with the ngModel and ngModelGroup Directives.	 	
 This maps to Form Group and Form Control in Reactive Forms.
 
-*********************************************** 16.Reactive Forms ***********************************************************
+*********************************************** 2.Reactive Forms ***********************************************************
 
 In reactive Forms much of the code and logic resides in the Component Class.
 This is different from Template Driven Forms which is much focus on HTML Template.
@@ -63,7 +100,7 @@ For Example If i want to subscribe to the Updates I want Email field to be Manda
 Reactive Forms also makes us possible to write the Unit Tests since the Logic resides in the Component Class.
 Reactive Forms approach requires more coding.
 
-*********************************************** 17.Adding Form to HTML ******************************************************
+*********************************************** 3.Adding Form to HTML ******************************************************
 
 form-group and form-control are Bootstrap Classes.
 
@@ -89,7 +126,7 @@ form-group and form-control are Bootstrap Classes.
 When it comes to HTML, In Both Reactive Forms and Template Driven Forms both are Same.
 Now we need to create a Model for the above form which makes the data exchange possible between the Template and the Class.
 
-*********************************************** 18.Creating Form Model  ***************************************************
+*********************************************** 4.Creating Form Model  ***************************************************
 
 To work with Reactive Forms we need to add the ReactiveFormsModule to the imports Array in app.module.ts.
 ReactiveFormsModule allows us to access different classes and directives that are necessary to build Reactive Forms.
@@ -152,14 +189,515 @@ Next step is to initialize the Object with the Form Controls which are present i
 
 Here what we have done is one to one mapping between the Form Group,Form Control and the corresponding HTML Elements.
 
-*********************************************** 19.Nesting Form Groups  ***********************************************
+*********************************************** 5.Nesting Form Groups  ***********************************************
 
+form-control class can be used for individual class elements where as form-group class can be used to represent entire form.
+form-group class can also be used to group together different form-control classes.
+For example city,state and postal code can be used to represent one form-group called as address.
 
+	<div formGroupName="address">
+        <div class="form-group">
+            <label>City</label>
+            <input formControlName="city" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <input formControlName="state" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Pin Code</label>
+            <input formControlName="pinCode" type="text" class="form-control">
+        </div>
+    </div>
+	
+	export class UserRegistrationComponent {
 
+	  registrationForm = new FormGroup({
+		userName: new FormControl('Bhaumik'),
+		password: new FormControl(''),
+		confirmPassword: new FormControl(''),
+		address : new FormGroup({
+		  city: new FormControl(''),
+		  state: new FormControl(''),
+		  pinCode: new FormControl('')
+		})
+	});
+	
+*********************************************** 6.Managing Control Values using setValue() and patchValue() ***********************************************
 
+We can set the form-control values without any user interaction i.e. setting the values programatically by using setValue() and patchValue().
+For example we might retrieve the form data form the back end API or Service and update the form-control with the new values.
+setValue() can be called either on form-group or form-control class.
+setValue() accepts an object that matches with the structure of the form-group with the control names as keys.
 
+	loadData() {
+    this.registrationForm.setValue({
+      userName: 'Srinivas',
+      password: 'Bhaumik@23', confirmPassword: 'Bhaumik@23',
+      address: {
+        city: 'Hyderabad',
+        state: 'Telangana', pinCode: '500039'
+      }
+    })
+  }
+  
+The main disadvantage of setValue() is it works with the complete form-group.
+To set the partial values for the form-control programatically we use patchValue()
  
+	loadData() {
+    this.registrationForm.patchValue({
+      userName: 'Srinivas',
+      password: 'Bhaumik@23', confirmPassword: 'Bhaumik@23'
+    })
+  }
+
+*********************************************** 7.FormBuilder Service ***************************************************
+
+So far we have created a form using form-group and form-control classes.
+Creating multiple form-control instances manually will become complex.
+To avoid this Angular provides FormBuilder Service which in turn provides methods to generate the form-controls.
+Here also we will create instances of form-controls but with lesser code.
+Import the FormBuilder and inject it into the Constructor.
+
+	constructor(private formBuilder: FormBuilder) {
+	}
+	
+	/* Setting the values to the formgroup using FormBuilder */
+    registrationForm = this.formBuilder.group({
+    userName: [''],
+    password: [''],
+    confirmPassword : [''],
+    address : this.formBuilder.group({
+      city :[''],
+      state :[''],
+      pinCode :['']
+    })
+	});
+	
+*********************************************** 8.Simple Validation ***********************************************************
+
+Reactive Forms include set of validator functions out of the box for common usecases.
+Reactive Forms validation rules are specified in the Component Class instead of Template.
+
+Apply the validation rule to the form-control.
+Provide the visual feedback to the form-control.
+Display the appropriate Error Message.
+
+To use built in Validations we make use of Validators class from @angular/forms.
+Here the first element in the Array is default value of form-control.
+
+	 /* Setting the values to the formgroup using FormBuilder */
+    registrationForm = this.formBuilder.group({
+    userName: ['', Validators.required],
+    password: [''],
+    confirmPassword : [''],
+    address : this.formBuilder.group({
+      city :[''],
+      state :[''],
+      pinCode :['']
+    })
+	});
+	
+Second element in the Array is used to sepcify the Validation rules for the form-control.
+
+	<div class="form-group">
+        <label>Username</label>
+        <input [class.is-invalid]="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched" 
+        name="userName" formControlName="userName" type="text" class="form-control">
+    </div>
+	
+To display the appropariate Error Messages is the same as Template Driven Forms.
+Hide the Error Message when the form-control is untouched and the form-control value is valid.
+
+	<div class="form-group">
+        <label>Username</label>
+        <input [class.is-invalid]="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched" 
+        name="userName" formControlName="userName" type="text" class="form-control">
+        <small class="text-danger" [class.d-none]="registrationForm.get('userName')?.valid || registrationForm.get('userName')?.untouched">Username is required</small>
+    </div>
+
+We often come across form-controls where multiple Validations are required.
+To specify more than one Validation rule for the form-control and display the Error message we use ngIf Direcive.
+Also in the FormBuilder Service convert the Second Element to Array.
+
+	userName: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(50)]]
+	
+Also in the <div> conditionally render the Element.
+
+	  <div *ngIf="registrationForm.get('userName')?.invalid && 
+        registrationForm.get('userName')?.touched">
+            <small class="text-danger">Username is required</small>
+            <small class="text-danger">Username must be atleast 3 Characters</small>
+       </div>
+	   
+To conditionally display the Errors Messages we use the Errors Object with the ngIf Directive.
+
+	<div class="form-group">
+        <label>Username</label>
+        <input [class.is-invalid]="registrationForm.get('userName')?.invalid && 
+        registrationForm.get('userName')?.touched" 
+        name="userName" formControlName="userName" type="text" class="form-control">
+        <!-- <small class="text-danger" [class.d-none]="registrationForm.get('userName')?.valid || registrationForm.get('userName')?.untouched">Username is required</small> -->
+        <div *ngIf="registrationForm.get('userName')?.invalid && 
+        registrationForm.get('userName')?.touched">
+            <small *ngIf="registrationForm.get('userName')?.errors?.['required']" class="text-danger">Username is required</small>
+            <small *ngIf="registrationForm.get('userName')?.errors?.['minlength']" class="text-danger">Username must be atleast 3 Characters</small>
+        </div>
+    </div>
+	
+Note :
+------
+Here we are using the userName field in lot of conditions.
+Instead of using registrationForm.get('userName') every time,create the getter that returns the userName in the Component Class.
+
+	get userName() {
+		return this.registrationForm.get('userName');
+	}
+	
+	<div class="form-group">
+        <label>Username</label>
+        <input [class.is-invalid]="userName?.invalid && 
+        userName?.touched" 
+        name="userName" formControlName="userName" type="text" class="form-control">
+        <!-- <small class="text-danger" [class.d-none]="registrationForm.get('userName')?.valid || registrationForm.get('userName')?.untouched">Username is required</small> -->
+        <div *ngIf="userName?.invalid && 
+        userName?.touched">
+            <small *ngIf="userName?.errors?.['required']" class="text-danger">Username is required</small>
+            <small *ngIf="userName?.errors?.['minlength']" class="text-danger">Username must be atleast 3 Characters</small>
+        </div>
+    </div>
+
+*********************************************** 9.Custom Validation  **********************************************************
+
+
+
+*********************************************** 10.Cross Field Validation  ****************************************************
+
+Sometimes we need to compare values across two different form-controls to perform validations.
+In our case we need to compare password and confirmpassword for validations.
 
 
 
 
+
+*********************************************** 11.Conditional Validation *****************************************************
+
+
+
+
+*********************************************** 12.Dynamic Form Controls  *****************************************************
+
+Most of the time we come across the scenario where we need to add fields based on button click.
+Here we started with the Single field and based on user selection we add more form fields.
+In this way we make the form more concise and expand it only when required.
+Here we are going to add the button to duplicate the Email Address field.
+
+Step 1 :
+--------
+import the FormArray from @angular/forms.
+FormArray makes it possible to add the dynamic from-controls.
+
+Step 2 :
+--------
+Define the FormArray in the form model.
+
+	 registrationForm = this.formBuilder.group({
+		userName: ['', [Validators.required, Validators.minLength(3)]],
+		password: [''],
+		confirmPassword: [''],
+		email:['',Validators.required],
+		address: this.formBuilder.group({
+		  city: [''],
+		  state: [''],
+		  pinCode: [''],
+		}),
+		alternativeEmails: this.formBuilder.array([])
+	  });
+ 
+Step 3 :
+--------
+Create the getter to access the FormArray in the HTML.
+
+	get alternativeEmails() {
+    return this.registrationForm.get('alternativeEmails') as FormArray;
+	}
+	
+Step 4 :
+--------
+Create a method that will add the form-control into the FormArray.
+
+	 addAlternativeEmails() {
+		this.alternativeEmails.push(this.formBuilder.control(''))
+	}
+	
+Step 5 :
+--------
+Add the button in the HTML and call the addAlternativeEmails()
+
+	<button type="button" class="btn btn-secondary btn-sm m-1" (click)="addAlternativeEmails()">Add Email</button>
+	
+Step 6 :
+--------
+Final step is to iterate over the FormArray and display the form-controls.
+
+	<div formArrayName="alternativeEmails" *ngFor="let email of alternativeEmails.controls; let i=index">
+            <input type="text" class="form-control my-1" [formControlName]="i">
+    </div>
+	
+Below is the complete HTML code for FormArray.
+
+	<div class="form-group">
+        <label>Email</label>
+        <input [class.is-invalid]="email?.invalid && 
+        email?.touched" name="email" formControlName="email" type="text" class="form-control">
+        <small class="text-danger" [class.d-none]="email?.valid || email?.untouched">Email is required</small>
+        <button type="button" class="btn btn-secondary btn-sm m-1" (click)="addAlternativeEmails()">Add Email</button>
+        <div formArrayName="alternativeEmails" *ngFor="let email of alternativeEmails.controls; let i=index">
+            <input type="text" class="form-control my-1" [formControlName]="i">
+        </div>
+    </div>
+
+*********************************************** 13.Submitting Form Data ********************************************************************
+
+
+
+
+*********************************************** 35.Angular Forms Tutorial: Fundamental & Concepts (tektutorialshub) ************************
+
+
+
+*********************************************** 36.Template-Driven Forms in Angular (tektutorialshub) **************************************
+
+In Template Driven Forms
+1.The form is set up using ngForm directive.
+2.Controls are set up using ngModel directive.
+3.ngModel also provides two way data binding.
+4.The Validations are configured in the Template Driven Forms.
+
+We can assign the ngForm,FormControl and FormGroup instance to a Template reference variables.
+This allows us to check the status of the form like whether the form is valid,submitted and value of the form elements etc.
+we have access to the ngForm instance via local Template Refernece Variables.
+
+	<form #contactForm="ngForm">
+	
+We can also get the access of the FormControl instance by assigning the ngModel to a local variable.
+
+	<input type="text" name="state" class="form-control" #state="ngModel" ngModel>
+	
+FormGroup is a collection of FormControls.
+It also contains other FormGroups.
+ngForm directive creates top level FormGroup behind the scenes.
+
+
+*********************************************** 37.Set Value in Template Driven forms in Angular (tektutorialshub) **************************
+
+Before we set the default value,It is better to create a model class.
+
+	import { Address } from "./address";
+	export class Contact {
+
+		constructor(public firstName: string, public lastName: string, public email: string, public gender: string,
+			public isMarried: boolean, public country: string, public address: Address) {
+
+		}
+	}
+
+	export class Address {
+    constructor(public city: string, public state: string, public pincode: string) {
+    }
+	}
+
+
+There are two ways where we can set the values in Template Driven Forms.
+1.Two way Data Binding 
+2.Template Reference Variables.
+
+1.Two way Data Binding  :
+-------------------------
+Two way Data Binding is the recomended way to set the value in the Template Driven Forms.
+The Advantage here is that if we change the value in the HTML are reflected in Component Class 
+similarly If we change the value in the Component class it will reflect in the HTML.
+
+	export class ContactFormComponent implements OnInit {
+
+  countryList = [
+    new country("1", "India"),
+    new country('2', 'USA'),
+    new country('3', 'England')
+  ];
+  address: Address;
+  contact: Contact;
+
+  ngOnInit() {
+  }
+
+  onSubmit(contactForm: any) {
+    console.log(contactForm.value);
+  }
+
+  constructor() {
+    this.address = new Address("", "", "");
+    this.contact = new Contact("","","","",false,"2",this.address);
+  }
+	}
+
+	export class country {
+	  id: string;
+	  name: string;
+
+	  constructor(id: string, name: string) {
+		this.id = id;
+		this.name = name;
+	  }
+	}
+
+
+2.Template Reference Variables
+------------------------------
+
+
+
+*********************************************** 38.Reactive Forms in Angular  **************************************************
+
+Reactive Forms are one of the ways to build Angular Forms where we define the structure of the Form in the Component class.
+We create the Form Model using Form Group, Form Controls and Form Arrays.
+We can also define the Validation rules in the Component Class.
+Then we bind the Form Group with the HTML Template.
+
+To use Reactive Forms we need to import ReactiveFormsModule in the App Module and add it the imports Array.
+In Reactive Forms it is our responsibility to build the Model using Form Group,Form Control and Form Array.
+Thease 3 are the building blocks of Abgular Forms.
+Form Control encapsulates the state of Single Form Element in our Form.
+Form Group represents the collection of Form Controls.
+In fact Anglar Form itself is a Form Group.
+
+To create a Form Group
+
+	contactForm=new FormGroup({
+    firstName: new FormControl(),
+    lastName : new FormControl(),
+    email : new FormControl(),
+    gender : new FormControl(),
+    country : new FormControl()
+  });
+
+Once the Model is ready we need to bind the Model with the HTML.
+
+	<form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
+	
+Now we need to bind each Form Field to an instance of the Form Control Models.
+We use the formControlName directive for this.
+The value is set to the name of the corresponding FormControl instance of the class. 
+	
+	<div class="form-group">
+		<label>First name</label>
+		<input type="text" name="firstName" class="form-control" formControlName="firstName">
+	</div>
+	
+FormControl takes 3 arguments.
+Default Value or object of key value pair
+Validator
+Asynchronous Validator
+
+When we pass the object we can set both the default value and whether or not control is disabled or not.
+We can also group the Controls using FormGroup.
+
+		<div formGroupName="address">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" formControlName="city" >
+            </div>
+         
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" name="street" formControlName="street" >
+            </div>
+         
+            <div class="form-group">
+                <label for="pincode">Pin Code</label>
+                <input type="text" class="form-control" name="pincode" formControlName="pincode">
+            </div>
+        </div>
+
+	contactForm = new FormGroup({
+    firstName: new FormControl(),
+    lastName: new FormControl(),
+    email: new FormControl(),
+    gender: new FormControl(),
+    isMarried: new FormControl(),
+    country: new FormControl(),
+    address: new FormGroup({
+      city: new FormControl(),
+      street: new FormControl(),
+      pincode: new FormControl()
+    })
+	});
+
+*********************************************** 39.FormBuilder in Reactive Forms ***********************************************
+
+FormBuilder is the helper API to build Forms in Angular.
+It provides shortcuts to create the Form Group,Form Control and Form Array.
+To use Form Builder import the Form Builder and add it to the Constructor.
+
+	constructor(private formBuilder: FormBuilder) {
+	}
+	
+	contactForm = this.formBuilder.group({
+    firstName: ['',Validators.required],
+    lastName: ['Chary'],
+    email: [],
+    gender: [],
+    isMarried: [],
+    country: [],
+    address: this.formBuilder.group({
+      city: [],
+      street: [],
+      pincode: []
+    })
+  });
+
+*********************************************** 40.SetValue & PatchValue in Angular ********************************************
+
+setValue() can be used to update the values of the Form Group or Form Control or Form Array.
+By using setValue() we can only update the complete corresponding object other wise it throws an Error.
+
+patchValue() can be used to update the subset of the Form Group or Form Array.
+It ignores the rest of the elements.
+
+		contact: any;
+
+		ngOnInit() {
+		this.contact = {
+		  firstName: "Sachin",
+		  lastName: "Tendulkar",
+		  //email: "sachin@gmail.com",
+		  gender: "male",
+		  isMarried: true,
+		  country: "2",
+		  address: {
+			city: "Mumbai",
+			street: "Perry Cross Rd",
+			pincode: "400050"
+		  }
+		}
+	  }
+
+	setValue()
+	{
+    this.contactForm.patchValue(this.contact);
+	}
+	
+OnlySelf :
+----------
+
+
+
+emitEvent :
+-----------
+
+
+
+*********************************************** 41.StatusChanges in Angular Forms **********************************************
+
+
+*********************************************** 42.ValueChanges in Angular Forms ***********************************************

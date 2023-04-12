@@ -99,7 +99,7 @@ To run the Project
 
 	ng serve
 	
-First Step is to add Bootstrap Styling to our Project.
+First Step is to add Bootstrap styling to our Project.
 Bootstrap is a CSS Framework that gives a variety of classes that can be applied to make the HTML better.
 To add Bootstrap CSS
 
@@ -143,12 +143,12 @@ To create a dropdown create an Array of elements in test.component.ts.
 
 ***********************************************   5.Binding Data with ngForm	**************************************************************************************
 
-The first step to work with Anguar Forms is to import the Forms Modules and add it to the import Array.
+The first step to work with Anguar Forms is to import the FormsModule and add it to the import Array.
 In app.module.ts 
 
 	import {FormsModule} from '@angular/forms'
 	
-Anytime If we use the <form> ,Angular attaches ngForm directive to <form> which gives the valuable information about the <form>.
+Anytime If we are using the <form> ,Angular attaches ngForm directive to <form> which gives the valuable information about the <form>.
 It Tells what are the values of different form-control and whether the values are valid or not.
 We get the reference of the whole <form> using Template Reference Variable.
 	
@@ -160,6 +160,7 @@ ngForm Directive allows us to access to the values of the form-control by using 
 	{{userForm.value | json}} // {}
 
 Here Angular does not track the value of form-control on its own.
+
 we need to tell angular which of the form-control has to be tracked. i.e done by using ngModel directive.
 Place ngModel directive to each of the form-control and ngModel works only with name attribute.
 
@@ -217,7 +218,7 @@ Here Angular Form Module is now same as User Module.
 But when we change the value in the Text Angular Form will get the updated value where as userModel is not updating and still contains the old value.
 The reason is we are using Property Binding which is one way Data Binding i.e
 Data is flown form the View to the Class but not from the Class to the View.
-When we are working with forms we need to have Two way Binding.
+Whenever we are working with forms we need to have Two way Binding.
 
 ***********************************************  7.Tracking State and Validity  	**********************************************************************************
 
@@ -227,13 +228,13 @@ What Class is applied to form-control bassed on its state and validity.
 At any point of time Angular applies 3 classes to the form-control based on its state and Validity.
 
 1.User has visited the form-control or Not 
-when we load the class for the first time Angular applies the Class ng-untouched
+whenever we load the class for the first time Angular applies the Class ng-untouched
 If we click on the form-control either by switching or Tab out Angular applies the class ng-touched
 Here the key point is that class will change only on blur and we have to navigate away from the form-control.
 
 2.form-control value has changed or not
 For the first time Angular aplies the Class ng-pristine
-If the form-control value has Changed then Angular applies the Class ng-dirty
+If the form-control value has changed then Angular applies the Class ng-dirty
 
 3.form-control value is valid or not
 If the form-control value is valid then Angular applies the Class ng-valid or else applies the Class ng-invalid

@@ -10,7 +10,7 @@ Centralized Version Control System uses a Central Server to Store all the files 
 But the main drawback here is that it is a single point of failure i.e 
 If the Central Server fails No one can collabarate and even in the worst case If the proper backup is not taken we will lose the entire history of the project.
 
-Advantages of GIT :
+Advantages of GIT -8
 -------------------
 1.Open Source.
 2.Fast and Small.
