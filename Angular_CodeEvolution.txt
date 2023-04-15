@@ -21,10 +21,9 @@
 17.Services															[21-FEB-2019]  (Done)
 18.Dependency Injection												[21-FEB-2019]  (Done)
 19.Using Service													[21-FEB-2019]  (Done)
-
 20.HTTP and Observables												[21-FEB-2019]  (Done)
-
 21.Fetch Data Using HTTP											[21-FEB-2019]  (Done)
+
 22.HTTP Error Handling												[21-FEB-2019]  ()
 
 23.Routing and Navigation											[06-APR-2020]  (Done)
@@ -42,7 +41,7 @@
 
 ################################################### 1.Introduction	####################################################################
 
-It is a JavsScript Framework and is used to build Client Side Applications.
+Angular is a JavsScript Framework and is used to build Client Side Applications.
 Angular is specially used to build Single Page Applications i.e without refreshing the entire page.
 Angular Provides Modular Approach and hence the Application we build has a Clear Structure.
 By making use of Components which is a feature in Angular we have lot of reusability of Code.
@@ -260,7 +259,7 @@ In the app Folder,Hellworld Folder has been Created and it Contains HTML,CSS,TS 
 When we Create a Any Component,Angular Should aware of this i.e In the App Module import the Helloworld Component and add it to the Declarations Array.
 
 Declaration array Contains all the Components used by the Application.
-To include this Component in the HTML,Just add Custom HTML tag that Represents the Selector in app.component.html.
+To include this Component in the HTML,Just add Custom HTML tag that represents the Selector in app.component.html.
 
 	<app-hello-world></app-hello-world>
 
@@ -364,7 +363,7 @@ Another Drawback of Interpolation is access to Global Variables like Window,Scre
 
 	<h2>{{window.location.href}}</h2>
 	
-Here Template is Not aware of Global Java Script Variables.
+Here Template is not aware of Global Java Script Variables.
 To access the Global Variable,Create the Local Variable and assign the Global Variable to it.
 	public siteUrl=window.location.href;
 	<h2>{{siteUrl}}</h2>
