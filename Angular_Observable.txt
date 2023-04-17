@@ -1,15 +1,240 @@
-1.What is Observable 								(procademy)   [15-APR-2023]  ()
-2.Error and Completion of Observable                (procademy)   [15-APR-2023]  ()
-3.Different Ways of creating Observable             (procademy)   [15-APR-2023]  ()
-4.Understanding Operators of RxJS                   (procademy)   [15-APR-2023]  ()
-5.Subjects in RxJS                                  (procademy)   [15-APR-2023]  ()
-6.Unsubscribing to an Observable                    (procademy)   [15-APR-2023]  ()
+1.What is Observable 												(procademy)   		[15-APR-2023]  (Done)
+2.Error and Completion of Observable                				(procademy)   		[16-APR-2023]  (Done)
+3.Different Ways of creating Observable             				(procademy)   		[17-APR-2023]  (Done)
+4.Understanding Operators of RxJS                   				(procademy)   		[18-APR-2023]  ()
+5.Subjects in RxJS                                  				(procademy)   		[18-APR-2023]  ()
+6.Unsubscribing to an Observable                    				(procademy)   		[18-APR-2023]  ()
 
-7.
+7.Observable Introduction											(tektutorialshub)   [18-APR-2023]  ()
+8.Create an Observable from a string, array, object, collection     (tektutorialshub)   [18-APR-2023]  ()
+9.Observable from events using fromEvent                            (tektutorialshub)   [18-APR-2023]  ()
+10.Observable pipe                                                  (tektutorialshub)   [18-APR-2023]  ()
+11.Map Operator                                                     (tektutorialshub)   [18-APR-2023]  ()
+12.Filter Operator                                                  (tektutorialshub)   [18-APR-2023]  ()
+13.Tap Operator                                                     (tektutorialshub)   [18-APR-2023]  ()
+14.SwitchMap                                                        (tektutorialshub)   [18-APR-2023]  ()
+15.MergeMap                                                         (tektutorialshub)   [18-APR-2023]  ()
+16.ConcatMap                                                        (tektutorialshub)   [18-APR-2023]  ()
+17.ExhaustMap                                                       (tektutorialshub)   [18-APR-2023]  ()
+18.take, takeUntil, takeWhile, takeLast                             (tektutorialshub)   [18-APR-2023]  ()
+19.First, last & Single                                             (tektutorialshub)   [18-APR-2023]  ()
+20.Skip, SkipWhile, SkipUntil & SkipLast                            (tektutorialshub)   [18-APR-2023]  ()
+21.Scan & Reduce                                                    (tektutorialshub)   [18-APR-2023]  ()
+22.DebounceTime & Debounce                                          (tektutorialshub)   [18-APR-2023]  ()
+23.Delay & DelayWhen                                                (tektutorialshub)   [18-APR-2023]  ()
+24.ThrowError                                                       (tektutorialshub)   [18-APR-2023]  ()
+25.CatchError                                                       (tektutorialshub)   [18-APR-2023]  ()
+26.Retry & ReTryWhen                                                (tektutorialshub)   [18-APR-2023]  ()
+27.Unsubscribe from an observable                                   (tektutorialshub)   [18-APR-2023]  ()
+28.Subjects in Angular                                              (tektutorialshub)   [18-APR-2023]  ()
+29.ReplaySubject, BehaviorSubject & AsyncSubject                    (tektutorialshub)   [18-APR-2023]  ()
+30.Angular Subject Example                                          (tektutorialshub)   [18-APR-2023]  ()
 
 
 
 ################################################### 1.What is Observable (procademy)  ###################################################
 
+We use Observables to perform asynchronous operations and handle asynchronous data.
+Another way to perform Asynchronous operations and handling Asynchronous data is by using promise.
 
+What is Asynchronous operations and Asynchronous Data ?
+We all know that JavaScript is a single Threaded Programming Language.
+Which means the code will be executed line by line.
+
+Consider the scenario of making an HTTPRequest to the server and it is taking long time to execute.
+The next statement after HTTPRequest will have to wait for its execution.
+It will get executed only when the HTTPRequest completes.
+This approach is called Synchronous Operation and is blocking in Nature.
+
+To resolve this we use Asynchronous programming.
+In Asynchronous operation the code will be executed without blocking the Main Thread.
+We make an HTTPRequest asynchronous so that it will run in the Background and reamining statements will be executed.
+Using Asynchronous Request we can perform long running Request without blocking the Main Thread.
+
+There are 2 ways where we can achieve Asynchronous programming.
+1.Promise
+2.Observable
+
+Consider the scenario where we are requesting for the List of Users from the Server.
+Server will get the data from the Database or an API.
+The data which we are requesting is huge and in that case Server will take some time to process tha data.
+Once the data is available it will create the Response and send it back to the Client.
+This is how Promise Works.
+In Promise,Data is sent over a period of time.
+It Promises the data once the data is ready.
+Here the data can be an actual data that we are request for and also it can be an Error.
+
+In Observable it won't wait for the complete data to be available.
+Observable streams the data i.e. Observable sends the data in packets when some of the data is available.
+
+In Promise, it promises the data either it is data or an Error.
+In Case of Observable,Observable provides the data if some one is there to use the data.
+If no one is using the data then Observable will not send the data.
+
+Promise is native to JavaScript.
+Observable is provide by another JavaScript library which is RxJs.
+RxJs (Reactive Extension Library for JavaScript) is a JavaScript library that allows us to work with Asynchronous data stream.
+
+An Observable is a fucntion which converts Ordinary stream of data into an Observable stream of data.
+We can think of Observable as a wrapper around Ordinary stream of data.
+
+RxJs has two main layers.
+1.Observable (Producer) i.e. Stream of data.
+2.Observer   (Consumer) i.e. The one who is going to use the data.
+
+In order to make the Observer use the data emitted by the Observable,Observer has to subscribe to the Observable.
+In order to use Observable we need to import RxJs library.
+This will get installed automatically when we create a new Angular Project.
+
+To create a Observable we use Observable Constructor.
+To the Observable Constructor we need to pass the callbak function.
+This callback function accepts an argument Observer.
+This argument will be injected by RxJS library.
+Here Observer is nothing but subscriber which is waiting for the data.
+
+	myObservable=new Observable((observer)=>{
+    console.log("Observable Starts");
+	});
+	
+To emmit the data to the Observer we use next().
+
+	observer.next("1");
+    observer.next("2");
+    observer.next("3");
+    observer.next("4");
+    observer.next("5");
+	
+The Observable will emmit the data only when there is a subscriber.
+The subscribe() takes 3 parameters as a callback functions and all are optional.
+The 3 parameters are 
+
+next
+error
+complete
+
+	export class ObservableBasicsComponent implements OnInit {
+	ngOnInit(): void {
+    this.myObservable.subscribe((val)=>{
+      console.log(val);
+    });
+	}
+
+	myObservable = new Observable((observer) => {
+    console.log("Observable Starts");
+    observer.next("1");
+    observer.next("2");
+    observer.next("3");
+    observer.next("4");
+    observer.next("5");
+	});
+
+Here the Observable data is streaming one by one.
+To emmit the data after certain time interval we use setTimeout() which accepts callback function and the time interval.
+
+	myObservable = new Observable((observer) => {
+    console.log("Observable Starts");
+    setTimeout(() => {observer.next("1")}, 1000)
+    setTimeout(() => {observer.next("2")}, 2000)
+    setTimeout(() => {observer.next("3")}, 3000)
+    setTimeout(() => {observer.next("4")}, 4000)
+    setTimeout(() => {observer.next("5")}, 5000)
+  });
+
+
+################################################### 2.Error and Completion of Observable (procademy) #################################################
+
+Observable is used to handle Asynchronous data.
+Observable emmits some data.
+Observable can also emmit errors.
+Observable emmits the signal which tells Observable has done emmitting all the data.
+To emmitt the error from the Observable
+	
+	setTimeout(()=>  {observer.error("Something went wrong")},3000)
+	
+Once Observable emmits the error,remaining statements in the Observable are not executed.
+As a developer we need to handel this error.
+As we know that subscribe() takes 3 callback functions as parameters.
+
+	ngOnInit(): void {
+    this.myObservable.subscribe((val)=>{
+      console.log(val);
+    },(error)=>{
+      alert('Something went wrong')
+    });
+	}
+To emmit the complete signal form the Observable
+
+	setTimeout(() =>{observer.complete()},6000)
+	
+When the Observable is done with emmitting all the data it can also emmit the complete signal.
+
+	ngOnInit(): void {
+    this.myObservable.subscribe((val)=>{
+      console.log(val);
+    },(error)=>{
+      alert('Something went wrong')
+    },
+    () =>{
+      alert('Observable completed emmitting the data')
+    });
+	}
+
+First callback function will get executed everytime when the Observer emmits the value.
+Second callback function will get executed when the Observer emmits the error.
+Third callback function will get executed when the Observer emmits the complete signal.
+
+Note :
+------
+Once the complete signal is emmitted remaining statements won't get emmitted.
+
+################################################### 3.Different Ways of creating Observable (procademy) ###################################################
+
+Creating an Observable using create() as follows
+
+	myObservable = Observable.create((observer:any) => {
+    console.log("Observable Starts");
+    setTimeout(() => {observer.next("1")}, 1000)
+    setTimeout(() => {observer.next("2")}, 2000)
+    setTimeout(() => {observer.next("3")}, 3000)
+   // setTimeout(()=>   {observer.error(new Error("Something went wrong"))},4000)
+    setTimeout(() => {observer.next("4")}, 5000)
+    setTimeout(() => {observer.next("5")}, 6000)
+    setTimeout(() =>{observer.complete()},7000)
+	});
+	
+We also have some operators which can be used to create Observable.
+
+of operator :
+-------------
+of operator emmits the data which we passed as an argument.Here array1 and array2 are emmitted.
+of operator also emmitted the complete signal once it is done with emmitting all the values.
+of operator emmits the argument as it is.
+To the of operator we can pass any number of arguments.
+	
+	array1=[1,2,3,4,5];
+    array2=['A','B','C','D','E']
+    myObservable=of(this.array1,this.array2);
+
+from operator :
+---------------
+from operators accepts single iterable.
+from operators iterates the iterable and emmits the values one by one.
+
+	myObservable=from(this.array1);
+
+################################################### 4.Understanding Operators of RxJS  ###########################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
