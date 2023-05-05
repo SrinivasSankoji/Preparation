@@ -36,7 +36,7 @@ To achieve this Angular provides two ways.
 1.Template Driven Forms
 2.Reactive Forms
 
-In Template Driven most of the code is written in HTML Template where as 
+In Template Driven Forms most of the code is written in HTML Template where as 
 In case of Reactive Forms or Model Driven Forms most of the code is written inside Component Class.
 
 
@@ -50,7 +50,7 @@ Angular takes care of this by using ngModel Directive.
 As a result we have bulky HTML Code and minimal Component Code.
 Angular also provides ngForm directive along with ngModel directive which keeps track of the Form and the Form Elements State and Validity.
 
-Drawback of Template Driven Approach is when it comes to Unit Testing.
+Drawback of Template Driven Forms is when it comes to Unit Testing.
 Form Validation logic cannot be Unit Tested.
 The only way to perform and end to end Testing is by using Browser.
 Another drawback is in case of handling complex Forms.
@@ -154,13 +154,12 @@ We get the reference of the whole <form> using Template Reference Variable.
 	
 	<form #userForm="ngForm">
 	
-Here ngForm directive exports itself as String ngForm and by assigning it to a Template Reference Variable and we have reference to the directive itself.
+Here ngForm directive exports itself as String and by assigning it to a Template Reference Variable and we have reference to the directive itself.
 ngForm Directive allows us to access to the values of the form-control by using value property.
 
-	{{userForm.value | json}} // {}
+	{{userForm.value | json}}
 
 Here Angular does not track the value of form-control on its own.
-
 we need to tell angular which of the form-control has to be tracked. i.e done by using ngModel directive.
 Place ngModel directive to each of the form-control and ngModel works only with name attribute.
 
@@ -481,12 +480,13 @@ we also need to add the HttpClient in the imports Array of app.module.ts.
 
 	  constructor(private _http: HttpClient) { }
 	}
+	
 Now we are in a position to make the Http Request.
 create a method in enrollment service that accepts the user and submit the Post request with url and User.
 
 	public enroll(user:User)
 	{
-    return this._http.post<any>(this._url,user);
+     return this._http.post<any>(this._url,user);
 	}
 
 Call the enroll Srevice from the onSubmit() in test.component.ts

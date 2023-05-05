@@ -17,7 +17,7 @@
 16.Custom Property Binding @Input        (procademy)		[24-APR-2023]  (Done)
 17.Custom Event Binding @Output          (procademy)		[25-APR-2023]  (Done)
 18.Implementing Search Functionality     (procademy)		[02-MAY-2023]  (Done)
-19.Template Reference Variable           (procademy)		[03-MAY-2023]  ()
+19.Template Reference Variable           (procademy)		[05-MAY-2023]  (Done)
 20.@ViewChild                            (procademy)		[03-MAY-2023]  ()
 21.View Encapsulation                    (procademy)		[03-MAY-2023]  ()
 22.ng-content                    		 (procademy)		[03-MAY-2023]  ()
@@ -438,8 +438,105 @@ Now we need to bind the custom event of the child component to the function of t
 
 *********************************************** 19.Template Reference Variable (procademy) ***********************************************
 
+Template Reference Variable is a variable which stores the reference to any DOM/HTML element,Componenet or a directive in the Template.
+Create the new Component named TemplateReference
 
+	ng g c TemplateReference
+	
+Requirement 1 :
+---------------
+Create one input text and add the reference to it by using Template Reference Variable.
+
+	<input type="text" #myReference>
+	<P></P>
+	
+Here myReference stores the reference to the input HTML Element.
+When the HTML is rendered in the Web page,In the DOM an Obejct will be created.
+This reference variable will point to the Object in the DOM.
+
+Here the requirement is whatever we type in the Text box that has to displayed in the <p></p>
+One way to achieve this is by using two way Data Binding.
+The other way is to use local reference variable.
+local reference variable has the value property which contains the value of the input element.
+
+	<input type="text" #myReference>
+	<P>{{myReference.value}}</P>
+	
+Here we wont see the input.
+Initially when the page loads the Text box is empty.
+When we are typing something HTML is not aware of the changes.
+We are going to bind the keyup() which will do nothing.
+But Angular will run the Change detection to the DOM Element.
+
+	<input type="text" #myReference (keyup)="3">
+	<P>{{myReference.value}}</P>
+	
+The requirement is to pass the local Reference of the input element to the Component class.
+For this create a button Event.
+
+	<button (click)="getLocalReference(myReference)">Template Reference</button>
+	
+	getLocalReference(inputElement:HTMLInputElement){
+		alert("Hello : "+inputElement.value);
+	}
+	
+Requirement 2 :
+---------------
+From the above scenario we are using local reference variable on the HTML Element,Similarly we can use local reference variable on the Component or directive.
+Create the new component customer-list.
+Add the customer array.
+
+	customers: Customer[] = [
+    {customerNo: 1, name: 'Mark Vought', address: '', city: 'London', country: 'UK'},
+    {customerNo: 2, name: 'John Smith', address: '', city: 'New York', country: 'USA'},
+    {customerNo: 3, name: 'Merry Ann', address: '', city: 'Berlin', country: 'Germany'},
+    {customerNo: 4, name: 'Rajesh Khatri', address: '', city: 'Mumbai', country: 'India'},
+    {customerNo: 5, name: 'Rahul Raj', address: '', city: 'Delhi', country: 'India'}
+	]
+	
+	<table class='table'>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{customer.customerNo}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.address}}</td>
+        <td>{{customer.city}}</td>
+        <td>{{customer.country}}</td>
+        <button>Select</button>
+      </tr>
+    </tbody>
+  </table>
+  
+Here the Requirement is whenever i click on the select button that particular Customer details has to be passed.
+For this we need to add the local reference to the Componet class.
+
+	<app-customer-list #customer></app-customer-list>
+	<p>{{customer}}</p>
+
+Create on property named selectedCustomer in the Component class.
+
+	 selectedCustomer:any='';
 	 
+	 <button (click)="selectedCustomer = customer">Select</button>
+	 
+**************************************************** 20.@ViewChild (procademy) ********************************************************
+
+
+
+
+
+
+	
 
 
 
