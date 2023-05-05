@@ -607,7 +607,7 @@ ngFor is used to render the List of Elements.
 
 From the last few examples we are working on some Components and that Component are nested inside App Component.
 Here App Component is the Parent Component and the other Component is the Child Component.
-Some times we may get a requirement that two Components needs to interact with each Other.
+Some times we may get a requirement that two Components needs to interact with each other.
 Parent Component might send some data to the Child Component similarly Child Component might send some data to the Parent Component.
 Here Components interact with each other using @Input and @Output Decorator.
 Using @Input Decorator Child Component will accept the input from the Parent Component.
@@ -621,7 +621,7 @@ Case 1 :
 Parent Component sends some data to the Child Component i.e name  and in the Child Component display the name Send by the Parent Component.
 To Send the Data from Parent Component to Child Component i.e app Component to parentchild Component.
 
-Create Variable in the app Component i.e 
+Create Variable in the app Component i.e Parent Component 
 	
 		public name="Srinivas Sankoji";
 
@@ -631,8 +631,7 @@ where we include the Child Component Selector in the Parent Component HTML.
 
 	 <parentchild [parentData]="name"></parentchild>
 	 
-Now declare the same Variable in the Child Component that we have declared in the Parent Component.
-
+Now declare the same variable in the Child Component that we have declared in the Parent Component.
 Here In the Child Component we need to provide information about the variable that it is not a normal variable and we are receiving it from the Parent Property.
 This can be done by using @Input Decorator in the ts file.
 
@@ -652,10 +651,10 @@ Case 2:
 Child Component sending  some data to Parent Component.
 
 In Case of Parent to Child Component,Parent Component HTML will have the Child Component selector so that we can easily bind the Parent Component data to the Child Component.
-Where as in the Child Component HTML we don't have any Parent Component Selector.
+Where as in Child Component HTML we don't have any Parent Component Selector.
 The way a Child Component sends the data to the Parent Component is by using Events.
 
-Create an Event by using EventEmitter Class so that we can send an Event to the Parent.
+Create an event by using EventEmitter Class so that we can send an event to the Parent.
 
 	 public childEvent= new EventEmitter(); 
 	 
@@ -663,7 +662,7 @@ To send the Child Component data to the Parent Component we use @Output Decorato
 
 	@Output() public childEvent= new EventEmitter();
 
-Now we have added an Event and fire this event on button click.
+Now we have added an event and fire this event on button click.
 
 	<button (click)="sendEvent()">Send Event</button>
 	
@@ -672,8 +671,7 @@ Now we have added an Event and fire this event on button click.
 		this.childEvent.emit("Hi Parent From Child");
 	}
 
-Now the Event is emitted from the Child Component.
-We need to capture in the Parent Component.
+Now the Event is emitted from the Child Component.We need to capture in the Parent Component.
 
 	<parentchild (childEvent)="message=$event" [parentData]="name"></parentchild>
 
