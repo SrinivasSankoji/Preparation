@@ -756,7 +756,7 @@ Also we get the same kind of Object every time.
 
 2.DI as a Design Pattern :
 --------------------------
-In case of Dependency Injection as Design Pattern a class receives its dependencies from external resources rather than craeting itself.
+In case of Dependency Injection as Design Pattern a class receives its dependencies from external resources rather than creating itself.
 
 	Class Car 
 	{
@@ -782,15 +782,15 @@ Injector manages all the dependencies and makes the developer job more Simple.
 If the Component depends on number of Services,we register all the Services with Injector.
 When the Component is initialized all the dependencies will be initialized automatically.
 
-Create Employee Service Class
-Register with Injector
-Declare as a dependency in Employee List and Employee Detail Component.
+Create Employee Service Class.
+Register the Service with Injector.
+Declare as a dependency in Component.
 
 ################################################### 19.Using Service ###########################################################################
 
-Define Employee Service 
 
-Step 1 :
+Step 1 : Create Employee Service Class
+---------------------------------------
 To generate the Service run the Command 
 
 	ng g s employee
@@ -803,11 +803,11 @@ To generate the Service run the Command
 	  constructor() { }
 	}
 	
-This Service is Responsible to Provide Employee Data.
+This Service is responsible to provide Employee data.
 
-	 getEmployees()
+	getEmployees()
 	{
-    return
+      return
       [
       {"id":22,"name":"srinivas","salary":22000.00},
       {"id":27,"name":"Nandini","salary":27000.00},
@@ -815,17 +815,18 @@ This Service is Responsible to Provide Employee Data.
       ]
 	}
 	
-To use this Service in the Component Declare as an Array i.e 
+To use this Service in the Component declare as an Array i.e.
 
-	public employees =[];
+	public employees: any = [];
 	
-Step 2 :
-Now Register the Service with Angular.
+Step 2 : Register the Service with Injector
+-------------------------------------------
+Now register the Service with Angular.
 If we don't register the Service,then service is like regular Class in Angular.
-There are multiple places where we can register the Service and is important because Angular has hierarchical Dependency Injection System.
+There are multiple places where we can register the Service and is important because Angular has Hierarchical Dependency Injection System.
 
-If we register in Employee List Component then it is applicable to Employee List Component and its Dependent Components.
-If we register in App Component it is applicable to its dependent Components and not applicable for other Modules.
+If we register in Employee List Component then it is applicable to Employee List Component and its Child Components.
+If we register in App Component it is applicable to its Child Components and not applicable for other Modules.
 Here each Module is a feature area in our Application.It is better to register the Service in app Module.
 
 If we register the Service in App Module,Components under the App Module can use the Service.
@@ -838,7 +839,8 @@ import the Employee Service
 	
 	import {EmployeeService} from './employee.service';
 
-Step 3:
+Step 3 : Declare as a dependency in Component
+---------------------------------------------
 Declare as dependency in the Employee List and Employee Detail Component.
 Dependency is specified in the Constructor.
 
@@ -847,24 +849,24 @@ Dependency is specified in the Constructor.
 	}
 	
 and we are going to use EmployeeService in ngOnInit().
-It is a Life Cycle Method and will be Called when Component has been initialized.
+It is a Life Cycle Method and will be called when Component has been initialized.
 
-	 ngOnInit() {
+	ngOnInit() {
     this.employees=this._employeeservice.getEmployees();
 	}
 	
 @Injectable Decorator :
 -----------------------
-Injectable tells Angular that this Service might itself has Injected Dependencies.
+Injectable tells Angular that this Service might have Injected Dependencies.
 So If we want to inject service into another Service Injectable Decorator is must.
 
 Right now Employee Service does not have any dependencies and Injectable Decorator is not Necessary.
-But Employee Service might have Dependencies in the future and in that Case Injector is Mandatory.
+But Employee Service might have dependencies in the future and in that Case Injector is Mandatory.
 It is recommended to add Injectable Decorator as soon as when we create the Service.
 
 Here we are not using Injectable Decorator in Employee List and Employee Detail Classes and these Class still makes use of Employee Service.
-This is because of Component Decorator and it tells Angular that It may or may not Use Dependency Injection System.
-But for Service We don't have Component Decorator.
+This is because of Component Decorator and it tells Angular that It may or may not use Dependency Injection System.
+But for Service we don't have Component Decorator.
 If we remove Injectable then the Service becomes plain typescript Class.
 Injectable is required only for Service and not for Component.
 
@@ -872,7 +874,7 @@ Injectable is required only for Service and not for Component.
 ################################################### 20.HTTP and Observables ####################################################################
 
 In real world Application we need to fetch the data from the Web Server / Web Service.
-We make a HTTP request to the API.The response we get from the HTTP is Observable.
+We make an HTTP request to the API.The response we get from the HTTP is Observable.
 
 Here Employee Service makes an HTTP Request to the API and we get the Observable as Response.
 We need to cast an Observable into an Array of Employees and return the same to the Component.
@@ -909,14 +911,14 @@ To use the HTTP Service in the Employee Service,declare as a dependency in the E
 
 	constructor(private http:HttpClient) { }
 	
-	 getEmployees()
-	{
-    return this.http.get(this.url);
+	getEmployees() {
+		return this.http.get(`${this.url}`);
 	}
 	
 Step 2:
 -------	
-Here get() returns an Observable and for our Application Observable needs to be cast into format that represents an Employee Array.
+Here get() returns an Observable and for our Application.
+Here Observable needs to be cast into format that represents an Employee Array.
 For that we need to create an Employee Interface.
 In the App Folder create a new File employee.ts and then add the code for an Employee Interface.	
 	
@@ -933,7 +935,7 @@ Then in the Service Change the return type of Service.
 
 	  private url="/assets/data/employee.json";
 
-	 getEmployees():Observable<IEmployee[]>
+	getEmployees():Observable<IEmployee[]>
 	{
 		return this.http.get(`${this.url}`);
 	}

@@ -1,0 +1,98 @@
+1.Servces in Angular									(procademy)		[15-MAY-2023]  (Done)
+2.Creating a Servce in Angular                          (procademy)		[15-MAY-2023]  (Done)
+3.Dependency Injection in Angular                       (procademy)		[16-MAY-2023]  ()
+4.Hierarchical Injection in Angular                     (procademy)		[16-MAY-2023]  ()
+5.Creating a Data Service                               (procademy)		[16-MAY-2023]  ()
+6.Injecting Service into another Service                (procademy)		[16-MAY-2023]  ()
+
+
+************************************************ 1.Servces in Angular (procademy) ************************************************
+
+A Service is a reusable TypeScript class that can be used in multiple components across the Angular Applcation.
+We have several Components in Angular application that needs to access the data.
+We can write data access code in each Component.
+But the problem with this approach is it is very inefficient and it breaks the Single Responsibility Principle.
+The responsibility of the Component is presenting the data to the User.
+The task of getting the data must be dedicated to other class.
+We call it as a Service class.
+Service class provides the data that every Component needs.
+
+Create a Component named Javascript Component,Angulr Component and React Component.
+Each Component has alert button which displays the name of the Component.
+For Example
+
+	onEnroll(){
+	 alert('Thanks for Enrolling');
+	}
+	
+Here the code is duplicated in all the components and voilating the DRY principle.
+The solution is to write the method in Service class and access it from the Component class.
+In this way Service in Angular provides reusability of the code.
+
+We can also use Services to communicate between different Components.
+If two Components has parent child relationship then we can pass data from parent component to child component and vice versa
+using @Input and @Output decorator.
+If two Components does not have parent child relationship and want to communicate with each other and that can be done by using Services.
+
+Advantages :
+------------
+Services are easier to debug and test.
+Service provides reusability of code.
+With Services we can communicate across different Components which does not have parent child relationship.
+
+************************************************ 2.Creating a Servce in Angular *************************************************
+
+Create a Component named Javascript Component and Angulr Component.
+These two components has the common functionality.
+
+	<button (click)="onEnroll()">Enroll</button>
+	 
+	onEnroll(){
+       alert('Thanks for enrolling '+this.title+' courese');
+	}
+	
+Here the code is repeated in both Angular and Javascript Components.
+The solution is to use the service.
+Create the Service named enroll
+
+	ng g s enroll
+	
+When we create a Component we annotate with @Decorator.
+When we create a directive we annotate with @Directive.
+
+	import { Injectable } from '@angular/core';
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class EnrollService {
+
+	  constructor() { }
+	}
+
+Inside the service class create a new method.
+	
+	enrollCourse(title: string) {
+    alert('Thanks for enrolling ' + title + ' courese');
+	}
+	
+Now call this service method from both Angular and Javascript Components.
+For this we need to create an instance of EnrollService class.
+
+	<button (click)="onEnroll()">Enroll</button>
+
+	onEnroll(){
+     const enrollService = new EnrollService();
+     enrollService.enrollCourse(this.title);
+	}
+
+Here the problem is still we have onEnroll() in both Angular and Javascript Components.
+Also we are creating the instance of the enrollService on our own and is not a good practice.
+We can ask Angular to provide the instance of the Service class.
+This can be done by using Depency Injection in Angular.
+
+************************************************ 3.Dependency Injection in Angular  ************************************************
+
+
+
+
+

@@ -6,7 +6,7 @@
 6.View Child Decorator					 (CodeEvolution)	[05-AUG-2019]  (Done)
 7.Parent and Child						 (CodeEvolution)	[06-AUG-2019]  (Done)
 8.Input Decorator						 (CodeEvolution)	[06-AUG-2019]  (Done)
-9.Getters and Setters					 (CodeEvolution)
+9.Getters and Setters					 (CodeEvolution)	
 10.ngOnChanges						     (CodeEvolution)
 11.Template Reference Variables		     (CodeEvolution)
 12.View Child Decorator				     (CodeEvolution)
@@ -18,9 +18,9 @@
 17.Custom Event Binding @Output          (procademy)		[25-APR-2023]  (Done)
 18.Implementing Search Functionality     (procademy)		[02-MAY-2023]  (Done)
 19.Template Reference Variable           (procademy)		[05-MAY-2023]  (Done)
-20.@ViewChild                            (procademy)		[03-MAY-2023]  ()
-21.View Encapsulation                    (procademy)		[03-MAY-2023]  ()
-22.ng-content                    		 (procademy)		[03-MAY-2023]  ()
+20.@ViewChild                            (procademy)		[05-MAY-2023]  (Done)
+21.View Encapsulation                    (procademy)		[06-MAY-2023]  (Done)
+22.ng-content                    		 (procademy)		[06-MAY-2023]  (Done)
 
 
 ************************************************ 1.Introduction ************************************************
@@ -531,10 +531,232 @@ Create on property named selectedCustomer in the Component class.
 	 
 **************************************************** 20.@ViewChild (procademy) ********************************************************
 
+Requirement 1:
+--------------
+How to access HTML Element from the View Template to the Component Class.
+Consider the scenario where we need to display the age based on Date Selection.
+
+	<div class="container-fluid">
+    <label>Date of Birth :</label>
+    <input type="date" class="form-control" #dob>
+	</div>
+	<br>
+	<div>
+		<label>Age :</label>
+		<input type="text" class="form-control" #age>
+	</div>
+	
+Here we need to pass the dob input element and age input element to the Component class.
+One solution is to create the local reference variable and pass it to the function.
+Sometimes we might want to access the HTML element before calling the method.
+For that we can make use of @ViewChild decorator.
+
+	 @ViewChild('dob') datOfBirth: ElementRef =new ElementRef('');
+	 @ViewChild('age') ageInYears: ElementRef =new ElementRef('');
+	 
+By using @ViewChild decorator we can access the input elements in our Component class.
+We can also access the Component or Directive using @ViewChild.
+
+Create a method which will calculate the age based on date of birth.
+Here we have to calculate based on the blur() event.
+
+    @ViewChild('dob')
+    datOfBirth!: ElementRef;
+
+    @ViewChild('age')
+    ageInYears!: ElementRef;
+
+	calculateAge() {
+	let dateOfBirth = new Date(this.datOfBirth.nativeElement.value).getFullYear();
+	let currentYear = new Date().getFullYear();
+	let ageInYears =currentYear - dateOfBirth;
+	this.ageInYears.nativeElement.value=ageInYears;
+	}
+	
+Using @ViewChild we can access an HTML Element or Component or a directive from the View Template to the Component class.
+
+Requirement 2 :
+---------------
+How to access the Child Component from the Parent Component using @ViewChild.
+To access the Child Component from the Parenet Component.
+
+Create a function in Child Component.
+
+	getChildComponent(){
+    alert('Testing @ViewChild Calling Child Component from Parent Component');
+	}
+	
+Create a variable in the Parent Component
+
+	@ViewChild(ViewChildChildComponent,{static:true})
+    viewChildChildComponent!: ViewChildChildComponent;
+	
+Call the method of Child Component from Parent Component.
+
+	<div class="container-fluid">
+    <app-view-child-child></app-view-child-child> 
+	</div>
+	{{viewChildChildComponent.getChildComponent()}}
+
+******************************************************* 21.View Encapsulation (procademy) *******************************************************
+
+Encapsulation means hiding data and behavior to the outside world.
+Whenever we create any Component we specify the selector,TemplateURL and Style URL.
+Whatever we specify in the StyleUrls that is applicable to that particular View Temaplate and not applicable to any other View Template.
+
+View Encapsulation is a concept or behavior in Angular where Component CSS Styles are encapsulated into the Components View
+and do not effect the rest of the Application.
+
+Lets create 2 Components i.e. comp1 and comp2.
+Each of these Components has button ELement.
+
+If we add the styles related to button in app.component.css it will be shown only in the App Component.
+Here Comp1 and Comp2 are the Child Components of App Component and the styles related to button are not reflected here.
+
+It is important to ensure that CSS Styles specified in one Component does not override the CSS rules in other Component.
+To achieve this we use View Encapsulation.
+There are three types of View Encapsulation.
+
+1.ViewEncapsulation.NONE
+2.ViewEncapsulation.Emulated (Default)
+3.ViewEncapsulation.ShadowDOM
+
+In Emulated type of ViewEncapsulation Angular adds unique attributes to the Component CSS Type and also to the HTML Elements
+in order to achieve ViewEncapsulation.
+
+	_ngcontent-hxj-c2
+	
+In ViewEncapsulation.NONE Whatever CSS Styles applied to the Parent Component that will be applied to the Child Component.
+In this case no unique attributes will be removed.
+
+	@Component({
+	  selector: 'app-root',
+	  templateUrl: './app.component.html',
+	  styleUrls: ['./app.component.css'],
+	  encapsulation: ViewEncapsulation.None
+	})
+	export class AppComponent {
+	  title = 'Components';
+	}
+
+When we apply the CSS in styles.css all the CSS will be applicable globally.
+In ViewEncapsulation.ShadowDOM that Component creates its own DOM.
+The Browser keeps the ShadowDOM seperate from Main DOM.
+In this CSS mentioned in the Style.css are not applicable to this Component.
+
+	@Component({
+	  selector: 'app-comp2',
+	  templateUrl: './comp2.component.html',
+	  styleUrls: ['./comp2.component.css'],
+	  encapsulation:ViewEncapsulation.ShadowDom
+	})
+	export class Comp2Component {
+	}
+
+******************************************************* 22.ng-content (procademy) ***************************************************************
+
+ng-content is used whenever we want to insert the content dynamically inside the component that helps to increase the component reusability.
+When Angular parses the ng-content it replaces the content that appears at the place of ng-content.
+
+  <div class="container">
+    <h2>New in Smart Phones</h2>
+  </div>
+  
+Here the requirement is to add the newly created products.
+
+	 <div class="container">
+    <h2>New in Smart Phones</h2>
+    <div class="more-products">
+      <div class="card">
+        <h4 class="title">New in iPhone</h4>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button class="btn btn-more">Show more in iPhone</button>
+      </div>
+      <div class="card">
+        <h4 class="title">New in Samsung</h4>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button class="btn btn-more">Show more in Samsung</button>
+      </div>
+      <div class="card">
+        <h4 class="title">New in OnePlus</h4>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button class="btn btn-more">Show more in OnePlus</button>
+      </div>
+      <div class="card">
+        <h4 class="title">New in MI</h4>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button class="btn btn-more">Show more in MI</button>
+      </div>
+    </div>
+  </div>
+  
+From the above code we are repeating the product records and it is not a best practice.
+The solution is to create the Component and incude the content into another Component.
+Create the Component named prouct.
+	
+	<div class="card">
+    <ng-content></ng-content>
+    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <button class="btn btn-more">Show more in iPhone</button>
+	</div>
+	
+  <div class="container">
+  <h2>New in Smart Phones</h2>
+  <div class="more-products">
+    <app-product>
+      <h4 class="title">New in iPhone</h4>
+      <button class="btn btn-more">Show more in iPhone</button>
+    </app-product>
+    <app-product>
+      <h4 class="title">New in Samsung</h4>
+      <button class="btn btn-more">Show more in Samsung</button>
+    </app-product>
+    <app-product>
+      <h4 class="title">New in OnePlus</h4>
+      <button class="btn btn-more">Show more in OnePlus</button>
+    </app-product>
+    <app-product>
+      <h4 class="title">New in MI</h4>
+      <button class="btn btn-more">Show more in MI</button>
+    </app-product>
+  </div>
+	</div>
+	
+Note :
+------
+If we are using more than one ng-content Angular will replace the last Angular Content.
+Here the requirement is to see the below order
+Header
+Descripton
+Button
+
+This can be done by using the class name.
+
+	<div class="card">
+    <ng-content select=".title"></ng-content>
+    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <ng-content select=".btn-more"></ng-content>
+	</div>
+	
 
 
 
 
+
+	
+	
 
 	
 
