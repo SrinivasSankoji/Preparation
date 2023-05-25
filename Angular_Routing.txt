@@ -1,18 +1,315 @@
-1.What is Routing						 			(procademy)		[16-MAY-2023]  ()
-2.Implementing Page Not Found Route                 (procademy)		[16-MAY-2023]  ()
-3.Configuring Navigation Links for Route            (procademy)		[16-MAY-2023]  ()
-4.Styling Active Links using routerLinkActive       (procademy)		[16-MAY-2023]  ()
-5.Absolute and Relative Route Paths                 (procademy)		[16-MAY-2023]  ()
-6.Navigate between Routes Programatically           (procademy)		[16-MAY-2023]  ()
-7.Passing Parameters to Route                       (procademy)		[16-MAY-2023]  ()
-8.Using Observables to retrieve Route Parameters    (procademy)		[16-MAY-2023]  ()
-9.Passing Query Parameters to Route                 (procademy)		[16-MAY-2023]  ()
-10.Passing Fragments to Route                       (procademy)		[16-MAY-2023]  ()
-11.CHild Route sin Angular                          (procademy)		[16-MAY-2023]  ()
-12.Creating Route Module File                       (procademy)		[16-MAY-2023]  ()
+1.What is Routing						 			(procademy)		[21-MAY-2023]  (Done)
+2.Implementing Page Not Found Route                 (procademy)		[21-MAY-2023]  (Done)
+3.Configuring Navigation Links for Route            (procademy)		[22-MAY-2023]  (Done)
+4.Styling Active Links using routerLinkActive       (procademy)		[22-MAY-2023]  (Done)
+
+5.Absolute and Relative Route Paths                 (procademy)		[24-MAY-2023]  (Done)
+6.Navigate between Routes Programatically           (procademy)		[24-MAY-2023]  (Done)
+7.Passing Parameters to Route                       (procademy)		[24-MAY-2023]  ()
+8.Using Observables to retrieve Route Parameters    (procademy)		[24-MAY-2023]  ()
+
+9.Passing Query Parameters to Route                 (procademy)		[24-MAY-2023]  ()
+10.Passing Fragments to Route                       (procademy)		[24-MAY-2023]  ()
+11.Child Routes in Angular                          (procademy)		[24-MAY-2023]  ()
+12.Creating Route Module File                       (procademy)		[24-MAY-2023]  ()
+
 13.Route Gaurd in Angular                           (procademy)		[16-MAY-2023]  ()
 14.CanActivate Route Gaurd in Angular               (procademy)		[16-MAY-2023]  ()
 15.CanActivateChild Route Gaurd in Angular          (procademy)		[16-MAY-2023]  ()
 16.CanDeactivate Route Gaurd in Angular             (procademy)		[16-MAY-2023]  ()
 17.Resolve Route Gaurd in Angular                   (procademy)		[16-MAY-2023]  ()
 18.Navigation Events in Angular                     (procademy)		[16-MAY-2023]  ()
+
+************************************************ 1.What is Routing (procademy) ************************************************
+
+Routing allows us to navigate from one part of our Application to another part of our Application.
+In terms of Angular we can say that Routing allows to navigate from View of one Component to View of another Component.
+Create 4 different Components like 
+Home
+About
+Contact
+Courses
+
+	<div class="main-container">
+	  <div class="nav-container">
+		<ul>
+		  <li><a href="">Home</a></li>
+		  <li><a href="">About</a></li>
+		  <li><a href="">Contact</a></li>
+		  <li><a href="">Services</a></li>
+		</ul>
+	  </div>
+	  <div class="component-container">
+		<app-home></app-home>
+		<app-about></app-about>
+		<app-contact></app-contact>
+		<app-courses></app-courses>
+	  </div>
+	</div>
+
+Here it will show all the pages.	
+Instead of showing all the pages show the pages based on selection.
+This can be done by using Routing.
+
+If i click on Home it should navigate to Home Component.
+If i click on About it should navigate to About Component.
+If i click on Contact it should navigate to Contact Component.
+If i click on Courses it should navigate to Courses Component.
+
+We can create routes in seperate TypeScript file or inside App Module.
+For this example we are going to use app module.
+create one constant of Routes inside app module which is of type Array and that accepts path and Component.
+
+	const appRoute : Routes=[
+	{path:'Home',component:HomeComponent}
+	];
+	
+When the User types /Home in the address path it should navigate to Home Component.
+Here Angular does not aware of the routes which we have configured.
+To make the Angular application know about these routes we need to register the appRoute.
+For that we need to import the RouterModule in App Module and call the forRoute() by passing the appRoute variable.
+
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		RouterModule.forRoot(appRoute)
+	]
+	
+With this Angular application knows about these routes.
+Finally we need to tell Angular where we need to display the View when one of these paths are typed in the URL.
+This can be done by using <router-outlet>.
+
+	 <div class="main-container">
+	  <div class="nav-container">
+		<ul>
+		  <li><a href="">Home</a></li>
+		  <li><a href="">About</a></li>
+		  <li><a href="">Contact</a></li>
+		  <li><a href="">Services</a></li>
+		</ul>
+	  </div>
+	  <div class="component-container">
+		<router-outlet></router-outlet>
+	  </div>
+	</div>
+	
+Now We can see the Home Page.
+If we enter the URL with the path it will show that particular Pge only.
+
+	http://localhost:4200/Contact
+
+Here the expected functionality is working.
+But the problem is if we enter the base URL it shows only the Navigation page.
+This is because we have not configured any route for the base URL.
+Configure the route for base URL.
+
+	  {path:'',component:HomeComponent}, // We cannot see the redirection in the Browser.
+	  {path:'Home',component:HomeComponent},
+	  {path:'About',component:AboutComponent},
+	  {path:'Contact',component:ContactComponent},
+	  {path:'Courses',component:CoursesComponent}];
+	  
+The other way of configuring the route for bae URL is 
+
+	  {path:'',redirectTo:'Home',pathMatch:'full'} // Here we can see the redirection in the Browser.
+	
+Here pathMatch tells the Angular to how to route the URL.
+
+Note :
+------
+If we enter the URL which does not match to any of the routes then we will get an Error saying Cannot match any routes and only Navigation Page is visible in the Browser.
+
+
+************************************************ 2.Implementing Page Not Found Route(procademy) ************************************************
+
+Here the requirement is whenever user enters the URL which is not configured in any of the routes it should show the 404 Page Not found Page.
+Create the Component named pagenotfound
+
+	ng g c pagenotfound
+	
+We need to configure the route for pagenotfound.
+
+	{path:'**',component:PagenotfoundComponent}
+	
+This is also called as wildcard routing which matches to any of the routes.
+Wild card routing should always be the last option in the routes.
+
+************************************************ 3.Configuring Navigation Links for Route (procademy) ************************************************
+
+Here the requirement is to configure the routes based on button click.
+We need to pass the path to the anchor tag.
+
+	<div class="main-container">
+	  <div class="nav-container">
+		<ul>
+		  <li><a href="Home">Home</a></li>
+		  <li><a href="About">About</a></li>
+		  <li><a href="Contact">Contact</a></li>
+		  <li><a href="Courses">Courses</a></li>
+		</ul>
+	  </div>
+	  <div class="component-container">
+		<router-outlet></router-outlet>
+	  </div>
+	</div>
+
+The problem with this approach is it is reloading the tab.
+With every link we click a new request will be sent to the Server and it returns the new page.
+It will restart our Angular App when we navigate around and application state will lost.
+It might not be the behavior that we cannot offer to the user.
+Instead of using <href> we can use routerLink directive.
+routerLink catches the click on the element,prevents the default behavior of sending the requests.
+It analyses whatever we passed to the routerLink and checks is there any fitting route in the configuration.
+
+	<div class="main-container">
+	  <div class="nav-container">
+		<ul>
+		  <li><a routerLink="">Home</a></li>
+		  <li><a routerLink="About">About</a></li>
+		  <li><a routerLink="Contact">Contact</a></li>
+		  <li><a routerLink="Courses">Courses</a></li>
+		</ul>
+	  </div>
+	  <div class="component-container">
+		<router-outlet></router-outlet>
+	  </div>
+	</div>
+
+This is the way to configure the routes.
+It gives user a better experience and it does not restart the app.
+Therefore it keeps the app state and is much faster than reloading the page all the time.
+
+************************************************ 4.Styling Active Links using routerLinkActive(procademy) ************************************************
+
+Here the requirement is style the button click when we configure the routes based on button click.
+Create one css class for active links in style.css
+	
+	.active{
+		background-color: #777;
+	}
+	
+Apply the css class for the active routes.
+For that we use routerLinkActive attribute directive.
+routerLinkActive is a directive that can be used to add or remove the classes from the HTML Element that is bound to routerLink.
+Using this directve we can toggle css classes for active router links based on the current router state.
+The main use case of this directive is to highlight which routing is currently active.
+We can also multiple css classes to the routerLinkActive directive.
+
+	<div class="main-container">
+	  <div class="nav-container">
+		<ul>
+		  <li routerLinkActive="active"><a routerLink="">Home</a></li>
+		  <li routerLinkActive="active"><a routerLink="About">About</a></li>
+		  <li routerLinkActive="active"><a routerLink="Contact">Contact</a></li>
+		  <li routerLinkActive="active"><a routerLink="Courses">Courses</a></li>
+		</ul>
+	  </div>
+	  <div class="component-container">
+		<router-outlet></router-outlet>
+	  </div>
+	</div>
+	
+Here the problem is When we click on either About,Contact or Course link then Home link also getting selected.
+That is when a child route is active,the parent route is also active.
+routerLinkActive is applied to parent routes also.
+Here the parent route is http://localhost:4200/
+Also for the about the route is http://localhost:4200/About which contains the parent link.
+To resolve this issue we need to add one more property called routerLinkActiveOptions.
+
+	 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="">Home</a></li>
+
+************************************************ 5.Absolute and Relative Route Paths(procademy) ************************************************
+
+To make the Link respond to a route,we specify the path to the routerLink attribute.
+
+	<li routerLinkActive="active"><a routerLink="">Home</a></li>
+	
+If we specify the path using "/" parameter then it is called Absolute path.
+If we use "/" then it will be appended to the route URL no matter which ever is the active route.
+In the About Component
+
+	<div>
+		<a routerLink="/Home">Go to home page</a>  // Navigates to path http://localhost:4200/Home which shows Home Component. 
+	</div>
+
+If we dont specify the "/" then that is called Relative path and is appended to the currently active route.
+In the About Component
+	
+	 <div>
+		<a routerLink="Home">Go to home page</a>  // Navigates to path  http://localhost:4200/About/Home which shows Page Not Found Component.
+	 </div>
+	 
+Note :
+------
+If we are using "./" then it is relative path and not the absolute path.
+If we are using "../" then it will move one level up to the parent route.
+For example If the Parent Route is http://localhost:4200/About then it will move to http://localhost:4200/ and append the path "Home".
+
+
+************************************************ 6.Navigate between Routes Programatically (procademy) ************************************************
+
+We have seen how to navigate between the routes using routerLink directive.
+routerLink is a directive which can be used to bind any clickable HTML element to a route.
+When the user clicks on HTML element router will be navigated to the associated route.
+routerLink is a directive which can be used in ViewTemplate to navigate between routes.
+
+	<button (click)="navigateToHomePage()">Go to home page</button>
+
+To navigate netween the routes programatically we can use either navigate() or navigateByUrl() on Router Object.
+Here Angular will inject the instance of the Router class and will be assigned to the route parameter.
+Since we are using private property before the route parameter behind the scenes private property will be created with the instance of the Router class.
+We can access the private property by using this.
+
+	constructor(private route:Router){
+	}
+	
+	navigateToHomePage(){
+		this.route.navigate(['Home']);
+	}
+We can also navigateByUrl which will accept String.
+
+	navigateToHomePage(){
+		this.route.navigateByUrl('Home');
+	}
+	
+Note :
+------
+If we are using either navigate() or navigateByUrl() it will use the absolute path by default if we don't mention it also.
+But for some reasons If we want to use the Relative path first we need to get the access to the currently active route.
+This can be done by using the Object of the ActivateRoute.
+
+	constructor(private route:Router,private activatedRoute:ActivatedRoute){
+	}
+	
+ActivatedRoute provides the information about the Route associated with the Component that is currently loaded in Outlet.
+It gives the information about the currently activated Route.
+
+	this.route.navigate(['Home'],{relativeTo:this.activatedRoute}); // Here Home will be appended to the currently activate Route i.e. http://localhost:4200/About/
+	
+************************************************ 7.Passing Parameters to Route (procademy) ************************************************
+
+Route Parameters are the dynamic part of the route and is essential in determining the route.
+Here the requirement is when the User clicks on Show Details we want to display the details of that course.
+
+	
+	
+
+
+
+	
+
+
+
+	
+	
+
+	
+
+	
+
+	
+
+
+
+
+

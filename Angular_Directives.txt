@@ -1,0 +1,58 @@
+1.What is Directives									(procademy)   		[25-MAY-2023]  (Done)
+2.ngFor                                                 (procademy)   		[27-MAY-2023]  ()
+3.ngStyle                                               (procademy)   		[27-MAY-2023]  ()
+4.ngIf                                                  (procademy)   		[27-MAY-2023]  ()
+5.ngClass                                               (procademy)   		[27-MAY-2023]  ()
+
+6.ngContent                                             (procademy)   		[27-MAY-2023]  ()
+7.Custom Attribute Directives                           (procademy)   		[27-MAY-2023]  ()
+8.Renderer2                                             (procademy)   		[27-MAY-2023]  ()
+9.@HostListener                                         (procademy)   		[27-MAY-2023]  ()
+10.@HostBinding                                         (procademy)   		[27-MAY-2023]  ()
+11.Binding Directives                                   (procademy)   		[27-MAY-2023]  ()
+12.Custom Appclass                                      (procademy)   		[27-MAY-2023]  ()
+13.Conditional                                          (procademy)   		[27-MAY-2023]  ()
+14.Custom AppStyle                                      (procademy)   		[27-MAY-2023]  ()
+15.How Structural Directive Works                       (procademy)   		[27-MAY-2023]  ()
+16.Custom Structural Directive Works                    (procademy)   		[27-MAY-2023]  ()
+17.ngSwitch Directive                                   (procademy)   		[27-MAY-2023]  ()
+
+
+################################################### 1.What is Directives(procademy) ###################################################
+
+We have learnt Components are the basic building blocks of Angular Application.
+We also learned how Angular apps are executed and how data can communicate between Components and the View Template using Data Binding.
+Directives are the another building block of Angular Application.
+
+Directives are simply an instruction to the DOM.
+We use Directives to tell the DOM what needs to be added to the Web Page and what not to be added to the Web Page.
+We also instruct DOM using Directives on how to display the HTML Element.
+We are actually using Directives without knowing it.
+Components are one such kind of instructions to the DOM.
+Using Components we instruct DOM what needs to be added to the Web Page.
+
+Once we place the Selector of the Component some where inside the Template.
+At this point we are instructing Angular to add the Content of Components View Template and the business logic of the Type Script code where we have used the Component Selector.
+Indeed Components are Directives with the Template.
+
+There are also other Directives without Template.
+We can have a custom directive that can be used to change the background color of a web page to green.
+
+	<div changeDivGreen>This is a Div</div>
+	
+Typically we add an attributes to the directive selector.
+We can also use directives as a CSS class or like an HTML Element.
+Mostly we use directives as an HTML Element.
+
+Directive is also a Type Script class decorated with @Directive decorator.
+Angular alos provides some built in Directives like ngFor,ngIF,ngStyle,ngClass etc.
+
+Directives can be classified into two types
+Structural Directive
+Attribute Directive
+
+Structural Directive manipulates the DOM by adding or removing the Elements.
+Attribute Directive is used like an attribute on a existing Web Page element and is used to change its look and behavior of that particular HTML Element.
+
+################################################### 2.ngFor (procademy) ############################################################
+

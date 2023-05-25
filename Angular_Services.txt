@@ -1,12 +1,12 @@
 1.Servces in Angular									(procademy)		[15-MAY-2023]  (Done)
 2.Creating a Servce in Angular                          (procademy)		[15-MAY-2023]  (Done)
-3.Dependency Injection in Angular                       (procademy)		[16-MAY-2023]  ()
-4.Hierarchical Injection in Angular                     (procademy)		[16-MAY-2023]  ()
-5.Creating a Data Service                               (procademy)		[16-MAY-2023]  ()
-6.Injecting Service into another Service                (procademy)		[16-MAY-2023]  ()
+3.Dependency Injection in Angular                       (procademy)		[19-MAY-2023]  (Done)
+4.Hierarchical Injection in Angular                     (procademy)		[19-MAY-2023]  (Done)
+5.Creating a Data Service                               (procademy)		[20-MAY-2023]  (Done)
+6.Injecting Service into another Service                (procademy)		[20-MAY-2023]  (Done)
 
 
-************************************************ 1.Servces in Angular (procademy) ************************************************
+************************************************ 1.Servces in Angular(procademy) ************************************************
 
 A Service is a reusable TypeScript class that can be used in multiple components across the Angular Applcation.
 We have several Components in Angular application that needs to access the data.
@@ -40,7 +40,7 @@ Services are easier to debug and test.
 Service provides reusability of code.
 With Services we can communicate across different Components which does not have parent child relationship.
 
-************************************************ 2.Creating a Servce in Angular *************************************************
+************************************************ 2.Creating a Servce in Angular(procademy) *************************************************
 
 Create a Component named Javascript Component and Angulr Component.
 These two components has the common functionality.
@@ -90,7 +90,280 @@ Also we are creating the instance of the enrollService on our own and is not a g
 We can ask Angular to provide the instance of the Service class.
 This can be done by using Depency Injection in Angular.
 
-************************************************ 3.Dependency Injection in Angular  ************************************************
+************************************************ 3.Dependency Injection in Angular(procademy) ************************************************
+
+Here we have created Enroll Service in both Angular and Javascript Component.
+
+	const enrollService = new EnrollService();
+
+Here we are instantiating EnrollService on its own.
+The problem with this approach is we are making Components tightly coupled with Service class.
+Instead of creating and instantiating the Services on our own Angular offers a tool which will Inject the Services.
+This is nothing but Dependency Injector.
+
+Dependency Injection is a technique in which a class recieves its dependencies from external sources rather than creating themself.
+Create a constructor in Component class which  accepts the Service as an argument.
+
+	constructor(private enrollService:EnrollService){
+	}
+	
+Here behind the scenes Angular will inject the instance of EnrollService class and assigns it to the variable enrollService.
+But Angular does not how to give an instance and for that we use providers[] array.
+	
+	@Component({
+	  selector: 'app-angular',
+	  templateUrl: './angular.component.html',
+	  styleUrls: ['./angular.component.css'],
+	  providers:[EnrollService]
+	})
+	export class AngularComponent {
+	  title = "Angular";
+
+	  constructor(private enrollService:EnrollService){
+	  }
+
+	  onEnroll() {
+		this.enrollService.enrollCourse(this.title);
+	  }
+	}
+	
+	export class EnrollService {
+	  constructor() { }
+	  enrollCourse(title: string) {
+		alert('Thanks for enrolling ' + title + ' courese');
+	  }
+	}
+	
+The same process is applicable for Javascript Component.	
+Instead of creating and instantiating the EnrollService on our own, Angular is injecting the EnrollService inside both Javascript Component and Angular Component
+and We are making use of that Service.
+
+
+************************************************ 4.Hierarchical Injection in Angular(procademy)  ************************************************
+
+Whenever we want Angular to inject an instance of a Service to Component class or directive we use providers[] array which tells Angular what type of instance it needs to provide us.
+Angular Dependency Injector is a Hierarchical Injector.
+If we provide a service on one Component,Angular Framework will create and inject an instance of that service for that Component and its Child Components.
+
+	@Component({
+	  selector: 'app-root',
+	  templateUrl: './app.component.html',
+	  styleUrls: ['./app.component.css'],
+	  providers:[EnrollService]
+	})
+	export class AppComponent {
+	  title = 'Services';
+
+	  constructor(private enrollService:EnrollService){
+	  }
+	}
+	
+Here the same instance of enrollService will be used in both Angular Component and Javascript Component which is nothing but Hierarchical Injection.
+Remove the providers[] in both  Angular Component and Javascript Component.
+Apart from providing Service on Component we can also provide Services on other places.
+Highest possible level where we can provide a service is App Module.
+Lowest possible level where we can provide a service is the Single Component with no Child Component.
+If we provide a Service at App Module level then the same instance of the Service is available through out the App.
+In all the Components,Directives and in all other Services.
+
+	@NgModule({
+	  declarations: [
+		AppComponent,
+		AngularComponent,
+		JavascriptComponent
+	  ],
+	  imports: [
+		BrowserModule,
+		AppRoutingModule
+	  ],
+	  providers: [EnrollService],
+	  bootstrap: [AppComponent]
+	})
+	export class AppModule { }
+
+Note :
+------
+If we provide the instance of the enrollService in App Component it will override the instance of the App Module.
+
+************************************************ 5.Creating a Data Service(procademy) ************************************************
+
+Angular injects dependencies on Hierarchical basis.
+When we provide a Service on a Component Angular will inject an instance of that Service for that Component and all its Child Components.
+We can override the instance of the Parent Component by the Child Component.
+This will lead to some bugs in our Application.
+
+Create the user-service
+
+	ng g s user-service
+	
+	import { Injectable } from '@angular/core';
+
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class UserServiceService {
+
+	  constructor() { }
+
+	  users = [{ name: 'John', status: 'active' },
+	  { name: 'Mark', status: 'Inactive' },
+	  { name: 'Steve', status: 'active' }
+	  ]
+	}
+	
+Requirement 1 :
+---------------
+Requirement is to display all the users in the Web page.
+For that we create one variable which will be of type users.
+
+	  users :{name: string, status: string }[]=[];
+	  
+To get the user details from the user-service we need to create constructor which accepts user-service and add providers[].
+
+	@Component({
+	  selector: 'app-root',
+	  templateUrl: './app.component.html',
+	  styleUrls: ['./app.component.css'],
+	  providers: [UserServiceService]
+	})
+	export class AppComponent implements OnInit{
+	  title = 'Services';
+
+	  constructor(private userService:UserServiceService){
+	  }
+
+	  users :{name: string, status: string }[]=[];
+
+	  ngOnInit(){
+		this.users=this.userService.users;
+	  }
+	}
+
+We can loop over the Array and display it in the HTML.
+
+	<div class="container">
+		<div class="user-div" *ngFor="let user of users">
+			<div class="user-name">{{user.name}}</div>
+			<div class="user-status">{{user.status}}</div>
+		</div>
+	</div>
+
+Requirement 2 :
+---------------
+Requirement is to add the new User to the grid.
+For that we add one Text box that accepts user name and one drop down which has status and button to add the user.
+Create the new component.
+	
+	ng g c adduser
+	
+	<div class="form">
+    <div>
+        <input type="text" placeholder="Please enter Username" id="username">
+    </div>
+    <div>
+        <select name="status" id="status">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+    </div>
+    <div>
+        <button>Create User</button>
+    </div>
+	</div>
+	
+If we enter the username and status it should create the user and add it to the List of Users.
+Add one method named addNewUser() which accepts name and status and add it to the users array.
+
+	addNewUser(name: string, status: string) {
+     this.getAllusers.push({ name: name, status: status })
+    }
+	
+Now we need to call the addNewUser() from adduser Component.
+For that we need to have the instance of the UserService class into the adduser Component.
+
+	constructor(private userService:UserServiceService){
+	}
+	
+Also create two properties which will hld the username and status and bind it to the HTML using two way binding.
+
+	username:string='';
+	status:string='';
+	
+	<input type="text" placeholder="Please enter Username" id="username" [(ngModel)]="username">
+	<select name="status" id="status" [(ngModel)]="status">
+	
+	<div class="form">
+    <div>
+        <input type="text" placeholder="Please enter Username" id="username" [(ngModel)]="username">
+    </div>
+    <div>
+        <select name="status" id="status" [(ngModel)]="status">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+    </div>
+    <div>
+        <button (click)="addNewUser()">Create User</button>
+    </div>
+	</div>
+	
+************************************************ 6.Injecting Service into another Service (procademy) ************************************************
+
+Create one Service named logger
+
+	ng g s logger
+	
+Add a method named logMessage() which accepts name and status.
+
+	export class LoggerService {
+      constructor() { }
+
+	  logMessage(name:string,status:string){
+		console.log('Name is '+name+' and Status is '+status);
+	  }
+	}
+	
+Here the requirement is to display the User Details in the console when the new user is added.
+For this we need to call the logMessage() in the UserService and we need an instance of the LoggerService in the UserService.
+We can achieve in 3 steps.
+
+1.Create a Constructor for the UserService Class
+2.Decorate the recieving Service with @Injectable()
+Whenever we inject a Service into another Service that Service should have some Metadata attached to it.
+That metadata is @Injectable() which tells Angular that something can be Injected here.
+
+In the User Service class call the logMessage()
+
+	@Injectable()
+	export class UserServiceService {
+
+	constructor(private logger:LoggerService) { }
+
+	  getAllusers = [{ name: 'John', status: 'active' },
+	  { name: 'Mark', status: 'Inactive' },
+	  { name: 'Steve', status: 'active' }
+	  ]
+
+	  addNewUser(name: string, status: string) {
+		this.getAllusers.push({ name: name, status: status })
+		this.logger.logMessage(name,status);
+	  }
+	}
+	
+
+
+
+
+
+
+
+
+	
+	
+
+	
+
+	
 
 
 
