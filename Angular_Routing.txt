@@ -5,8 +5,8 @@
 
 5.Absolute and Relative Route Paths                 (procademy)		[24-MAY-2023]  (Done)
 6.Navigate between Routes Programatically           (procademy)		[24-MAY-2023]  (Done)
-7.Passing Parameters to Route                       (procademy)		[24-MAY-2023]  ()
-8.Using Observables to retrieve Route Parameters    (procademy)		[24-MAY-2023]  ()
+7.Passing Parameters to Route                       (procademy)		[25-MAY-2023]  (Done)
+8.Using Observables to retrieve Route Parameters    (procademy)		[25-MAY-2023]  ()
 
 9.Passing Query Parameters to Route                 (procademy)		[24-MAY-2023]  ()
 10.Passing Fragments to Route                       (procademy)		[24-MAY-2023]  ()
@@ -290,6 +290,87 @@ It gives the information about the currently activated Route.
 
 Route Parameters are the dynamic part of the route and is essential in determining the route.
 Here the requirement is when the User clicks on Show Details we want to display the details of that course.
+Each Course has a unique courseid and based on courseid we will display the details of that course.
+Here courseid will change dynamically.
+To store this value in the route we specify the parameter.
+
+	 {path:'Courses/Course/:id',component:CourseComponent}
+	 
+Here we have one parameter named id.
+If we enter the url http://localhost:4200/Courses/Course/103 we need to display the Course Component.
+As of now the values are hardcoded and we need a way to get the course from courses array..
+
+	<div class="course-container">
+    <div>
+        <img src="" width="560" height="280">
+    </div>
+    <div>
+        <h1 style="text-align: center;">""</h1>
+    </div>
+    <div class="course-details">
+        <div style="margin: 0px 10px;"><b>Author: </b>""</div>
+        <div style="margin: 0px 10px;"><b>Duration: </b>""</div>
+        <div style="margin: 0px 10px;"><b>Type: </b>""</div>
+    </div>
+    <div style="margin: 0px 10px;">
+        <h2>Price: $</h2>
+    </div>
+    <div style="margin: 20px 10px;">
+        <p></p>
+    </div>
+	</div>
+
+Create 2 properties in the course Component.
+
+	course:any;
+    courseId:any;
+	
+Now we have to assign the courseId with the id parameter of the route.
+For that we need to have an access of the currently activated route and that can be done by using ActivatedRoute.
+From this activatedRoute we will get the value of the id paramater.
+
+	 export class CourseComponent implements OnInit {
+
+	  course: any;
+	  courseId: any;
+
+	  constructor(private courseService: CoursesService, private activatedRoute: ActivatedRoute) {
+	  }
+	  ngOnInit(): void {
+		this.courseId = this.activatedRoute.snapshot.paramMap.get('id');
+		console.log(this.courseId);
+		this.course = this.courseService.courses.find((x => x.id == this.courseId));
+	  }
+	}
+
+We can also get the route parameter by calling params() on snapshot.
+
+	this.courseId = this.activatedRoute.snapshot.params['id'];
+	
+Note :
+------
+This is the old approach to retrieve the value of the route parameter.
+The new approach is paramMap.
+
+Here the requirement is when we click on show details of the courses component it has to show the Course Component Page wity the Course Details.
+
+	<button class="btn btn-show" routerLink="/Courses/Course/{{course.id}}">Show Deatils</button>
+
+Here to retrieve the value of the route parameter we are using snapshot property.
+We can also use Observables to retrieve the value of the route parameter.
+
+************************************************ 8.Using Observables to retrieve Route Parameters(procademy)  ************************************************
+
+
+
+
+
+
+	
+	
+	
+
+
 
 	
 	
