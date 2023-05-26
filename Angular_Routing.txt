@@ -6,7 +6,7 @@
 5.Absolute and Relative Route Paths                 (procademy)		[24-MAY-2023]  (Done)
 6.Navigate between Routes Programatically           (procademy)		[24-MAY-2023]  (Done)
 7.Passing Parameters to Route                       (procademy)		[25-MAY-2023]  (Done)
-8.Using Observables to retrieve Route Parameters    (procademy)		[25-MAY-2023]  ()
+8.Using Observables to retrieve Route Parameters    (procademy)		[26-MAY-2023]  (Done)
 
 9.Passing Query Parameters to Route                 (procademy)		[24-MAY-2023]  ()
 10.Passing Fragments to Route                       (procademy)		[24-MAY-2023]  ()
@@ -360,6 +360,45 @@ Here to retrieve the value of the route parameter we are using snapshot property
 We can also use Observables to retrieve the value of the route parameter.
 
 ************************************************ 8.Using Observables to retrieve Route Parameters(procademy)  ************************************************
+
+Snapshot property only returns the initial value of the route.
+For some reason If the value of the route parameter changes in that case snapshot property will not return the updated value.
+
+	 <a [routerLink]="['/Courses/Course',101]">Go to First Course</a>
+	 
+Here when we click on the "Go to First Course" id is updated in the URl with "101" but the corresponding course with 101 is not shown.
+The problem here is we are retrieving the value of the id parameter only once.
+Here it is defined inside the ngOnInit() life cycle hook and is called only once when the component is initialized.
+
+Whenever we are clicking on the "Show Details" button an instance of the Course Component will be created.
+When the Course Component is fully initialized ngOnInit() of Course Component will be called only once.
+
+When the User clicks on "Go to First Course" button It does not create the new Component and reuses the existing Component.
+Since it reuses the existing Component ngOnInit() will not be called again.
+
+By using snapshot property we cannot get the updated route parameter value.
+Use the snapshot property only when we know that route parameter value is not going to change.
+
+	ngOnInit(): void {
+      this.activatedRoute.paramMap.subscribe((param) => {
+      this.courseId=param.get('id');
+      this.course = this.courseService.courses.find((x => x.id == this.courseId));
+	});
+	}
+	}
+	
+When the Component is destroyed internally Angular will unsubscribe the Observable.
+Always it is a good practice to unsubscribe the Observable explicitly.
+	
+	ngOnDestroy(): void {
+    this.idParameter.unsubscribe();
+	}
+
+************************************************ 9.Passing Query Parameters to Route(procademy) ************************************************
+
+
+
+ 
 
 
 

@@ -1,7 +1,7 @@
 1.What is Observable 												(procademy)   		[15-APR-2023]  (Done)
 2.Error and Completion of Observable                				(procademy)   		[16-APR-2023]  (Done)
 3.Different Ways of creating Observable             				(procademy)   		[17-APR-2023]  (Done)
-4.Understanding Operators of RxJS                   				(procademy)   		[18-APR-2023]  ()
+4.Understanding Operators of RxJS                   				(procademy)   		[26-MAY-2023]  (Done)
 5.Subjects in RxJS                                  				(procademy)   		[18-APR-2023]  () // After Component Interaction and Services
 6.Unsubscribing to an Observable                    				(procademy)   		[18-APR-2023]  () // After Component Interaction and Services
 
@@ -48,8 +48,8 @@ This approach is called Synchronous Operation and is blocking in Nature.
 
 To resolve this we use Asynchronous programming.
 In Asynchronous operation the code will be executed without blocking the Main Thread.
-We make an HTTPRequest asynchronous so that it will run in the Background and reamining statements will be executed.
-Using Asynchronous Request we can perform long running Request without blocking the Main Thread.
+We make an HTTPRequest Asynchronous way so that it will run in the background and reamining statements will be executed.
+Using Asynchronous Request we can perform long running request without blocking the Main Thread.
 
 There are 2 ways where we can achieve Asynchronous programming.
 1.Promise
@@ -62,7 +62,7 @@ Once the data is available it will create the Response and send it back to the C
 This is how Promise Works.
 In Promise,Data is sent over a period of time.
 It Promises the data once the data is ready.
-Here the data can be an actual data that we are request for and also it can be an Error.
+Here the data can be an actual data that we have requested for and also it can be an Error.
 
 In Observable it won't wait for the complete data to be available.
 Observable streams the data i.e. Observable sends the data in packets when some of the data is available.
@@ -80,7 +80,7 @@ We can think of Observable as a wrapper around Ordinary stream of data.
 
 RxJs has two main layers.
 1.Observable (Producer) i.e. Stream of data.
-2.Observer   (Consumer) i.e. The one who is going to use the data.
+2.Observer   (Consumer) i.e. The one who is going to consume the data.
 
 In order to make the Observer use the data emitted by the Observable,Observer has to subscribe to the Observable.
 In order to use Observable we need to import RxJs library.
@@ -152,7 +152,7 @@ To emmitt the error from the Observable
 	setTimeout(()=>  {observer.error("Something went wrong")},3000)
 	
 Once Observable emmits the error,remaining statements in the Observable are not executed.
-As a developer we need to handel this error.
+As a developer we need to handle this error.
 As we know that subscribe() takes 3 callback functions as parameters.
 
 	ngOnInit(): void {
@@ -207,7 +207,7 @@ We also have some operators which can be used to create Observable.
 of operator :
 -------------
 of operator emmits the data which we passed as an argument.Here array1 and array2 are emmitted.
-of operator also emmitted the complete signal once it is done with emmitting all the values.
+of operator emmits the complete signal once it is done with emmitting all the values.
 of operator emmits the argument as it is.
 To the of operator we can pass any number of arguments.
 	
@@ -222,8 +222,49 @@ from operators iterates the iterable and emmits the values one by one.
 
 	myObservable=from(this.array1);
 
-################################################### 4.Understanding Operators of RxJS  ###########################################################
+################################################### 4.Understanding Operators of RxJS(procademy)  ###########################################################
 
+Operators in RxJS are functions that takes an Observable as an input and transforms it into new Observable and return it.
+We use Operators to manipulate the data over the Observable Stream.
+
+	export class OperatorsComponent implements OnInit {
+	  ngOnInit(): void {
+		this.resultObservable.subscribe((value: any) => {
+		  console.log(value);
+		},
+		  (error: Error) => {
+			console.log(error)
+		  },
+		  () => {
+			alert('Observable Completed');
+		  });
+	  }
+	  resultObservable = from(['A', 'B', 'C', 'D', 'E']);
+	}
+
+Map Operator :
+--------------
+To convert the Observable Stream data multiplied by 5 and get the new Observable Stream data we use map operator.
+
+	multipliedObservable=this.resultObservable.pipe(map((value) => {
+      return value=value*5;
+   }));
+	
+Filter Operator :
+-----------------
+For example If we want to filter the data based on given condition.
+
+	filterObservable=this.multipliedObservable.pipe(filter((value) =>{
+      return value > 10;
+    }));
+
+################################################### 5.Subjects in RxJS (procademy) ###################################################
+
+ 
+
+
+
+	
 
 
 
