@@ -2,8 +2,8 @@
 2.Error and Completion of Observable                				(procademy)   		[16-APR-2023]  (Done)
 3.Different Ways of creating Observable             				(procademy)   		[17-APR-2023]  (Done)
 4.Understanding Operators of RxJS                   				(procademy)   		[26-MAY-2023]  (Done)
-5.Subjects in RxJS                                  				(procademy)   		[18-APR-2023]  () // After Component Interaction and Services
-6.Unsubscribing to an Observable                    				(procademy)   		[18-APR-2023]  () // After Component Interaction and Services
+5.Subjects in RxJS                                  				(procademy)   		[01-JUN-2023]  (Done) 
+6.Unsubscribing to an Observable                    				(procademy)   		[01-JUN-2023]  ()
 
 7.Observable Introduction											(tektutorialshub)   [18-APR-2023]  ()
 8.Create an Observable from a string, array, object, collection     (tektutorialshub)   [18-APR-2023]  ()
@@ -259,6 +259,101 @@ For example If we want to filter the data based on given condition.
     }));
 
 ################################################### 5.Subjects in RxJS (procademy) ###################################################
+
+Subject is a special type of Observable that allows value to be multicasted by many Observables.
+We use Subjects for Cross Component Communication.Subjects are like EventEmitters.
+
+Create two Components.
+First Component conatins Text Box and Click button.
+Second Component Contains Display area which will show what we entered in the Text Box.
+These two Components are not related to each other.
+We have done this scenario with the Services and EventEmitter.
+
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class SubjectService {
+
+	  constructor() { 
+	  }
+
+	  textEmitter=new EventEmitter<string>();
+
+	  enteredTextEventEmitter(data:string){
+		this.textEmitter.emit(data);
+	  }
+	}
+	
+SubjectTwo :
+------------
+@Component({
+  selector: 'app-subjecttwo',
+  templateUrl: './subjecttwo.component.html',
+  styleUrls: ['./subjecttwo.component.css']
+})
+export class SubjecttwoComponent implements OnInit{
+
+  constructor(private subjectService:SubjectService){
+  }
+  ngOnInit(): void {
+    this.subjectService.textEmitter.subscribe((data) =>{
+      this.subjectTwoText=data;
+    })
+  }
+  subjectTwoText!:String;
+}
+
+SubjectOne :
+------------
+@Component({
+  selector: 'app-subjectone',
+  templateUrl: './subjectone.component.html',
+  styleUrls: ['./subjectone.component.css']
+})
+export class SubjectoneComponent implements OnInit{
+
+  constructor(private subjectService:SubjectService){
+  }
+
+  ngOnInit(): void {
+  }
+
+  subjectOneText!: string;
+
+  enteredTextValue(){
+    this.subjectService.enteredTextEventEmitter(this.subjectOneText);
+  }
+}
+
+To use the Subject create the COnstructor for the Subject.
+
+	export class SubjectService {
+
+	  constructor() { 
+	  }
+
+	  //textEmitter=new EventEmitter<string>();
+	  textEmitter=new Subject<string>();
+
+	  enteredTextEventEmitter(data:string){
+		this.textEmitter.next(data);
+	  }
+	}
+	
+Using Subject we can perform Cross Component Communication.
+While developing and Angular Application we are rarely going to create our own Observables.
+We may use some methods which returns an Observable.
+
+################################################### 6.Unsubscribing to an Observable (procademy) ###################################################
+
+
+
+
+	
+
+
+
+
 
  
 

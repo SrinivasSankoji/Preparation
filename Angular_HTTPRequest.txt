@@ -1,2 +1,90 @@
-1.Introduction to HTTP Request
-2.
+1.Introduction to HTTP Request                             (procademy)   		[07-JUN-2023]  (Done)
+2.Setting up Firebase                                      (procademy)   		[07-JUN-2023]  (Done)
+3.Sending a Post Request                                   (procademy)   		[07-JUN-2023]  (Done)
+4.Fetching Data with Get Request                           (procademy)   		[08-JUN-2023]  ()
+5.Deleting Data with Delete Request                        (procademy)   		[08-JUN-2023]  ()
+6.Using Service for HTTP Request                           (procademy)   		[08-JUN-2023]  ()
+7.Update Data with HTTP Put Request                        (procademy)   		[09-JUN-2023]  ()
+8.Handling HTTP Response Errors                            (procademy)   		[09-JUN-2023]  ()
+9.Sending Headers and Query Params in HTTP Request         (procademy)   		[09-JUN-2023]  ()
+
+################################################### 1.Introduction to HTTP Request(procademy) #########################################
+
+Here we wiil send an HTTP Request to the API which will fetch the data from the database and send the response with the Requested Data.
+Here API can be Rest API,GraphQL API or any other API.
+The response of an API will be the Json Data which can be used later in the Application.
+
+The most important part of HTTP Request is the URL to which we are sending the Request.
+It is also called as API End Point.
+HTTP verbs defines which kind if request you want to send to that API i.e. GET,PUT,POST,DELETE etc.
+Along with URL's and HTTP verbs we often need to send some additional metadata for the request which we are sending to the API.
+These metadata is called as Headers of the Request.
+These Headers are optional.
+For some of the request's we also need to add the Body to the request.
+The Body contains the data which we want to send the data to the Server.
+
+################################################### 2.Setting up Firebase(procademy) ###################################################
+
+Here we are going to use an existing backend solution provided by Google i.e. Firebase.
+In Firebase we can create a database,store the data,fetch the data and delete the data.
+
+
+	https://angular-backend-cd1f1-default-rtdb.firebaseio.com/
+	
+################################################### 3.Sending a Post Request(procademy) ################################################
+
+To call the HTTP request we need to import HttpClientModule @angular/common/http and add it to the imports array.
+In the Component to send the HTTPRequest pass it to the Constructor.
+
+	constructor(private httpRequest:HttpClient){
+	}
+	
+To send the Post Request to an API post() accepts three parameters i.e URL and the body and the Headers.
+
+
+In the database it will create a folder called products and inside that folder all the products will be saved.
+Here products Object will be automatically converts the Javascript Object into Json Object by this Post Method.
+
+	  createProduct(products: {productName: string, description: string, price: string}){
+		this.httpRequest.post('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json',products)
+		.subscribe((response) =>{
+		  console.log(response);
+	  });
+   
+When we send the post request the Browser always sends two requests.
+This is the default behavior of Browser.
+One request will check whether the Request is allowed to send and If it is Success it will send the actual Request.
+If we want to send the Headers along wit the Post Request
+	
+	createProduct(products: {productName: string, description: string, price: string}){
+		const headers= new HttpHeaders({'smartschool':'srinivassankoji'});
+		this.httpRequest.post('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json',products,{headers:headers})
+		.subscribe((response) =>{
+		  console.log(response);
+		});
+	}
+	
+################################################### 4.Fetching Data with Get Request(procademy) ##########################################
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

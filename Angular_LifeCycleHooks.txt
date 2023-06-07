@@ -1,5 +1,5 @@
-1.Angular Lifecycle Hooks                            (procademy)		[06-MAY-2023]  ()
-2.Angular Lifecycle Hooks in Action                  (procademy)		[06-MAY-2023]  ()
+1.Angular Lifecycle Hooks                            (procademy)		[03-JUN-2023]  ()
+2.Angular Lifecycle Hooks in Action                  (procademy)		[03-JUN-2023]  ()
 
 3.Component Lifecycle								 (tektutorialshub)	[06-MAY-2023]  ()
 4.OnInit and OnDestroy                               (tektutorialshub)	[06-MAY-2023]  ()
@@ -8,4 +8,180 @@
 
 ********************************************** 1.Angular Lifecycle Hooks (procademy) *******************************************************
 
+Angular Lifecycle hooks are the methods that Angular invokes on the directives and Components as it creates,changes and destroys them.
+When a new Component is created in Angular and when it finds one of the selector it will instantiate the new version of that Component and it will add it to the DOM.
+For example we are using the selector of the product Component.
 
+			<app-product>
+			<app-product>
+			<app-product>
+			
+Every time Angular finds a Component Selector it will instantiate that Component class.
+Once a new Component class is instantiated, Angular goes to different phases in this creation process.
+It also gives us the chance to hook into these phases and execute some code.
+We can hook into these phases by implementing some methods which Angular will call If they are present in the Component class.
+These methods are called as Angular Lifecycle hooks.
+
+
+1.When the Angular Application starts it first creates and renders the root Component.
+Then it creates and renders its Children's and their Children.It forms a Tree of Components.
+2.Once the Angular loads the Components it starts the process of rendering the view.
+To do that it needs to check the input properties,evaluate the data bindings and expressions,render the projected content etc.
+3.Angular also removes the Component from the DOM when it is no longer required.
+4.Angular lets us know when these Events happen using life cycle hooks.
+When Angular initializes the Component for the first time in that case ngOnInit will be called.
+ngOnInit is one Life cycle Hook.
+When a Component's input property changes,Angular invokes ngOnChanges.
+If the Component is destroyed Angular invokes ngOnDestroy.
+
+Change Detection Cycle :
+------------------------
+Change detection is the mechanism by which Angular keeps the Template in sync with the Component.
+Consider the scenario where in the View Template of the Component we have one <div>.
+
+	<div>Hello {{name}}</div>
+	
+Inside the <div> we are using the name property of the Component class.
+Angular will update the DOM every time when the value of the name property changes.It does it instantly.
+The question is How does the Angular will know when the value of this name property changes ?
+It does so by running a change detection cycle on every event that there is change in result of the DOM.
+It runs it on every input change,DOM Events,Timer Events and HTTP Request etc.
+During the change detection cycle Angular will check each and every bound property in the Template with the Component class.
+If it detects any change it will update the DOM.
+During this process Angular raises the Life Cycle hooks during the important stages of change detection.
+
+Projected Content :
+-------------------
+Projected Content is that HTML content which replaces the <ng-content> directive in child component.
+The HTML Component which we specified in the Component Selector is called as Projected Content.
+
+Input bound properties :
+------------------------
+These are the properties of the Component class which is decorated with @Input decorator.
+Consider the case where in the Child Component we have a property called "message".
+
+	@Input() message:string;
+	
+Here "message" property is the input bound property.
+
+Constructor of a Component :
+----------------------------
+LifeCycle hook of a Component or directive begins when Angular creates a Component or directive class.
+First method that gets invoked is class Constructor.
+
+Constructor is neither a LifeCycle hook nor its specific to Angular.
+It is a Javascript feature.
+It is a method which gets invoked when a class is created.
+Angular makes use of Constructor to inject dependencies.
+
+When a Constructor is called at that point none of the Components input properties are updated and available to use.
+Neither it Child Components are Constructed.
+Projected contents are also not available.
+That is the reason not much we can do in this method.
+It is also not recomended to use it.
+
+Once Angular instantiates the class it kick starts the first LifeCycle hook of a Component or a directive creation.
+First phase or First hook of a Component or a directive creation is ngOnChnages.
+
+ngOnChanges :
+-------------
+This Lifecycle will get executed right at the start whenever a new Component is created and it also gets executed whenever one of the bound input property changes.
+Angular invokes ngOnChanges Lifecycle hook whenever any data bound input property of the Component or directive changes.
+Input Properties are those properties which we are defined using @Input decorator.
+It is one of the ways by which a Parent Component communicates with the Child Component.
+
+In the Child Component we have a input bound property called "message".
+	
+	@Input() message:string;
+	
+In the Parent Component which contains the Child Component Selector 
+
+	<app-child [message]="message" ></app-child>
+
+Here we are binding the message property of the Child Component with the message property of the Parent Component.
+Whenever the value of the message property changes then ngOnChanges Lifecycle hook will get executed.
+Initializing the input properties is the first task that Angular carries during the change detection cycle.
+And if it detects any changes in input property then it raises the ngOnChanges hook.
+It does so during every change detection cycle.
+This hook will not raise If change detection does not detect any changes.
+
+ngOnInit :
+----------
+Angular raises the ngOnInit hook after it creates the Component and updates its input properties.
+This hook is raised after the ngOnChanges hook.
+This hook is fired only once and immideately after its creation i.e. during the first change detection.
+This is the perfect place where we want to add the initialization logic for the Component.
+Here we can have an access to the every input property of the Component.
+We can use them in HTTP get Requests to get the data from the back end server or run some initialization logic.
+By the time ngOnInit gets called,none of the Child Components or Projected Content are available at this point.
+Hence any properties we decorate with @ViewChild, @ViewChildren. @ContentChild and @ContentChildren will not be available to use.
+
+ngDoCheck :
+-----------
+Angular invokes the ngDocheck hook during every change detection cycle.
+This hook is invoked even if there is no change in any of the properties.
+For example ngDocheck will run if we click a button on the web page which does not change anything but still it is an Event.
+Angular invokes ngDoCheck after ngOnChanges and ngOnInit hooks.
+We can use this hook to implement a custom change detection whenever Angular fails to detect the changes made to the input properties.
+ngDoCheck is also a great method to use whenever we want to execute some code on every change detection cycle.
+
+ngAfterContentInit :
+--------------------
+ngAfterContentInit Lifecycle is called after the Components projected content has been fully initialized.
+Angular also updates the Properties decorated with @ContentChild or @ContentChildren before raising this hook.
+This hook is also raised even if there is no content to the project.
+The content here refers to the external content injected form the parent Component via Content Projection.
+Angular Component can include the ng-content element which acts as a place holder for the content from the parent.
+
+Child Component :
+-----------------
+
+	<h2>Child Component</h2>
+	<ng-content></ng-content>
+	
+Parent Component :
+------------------
+
+	<h1>Parent Component</h1>
+	<app-child>
+		<p>This content is injected from Parent</p>
+	</app-child>
+	
+Parent Component injects the content between the opening and closing selector element.
+Angular passes this content to the Child Component.
+
+ngAfterContentInit will get called only once during the first change detection Lifecycle.
+If the content of the paragraph element changes in that case this Lifecycle will not get called.
+
+ngAfterContentChecked :
+-----------------------
+ngAfterContentChecked Lifecycle hook is called during every change detection cycle after Angular finishes checking of Components Projected Content.
+Angular also updates the properties with the @ContentChild and @ContentChildren before raising this hook.
+Angular calls this hook even if there is no projected content in the Component.
+This hook is very similar to ngAfterContentInit hook.Both are called after external content is initialized,checked and updated.
+The only difference is ngAfterContentChecked is raised for every change detection Lifecycle where as ngAfterContentInit is raised during the first change detection Lifecycle.
+Whenever there is a change in the Projected Content ngAfterContentChecked will be raised.
+ngAfterContentInit and ngAfterContentChecked are Component only hooks.
+
+ngAfterViewInit :
+-----------------
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+	
+
+
+			
