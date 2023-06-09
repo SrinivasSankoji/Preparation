@@ -1,12 +1,12 @@
 1.Introduction to HTTP Request                             (procademy)   		[07-JUN-2023]  (Done)
 2.Setting up Firebase                                      (procademy)   		[07-JUN-2023]  (Done)
 3.Sending a Post Request                                   (procademy)   		[07-JUN-2023]  (Done)
-4.Fetching Data with Get Request                           (procademy)   		[08-JUN-2023]  ()
-5.Deleting Data with Delete Request                        (procademy)   		[08-JUN-2023]  ()
-6.Using Service for HTTP Request                           (procademy)   		[08-JUN-2023]  ()
-7.Update Data with HTTP Put Request                        (procademy)   		[09-JUN-2023]  ()
-8.Handling HTTP Response Errors                            (procademy)   		[09-JUN-2023]  ()
-9.Sending Headers and Query Params in HTTP Request         (procademy)   		[09-JUN-2023]  ()
+4.Fetching Data with Get Request                           (procademy)   		[08-JUN-2023]  (Done)
+5.Deleting Data with Delete Request                        (procademy)   		[09-JUN-2023]  ()
+6.Using Service for HTTP Request                           (procademy)   		[09-JUN-2023]  ()
+7.Update Data with HTTP Put Request                        (procademy)   		[10-JUN-2023]  ()
+8.Handling HTTP Response Errors                            (procademy)   		[10-JUN-2023]  ()
+9.Sending Headers and Query Params in HTTP Request         (procademy)   		[10-JUN-2023]  ()
 
 ################################################### 1.Introduction to HTTP Request(procademy) #########################################
 
@@ -50,8 +50,12 @@ Here products Object will be automatically converts the Javascript Object into J
 		.subscribe((response) =>{
 		  console.log(response);
 	  });
-   
-When we send the post request the Browser always sends two requests.
+ 
+Here Post() returns an Observable.
+Observable will send/emmit the data only when there is a subscriber.
+If there is no subscriber then API will not send the post request.
+
+When we send the post request the browser always sends two requests.
 This is the default behavior of Browser.
 One request will check whether the Request is allowed to send and If it is Success it will send the actual Request.
 If we want to send the Headers along wit the Post Request
@@ -65,6 +69,95 @@ If we want to send the Headers along wit the Post Request
 	}
 	
 ################################################### 4.Fetching Data with Get Request(procademy) ##########################################
+
+Here the requirement is to fetch the products from the Database and add it to the Template Grid.
+
+	  getProducts(){
+		this.httpRequest.get('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json')
+		.subscribe((response) =>{
+		  console.log(response)
+		});
+	  }
+	
+From the above call we are getting the data as 
+
+	-NXLxKieXCUon2WLgtN9: {description: 'Application which automates the regular work in the School ', price: '35000', productName: 'Smart School'}
+	-NXLzRD0ncx8c-Pi8m8Z: {description: 'Application Owner', price: '300000', productName: 'Nandini Sankoji'}
+	-NXQq910zNEfPKDwkihn: {description: 'Technical Head', price: '1000000', productName: 'Srinivas Sankoji'}
+	[[Prototype]]: Object
+	
+In order to use this data into the web page we need to transform the data.
+Transforming of this data can be done in this subscribe method and it is not a problem.
+But it is a good practice to use the Observable operators to transform the data.
+Observable operators allows us to write the cleaner code.
+
+pipe() allows us to transform the data before it reaches to the subscribe().
+map() accepts the callback function and transforms the data.
+spread operator will expand the properties of the response object of the key into individual properties 
+and wrapping those individula objects into array i.e creating another object fro object.
+
+
+	getProducts(){
+    this.httpRequest.get('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json')
+    .pipe(map((response) =>{
+      const products=[];
+      for(const key in response){
+        if(response.hasOwnProperty(key)){
+          products.push({...response[key],id:key})
+        }
+      }
+      return products;
+    }))
+    .subscribe((response) =>{
+      console.log(response);
+    });
+  }
+  
+Lets create the model class named product.
+
+	ng g class product
+	
+	export class Product {
+		productName: string;
+		description: string;
+		price: string;
+		id?: string;
+	}
+	
+Here the get() is non generic and we can make it as generic by specifying the response.
+We are getting the response as string which contains the object properties.
+
+	 this.httpRequest.get<{[key:string]:Product}>('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json')
+	 
+Now we need to show the products in the View Template.
+Create a variable
+
+	productList:Product[];
+	
+	getProducts(){
+		this.httpRequest.get<{[key:string]:Product}>('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json')
+		.pipe(map((response) =>{
+		  const products=[];
+		  for(const key in response){
+			if(response.hasOwnProperty(key)){
+			  products.push({...response[key],id:key})
+			}
+		  }
+		  return products;
+		}))
+		.subscribe((response) =>{
+		  this.productList=response;
+		});
+	  }
+	}
+	
+################################################### 5.Deleting Data with Delete Request(procademy) ###################################################
+
+
+  
+
+
+
 
   
 
