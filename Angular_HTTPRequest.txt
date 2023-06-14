@@ -2,8 +2,8 @@
 2.Setting up Firebase                                      (procademy)   		[07-JUN-2023]  (Done)
 3.Sending a Post Request                                   (procademy)   		[07-JUN-2023]  (Done)
 4.Fetching Data with Get Request                           (procademy)   		[08-JUN-2023]  (Done)
-5.Deleting Data with Delete Request                        (procademy)   		[09-JUN-2023]  ()
-6.Using Service for HTTP Request                           (procademy)   		[09-JUN-2023]  ()
+5.Deleting Data with Delete Request                        (procademy)   		[10-JUN-2023]  (Done)
+6.Using Service for HTTP Request                           (procademy)   		[10-JUN-2023]  (Done)
 7.Update Data with HTTP Put Request                        (procademy)   		[10-JUN-2023]  ()
 8.Handling HTTP Response Errors                            (procademy)   		[10-JUN-2023]  ()
 9.Sending Headers and Query Params in HTTP Request         (procademy)   		[10-JUN-2023]  ()
@@ -151,7 +151,31 @@ Create a variable
 	  }
 	}
 	
-################################################### 5.Deleting Data with Delete Request(procademy) ###################################################
+################################################### 5.Deleting Data with Delete Request(procademy) #######################################
+
+To delete the particular record from database we use the id of that record.
+
+	deleteProduct(id:String){
+		this.httpRequest.delete('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products/'+id+'.json')
+		.subscribe();
+	}
+	
+To delete all the products from the database we use 
+
+	deleteAllProducts(){
+     this.httpRequest.delete('https://angular-backend-cd1f1-default-rtdb.firebaseio.com/products.json')
+     .subscribe();
+    }
+
+################################################### 6.Using Service for HTTP Request  ###################################################
+
+Component class should contain only the code related to View Template.
+The business logic and fetching the data should be written in Service class.
+
+################################################### 7.Update Data with HTTP Put Request (procademy)  ####################################
+
+
+	
 
 
   
