@@ -1,42 +1,41 @@
 1.Introduction										[13-JUN-2023]  (Done)
-2.Variables and Data Types                          [13-JUN-2023]  ()
-3.Arithematic Expressions                           [13-JUN-2023]  ()
-4.User Input                                        [13-JUN-2023]  ()
-5.Type Conversion                                   [13-JUN-2023]  ()
-
-6.Const                                             [13-JUN-2023]  ()
-7.Hypotenuse Calculator Program                     [13-JUN-2023]  ()
-8.Counter Program                                   [13-JUN-2023]  ()
-9.Random Number Generator                           [13-JUN-2023]  ()
-10.Useful String methods                            [13-JUN-2023]  ()
-11.String Slicing                                   [13-JUN-2023]  ()
-
-12.Method Chaining                                  [13-JUN-2023]  ()
-13.If Statement                                     [13-JUN-2023]  ()
-14.Checked Property                                 [13-JUN-2023]  ()
-15.Switches                                         [13-JUN-2023]  ()
-16.Strict Equality Operator                         [13-JUN-2023]  ()
-17.&& Operator                                      [13-JUN-2023]  ()
-18.Not Logical Operator                             [13-JUN-2023]  ()
-19.While loop                                       [13-JUN-2023]  ()
-20.DoWhile loop                                     [13-JUN-2023]  ()
-21.For loop                                         [13-JUN-2023]  ()
-22.Break and Continue                               [13-JUN-2023]  ()
-23.Nested loop                                      [13-JUN-2023]  ()
-24.Functions                                        [13-JUN-2023]  ()
-25.return statement                                 [13-JUN-2023]  ()
-26.Ternary Operator                                 [13-JUN-2023]  ()
-27.var vs let                                       [13-JUN-2023]  ()
-28.Template literals                                [13-JUN-2023]  ()
-29.Format Currency                                  [13-JUN-2023]  ()
-30.Number guessing game                             [13-JUN-2023]  ()
-31.
+2.Variables and Data Types                          [15-JUN-2023]  (Done)
+3.Arithematic Expressions                           [13-JUN-2023]  (Done)
+4.User Input                                        [17-JUN-2023]  (Done)
+5.Type Conversion                                   [17-JUN-2023]  (Done)
+6.Const                                             [17-JUN-2023]  (Done)
+7.Math methods										[17-JUN-2023]  (Done)
+8.Hypotenuse Calculator Program                     [17-JUN-2023]  (Done)
+9.Counter Program                                   [17-JUN-2023]  (Done)
+10.Random Number Generator                          [17-JUN-2023]  (Done)
+11.Useful String methods                            [17-JUN-2023]  (Done)
+12.String Slicing                                   [17-JUN-2023]  (Done)
+13.Method Chaining                                  [17-JUN-2023]  (Done)
+14.If Statement                                     [17-JUN-2023]  ()
+15.Checked Property                                 [17-JUN-2023]  ()
+16.Switches                                         [17-JUN-2023]  ()
+17.Strict Equality Operator                         [17-JUN-2023]  ()
+18.&& Operator                                      [17-JUN-2023]  ()
+19.Not Logical Operator                             [17-JUN-2023]  ()
+20.While loop                                       [17-JUN-2023]  ()
+21.DoWhile loop                                     [17-JUN-2023]  ()
+22.For loop                                         [17-JUN-2023]  ()
+23.Break and Continue                               [17-JUN-2023]  ()
+24.Nested loop                                      [17-JUN-2023]  ()
+25.Functions                                        [17-JUN-2023]  ()
+26.return statement                                 [17-JUN-2023]  ()
+27.Ternary Operator                                 [17-JUN-2023]  ()
+28.var vs let                                       [17-JUN-2023]  ()
+29.Template literals                                [17-JUN-2023]  ()
+30.Format Currency                                  [17-JUN-2023]  ()
+31.Number guessing game                             [17-JUN-2023]  ()
 32.
 33.
 34.
 35.
 36.
 37.
+38.
 
 
 ################################################### 1.Introduction  ###################################################
@@ -52,5 +51,246 @@ Add the Live Server PlugIn in the Visual Studio Code to see the Changes in the a
 
 ################################################### 2.Variables and Data Types ########################################
 
+A Variable is a container for storing data.
+It is a representation of some value.
+A Variable behaves as if it contains the value.
 
+There are two steps for creating the variable.
+1.Declaration 
+2.Assigning
 
+To declare a variable we use one of the three key words i.e. var,let and const
+let is the best practice for declaring a variable because of variabe scope.
+
+	let age; // declaring the variable
+	console.log(age);  // undefined 
+	
+We can combine both declaration and assignment
+
+	let age=10;
+	
+	let age=21; // Number
+	let studentname='Bhaumik'; // string
+	let student=true;  // boolean
+
+	console.log(age);  // 10
+	console.log(studentname);  // Bhaumik
+	console.log(student); // true
+	
+We can use Numbers with an Arithematic Expressions
+
+	age=age+1; // 22
+	
+	let age='21';
+	age=age+1; // 211
+
+	console.log('Hello',studentname);  // Bhaumik
+	console.log('You are',age,'Old');  // 10
+	console.log('Are you Student',student); // true
+	
+If we want to display the variable in the DOM,declare the paragraph along with the id.
+If iw want to change the inner HTML of the paragraph Text
+
+	<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <script src="index.js"></script>
+	</body>
+	
+	document.getElementById("p1").innerHTML = firstName;
+	document.getElementById("p2").innerHTML = age;
+	document.getElementById("p3").innerHTML = student;
+	
+################################################### 3.Arithematic Expressions ###################################################
+
+Arithematic expression is a combination of Operands and Operators.
+Opernads are values,variables etc.
+Operators are like +,_,*,%
+Arithematic Expression can be evaluated to a value.
+For example x=x+5;
+	
+	let x=21;
+	x=x+25;
+	console.log(x)
+
+################################################### 4.User Input  ###################################################
+
+To accept the input from the User we can use
+
+1.window.prompt() :
+
+	let userName=window.prompt("Please Enter Username : ");
+	console.log(userName);
+	
+2.Input Text
+
+	<body>
+    <label>User name : </label>
+    <input type="text" id="userName">
+    <button type="button" id="button">Submit</button>
+    <script src="userInput.js"></script>
+	</body>
+
+	let userName;
+	document.getElementById("button").onclick=function(){
+		userName=document.getElementById("userName").value;
+		console.log(userName);
+	};
+
+To display the Username in the Console 
+
+	 <label id="enteredText"> </label>
+
+	document.getElementById("button").onclick=function(){
+    userName=document.getElementById("userName").value;
+    document.getElementById("enteredText").innerHTML=userName;
+	};
+	
+################################################### 5.Type Conversion ###################################################
+
+Type conversion is the ability to change the data type of a value to another.
+Mostly we get the user Input in the form of String.
+
+	let x="25";
+	x=x+1 // 251
+	
+To cresolve this we convert the user input to String.
+We use the typeof method to check the type of String.
+
+	document.getElementById("button").onclick = function () {
+		userName = document.getElementById("userName").value;
+		if (!typeof userName == String) {
+			userName = Number(userName);
+			document.getElementById("enteredText").innerHTML = userName;
+		}
+		else {
+			document.getElementById("enteredText").innerHTML = "Please Enter Numbers only";
+		}
+	}
+
+###################################################  6.Const  ###################################################
+
+Constant is a variable that can't be changed.
+Constant adds data security to our code.
+Constant assigned once can't be re assigned;
+
+	const appname='smart-school';
+	console.log('Building a ',appname,'Application');
+	
+################################################### 7.Math methods ###############################################
+
+Math is an predefined object that provides basic mathematical functionality and constants.
+
+	let num=9.37;
+	x=Math.round(num);
+	console.log(x);
+
+################################################### 8.Hypotenuse Calculator Program	###############################
+
+Here we are going to create the Hypotenuse of a Triangle i.e c = √(a2 + b2)
+Create one HTML that accepts the user enput a,b and display the result.
+
+	let a;
+	let b;
+	let c;
+
+	/** Hypotenuse Calculator Program */
+	document.getElementById("hypotenuse").onclick=function(){
+		a=document.getElementById("sideOne").value;
+		b=document.getElementById("sideTwo").value;
+		a=Math.pow(Number(a),2);
+		b=Math.pow(Number(b),2);
+		c=Math.sqrt(a+b);
+		document.getElementById("result").innerHTML=c;
+	}
+
+################################################### 9.Counter Program #############################################
+Here we are going to create the counter program which increases,decrease and resets the number.
+
+	<body>
+    <label id="counter"></label>
+    <br>
+    <button type="button" id="increase">Increase</button>
+    <button type="button" id="reset">Reset</button>
+    <button type="button" id="decrease">Decrease</button>
+    <script src="counter.js"></script>
+	</body>
+	</html>
+	
+	let count=0;
+	document.getElementById("increase").onclick=function(){
+		count=Number(count)+1;
+		document.getElementById("counter").innerHTML=count;
+	}
+	document.getElementById("decrease").onclick=function(){
+		count=Number(count)-1;
+		document.getElementById("counter").innerHTML=count;
+	}
+	document.getElementById("reset").onclick=function(){
+		count=0;
+		document.getElementById("counter").innerHTML=count;
+	}
+       
+################################################### 10.Random Number Generator ####################################
+
+random() in Javascript generates a random Number between 0 and 1.
+If we want to generate the random number between two numbers we use
+
+	let number=Math.floor(Math.random(1)*6+1);
+	
+Here it will generate the randon number between 1 and 5.
+
+################################################### 11.Useful String methods ######################################
+
+There are lot of usefule String methods in Javascript.
+Some of them are length,toUpperCase().toLowerCase() etc.
+
+################################################### 12.String Slicing #############################################
+
+slice() extracts a section of a String and returns a new String without modifying the Original String.
+
+	/** Slice Example */
+	let fullName="Srinivas Chary Sankoji";
+	let firstName=fullName.slice(0,8);
+	console.log(firstName)
+
+	/** Split Example */
+	const nameArray=fullName.split(" ");
+	console.log(nameArray[2]);
+
+################################################### 13.Method Chaining  ###########################################
+
+Method Chaining is a programming technique where calling one method after another in one continuous line of code.
+
+################################################### 14.If Statement ###############################################
+                
+
+################################################### 15.Checked Property ###########################################    
+
+       
+################################################### 16.Switches ###################################################  
+
+                  
+################################################### 17.Strict Equality Operator ###################################
+
+    
+################################################### 18.&& Operator ################################################      
+
+         
+################################################### 19.Not Logical Operator #######################################
+
+       
+################################################### 20.While loop  ################################################    
+
+             
+################################################### 21.DoWhile loop ############################################### 
+
+              
+################################################### 22.For loop ###################################################    
+
+                
+################################################### 23.Break and Continue ######################################### 
+
+        
+################################################### 24.Nested loop ###################################################                 
