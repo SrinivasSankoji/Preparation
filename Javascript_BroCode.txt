@@ -11,31 +11,81 @@
 11.Useful String methods                            [17-JUN-2023]  (Done)
 12.String Slicing                                   [17-JUN-2023]  (Done)
 13.Method Chaining                                  [17-JUN-2023]  (Done)
-14.If Statement                                     [17-JUN-2023]  ()
-15.Checked Property                                 [17-JUN-2023]  ()
-16.Switches                                         [17-JUN-2023]  ()
-17.Strict Equality Operator                         [17-JUN-2023]  ()
-18.&& Operator                                      [17-JUN-2023]  ()
-19.Not Logical Operator                             [17-JUN-2023]  ()
-20.While loop                                       [17-JUN-2023]  ()
-21.DoWhile loop                                     [17-JUN-2023]  ()
-22.For loop                                         [17-JUN-2023]  ()
-23.Break and Continue                               [17-JUN-2023]  ()
-24.Nested loop                                      [17-JUN-2023]  ()
-25.Functions                                        [17-JUN-2023]  ()
-26.return statement                                 [17-JUN-2023]  ()
-27.Ternary Operator                                 [17-JUN-2023]  ()
-28.var vs let                                       [17-JUN-2023]  ()
-29.Template literals                                [17-JUN-2023]  ()
-30.Format Currency                                  [17-JUN-2023]  ()
-31.Number guessing game                             [17-JUN-2023]  ()
-32.
-33.
-34.
-35.
-36.
-37.
-38.
+14.If Statement                                     [18-JUN-2023]  (Done)
+15.Checked Property                                 [18-JUN-2023]  (Done)
+16.Switches                                         [20-JUN-2023]  ()
+17.Strict Equality Operator                         [20-JUN-2023]  ()
+18.&& Operator                                      [20-JUN-2023]  ()
+19.Not Logical Operator                             [20-JUN-2023]  ()
+20.While loop                                       [20-JUN-2023]  ()
+21.DoWhile loop                                     [20-JUN-2023]  ()
+22.For loop                                         [20-JUN-2023]  ()
+23.Break and Continue                               [20-JUN-2023]  ()
+24.Nested loop                                      [20-JUN-2023]  ()
+25.Functions                                        [20-JUN-2023]  ()
+26.return statement                                 [20-JUN-2023]  ()
+27.Ternary Operator                                 [20-JUN-2023]  ()
+28.var vs let                                       [20-JUN-2023]  ()
+29.Template literals                                [20-JUN-2023]  ()
+
+30.Format Currency                                  [18-JUN-2023]  ()
+31.Number guessing game                             [19-JUN-2023]  ()
+32.Temperature Conversion Program                   [19-JUN-2023]  ()
+
+33.Arrays                                           [21-JUN-2023]  ()
+34.Loop through an Array                            [21-JUN-2023]  ()
+35.Sort an Array                                    [21-JUN-2023]  ()
+36.Two Dimensional Array                            [21-JUN-2023]  ()
+37.Spread Operator                                  [21-JUN-2023]  ()
+38.Rest Parameters                                  [21-JUN-2023]  ()
+39.Callbacks                                        [21-JUN-2023]  ()
+40.forEach                                          [21-JUN-2023]  ()
+41.map                                              [21-JUN-2023]  ()
+42.filter                                           [21-JUN-2023]  ()
+43.reduce                                           [21-JUN-2023]  ()
+44.Sort Array of Numbers                            [21-JUN-2023]  ()
+
+45.Function Expression  				            [22-JUN-2023]  ()
+46.Arrow Function Expression                        [22-JUN-2023]  ()
+47.Shuffled an Array                                [22-JUN-2023]  ()
+48.Nested Functions                                 [22-JUN-2023]  ()
+49.Closures                                         [22-JUN-2023]  ()
+50.Maps                                             [22-JUN-2023]  ()
+51.Objects                                          [22-JUN-2023]  ()
+52.this keyword                                     [22-JUN-2023]  ()
+53.Classes                                          [22-JUN-2023]  ()
+54.Constructor                                      [22-JUN-2023]  ()
+55.Static                                           [22-JUN-2023]  ()
+56.Inheritance                                      [22-JUN-2023]  ()
+57.Super Keyword                                    [22-JUN-2023]  ()
+58.Getters and Setters                              [22-JUN-2023]  ()
+59.Objects as Arguments                             [22-JUN-2023]  ()
+60.Array of Objects                                 [22-JUN-2023]  ()
+61.Anonymous Objects                                [22-JUN-2023]  ()
+62.Error Handling                                   [22-JUN-2023]  ()
+63.setTimeout                                       [22-JUN-2023]  ()
+64.setInterval                                      [22-JUN-2023]  ()
+65.Date Objects                                     [22-JUN-2023]  ()
+66.Clock Program                                    [22-JUN-2023]  ()
+67.Asynchronous                                     [22-JUN-2023]  ()
+68.Console.time                                     [22-JUN-2023]  ()
+69.Promises                                         [22-JUN-2023]  ()
+70.Async                                            [22-JUN-2023]  ()
+71.Wait                                             [22-JUN-2023]  ()
+72.ES6 Modules                                      [22-JUN-2023]  ()
+73.DOM Introduction                                 [22-JUN-2023]  ()
+74.Element Selectors                                [22-JUN-2023]  ()
+75.DOM Traversal                                    [22-JUN-2023]  ()
+76.Add Change HTML Elements                         [22-JUN-2023]  ()
+77.Add Change CSS Properties                        [22-JUN-2023]  ()
+78.Events                                           [22-JUN-2023]  ()
+79.addEventListener                                 [22-JUN-2023]  ()
+80.Show Hide HTML Element                           [22-JUN-2023]  ()
+81.Detect Key Press                                 [22-JUN-2023]  ()
+82.Animations                                       [22-JUN-2023]  ()
+83.Canvas API                                       [22-JUN-2023]  ()
+84.Window                                           [22-JUN-2023]  ()
+85.Cookies                                          [22-JUN-2023]  ()
 
 
 ################################################### 1.Introduction  ###################################################
@@ -264,12 +314,43 @@ slice() extracts a section of a String and returns a new String without modifyin
 Method Chaining is a programming technique where calling one method after another in one continuous line of code.
 
 ################################################### 14.If Statement ###############################################
-                
 
-################################################### 15.Checked Property ###########################################    
+If condition is a basic form of decission making.
+If the Condition is true then do some thing.
+If not then don't do it.
 
-       
-################################################### 16.Switches ###################################################  
+################################################### 15.Checked Property ###########################################
+
+If the check box or radio button is selected,accessing the checked property will give the boolean value true or false.
+
+	const selectedTechnology =document.getElementById("technology").checked; // If the technology is selected It will return true.
+	
+	<body>
+    <label>Technology :</label>
+    <input name="technology" type="checkbox" value="Java">Java</input>
+    <input name="technology" type="checkbox" value="Angular">Angular</input>
+    <input name="technology" type="checkbox" value="Fullstack">Fullstack</input>
+    <br></br>
+    <button type="button" id="button">Submit</button>
+    <label id="label"></label>
+    <script src="checked.js"></script>
+	</body>
+
+	document.getElementById("button").onclick = function () {
+		var selectedTechnology = document.getElementsByName('technology');
+		var values = [];
+
+		for (var i = 0; i < selectedTechnology.length; i++) {
+			if (selectedTechnology[i].checked == true) {
+				values.push(selectedTechnology[i].value);
+			}
+		}
+		alert(values);
+	}
+	
+################################################### 16.Switches ###################################################
+
+ 
 
                   
 ################################################### 17.Strict Equality Operator ###################################
