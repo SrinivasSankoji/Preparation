@@ -13,20 +13,21 @@
 13.Method Chaining                                  [17-JUN-2023]  (Done)
 14.If Statement                                     [18-JUN-2023]  (Done)
 15.Checked Property                                 [18-JUN-2023]  (Done)
-16.Switches                                         [20-JUN-2023]  ()
-17.Strict Equality Operator                         [20-JUN-2023]  ()
-18.&& Operator                                      [20-JUN-2023]  ()
-19.Not Logical Operator                             [20-JUN-2023]  ()
-20.While loop                                       [20-JUN-2023]  ()
-21.DoWhile loop                                     [20-JUN-2023]  ()
-22.For loop                                         [20-JUN-2023]  ()
-23.Break and Continue                               [20-JUN-2023]  ()
-24.Nested loop                                      [20-JUN-2023]  ()
-25.Functions                                        [20-JUN-2023]  ()
-26.return statement                                 [20-JUN-2023]  ()
-27.Ternary Operator                                 [20-JUN-2023]  ()
-28.var vs let                                       [20-JUN-2023]  ()
-29.Template literals                                [20-JUN-2023]  ()
+16.Switches                                         [20-JUN-2023]  (Done)
+17.Strict Equality Operator                         [20-JUN-2023]  (Done)
+18.&& Operator                                      [20-JUN-2023]  (Done)
+19.Not Logical Operator                             [20-JUN-2023]  (Done)
+20.while loop                                       [20-JUN-2023]  (Done)
+21.doWhile loop                                     [20-JUN-2023]  (Done)
+22.for loop                                         [20-JUN-2023]  (Done)
+23.break and continue                               [20-JUN-2023]  (Done)
+24.Nested loop                                      [20-JUN-2023]  (Done)
+25.Functions                                        [20-JUN-2023]  (Done)
+26.return statement                                 [20-JUN-2023]  (Done)
+27.Ternary Operator                                 [20-JUN-2023]  (Done)
+28.var vs let                                       [21-JUN-2023]  ()
+29.Template literals                                [21-JUN-2023]  ()
+
 
 30.Format Currency                                  [18-JUN-2023]  ()
 31.Number guessing game                             [19-JUN-2023]  ()
@@ -61,31 +62,34 @@
 58.Getters and Setters                              [22-JUN-2023]  ()
 59.Objects as Arguments                             [22-JUN-2023]  ()
 60.Array of Objects                                 [22-JUN-2023]  ()
-61.Anonymous Objects                                [22-JUN-2023]  ()
-62.Error Handling                                   [22-JUN-2023]  ()
-63.setTimeout                                       [22-JUN-2023]  ()
-64.setInterval                                      [22-JUN-2023]  ()
-65.Date Objects                                     [22-JUN-2023]  ()
-66.Clock Program                                    [22-JUN-2023]  ()
-67.Asynchronous                                     [22-JUN-2023]  ()
-68.Console.time                                     [22-JUN-2023]  ()
-69.Promises                                         [22-JUN-2023]  ()
-70.Async                                            [22-JUN-2023]  ()
-71.Wait                                             [22-JUN-2023]  ()
-72.ES6 Modules                                      [22-JUN-2023]  ()
-73.DOM Introduction                                 [22-JUN-2023]  ()
-74.Element Selectors                                [22-JUN-2023]  ()
-75.DOM Traversal                                    [22-JUN-2023]  ()
-76.Add Change HTML Elements                         [22-JUN-2023]  ()
-77.Add Change CSS Properties                        [22-JUN-2023]  ()
-78.Events                                           [22-JUN-2023]  ()
-79.addEventListener                                 [22-JUN-2023]  ()
-80.Show Hide HTML Element                           [22-JUN-2023]  ()
-81.Detect Key Press                                 [22-JUN-2023]  ()
-82.Animations                                       [22-JUN-2023]  ()
-83.Canvas API                                       [22-JUN-2023]  ()
-84.Window                                           [22-JUN-2023]  ()
-85.Cookies                                          [22-JUN-2023]  ()
+
+61.Anonymous Objects                                [23-JUN-2023]  ()
+62.Error Handling                                   [23-JUN-2023]  ()
+63.setTimeout                                       [23-JUN-2023]  ()
+64.setInterval                                      [23-JUN-2023]  ()
+65.Date Objects                                     [23-JUN-2023]  ()
+66.Clock Program                                    [23-JUN-2023]  ()
+
+67.Asynchronous                                     [24-JUN-2023]  ()
+68.Console.time                                     [24-JUN-2023]  ()
+69.Promises                                         [24-JUN-2023]  ()
+70.Async                                            [24-JUN-2023]  ()
+71.Wait                                             [24-JUN-2023]  ()
+
+72.ES6 Modules                                      [25-JUN-2023]  ()
+73.DOM Introduction                                 [25-JUN-2023]  ()
+74.Element Selectors                                [25-JUN-2023]  ()
+75.DOM Traversal                                    [25-JUN-2023]  ()
+76.Add Change HTML Elements                         [25-JUN-2023]  ()
+77.Add Change CSS Properties                        [25-JUN-2023]  ()
+78.Events                                           [25-JUN-2023]  ()
+79.addEventListener                                 [25-JUN-2023]  ()
+80.Show Hide HTML Element                           [25-JUN-2023]  ()
+81.Detect Key Press                                 [25-JUN-2023]  ()
+82.Animations                                       [25-JUN-2023]  ()
+83.Canvas API                                       [25-JUN-2023]  ()
+84.Window                                           [25-JUN-2023]  ()
+85.Cookies                                          [25-JUN-2023]  ()
 
 
 ################################################### 1.Introduction  ###################################################
@@ -350,28 +354,138 @@ If the check box or radio button is selected,accessing the checked property will
 	
 ################################################### 16.Switches ###################################################
 
- 
+Switch is a statement that examines a value for a match against many case clauses.
+It is more efficient than if else statement.
 
-                  
+	let userName=window.prompt("Please enter name");
+
+	switch (userName) {
+		case "Srinivas": console.log("Father")
+						 break;
+		case "Nandini": console.log("Mother")
+						 break;
+		case "Bhaumik": console.log("Elder Son")
+						 break;
+		case "Aadvik": console.log("Younger Son")
+						 break;
+		default:
+			break;
+	}
+               
 ################################################### 17.Strict Equality Operator ###################################
 
-    
-################################################### 18.&& Operator ################################################      
+Using strict equality operator we can check two values are equal or not along with Datatype.
 
+= assignement operator
+== comparison operator
+=== strict equality operator 
+
+	if(x=="3.14"){
+    console.log("Both are equal");
+	}
+	if(x===3.14){
+		console.log("Both are equal but Data type is different");
+	}
+
+################################################### 18.&& Operator ################################################
+
+The && and || logical operators gives us the ability to check more than one condition concurrently.
+&& operator checks all the conditions must be satisfied.
+|| operator checks either one of the condition should be satisfied.
          
 ################################################### 19.Not Logical Operator #######################################
 
-       
-################################################### 20.While loop  ################################################    
+! i.e. NOT logical operator typically used to reverse a condition's boolean value.
+From true -> false and false -> true.
 
-             
+################################################### 20.While loop  ################################################ 
+
+While loop is like if statement which repeats some code untill the condition is true.
+While loop can potentially repeat infine amount of time.
+
+	let userName="";
+	while(userName == ""){
+    userName=window.prompt("Please enter username : ")
+	}
+	console.log("User Name is Equal");
+ 
+If we are using while loop we need to write the code so that it should come out of the loop.
+          
 ################################################### 21.DoWhile loop ############################################### 
 
-              
-################################################### 22.For loop ###################################################    
+In case of doWhile loop
+Do something and check the condition and repeat if the condition is true.
 
-                
-################################################### 23.Break and Continue ######################################### 
+In case of doWhile we check the condition last.
+In standard while loop we may skip the condition if it is not satisfied.
+
+	do{
+		userName=window.prompt("Please enter username : ")
+	}while(userName == "" || userName== null)
+         
+################################################### 22.For loop ################################################### 
+
+For loop repeats some code for certain amount of time.
+        
+################################################### 23.Break and Continue #########################################
+
+Break statement comes out from the loop entirely.
+continue statement skips an iteration of a loop.
+
+	for(let i=0;i<=10;i++){
+
+    if(i==5){
+        continue;
+    }
+    console.log("Numbers are : "+i)
+}
+        
+################################################### 24.Nested loop ################################################### 
+
+Nested loop is loop inside another loop.
+
+	for(let i=1;i<=3;i++){
+		for(j=1;j<=i;j++){
+			console.log(j);
+		}
+	}
+
+################################################### 25.Functions  ###################################################
+
+Functions are used to divide the code into smaller parts so that it can be reused.
+Using functions we can define the code once and use it for many times.
+To perform some operation we call the function.
+
+	addNumbers(22,27);
+
+	function addNumbers(a,b){
+		console.log(a+b);
+	}
+
+################################################### 26.return statement  ###################################################
+
+return statment returns a value back to the place where we invoked the function.
+
+	let result=addNumbers(22,27);
+	console.log("Sum is :" +result);
+
+	function addNumbers(a,b){
+		return a+b
+	}
+	
+################################################### 27.Ternary Operator  ###################################################
+
+Ternary operator is a shortcut for If else Statement.
+It takes 3 operands.
+
+1.Condition with ?
+2.Expression with true
+3.Expression with false
+
+	let marks=75;
+	marks>36?console.log("Pass"):console.log("Fail");
+
+###################################################  28.var vs let ###################################################
 
         
-################################################### 24.Nested loop ###################################################                 
+################################################### 29.Template literals ################################################### 
