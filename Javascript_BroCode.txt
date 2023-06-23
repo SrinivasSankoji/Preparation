@@ -25,57 +25,56 @@
 25.Functions                                        [20-JUN-2023]  (Done)
 26.return statement                                 [20-JUN-2023]  (Done)
 27.Ternary Operator                                 [20-JUN-2023]  (Done)
-28.var vs let                                       [21-JUN-2023]  ()
-29.Template literals                                [21-JUN-2023]  ()
+28.var vs let                                       [23-JUN-2023]  (Done)
+29.Template literals                                [23-JUN-2023]  ()
 
 
 30.Format Currency                                  [18-JUN-2023]  ()
 31.Number guessing game                             [19-JUN-2023]  ()
 32.Temperature Conversion Program                   [19-JUN-2023]  ()
 
-33.Arrays                                           [21-JUN-2023]  ()
-34.Loop through an Array                            [21-JUN-2023]  ()
-35.Sort an Array                                    [21-JUN-2023]  ()
-36.Two Dimensional Array                            [21-JUN-2023]  ()
-37.Spread Operator                                  [21-JUN-2023]  ()
-38.Rest Parameters                                  [21-JUN-2023]  ()
-39.Callbacks                                        [21-JUN-2023]  ()
-40.forEach                                          [21-JUN-2023]  ()
-41.map                                              [21-JUN-2023]  ()
-42.filter                                           [21-JUN-2023]  ()
-43.reduce                                           [21-JUN-2023]  ()
-44.Sort Array of Numbers                            [21-JUN-2023]  ()
+33.Arrays                                           [23-JUN-2023]  (Done)
+34.Loop through an Array                            [23-JUN-2023]  (Done)
+35.Sort an Array                                    [23-JUN-2023]  (Done)
+36.Two Dimensional Array                            [23-JUN-2023]  ()
+37.Spread Operator                                  [23-JUN-2023]  (Done)
+38.Rest Parameters                                  [23-JUN-2023]  (Done)
 
-45.Function Expression  				            [22-JUN-2023]  ()
-46.Arrow Function Expression                        [22-JUN-2023]  ()
-47.Shuffled an Array                                [22-JUN-2023]  ()
-48.Nested Functions                                 [22-JUN-2023]  ()
-49.Closures                                         [22-JUN-2023]  ()
-50.Maps                                             [22-JUN-2023]  ()
-51.Objects                                          [22-JUN-2023]  ()
-52.this keyword                                     [22-JUN-2023]  ()
-53.Classes                                          [22-JUN-2023]  ()
-54.Constructor                                      [22-JUN-2023]  ()
-55.Static                                           [22-JUN-2023]  ()
-56.Inheritance                                      [22-JUN-2023]  ()
-57.Super Keyword                                    [22-JUN-2023]  ()
-58.Getters and Setters                              [22-JUN-2023]  ()
-59.Objects as Arguments                             [22-JUN-2023]  ()
-60.Array of Objects                                 [22-JUN-2023]  ()
+39.Callbacks                                        [24-JUN-2023]  ()
+40.forEach                                          [24-JUN-2023]  ()
+41.map                                              [24-JUN-2023]  ()
+42.filter                                           [24-JUN-2023]  ()
+43.reduce                                           [24-JUN-2023]  ()
+44.Sort Array of Numbers                            [24-JUN-2023]  ()
+45.Function Expression  				            [24-JUN-2023]  ()
+46.Arrow Function Expression                        [24-JUN-2023]  ()
+47.Shuffled an Array                                [24-JUN-2023]  ()
+48.Nested Functions                                 [24-JUN-2023]  ()
+49.Closures                                         [24-JUN-2023]  ()
+50.Maps                                             [24-JUN-2023]  ()
 
-61.Anonymous Objects                                [23-JUN-2023]  ()
-62.Error Handling                                   [23-JUN-2023]  ()
-63.setTimeout                                       [23-JUN-2023]  ()
-64.setInterval                                      [23-JUN-2023]  ()
-65.Date Objects                                     [23-JUN-2023]  ()
-66.Clock Program                                    [23-JUN-2023]  ()
+51.Objects                                          [24-JUN-2023]  ()
+52.this keyword                                     [24-JUN-2023]  ()
+53.Classes                                          [24-JUN-2023]  ()
+54.Constructor                                      [24-JUN-2023]  ()
+55.Static                                           [24-JUN-2023]  ()
+56.Inheritance                                      [24-JUN-2023]  ()
+57.Super Keyword                                    [24-JUN-2023]  ()
+58.Getters and Setters                              [24-JUN-2023]  ()
+59.Objects as Arguments                             [24-JUN-2023]  ()
+60.Array of Objects                                 [24-JUN-2023]  ()
+61.Anonymous Objects                                [24-JUN-2023]  ()
+62.Error Handling                                   [24-JUN-2023]  ()
+63.setTimeout                                       [24-JUN-2023]  ()
+64.setInterval                                      [24-JUN-2023]  ()
+65.Date Objects                                     [24-JUN-2023]  ()
+66.Clock Program                                    [24-JUN-2023]  ()
 
-67.Asynchronous                                     [24-JUN-2023]  ()
-68.Console.time                                     [24-JUN-2023]  ()
-69.Promises                                         [24-JUN-2023]  ()
-70.Async                                            [24-JUN-2023]  ()
-71.Wait                                             [24-JUN-2023]  ()
-
+67.Asynchronous                                     [25-JUN-2023]  ()
+68.Console.time                                     [25-JUN-2023]  ()
+69.Promises                                         [25-JUN-2023]  ()
+70.Async                                            [25-JUN-2023]  ()
+71.Wait                                             [25-JUN-2023]  ()
 72.ES6 Modules                                      [25-JUN-2023]  ()
 73.DOM Introduction                                 [25-JUN-2023]  ()
 74.Element Selectors                                [25-JUN-2023]  ()
@@ -485,7 +484,197 @@ It takes 3 operands.
 	let marks=75;
 	marks>36?console.log("Pass"):console.log("Fail");
 
-###################################################  28.var vs let ###################################################
+###################################################  28.var vs let ########################################################
 
-        
+Variable scope is nothing but where a variable is accessible.
+we declare the variables with var and let.
+
+1.let variables are limited to block scope i.e. {}.
+
+	for(let i=1;i<=3;i+=1){
+		console.log(i);
+	}
+	console.log(i); // uncayght Reference Error
+	
+2.var variables are limited to function scope i.e. function(){} and doesn't exist outside the function.
+
+	validateVarScope();
+
+	function validateVarScope(){
+		for(var i=1;i<=3;i+=1){
+			console.log(i);
+		}   
+	}
+	
+	console.log(i); // uncayght Reference Error
+
+Variable declared with var keyword can escape Block Scope i.e. curly braces but cannot escape a function.
+
+3.Global variable is declared outside the function and can be accessible anywhere.
+Problem with Global variabe is it manipulates the browser Window properties.
+
+	
+var userName="srinvas";
+validateVarScope();
+
+	function validateVarScope(){
+		for(var i=1;i<=3;i+=1){
+			console.log(i+". Name is "+userName);
+		}   
+	}
+	console.log(userName);
+	
+Note :
+It is the best practice to use let keyword for variables.
+	
 ################################################### 29.Template literals ################################################### 
+
+
+
+                 
+
+
+################################################### 30.Format Currency  ###################################################                   
+################################################### 31.Number guessing game  ###################################################             
+################################################### 32.Temperature Conversion Program  ###################################################    
+
+################################################### 33.Arrays  ###################################################
+
+Array is a kind of variable that can store multiple values.
+
+	/** Array Declaration*/
+	let fruits=[];
+
+	/**To add the Elements to an Array */
+	fruits=["Apple","Orange","Banana"];
+	console.log(fruits);
+
+	/** To get the First element in an Array */
+	console.log(fruits[fruits.length-1]);
+
+	/** To add an Element to an Array  in the Last */
+	fruits.push("Mango"); 
+
+	/** To remove an Element form an Array from the Last */
+	fruits.pop();
+
+	/** To add an Element in the begining of an Array */
+	fruits.unshift("Promogranite");
+	console.log(fruits);
+
+	/** To remove the begininig element of an Array */
+	fruits.shift();
+	console.log(fruits);
+
+	/** To get the length of an Array */
+	let length=fruits.length;
+	console.log(length);
+
+	/** To get the indexof the particular element */
+	let position=fruits.indexOf("Orange");
+	console.log("Position is ",position);
+                      
+################################################### 34.Loop through an Array  ################################################### 
+
+To loop through an Array of elements we have two ways.
+
+1.Standard For Loop
+
+	let prices =[22,27,23,15];
+	for(let i=0;i<prices.length;i+=1){
+		console.log(prices[i]);
+	}
+
+	/** To reverse the elements of an Array */
+	for(let i=prices.length-1;i>=0;i-=1){
+		console.log(prices[i]);
+	}
+
+2.For Up Statement
+
+	/** For up Statement */
+	for(let price of prices){
+		console.log(price);
+	}
+       
+################################################### 35.Sort an Array  ###################################################
+
+To sort an Array in ascending order
+
+	prices.sort();
+	
+To sort an Array in descending Order
+
+	prices.sort().reversed();
+              
+################################################### 36.Two Dimensional Array  ################################################### 
+
+             
+################################################### 37.Spread Operator  ################################################### 
+
+Spread Operator allows an iterable such as an Array or String to be expanded in places where zero or more arguments are expected.
+Spread Operator unpacks the elements into individual elements.
+
+	/** Creating an Array of Numbers */
+	let numberArray=[1,2,3,4,5,6,7,8,9,10];
+	console.log(numberArray);
+
+	/** To Get the Elements of an Array */
+	console.log(...numberArray);
+
+	/** To find the Maximum Number in an Array */
+	console.log(Math.max(...numberArray));
+
+
+	let family=["Srinivas","Nandini"];
+	let children=["Bhaumik","Aadvik"];
+	family.push(...children)
+
+	/** To merge the Elements of an Array */
+	console.log(...family)
+      
+################################################### 38.Rest Parameters  ################################################### 
+
+Rest Parameter represents an indefnite number of parameters.
+Rest Parameter packs arguments into an Array.
+
+Consider the scenario fo sum function.
+
+	let result=sum(3,5);
+	console.log(result);
+
+	function sum (a,b){
+		return a+b;
+	}
+	
+If there is a requirement tp pass any number of arguments we use Rest Parameter.
+
+	let response=addition(22,27,23,15);
+	console.log(response);
+
+	function addition(...numbers){
+		let total=0;
+		for(let number of numbers){
+			total+=number;
+		}
+		return total;
+	}
+Note :
+Rest Parameter should be the last parameter of the function.
+             
+################################################### 39.Callbacks  ################################################### 
+
+
+                       
+################################################### 40.forEach  ################################################### 
+                         
+################################################### 41.map   ###################################################                             
+################################################### 42.filter  ###################################################                           
+################################################### 43.reduce  ###################################################                           
+################################################### 44.Sort Array of Numbers  ###################################################            
+################################################### 45.Function Expression  	###################################################			
+################################################### 46.Arrow Function Expression  ###################################################         
+################################################### 47.Shuffled an Array  ###################################################                
+################################################### 48.Nested Functions  ###################################################                 
+################################################### 49.Closures   ###################################################                        
+################################################### 50.Maps  ###################################################                             
