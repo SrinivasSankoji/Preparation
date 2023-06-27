@@ -40,55 +40,58 @@
 37.Spread Operator                                  [23-JUN-2023]  (Done)
 38.Rest Parameters                                  [23-JUN-2023]  (Done)
 
-39.Callbacks                                        [24-JUN-2023]  ()
-40.forEach                                          [24-JUN-2023]  ()
-41.map                                              [24-JUN-2023]  ()
-42.filter                                           [24-JUN-2023]  ()
-43.reduce                                           [24-JUN-2023]  ()
-44.Sort Array of Numbers                            [24-JUN-2023]  ()
-45.Function Expression  				            [24-JUN-2023]  ()
-46.Arrow Function Expression                        [24-JUN-2023]  ()
-47.Shuffled an Array                                [24-JUN-2023]  ()
-48.Nested Functions                                 [24-JUN-2023]  ()
-49.Closures                                         [24-JUN-2023]  ()
-50.Maps                                             [24-JUN-2023]  ()
+39.Callbacks                                        [24-JUN-2023]  (Done)
+40.forEach                                          [24-JUN-2023]  (Done)
+41.map                                              [24-JUN-2023]  (Done)
+42.filter                                           [24-JUN-2023]  (Done)
+43.reduce                                           [24-JUN-2023]  (Done)
+44.Sort Array of Numbers                            [24-JUN-2023]  (Done)
+45.Function Expression  				            [24-JUN-2023]  (Done)
+46.Arrow Function Expression                        [24-JUN-2023]  (Done)
+47.Shuffled an Array                                [24-JUN-2023]  (Done)
+48.Nested Functions                                 [24-JUN-2023]  (Done)
+49.Closures                                         [24-JUN-2023]  (Done)
+50.Maps                                             [24-JUN-2023]  (Done)
 
-51.Objects                                          [24-JUN-2023]  ()
-52.this keyword                                     [24-JUN-2023]  ()
-53.Classes                                          [24-JUN-2023]  ()
-54.Constructor                                      [24-JUN-2023]  ()
-55.Static                                           [24-JUN-2023]  ()
-56.Inheritance                                      [24-JUN-2023]  ()
-57.Super Keyword                                    [24-JUN-2023]  ()
-58.Getters and Setters                              [24-JUN-2023]  ()
-59.Objects as Arguments                             [24-JUN-2023]  ()
-60.Array of Objects                                 [24-JUN-2023]  ()
-61.Anonymous Objects                                [24-JUN-2023]  ()
-62.Error Handling                                   [24-JUN-2023]  ()
-63.setTimeout                                       [24-JUN-2023]  ()
-64.setInterval                                      [24-JUN-2023]  ()
-65.Date Objects                                     [24-JUN-2023]  ()
-66.Clock Program                                    [24-JUN-2023]  ()
+51.Objects                                          [27-JUN-2023]  (Done)
+52.this keyword                                     [27-JUN-2023]  (Done)
+53.Classes                                          [27-JUN-2023]  (Done)
+54.Constructor                                      [27-JUN-2023]  (Done)
+55.Static                                           [27-JUN-2023]  (Done)
 
-67.Asynchronous                                     [25-JUN-2023]  ()
-68.Console.time                                     [25-JUN-2023]  ()
-69.Promises                                         [25-JUN-2023]  ()
-70.Async                                            [25-JUN-2023]  ()
-71.Wait                                             [25-JUN-2023]  ()
-72.ES6 Modules                                      [25-JUN-2023]  ()
-73.DOM Introduction                                 [25-JUN-2023]  ()
-74.Element Selectors                                [25-JUN-2023]  ()
-75.DOM Traversal                                    [25-JUN-2023]  ()
-76.Add Change HTML Elements                         [25-JUN-2023]  ()
-77.Add Change CSS Properties                        [25-JUN-2023]  ()
-78.Events                                           [25-JUN-2023]  ()
-79.addEventListener                                 [25-JUN-2023]  ()
-80.Show Hide HTML Element                           [25-JUN-2023]  ()
-81.Detect Key Press                                 [25-JUN-2023]  ()
-82.Animations                                       [25-JUN-2023]  ()
-83.Canvas API                                       [25-JUN-2023]  ()
-84.Window                                           [25-JUN-2023]  ()
-85.Cookies                                          [25-JUN-2023]  ()
+56.Inheritance                                      [28-JUN-2023]  ()
+57.Super Keyword                                    [28-JUN-2023]  ()
+58.Getters and Setters                              [28-JUN-2023]  ()
+59.Objects as Arguments                             [28-JUN-2023]  ()
+60.Array of Objects                                 [28-JUN-2023]  ()
+
+61.Anonymous Objects                                [28-JUN-2023]  ()
+62.Error Handling                                   [28-JUN-2023]  ()
+63.setTimeout                                       [28-JUN-2023]  ()
+64.setInterval                                      [28-JUN-2023]  ()
+65.Date Objects                                     [28-JUN-2023]  ()
+66.Clock Program                                    [28-JUN-2023]  ()
+
+67.Asynchronous                                     [29-JUN-2023]  ()
+68.Console.time                                     [29-JUN-2023]  ()
+69.Promises                                         [29-JUN-2023]  ()
+70.Async                                            [29-JUN-2023]  ()
+71.Wait                                             [29-JUN-2023]  ()
+72.ES6 Modules                                      [29-JUN-2023]  ()
+73.DOM Introduction                                 [29-JUN-2023]  ()
+74.Element Selectors                                [29-JUN-2023]  ()
+75.DOM Traversal                                    [29-JUN-2023]  ()
+
+76.Add Change HTML Elements                         [30-JUN-2023]  ()
+77.Add Change CSS Properties                        [30-JUN-2023]  ()
+78.Events                                           [30-JUN-2023]  ()
+79.addEventListener                                 [30-JUN-2023]  ()
+80.Show Hide HTML Element                           [30-JUN-2023]  ()
+81.Detect Key Press                                 [30-JUN-2023]  ()
+82.Animations                                       [30-JUN-2023]  ()
+83.Canvas API                                       [30-JUN-2023]  ()
+84.Window                                           [30-JUN-2023]  ()
+85.Cookies                                          [30-JUN-2023]  ()
 
 
 ################################################### 1.Introduction  ###################################################
@@ -238,6 +241,15 @@ Math is an predefined object that provides basic mathematical functionality and 
 	let num=9.37;
 	x=Math.round(num);
 	console.log(x);
+
+
+Ceil :
+------
+If want to round a number up to its nearest Integer we use Math.ceil().
+
+Floor :
+-------
+If we want to round a number down to its nearest integer we use Math.floor().
 
 ################################################### 8.Hypotenuse Calculator Program	###############################
 
@@ -664,17 +676,360 @@ Rest Parameter should be the last parameter of the function.
              
 ################################################### 39.Callbacks  ################################################### 
 
+Callback is a function passed as an argument to another function.
+Using callback is a modular programming technique because it ensures that a function is not going to run before the task is completed.
+Callback function helps us to develop Asynchronous Code i.e. when one function has to wait for another function.
+Callback function helps us to avoid errors and potential problems.
+Consider the scenario of Waiting for a File to Upload.
 
+	let response = addition(displayDOM,2, 5);
+
+	function addition(callback,...numbers) {
+		let total = 0;
+		for (let number of numbers) {
+			total += number;
+		}
+		callback(total);
+	}
+
+	function displayConsole(response) {
+		console.log(response);
+	}
+
+	function displayDOM(response){
+		document.getElementById("number").innerHTML=response;
+	}
+                    
+################################################### 40.forEach  ###################################################
+
+forEach() calls the Callback function one time for each element in an Array.
+forEach() accepts upto 3 arguments i.e. value,index and Array.
+
+	let names=["Srinivas","Nandini","Bhaumik","Aadvik"];
+
+	names.forEach((output) => {
+		output= output.toUpperCase();
+		console.log(output);
+	})
+	
+	names.forEach(converttoUpperCase);
+	
+	function converttoUpperCase(value,index,array){
+		names=value[0]+value.substring(1);
+		console.log("Names are ",names);
+	}
                        
-################################################### 40.forEach  ################################################### 
+################################################### 41.map   ###################################################   
+
+Map method provides an executable callback function once for each Array element and creates a new Array.
+
+	/** Square the  Numbers */
+	let numbers = [1,2,3,4,5,6,7,8,9,10];
+	let squares=numbers.map(number => {
+		return Math.pow(number,2);
+	})
+	console.log(...squares);
+
+	/**Cube the Numbers */
+	function cube(number){
+		let result= Math.pow(number,3);
+		console.log(result);
+	}
+	numbers.forEach(cube);
+                     
+################################################### 42.filter  ################################################### 
+
+filter() filters the data based on the condition and retturns the newly created data.
+
+	let filterResult=numbers.filter((number) =>{
+		return number>5;
+		})
+	console.log(...filterResult);
+
+################################################### 43.reduce  ################################################### 
+
+reduce() reduces an array to a single Element.
+
+	let sum=numbers.reduce((total,number) => (total+number))
+	console.log(sum);
                          
-################################################### 41.map   ###################################################                             
-################################################### 42.filter  ###################################################                           
-################################################### 43.reduce  ###################################################                           
-################################################### 44.Sort Array of Numbers  ###################################################            
-################################################### 45.Function Expression  	###################################################			
-################################################### 46.Arrow Function Expression  ###################################################         
-################################################### 47.Shuffled an Array  ###################################################                
-################################################### 48.Nested Functions  ###################################################                 
-################################################### 49.Closures   ###################################################                        
-################################################### 50.Maps  ###################################################                             
+################################################### 44.Sort Array of Numbers  ################################################### 
+
+	/** Sort an Array in descending order*/
+	numbers.sort((x,y) => (y-x)).forEach(display);
+
+	/** Sort an Array in ascending order*/
+	let sorted=numbers.sort((x,y) => (x-y));
+
+	/** To get the Highest Number in an Array */
+	let highest=sorted[sorted.length-1];
+	console.log(highest);
+        
+################################################### 45.Function Expression  	###################################################
+
+Function Expression is a function without any name and also called as Anonymous function.
+Function Expression helps us to avoid polluting the Global Scope with Function names where we write it and forgot.
+	
+	/** Function Expression */
+	var demo1 = function () {
+		console.log("Function Expression");
+	};
+	
+	var demo = () => (console.log("Function Expression - Optimized Code"));
+	
+Consider the scenario of increasing and decreasing the Number.
+
+	let count=0;
+	document.getElementById("increase").onclick=function(){
+		count+=1;
+		document.getElementById("counter").innerHTML=count;
+	}
+	document.getElementById("decrease").onclick=function(){
+		count-=1;
+		document.getElementById("counter").innerHTML=count;
+	}
+	
+################################################### 46.Arrow Function Expression  ################################################### 
+
+Arrow Function is a compact alternative to a traditional functional Expression.
+	
+	let greeting=function(message){
+		console.log("Welcome to ",message);
+	}
+	greeting("Javascript");
+	
+The above code can be converted to Arrow function.
+
+	let greeting=(message) => console.log("Welcome to ",message);
+	
+Note :
+------
+We don't need curly braces if the function has only one return statement.
+
+	let grades=[65,63,70,67];
+	grades.sort((x,y)=>(y-x));
+	console.log(...grades);
+     
+################################################### 47.Shuffled an Array  ###################################################
+
+
+
+
+
+               
+################################################### 48.Nested Functions  ###################################################  
+
+Nested Functions are functions inside other functions.
+Outer Functions have access to inner functions and Inner functions are hidden from outside functions.
+Nested Functions add the security to the data.
+
+	function login() {
+		console.log(`Login ${response}`);
+		displayUserName();
+		displayInbox();
+
+		function displayUserName() {
+			console.log(`Welcome ${userName}`);
+		}
+		function displayInbox() {
+			console.log(`You have ${messageCount} new messages`);
+		}
+	}
+      
+################################################### 49.Closures   ###################################################
+
+Closure is a function with preserved and private data.
+Closure gives us an access to outer function scope from an inner function.
+
+	document.getElementById("count").onclick=inBoxCount();
+
+	function inBoxCount(){
+		let count=10;
+
+		function alertUser(){
+			alert(`Your message count is ${count}`)
+			count=0;
+		}
+		return alertUser;
+	}
+                   
+################################################### 50.Maps  #######################################################
+
+Map is an Object that holds key value pairs of any data type.
+
+	let amount=0;
+
+	const store = new Map([
+		["TShirt",399],
+		["Pant",699],
+		["Short",499],
+		["Shirt",999]
+	]);
+
+	/** To add a pair to Map */
+	store.set("Bedsheet",899);
+
+	/** To get the particular value from the Map */
+	amount=store.get("Shirt");
+	console.log(`Shopping car Amount is ${amount}`);
+
+	/** Iterating the Map */
+	store.forEach((key,value) =>{
+	console.log(`${value}  prices is ${key}`);
+	})
+
+	/** To delete the pair from the Map */
+	store.delete("Bedsheet")
+
+	/** To check whether the key is present or not */
+	let result=store.has("Shirt");
+	console.log(result);
+
+	/** Iterating the Map */
+	store.forEach((key,value) =>{
+		console.log(`${value}  prices is ${key}`);
+		})
+
+	/** To check the size of the Map */
+	console.log(`Map Size is ${store.size}`);
+	
+################################################### 51.Objects  #########################################################
+
+An Object is a group of properties and methods.
+Property defines what an Object has and Method defines what an Object can do.
+We use Object name to access properties and methods.
+
+	const car ={
+    model:"Swift",
+    color:"White",
+    year:2022
+	};
+
+	console.log(car.model);
+	
+To create a function in  the Object
+
+	const car ={
+    model:"Swift",
+    color:"White",
+    year:2022,
+
+    drive:function(){
+		console.log(`Driving the ${this.model} car`);
+		}
+	};
+	
+	car.drive();
+	
+Note :
+------
+We can create multiple objects each with different properties and methods.
+ 
+################################################### 52.this keyword   ###################################################
+
+This reference to a particular object but it depends on the immideate context.
+If we want to access the property of the class we use this keyword.
+
+	drive:function(){
+		console.log(`Driving the ${this.model} car`);
+	}
+	
+Here this refers to the object that is currently working with.
+	const car ={
+		model:"Swift",
+		color:"White",
+		year:2022,
+
+		drive:function(){
+			console.log(`Driving the ${this.model} car`);
+			}
+		};
+
+From the above car Object the immideate context is car.
+We can also replace this with car.
+
+Note :
+------
+If we are using this keyword outside the Object then it will refer to the window Object.
+We can also change the properties by using this keyword.
+  	
+################################################### 53.Classes   ########################################################
+
+A class is a blue print for creating an Object.
+Within a class we can define properties and methods.
+A class can contain constructor to define unique properties.
+
+	class Player{
+    score=0;
+		pause(){
+			console.log("You paused the Game");
+		}
+		exit(){
+			console.log("You exited the Game");
+		}
+	}
+	const palyer1=new Player();
+	palyer1.score+=1;
+	console.log(palyer1.score)
+	palyer1.pause();
+	palyer1.exit();
+	
+Note :
+------
+We can create as many Objects we want.
+   
+################################################### 54.Constructor  #####################################################
+
+Constructor is a special method of a class which accepts arguments and assign it to the properties.
+
+	class Student{
+		constructor(name,age,score){
+			this.name=name;
+			this.age=age;
+			this.score=score;
+		}
+		
+		study(){
+			console.log(`${this.name} is studying`)
+		}
+	}
+
+	const studennt1=new Student('Bhaumik',6,75);
+	console.log(studennt1);
+	studennt1.study();
+      
+################################################### 55.Static  ##########################################################
+
+Static belongs to the class and it does not belong to the Object.
+Static properties are useful for cache, fixed configuration etc.
+Methods are useful for Utility functions.
+
+	class Student{
+		static count=0;
+		constructor(name,age,score){
+			this.name=name;
+			this.age=age;
+			this.score=score;
+			Student.count+=1;
+		}
+		study(){
+			console.log(`${this.name} is studying`)
+		}
+	}
+	
+	const studennt1=new Student('Bhaumik',6,75);
+	console.log(`Number of Students are ${Student.count}`);
+                              
+################################################### 56.Inheritance   ####################################################
+
+       
+################################################### 57.Super Keyword   ##################################################
+
+     
+################################################### 58.Getters and Setters ##############################################
+
+ 
+################################################### 59.Objects as Arguments  ############################################
+
+
+################################################### 60.Array of Objects #################################################    
