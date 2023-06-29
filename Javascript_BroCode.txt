@@ -27,19 +27,15 @@
 27.Ternary Operator                                 [20-JUN-2023]  (Done)
 28.var vs let                                       [23-JUN-2023]  (Done)
 29.Template literals                                [23-JUN-2023]  ()
-
-
 30.Format Currency                                  [18-JUN-2023]  ()
 31.Number guessing game                             [19-JUN-2023]  ()
 32.Temperature Conversion Program                   [19-JUN-2023]  ()
-
 33.Arrays                                           [23-JUN-2023]  (Done)
 34.Loop through an Array                            [23-JUN-2023]  (Done)
 35.Sort an Array                                    [23-JUN-2023]  (Done)
 36.Two Dimensional Array                            [23-JUN-2023]  ()
 37.Spread Operator                                  [23-JUN-2023]  (Done)
 38.Rest Parameters                                  [23-JUN-2023]  (Done)
-
 39.Callbacks                                        [24-JUN-2023]  (Done)
 40.forEach                                          [24-JUN-2023]  (Done)
 41.map                                              [24-JUN-2023]  (Done)
@@ -52,46 +48,44 @@
 48.Nested Functions                                 [24-JUN-2023]  (Done)
 49.Closures                                         [24-JUN-2023]  (Done)
 50.Maps                                             [24-JUN-2023]  (Done)
-
 51.Objects                                          [27-JUN-2023]  (Done)
 52.this keyword                                     [27-JUN-2023]  (Done)
 53.Classes                                          [27-JUN-2023]  (Done)
 54.Constructor                                      [27-JUN-2023]  (Done)
 55.Static                                           [27-JUN-2023]  (Done)
+56.Inheritance                                      [28-JUN-2023]  (Done)
+57.Super Keyword                                    [28-JUN-2023]  (Done)
+58.Getters and Setters                              [28-JUN-2023]  (Done)
+59.Objects as Arguments                             [28-JUN-2023]  (Done)
+60.Array of Objects                                 [28-JUN-2023]  (Done)
 
-56.Inheritance                                      [28-JUN-2023]  ()
-57.Super Keyword                                    [28-JUN-2023]  ()
-58.Getters and Setters                              [28-JUN-2023]  ()
-59.Objects as Arguments                             [28-JUN-2023]  ()
-60.Array of Objects                                 [28-JUN-2023]  ()
+61.Anonymous Objects                                [28-JUN-2023]  (Done)
+62.Error Handling                                   [29-JUN-2023]  ()
+63.setTimeout                                       [29-JUN-2023]  ()
+64.setInterval                                      [29-JUN-2023]  ()
+65.Date Objects                                     [29-JUN-2023]  ()
+66.Clock Program                                    [29-JUN-2023]  ()
+67.Asynchronous                                     [30-JUN-2023]  ()
+68.Console.time                                     [30-JUN-2023]  ()
+69.Promises                                         [30-JUN-2023]  ()
+70.Async                                            [30-JUN-2023]  ()
 
-61.Anonymous Objects                                [28-JUN-2023]  ()
-62.Error Handling                                   [28-JUN-2023]  ()
-63.setTimeout                                       [28-JUN-2023]  ()
-64.setInterval                                      [28-JUN-2023]  ()
-65.Date Objects                                     [28-JUN-2023]  ()
-66.Clock Program                                    [28-JUN-2023]  ()
+71.Wait                                             [01-JUL-2023]  ()
+72.ES6 Modules                                      [01-JUL-2023]  ()
+73.DOM Introduction                                 [01-JUL-2023]  ()
+74.Element Selectors                                [01-JUL-2023]  ()
+75.DOM Traversal                                    [01-JUL-2023]  ()
 
-67.Asynchronous                                     [29-JUN-2023]  ()
-68.Console.time                                     [29-JUN-2023]  ()
-69.Promises                                         [29-JUN-2023]  ()
-70.Async                                            [29-JUN-2023]  ()
-71.Wait                                             [29-JUN-2023]  ()
-72.ES6 Modules                                      [29-JUN-2023]  ()
-73.DOM Introduction                                 [29-JUN-2023]  ()
-74.Element Selectors                                [29-JUN-2023]  ()
-75.DOM Traversal                                    [29-JUN-2023]  ()
-
-76.Add Change HTML Elements                         [30-JUN-2023]  ()
-77.Add Change CSS Properties                        [30-JUN-2023]  ()
-78.Events                                           [30-JUN-2023]  ()
-79.addEventListener                                 [30-JUN-2023]  ()
-80.Show Hide HTML Element                           [30-JUN-2023]  ()
-81.Detect Key Press                                 [30-JUN-2023]  ()
-82.Animations                                       [30-JUN-2023]  ()
-83.Canvas API                                       [30-JUN-2023]  ()
-84.Window                                           [30-JUN-2023]  ()
-85.Cookies                                          [30-JUN-2023]  ()
+76.Add Change HTML Elements                         [01-JUL-2023]  ()
+77.Add Change CSS Properties                        [01-JUL-2023]  ()
+78.Events                                           [01-JUL-2023]  ()
+79.addEventListener                                 [01-JUL-2023]  ()
+80.Show Hide HTML Element                           [01-JUL-2023]  ()
+81.Detect Key Press                                 [01-JUL-2023]  ()
+82.Animations                                       [01-JUL-2023]  ()
+83.Canvas API                                       [01-JUL-2023]  ()
+84.Window                                           [01-JUL-2023]  ()
+85.Cookies                                          [01-JUL-2023]  ()
 
 
 ################################################### 1.Introduction  ###################################################
@@ -1022,14 +1016,159 @@ Methods are useful for Utility functions.
                               
 ################################################### 56.Inheritance   ####################################################
 
-       
+Inheritance is nothing but a Child class can inherit all the method and properties from the Parent Class.
+If there is a common functionality which is repeating across all the classes, we can write it in one class and use it in Sub class by extending the Parent class.
+
+	
+	class Animal {
+		alive = true;
+		name = "Rabbit";
+		eat() {
+			console.log(`${this.name} is eating`);
+		}
+		sleep() {
+			console.log(`${this.name} is Sleeping`);
+		}
+	}
+
+
+	class Rabbit extends Animal {
+		name = "Rabbit";
+		run() {
+			console.log(`${this.name} is running`);
+		}
+	}
+
+	class Fish extends Animal {
+		name = "Fish";
+		swim() {
+			console.log(`${this.name} is Swimming`);
+		}
+	}
+
+	const rabit = new Rabbit();
+	rabit.eat();
+	rabit.sleep();
+	rabit.run();
+
+	const fish = new Fish();
+	fish.eat();
+	fish.sleep();
+	fish.swim();
+     
 ################################################### 57.Super Keyword   ##################################################
 
-     
+Super keyword when using inheritance refers to the Parent class.
+It is commonly used to invoke the constructor of the Parent class.
+When we have a constructor in the Chld class which is extending Parent class,it will invoke the Parent class constructor to promote code reusability.
+
+	class Animal{
+
+	}
+
+	class Fish extends Animal {
+		constructor(name,age,speed){
+			super();
+			this.name=name;
+			this.age=age;
+			this.speed=speed;
+		}
+	}
+
+	const fish=new Fish("Apollo",2,50);
+	console.log(fish.name);
+	console.log(fish.age);
+	console.log(fish.speed);
+   
 ################################################### 58.Getters and Setters ##############################################
 
- 
+To create a getter we use get keyword.
+get binds an Object property to a function when that property is accessed.
+While getting the property we can add some additional logic to the Property.
+
+Note :
+Here property name and getter name cannot be same.
+To avoid this we use _ along with property name.
+
+	class Car {
+    _power = 0;
+    constructor(power) {
+        this._power = power;
+    }
+    get power() {
+        return this._power;
+    }
+    set power(value) {
+        if (value > 100) {
+            value = 100;
+            this._power = value;
+        }
+        else {
+            this._power = value;
+        }
+    }
+	}
+
+	let car = new Car(80);
+	car.power = 500;
+	console.log(car.power);
+
 ################################################### 59.Objects as Arguments  ############################################
 
+Passing Object as an argument to function will be helpful in displaying all the information about the Object.
+Sometimes we need to change the properties of the Object etc.
 
-################################################### 60.Array of Objects #################################################    
+	function displayAnimal(fish){
+		console.log(fish.name);
+		console.log(fish.age);
+		console.log(fish.speed);
+	}
+	displayAnimal(fish);
+
+################################################### 60.Array of Objects #################################################
+
+To create an Array of Objects we use []
+
+		let animals=[fish,rabit];
+		
+To iterate over an Array of Objects we use for up loop.
+
+	let animals=[fish,rabit];
+	displayAnimal(animals);
+
+	function displayAnimal(animals){
+		for(let animal of animals){
+			console.log(`Animal Name is ${animal.name}`);
+			console.log(`Animal Name is ${animal.age}`);
+			console.log(`Speed is ${animal.speed}`);
+		}
+	}
+
+################################################### 61.Anonymous Objects ###################################################
+
+Anonymous Objects are Objects without any name.
+Using Anonymous Object requires less syntax and it does not require unique names.
+The drawback is it is not directly referenced.
+
+	let mamals=[new Fish("Apollo",2,50),new Rabit("White rabit",10,100)];
+	mamals.forEach((mamal) => {
+		console.log(mamal.name);
+		console.log(mamal.age);
+		console.log(mamal.speed);
+	})
+
+################################################### 62.Error Handling ######################################################
+
+
+ 
+   
+################################################### 63.setTimeout  #########################################################
+
+       
+################################################### 64.setInterval #########################################################
+
+      
+################################################### 65.Date Objects ########################################################
+
+     
+################################################### 66.Clock Program #######################################################     

@@ -132,6 +132,10 @@ If we want the application to run as background process i.e in detached mode we 
 
 	docker run -d -p 8090:8080 springboot-docker:1.0
 	
+To check whether the Application is running or not
+
+	http://localhost:8090/docker
+	
 To push the Docker image into the Repository we need to retag the image using the username.
 
 	docker tag springboot-docker:1.0 srinivassankoji/springboot-docker:1.0
@@ -148,7 +152,7 @@ Note: To customize the name of the jar file we use the command <finalName> in po
 	
 Create the Repository in DockerHub
 
-	srinivassankoji/javadevelopera
+	srinivassankoji/javadeveloper
 
 Then save the image to the DockerHub.
 To push the Docker image into the Repository we need to tag the image using the commad 
