@@ -25,11 +25,10 @@
 25.Scaling Kafka Producer				(17 Minutes)     (11-DEC-2019)
 26.Stream Processing Application		(9 Minutes )     (11-DEC-2019)
 
-3.Introduction :
-****************
+***************************************************** 3.Introduction  **************************************************
 
-4.Core Concepts	 :
-******************
+
+***************************************************** 4.Core Concepts **************************************************
 
 Producer :
 ----------
@@ -151,8 +150,8 @@ Maximum Number of Consumers in group is  Total Number of Partitions in the Topic
 Kafka Does not Allow More Than 2 Consumers to Read the Data From the Same Partition Simultaneously.
 This Restriction is Necessary to Avoid Double Reading of Records.
 
-5.Installing Kafka In Windows :
-*******************************
+***************************************************** 5.Installing Kafka In Windows *****************************************************
+
 PreRequisite are 
 JDK 1.8
 Single Node Kafka Cluster

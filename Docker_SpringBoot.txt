@@ -1,4 +1,4 @@
-1.Docker File Build Commands					  									(stackify)					[12-MAR-2021]  (Done)
+0.Commands to Build the Docker File					  								(stackify)					[12-MAR-2021]  (Done)
 2.Docker File Build Commands														(odewahn)					[12-MAR-2021]  (Done)
 2.DockerFile To Build Your Own Docker Images	  									(LearnITGuide Tutorials)    [12-MAR-2021]  ()
 3.Build Own Private Docker Hub Registry on Linux  									(LearnITGuide Tutorials)    [12-MAR-2021]  ()
@@ -16,7 +16,7 @@
 
 
 
-*********************************************************  0.Command to Build the Docker File   ********************************************************* 
+*********************************************************  0.Commands to Build the Docker File  ********************************************************* 
 
 FROM  openjdk:8
 EXPOSE 9102
@@ -178,10 +178,14 @@ Then run the command
 
 ********************************************************* 10.Docker Spring Boot MySql(Techno Town Techie) ************************************************************
 
+Step 1 :
+--------
 Pull the MySql image from the Docker Hub.
 
-	docker pull MySql:5.7
-		
+	docker pull mysql
+	
+Step 2 :
+--------	
 Create the Controller,Entity and JpaRepository.
 Add the Database driver details in the properties file.	
 
@@ -200,8 +204,15 @@ spring:
         hibernate:
             ddl-auto: create
 
-Here localhost should be the My Sql Container Name.
+Here localhost should be the MySql Container Name.
 Then Craete the Docker file for the Spring Boot Application.
+
+Dockerfile :
+------------
+FROM openjdk:latest
+COPY ./target/springboot-mysql-docker.jar springboot-mysql-docker.jar
+WORKDIR /media/bhaumik/PERSONAL/DockerImages
+ENTRYPOINT [ "java","-jar","/springboot-mysql-docker.jar" ]
 
 Note :
 Ignore the Junit Test cases by adding the <exclusion> in the pom.xml.
@@ -217,34 +228,32 @@ Ignore the Junit Test cases by adding the <exclusion> in the pom.xml.
 		    </configuration>
 	</plugin>
 	
-
+Step 4 :
+--------
 Build the Docker image for the Spring Boot Application.
 
-	docker build -t springboot-mysql:1.0 .
+	docker build -t springboot-mysql-docker .
 
 
 First Approach (Docker Networking) :
 ------------------------------------
-	
 Now create the MySql Container and then attach the MySql Container to the Springboot-mySql Container.
-
-Note :
-Without attaching MySql Container to the springboot-mysql Container is it possible to provie communication between the Containers.
+Without attaching MySql Container to the springboot-mysql-docker Container is it possible to provie communication between the Containers.
 Answer is yes because of Docker Networking.
 Docker Networking allows us to attach as many Containers as you like.
 Docker takes care of Networking aspects.
 
-Create the Network for the communication between MySql and springboot-mysql Container.
+Create the Network for the communication between MySql and springboot-mysql-docker Container.
 
 	docker network create user-mysql
 	
 Run the Container for mysql by attaching to the user-mysql network 
 
-	docker run --network user-mysql --name mysql-container -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql:latest 
+	docker run --network user-mysql --name mysql-container -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql 
 	
 Run the springboot-mysql Container by adding it to the user-mysql network
 
-	docker run --network user-mysql --name springboot-mysql -p 8601:8600 -d springboot-mysql:1.0
+	docker run --network user-mysql --name springboot-mysql-docker -p 8601:8600 -d springboot-mysql-docker
 	
 Issues:
 
@@ -254,13 +263,13 @@ Here we will get the "public key retrieval is not allowed " while connecting to 
 
 To check the logs 
 
-	docker logs -f springboot-mysql
+	docker logs -f springboot-mysql-docker
 	
 To show the data in the MySql Container
 
 	docker exec -t -i [ContainerId] /bin/bash
 	
-To log in to te mysql 
+To log in to the mysql 
 
 	>mysql -u testuser -p
 	
@@ -291,11 +300,11 @@ then build the springboot-mysql application.
 
 Build the My Sql Container with the environment parameters.
 
-	docker run --name mysql-container-second -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql:latest
+	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql
 
 Now create the Container for the Spring Boot Application by manually linking to the My Sql Container(Change the Port No)
 
-	docker run -p 8602:8600 --name springboot-mysql-second --link  mysql-container-second -d springboot-mysql:2.0
+	docker run -p 8602:8600 --name springboot-mysql-docker --link  mysql-container -d springboot-mysql
 	
 Hit the briwser with the URL 
 
@@ -319,8 +328,8 @@ services :
     - MYSQL_USER=testuser 
     - MYSQL_PASSWORD=testuser@123
     
-  springboot-mysql :
-     image : springboot-mysql:1.0
+  springboot-mysql-docker :
+     image : springboot-mysql-docker
      ports :
       - 8603:8600
      build:
@@ -331,4 +340,14 @@ services :
      
 Note :
 Make sure the images are already present and using docker-compse we create the Containers from those images.
+
+Testing the Image functionality from Docker Hub :
+-------------------------------------------------
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=admin123 -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testuser@123 -d mysql
+
+Then run the image which is present in Docker Hub.
+
+	docker run --name springboot-mysql-docker -p 8601:8600 -d srinivassankoji/springboot-mysql-docker:1.0
+
+
 

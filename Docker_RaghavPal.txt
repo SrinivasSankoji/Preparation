@@ -23,27 +23,27 @@
 
 ******************************************************   4.Docker Installation :  ************************************************************************
 
-If We Install the Docker Tool Box on Windows Machine,Installer Automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
+If we install the Docker Tool Box on Windows Machine,installer automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
 Here Docker will be running  inside the Virtual Machine and we interact with Docker Server using Docker Client.
-To Install Docker we ensure that we have 64 Bit OS and Windows 7 or Higher.
+To install Docker we ensure that we have 64 Bit OS and Windows 7 or Higher.
 
 https://docs.docker.com/v17.09/docker-for-windows/install/ -->  Select Install Docker For Windows -->
-Get Docker For Windows  --> File Will be Downloaded --> Run the Installer.
+Get Docker for windows  --> File will be downloaded --> run the installer.
 
 ******************************************************  5.Docker Basic Commands :  ***************************************************************************
 
 docker version        		:  To Check the Docker Client,Docker Server(Docker Engine) and so on
 docker -v :           		:  To Check the Docker Version
 docker --version      		:  To Check the Docker Version
-docker info           		:  To get Detailed Information about the Docker like Number of Containers Running,Paused,Stopped etc
-docker --help        		:  To Get Information on any other Commands Example : docker images --help
+docker info           		:  To get detailed information about the Docker like Number of Containers Running,Paused,Stopped etc
+docker --help        		:  To Get information on any other Commands Example : docker images --help
 docker login          		:  To Login to the Docker Hub
 docker logout         		:  To Logout from the Docker Hub
 
 docker images         		: To see the List of Images
 docker pull ubuntu   		: To pull the image form Docker Hub (Sign In to Docker Hub --> Explore --> Search for the Image (Example ubuntu))
 docker images -q      		: To get the Docker Image Id
-docker rmi [imageId]    	: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
+docker rmi [ImageId]    	: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
 
 docker ps             		: To See the List of Active Containers
 docker ps -a 		 		: To See the List of Containers i.e active,closed etc.
@@ -81,12 +81,12 @@ These are the images that are not tagged with any container or running container
 docker images         					: To see the List of Images	
 docker images -q      					: To get the Docker Image Id
 docker images -f "dangling=false"		: To get the Images that are not tagged with any container or running container.
-docker images -f "dangling=false" -q	: To get the Image Id that are not tagged with any container or running container.
+docker images -f "dangling=false" -q	: To get the ImageId that are not tagged with any container or running container.
 
-docker run ubuntu						: To start the container from the image
-docker run --name MyUbuntu -it ubuntu bash : To start the container from the image in an intercative mode and tagging the name to the container
-docker inspect 							: To inspect the Docker image
-docker rmi imageId    					: To remove the Docker image  based on Image Id before that check there is no Container running for that Image.
+docker run ubuntu								: To start the container from the image
+docker run --name MyUbuntu -it ubuntu bash 		: To start the container from the image in an intercative mode and tagging the name to the container
+docker inspect 									: To inspect the Docker image
+docker rmi ImageId    							: To remove the Docker image based on Image Id before that check there is no Container running for that Image.
 
 ******************************************************  7.Docker Containers :  ************************************************************************************
 
@@ -97,7 +97,7 @@ Containers run on the Machine sharing the same OS Kernel.
 Docker Containers are the running instances of Docker Images.
 In the Docker Architecture we have a Docker Client,Docker Host(Docker Server) and the Docker Registry.
 Dokcer Client is the place where we run the Docker Commands.
-Docker Host can be available at our Local System and it can contain Docker Containers and Docker Images.
+Docker Host can be available at our Local System and it contain Dockers Containers and Docker Images.
 
 When we run the command 
 
@@ -113,7 +113,8 @@ If it is not available then it pulls the image from the Docker Registry and crea
 
 Note : Docker build can be used to create the Docker image using Docker file.
 
-docker run hello-world   		: Checks the image in the Docker Server and if not found get it from the Docker Hub and creates the Docker Container.
+docker build .					: To create the Docker image using Docker file.
+docker run hello-world   		: Checks the image in the Docker Server and if not found get it from the Docker Hub and runs the Docker Container.
 docker ps -a 		 	 		: To See the List of Containers i.e active,closed etc.
 docker pause   [ContainerID] 	: To pause the Container
 docker unpause [ContainerID] 	: To unpause the Container
@@ -162,6 +163,7 @@ If we want to display something on the commad line during Container creation
 	CMD ["echo","First Docker Image"]
 
 Note :
+------
 RUN gets executed during the build of an image where as CMD gets executed during the container creation.
 
 To see the content of DockerFile in CommandPrompt
@@ -253,11 +255,9 @@ To expose the web server
    
 Expose the port 80 of the nginx web server to the 9090 port of Application Service.
  
-version : '2'
-
+version : '3.3'
 services :
-
-  web:
+  web: 
     image: nginx
     ports:
         - "9090:80"
@@ -271,8 +271,7 @@ To scale the services
 
 	docker-compose up -d --scale database=4
 
-
-******************************************************   11.Docker Volume :  **************************************************************************************
+****************************************************** 11.Docker Volume **************************************************************
 
 Whenever we create a Container there has to be some place where the data inside the Container will be stored.
 If we are not providing any explicit data store then it gets stored within the Container. 

@@ -10,7 +10,7 @@
 
 ********************************************************* 1.Docker Networking (IntelliQ IT Trainings) ***************************************************************
 
-Docker has the following type of Networks 
+Docker has the following 5 type of Networks 
 
 1.Bridge
 2.Host or Host Only
@@ -58,7 +58,7 @@ Run the BusyBox Container C1 and C2 in the Bridge Network Bridge1 and Container 
 	docker run --name C3 -it --network Bridge2 busybox
 
 Note 1 :
-To come out of the container without exiting and stopping it we use te command
+To come out of the container without exiting and stopping it we use the command
 
 	CTRL+P CTRL+Q
 	
@@ -96,7 +96,7 @@ We can also check that the Network is attached to how many Conatiners by using t
 	docker network inspect Bridge2
 	
 Note :
-Default Network used by Docker when Multiple Containers running on the same Machine is Bridge Network. 
+Default Network used by Docker when multiple Containers running on the same Machine is Bridge Network. 
 
 ******************************************************************* 2.Docker Networking(aquasec)  *********************************************************************
 
@@ -108,9 +108,9 @@ Building a Web Application with a cluster of databases,application,load balancer
 
 Docker Default Networking :
 ---------------------------
-When Docker is installed,default Bridge network named docker0 is created.
+When Docker is installed,default Bridge network named bridge is created.
 Newly added Container is automatically attached to this network unless custom network is specified.
-Besides docker0 two other networks got created automatically by Docker i.e host and none
+Besides bridge two other networks got created automatically by Docker i.e host and none
 
 Host :
 ------ 
@@ -145,7 +145,7 @@ port on host system like 8500 needs to be mapped to port 80 on the Container for
 
 To create a Bridge network named Bridge3 pass the argument bridge to the -d parameter.
 
-	docker network create -d bridge Bridge3
+	docker network create --driver bridge Bridge3
 	
 In case of Bridge Network all the Containers get an Internal IP Address and these Containers can access each other using the Internal IP.
 Bridge Networks are usually used when our Application runs in Stand alone Containers that needs to Communicate.
@@ -159,11 +159,11 @@ Macvlan :
 ---------
 After Docker Swarm
 
-Container discovery on docker0 network (DNS resolution) :
+Container discovery on bridge network (DNS resolution) :
 ---------------------------------------------------------
 Different network provides different communication patterns between the containers depending on the network type whether it is default docker network or user defined network.
 
-Docker will assign name and hostName to each Container created on the default docker0 network unless different name/hostName is specified by the user.
+Docker will assign name and hostName to each Container created on the default bridge network unless different name/hostName is specified by the user.
 Docker then keeps mapping of each name/hostName against the Container's IP Address.
 This mapping allows pinging each Container by name as opposed to IP Address.
 
@@ -199,7 +199,7 @@ Then run the Container using the run command ie
 
 	docker run 
 
-and the Container to the network using the command 
+and add the Container to the network using the command 
  
 	docker network connect Bridge1 C1
 
@@ -207,7 +207,7 @@ How IPv6 Works on Docker :
 --------------------------
 By default Docker configures the Container networks for IPv4 only.
 To enable the IPv4/IPv6 dual stack  --ipv6 flag needs to be applied when starting the Docker Daemon.
-Then the docker0 bridge will get an IPv6 link -loacal address.
+Then the default Docker bridge will get an IPv6 link -loacal address.
 
 To assign globally IPv6 address to all the Containers assign the flag  --fixed-cidr-v6 followed by IPv6 Address.
 
@@ -289,14 +289,13 @@ This shows that Container with the same network  namespace can communicate with 
 
 *************************************** 7.Deploying Multiple Spring Boot Microservices using Docker Networking (javainuse)  *****************************************
 
-Create two Microservice named 
+Create two Microservices
 
 1.employee-producer  
 2.employee-consumer 
 
 Dockerfile and Docker build commands can be used to create a Single service into the Container.
-If the requirement is in such a way that we need to deploy multiple microservices into the multiple Docker Container
-and each Container has to communicate with each other.
+Consider the scenario where we need to deploy multiple microservices into the multiple Containers and each Container has to communicate with other.
 Here employee-producer will be exposing Rest API which will be consumed by the employee-consumer.
 
 Docker has designed in such a way that Docker Container should have only Single running Service.
@@ -308,10 +307,10 @@ We will be using Docker networking to allow multiple Containers to communicate w
 Here we need to create our own network and add the Containers to the network.
 
 	docker network create producer-consumer
-
-	docker run --network producer-consumer --name producer -d -p 8501:8500 employee-consumer
-
-	docker run --network producer-consumer --name consumer -d -p 8601:8600 employee-producer
+	
+	docker run --network producer-consumer --name consumer -d -p 8501:8500 employee-consumer
+	
+	docker run --network producer-consumer --name producer -d -p 8601:8600 employee-producer
 
 To check the logs of the Container
 
@@ -323,9 +322,10 @@ To run the Consumer Application
 	
 	http://localhost:8501/consumer and in the Consumer Application,to call the producer Application 
 	
-	String baseUrl = "http://producer:8600/employee";  (Pass the Producer Image Name)
+	String baseUrl = "http://producer:8600/employee";  (Pass the Producer Image Name and also the port we configured in the Application)
 
 To run the producer Application
 
 	http://localhost:8601/employee
 	
+*************************************** 8.Docker Networking (Developers Thought) ***************************************
