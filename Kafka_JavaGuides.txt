@@ -1,0 +1,75 @@
+1.Kafka Overview													[02-JUL-2023]  ()
+2.Kafka Core Concepts                                               [02-JUL-2023]  ()
+3.Install and Setup Kafka on Mac                                    [02-JUL-2023]  ()
+4.Install and Setup Kafka on Windows								[02-JUL-2023]  (Done)
+5.Create Springboot Project                                         [02-JUL-2023]  (Done)
+6.Configure Kafka Producer and Consumer                             [02-JUL-2023]  ()
+7.Create Kafka Topic                                                [02-JUL-2023]  ()
+8.Create Kafka Producer                                             [02-JUL-2023]  ()
+9.Create Rest API to Send Message                                   [02-JUL-2023]  ()
+10.Create Kafka Consumer                                            [02-JUL-2023]  ()
+11.Configure Kafka Producer and Consumer for Json Messages          [02-JUL-2023]  ()
+12.Create Kafka Prodcuer to produce Json Messages                   [02-JUL-2023]  ()
+13.Create Rest API to send Json Object                              [02-JUL-2023]  ()
+14.Create Kafka Consumer to consume Json Messages                   [02-JUL-2023]  ()
+15.Kafka Real world Project                                         [02-JUL-2023]  ()
+
+
+
+
+***************************************************** 4.Install and Setup Kafka on Windows *****************************************************
+
+Step 1: Download the Kafka for Windows :
+----------------------------------------
+Go to the URL 
+
+	https://kafka.apache.org/downloads
+	
+Navigate to Get Started --> Quick Start and follow the Steps.
+Download the latest Kafka Release.
+
+	kafka_2.13-3.5.0
+	
+Here bin folder contains the bat files related to windows.
+
+Step 2: Start the Kafka Environment :
+-------------------------------------
+Before starting the Kafka Server we need to start the Zookeeper Server.
+
+	F:\kafka_2.13-3.5.0>.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+	
+The above command will start the zookeeper service.
+To verify whether the zookeeper service is running or not we can check with the port number 2181.
+
+Step 3: Start the Kafka Server :
+--------------------------------
+	
+	F:\kafka_2.13-3.5.0>.\bin\windows\kafka-server-start.bat .\config\server.properties
+	
+The above command will start the Kafka service.
+To verify whether the Kafka service is running or not we can check with the port number 9092.
+
+Step 4 : Create a Topic to store Events :
+-----------------------------------------
+To create a Kafka Topic in the Kafka Server
+
+	F:\kafka_2.13-3.5.0>.\bin\windows\kafka-topics.bat --create --topic producer-consumer --bootstrap-server localhost:9092
+	
+The above command will create the producer-consumer topic.
+
+Step 5 : Produce the Events :
+-----------------------------
+To produce the Events we use Kafka Console Producer.
+
+	F:\kafka_2.13-3.5.0>.\bin\windows\kafka-console-producer.bat --topic producer-consumer --bootstrap-server localhost:9092
+	
+Step 6 : Consume the Events :
+-----------------------------
+To consume the Events we use Kafka Console Consumer.
+
+	F:\kafka_2.13-3.5.0>.\bin\windows\kafka-console-consumer.bat --topic producer-consumer --from-beginning --bootstrap-server localhost:9092
+	
+
+***************************************************** 5.Create Springboot Project  *****************************************************
+
+***************************************************** 6.Configure Kafka Producer and Consumer  *****************************************************
