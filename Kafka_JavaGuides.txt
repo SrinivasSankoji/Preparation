@@ -3,18 +3,16 @@
 3.Install and Setup Kafka on Mac                                    [02-JUL-2023]  ()
 4.Install and Setup Kafka on Windows								[02-JUL-2023]  (Done)
 5.Create Springboot Project                                         [02-JUL-2023]  (Done)
-6.Configure Kafka Producer and Consumer                             [02-JUL-2023]  ()
-7.Create Kafka Topic                                                [02-JUL-2023]  ()
-8.Create Kafka Producer                                             [02-JUL-2023]  ()
-9.Create Rest API to Send Message                                   [02-JUL-2023]  ()
-10.Create Kafka Consumer                                            [02-JUL-2023]  ()
-11.Configure Kafka Producer and Consumer for Json Messages          [02-JUL-2023]  ()
-12.Create Kafka Prodcuer to produce Json Messages                   [02-JUL-2023]  ()
-13.Create Rest API to send Json Object                              [02-JUL-2023]  ()
-14.Create Kafka Consumer to consume Json Messages                   [02-JUL-2023]  ()
+6.Configure Kafka Producer and Consumer                             [02-JUL-2023]  (Done)
+7.Create Kafka Topic                                                [02-JUL-2023]  (Done)
+8.Create Kafka Producer                                             [02-JUL-2023]  (Done)
+9.Create Rest API to Send Message                                   [02-JUL-2023]  (Done)
+10.Create Kafka Consumer                                            [02-JUL-2023]  (Done)
+11.Configure Kafka Producer and Consumer for Json Messages          [02-JUL-2023]  (Done)
+12.Create Kafka Prodcuer to produce Json Messages                   [02-JUL-2023]  (Done)
+13.Create Rest API to send Json Object                              [02-JUL-2023]  (Done)
+14.Create Kafka Consumer to consume Json Messages                   [02-JUL-2023]  (Done)
 15.Kafka Real world Project                                         [02-JUL-2023]  ()
-
-
 
 
 ***************************************************** 4.Install and Setup Kafka on Windows *****************************************************
@@ -70,6 +68,130 @@ To consume the Events we use Kafka Console Consumer.
 	F:\kafka_2.13-3.5.0>.\bin\windows\kafka-console-consumer.bat --topic producer-consumer --from-beginning --bootstrap-server localhost:9092
 	
 
-***************************************************** 5.Create Springboot Project  *****************************************************
+***************************************************** 5.Create Springboot Project  ****************************************************************
 
-***************************************************** 6.Configure Kafka Producer and Consumer  *****************************************************
+***************************************************** 6.Configure Kafka Producer and Consumer  ****************************************************
+
+Without Springboot we need to configure lot of configuration for Kafka Producer and Consumer.
+To configure Kafka Producer and Consumer in our Springboot Application we need to add Kafka Broker Address and Producer and Consumer details.
+
+## Consumer Configuration
+spring.kafka.consumer.bootstrap-servers=localhost:9092
+spring.kafka.consumer.group-id=employee
+spring.kafka.consumer.auto-offset-reset=earliest
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+
+##Producer Configuration
+spring.kafka.producer.bootstrap-servers=localhost:9092
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.StringSerializer
+
+***************************************************** 7.Create Kafka Topic  ***********************************************************************
+
+To create a Topic in Spring Boot Application
+
+	@Configuration
+	public class KafkaConfiguration {
+
+		@Bean
+		public NewTopic employee() {
+			return TopicBuilder.name("employee").build();
+		}
+	}
+	
+***************************************************** 8.Create Kafka Producer  ********************************************************************
+
+In order to send a message to the Topic we use Spring provided KafkaTemplate.
+Springboot provides aauto configuration for KafkaTemplate.
+
+	@Service
+	public class KafkaProducer {
+
+		private static final Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
+
+		private KafkaTemplate<String, String> kafkaTemplate;
+
+		public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+			super();
+			this.kafkaTemplate = kafkaTemplate;
+		}
+
+		public void sendMessage(String message) {
+			logger.info(String.format("Message Sent %s", message));
+			kafkaTemplate.send("employee", "Message from Springboot");
+		}
+	}
+                               
+***************************************************** 9.Create Rest API to Send Message ***********************************************************
+
+@RestController
+@RequestMapping("/api/v1/kafka")
+public class KafkaController {
+
+	private static final Logger logger = LoggerFactory.getLogger(KafkaController.class);
+
+	private KafkaProducer kafkaProducer;
+
+	public KafkaController(KafkaProducer kafkaProducer) {
+		super();
+		this.kafkaProducer = kafkaProducer;
+	}
+
+	@GetMapping("/publish")
+	public ResponseEntity<String> publish(@RequestParam("message") String message) {
+		kafkaProducer.sendMessage(message);
+		logger.info(String.format("Message Sent %s", message));
+		return ResponseEntity.ok("Message Sent to the employee Topic");
+	}
+}
+                       
+***************************************************** 10.Create Kafka Consumer  *******************************************************************
+
+	@Service
+	public class KafkaConsumer {
+
+		private static final Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
+		
+		@KafkaListener(topics = "employee", groupId = "employee")
+		public void consume(String message) {
+			logger.info(String.format("Message from Producer %s", message));
+		}
+	}
+                                 
+***************************************************** 11.Configure Kafka Producer and Consumer for Json Messages **********************************
+In the application.properties 
+
+spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
+spring.kafka.consumer.properties.spring.json.trusted.packages=*
+
+spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
+
+Create a User class to Serialize and Deserialize the Java Objects.
+
+***************************************************** 12.Create Kafka Prodcuer to produce Json Messages *******************************************
+
+	public void sendUserDetails(User user) {
+		logger.info(String.format("Message Sent %s", user));
+		Message<User> message = MessageBuilder.withPayload(user).setHeader(KafkaHeaders.TOPIC, "employee").build();
+		kafkaTemplate.send(message);
+	}
+      
+***************************************************** 13.Create Rest API to send Json Object ******************************************************
+
+	@PostMapping("/sendUserDetails")
+	public ResponseEntity<String> sendUserDetails(@RequestBody User user) {
+		kafkaProducer.sendUserDetails(user);
+		logger.info(String.format("Message Sent %s", user));
+		return ResponseEntity.ok("Message Sent to the employee Topic");
+	}
+              
+***************************************************** 14.Create Kafka Consumer to consume Json Messages  ******************************************
+
+	@KafkaListener(topics = "jsonTopic", groupId = "employee")
+	public void consume(User user) {
+		logger.info(String.format("Message from Producer %s", user.toString()));
+	}
+	
+***************************************************** 15.Kafka Real world Project *****************************************************************
+

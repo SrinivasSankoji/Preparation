@@ -1,0 +1,10 @@
+services: 
+  - app:  user-authentication
+    port: 2181
+    version: 1.7
+    deployed: true
+  - app: shopping-cart
+    port: 9092
+    version: [1.9,2.4,4.9]
+
+ 

@@ -1,0 +1,64 @@
+1.Yaml Tutorial              (Techworld with Naina)    [03-JUL-2023]  (Done)
+2.Docker Compose Yaml        (Techworld with Naina)    [04-JUL-2023]  ()
+
+***************************************************** 1.Yaml Tutorial *****************************************************
+
+Yaml is the most widely used format in different Devops tools like Docker,Kubernetes,Ansible and Promotheus.
+Yaml is a data Serialization language just like XML,Json etc.
+Serialization language is nothing but an Applications written in different technologies,languages etc 
+whch has different Datastructure can transfer data to each other in a standard format.
+The most popular formats are Yaml and Json.
+Yaml stands for Ain't Markup Language and it has a extension of .yml or .yaml.
+
+Yaml is super human readable and intuitive.
+In XML and Json datastructures are defined using special characters.
+In Yaml we don't have special characters and we have line seperation,spaces and indentation.
+In XML we can have spaces and line indentation where as in Yaml it will give error.
+
+Key value pair :
+----------------
+ app: user-authentication
+ port: 9000
+ version: 1.7
+ 
+Object in Yaml :
+----------------
+
+	microservice: 
+	  app: user-authentication
+	  port: 9000
+	  version: 1.7
+	 
+Lists in Yaml :
+---------------
+To create a list of microservices,Each Object should start with -
+	
+	microservices: 
+	  -app:user-authentication
+	   port:9000
+	   version:1.7
+	   
+List of Objects in Yaml :
+-------------------------
+
+	services: 
+	  - app:  user-authentication
+		port: 2181
+		version: 1.7 
+	  - app: shopping-cart
+		port: 9092
+		version: [1.9,2.4,4.9]
+	   
+Key with List :
+---------------
+
+	version:[1.9,2.4,4.9]
+	
+***************************************************** 2.Docker Compose Yaml *****************************************************
+
+
+
+
+
+ 
+
