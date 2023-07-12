@@ -1,0 +1,68 @@
+1.Run Nginx on Kubernetes     (Mike Vincent)     				[12-JUL-2023]  (Done)   https://nonanom.medium.com/run-nginx-on-kubernetes-ee6ea937bc99
+2.
+
+
+
+
+################################################### 1.Run Nginx on Kubernetes (Mike Vincent)  ###################################################
+
+A Kubernetes manifest is a configuration file.
+When the manifest file is applied to a cluster then it becomes an object on the cluster.
+
+A deployment manifest describes the desired number of replicas for our containers and how containers are grouped and managed.
+Pod is the smallest deployable unit in Kubernetes.
+
+A service manifest creates a network service name for us to access the containers and defines which containers are accessible by using selector label.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+     app: nginx
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+     app: nginx
+  template:
+    metadata:
+      labels:
+       app: nginx
+    spec:
+      containers:
+       - name: nginx
+         image: nginx
+         imagePullPolicy: latest
+         ports:
+           - containerPort: 80
+             protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  selector:
+    app: nginx
+  ports: 
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: ClusterIP
+  
+Then apply the Manifest to the Kubernets ClusterIP
+
+	kubectl apply -f nginx.yaml
+	
+Lets redirect the port from our local machine to the port running in the container.
+
+	kubectl port-forward service/nginx 8082:80
+
+	
+
+
+
+

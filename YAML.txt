@@ -1,5 +1,10 @@
-1.Yaml Tutorial              (Techworld with Naina)    [03-JUL-2023]  (Done)
-2.Docker Compose Yaml        (Techworld with Naina)    [04-JUL-2023]  ()
+1.Yaml Tutorial              				(Techworld with Naina)    [03-JUL-2023]  (Done)
+2.Docker Compose Yaml        				(Techworld with Naina)    [04-JUL-2023]  ()
+3.Kubernetes YAML File       				(Techworld with Naina)    [12-JUL-2023]  (Done)
+4.Kubernetes Yaml Configuration 			(Daily Code Buffer)       [04-JUL-2023]  ()
+5.How to create Kubernetes YAML files		(Medium)       			  [04-JUL-2023]  ()    https://itnext.io/how-to-create-kubernetes-yaml-files-abb8426eeb45
+6.Creating a Kubernetes deployment			(mirantis)       		  [04-JUL-2023]  ()	   https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
+7.Create and edit Kubernetes yaml files     (Medium)       		  	  [04-JUL-2023]  ()    https://josephcardillo.medium.com/how-to-create-and-edit-kubernetes-yaml-files-on-the-fly-30fd1b1d78f8
 
 ***************************************************** 1.Yaml Tutorial *****************************************************
 
@@ -54,11 +59,77 @@ Key with List :
 
 	version:[1.9,2.4,4.9]
 	
-***************************************************** 2.Docker Compose Yaml *****************************************************
+***************************************************** 2.Docker Compose Yaml ******************************************************
+
+
+***************************************************** 3.Kubernetes YAML File *****************************************************
+
+The first two lines defines what we want to create.
+
+	apiVersion: apps/v1
+	kind: Deployment
+
+Every Configuartion fle in Kubernetes has 3 parts
+
+1.Metadata
+2.Specification
+3.status
+
+
+Metadata defines the name of the Component
+	
+	metadata:
+		name: nginx-deployment
+		labels: ""
+	
+
+Each Configuration file has the specification and that can be defined by using spec.
+Inside the specification there are some attributes that are specific to the kind of Configuration.
+Some of the attributes are specific to Deployment and some of the attributes are specific to Services.
+
+	spec:
+	  replicas: 2
+	  selector: ""
+	  template: ""
+	  
+status will be automatically generated and added by Kubernetes.
+status of a component is defined based on what is the desired state and what is the actual state.
+If the desired status does not match with the actual status, then Kubernetes knows something needs to be fixed and will fix it.
+This is the self healing feature that the Kubernetes provides.
+
+For example from the above configuration there should be 2 replicas of the pods.
+When we create the deployment using configuration file,Kubernetes will add the status of the deployment and update the status continuously.
+At certain point of time replica count became 1.
+Then Kubernetes will compare the status with the Specification data and if it finds the desired state is not same as actual data the Kubernetes will fix the Issue.
+
+Kubernetes gets the status data continuously from the ETCD.
+ETCD holds the current status of any Kubernetes Component.
+
+Format of Configuration File :
+------------------------------
+Yaml is human friendly Data Serialization standard for all the programming languages.
+Yaml syntax is strictly indentation with spaces.
+
+Whenever we want to create a Pod, we need to create the Deployment and it will take care of the remaining.
+This can be done by using spec attribute of the configuration file.
+Here spec attribute contains the template and template contains it own metadata.
+template is a configuration file inside configuration file.
+These configuration is applied to a pod.
+A pod should have its own configuration inside deployment configuration file.
+This will become blueprint for the pod.
+
+Connecting Components :
+-----------------------
+The way the connection is established is by using labels and selector.
+In the configuration file Metadata contains the Labels and the specification part contains the Selector.
+This way deployment knows which Pods it belongs to.
+
+Another thing that we can configure in the service and pod is ports.
+
+       		
+***************************************************** 4.Kubernetes Yaml Configuration  *******************************************
 
 
 
-
-
- 
-
+	 
+***************************************************** 5.How to create Kubernetes YAML files **************************************

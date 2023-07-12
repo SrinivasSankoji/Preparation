@@ -29,12 +29,14 @@ Services
 Scheduling
 Label Nodes
 
+************************************************************* 2.Setup MiniKube  *************************************************************
 
 
-*************************************************************  3.Kube API Server  ***************************************************
+
+*************************************************************  3.Kube API Server  ***********************************************************
 
 API Server is responsibele for all the communication on the Kubernetes.
-When we run the kubectl command,we are actually intercating with API Serevr.
+Whenever we are running any kubectl command,we are actually intercating with API Serevr.
 API Server exposes some API that the user can interact with.we can also intercat with API server using curl Request.
 Consider the scenario of creating a Pod and the Steps are 
 
@@ -43,7 +45,7 @@ apply
 
 Here request goes to the API Server and creates the Pod object and updates the ETCD and shows the user that Pod object is created.
 The Scheduler which is running in the Kubernetes Cluster continuously monitors the API Server for the newly created Pod Objects.
-Whenever Scheduler finds the newly created Pod object,It looks for the Node where the Pod has to be placed.
+Whenever Scheduler finds any newly created Pod object,It looks for the Node where the Pod has to be placed.
 
 Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration files i.e indirectly from ETCD data store.
 Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
@@ -92,7 +94,7 @@ ETCD is a single source of truth for all the components of the Kubernetes Cluste
 ETCD stores everything that is happening in the Kubernetes Cluster i.e Adding Node,Pod Creation,Any Deployment etc.
 Whenever we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we loose the data.
 
-ETCD has consistent Read and Write i.e Any data which we write that is immideately available for read.
+ETCD has consistent read and write i.e Any data which we write that is immideately available for read.
 ETCD is highly available because data is replicated in all the Nodes.
 ETCD is a Cluster of its own.It can be a 3 Node or 5 Node Cluster and maintain a leadership among them using RAFT protocol.
 ETCD is secure.
@@ -130,14 +132,14 @@ To insert the data into the ETCD
 
 Controller Manager :
 --------------------
-Control Manager is the component of the Master that runs different monitors.we have 
+Control Manager is the component of the Master that runs different Managers.we have 
 
 KUBE-CONTROLLER-MANAGER
 CLOUD-CONTROLLER-MANAGER
 
 All these controllers are seperate process and however to reduce the complexity they are compiled into a single binary and run as a single process.
 
-If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes Release Page and run the ControllerManager as a Service.
+If we set up the Kubernetes cluster from scratch,download the binary from Kubernetes release page and run the ControllerManager as a Service.
 If we set up the Kubernetes cluster using kubeadm then ControllerManager will be running as a Pod.
 
 Node Controller is responsible for monitoring the Nodes and whenever a Node goes down it will send a signal.
@@ -148,9 +150,12 @@ If the Pod is down then the Replication Controller tries to restart the Pod in t
 
 Scheduler :
 -----------
-Scheduler is another Component of Kubernetes eco system.
-Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration Files i.e indirectly from ETCD data store.
-Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
+Scheduler is a Component of Master Node which schedules the pod across multiple Worker Nodes.
+Scheduler watches the newly created pod that has no Worker Node assigned to it and selects a Worker Node for them to run on.
+Here Worker Nodes can be a physical Machine or Virtual Machine.
+We can have different infrastructure or Hardware configuration for the Worker Nodes.
+Scheduler gets all the information about the Worker Nodes from Configuration Files i.e indirectly from ETCD data store.
+Whenever Scheduler has scheduled a Pod,it will check which Worker Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
 
 Scheduler has two stages that can be used to deploy the Pod in a correct Node.
 1.Filtering
@@ -186,13 +191,13 @@ We can also create custom scheduler when we craete the Pod.
 ************************************************************* 7.Pods  ***************************************************************
 
 Pod is the smallest deployable unit in Kubernetes.
-Pod hosts the Containers ie Pod can contain multiple Containers.
-All the Containers within the Pod shares the same network namespace and storage namespace and can communicate with each other using localhost.
+Pod hosts the Containers i.e. Pod can contain multiple Containers.
+All the Containers within the Pod shares the same Network namespace and Storage namespace and can communicate with each other using localhost.
 It is the Pod that get's the IP Address to communicate and not the Container.
 
 To run the Pod using imperative command
 
-	kubectl run mypod --image=nginx 
+	kubectl run nginx --image=nginx 
 	
 To see the list of Pods 
 
@@ -200,22 +205,20 @@ To see the list of Pods
 	
 To delete the Pod we use the command
 
-	kubectl delete pod mypod
+	kubectl delete pod nginx
 	
 To get the yaml file that can be used to create the Pod
 
-	kubectl run mypod --image=nginx --dry-run=client -o yaml -> nginx.yaml
+	kubectl run nginx --image=nginx --dry-run=client -o yaml -> yamlfromimage.yaml (or)  kubectl run nginx --image=nginx --dry-run=true -o yaml>yamlfromimage.yaml
 
 --dry-run=client flag can be used to ignore the run command.
 
 To run the Pod which has defined using yaml file 
 
-	kubectl apply -f nginx.yaml
+	kubectl apply -f yamlfromimage.yaml
 	
 Note :
-we never run an isolated Pod in Kubernetes environment.
-We run the Pod as a part of Deployment,ReplicaSet etc.
-
+we never run an isolated Pod in Kubernetes environment.We run the Pod as a part of Deployment,ReplicaSet etc.
 
 Static Pods (Not Completed):
 ----------------------------
@@ -232,14 +235,15 @@ Succeded
 ************************************************************* 8.Pod Networking  *************************************************************
 
 lets consider how the Docker Networking works.
-Whenever Docker is installed,default Bridge network named docker0 is created.
-This default network gets an IP Address and all the newly created Containers are attached to the default network.
+Whenever Docker is installed,default Bridge network named bridge is created.
+This default Bridge network gets an IP Address and all the newly created Containers are attached to the default Bridge network.
 
-Whenever we create the Pod all the Containers within the Pod shares the same network Namespace and can communicate with each other using localhost.
+Whenever we create the Pod all the Containers within the Pod shares the same Network namespace and can communicate with each other using localhost.
 In Kubernetes one Pod can reach out to another Pod using IP Address.
 
-Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and communicate with each other either by using Router or API Gateway.
+Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and can communicate with each other either by using Router or API Gateway.
 Each Node has a corresponding IP Address.
+
 When we set up the Kubernetes Cluster,Networking PlugIns are not installed and it informs what kind of networking structure it expects.
 We need to set up the Networking PlugIns outside the Cluster.
 If the Network PlugIns are not installed then there will be no next hop and ends up in creating the same IP for all the Nodes.
@@ -247,7 +251,7 @@ There is no mechanism to tell how to send the packet from one Node to another No
 Here Network PlugIn comes into the picture.
 
 Functionality of Network PlugIn is to run the Overlay Network across all the Nodes.
-Network PlugIn covers all the Bridges which are running on the Node and assigns the IP Address to all the Nodes within the Bridge Network.
+Network PlugIn covers the Bridge Netwrok and assigns the IP Address to all the Nodes within the Bridge Network.
 Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 9.Static Pods ********************************************************************* 
@@ -262,18 +266,17 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  ******************************************************************
 
-Replica Set or Replication Controller ensures the number of Pods are running as per the Configuration.
+Replica Set or Replication Controller ensures that the number of Pods are running as per the Configuration.
 Replica Set gaurantees the availability of Pod at any given point of time.
 
 Note :
-We never run the pods behind the Replica Set directly .
+We never run the pods behind the Replica Set directly.
 There is a high level feature called Deployment which provides lots more feature than Replica Set.
 Deployment actually creates the Replica Set.
 we cannot generate the yaml file for ReplicaSet using kubectl command like we created the yaml file for pods.
+Create a deployment manifest file and run it as a Replica Set.
 
-Here we can create a deployment manifest file and run it as a Replica Set.
-
-	kubectl create deployment myreplica --image=nginx --dry-run=client -o yaml >rs.yaml
+	kubectl create deployment myreplica --image=nginx --dry-run=true -o yaml >rs.yaml
 	
 Output of yaml file :
 
@@ -295,6 +298,35 @@ spec:
       containers:
       - image: nginx
         name: nginx
+		
+
+Latest Version :
+----------------		
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myreplica
+  name: myreplica
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myreplica
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myreplica
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
+
 
 To run the deployment we use the command
 
@@ -315,7 +347,7 @@ and it would be terminated because number of Replica's is already defined in Rep
 
 ************************************************************* 12.Deployment in Kubernetes   ****************************************************
 
-Deployment can be used to deploy the Application.
+Deployment can be used to deploy the Application in Kubernetes.
 If we want to deploy any Application in Kubernetes,we deploy them using Deployment.
 It is similar to Replica Set with additional features like updating the image of an Application,RollOut's and Rollback of an Application.
 To create the deployment manifest file in an imperative way we use the commad 
