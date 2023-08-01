@@ -2,11 +2,8 @@
 2.Docker Compose Yaml        				(Techworld with Naina)    [04-JUL-2023]  ()
 3.Kubernetes YAML File       				(Techworld with Naina)    [12-JUL-2023]  (Done)
 4.Kubernetes Yaml Configuration 			(Daily Code Buffer)       [04-JUL-2023]  ()
-5.How to create Kubernetes YAML files		(Medium)       			  [04-JUL-2023]  ()    https://itnext.io/how-to-create-kubernetes-yaml-files-abb8426eeb45
-6.Creating a Kubernetes deployment			(mirantis)       		  [04-JUL-2023]  ()	   https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
-7.Create and edit Kubernetes yaml files     (Medium)       		  	  [04-JUL-2023]  ()    https://josephcardillo.medium.com/how-to-create-and-edit-kubernetes-yaml-files-on-the-fly-30fd1b1d78f8
 
-***************************************************** 1.Yaml Tutorial *****************************************************
+***************************************************** 1.Yaml Tutorial (Techworld with Naina) *****************************************************
 
 Yaml is the most widely used format in different Devops tools like Docker,Kubernetes,Ansible and Promotheus.
 Yaml is a data Serialization language just like XML,Json etc.
@@ -59,10 +56,10 @@ Key with List :
 
 	version:[1.9,2.4,4.9]
 	
-***************************************************** 2.Docker Compose Yaml ******************************************************
+***************************************************** 2.Docker Compose Yaml (Techworld with Naina) ******************************************************
 
 
-***************************************************** 3.Kubernetes YAML File *****************************************************
+***************************************************** 3.Kubernetes YAML File (Techworld with Naina) *****************************************************
 
 The first two lines defines what we want to create.
 
@@ -127,9 +124,5 @@ This way deployment knows which Pods it belongs to.
 Another thing that we can configure in the service and pod is ports.
 
        		
-***************************************************** 4.Kubernetes Yaml Configuration  *******************************************
+***************************************************** 4.Kubernetes Yaml Configuration (Daily Code Buffer)  *****************************
 
-
-
-	 
-***************************************************** 5.How to create Kubernetes YAML files **************************************

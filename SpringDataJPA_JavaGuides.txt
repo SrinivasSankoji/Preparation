@@ -1,0 +1,263 @@
+1.What is Spring Data JPA												[01-AUG-2023]  (Done)
+2.Basic Flow of Spring Data JPA                                         [01-AUG-2023]  ()
+3.Hibernate vs Spring Data JPA                                          [01-AUG-2023]  ()
+4.Set up Spring Boot Project                                            [01-AUG-2023]  (Done)
+5.Understanding Spring Boot Starter Data JPA Dependencies               [01-AUG-2023]  (Done)
+6.Spring Boot with SQL Server Database                                  [01-AUG-2023]  (Done)
+7.Create Spring JPA Entity                                              [01-AUG-2023]  (Done)
+8.JPA Annotations                                                       [01-AUG-2023]  (Done)
+9.Primary Key Generation Strategies                                     [01-AUG-2023]  ()
+10.@CreationTimestamp and @UpdateTimestamp                              [01-AUG-2023]  (Done)
+11.Repository interfaces and its hierarchy                              [01-AUG-2023]  (Done)
+12.Decompile and explore Spring Data JPA Library                        [01-AUG-2023]  ()
+13.Steps to create Spring Data JPA Repository                           [01-AUG-2023]  (Done)
+14.save                                                                 [01-AUG-2023]  (Done)
+15.update                                                               [01-AUG-2023]  (Done)
+16.findById                                                             [01-AUG-2023]  (Done)
+
+17.saveAll                                                              [02-AUG-2023]  ()
+18.findAll                                                              [02-AUG-2023]  ()
+19.deleteById                                                           [02-AUG-2023]  ()
+20.delete                                                               [02-AUG-2023]  ()
+21.deleteAll                                                            [02-AUG-2023]  ()
+22.count                                                                [02-AUG-2023]  ()
+23.existsById                                                           [02-AUG-2023]  ()
+24.Date Range                                                           [02-AUG-2023]  ()
+25.Sorting with Multiple Fields                                         [02-AUG-2023]  ()
+26.What is Hibernate in Java                                            [02-AUG-2023]  ()
+27.Jakarta Persistence                                                  [02-AUG-2023]  ()
+
+
+
+################################################### 1.What is Spring Data JPA	###################################################
+
+If we want to implement DAO Layer or Repository Layer we need to create an interface and its implementation classes.
+Here the same code is repeated for the basic crud operations.
+For a single entity we need to write lot of code to perform the crud operations.
+
+Consider the scenario we have multiple entities like Employee,User,Customer etc.
+To perform basic operations we have to write lot of code.
+
+By using Spring Data JPA we can reduce lot of boiler plate code.
+Create an interface by extending JPARepository interface by passing the Entity Name and Primary Key Type.
+Then we can perform CRUD operations on that Entity.
+Spring Team has developed Spring Data JPA Library to reduce the boiler plate code to perform CRUD Operations.
+
+Spring Data JPA is not a JPA Provider.
+It simply hides the Java Persistence API behind its Repository Abstraction.
+Spring Data JPA uses Hibernate as its JPA Provider.
+
+Spring Data JPA is an abstraction on top of JPA.
+Spring Data JPA internally uses JPA provided methods and uses EntityManager to perform different operations.
+
+
+###################################################  2.Basic Flow of Spring Data JPA ##################################################
+
+
+
+################################################### 3.Hibernate vs Spring Data JPA ####################################################
+  
+
+
+################################################### 4.Set up Spring Boot Project  #####################################################
+
+Done
+
+                              
+################################################### 5.Understanding Spring Boot Starter Data JPA Dependencies #########################
+
+Done
+
+  
+################################################### 6.Spring Boot with SQL Server Database ############################################
+
+Done
+                      
+
+################################################### 7.Create Spring JPA Entity #########################################################
+
+To create a JPA Entity product
+
+	@Getter
+	@Setter
+	public class Product implements Serializable {
+	@Id
+    private Long id;
+    private String sku;
+    private String name;
+    private String descripton;
+    private BigDecimal price;
+    private Boolean active;
+    private String imageURL;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
+	}
+	
+To make this POJO class as JPA Entity we use @Entity Annotation from jakarta.persistence.Entity.
+
+	spring.jpa.hibernate.ddl-auto=update
+	
+The above property will create the table automatically.
+
+Note :
+------
+Here Hibernate uses the default column naming convention.
+
+################################################### 8.JPA Annotations  #################################################################
+
+We can customize the Entity by using Spring Data JPA Annptations.
+
+If we want to give the custom name to the Table we use @Table Annotation.
+We can also provide the schema to the @Table Annotation.
+
+	@Table(name = "products",schema = "smart-school")
+	
+If we want to customize the column we use @Column Annotation.
+
+	 @Column(name = "stock_keeping_unit")
+	 
+If we want to define a unique constraint for a Table we use uniqueConstraints attribute.
+
+	@Table(name = "products", schema = "smart-school", uniqueConstraints = {@UniqueConstraint(name = "sku_unique", columnNames = "sku")})
+	
+We can alos define the column as not null.
+
+	@Column(name = "stock_keeping_unit",nullable = false)
+	
+Spring Data JPA provides 4 types of Primary Key generation strategies.
+
+1.AUTO
+2.IDENTITY
+3.SEQUENCE
+4.TABLE
+
+In order to use Primary Key Generation Strategy we use @GeneratedValue Annotation.
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+IDENTITY strategy relies on the database auto increment column.
+
+################################################### 9.Primary Key Generation Strategies  ###############################################
+
+
+################################################### 10.@CreationTimestamp and @UpdateTimestamp #########################################
+
+Here we will see how to use Spring Data JPA Annotations to auto populate the values for the Dates.
+Instead of manually specifying the values for the Date Columns,we use Spring Data JPA provided Annotations.
+
+This will get the current time from the JVM and assigns to the Field.
+
+	  @CreationTimestamp private LocalDateTime createDate;
+	  
+	  @UpdateTimestamp private LocalDateTime updateDate;
+
+################################################### 11.Repository interfaces and its hierarchy  #########################################
+
+Spring Data Framework contains lot of modules.
+Spring Data Commons is the Parent Parent Module.
+
+1.Repository Interface is the Base Interface.
+2.CRUD Repository extends Repository Interface.
+3.PagingAndSortingRepository extends CRUD Repository.
+4.QueryDslPredicateExecutor is an independent Interface.
+
+All the 4 interfaces are part of Spring Data Commons Module.
+
+JPARepository Interface extends PagingAndSortingRepository is part of Spring Data JPA Module.
+Spring Data JPA also contains JpaSpecificationExecutor Interface.
+
+Here Spring Data JPA is responsible to provide implementation for all the JPA Repository Interfaces.
+Spring Data JPA uses SimpleJpaRepository class to provide implementation for all these methods.
+All the methods of SimpleJpaRepository class are by default Transactional.
+
+
+################################################### 13.Steps to create Spring Data JPA Repository #######################################
+
+To create Spring Data JPA Repository
+
+1.Create a Repository Interface by extending JPARepository Interface.
+2.Add custom query methods to the created Repository Interface.
+3.Inject the Repository Ineterface to the another Component and use the implementation provided by the Spring Data JPA.
+
+	public interface ProductRepository extends JpaRepository<Product,Long> {
+	}
+
+###################################################  14.save ############################################################################
+
+
+	{
+    "sku": "Watch Belt",
+    "name": "Flipkart",
+    "description": "OnlineShopping",
+    "price": 700,
+    "active": true,
+    "imageURL": "Casio"
+	}
+	
+	@PostMapping ("/create/products")
+    public ResponseEntity<Product> createUser(@RequestBody Product product) {
+        return new ResponseEntity<Product>(productService.createProduct(product), HttpStatus.OK);
+    }
+	
+
+################################################### 15.update ###################################################
+
+we can use save() to perform two operations i.e. save() and update().
+save() internally uses EntityManager provided persist().
+In case of update internally save() internally uses EntityManager merge() to merge the data.
+
+	 @PutMapping ("/update/{id}")
+     public ResponseEntity<Product> updateProduct(@PathVariable Long id,
+                                                 @RequestBody Product product) {
+        Product productDetails = productService.getProduct(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("User not exist with id : " + id));
+        productDetails.setSku(product.getSku());
+        productDetails.setName(product.getName());
+        productDetails.setPrice(product.getPrice());
+        productDetails.setImageURL(product.getImageURL());
+        return new ResponseEntity<Product>(productService.createProduct(productDetails), HttpStatus.OK);
+     }
+
+################################################### 16.findById #################################################
+
+		Product productDetails = productService.getProduct(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("User not exist with id : " + id));
+						
+
+################################################### 17.saveAll #################################################
+
+                      
+################################################### 18.findAll #################################################
+
+                        
+################################################### 19.deleteById  #############################################
+
+                    
+################################################### 20.delete ##################################################
+
+                        
+################################################### 21.deleteAll  ##############################################
+
+                    
+################################################### 22.count ###################################################
+
+                          
+################################################### 23.existsById ############################################## 
+
+
+                    
+################################################### 24.Date Range ##############################################
+
+
+                    
+################################################### 25.Sorting with Multiple Fields ############################
+
+ 
+  
+################################################### 26.What is Hibernate in Java ###############################
+
+
+      
+################################################### 27.Jakarta Persistence #####################################           

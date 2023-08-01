@@ -407,7 +407,7 @@ To rollback to the specific revision
 
 ************************************************************* 13.Kubernetes Services Part 1  *****************************************************
 
-We have seen how pods communicate with each other using Ip Address.
+We have seen how pods communicate with each other using IP Address.
 This is not useful in all the scenario's.
 
 Consider the scenario we have 2 Pods.

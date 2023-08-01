@@ -1,7 +1,5 @@
-1.Run Nginx on Kubernetes     (Mike Vincent)     				[12-JUL-2023]  (Done)   https://nonanom.medium.com/run-nginx-on-kubernetes-ee6ea937bc99
-2.
-
-
+1.Run Nginx on Kubernetes     (Mike Vincent)     	[12-JUL-2023]  (Done)   https://nonanom.medium.com/run-nginx-on-kubernetes-ee6ea937bc99
+2.Kubernets Objects 		  (Harshal Kathar)     	[15-JUL-2023]  ()       https://katharharshal1.medium.com/kubernetes-objects-pods-replicasets-and-deployments-44f16b38d9f7
 
 
 ################################################### 1.Run Nginx on Kubernetes (Mike Vincent)  ###################################################
@@ -61,7 +59,10 @@ Lets redirect the port from our local machine to the port running in the contain
 
 	kubectl port-forward service/nginx 8082:80
 
-	
+################################################### 2.Kubernets Objects (Harshal Kathar) ###################################################
+
+
+
 
 
 

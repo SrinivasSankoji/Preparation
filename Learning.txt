@@ -19,22 +19,12 @@ MVN Command :
 mvn install:install-file -Dfile=F:\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 
-SQL Developer : 
----------------
-$ sqlplus  /nolog
-SQL > conn sys as sysdba
-password :oracle
-SQL > ALTER USER USER_NAME ACCOUNT UNLOCK;
-
-Details :
-username : system
-password : system
-
-alter user username identified by password;
-
 Sql Server :
 ------------
-bhaumik@23
+spring.datasource.url= jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=smart-school
+spring.datasource.username= sa
+spring.datasource.password= bhaumik@23
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.SQLServerDialect
 
 Postgree Database :
 -------------------
@@ -1511,6 +1501,7 @@ Event Driven MicroServices ()
 Kubernetes Raghav Pal Revise ()
 Kubernetes Infinite Linux ()
 Kubernetes Helm ()
+Spring Data JPA ()
 
 JavaScript Bro Code ()
 JavaScript Basics Revise JavaBrains ()

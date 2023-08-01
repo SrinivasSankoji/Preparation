@@ -1,0 +1,153 @@
+1.What is Helm in Kubernetes 						(Thetips4you)     		[18-JUL-2023]  (Done)
+2.Install Helm                                      (Thetips4you)     		[15-JUL-2023]  (Done)
+3.App Deployment in Kubernets using Helm            (Thetips4you)     		[15-JUL-2023]  (InProgress)
+
+
+################################################### 1.What is Helm in Kubernetes (Thetips4you)  ###################################################
+
+Helm is a package manager for Kubernetes.
+If we want to install any application in Kubernetes,package that Application in Helm Repository and install it in Kubernetes.
+Helm helps us to streamline the installation and management of Kubernetes Application.
+Helm uses the packaging format called Charts i.e. we package the Application into charts.
+
+Consider the scenario where we deploy single Application in Kubernetes.
+To deploy an Application we need multipe configuration files.
+Deployment manifest file,Secrets,ConfigMaps,Service manifest file etc.
+
+We have the different configuration files for different Applications and package them into Chart called Helm Charts.
+Now all the Configuration files are present in one Helm Chart and once we run the Helm Chart it will create the Application.
+Next if we want to update the configuration,install the new version of the configuration and run the Helm Chart.
+
+Helm Chart is a collection of files that describe a related set of Kubernetes resources.
+Here resources can be deployment,services,configmaps,secret configuration file etc.
+Helm Charts are simply Kubernetes manifest files that are combined into a single package that can be advertised to the Kubernetes Cluster.
+
+A Single Helm Chart can be used to deploy a Simple Application like nginx pod.
+A Single Helm Chart can also be used to deploy a Complex App like Full Web Application with HTTP Servers,Databases etc.
+Helm Chart helps us to define,install and upgrade the most complex Kubernetes Application.
+
+Helm Chart Structure :
+----------------------
+Chart Name
+
+	-- chart.yml
+	-- values.yml
+	-- charts
+	-- templates
+	
+chart.yml contains the meta information about the chart like name of the Application,version number etc.
+
+values.yml contains the values for the Template files.
+For example in the Template we mention the Deployment Name,Container Name, Pod Name etc.
+The problem here is we cannot keep update these names in every Configuration file.
+
+Charts :
+If the Charts depend son another Charts then we need to mention the Chart information here.
+
+Templates :
+Template is the place where we put the actual manifest files that we want to deploy as part of Helm Chart.
+
+Helm Commands :
+---------------
+Helm install   - To install an existing Chart
+helm search    - To search for the Chart in the Repository
+Helm List      - To view the list of all deployed resources
+Helm upgrade   - To upgrade the releases with the new versions
+Helm delete    - To delete the deployed resources
+
+
+###################################################  2.Install Helm (Thetips4you) ################################################### 
+
+Step 1 :
+--------
+To download the helm 
+
+	https://helm.sh/docs/intro/install/  --> Download your desired version
+	
+Step 2 :
+--------
+To set up the Helm 
+
+	https://phoenixnap.com/kb/install-helm
+	
+Download and Extract windows-amd64 -- set the path to the System Environment Variable.
+
+Step 3 :
+--------
+Run the Command helm
+It will show the messge "The Kubernetes package manager".
+
+################################################### 3.App Deployment in Kubernets using Helm (Thetips4you) ###########################
+
+Step 1 :
+--------
+
+To login to the hlem repository
+
+	helm registry login https://artifacthub.io/
+	
+Enter the Username and password.
+
+Step 2 :
+--------
+To search for the helm chart in the Artifact hub
+
+	helm search hun nginx
+
+Step 3 :
+--------
+To install the wordpress --> Navigate to Helm Repository and search for Wordpress.
+
+	https://artifacthub.io/packages/helm/bitnami/wordpress
+	
+Copy the command to install the WordPress
+
+	helm install wordpress oci://registry-1.docker.io/bitnamicharts/wordpress
+	
+If we run the below command, will show 2 pods
+	
+	kubectl get pods
+	kubectl get deployment
+	kubectl get service
+	
+To see the History of the helm
+	
+	helm history my-release
+	
+When we run the command helm install,it will create the revision for that helm.
+Later if we update any of the configuration,it will update the revision number.
+If we want to access the wordpress using browser
+
+	minikube service my-release-wordpress
+	
+To update the Helm Chart
+
+	helm upgrade my-releae --set service.type=clusterIp bitnami/wordpress
+	
+
+
+	
+	
+
+	
+
+
+
+
+
+
+	
+	
+	
+   
+
+
+
+
+
+
+
+
+
+
+ 

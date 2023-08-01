@@ -79,7 +79,7 @@ Pods can contain a Single Container or Multiple Containers.
 Every Pod has a unique IP Address.
 
 We can have multiple Pods in the Node.
-Pods have the same set of functions that are abstracted into sets called Services.
+Pods which has the same set of functions that are abstracted into sets called Services.
 Kubernetes Service is a set of Pods that work together.
 Kubernetes provide a Single DNS Name for a Set of Pods and can laod balance across them.
 With this System Kubernetes has Complete control over the network and communication between Pods and can handle laod balance between the Pods.

@@ -119,19 +119,22 @@ Proxy							(Object)
 
 ******************************************************** 9.Factory Method Pattern (geeksforgeeks)  ********************************************************************
 
-It is a Creational Design Pattern which talks about the creation of an Object.
+Factory Design Pattern is a Creational Design Pattern which talks about the creation of an Object.
 Factory design pattern says that define an Interface or Abstract Class and let the subclasss decide which Object it has to instantiate.
 It is one of the best way to create an Object where the Object creation logic is hidden to the Client.
 
 Implementation :
 ----------------
 Define a Factory method inside an interface.
-Let the Subclass implements the abstract factory method and decide which object it has to create.
-In java Constructor's are not polymorphic.But by allowing subclass to create an Object we are adding polymorphic behavior to the Instantiation.
 
 		public interface Notification {
 			void notifyUser();
 		}
+		
+Let the Subclass implements the abstract factory method and decide which object it has to create.
+In java Constructor's are not polymorphic.But by allowing subclass to create an Object we are adding polymorphic behavior to the instantiation.
+
+		
 
 		public class SMSNotification implements Notification {
 			@Override

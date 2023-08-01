@@ -1,0 +1,19 @@
+1.Service Locator Design Pattern          (Java Techie)     		[15-JUL-2023]  ()
+2.Dependency Injection Design Pattern     ()     		            [15-JUL-2023]  ()
+3.
+
+
+
+
+################################################### 1.Service Locator Design Pattern (Java Techie) ###################################################
+
+Service Locator is a design pattern used in SDLC to encapsulate the process involved in obtaining a service with strong abstraction Layer.
+The goal of this module is to improvve the modularity of an Application by removing the dependencies between the client and implementation of an interface.
+Service Locator acts as a Central registry that provides implementations of different interfaces.
+Spring Framework internally uses Service Locator Design Pattern to manage Dependency Injection.
+
+
+
+
+
+
