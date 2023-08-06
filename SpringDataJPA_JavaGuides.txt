@@ -14,18 +14,17 @@
 14.save                                                                 [01-AUG-2023]  (Done)
 15.update                                                               [01-AUG-2023]  (Done)
 16.findById                                                             [01-AUG-2023]  (Done)
-
-17.saveAll                                                              [02-AUG-2023]  ()
-18.findAll                                                              [02-AUG-2023]  ()
-19.deleteById                                                           [02-AUG-2023]  ()
-20.delete                                                               [02-AUG-2023]  ()
-21.deleteAll                                                            [02-AUG-2023]  ()
-22.count                                                                [02-AUG-2023]  ()
-23.existsById                                                           [02-AUG-2023]  ()
-24.Date Range                                                           [02-AUG-2023]  ()
-25.Sorting with Multiple Fields                                         [02-AUG-2023]  ()
-26.What is Hibernate in Java                                            [02-AUG-2023]  ()
-27.Jakarta Persistence                                                  [02-AUG-2023]  ()
+17.saveAll                                                              [06-AUG-2023]  (Done)
+18.findAll                                                              [06-AUG-2023]  (Done)
+19.deleteById                                                           [06-AUG-2023]  (Done)
+20.delete                                                               [06-AUG-2023]  (Done)
+21.deleteAll                                                            [06-AUG-2023]  (Done)
+22.count                                                                [06-AUG-2023]  (Done)
+23.existsById                                                           [06-AUG-2023]  (Done)
+24.Date Range                                                           [06-AUG-2023]  ()
+25.Sorting with Multiple Fields                                         [06-AUG-2023]  ()
+26.What is Hibernate in Java                                            [06-AUG-2023]  ()
+27.Jakarta Persistence                                                  [06-AUG-2023]  ()
 
 
 
@@ -228,31 +227,84 @@ In case of update internally save() internally uses EntityManager merge() to mer
 
 ################################################### 17.saveAll #################################################
 
-                      
+saveAll() can be used to save multiple entities into the Database.
+It belongs to the CRUD Repository interface defined by Spring Data JPA.
+saveAll() returns list of iterable Objects.
+
+		public List<Product> createProducts(List<Product> products) {
+			return productRepository.saveAll(products);
+		}
+               
 ################################################### 18.findAll #################################################
 
+findAll() allows us to retrieve all the entities from the database or Table.
+It belongs to the CRUD Repository interface defined by Spring Data JPA.
+findAll() returns list of iterable Objects.
+
+		public List<Product> details() {
+			return productRepository.findAll();
+		}
                         
 ################################################### 19.deleteById  #############################################
 
-                    
+deleteById() allows us to delete the entities from the database based on entity id.
+It belongs to the CRUD Repository interface defined by the Spring Data JPA.
+deleteById() method returns void.
+
+		public void deleteProduct(Long id) {
+         productRepository.deleteById(id);
+		}
+		
 ################################################### 20.delete ##################################################
 
+delete() allows us to delete an entity from the database based on entity class.
+It belongs to the CRUD Repository interface defined by the Spring Data JPA.
+delete() method returns void.
+
+		public void deleteProduct(Long id) {
+        Product productDetails = productDetails(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Product not exist with id : " + id));
+        productRepository.delete(productDetails);
+    }
                         
 ################################################### 21.deleteAll  ##############################################
 
-                    
+deleteAll() allows us to delete all the entities from the database.
+It belongs to the CRUD Repository interface defined by the Spring Data JPA.
+There are two varinats of deleteAll() methods.
+
+		public void delete() {
+			productRepository.deleteAll();
+		}
+                
 ################################################### 22.count ###################################################
 
-                          
+count() allows us to count the number of records in tha database.
+It belongs to the CRUD Repository interface defined by the Spring Data JPA.
+count() returns the Long datatype as result.
+
+		public Long productCount() {
+			return productRepository.count();
+		}
+
 ################################################### 23.existsById ############################################## 
 
+existdById() allows us to check whether the entity exists with the given id or not in the database.
+It belongs to the CRUD Repository interface defined by the Spring Data JPA.
+existdById() returns boolean as a result.
 
-                    
+		public boolean productExists(Long id) {
+			return productRepository.existsById(id);
+		}
+		
 ################################################### 24.Date Range ##############################################
 
 
                     
 ################################################### 25.Sorting with Multiple Fields ############################
+
+
 
  
   

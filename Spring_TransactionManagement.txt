@@ -2,13 +2,13 @@
 2.Spring Transaction Management								(marcobehler)   [30-NOV-2021]	(Done)	
 3.Spring Boot Transaction Management						(javainuse)   	[30-NOV-2021]	(Done)
 4.Spring Boot Transaction Management Isolation				(javainuse)   	[30-NOV-2021]	()
-5.Spring Boot Transaction Management Propogation			(javainuse)   	[30-NOV-2021]	()
+5.Spring Boot Transaction Management Propogation			(javainuse)   	[30-AUG-2023]	(Done)
 6.Spring Boot Transaction Management Rollback				(javainuse)   	[30-NOV-2021]	(Done)
 
 *****************************************************  1.Transaction Management (oracle docs) *******************************************************************
 
 Transaction can be considered as one or more statements that are executed as a single unit.either all the statements are executed or none of the statements are executed.
-When a Connection is created by default it is auto commit mode.
+When a Connection is created by default it is auto commit enabled mode.
 This means each individual statement is treated as a Transaction and is automatically committed right after it is executed.
 The way to allow one or more statements to be grouped into a Transaction is to disable the auto commit mode.
 
@@ -21,7 +21,7 @@ Dirty Read :
 Accessing an updated value that has not been committed is considered as Dirty Read.
 It is possible for that value to be rolled back to its previous value.
 
-If the Transcation isolation level is set to TRANSACTION_READ_COMMITTED then DBMS does not allow dirty reads to occur 
+If the Transcation isolation level is set to TRANSACTION_READ_COMMITTED then DBMS does not allow dirty reads to occur.
 ie it does not allow the value to be accessed untill it has been committed.
 
 rolllback() terminates the transaction and returns any values that were modified to their previos values.
@@ -33,7 +33,7 @@ In order to understand what Spring Transaction Management does is we need to hav
 How plain JDBC Transaction Management works :
 ---------------------------------------------
 We need a connection to the Database to start the Transaction.In most of the Enterprise Applications we get the Connection from the Datasource.
-When a Connection is created by default it is auto commit mode.This means each individual statement is treated as Transaction.
+When a Connection is created by default it is auto commit enabled mode.This means each individual statement is treated as Transaction.
 We need to set the auto commit to false so that we are the master of the Transaction.
 Plain JDBC Transaction Management code looks like this.
 
@@ -73,9 +73,9 @@ We define Transaction Management in Spring programatically either by using Trans
 			
 			}
 
-Here we don't have to mess with opening or closing Database Connection.
-No need to cathc SQLException as Spring converts these into RuntimeException.
-TransactionTemplate internally uses TransactionManager which internally uses 
+Here we don't have to mess with opening or closing the Database Connection.
+No need to catch SQLException as Spring converts these into RuntimeException.
+TransactionTemplate internally uses TransactionManager.
 
 How to use Spring’s @Transactional Annotation (Declarative Transaction Management ) :
 -------------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ If Spring Application wants to integrate with any other ORM vendor then the code
 			}
 		}
 		
-With Spring and Hibernate to integrate with each other as they know about theit Transactions the above code can be replaced by 
+With Spring and Hibernate to integrate with each other as they know about their Transactions the above code can be replaced by 
 
 		public class UserDao{
 		
@@ -155,18 +155,81 @@ JpaTransactionManager(Hibernate with JPA)
 
 ********************************************** 3.Spring Boot Transaction Management (javainuse)  *************************************************************
 
-Application Transaction is a sequence of Application actions that are considered as a single logical unit by the Application.
+Application Transaction is a sequence of actions that are considered as a single logical unit by the Application.
 For example joinOrganization() will be considered as one complete Transaction.
 joinOrganization() consists of two actions.
 
 Persist Employee Information
 Persist Health Insurance Information
 
-Due to any reason If any one of the above action fails then other actions hould also be failed.
+Due to any reason If any one of the above action fails then other actions should also be failed.
 
-********************************************** 4.Spring Boot Transaction Management Isolation  ****************************************************************
+********************************************** 4.Spring Boot Transaction Management Isolation (javainuse)  ***************************************************
 
-	
+
+********************************************** 5.Spring Boot Transaction Management Propogation (javainuse) **************************************************
+
+Any Application which involves a number of Services which makes call to another Services.
+Transaction Propagation indicates any Service may or may not participate in the Transaction and how it will behave 
+when calling Service has the Transaction created or not created.
+
+In our case we are calling joinOrganizationChecked or joinOrganizationUnchecked which internally calls employeeService and healthInsuranceService.
+Transaction Propagation decides whether the Service can participate in the Transaction either bye creating the new Transaction or using the existing Transaction.
+For the Transaction Propogation to work we are making employeeService and healthInsuranceService as Transactioal.
+
+There are 6 types of Transaction Propagations
+
+1.Propogation.REQUIRED :
+------------------------
+If the employeeService is called directly it creates its own Transaction.
+If the employeeService is called from another Service 
+Case 1 : If the calling Service has the Transaction then it makes use of existing Transaction.
+Case 2 : If the calling Service does not have the Transaction then it creates new Transaction.
+
+Propogation.REQUIRED is the default Propogation.
+
+2.Propogation.SUPPORTS :
+------------------------
+If the employeeService is called directly it does not creates its own new Transaction.
+If the employeeService is called from another Service
+Case 1 : If the calling Service has the Transaction then it makes use of existing Transaction.
+Case 2 : If the calling Service does not have the Transaction then it will not create a new Transaction.
+
+3.Propogation.NOT_SUPPORTED :
+-----------------------------
+If the employeeService is called directly it creates its own new Transaction.
+If the employeeService is called from another Service
+Case 1 : If the calling Service has the Transaction neither it makes use of existing Transaction nor creates a new Transaction and runs without Transaction.
+Case 2 : If the calling Service does not have the Transaction then it will not create a new Transaction and runs without Transaction.
+
+In case of Propogation.NOT_SUPPORTED the Service nevers runs in Transaction.
+
+4.Propogation.REQUIRES_NEW :
+----------------------------
+If the employeeService is called directly it does not creates its own new Transaction.
+If the employeeService is called from another Service
+Case 1 : If the calling Service has the Transaction then it does not makes use of existing Transaction and creates its own new Transaction.
+Case 2 : If the calling Service does not have the Transaction then it will create its own new Transaction.
+
+In case of Propogation.REQUIRES_NEW the Service creates its own new Transaction.
+
+5.Propogation.NEVER :
+---------------------
+If the employeeService is called directly it does not creates its own new Transaction.
+If the employeeService is called from another Service
+Case 1 : If the calling Service has the Transaction then it will throw an Exception.
+Case 2 : If the calling Service does not have the Transaction then it will not create a new Transaction and runs without Transaction.
+
+In case of Propogation.NEVER the Service never uses Transaction and does not allow to be called from Transaction.
+
+6.Propogation.MANDATORY :
+-------------------------
+If the employeeService is called directly it will throw an Exception.
+If the employeeService is called from another Service
+Case 1 : If the calling Service has the Transaction then it makes use of existing Transaction.
+Case 2 : If the calling Service does not have the Transaction then it will throw an Exception.
+
+In case of Propogation.MANDATORY calling Service should have a Transaction else it will trown an Exception. 
 
 
 ********************************************** 6.Spring Boot Transaction Management Rollback ******************************************************************
