@@ -1,0 +1,67 @@
+1.Integration Test in Spring Boot (javainuse)   									[08-AUG-2023]	(Done)
+2.Self-Contained Testing Using an In-Memory Database (baeldung)						[08-AUG-2023]	()
+3.Integration Tests with H2 In-Memory Database and Springboot (1kevinson)			[08-AUG-2023]	()
+4.Spring boot H2 database example (javabydeveloper)									[08-AUG-2023]	()
+5.
+
+
+
+################################################### 1.Integration Test in Spring Boot (javainuse) ###################################################
+
+An Integration Test is supposed to test whether different modules are bounded correctly and they work as expected.
+An Integration Tests should not utilize the actual production dependencies i.e. database and network and they can mimic certain behaviors.
+The Application shall run in ApplicationContext and run Tests in it.
+Springboot provides @SpringBootTest Annotation which starts the embeeded Server,create the Web Environment and then enables @Test methods to do the Integration Testing.
+Using an In Memory Database is recomended for mimicking the database.Though it is not mandatory we can use mockito to mock the database intercations.
+
+Using @SpringBootTest for the Tests that cover the whole Springboot Application from incoming request to database.
+
+Lets create the Controller,Repository and Model for the Integration Testing.
+After the APIs are created successfully and data is inserted into the database then create the Integration Test for the APIs.
+
+Step 1:
+Use @SpringBootTest annotation which loads the actual ApplicationContext.
+
+Step 2:
+Use WebEnvironment.RANDOM_PORT to run the Application in random port.
+
+Step 3:
+Use @LocalServerPort which gets the reference of the port where the Server has actually started.
+It helps in building the actual request URIs.
+
+Step 4:
+Use TestRestTemplate class which helps in invoking the HTTP Requests which are handled by the Controller class.
+
+Step 5 :
+@Sql Annotation helps in populating the database with some pre requisite data if the Test is dependent on it to test the behavior correctly.
+
+
+	@SpringBootTest (classes = IntegrationTestingApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+	public class EmployeeControllerIT {
+
+    @LocalServerPort
+    private int port;
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Sql({"classpath:schema.sql", "classpath:data.sql"})
+    @Test
+    public void testAllEmployees() {
+        assertTrue(
+                this.restTemplate
+                        .getForObject("http://localhost:" + port + "/employees", Employees.class)
+                        .getEmployeeList().size() == 3);
+		}
+	}
+	
+	@Test
+    public void testAddEmployee() {
+        Employee employee = new Employee("Lokesh", "Gupta", "howtodoinjava@gmail.com");
+        ResponseEntity<String> responseEntity = this.restTemplate
+                .postForEntity("http://localhost:" + port + "/employees", employee, String.class);
+        assertEquals(201, responseEntity.getStatusCodeValue());
+    }
+	
+################################################### 2.Self-Contained Testing Using an In-Memory Database (baeldung)	###################################################
+
+
