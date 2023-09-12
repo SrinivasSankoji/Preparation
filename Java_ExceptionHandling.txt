@@ -39,7 +39,7 @@ Scenario 2 :
 ------------
 Opened the database and while reading the data from the database SQLException is raised.
 Here program terminates abnormally without closing the connection.
-If 10 connections are opened and program terminates the program without closing the connection,resources are wasted.
+If 10 connections are opened and program terminates without closing the connection then resources are wasted.
 Eventhough program terminates abnormally,close the DB connection and stop the program.
 
 Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue to the rest of the program normally.
@@ -109,7 +109,7 @@ IndexOutOfBoundException
 ********************************************************************  5.Exception and Error ***************************************************************************
 
 Most of the times Exceptions are caused by programmers and are recoverable.
-If our program requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
+If our requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
 If FileNotFoundException occurs we can provide local file so that rest of the program will be continued normally.
 
 Most of the times Errors are caused by lack of system resources and are not recoverable.
@@ -154,7 +154,7 @@ Exception
 
 ******************************************************************** 8.Exception Handling using try catch block  ********************************************************
 
-We can make the program as graceful terminataion of the program by using try catch block.
+We can make the program as graceful terminataion by using try catch block.
 The code which makes the program termination is called risky code and should be placed inside try catch block.
  
 	public class ExceptionDemoTwo {
@@ -348,13 +348,13 @@ JVM verifies is there any try catch block defined inside the method or not other
 
 	public class ThrowDemoOne {
 	public static void main(String[] args) {
-		System.out.println(10/0);
+		System.out.println(10/0); // Runtime Exception
 	}
 	}
 	
 	public class ThrowDemoTwo {
 	public static void main(String[] args) {
-		throw new ArithmeticException("Divided by Zero");
+		throw new ArithmeticException("Divided by Zero"); // Runtime Exception
 		}
 	}
  
@@ -612,7 +612,7 @@ throws is used as a method declaration.
 throws is followed by the name of the Exception.
 throws can be used to throw Multiple Exceptions.
 
-1.If the Super Class method does not throw any Exception then subclass method can throw any unchecked Exception.
+1.If the Super Class method is not throwing any Exception then subclass method can throw any unchecked Exception.
 
 	public class Super {
 	public void method() {
@@ -626,7 +626,7 @@ throws can be used to throw Multiple Exceptions.
 		  }
 	}
 
-2.If the Super Class method does not throw any Exception then subclass method cannot throw any CheckedException.
+2.If the Super Class method is not throwing any Exception then subclass method cannot throw any CheckedException.
 
 	public class Super {
 	public void method() {
@@ -654,7 +654,7 @@ throws can be used to throw Multiple Exceptions.
 		  }
 	}
 
-4.If the super class method throws any Unchecked Exception then subclass method can throw the same exception or its subclass or no Exception in the SubClass.
+4.If the Super class method throws any Unchecked Exception then subclass method can throw the same exception or its subclass or no Exception in the SubClass.
 
 	public class Super {
 	public void method() throws RuntimeException{

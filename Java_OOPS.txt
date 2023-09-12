@@ -22,9 +22,8 @@
 21.Main Method                                      [14-DEC-2020]  (Done)
 22.Constructor Chaining								[04-DEC-2021]  ()
 23.Static Mthods and Variables(crunchify)			[04-DEC-2021]  ()
+24.Coding Interview Questions (hackertrail)			[05-SEP-2023]  ()
 
-Coding Interview Questions :
-hackertrail
 
 **********************************************************  1.Data Hiding  *********************************************************************
 
@@ -40,7 +39,7 @@ Recomended Modifier for Data Hiding is private.
 
 Hiding the internal implementation and highlighting the set of services i.e required information is called as Abstraction.
 All the Operations are performed internally by highlighting the set of services.
-Bank people will highlight the set of services what they are offer by hiding the internal implementation.
+Bank people will highlight the set of services what they offer by hiding the internal implementation.
 Abstraction improoves the maintainability and modularity of an application.
 Abstraction improoves the easyness to use the system because not required to know about the internal implementation.
 
@@ -575,6 +574,7 @@ We can use the same function name with different arguments.
 	
 Consider the Scenario 
 
+
 	List list=new ArrayList();
 	List list=new LinkedList();
 	List list=new Vector();
@@ -685,10 +685,10 @@ Refer Java_Constructor
 ******************************************************************* 18.Singleton Class  **************************************************************************
 
 For any Java Class If we are allowed to create only one Object,then such class is said to be Singleton Object.
-Advantage of Singleton Object is instead of creating multiple Objects for the same purpose,create only one object and reuse the same object for every request.
+Advantage of Singleton Object is instead of creating the multiple Objects for the same purpose,create the object only once and reuse the same object for every request.
 so that performance and memory utilizations will be improved.
 
-If we want to get runtime object
+If we want to get the runtime object
 
 	Runtime r=Runtime.getRuntime();
 	
@@ -765,7 +765,7 @@ C must be either same or derived type of A otherwise we get compile time Error.
 	
 Runtime Checking :
 ------------------
-Underlying Object type of d must be same or derived type of C otherwise we get Runtime Exception saying ClassCastException.
+d must be same or derived type of C otherwise we get Runtime Exception saying ClassCastException.
 	
 	Object object=new String("durga");
 	StringBuffer sb=(StringBuffer)object;

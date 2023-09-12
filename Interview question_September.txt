@@ -1,0 +1,276 @@
+Core Java:
+=============
+1.Object class methods.
+2.Difference between Interface Vs Abstaract Class
+3.What is clone? cloning types?Which clone your using in  project?
+4.why we are override hashcode() and equals() methods in java program?if we are not override what will happen?
+5.Sring Vs Sring Buffer Vs String Builder
+6.What is string pool?
+7.Why string are immutable?how to make class as immutable?-Have you ever used in your project?
+8.what is Exeception handling?what is the difference between exception and Error?
+9.Difference between checked exception and UnchekedException?
+10.Try with multiple catch blocks possible or not? if yes how?--excepton hirachy they will ask
+11.What is try with resouce?
+12.Try, catch and finally blocks all combimnations they will ask
+13.If we are the retrun statement is try block (or)catch block what will happen?excetuion hierarchy?
+
+14.what is Method overloading?they will ask question on method returns types
+15.what is Method methodoveriding?they will ask question on method returns types and CO-Varient types
+16.what is polimorphism?how we can achive the complietime polimorphism and runtime polimorphism?
+17.Is it possible to create the object for interface?How we can create the object for Abstarct class?here interviewer expecting the polymorphism behavior from our end.
+18.Collections(all classes and interfaces)
+19.Difference between ArrayList and LinkedList?(which alogoritham internally used)
+20.Why collection are introduced in java?
+21.Array drawback and internal algorithams
+22.Classloader subsystem?
+23.Difference ClassNotfoundExcetion Vs NoClassDefinationFoundError
+24.HashMap Internal working
+25.HashMap Vs ConcurentHashmap
+26.HashMap Vs WeakHashMap Vs IdentityHashMap
+27.Comprable Vs Comprator--inrerviewer will ask the coding level.
+28.thread life cycle methods
+29.what is deadlocks?how we can prevent?
+30.yield() and sleep() and join() methods differnces
+31.wait(),notify() and notifyAll() methods already  existing in object class.why again these methods in thread.
+32.difference between synchronized method and synchronized blocks?
+33.why string are immutatble?how we can make the class as immutable class?
+34.JVM archetecture?
+35.What is intern() method in java?
+36.difference between runnable() and callable()?
+37.SOLID Principles?
+38.What is serialization and externalization?
+39.what is Traisent and volatile key words.
+40.Different HTTP methods?difference between GET() and POST() and PUT()
+41.What is idempotent?
+42.How we can create the singleton class?
+43.how to break the singleton nature(Reflection,Clonable,Serializable).
+44.How to create the CustomException class?
+ 
+Java8:
+=======
+1.Java8 features?
+2.which features have you used in project?why?
+3.What is lambda expression?what is the use?
+4.What is fuctional interface?before java8 any fuction interfaces are there?if yes what all are those.In this case interviewers digging more internals.
+5.Function interface methods?
+6.what is the differnce between consumer() and Predicate()? in which scenario have you used in project?
+7.What is streams?
+8.What is intermidary operator and ternary operator?Interviewer will ask the code level question in this case
+9.Difference between map and flatmap()
+10.Some times they will ask explain all intermidary operator in java8?
+11.What is Optional class?why they are intraaduce the option class in java8?
+12.Have you ever used the optional calss in project?if yes where?
+13.Optional calss methods?
+14.Any features related to memory level in java8?
+15.What is forkjoin?
+16.what is Method references?how many types?
+
+SpringBoot
+===========
+1.Difference between Spring and Springboot
+2.SpringBoot features explain 
+3.How we disable the tomcat(or)Jetty servers in SpringBoot?--by using annotation?
+4.Is this possible to add the Jboss server to our springBoot application?If yes, how?
+5.how to change the server port number?
+6.What is endpoints?which are actuators are used in project?
+7.All SpringBoot annotations?
+8.@SpringBootApplication--this annotation will cover how many annotations in internally and explain?
+9.difference between @Pathpam Vs @pathVarible 
+10.Explain the SpringBoot flow from end to end.
+11.How we can disable the DB in springBoot Application?(by using in Annotation)
+12.What is @qualifer annotation where exactly used in project?(they will ask indirectly in scenario based)
+13.What is profiles?where we will configure?(they will ask indirectly in scenario based)
+14.How to create the SpringBoot application?
+15.Have you ever used @crossorigin annotation in project and why?
+16.Spring Security?
+17.difference between YML file and POM.xml file
+18.What will happen if we run the springboot application as narmal java application?what will happen internally?
+19.What is the drawbacks of springBoot?
+20.@RequestMapping where we will used and what happen?
+21.How you can connect DB?(JPA or SpringJDBC template)--they will expect the configuration and how we can use the data source in our project?
+22.How to handle the CustomException in SpringBoot?They will expect the flow?
+23.JWT or Oauth 2.0 Authecation(At least one expecting)
+24.What is contextroot?
+
+microservices:
+==============
+1.What is Microservices? advantages and disadvantages?
+2.Difference between monolithic architecture style and Microservices Architecture?
+3.Draw your project architecture diagram?
+5.Which design patteren have used in Microservices to implement the services?
+6.whats is CQRS?where exactly have you used?
+7.What is API gateway?(ZullProxy)
+8.Which API gate have you used in project?they will expect the configuration?
+9.Microservices flow?
+10.what is service discovery design patteren?
+11.What is Circuit breaker design patteren?have you ever used this patteren?if yes,how you can implement is your project?
+12.What is blue-green deploymeents?
+13.What is loadbalencer?have you ever implemented?If yes how?(Ribbon)
+14.How two microservices commucate each other?(Rest Template and Web Client and Faign client)
+15.Realtime question they will ask in Microservies?
+16.How we can create the discovery server?
+17.They will ask more question Rest template.
+18.How we will monitor the all microservices?
+19.Which tool have you used for check the logs?
+20.What is swaggerAPI?
+21.How we can implement Swagger?
+22.What is config server?
+23.saga, api gateway,circuit breaker, design pattern.
+
+Webservices:
+============
+1.What is the best practices to cerate the restful webservices?
+2.Difference between @path and @RequestMapping annotation?
+3.Difference between @RestControler and @Controller annotation.
+4.Which are annotation are used to create the restful webservices?
+5.Its better to read the all restful webservices annotations.
+6.@RequestParam and @PathParam
+
+
+Spring:
+==========
+1.Bean Scopes
+2.What is dependency injection?
+3.what is @Autowired annotation?differnce between by-name and by-type.
+4.Bean life cycles
+5.Sometime they will ask question on AOP.
+6.What is trancations
+7.SpringMVC flow.
+8.What is the parent annotation for @Controller and @Service and @repository?if yes, how?
+9.BeanFactory and ApplicaitonContext difference?
+10.Which injection is best why?(SetterInjection and Constructor Injection)
+
+OracleDB:
+==========
+1.What is index?
+2.What is Joins?explan all
+3. write a quesry for Second hughest salary (or) Third highest salary (or) fourth highest salry?
+4.DB optimazation..
+5.Primary key and Foreign key.
+
+Hibernate:
+==========
+1.What is hibernate?
+2.Object states?
+3.Caching?(first level and second level cache)
+4.difference between get() and load().
+5.Mapping(one to one,one to Many,Many to one ,Mamy to Many)--Interviewers will asking coding level.
+5.What is HQL?
+5.Named query?
+6.Transcation managemnet.
+7.Isolation level
+8.Dirty read and Pantam read
+9.ACID properties.
+
+Tools:
+======
+Git
+Maven
+log4j
+AWS or OPENSHIFT or PCF
+Splunk-Kibana--
+Docker
+Sonarcube
+Which frame work used for testing?
+CICD--How to create the pipeline 
+
+1.Maven life cycle methods
+2.Logger levels
+3.they will question on cloud(in this case i did not face more question on cloud)
+4.Testcases
+
+Core Spring Framework Annotations
+@Required
+@Autowired
+@Qualifier
+@Configuration
+@ComponentScan
+@Bean
+@Lazy
+@Value
+
+Spring Framework Stereotype Annotations
+@Component
+@Controller
+@Service
+@Repository
+
+Spring Boot Annotations
+@EnableAutoConfiguration
+@SpringBootApplication
+
+Spring MVC and REST Annotations
+@Controller
+@RequestMapping
+@CookieValue
+@CrossOrigin
+@Composed 
+@RequestMapping Variants
+@GetMapping
+@PostMapping
+@PutMapping
+@PatchMapping
+@DeleteMapping
+@InitBinder
+
+Spring Cloud Annotations
+@EnableConfigServer
+@EnableEurekaServer
+@EnableDiscoveryClient
+@EnableCircuitBreaker
+@HystrixCommand
+
+Spring Framework DataAccess Annotations
+@Transactional
+Cache-Based Annotations
+@Cacheable
+@CachePut
+@CacheEvict
+@CacheConfig
+
+Task Execution and Scheduling Annotations
+@Scheduled
+@Async
+
+Spring Framework Testing Annotations
+@BootstrapWith
+@ContextConfiguration
+@WebAppConfiguration
+@Timed
+@Repeat
+@Commit
+@RollBack
+@DirtiesContext
+@BeforeTransaction
+@AfterTransaction
+@Sql
+@SqlConfig
+@SqlGroup
+@SpringBootTest
+@DataJpaTest
+@DataMongoTest
+@WebMVCTest
+@AutoConfigureMockMVC
+@MockBean
+@JsonTest
+@TestPropertySource
+
+
+Preparation Questions :
+-----------------------
+Copy Constructor and clone ()
+Duplicate Object w.r.t final variables ()
+Overloading w.r.t Checked and Unchecked Exception ()
+Queue Interface ()
+HashSet Internal Implementation ()
+
+
+
+
+
+
+
+
+
+
+

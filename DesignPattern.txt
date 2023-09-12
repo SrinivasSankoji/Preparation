@@ -1,16 +1,71 @@
 1.Service Locator Design Pattern          (Java Techie)     		[15-JUL-2023]  ()
 2.Dependency Injection Design Pattern     ()     		            [15-JUL-2023]  ()
-3.
-
-
+3.Strategy Design Pattern 				  (GeeksForGeeks)			[25-AUG-2023]  (Done)
+4.Command Pattern                         (GeeksForGeeks)			[25-AUG-2023]  ()
+5.Facade Design Pattern 				  (GeeksForGeeks)			[25-AUG-2023]  ()
+6.Object State Design Pattern 			                
 
 
 ################################################### 1.Service Locator Design Pattern (Java Techie) ###################################################
 
 Service Locator is a design pattern used in SDLC to encapsulate the process involved in obtaining a service with strong abstraction Layer.
-The goal of this module is to improvve the modularity of an Application by removing the dependencies between the client and implementation of an interface.
+The goal of this module is to improve the modularity of an Application by removing the dependencies between the client and implementation of an interface.
 Service Locator acts as a Central registry that provides implementations of different interfaces.
 Spring Framework internally uses Service Locator Design Pattern to manage Dependency Injection.
+
+
+################################################### 3.Strategy Design Pattern (GeeksForGeeks) ########################################################
+
+Strategy design pattern is a behavioral design pattern that allows the behavior of an Object to be selected at runtime.
+It is one of the Gang of four design pattern which are widely used in programming language.
+The strategy design pattern is based on the idea of encapsulating a family of algorithms into seperate class that implements common interface.
+The pattern consists of three main components
+
+Context
+Strategy
+Concrete Strategy
+
+Context is the class that contains the Object whose behavior needs to be changed dynamically.
+Strategy is an Interface or Abstract class that defines the common methods for all the alogorithms that can be used by the Context.
+Concrete Strategy is the class that implements the Strategy Interface and provides the actual implementation of the Algorthm.
+
+Advantages :
+------------
+Flexiblity :
+Strategy pattern allows the behavior of an Object to be changed dynamically at runtime by selecting different algorithms.
+Modularity:
+Strategy Pattern encapsulates the Algorithm into seperate classes,making it easy to add or remove algorithms without affecting other parts of the code.
+Testability :
+Strategy Pattern makes it easy to test the Alogorithm without affecting over all behavior of the code.
+Open closed Principle :
+Strategy Pattern follows the Open closed principle which states that open for extension and closed for modification.
+
+
+Disadvantages :
+---------------
+Strategy pattern has some drawbacks which includes the increase of multiple classes.
+Strategy Pattern has potential performance issues if the selection of algorithm is done frequently at runtime.
+
+
+################################################### 4.Command Pattern (GeeksForGeeks) ###################################################
+
+Command Pattern encapsulates a request as an Object there by letting us paraeterize other Objects with different request,log requests and support undoable operations.
+
+
+###################################################  5.Facade Design Pattern (GeeksForGeeks) ############################################
+
+Facade Design Pattern is the Structural Design Pattern which is the part of Gang of Four Design Pattern.
+Facade hides the complexity of the System and provides an Interface to the Client from where the Client can access the System.
+
+JDBC can be called as Facade because we as a User create a Connection using java.sql.Connection Interface.
+The implementation we are not concerned about and is left to the Vendor of the Driver.
+
+Facade defines a higher level interface that makes the sub system easier to use.
+
+
+
+
+
 
 
 

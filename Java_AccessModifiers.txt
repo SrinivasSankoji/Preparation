@@ -14,7 +14,7 @@
 
 *****************************************************************  1.Introduction  *****************************************************************
 
-Whenevr we are writing any Java Class we have to provide information about our Java Class to the JVM like
+Whenever we are writing any Java Class we have to provide information about our Java Class to the JVM like
 
 1.whether the Class can be accessible from any where or not.
 2.whether the Class creation is possible or not.
@@ -34,7 +34,7 @@ For Inner Classes protected,static and private are also applicable.
 ***************************************************************  2.private modifier	 *****************************************************************
 
 Scope of private modifier is limited to the class only.
-Class and Interface cannot be declared as private where as bested Classes can be declared as private.
+Class and Interface cannot be declared as private where as nested Classes can be declared as private.
 If a method is declared as private we can access that method only within the Class and outside the Class we cannot access.
 If the constructor is declared as private then we cannot create the Object of that Class from outside of the class.
 		
@@ -59,7 +59,7 @@ abstract private combination is illegal for methods.
 
 *****************************************************************  3.default Modifier  ************************************************************
 
-When we don't mention any access modifier then by default it is default access modifier.
+Whenever we don't mention any access modifier then by default it is default access modifier.
 Scope of default modifier is limited to package only.
 Hence default modifier is also called as package level access.
 
@@ -167,7 +167,7 @@ Various places to perform initialization for instance variables are
 	
 	//Method Three
 	final int z;
-	FinalDemo()
+	finalDemo()
 	{
 		z=10;
 	}
@@ -268,7 +268,7 @@ Abstract class can have strictfp methods because Abstract class can contain zero
 
 *************************************************************** 9.static modifier  ***************************************************************
 
-static is the modifier applicable for variables and methods but not for classes(Nested Classes can be static).
+static is the modifier applicable for variables and methods but not for classes (Nested Classes can be static). 
 If the value of the variable is same for all objects then that variable should be declared as static.
 In case of static variables only one copy will be created and will be shared across all the objects.
 
@@ -276,11 +276,11 @@ Note :
 ------
 we can access static members from both instance area and static area where as we cannot access instance members directly from static area.
 For static methods implementation should be there where as for abstract methods doesn't need an implementation.
-We cannot declare both static and abstract methods.
+abstract static combination is illegal for methods.
 
 *************************************************************** 10.native modifier ***************************************************************
 
-native is a modifier applicable only for methods and not for variables and classes.
+native is a modifier which is applicable only for methods and not for variables and classes.
 The methods which are implemented in non java then those methods are called as native methods or foreign methods.
 Main Advantage of native methods is
 1.It improoves the performance of the system
@@ -327,7 +327,7 @@ If a method or block is declared as synchronized then at a time only one Thread 
 Disadvantage of synchronized keyword is it increases waiting time of threads and creates performance problems.
 Hence if there is no specific requirement then it is never recomended to use synchronized keyword.
 
-***************************************************************  12.Transiemt Modifier  *********************************************************************
+***************************************************************  12.Transient Modifier  *********************************************************************
 
 Transient is a modifier applicable only for variables but not for classes and methods.
 While performng Serialization if we don't want to serialize the value of the particular variable to meet security constraints we declare the variable as transient variable.

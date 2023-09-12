@@ -1,0 +1,137 @@
+1.Mapped Super Class       						(codeforgeyt)   				[20-AUG-2021]	(Done)
+2.Single Table	                                (codeforgeyt)   				[20-AUG-2021]	(Done)
+3.Joined Table                                  (codeforgeyt)   				[20-AUG-2021]	()
+4.Table Per Class                               (codeforgeyt)   				[20-AUG-2021]	()
+5.
+
+
+
+
+################################################### 1.Mapped Super Class (codeforgeyt) ###################################################
+
+Create three entities
+
+Vehicle (Super Class)
+Tank
+Truck
+
+
+		@Value
+		@MappedSuperclass
+		public abstract class Vehicle {
+
+			@Id
+			@GeneratedValue (strategy = GenerationType.UUID)
+			UUID vehicleId;
+
+			String vehicleName;
+			
+			Integer seatingCapacity;
+		}
+		
+Here not required to create an instance of Vehicle class and we make it as abstract.
+
+		@Entity(name = "tank")
+		public class Tank extends Vehicle{
+
+			private Integer firePower;
+
+			public Tank() {
+			}
+
+			public Tank(String vehicleName, Integer seatingCapacity, Integer firePower) {
+				super(vehicleName, seatingCapacity);
+				this.firePower = firePower;
+			}
+		}
+		
+		@Entity (name = "truck")
+		public class Truck extends Vehicle {
+
+			private Integer maxLoad;
+
+			private boolean sleeperCab;
+
+			public Truck(String vehicleName, Integer seatingCapacity, Integer maxLoad, boolean sleeperCab) {
+				super(vehicleName, seatingCapacity);
+				this.maxLoad = maxLoad;
+				this.sleeperCab = sleeperCab;
+			}
+		}
+		
+From the above two Entities it will create two Tables named Tank and Truck with the properties of Vehicle class.
+Here the drawback is both the Table contains the same properties of Vehicle class.
+MappedSuperclass can be used to abstract the common variables and used in the Implementation classes.
+
+################################################### 2.Single Table (codeforgeyt) ###################################################
+
+In Single Table Strategy Single Table can be used to store the data.
+Inheritance Strategy will be strategy = InheritanceType.SINGLE_TABLE.
+Discriminator column can be used to identify which Object it has inserted into the Table.
+
+	@Entity
+	@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+	@DiscriminatorColumn (name = "ART_TYPE", discriminatorType = DiscriminatorType.STRING)
+	@Getter
+	public abstract class Art {
+
+		@Id
+		@GeneratedValue (strategy = GenerationType.UUID)
+		private UUID artId;
+		private String author;
+
+		public Art() {
+		}
+		public Art(String author) {
+			this.author = author;
+		}
+	}
+	
+	@Entity
+	@DiscriminatorValue (value = "PAINT")
+	@Value
+	public class Paint extends Art {
+
+		@Enumerated (value = EnumType.STRING)
+		Painting painting;
+
+		Double width;
+
+		Double height;
+
+		@Builder
+		public Paint(String author, Painting painting, Double width, Double height) {
+			super(author);
+			this.painting = painting;
+			this.width = width;
+			this.height = height;
+		}
+	}
+	
+	@Entity
+	@Value
+	@DiscriminatorValue (value = "SCULPTURE")
+	public class Sculpture extends Art {
+
+		@Enumerated (value = EnumType.STRING)
+		Material material;
+
+		Double weight;
+
+		@Builder
+		public Sculpture(String author, Material material, Double weight) {
+			super(author);
+			this.material = material;
+			this.weight = weight;
+		}
+	}
+
+
+################################################### 3.Joined Table (codeforgeyt) ###################################################
+
+In Joined Table Strategy,Tables will be created for both Parent and Child.
+Child Table contains the reference to the Parent Table.
+No Chld Table will have the duplicate Columns of the Parent Table.
+
+
+

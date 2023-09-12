@@ -8,7 +8,7 @@
 
 **************************************************  1.ArrayList Internal Implementation **************************************************
 								
-ArrayList is a Re sizable Array and it is one of the Implementations of ArrayList.
+ArrayList is a resizable Array and it is one of the implementations of ArrayList.
 ArrayList grows Dynamically When the Elements are Added to It.
 If the Size of the Current Element is Greater than Maximum Size,Then Increase the Size of the Array.
 New ArrayList is Created with initial Capacity of 10 and copies all the Old Elements into new Array.

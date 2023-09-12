@@ -1,18 +1,17 @@
 1.Integration Test in Spring Boot (javainuse)   									[08-AUG-2023]	(Done)
-2.Self-Contained Testing Using an In-Memory Database (baeldung)						[08-AUG-2023]	()
-3.Integration Tests with H2 In-Memory Database and Springboot (1kevinson)			[08-AUG-2023]	()
-4.Spring boot H2 database example (javabydeveloper)									[08-AUG-2023]	()
-5.
+2.Self-Contained Testing Using an In-Memory Database (baeldung)						[08-AUG-2023]	(Done)
+3.Integration Tests with H2 In-Memory Database and Springboot (1kevinson)			[17-AUG-2023]	()
+4.Step by Step Integration Tests on Spring Kafka Producer (Abdullah YILDIRIM)		[09-AUG-2023]	()
 
 
 
 ################################################### 1.Integration Test in Spring Boot (javainuse) ###################################################
 
-An Integration Test is supposed to test whether different modules are bounded correctly and they work as expected.
-An Integration Tests should not utilize the actual production dependencies i.e. database and network and they can mimic certain behaviors.
-The Application shall run in ApplicationContext and run Tests in it.
-Springboot provides @SpringBootTest Annotation which starts the embeeded Server,create the Web Environment and then enables @Test methods to do the Integration Testing.
-Using an In Memory Database is recomended for mimicking the database.Though it is not mandatory we can use mockito to mock the database intercations.
+An Integration Test is nothing but different modules are bounded correctly or not and they should work as expected.
+An Integration Test should not utilize the actual production dependencies i.e. database and network and they can mock certain behaviors.
+The Application should run in ApplicationContext and run Tests in it.
+Springboot provides @SpringBootTest Annotation which starts the embeeded Server,creates the Web Environment and enables @Test methods to do the Integration Testing.
+Using an In Memory Database is recomended for mocking the database.Though it is not mandatory we can also use mockito to mock the database intercations.
 
 Using @SpringBootTest for the Tests that cover the whole Springboot Application from incoming request to database.
 
@@ -41,6 +40,7 @@ Step 5 :
 
     @LocalServerPort
     private int port;
+	
     @Autowired
     private TestRestTemplate restTemplate;
 
@@ -63,5 +63,25 @@ Step 5 :
     }
 	
 ################################################### 2.Self-Contained Testing Using an In-Memory Database (baeldung)	###################################################
+
+For the standard profile,the Application will have stand alone Database configuration which requires installing and running the Database with proper user and Set up.
+To make the Application Testing easier we will use the H2 In Memory Database for running the Junit Tests.
+
+To allow the use of different Database configuration for standard mode and Testing mode, 
+we read the database configuration from a file that depends on the running mode of the Application.
+For Normal mode the properties file resides in src/main/resources and for Testing mode properties file resides in src/test/resources folder.
+
+The application will first look for the files in the src/test/resources folder when running a Test.
+If the file is not found in this location it will use the one defined in the src/main/resources folder.
+If the file is present in the test path then it will override from the main path.
+
+################################################### 3.Integration Tests with H2 In-Memory Database and Springboot (1kevinson) #########################################
+
+An In Memory Database is a Database that primarily relies on System Memory for Data storage instead of Database Mangement System which relies on Disk storage mechanism.
+Because Memory access is faster than Disk Access.
+We use in memory Database whenever we don't want to persist the data.
+In Memory Database is volatile by default and all the data is lost when we restart the Application.
+
+
 
 

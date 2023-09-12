@@ -1,0 +1,58 @@
+1.Pagination							(danvega)   				[17-AUG-2021]	(Done)
+2.Sorting								(javaguides)   				[17-AUG-2021]	()
+3.Paging with Spring Boot				(reflectoring)   			[17-AUG-2021]	()
+3.Query DSL
+4.Audit of Domain Classes
+5.Dynamical Queries
+6.@Modify
+7.Criteria
+8.@Filter Annotation
+9.
+
+
+################################################### 1.Pagination (danvega) ###################################################
+
+Pagination allows the user to see a small portion of data at a time.
+Pagination consists of two fields i.e page size and page number.
+To use paging and sorting provided by Spring Data JPA,our Repository must extend PagingAndSortingRepository interface.
+PagingAndSortingRepository interface provides two methods
+
+	Page findAll(Pageable pageable)
+	Iterable findAll(Pageable pageable)
+	
+Spring Data JPA has SimpleJPARepository class which implements PagingAndSortingRepository interface.
+
+Create two Model Classes 
+
+Person
+Address
+
+Create a Repository Interface
+
+	public interface PersonRepository extends JpaRepository<Person,Integer> {
+	}
+	
+Java Faker :
+------------
+
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		
+Create the Controller named PersonController
+
+	@GetMapping
+    public Page<Person> getAllPersonDetails(Pageable pageable) {
+      return  personRepository.findAll(pageable);
+    }
+	
+Then hit the URL
+
+	http://localhost:8080/api/people?size=2&sort=lastName,asc
+	
+
+
+
+

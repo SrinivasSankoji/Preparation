@@ -174,7 +174,7 @@ Transaction Propagation indicates any Service may or may not participate in the 
 when calling Service has the Transaction created or not created.
 
 In our case we are calling joinOrganizationChecked or joinOrganizationUnchecked which internally calls employeeService and healthInsuranceService.
-Transaction Propagation decides whether the Service can participate in the Transaction either bye creating the new Transaction or using the existing Transaction.
+Transaction Propagation decides whether the Service can participate in the Transaction either by creating the new Transaction or using the existing Transaction.
 For the Transaction Propogation to work we are making employeeService and healthInsuranceService as Transactioal.
 
 There are 6 types of Transaction Propagations

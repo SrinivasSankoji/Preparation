@@ -57,7 +57,7 @@ Note :
 ------
 Object creation in SCP is always optional.
 First JVM will check is there any object already available with required content or not.
-If any object is already available then JVM will use the existing object.
+If the object is already available then JVM will use the existing object.
 If the object is not already available then only a new object will be created.
 Garbage Collector is not allowed to access SCP area eventhough object does not have any reference.
 All SCP objects will be destroyed automatically at the time of JVM shut down.
@@ -97,25 +97,25 @@ Example 2 :
 Example 3 :
 -----------
 
-		String s1=new String("You Cannot Chaneg Me");
-		String s2=new String("You Cannot Chaneg Me");
+		String s1=new String("You Cannot Change Me");
+		String s2=new String("You Cannot Change Me");
 		System.out.println(s1==s2); // false
 		
-		String s3="You Cannot Chaneg Me";
+		String s3="You Cannot Change Me";
 		System.out.println(s1==s3); //false
 		
-		String s4="You Cannot Chaneg Me";
+		String s4="You Cannot Change Me";
 		System.out.println(s3==s4); //true
 		
-		String s5="You Cannot"+" Chaneg Me";
+		String s5="You Cannot"+" Change Me";
 		System.out.println(s3==s5); //true
 		
 		String s6="You Cannot";
-		String s7=s6.concat(" Chaneg Me");
+		String s7=s6.concat(" Change Me");
 		System.out.println(s3==s7); //false
 		
 		final String s8="You Cannot";
-		String s9=s8+" Chaneg Me";
+		String s9=s8+" Change Me";
 		System.out.println(s3==s9); //true
 		
 		System.out.println(s6==s8); //true

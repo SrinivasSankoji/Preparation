@@ -8,7 +8,6 @@
 8.static import                                     [24-DEC-2020]  (Done)
 9.extended for loop                                 [24-DEC-2020]  (Done)
 10.Classpath                                        [24-DEC-2020]  (Done)
-
 11.Jar file Creation                                [24-DEC-2020]  (Done)
 12.System properties                                [24-DEC-2020]  (Done)
 13.jar vs war vs ear                                [24-DEC-2020]  (Done)
@@ -477,6 +476,8 @@ Both newInstance() are Reflective ways to create an Object.
 		System.out.println(instance.hashCode());
 	}
 	}
+
+*********************************************** 19.Class Loaders ***********************************************
 
 
 
