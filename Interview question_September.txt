@@ -1,50 +1,50 @@
 Core Java:
 =============
-1.Object class methods.
-2.Difference between Interface Vs Abstaract Class
-3.What is clone? cloning types?Which clone your using in  project?
-4.why we are override hashcode() and equals() methods in java program?if we are not override what will happen?
-5.Sring Vs Sring Buffer Vs String Builder
-6.What is string pool?
-7.Why string are immutable?how to make class as immutable?-Have you ever used in your project?
-8.what is Exeception handling?what is the difference between exception and Error?
-9.Difference between checked exception and UnchekedException?
-10.Try with multiple catch blocks possible or not? if yes how?--excepton hirachy they will ask
-11.What is try with resouce?
-12.Try, catch and finally blocks all combimnations they will ask
-13.If we are the retrun statement is try block (or)catch block what will happen?excetuion hierarchy?
+1.Object class methods.  ()
+2.Difference between Interface Vs Abstaract Class ()
+3.What is clone? cloning types?Which clone your using in  project? ()
+4.why we are override hashcode() and equals() methods in java program?if we are not override what will happen?  ()
+5.Sring Vs Sring Buffer Vs String Builder  ()
+6.What is string pool? ()
+7.Why string are immutable?how to make class as immutable?-Have you ever used in your project? ()
+8.what is Exeception handling?what is the difference between exception and Error?  ()
+9.Difference between checked exception and UnchekedException? ()
+10.Try with multiple catch blocks possible or not? if yes how?--excepton hirachy they will ask ()
+11.What is try with resouce? ()
+12.Try, catch and finally blocks all combimnations they will ask ()
+13.If we are the retrun statement is try block (or)catch block what will happen?excetuion hierarchy?  ()
 
-14.what is Method overloading?they will ask question on method returns types
-15.what is Method methodoveriding?they will ask question on method returns types and CO-Varient types
-16.what is polimorphism?how we can achive the complietime polimorphism and runtime polimorphism?
-17.Is it possible to create the object for interface?How we can create the object for Abstarct class?here interviewer expecting the polymorphism behavior from our end.
-18.Collections(all classes and interfaces)
-19.Difference between ArrayList and LinkedList?(which alogoritham internally used)
-20.Why collection are introduced in java?
-21.Array drawback and internal algorithams
-22.Classloader subsystem?
-23.Difference ClassNotfoundExcetion Vs NoClassDefinationFoundError
-24.HashMap Internal working
-25.HashMap Vs ConcurentHashmap
-26.HashMap Vs WeakHashMap Vs IdentityHashMap
-27.Comprable Vs Comprator--inrerviewer will ask the coding level.
-28.thread life cycle methods
-29.what is deadlocks?how we can prevent?
-30.yield() and sleep() and join() methods differnces
-31.wait(),notify() and notifyAll() methods already  existing in object class.why again these methods in thread.
-32.difference between synchronized method and synchronized blocks?
-33.why string are immutatble?how we can make the class as immutable class?
-34.JVM archetecture?
-35.What is intern() method in java?
-36.difference between runnable() and callable()?
-37.SOLID Principles?
-38.What is serialization and externalization?
-39.what is Traisent and volatile key words.
-40.Different HTTP methods?difference between GET() and POST() and PUT()
-41.What is idempotent?
-42.How we can create the singleton class?
-43.how to break the singleton nature(Reflection,Clonable,Serializable).
-44.How to create the CustomException class?
+14.what is Method overloading?they will ask question on method returns types  ()
+15.what is Method methodoveriding?they will ask question on method returns types and CO-Varient types  ()
+16.what is polimorphism?how we can achive the complietime polimorphism and runtime polimorphism?  ()
+17.Is it possible to create the object for interface?How we can create the object for Abstarct class?here interviewer expecting the polymorphism behavior from our end.  ()
+18.Collections(all classes and interfaces)  ()
+19.Difference between ArrayList and LinkedList?(which alogoritham internally used)  ()
+20.Why collection are introduced in java?  ()
+21.Array drawback and internal algorithams  ()
+22.Classloader subsystem?  ()
+23.Difference ClassNotfoundExcetion Vs NoClassDefinationFoundError  ()
+24.HashMap Internal working  ()
+25.HashMap Vs ConcurentHashmap  ()
+26.HashMap Vs WeakHashMap Vs IdentityHashMap  ()
+27.Comprable Vs Comprator--inrerviewer will ask the coding level.  ()
+28.thread life cycle methods  ()
+29.what is deadlocks?how we can prevent?  ()
+30.yield() and sleep() and join() methods differnces  ()
+31.wait(),notify() and notifyAll() methods already  existing in object class.why again these methods in thread.  ()
+32.difference between synchronized method and synchronized blocks? ()
+33.why string are immutatble?how we can make the class as immutable class?  ()
+34.JVM archetecture?  ()
+35.What is intern() method in java?  ()
+36.difference between runnable() and callable()?  ()
+37.SOLID Principles?  ()
+38.What is serialization and externalization?  ()
+39.what is Traisent and volatile key words.  ()
+40.Different HTTP methods?difference between GET() and POST() and PUT()  ()
+41.What is idempotent?  ()
+42.How we can create the singleton class?  ()
+43.how to break the singleton nature(Reflection,Clonable,Serializable).  ()
+44.How to create the CustomException class?  ()
  
 Java8:
 =======

@@ -8,10 +8,10 @@
 
 **************************************************  1.ArrayList Internal Implementation **************************************************
 								
-ArrayList is a resizable Array and it is one of the implementations of ArrayList.
-ArrayList grows Dynamically When the Elements are Added to It.
-If the Size of the Current Element is Greater than Maximum Size,Then Increase the Size of the Array.
-New ArrayList is Created with initial Capacity of 10 and copies all the Old Elements into new Array.
+ArrayList is a resizable Array and it is one of the implementation of List Interface.
+ArrayList grows dynamically when the elements are added to it.
+If the size of the current element is greater than maximum size then it increases the size of an Array.
+New ArrayList is created with initial capacity of 10 and copies all the old elements into new Array.
 
 Code :
 ------
@@ -132,6 +132,16 @@ isEmpty() can be used to check whether the collection is empty or not.
 contains() can be used to check whether the ArrayList contains the element or not.
 indexOf() can be used to check the position of the element.
 lastIndexOf() can be used to check the last occurence of the element.
+
+	a1.add("ONE");
+	a1.add("TWO");
+	a1.add("THREE");
+	a1.add("FOUR");
+	a1.add("TWO");
+
+	int index=a1.lastIndexOf("ONE");
+	System.out.println(index);
+
 toArray() cn be used to convert ArrayList to Array.
 clear() can be used to remove all the elements of the ArrayList.
 
@@ -154,6 +164,9 @@ Array to ArrayList :
 		List<String> methodFour=Arrays.stream(array).collect(Collectors.toList());
 		System.out.println(methodFour);
 		
+		int[] numbers={2,5,7,9,11};
+		Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList()).forEach(System.out::println);
+		
 ArrayList to Array :
 --------------------
 toArray() can be used to convert the ArrayList to Array.
@@ -164,13 +177,20 @@ toArray() can be used to convert the ArrayList to Array.
 
 ************************************************** 4.How to reverse an ArrayList (javaconceptoftheday) **************************************************
 
-Collections.reverse() can be used to reverse() the elements of the ArrayList.
+Collections.reverse() can be used to reverse the elements of an ArrayList.
 Collections.reverse() takes list type as an argument.
+
+	int[] numbers={2,5,7,9,11};
+	List<Integer> list=Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList());
+
+	/* To reverse the Elements of an Array List*/
+	Collections.reverse(list);
+	System.out.println(list);
 
 ************************************************** 5.How to sort an ArrayList (javaconceptoftheday) *****************************************************
 
 Collections.sort() can be used to sort the List Implementation Classes.
-To sort the elements using case insensitive we use Collections.sort(l1,String.CASE_INSENSITIVE_ORDER).
+To sort the elements using case insensitive we use Collections.sort(list,String.CASE_INSENSITIVE_ORDER).
 To sort the elements in reverse order we use Collections.reverseOrder().
 To sort the elements of custom Object we use Comparable Interface.
 
@@ -191,8 +211,8 @@ We can also sort the elements using Comparator.
 	
 ************************************************** 6.How to remove duplicate elements from ArrayList **************************************************
 
-To remove the duplicate elemenst from the ArrayList we use HashSet and here insertion order is erased.
-To preserve he insertion order as it is we use LinkedHashSet.
+To remove the duplicate elements from an ArrayList we use HashSet and here insertion order is erased.
+To preserve the insertion order as it is we use LinkedHashSet.
 
 ************************************************** 7.How to iterate an ArrayList (javaconceptoftheday) ************************************************
 

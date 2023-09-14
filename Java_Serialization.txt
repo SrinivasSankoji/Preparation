@@ -7,8 +7,8 @@
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
-Serialization is the process of converting the state of an Object into ByteStream ie File supported form or Network supported form so that
-It can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
+Serialization is the process of converting the state of an Object into ByteStream ie File supported form or Network supported form 
+So that it can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
 By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 
 The process of creating an Object from ByteStream is called Deserialization.
@@ -86,7 +86,7 @@ After Serialization
 Null Pointer Excpetion
  
 
-In case of Custom Serialization we override the callback methods ie writeObject() and readObject().
+In case of Custom Serialization we need to override the callback methods ie writeObject() and readObject().
 
 	public class Cat implements Serializable {
 
@@ -117,8 +117,8 @@ After Serialization
 If a Parent class is Serializable then by default Child class is Serializable.
 Serializable nature is inherited from Parent to Child.
 
-If the Child class is Serializable and some of the Parent Class is not Serializable then
-JVM creates a seperate Object for every non serializable Parent Class and share its instance variables.
+If the Child class is Serializable and Parent Class is not Serializable.
+Here JVM creates a seperate Object for every non serializable Parent Class and share its instance variables.
 Here JVM ignores the inherited variables which are coming from non Serializable Parent Class.
 
 Note :

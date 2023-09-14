@@ -5,14 +5,14 @@
 ************************************************* 1.Java Singleton Design Pattern Best Practices  *************************************************
 
 Java Singleton Design Pattern is one of the four design patterns and comes under Creational Design Pattern.
-Singleton Pattern restricts the instantiation of the class and ensures that only one instance of a class exists in JVM.
+Singleton Design Pattern restricts the instantiation of the class and ensures that only one instance of a class exists in JVM.
 Singleton Class must provide a global access point to get the instance of a Class.
 Singleton Design Pattern is used for Logging,Driver Objects,Caching and Thread Pool.
 
-Singleton Implementation :
---------------------------
+Singleton Rules :
+-----------------
 private Constructor to restrict the instantiation of class from other classes.
-private static variable of the same class that is the only instance of the class.
+private static reference variable of the same class and is the only instance of the class.
 puublic static method that returns the instance of the class ie Global access point for the outer world to get the instance.
 
 Following are the different approaches of Singleton pattern Implementation.
@@ -135,7 +135,7 @@ Bill pugh came with a different approach to create the Singleton Class ie using 
 	}
 	}
 	
-The above approach not required any synchronization.
+The above approach does not required any synchronization.
 Helper class will not be loaded when the class is loaded and will be called when someone calls the getInstance().
 
 6.Reflection to destroy Singleton :
@@ -164,7 +164,7 @@ In the above case hashCode of both the instances are not same and destroys the S
 ------------------
 To overcome the problem with Reflection we can use ENUM.
 In Java ENUM can be instantiated only once and can be accessed globally.
-The other drawback is ENUM does not allow lazy Initialization.
+The other drawback of ENUM is does not allow Lazy Initialization.
 
 8.Serialization and Singleton :
 -------------------------------
