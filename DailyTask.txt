@@ -3946,8 +3946,8 @@ Spring Data JPA Filter ()
 01-SEP-2023 :
 *************
 Access Modifiers (Done)
-Array List (Done)
-Function ()
+Array List 	(Done)
+Boraji Function (Done)
 Collections (Done)
 Constructor (Done)
 
@@ -3957,7 +3957,7 @@ Data Types ()
 Enum ()
 Exception Handling (Done)
 Generics ()
-Hash Map ()
+Hash Map (Done)
 
 03-SEP-2023 :
 *************
@@ -3965,11 +3965,11 @@ Inner Class ()
 Interfaces (Done)
 JVM Internal ()
 Lang Package (Done)
-List Interface ()
+List Interface (Done)
 
 04-SEP-2023 :
 ************* 
-Multi Threading ()
+Multi Threading (Done)
 Object Class  (Done)
 OOPS  (Done)
 Serialization (Done)
@@ -3978,36 +3978,209 @@ Singleton (Done)
 05-SEP-2023 :
 ************* 
 String class (Done)
-Comparator ()
-Lambda ()
-Stream APIs ()
-Java 8 Concepts ()
+Comparator (Done)
+Lambda Java Brains (Done)
+Stream APIs (Done)
+Java 8 Concepts (Done)
 
 06-SEP-2023 :
 *************
-MicroServices One
-MicroServices Two
-MicroServices Three
+MicroServices One (Done)
+MicroServices Two ()
+MicroServices Three ()
 
 07-SEP-2023 :
 ************* 
-Spring IOC
-Spring Security
-Spring Data JPA
-JWT
+Spring IOC (Done)
+Spring Security (Done)
+Spring Data JPA ()
+JWT ()
 
 08-SEP-2023 :
 ************* 
-Junit
-Mockito
+Junit ()
+Mockito ()
 
 09-SEP-2023 :
 ************* 
-Spring Boot
+Spring Boot ()
 
 10-SEP-2023 :
 *************
-Design Patterns
+Design Patterns ()
+
+19-SEP-2023 :
+*************
+MultiThreading (Done)
+Java Practice (Done)
+
+20-SEP-2023 :
+*************
+Spring Core Annotations (Done)
+Spring Web Annotations (Done)
+
+21-SEP-2023 :
+*************
+HashMap Internal (Done)
+HashMap Practice ()
+
+22-SEP-2023 :
+
+*************
+Hibernate Book One (Done)
+Hibernate Book Two ()
+Generics ()
+Enum ()
+
+23-SEP-2023 :
+*************
+SQL Part 1 ()
+SQL Part 2 ()
+
+Junit ()
+Mockito ()
+JWT ()
+
+Transaction Management ()
+Design Patterns ()
+
+24-SEP-2023 :
+*************
+Collectors.toMap (Done)
+Collectors.groupingBy (Done) 
+collectingAndThen ()
+Collectors.partitioning (Done)		      
+
+25-SEP-2023 :
+*************
+
+
+26-SEP-2023 :
+*************
+MicroServices Part 1 (Done)
+
+27-SEP-2023 :
+*************
+
+
+28-SEP-2023 :
+*************
+Static Block  (Done)
+Constructor Chaining (Done)
+
+29-SEP-2023 :
+*************
+Spring Security (Done)
+Immutable Object (Done)
+
+30-SEP-2023 :
+*************
+Git Commands ()
+Concurrency ()
+CopyOnWriteArrayList ()
+MultiThraeding Part Two ()
+
+Spring Boot as Stand alone Application ()
+
+Fail Fast and Fail Safe (Done)
+PUT and PATCH (Done)
+ClassNotFoundException and NoClassDefFoundError (Done)
+Marker Interface and its purpose ()
+Try with Resources ()
+SOLID Principles (Done)
+@Bean and @Qualifier (Done)
+@ResController and @Controller (Done)
+Spring Actuator ()
+CompletableFuture in Java 8 ()
+MVC Architecture ()
+CI CD ()
+Difference Between ORM and JPA ()
+Configure Multiple Databases ()
+Path and Class Path (Done)
+
+01-OCT-2023 :
+*************
+Kafka LimeGuru (Done)
+Kafka Learning Journal (Done)
+Docker ()
+CI CD ()
+
+02-OCT-2023 :
+*************
+MicroServices Part 2 ()
+MicroServices Part 3 ()
+
+03-OCT-2023 :
+*************
+
+04-OCT-2023 :
+*************
+Leave ()
+JVM Life Cycle ()
+
+05-OCT-2023 :
+*************
+Leave ()
+
+06-OCT-2023 :
+*************
+Leave ()
+
+07-OCT-2023 :
+*************
+String class revise(Done)
+OOPS revise (Done)
+MultiThreading Part Two ()
+Lang package revise ()
+Java 8 Concepts revise ()
+HashMap revise ()
+Comparator revise ()
+Streams revise ()
+Singleton revise ()
+Access Modifiers revise ()
+
+08-OCT-2023 :
+*************
+Docker ()
+Kafka revise ()
+Spring Boot Internal Architecture ()
+
+
+09-OCT-2023 :
+*************
+
+
+10-OCT-2023 :
+*************
+
+11-OCT-2023 :
+*************
+React Basics 
+
+12-OCT-2023 :
+*************
+React Basics 
+
+13-OCT-2023 :
+*************
+React Basics 
+
+14-OCT-2023 :
+*************
+React Basics 1 to 12 ()
+Java Script 1 to 10 Revise ()
+Decorator Design Pattern ()
+Observer Design Pattern ()
+
+15-OCT-2023 :
+*************
+React Basics
+
+
+
+
+
+
 
 
 

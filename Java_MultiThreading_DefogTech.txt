@@ -15,7 +15,6 @@ Defog Tech :
 9.ReadWrite Lock									[05-JAN-2020]  ()
 10.Synchronous Queue								[05-JAN-2020]  ()
 11.ThreadLocal										[05-JAN-2020]  ()
-
 12.Volatile vs Atomic Integer						[05-JAN-2020]  ()
 13.Adder and Accumulator Classes					[05-JAN-2020]  ()
 14.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
@@ -238,7 +237,7 @@ so that the Remaining Threads will get The updated Value.
 Introduction :
 --------------
 In Java it is easy to run a piece of code or Method Asynchronously by using Threads.
-Consider we have a Main Method which runs on Main Thread and we can run the Task on the separate Thread.
+Consider we have a main() method which runs on Main Thread and we can run the Task on the separate Thread.
 To create a Task we need to implement Runnable Interface and override its run() and keep the Method that we want to execute Asynchronously.
 
 				public static void main(String[] args) 
@@ -270,34 +269,33 @@ Consider the Scenario where we want to execute 10 Tasks and in this case we need
 				System.out.println(Thread.currentThread().getName());
 			}
 
-Here Each Time It will Create a New Thread with the New Instance of the Task and that will be executed independently.
-Here the Flow starts from Main Thread and after Certain Point of time For Loop is getting executed.
+Here each time it will create a New Thread with the new Instance of the Task and that will be executed independently.
+Here the flow starts from Main Thread and after certain point of time For Loop is getting executed.
 Here Each time new Thread is being created and will be executed asynchronously.
 once the task is executed successfully thread will be killed automatically.
 
-Problem with this Scenario is in Java One Thread is equal to One Operating System Thread.
-If we run the For loop 1000 Times it will Create 1000 Threads and Creating a Thread is an extensive Operation.
+Problem with this scenario is in Java One Thread is equal to One Operating System Thread.
+If we run the for loop 1000 Times it will create 1000 Threads and creating a Thread is an extensive Operation.
 
-If we want Fixed Number of Threads to be created upfront or can be Called as Thread Pool and then submit the Task to the Thread Pool,
+If we want fixed number of Threads to be created as Thread Pool and then submit the Task to the Thread Pool,
 Then we use ExecutorService.
 
 			ExecutorService executorService=Executors.newFixedThreadPool(10);
 			for(int i=0;i<=1000;i++)
-			{
+			{ss
 				executorService.execute(new Task());
 			}
 
-Here Instead of Creating new Threads every time,Here We are creating threads upfront and submitting the task to the threads which are created already.
-Thread Pool Internally uses Blocking Queue and Keeps Storing all the Tasks which are Submitted.
-Threads in the Thread Pool will perform Two Steps i.e fetch the Next Task from the Queue and execute it.
-Since all the 10 Threads are executing Simultaneously to get the Task from the Queue,
-Queue has to handle Concurrent Modifications and Should be Thread Safe.
-To Resolve this issue Queue in the Thread Pool is implemented using Blocking Queue.
+Here instead of creating new Threads every time,Here we are creating threads upfront and submitting the task to the threads which are created already.
+Thread Pool internally uses Blocking Queue and keeps storing all the Tasks which are submitted.
+Threads in the Thread Pool will perform two steps i.e fetch the next Task from the Queue and execute it.
+Since all the 10 Threads are executing simultaneously to get the Task from the Queue,Queue has to handle Concurrent modifications and should be Thread Safe.
+To resolve this issue Queue in the Thread Pool is implemented using Blocking Queue.
 
 Ideal Pool Size :
 -----------------
-If we have Created More Number of Threads i.e 1000 ,These Threads will be executed based on Time Slicing.
-Solution is depends on the Type of Task we want to execute.
+If we have created more number of Threads i.e 1000 ,These Threads will be executed based on Time Slicing.
+Solution depends on the type of Task we want to execute.
 
 If the Task is CPU Intensive Operation i.e If the Task is Taking time to Execute then the Ideal Pool Size will be the Same as CPU Core Size.
 Here all the Threads will be executed in the CPU cores independently and none of the Threads are waiting for anything.
@@ -323,9 +321,9 @@ Too Many Threads will increase the Memory Consumption  too.
 			
 Fixed Thread Pool :
 -------------------
-Here Fixed Number of Threads will be Created upfront and keep Submitting the Task to Execute.
-All the Task we Submit are Stored inside the Particular Queue and the Queue is Blocking Queue to Handle Concurrent Operations
-All these Threads will fetch the Task from the Queue one after the Another.
+Here Fixed Number of Threads will be created upfront and keep submitting the Task to execute.
+All the Task we Submit are stored inside the particular Queue and the Queue is Blocking Queue to handle Concurrent operations
+All these Threads will fetch the next Task from the Queue one after the another.
    
 			ExecutorService execService=Executors.newFixedThreadPool(10);
 			for(int i=0;i<=1000;i++)
@@ -335,11 +333,11 @@ All these Threads will fetch the Task from the Queue one after the Another.
 			
 Cached Thread Pool :
 --------------------
-Here we don't have Fixed Number of Thread Pool and we also don't have Queue that holds the Task that we Submit.
-Here Queue is replaced by Synchronous Queue and has Space for Only Single Item.
-When we Submit the Task,Task Will be Stored inside the Synchronous Queue and Search for the Thread which is already Created or which Thread is available.
-If No Such Thread is available it Will Create a New Thread,add it to the Pool and Newly added Thread will execute the Task.
-Cached Thread Pool has a Mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
+Here we don't have Fixed Number of Thread Pool and we also don't have Queue that holds the task that we Submit.
+Here Queue is replaced by Synchronous Queue and has space for Only for Single Item.
+When we submit the Task,Task will be stored inside the Synchronous Queue and search for the Thread which is already created or which Thread is available.
+If No such Thread is available it will create a New Thread,add it to the Pool and newly added Thread will execute the Task.
+Cached Thread Pool has a mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
 
 			ExecutorService cachedPool=Executors.newCachedThreadPool();
 			for(int i=0;i<=1000;i++)
@@ -351,14 +349,14 @@ Scheduled Thread Pool :
 -----------------------
 1.scheduledPool.schedule() :
 ----------------------------
-scheduledPool can be used for the Tasks to be executed after a Certain Delay.
+scheduledPool can be used for the Tasks to be executed after a certain delay.
 
 ExecutorService scheduledPool=Executors.newscheduledThreadPool();
 scheduledPool.schedule();
 		
 2.scheduledPool.scheduleAtFixedRate(10) :
 -----------------------------------------
-If We want to perform Checks like Security Checks,Logging Checks for every 10 Seconds we use Scheduled Thread Pool.
+If we want to perform checks like Security Checks,Logging Checks for every 10 Seconds we use Scheduled Thread Pool.
 Here Tasks Keep on executing for every 10 Seconds.
 
 ExecutorService scheduledPool=Executors.newscheduledThreadPool();

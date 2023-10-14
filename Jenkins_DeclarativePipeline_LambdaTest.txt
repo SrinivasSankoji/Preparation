@@ -17,6 +17,7 @@
 17.Triggers                                                     [16-SEP-2021] (Done)
 
 *********************************************** 1.Jenkinsfile *****************************************
+
 A Job in Jenkins can created using Jenkins UI as a Free Style Jobs.
 These Jobs can be chained together in a sequence called as Pipeline.
 Jenkins 2.0 introduced the new way of creating the Jobs in Jenkins as a Pipeline as a Code.

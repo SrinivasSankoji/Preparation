@@ -25,31 +25,31 @@
 
 1.Agenda and PreRequisites :
 ****************************
-Understanding The Challenges with the Availability of Micro Services and  Making Micro Services Resilient and Fault Tolerance.
+Understanding the challenges with the availability of Micro Services and making Micro Services Resilient and Fault Tolerance.
 
 2.Fault Tolerance vs Resilience
 ********************************
 What is Fault Tolerance :
 -------------------------
-In the Given Micro Service Application,If there is a Fault Then What is the Impact of The Fault.
-How much Tolerance does the System has for The Specific Fault and is Nothing But Fault Tolerance.
+In the given Micro Service,If there is a fault then what is the impact of the fault.
+How much tolerance does the system has for the specific fault and is nothing but Fault Tolerance.
 
-Example : If One Micro Service Application Goes Down,does the Whole Application Goes Down ?
-If A Part of The Application Functionality Goes Down and We have Some way Of Handling Failures,Then We don't have Any Impact.
+Example : If one Micro Service Application goes down,does the whole Application goes down ?
+If a part of The Application functionality goes down and we have some way Of handling failures,then we don't have any impact.
 
 What is Resilient:
 ------------------
-How many Faults That a System Can Tolerate Before it is Back to its Need is Called Resilience.
-A Part of Resilience is That How Much Can the System Bounce Back  From a Fault.
-If Some thing Goes Down,Then Some of The Functionalities Won't Work and When it Comes Back 
-There would be Some Mechanism to Correct the System and that Comes Under Resilience.
+How many faults that a system can tolerate before it is back to its need is called Resilience.
+A part of resilience is that how much can the system bounce back  from a fault.
+If some thing goes down then some of the functionalities won't work and 
+when it comes back there would be some mechanism to correct the system and that comes under resilience.
 
-Both are Very Similar Concepts But Slight Differences.
-We Can Technically Have a System which is Very Fault Tolerant but Not Resilience But Most of the Times it Goes Together.
+Both are very similar concepts but slight differences.
+We can technically have a system which is very fault tolerant but not resilience but most of the times it goes together.
 
 3.Recap of Micro Services Level One
 ************************************
-Created 3 Services and Made them as Eureka Client
+Created 3 Services and made them as Eureka Client
 Registered With Discovery Server(Spring Boot Application)
 
 4.Calling an External API
@@ -63,9 +63,9 @@ srinivassankoji  --> User Name
 srinivaschary.chary@gmail.com
 1234 --> Password
 
-5.What IF Micro Services Goes Down
+5.What If Micro Services goes down
 ***********************************
-Here the Micro Service is Not Resilient because we don't have Single Catch Block.
+Here the Micro Service is not resilient because we don't have single catch block.
 
 							--> Movie Info Service   -->  Movie DB
 
@@ -75,27 +75,26 @@ Movie Catalog Service  -->
 			|
 Discovery Server 
 
-The Above Scenario is Not Fault Tolerant Because If One Micro Service Fails,Entire Application Goes Down.
-Question is How do we Make Resilient ?
-One of the Problem with Micro Service is that If Particular Instance Goes Down,We don't want the Entire Application to Go Down.
-In This Case We Make Multiple Instances of Micro Service.
-We don't have to do any thing this to Work because we Make the Service As Eureka Client that Registers with Eureka Server.
-Eureka Server knows that For that Particular Micro Service Two Instances are Running(By Using Load Balancing Technology Called Ribbon) and 
-If One Service Goes Down,Eureka Server will automatically Point to Another Micro Service.
-There is a Client Side Load Balancing Technology called Ribbon and it does a Round Robin i.e If it sees more than one instance
-of a Micro Service,It Manages the Load between the other  Micro Services.
+The above scenario is not fault tolerant because If one micro service fails,entire application goes down.
+Question is how do we make resilient ?
+One of the problem with Micro Service is that if particular instance goes down,we don't want the entire Application to go down.
+In this case we make multiple instances of Micro Service.
+We don't have to do any thing this to work because we make the Service as Eureka Client that Registers with Eureka Server.
+Eureka Server knows that for that particular Micro Service two instances are running(By using Load Balancing Technology called Ribbon) and 
+If one Service goes down,Eureka Server will automatically point to another Micro Service.
+There is a client side Load Balancing Technology called Ribbon and it does a Round Robin i.e If it sees more than one instance
+of a Micro Service,It manages the load between the other Micro Services.
 
-6.What If Micro Services Goes Slow
-***********************************
-If a Micro Service is Slow It is a Much Bigger Problem.
-In the Above Example We have made an External Call from Movie Info Service to get Movie DB.
-Movie Catalog Service is the Client and from this Service we are Making the Calls to Movie Info Service and Ratings Data Service.
+6.What If Micro Services goes slow
+**********************************
+If a Micro Service is slow it is a much bigger problem.
+In the above example we have made an external call from Movie Info Service to get Movie DB.
+Movie Catalog Service is the Client and from this Service we are making the calls to Movie Info Service and Ratings Data Service.
 From the Movie Catalog Service we are Calling Other two Services.
-If Any API that Depends on Movie Info Service will be Slow because Movie DB Service is Slow.
-but in this Case Other Services will also be Affected.
-Because For Each call to the API,It will create a Thread in the Thread Pool and it will be there in the Thread Pool until it returns the Response.
-If There are Multiple Call to the Slow API Then Number of Waiting  Threads in the Thread Pool will Increase and 
-After Some Period No New Threads Will be Created  To Make The New API Calls. 
+If Any API that Depends on Movie Info Service will be slow because Movie DB Service is Slow.but in this Case Other Services will also be affected.
+Because for each call to the API,It will create a Thread in the Thread Pool and it will be there in the Thread Pool until it returns the response.
+If there are multiple calls to the Slow API then number of waiting  Threads in the Thread Pool will Increase and 
+After some period no new Threads will be created  to make the new API Calls. 
 
 7.The Problem With Threads
 **************************

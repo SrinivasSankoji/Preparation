@@ -5,6 +5,8 @@
 5.How to sort an ArrayList                              (javaconceptoftheday)		[06-SEP-2021]  	(Done)
 6.How to remove duplicate elements from ArrayList       (javaconceptoftheday)		[06-SEP-2021]  	(Done)
 7.How to iterate an ArrayList                           (javaconceptoftheday)		[06-SEP-2021]  	(Done)
+8.Immutable ArrayList in Java							(baeldung)					[29-SEP-2023]  	(Done)
+9.Fail-Safe Iterator vs Fail-Fast Iterator				(baeldung)					[01-OCT-2023]  	(Done)
 
 **************************************************  1.ArrayList Internal Implementation **************************************************
 								
@@ -223,7 +225,46 @@ Using Iterator
 Using ListIterator
 Using enhanced For Loop
 
+************************************************** 8.Immutable ArrayList in Java (baeldung) **********************************************************
 
+We can make an ArrayList Immutable by using 
+
+1.Collections.unmodifiableList(list):
+
+	List<String> list = new ArrayList<>(Arrays.asList("one", "two", "three"));
+	List<String> unmodifiableList=Collections.unmodifiableList(list);
+	unmodifiableList.add("four");// throws UnsupportedOperationException
+	
+2.List.of() :
+
+	final List<String> list = new ArrayList<>(Arrays.asList("one", "two", "three"));
+	final List<String> unmodifiableList = List.of(list.toArray(new String[]{}));
+	unmodifiableList.add("four");
+	
+************************************************** 9.Fail-Safe Iterator vs Fail-Fast Iterator (baeldung) ********************************************
+
+Iterators in java are used to iterate over the Collection Objects.
+Collections maintain and internal counter called modCount.
+Each time an element is added or removed from the Collection counter gets incremented.
+While iterating modCount is compared with its initial value and if there is any difference then it throws an Exception.
+Fail-fast iterators immideately throws ConcurrentModificationException if there is a structural modification of the Collection.
+Structural modification means adding or removing any element from the Collection while a Thread is iterating over that Collection.
+Iterator on ArrayList,HashMap are examples of fail-fast Iterator.
+
+Fail-safe iterator does not throw any Exception if the Collection is structurally modified while iterating over it.
+Because they operate on the clone of the Collection and not on the Original Collection.
+This is the reason they are called as Fail-safe iterators.
+Iterator on CopyOnWriteArrayList,ConcurrentHashMap class are examples of Fail-safe iterator.
+
+The disadvantage of Fail-safe iterator are
+It does not gauranteed to return the updated data from the Collection as it is working on the clone instead of actual Collection.
+Overhead of creating the Copy of the Collection both regarding Time and Memory.
+
+If the Collection is modified while being iterated over then the Iterator is weakly consistent.
+
+
+
+	
 	
 
 

@@ -1,0 +1,155 @@
+1.SOLID Principles												(javabrahman)		 			[20-SEP-2021]   (Done)
+2.SOLID Design Principle Java								    (Java Techie)        			[01-OCT-2023]   (Done)
+3.SOLID Design Principle Java									(educative)          			[01-OCT-2023]   ()
+4.SOLID Design Principle Java 									(Salitha Chathuranga)			[14-OCT-2023]   ()
+
+***************************************************** 1.SOLID Principles (javabrahman) *****************************************************
+
+1.Single Responsibility Principle
+2.Open Closed Principle
+3.Liskov Substitution Principle
+4.Interface Segregation Principle
+5.Dependency Inversion Principle
+
+1.Single Responsibility Principle :
+-----------------------------------
+Single Responsibility Principle states that a Class should have a Single Responsibility where responsibility is nothing but reason to change.
+When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
+When there is a change needed in specific functionality that Class needs to be changed.
+Implementation of multiple functionalities in a Single class can mesh up the Code.
+
+2.Open Closed Principle :
+-------------------------
+Open Closed Principle states that Software Entities like Class,Module,Functions etc should be able to extend the functionality without modifying it.
+This principal seperates the existing code from the modified code to provide better stability,maintainability and minimizes the changes in the code.
+Open Closed Principe is achieved by using Strategy Design Pattern.
+
+3.Liskov Substitution Principle :
+---------------------------------
+Liskov Substitution Principle States that Derived Class or Child Class must be substitutable for the Base Class or Parent Class.
+
+4.Interface Segregation Principle :
+-----------------------------------
+Interface Segregation principle states that larger interface can be split into smaller ones.
+Because implementation classes use only the methods that are required.
+We should not force the client to use the methods that they don't require.
+
+5.Dependency Inversion Principle :
+----------------------------------
+Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
+High level modules should not depend on low level modules but both depends on Abstraction.
+
+***************************************************** 2.SOLID Design Principle Java (Java Techie) *****************************************************
+
+SOLID Principles is an Object oriented approach that can be applied to software structure design.
+These five principles have changed the world of Object Oriented Programming and also changed the way of writing the Software.
+
+1.Single Responsibility Principle :
+-----------------------------------
+
+It ensures the Software is modular,easy to understand,debug and refactor.
+
+	public class BankService {
+
+		public long deposit(long amount, String accountNo) {
+			//deposit amount
+			return 0;
+		}
+
+		public long withDraw(long amount, String accountNo) {
+			//withdraw amount
+			return 0;
+		}
+
+		public void printPassbook() {
+			//update transaction info in passbook
+		}
+
+		public void getLoanInterestInfo(String loanType) {
+			if (loanType.equals("homeLoan")) {
+				//do some job
+			}
+			if (loanType.equals("personalLoan")) {
+				//do some job
+			}
+			if (loanType.equals("car")) {
+				//do some job
+			}
+		}
+
+		public void sendOTP(String medium) {
+			if (medium.equals("email")) {
+				//write email related logic
+				//use JavaMailSenderAPI
+			}
+		}
+	}
+	
+The above class has multiple reasons to change.
+If the Class has one more loanType then we need to do the changes in the Class.
+Similarly If we have one more medium to send the message again we need to do the changes in the Class.
+To make it as a Single Responsibility we need to create 
+
+PrinterService
+Loan Service
+NotificationService
+
+2.Open Closed Principle :
+-------------------------
+Open Closed Principle states that Software Entities like Class,Function and Modules should be open for extension and closed for modification.
+This means that we should be able to extend the Class behavior without modifying it.
+In case of Notification Service If we want to send an OTP to Mobile Phone then we need to write one more condition.
+To overcome this we need to write a code in such a way that it should extend the functionality without modification.
+
+	public interface NotificationService {
+		public void sendOTP(String medium);
+	}
+
+Create the implementation Classes for Email,SMS and WhatsApp.
+
+	public class EmailNotification implements NotificationService{
+		@Override
+		public void sendOTP(String medium) {
+			/* Email Notification */
+		}
+	}
+	
+	public class MobileNotification implements  NotificationService{
+		@Override
+		public void sendOTP(String medium) {
+			/* Mobile Notification */
+		}
+	}
+	
+	public class WhatsAppNotification implements NotificationService{
+		@Override
+		public void sendOTP(String medium) {
+			/* WhatsApp Notification */
+		}
+	}
+	
+3.Liskov Substitution Principle :
+---------------------------------
+Liskov Substitution Principle States that Derived Class or Child Class must be substitutable for the Base Class or Parent Class.
+To resolve this we make either interface or abstract class which contains the methods to be overriden by the implementation Class.
+If some of the features are not applicable means we need to define it seperate interface.
+
+4.Interface Segregation Principle :
+-----------------------------------
+Interface Seggregation Principle states that we should not force the client to implement an interface which is irrelevant to them.
+
+Dependency Inversion Principle (DIP) :
+--------------------------------------
+Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
+High level modules should not depend on low level modules but both depends on Abstraction.
+
+
+################################################### 4.SOLID Design Principle Java  (Salitha Chathuranga) ###################################################
+
+
+
+
+
+	
+
+

@@ -53,7 +53,7 @@ We can define a Thread in the following two ways
 	}
 	}
 	
-	public class Test {
+	public class MyThreadDemo {
 	public static void main(String[] args) {
 		MyThread thread=new MyThread();
 		thread.start();
@@ -79,7 +79,7 @@ Runnable interface is present in java.lang package and it contains only one meth
 	}
 	}
 	
-	public class RunnableTest {
+	public class MyRunnableDemo {
 	public static void main(String[] args) {
 		MyRunnable runnable=new MyRunnable();
 		Thread t=new Thread(runnable);
@@ -452,7 +452,7 @@ If the target Thread never enters into sleeping or waiting state,then there is n
 
 yield : It causes to pause the current executing Thread and give the chance for remaining Threads of same priority.
 join  : If a Thread wants to wait until the completion of some other Thread we go for join().
-sleep : If a Thread wants to perform any operation for a particular amount of time we go for sleep().
+sleep : If a Thread does not want to perform any operation for a particular amount of time we go for sleep().
 
 *************************************************************   10.Synchronization   *************************************************************
 

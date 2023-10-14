@@ -16,10 +16,10 @@ Frame Data
 
 ************************************************************  1.JVM  Architecture (DZone) ********************************************************************
 
-Java was developed with the concept of WORA i.e Write Once and Run Anywhere which runs on the JVM.
-Compiler compiles the .java File and generates the .class file ie Byte Code.
+Java was developed with the concept of WORA i.e write once and run anywhere which runs on the JVM.
+Compiler compiles the .java file and generates the .class file i.e. Byte Code.
 Byte Code which is an input to the JVM will be executed by the JVM.
-As a Java Developer If we know the Architecture of JVM,it enables us to write the code more efficiently.
+As a Java Developer if we know the Architecture of JVM,it enables us to write the code more efficiently.
 
 What is JVM :
 -------------

@@ -31,15 +31,15 @@ Spring Stereotype Annotations :
 @Bean :
 -------
 @Bean is a Method Level Annotation and is a direct analog of </bean> in XML.
-@Bean Annotation is applied on a method to specify that it returns a bean to be managed by Spring Application Context.
-@Bean Annotation may be used on any class directly or indirectly annotated with @Component.
-Method annotated with @Bean can be used any where in the Application using @Autowired Annotation.
+@Bean Annotation is applied on a method to specify that it returns a bean to be managed by Spring Container.
+Method annotated with @Bean can be used on any class directly or indirectly annotated with @Component.
+Method annotated with @Bean can be used any where in the Application by using @Autowired Annotation.
 
 @value :
 --------
 @value Annotation can be used to assign default values to the variables and Method Arguments.
 @value Annotation can also be used to read Spring Environment Variables as well as System Variables.
-@Value Annotation also Supports Spring Expression Language.
+@Value Annotation also supports Spring Expression Language.
 @Value Annotation Argument can be String only but Spring tries to convert into specified type.
 
 @Autowired :
@@ -48,14 +48,14 @@ Method annotated with @Bean can be used any where in the Application using @Auto
 @Qualifier :
 ------------
 
-		@Service("userServiceImpl")
+		@Service("userService")
 		public class UserServiceImpl implements UserService {
 			@Override
 			public void enableUser() { }
 		}
+		
 		@Service("defaultUserService")
 		public class DefaultUserService implements UserService {
-
 		  @Override
 		  public void enableUser() {}
 		}
@@ -66,14 +66,14 @@ Here we use @Qualifier Annotation along with the @Autowired Annotation.
 
 		public class OrderFacade {
 		  
-		  @Qualifier("userServiceImpl")
+		  @Qualifier("userService")
 		  @Autowired
 		  private UserService userService;
 		}
 		
 Note :
 ------
-Without @Qualifier Annotation we can resolve ambiguity problem when we have more than one bean of the same type.
+Without @Qualifier Annotation also we can resolve ambiguity problem when we have more than one bean of the same type.
 Spring framework uses the bean name as the default Qualifier value.
 
 		@Service("userService")
@@ -109,14 +109,16 @@ To resolve this issue we use @Primary Annotation.
 @Required annotation indicates that setter method must be configured to be dependency inejected with the value at Configuration time.
 
 Note :
-If we are using @Autowired Annotation on our setter Method we need not use @Required Annotation because by default @Autowired Annotation has true value for required Attribute.
+If we are using @Autowired Annotation on our setter Method no need not use @Required Annotation because by default @Autowired Annotation has true value for required Attribute.
 
 	@Data
 	public class Person implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Required
 	private College college;
+	
 	}
 
 	@Configuration
@@ -147,7 +149,7 @@ If we are using @Autowired Annotation on our setter Method we need not use @Requ
 	
 @Configuration :
 ----------------
-@Configuration is an Analog for XML File i.e It is a Configuration using Java Class.
+@Configuration is an analog for XML File i.e It is a Configuration using Java Class.
 @Configuration is defined on Classes that defines one or more Beans.
 Java Class Annotated with @Configuration is a Configuration by itself and will have methods to instantiate the configured dependencies.
 
@@ -164,7 +166,7 @@ The Classes Annotated with @Component,@Controller,@Service,@Repository,@Configur
 @DependsOn :
 ------------
 By using @DependsOn Annotation we can force Spring Container to initialize one or more Beans before the bean which is Annotated with @DependOn
-@DependsOn Annotation may be used on any Class directly or inDirectly which has Annotated with @Component or Methods Annotated with @Bean.
+@DependsOn Annotation may be used on any Class directly or indirectly annotated with @Component or Methods Annotated with @Bean.
 
 	@Bean
 	@DependsOn(value = { "secondBean","thirdBean"})
@@ -186,7 +188,7 @@ By using @DependsOn Annotation we can force Spring Container to initialize one o
 -------
 Spring Container creates and initializes all the beans at the time of Application start up.
 We can prevent this preInitialization of Singleton Bean by using @Lazy Annotation.
-@Lazy Annotation may be used on Any Class directly or indirectly Annotated with @Component or on Methods which are Annotated with @Bean.
+@Lazy Annotation may be used on any Class directly or indirectly annotated with @Component or on Methods which are Annotated with @Bean.
 
 	@Bean
 	@Lazy(value = true)
@@ -206,7 +208,7 @@ We can prevent this preInitialization of Singleton Bean by using @Lazy Annotatio
 		context.close();
 	}
 	
-At the time of Application Startup Only SecondBean is loaded and when we call the getBean() on FirstBean then FirstBean is loaded into ApplicationContext.
+At the time of Application Startup only SecondBean is loaded and when we call the getBean() on FirstBean then FirstBean is loaded into ApplicationContext.
 
 @Lookup :
 ---------
@@ -214,7 +216,7 @@ At the time of Application Startup Only SecondBean is loaded and when we call th
 @Scope :
 --------
 @Scope Annotation can be applied to define the Scope of a Class Annotated with @Component or a Method annotated with @Bean.
-Here Scope Can be Singleton,Prototype,Request,Session,Global Session or some Custom Type.
+Here Scope can be Singleton,Prototype,Request,Session,Global Session or some Custom Type.
 
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -233,9 +235,9 @@ Here Scope Can be Singleton,Prototype,Request,Session,Global Session or some Cus
 
 @Profile :
 ----------
-By Default Spring Beans are loaded at the time of Application Start Up.Here Class Can be Annotated with @Component or a Method can be Annotated With @Bean.
-Here the Requirement is Spring has to load the particular @Component Class or @Configuration Class or @Bean Method when the particular Profile is Active then we use @Profile.
-We Can Configure the name of the Profile with the value argument of the Annotation.
+By Default Spring Beans are loaded at the time of Application Start Up.Here Class can be annotated with @Component or a Method can be annotated With @Bean.
+Here the requirement is Spring has to load the particular @Component Class or @Configuration Class or @Bean Method when the particular Profile is Active then we use @Profile.
+We can configure the name of the Profile with the value argument of the Annotation.
 
 	@Configuration
 	@Profile("dev")
@@ -248,9 +250,9 @@ Spring profiles helps in seggregating Application Configuration and make them av
 
 @Import :
 ---------
-By using @Import Annotation we can Import one or more @Configuration Classes.
-Here The @Beans are loaded from one configuration class to another Configuration class i.e 
-To load the Bean definitions from One Configuration Class to another Configuration Class we use @Import Annotation.
+By using @Import Annotation we can import one or more @Configuration Classes.
+Here the @Beans are loaded from one configuration class to another Configuration class i.e 
+To load the Bean definitions from one Configuration Class to another Configuration Class we use @Import Annotation.
 
 @ImportResource :
 -----------------
@@ -258,10 +260,10 @@ To load the Bean definitions from One Configuration Class to another Configurati
 
 @PropertySource :
 -----------------
-@PropertySource Annotation provides a convenient and declarative mechanism for adding Properties File to the Spring Environment.
+@PropertySource annotation provides a convenient and declarative mechanism for adding Properties File to the Spring Environment.
 It has to be used in Conjunction with @Configuration Class.
 By default Spring identifies the application.properties.
-If we want Spring to identify the user defined Properties File we use @PropertySource Annotation that accepts the location of the Properties File.
+If we want Spring to identify the user defined Properties File we use @PropertySource annotation that accepts the location of the Properties File.
 
 	@Configuration
 	@PropertySource("classpath:application.properties")

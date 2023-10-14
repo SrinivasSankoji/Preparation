@@ -57,8 +57,8 @@ This can be done by Using onetoone Mapping in Chil Table.
 	private UserRelationship userRelationship;
 	
 	
-Here we are Providing one to one Mapping Between the Tables.
-Here No need to Create the Id for the UsersConatct (Child Table)and use the id of the UserRelationship(Parent) Table.
+Here we are Providing one to one Mapping between the Tables.
+Here no need to create the Id for the UsersConatct (Child Table)and use the id of the UserRelationship(Parent) Table.
 This can be done by using 
 
 	@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")

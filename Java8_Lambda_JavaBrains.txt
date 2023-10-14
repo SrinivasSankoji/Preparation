@@ -1,6 +1,6 @@
 Modifying Variable Inside Lambda :
 ----------------------------------
-When we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda must be final or effective Final.
+Whenever we try to modify the variable inside lambda expression we get Compile time error saying a variable inside Lambda must be final or effective Final.
 A final keyword before a variable makes it final and No final keyword before a variable makes it effectively final provided we never change the value.
 
 1.Introduction 													[27-FEB-2019]  (Done)
@@ -41,26 +41,26 @@ Collections Improvement
 ************************************************* 2.Why Lambdas  *********************************************************************
 
 Lambdas enables us to write Functional Programming.
-We get Readable and Coincise Code.
+We get readable and coincise code.
 Easier to use API's and Libraries.
 Enables support for parallel processing.
 
 ************************************************* 3.Functional vs Object Oriented Programming *****************************************
 
-Functional Programming enables us to write the Same Code as we do in Object Oriented Programming.
-Functional Programming makes the Code more Readable and Maintainable.
-Functional Programming can be used in certain Scenarios where we make the code more Readable.
+Functional Programming enables us to write the same code as we do in Object Oriented Programming.
+Functional Programming makes the code more readable and maintainable.
+Functional Programming can be used in certain scenarios where we want to make the code more readable.
 
 
 ************************************************* 4.Passing Behavior in OOP	 **********************************************************
 
-Some of the Problems in Object Oriented Programming are 
+Some of the problems in Object Oriented Programming are 
 
-Everything in Java is an Object and we cannot have piece of code or logic that exists in isolation.
+Everything in Java is an Object and we cannot have a piece of code or logic that exists in isolation.
 It has to be a part of object associated with it.
-While developing the code we need to think about problems and each problem is associated with an Object.
+While developing the code we need to think about problem and each problem is associated with an Object.
 Consider the Scenario where we need a function that returns a user name.
-To achieve this we need a Class and Create an Object of that Class and then add the function to it.
+To achieve this we need a Class,Create an Object of that Class and then add the function to it.
 
 Before Java 8 :
 	
@@ -70,7 +70,7 @@ Before Java 8 :
 		System.out.println("Welcome Lambda");
 	}
 	
-To be More Generic Create an Interface 
+To be more Generic create an Interface 
 	
 	public interface Greeting 
 	{
@@ -96,7 +96,7 @@ If we do the same every time it calls the Same GreetingImpl Implementation.
 
 ************************************************* 5.Introducing Lambda Expressions *************************************************
 
-From the above Scenario we are passing the behavior to call the Method.
+From the above scenario we are passing the behavior to call the Method.
 Here we are doing the extra work i.e we are passing the thing that has as a behavior.
 Possible solution is we can directly pass an action rather than Class that implements an Action.
 
@@ -105,8 +105,8 @@ Possible solution is we can directly pass an action rather than Class that imple
 		action();
 	}
 	
-Lambdas allows us to create Functions which does not belong to any Class.
-Functions exists in isolation and these functions can be treated as values i.e
+Lambdas allows us to create functions which does not belong to any Class.
+Functions exists in isolation and these functions can be treated as values i.e.
 Using Lambda we can pass function as a value to a variable and use that variable wherever it is required.
 
 Functions as Values :
@@ -305,7 +305,7 @@ Here Interface should contain only Method.
 	
 What is the difference between the above two Implementation.
 
-Step 1 Creates an Implementation of Greeting Interface and calls the Method.
+Step 1 Creates an implementation of Greeting Interface and calls the Method.
 In Step 2 Lambda Expression behaves like an implementation of Interface but actually we are having Function in line and not required 
 to have an Implementation Class to define the Function.
 
@@ -320,7 +320,7 @@ In Step 1 it is not required to Create an Implementation Class for the Greeting 
 									};
 	anonymousGreeting.perform();
 	
-Now Lambda Expression is Most of Like Creating Anonymous Inner Class in a Short cut way.
+Now Lambda Expression is most of like creating Anonymous Inner Class in a short cut way.
 But there are things which Inner class does which is different from Lambda Expressions.
 
 									
@@ -336,7 +336,7 @@ With Lambdas Java Compiler is doing some Type Inference which is very important 
 		int getLength(String parameter);
 	}
 
-Here in the above case Compiler Matches the Lambda Expression with the Method parameter of the Interface.
+Here in the above case Compiler matches the Lambda Expression with the method parameter of the Interface.
 This Scenario is called Type Inference.
 
 Here Compiler also has more Information of the Interface.
@@ -554,29 +554,29 @@ Java 7 For Each Loop
 	for (Person person : people) {
 		System.out.println(person);
 	}
-From the Above Code we are Performing the Iteration Manually and is Called External Iteration.
-We are Instructing the Compiler to Perfrom the Iteration Manually.
+From the Above code we are performing the iteration manually and is called External Iteration.
+We are Instructing the compiler to perfrom the Iteration Manually.
 
-The Advantage of Using Java 8 For Each Loop is that we can For Each Combine with Lambda.
-Java8 For Each is an Internal Iteration and the Iteration depends on Runtime.We don't have any Control on It.
+The Advantage of Using Java 8 For Each Loop is that we can combine forEach  with Lambda.
+Java8 forEach is an Internal Iteration and the Iteration depends on Runtime.We don't have any Control on It.
 
 	people.forEach(System.out::println);
 	
-Java 8 forEach Accepts a Consumer that accepts an argument and returns void.
-Java 8 For Each Makes the Code execution in Parallel when we have Multi Core Processor.
+Java 8 forEach accepts a consumer that accepts an argument and returns void.
+Java 8 forEach makes the code execution in Parallel when we have Multi Core Processor.
 
 								
 ************************************************* 22.Streams Introduction	*******************************************************************
 
-Lambdas work with Streams in order to make the API More Elegeant.
-Stream is a Sequence of Elements Supporting Sequential and Parallel Aggregate Operations.
+Lambdas work with Streams in order to make the API more elegeant.
+Stream is a sequence of elements supporting sequential and parallel Aggregate Operations.
 
-Let us Consider the Collection of Elements.
-If we want to access the elements of the Collection we need to Iterate over the Collection every Time.
+Let us consider the collection of elements.
+If we want to access the elements of the Collection we need to iterate over the collection every time.
 Here we have to go through all the elements of the Collection.
-Consider the case where we need to access only Particular element of the Collection Instead of Complete Iteration  then
-that is not Possible in case of Collection.
-Possible Solution is to convert the Collection into Stream of Elements so that we can perform Paralell Operations.
+Consider the scenario where we need to access only particular element of the Collection instead of complete iteration  then
+that is not possible in case of Collection.
+Possible Solution is to convert the Collection into Stream of elements so that we can perform Paralell Operations.
 
 								
 ************************************************* 23.More About Streams	 **********************************************************************	

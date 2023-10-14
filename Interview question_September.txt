@@ -150,17 +150,17 @@ OracleDB:
 
 Hibernate:
 ==========
-1.What is hibernate?
-2.Object states?
-3.Caching?(first level and second level cache)
+1.What is hibernate? ()
+2.Object states? ()
+3.Caching?(first level and second level cache) ()
 4.difference between get() and load().
-5.Mapping(one to one,one to Many,Many to one ,Mamy to Many)--Interviewers will asking coding level.
-5.What is HQL?
-5.Named query?
-6.Transcation managemnet.
-7.Isolation level
-8.Dirty read and Pantam read
-9.ACID properties.
+5.Mapping(one to one,one to Many,Many to one ,Mamy to Many)--Interviewers will asking coding level. ()
+5.What is HQL? ()
+5.Named query? ()
+6.Transcation managemnet ()
+7.Isolation level  ()
+8.Dirty read and Phantom read ()
+9.ACID properties. ()
 
 Tools:
 ======
@@ -258,11 +258,330 @@ Spring Framework Testing Annotations
 
 Preparation Questions :
 -----------------------
+
+stackoverflow error in java ()
+
 Copy Constructor and clone ()
 Duplicate Object w.r.t final variables ()
 Overloading w.r.t Checked and Unchecked Exception ()
+
+MultiThreading Creation ()
+Thread dump ()
+ExecutorsService ()
+
+
+Multiple Inheritance with default ()
+
+reduce() with custom Object ()
 Queue Interface ()
 HashSet Internal Implementation ()
+
+Square of given Number ()
+
+CopyOnWriteArrayList Example ()
+
+Deep Cloning ()
+Singleton and Scenarios ()
+Immutable Object ()
+Solid Principles ()
+Spring Boot Architecture ()
+
+@Profiles Dynamic ()
+@Bean ane @Component ()
+
+Collectors.toMap ()
+Collectors.partitioning ()
+Collectors.groupingBy ()
+
+Map Insertion (Done)
+Map Iteration (Done)
+Get Only Keys (Done)
+Get Only Values (Done)
+Sort Map based on Keys ()
+Sort Map based on Values ()
+Compare HashMap ()
+TreeMap (Done)
+LinkedHashMap (Done)
+Search in HashMap ()
+Duplicate Values in HashMap ()
+Sum the values of the Map (Done)
+sum the values if the key is present Merge(Done)
+HashMap Internal (Done)
+HashMap in Java 8 ()
+HashMap ThreadSafe ()
+
+I use single abstract method in interface and Functional Interface. 
+What is the difference? Will Functional interface become Interface  ?
+
+Composite Key
+
+BluePal Interview Questions :
+-----------------------------
+Joins
+Security Addressed
+Security Pin
+Blob Storage ()
+Caching Design Pattern ()
+String Interview Questions ()
+Kubernetes Architecture ()
+IOC ()
+Hibernate Lazy Loading and Eager Loading ()
+MVC Architecture ()
+Micro Services is taking Too much Time ()
+CI CD ()
+Event Driven Architecture ()
+
+GlobalLogic Interview Questions :
+---------------------------------
+Java Versions ()
+Static Keyword (Done)
+Constructor chaining (Done)
+Handling Excpeions in the Project ()
+Try with resources ()
+Java Collections
+Fail Fast and Fail Safe (Done)
+Comparable and Comparator ()
+Metaspace ()
+Java 8 Stream Components ()
+Predfined Functional Interfaces in Java 8 ()
+Saga Design Pattern ()
+Caching Application ()
+Transaction in Spring Boot ()
+Two indepndent Micro Service  ()
+Configuration changes to external Database ()
+No Sql Database Features ()
+Database Sharding (https://medium.com/javarevisited/what-is-database-sharding-scaling-your-data-horizontally-1dc12b33193f)
+Deployment in current Project ()
+CI CD in Jenkins ()
+Git fetch and Git Pull ()
+Central Logs ()
+Kafka Terminologies ()
+Zookeper in Kafka ()
+Fault Tolerance ()
+Load Balancer ()
+Test cases ()
+
+
+Tech Mahindra Interview Questions :
+-----------------------------------
+Collections ()
+HashSet and TreeSet ()
+HashMap Iteration ()
+Polymorphism ()
+Exceptions ()
+Spring Boot Fetaures ()
+Micro Services and Monolith Architecture ()
+Spring Boot Excpetion Handling () 
+Rest API Advantages ()
+Post and Put (Done) 
+Docker Commands ()
+Kubernetes Commands ()
+Jenkins ()
+AutoConfiguration in Spring Boot
+HTTP Status Codes ()
+Thread and Thread Life Cycle ()
+Interface and Abstract Class ()
+Java 8 Features
+Lambd Expression
+Stream
+String and StringBuffer
+Circuit Breaker Design Pattern
+
+Cognizant Interview Questions :
+-------------------------------
+Micro Services Architecture
+MicroServices Communication
+Authentication with MicroServices
+Spring Boot Annotations
+Spring Boot External Tomcat Server
+Spring Boot as Stand alone Application ()
+@Controller and @RestController ()
+
+Auto Configuration in Spring Boot ()
+Configure Data Source in Spring Boot ()
+Dependency Injection ()
+Stero Type Annotations  ()
+Spring Security  (Done)
+Spring Actuator ()
+SOLID Principles (Done)
+JDK and JVM ()
+Path and Class Path (Done)
+Java does not Support Multiple Inheritance ()
+Overloading and Overriding ()
+final Keyword ()
+Static Block  (Done)
+Constructor Chaining (Done)
+Immutable Class ()
+Lambda Expression ()
+
+Nisum Consulting Services :
+---------------------------
+Features of Java 8  ()
+Usage of Streams  ()
+Collectors.groupingBy ()
+Serialization  ()
+Singleton ()
+Repeated Word count program (Done)
+How do we implement Micro Services ()
+Path Variable and Request Param ()
+Secure MicroServivces ()
+@Bean  ()
+Difference Between ORM and JPA ()
+Configure Multiple Databases ()
+@Table and @Entity
+SQL and NO SQL ()
+Communication between two Micro Services ()
+Messaging System ()
+Deployment of Micro Services ()
+CI CD  ()
+
+CapGemini :
+-----------
+Java 8 Features ()
+Internediate and Terminal Operations ()
+Design Patterns in Micro Services ()
+In Micro Services, How can we handle Failures ()
+ApplicationContext in Spring IOC ()
+MVC Architecture ()
+What is the use of Model Class ()
+ViewResolver in Spring MVC ()
+CompletableFuture in Java 8 ()
+Rest API with @RequestBody Example ()
+
+Ascendion :
+-----------
+Abstraction in Java ()
+What are the Interface Standards ()
+Composition ()
+Predefined Functional Interfaces in Java ()
+String Immutable ()
+ClassNotFoundException and NoClassDefFoundError (Done)
+Internal Working of HashMap ()
+Spring Actuator ()
+Manage Security in Application ()
+JWT Token ()
+Exclude Embeeded Tomcat Server ()
+@ResController and @Controller (Done)
+@Component ()
+Singleton Design Pattern ()
+SOLID Principles (Done)
+@Bean and @Qualifier ()
+Handle Exception without try-catch block ()
+Try with Resources ()
+Disdavantage of Micro Services ()
+PUT and PATCH (Done)
+State of Hibernate Object ()
+Fail Fast and Fail Safe (Done)
+Shallow and Deep Cloning ()
+Marker Interface and its purpose ()
+Employee details whose salary is greater than one Employee Salary () 
+
+Mphasis :
+---------
+Features of Java 8  ()
+Functions provided by Optional Class  ()
+Handle Exceptions in Rest Controller  ()
+Kafka  ()
+Kafka using Micro Services  ()
+End Points provided by Actuator  ()
+Create new Spring Boot Profile  ()
+Create new Application Type  ()
+Run the Application on Tomcat  ()
+Maven Life Cycle  ()
+Maven Package and Install Difference  ()
+Fetch 1 crore Data with Peformance ()
+
+Bluevoir Interview Syllabus :
+-----------------------------
+HashMap ()
+Collection ()
+Singletion Design Pattern ()
+Chain of Responsibility Design Pattern ()
+MultiThreading Experience ()
+JVM Crash logs ()
+Thread Dump and Heap DumpLog files ()
+
+If any given Input print the sum of two Prime Numbers ()
+Difference between two adjacent Numbers is same ()
+
+Genpact :
+---------
+Treeset with Custom Object
+Singleton breakage
+CopyonWriteArrayList
+ConcurrentHashMap
+Employee Object with TreeSet
+Find department wise max salary using stream APIs
+Constructor Intreview Questions
+Collectors.groupingBy
+Collectors.partitioningBy
+Collectors.toMap
+
+Persistent :
+------------
+ResponseBody
+ResponseEntity
+Marker Interface
+SpringBoot Internal
+Retry Mechanism
+Exception Status Codes
+Why String is immutable
+@SpringBootApplication
+Volatile
+Serialization not to perform
+String input="a$bc%de";  reverse the String without special characters
+
+Accolite Digital :
+------------------
+Atomic Integer
+Cyclic Barrier ()
+CQRS
+SOLID Principles ()
+HashMap Internal ()
+Collission in HashMap ()
+Difference bteween Linked List and Binary Tree ()
+Behavioral Design Pattern ()
+Decorator Design Pattern ()
+Micro Services Architecture ()
+CQRS ()
+Transaction Propogation Levels ()
+G1 Garbage Collector ()
+HashMap Sort based on Values (Done)
+Custom Actuator ()
+
+Coding Practice :
+-----------------
+https://www.digitalocean.com/community/tutorials/java-programming-interview-questions#42-49-guess-the-output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,40 +1,43 @@
 
-@ControllerAdvice							(howtodoinjava)					[05-DEC-2021]  (Done)
-@ExceptionHandler							(learnjava)						[05-DEC-2021]  (Done)
-@RequestBody								(websystique)					[17-OCT-2019]  (Done)		
-@ResponseBody							    (websystique)					[17-OCT-2019]  (Done)
-@RestController                             ()								[02-DEC-2021]  ()
-@RequestBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
-@ResponseBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
-@ResponseEntity                             (baledung)						[07-DEC-2021]  (Done)
-@Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
-@ConfigurationProperties					()								[02-DEC-2021]  ()
-@Conditional                                ()                              [02-DEC-2021]  ()
-@ConditionalOnClass                         ()                              [02-DEC-2021]  ()
-@ConditionalOnProperty                      ()                              [02-DEC-2021]  ()
-Service Locater Factory Bean	            ()                              [02-DEC-2021]  ()
-@SpringBootApplication 						(howtodoinjava)                 [02-DEC-2021]  ()
-@AutoConfiguration							(howtodoinjava)	                [02-DEC-2021]  ()
-@EnableWebMVC                               (javapedia)                     [04-DEC-2021]  (Done)
-HTMLMessageConverter                        (websystique)                   [05-DEC-2021]  ()
-@Controller vs @RestController              (javacodegeeks)                 [02-DEC-2021]  (Done)
-@Repository                                 ()                              [02-DEC-2021]  ()
-CrudRepository vs JpaRepository             (netsurfingzone)                [03-DEC-2021]  (Done)
-@EnableJpaRepositories                      ()                              [02-DEC-2021]  ()
-@EntityScan                                 ()                              [02-DEC-2021]  ()
-WebMvcConfigurationSupport                  ()								[02-DEC-2021]  ()
-@Componenet vs @Bean						(danvega)						[08-DEC-2021]  (Done)
-PUT vs POST 								(baeldung)						[10-DEC-2021]  ()
+1.@ControllerAdvice								(howtodoinjava)					[05-DEC-2021]  (Done)
+2.@ExceptionHandler								(learnjava)						[05-DEC-2021]  (Done)
+3.@RequestBody									(websystique)					[17-OCT-2019]  (Done)		
+4.@ResponseBody							    	(websystique)					[17-OCT-2019]  (Done)
+5.@RestController                             	()								[02-DEC-2021]  ()
+6.@RequestBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
+7.@ResponseBodyAdvice						    (javabyexamples)				[18-OCT-2019]  (Done)
+8.@ResponseEntity                             	(baledung)						[07-DEC-2021]  (Done)
+9.@Interceptor                  				(springframework.guru)          [17-OCT-2019]  (Done)
+10.@ConfigurationProperties						()								[02-DEC-2021]  ()
+11.@Conditional                                	()                              [02-DEC-2021]  ()
+12.@ConditionalOnClass                         	()                              [02-DEC-2021]  ()
+13.@ConditionalOnProperty                      	()                              [02-DEC-2021]  ()
+14.Service Locater Factory Bean	            	()                              [02-DEC-2021]  ()
+15.@SpringBootApplication 						(howtodoinjava)                 [02-DEC-2021]  ()
+16.@AutoConfiguration							(howtodoinjava)	                [02-DEC-2021]  ()
+17.@EnableWebMVC                               	(javapedia)                     [04-DEC-2021]  (Done)
+18.HTMLMessageConverter                        	(websystique)                   [05-DEC-2021]  ()
+19.@Controller vs @RestController              	(javacodegeeks)                 [02-DEC-2021]  (Done)
+20.@Repository                                 	()                              [02-DEC-2021]  ()
+21.CrudRepository vs JpaRepository             	(netsurfingzone)                [03-DEC-2021]  (Done)
+22.@EnableJpaRepositories                      	()                              [02-DEC-2021]  ()
+23.@EntityScan                                 	()                              [02-DEC-2021]  ()
+24.WebMvcConfigurationSupport                  	()								[02-DEC-2021]  ()
+25.@Componenet vs @Bean							(danvega)						[08-DEC-2021]  (Done)
+26.PUT vs POST 									(geeksforgeeks)					[02-OCT-2023]  (Done)
 
-*************************************************** @ControllerAdvice(howtodoinjava) ********************************************************************************
+*************************************************** 1.@ControllerAdvice(howtodoinjava) ********************************************************************************
+
 If we want to centralize the Exception Handling logic to one class which is capable of handling the Exceptions thrown form any controller class/handler class
 then we use @ControllerAdvice Annotation.
 We can think of it as an Interceptors for Exception.
 
-*************************************************** @ExceptionHandler(learnjava) ********************************************************************************
+*************************************************** 2.@ExceptionHandler(learnjava) ********************************************************************************
+
 @ExcptionHandler Annotation can be applied to a Method in a Controller Class and handles only Excpeptions that occures in the Controller where it is sepcified.
 
-*************************************************** @RequestBodyAdvice (javabyexamples) ***************************************************
+*************************************************** 3.@RequestBodyAdvice (javabyexamples) ***************************************************
+
 @RequestBodyAdvice allows the customization of the Request Body before it is converted into an Object.
 Additionally we can modify the converted object before it is passed into our controller Methods.
 
@@ -47,7 +50,8 @@ In After bodyRead() we have an access to the Converted Object and cast into an A
 Finally when the Request Body is Empty,we can put our custom logic into handleEmptyBody().
 We must return a value to use,either provide the Object or an entirely New Object.
 
-*************************************************** @ResponseBodyAdvice (javabyexamples) **************************************************
+*************************************************** 4.@ResponseBodyAdvice (javabyexamples) **************************************************
+
 @ResponseBodyAdvice allows the customization of the Response before Spring writes it to the Response Body.
 Since we are Annotating the controller with @RestController all the End Point methods implicitly will have the @ResponseBody Annotation.
 As a result Spring MVC will write the method return value to the Response.
@@ -57,7 +61,8 @@ supports() decides whether the implementation should run for the Current Respons
 beforeBodyWrite() runs after the execution of the Controller Method but before the Response is written.
 Here we have the chance to modify the Response Object.
 
-***************************************************  @RequestBody (springframework.guru/websystique) *************************************************
+***************************************************  5.@RequestBody (springframework.guru/websystique) *************************************************
+
 If the Method parameter is annotaed with @RequestBody,Spring will bind the incoming Request body to the parameter. 
 Behind the scenes HttpMessageConverter can be used to convert the Request body into domain Object and assign it to a variable.
 @RequestBody does not depend on the Media Type.
@@ -68,9 +73,21 @@ If the Post body contains Json or XML and Jackson Library is found in our Classp
 ResponseEntity represents the entire HTTP Response including Header,Body and Response.
 
 *************************************************** @ResponseBody (javabyexamples) *******************************************************
-If a Method is annotated with @ResponseBody Spring will bind the response data to the outgoing Response Body.
-Behind the scenes HttpMessageConverter can be used to convert Object to the Response Body.
-Here we have to Annotate the Controller method With @ResponseBody.
+
+@ResponseBody Annotation tells a Controller that Object returned is automatically serialized into Json Object and passed back to the HttpResponse Obejct.
+Behind the scenes HttpMessageConverter can be used to convert an Object to the Response Body.
+Here we have to annotate the Controller method With @ResponseBody.
+
+	public class ResponseTransfer {
+		private String text; 
+	}
+	
+	@PostMapping("/response")
+    @ResponseBody
+    public ResponseTransfer postResponseController(
+      @RequestBody LoginForm loginForm) {
+        return new ResponseTransfer("Thanks For Posting!!!");
+     }
 
 *************************************************** @ResponseEntity *********************************************************************************
 
@@ -78,22 +95,29 @@ ResponseEntity represents the whole HTTP Response ie status code,headers and bod
 As a result we can fully configure the HTTP Response.
 If we want to use it we have to return from the EndPoint and Spring takes care of the rest.
 
- 
 
 *************************************************** @Controller vs @RestController  *******************************************************
-The Fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
-Job of @Controller is to create a Map of Model Object and find a view.
+
+@Controller and @RestController Annotations both can be used to define Web Controllers as per MVC Design Pattern.
+@Controller and @RestController is responsible for handling HTTP Request and returning HTTP Response to the Client.
+@Controller does not add @ResponseBody Annotation to all of the Controller methods.
+We need to add it manually if we want to return a JSON or XML Response.
+
+The fundemental difference between Web Application and Rest API is that Web Application returns HTML+CSS+JavaScript where as Rest API returns the data in the form of JSON or XML.
+Job of @Controller is to create a Map of Model Object and returns a view which is then resolved by ViewResolver to generate the final HTML View.
 But @RestController simply returns the Object and the Object data is directly written into HTTP Response as a Json or XML.
 
 @RestController is @Controller + @ResponseBody and avoids the need of prefixing every method with @ResponseBody.
 
 *************************************************** @EnableWebMVC  ************************************************************************
+
 Noramlly we use @EnableWebMvc for Spring Application.
 This marks the Application as Web Application and configurers all its related Classes like DispatcherServlet.
 Spring Boot automatically adds the @EnableWebMvc on the classpath.This flags the Application as Web Application and activates the key behaviors such as 
 setting up DispatcherServlet.
 
 *************************************************** CrudRepository vs JpaRepository *******************************************************
+
 CrudRepository :
 ----------------
 CrudRepository extends JpaRepository Interface.
@@ -110,6 +134,7 @@ saveAll() of JpaRepository returns List
 If we want to perform CRUD operations as well as batch operations use the JpaRepository Interface.
 
 *************************************************** @Interceptor (springframework.guru and o7planning and javainuse) **********************
+
 In Spring whenever a request is sent to the Controller it will have to pass through the Interceptors(Zero or More) before being processed by the Controller.
 Spring Interceptor is a concept similar to Servlet Filter.
 Spring Interceptor can be applied to all the requests that are sending to the Controller.
@@ -211,12 +236,38 @@ It decouples the declaration of the Bean from the Class Definition.
 Typically @Bean Methods are declared within @Configuration classes.
 By default it will use the name of the Method as the Bean Id/Name.
 
-*************************************************** PUT vs POST  **********************************************************
+*************************************************** PUT vs POST(geeksforgeeks)  **********************************************************
 
 POST method can be used to create a Child Resource where as PUT method will either create a new Resource or update the existing one.
 PUT is idempotent where as POST is not.
 If we call the PUT method multiple times either it will create the new resource or update the existing one.
 Similarly If we call the POST method multiple times It will create the same resource multiple times.
+
+1.POST :
+--------
+POST method can be used for creating a new resource or adding a new entity to an existing resurce.
+When the POST request is sent,Server creates a new resource and assigns a new URL to it.
+POST method is not idempotent i.e. calling the same request multiple times may result in different resources states on the server.
+
+PUT :
+-----
+PUT method can be used to update the resource or create a new resource if the resource does not exists.
+When the PUT request is sent, the entire resource is replaced with the new data.If the resource does not exists it will be created.
+PUT method is idempotent i.e. calling the same PUT request multiple times will result in the same resource state on the Server.
+
+PATCH :
+-------
+PATCH method can be used to partially update the resource.
+It is useful whenever we want to upadte only few fileds of a resource without replacing the entire resource.
+In PATCH request we specify the fields that needs to be updated.
+
+
+
+
+
+
+
+
 
  
 

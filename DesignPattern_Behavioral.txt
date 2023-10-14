@@ -1,0 +1,100 @@
+1.Chain of Responsibility										(Skilled Coder Medium) 			  [14-OCT-2023]  (Done)
+2.Command
+3.Iterator
+4.Memento
+5.Observer														()								  [14-OCT-2023]  ()
+6.Startegy														(GeeksForGeeks)			          [25-AUG-2023]  (Done)
+7.Template Method
+8.Visitor
+9.Mediator
+10.State
+
+
+################################################### 1.Chain of Responsibility (Skilled Coder Medium) ###################################################
+
+https://medium.com/javarevisited/importance-of-chain-of-responsibility-pattern-89bf4128bd67
+
+Chain of Responsibility is a behavioral design pattern that allows an object to passed as a request to the chain of handlers until the request is handled or chain is reached.
+This pattern is significant as it promotes loose coupling between elements.
+
+Scenario One :
+--------------
+Designing a System to process purchase orders of a Company.
+The approval process varies based on the amount of the Order.
+
+	Up to $1,000: Handled by Team Lead
+	Up to $10,000: Handled by the Manager
+	Up to $100,000: Handled by the Director
+	Above $100,000: Handled by the CEO
+	
+	class ApprovalSystem {
+    public void approve(int amount) {
+        if (amount <= 1000) {
+            System.out.println("Team Lead can approve the purchase of $" + amount);
+        } else if (amount <= 10000) {
+            System.out.println("Manager can approve the purchase of $" + amount);
+        } else if (amount <= 100000) {
+            System.out.println("Director can approve the purchase of $" + amount);
+        } else {
+            System.out.println("CEO can approve the purchase of $" + amount);
+        }
+		}
+	}
+	
+	public class MainWithoutChain {
+		public static void main(String[] args) {
+			ApprovalSystem system = new ApprovalSystem();
+			system.approve(56000);  // Expected output: Director can approve the purchase of $56000
+		}
+	}
+	
+Drawbacks :
+-----------
+
+	
+Advantages :
+------------
+1.The one who raised the request does not aware who will handle the request.
+This decoupling will be helpful if there are any changes in the hierarchy and it does not affect the request initiation process.
+2.Consider the case where manager leaves the organization.
+The chain can be dynamically restructured to bypass the Manager and pass the request directly to the Director.
+3.This design mirrors real world hierarchies.
+If any individual can't make the decission it is passed to the chain of Handlers.
+4.Here each Handler is a Modular Entity and If there are any changes in the Handler we can modify or extend in the future.
+
+
+################################################### 5.Observer ()  ###################################################
+
+
+################################################### 6.Strategy Design Pattern (GeeksForGeeks) ########################################################
+
+Strategy design pattern is a behavioral design pattern that allows the behavior of an Object to be selected at runtime.
+It is one of the Gang of four design pattern which are widely used in programming language.
+The strategy design pattern is based on the idea of encapsulating a family of algorithms into seperate class that implements common interface.
+The pattern consists of three main components
+
+Context
+Strategy
+Concrete Strategy
+
+Context is the class that contains the Object whose behavior needs to be changed dynamically.
+Strategy is an Interface or Abstract class that defines the common methods for all the alogorithms that can be used by the Context.
+Concrete Strategy is the class that implements the Strategy Interface and provides the actual implementation of the Algorthm.
+
+Advantages :
+------------
+Flexiblity :
+Strategy pattern allows the behavior of an Object to be changed dynamically at runtime by selecting different algorithms.
+Modularity:
+Strategy Pattern encapsulates the Algorithm into seperate classes,making it easy to add or remove algorithms without affecting other parts of the code.
+Testability :
+Strategy Pattern makes it easy to test the Alogorithm without affecting over all behavior of the code.
+Open closed Principle :
+Strategy Pattern follows the Open closed principle which states that open for extension and closed for modification.
+
+
+Disadvantages :
+---------------
+Strategy pattern has some drawbacks which includes the increase of multiple classes.
+Strategy Pattern has potential performance issues if the selection of algorithm is done frequently at runtime.
+

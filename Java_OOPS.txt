@@ -6,13 +6,12 @@
 6.Has a Relationship                                [10-DEC-2020]  (Done)
 7.Method Signature                                  [10-DEC-2020]  (Done)
 8.Overloading                                       [10-DEC-2020]  (Done)
-
 9.Overriding                                        [13-DEC-2020]  (Done)
 10.Polymorphism                                     [13-DEC-2020]  (Done)
 11.Coupling                                         [02-DEC-2020]  ()
 12.Static Control Flow                              [02-DEC-2020]  ()
 13.Static Block                                     [13-DEC-2020]  (Done)
-14.Instance Control Flow                            [02-DEC-2020]  ()
+14.Initializer Block                            	[27-SEP-2023]  (Done)
 15.Object Creation Ways                             [13-DEC-2020]  (Done)
 16.Memory Area of JVM                               [02-DEC-2020]  ()
 17.Constructor                                      [13-DEC-2020]  (Done)
@@ -20,20 +19,19 @@
 19.Typecasting                                      [14-DEC-2020]  (Done)
 20.vararg Method                                    [14-DEC-2020]  (Done)
 21.Main Method                                      [14-DEC-2020]  (Done)
-22.Constructor Chaining								[04-DEC-2021]  ()
-23.Static Mthods and Variables(crunchify)			[04-DEC-2021]  ()
+23.Static Methods and Variables(crunchify)			[04-DEC-2021]  ()
 24.Coding Interview Questions (hackertrail)			[05-SEP-2023]  ()
 
 
 **********************************************************  1.Data Hiding  *********************************************************************
 
-Data Hiding Means hiding the Data.
+Data Hiding means hiding the Data.
 Our internal data sholud not go out diretly i.e outside person is not allowed to access the internal data directly.
 By using private modifier we can acheive Data Hiding.
 Instead of providing the data directly,provide the access through method.
 Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
 Main advantage of data hiding is security.
-Recomended Modifier for Data Hiding is private.
+Recomended modifier for Data Hiding is private.
 
 **********************************************************  2.Abstraction  **********************************************************************
 
@@ -45,7 +43,7 @@ Abstraction improoves the easyness to use the system because not required to kno
 
 ********************************************************** 3.Encapsulation  **********************************************************************
 
-If any componenet of Java class follows both Data Hiding and Abstraction then It is called Encapsulation.
+If any componenet of Java class follows both Data Hiding and Abstraction then it is called Encapsulation.
 Binding the data and corresponding functionalities together into a single module is called Encapsulation.
 Every Java class is an example of Encapsulation.
 
@@ -61,7 +59,7 @@ Perfromance of the system will be impacted.
 ********************************************************** 4.Tightly Encapsulated Class  **********************************************************
 
 Whenever we are very strict about Data Hiding,we go for Tightly Encapsulatd class.
-A class is said to be Tightly Encapsulated class If each and every variable of the class is declared as private.
+A class is said to be tightly Encapsulated class If each and every variable of the class is declared as private.
 Whether the class contains corresponding setter or not,getter methods or not,whether these methods are declared as public or not.
 These things are not required to check.
 
@@ -133,7 +131,7 @@ and child class specific methods we cannot call.
 Multiple Inheritance :
 ----------------------
 Java does not support Multiple Inheritance through class because there may be a chance of ambiguity problem.
-In Java a class cannot extend more than one class at a time.
+In Java class cannot extend more than one class at a time.
 
 Class A
 {
@@ -148,7 +146,7 @@ Class B
 
 Class C extends A,B
 {
-	m1();  // Compile Time Error due to Ambiguity problem which method it has to call.
+	m1();  // Compile Time Error due to ambiguity problem which method it has to call.
 }
 
 But an Interface can extend more than one Interface at a time,Hence Java provides support for Multiple Inheritance through Interface.
@@ -193,7 +191,7 @@ Class B extends A
 ************************************************************* 6.Has a Relationship  *************************************************************
 
 It is also known as Composition or Aggregation.
-Whenever the common functionality is repeatedly required,write it in one class and call this functionality whereever it is required.
+Whenever the functionality is repeatedly required,write it in one class and call this functionality whereever it is required.
 There is no specfic keyword to implement has a relationship but most of the times we use new keyword.
 Main Advantage of has a relationship is reusability of the code.
 
@@ -372,7 +370,7 @@ demo.m1(35,24);
 
 ***************************************************************** 9.Overriding  *********************************************************************
 
-whatever methods Parent has by default avaialbale to the Child class.
+Whatever methods Parent has by default avaialbale to the Child class.
 If the child class is not satisfied with the parent class method then child class is allowed to redefine the parent class method in the child class based on its requirement.
 Parent class method which is overriden is called overridden method.
 Child class method which is overriding is called overriding method.
@@ -520,16 +518,16 @@ If we are Overriding vararg method with normal method then it is said to be over
 
 public class Parent{
 public void m1(int x)
-{
-	System.out.println("Love Marriage");
-}
+	{
+		System.out.println("Love Marriage");
+	}
 }
 
 public class Child extends Parent{
 public void m1(int... x)
-{
-	System.out.println("Love Marriage");
-}
+	{
+		System.out.println("Love Marriage");
+	}
 }
 
 Above case is said to be Overloading.
@@ -606,7 +604,7 @@ Polymorphism talks about flexibility.
 
 ******************************************************************* 13.Static Block  **********************************************************************
 
-Static block will be executed at the time of Class Loading.
+Static block will be executed only once at the time of Class Loading i.e. when the first time class is loaded into memory.
 Hence at the time of Class Loading If we want to perform any other activity,then we have to define the code inside static block.
 
 Scenario One :
@@ -632,6 +630,56 @@ Hence we have to define this step inside the static block.
 		}
 	}
 	
+Scenario 3 :
+------------
+	public class StaticBlock {
+
+    static int i;
+    int j;
+
+    static {
+        i=10;
+        System.out.println("Executing static block");
+    }
+
+    public static void main(String[] args) {
+        System.out.println(StaticBlock.i); // 
+    }
+	}
+	
+Output :
+--------
+Executing static block
+10
+	
+Scenario 4 :
+------------
+	public class StaticBlock {
+
+    static int i;
+    int j;
+
+    static {
+        i=10;
+        System.out.println("Executing static block");
+    }
+
+    public StaticBlock() {
+        System.out.println("Static Block Constructor");
+    }
+
+    public static void main(String[] args) {
+        StaticBlock block1=new StaticBlock();
+        StaticBlock block2=new StaticBlock();
+    }
+	} 
+	
+Output :
+--------
+Executing static block
+Static Block Constructor
+Static Block Constructor
+	
 Note :
 ------
 Within a Class we can take any number of static blocks but all the static blocks will be executed from top to bottom.
@@ -639,8 +687,30 @@ Without using main() it is possible to print some statement on the console.
 Without using main() and static block it is also possible to print some statement on the console.
 Without using System.out.println() it is also possible to print some statement on the console.
 
+******************************************************************* 14.Initializer Block(geeksforgeeks)  ***************************************************
 
-******************************************************************* 15.Object Creation Ways  *******************************************************************
+The initializer block contains the code that is always executed whenever an instance is created.
+The initializer block will run every time when an object of the class is created.
+The initializer block is always executed before the constructor.
+
+	public class InitializerBlock {
+    int speed;
+    {
+        speed=80;
+    }
+    InitializerBlock(){
+        System.out.println("Speed of car : "+speed);
+    }
+    public static void main(String[] args) {
+        InitializerBlock block=new InitializerBlock();
+    }
+	}
+	
+Output :
+Speed of car : 80
+
+
+******************************************************************* 15.Object Creation Ways  ***************************************************************
 
 We can create the Object in 5 different ways
 
@@ -672,7 +742,7 @@ Uninitialized Arrays :
 ----------------------
 int[] i;
 
-If an array is  not initialized then it refers to null.
+If an array is not initialized then it refers to null.
 Once we create an array,every element by default initialized with default values irrespective of whether it is local or instance or static.
 Every variable in Java should be either primitive or reference type.
 Every Variable in Java Should be either instance or static or local.
@@ -826,7 +896,7 @@ we cannot declare both m1(int... x) and m1(int[] x) because vararg is converted 
 
 Vararg parameter vs Single Dimensional Array :
 ----------------------------------------------
-Whenever single dimensional Array is present we can replace with Vararg Parameter.
+Wherever single dimensional Array is present we can replace with Vararg Parameter.
 Wherever vararg parameter is present we cannot replace with Single Dimensional Array.
 
 
@@ -884,3 +954,11 @@ Inheritance concept is also applicable for main().
 Hence while executing child class If child class doesnot contain main() then parent class main() will be executed.
 Overiding concept is applicable for main() but it is not method overriding,it is method hiding.
 
+*********************************************** 23.Static Methods and Variables(crunchify) ******************************************
+
+
+
+
+
+
+***********************************************  24.Coding Interview Questions (hackertrail) ****************************************	

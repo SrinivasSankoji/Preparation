@@ -18,6 +18,7 @@ Concurrency
 HashMap Internal 
 Conurrent HashMap Internal
 ArrayList Internal
+CopyOnWriteArrayList
 Singleton 
 Inner Class
 Immutable
@@ -63,7 +64,7 @@ Sorting Techniques
 
 Spring AOP
 Spring Batch
-Spring JPA
+Spring Data JPA
 Relationship
 Spring Scheduler
 Spring Security

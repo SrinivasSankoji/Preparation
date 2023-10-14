@@ -11,25 +11,24 @@
 
 ********************************************************* 1.Introduction :  ****************************************************************************
 
-Whenever we want to secure a system like Web Application we have to put lot of efforts to implement with multiple layers of Security.
+Whenever we want to secure a Web Application we have to put lot of efforts to implement with multiple layers of Security.
 We even anticipate that some of them might get hacked.
 Here Spring Security comes into picture.
 Application Security is not fun and Security is often an after thought.
 Security potentially causes User Frustration.
 Here Web Server has built in Security and why should I deal with Security as an Application Developer.
-All the OS Level Security,JVM Level Security and Application Server Level Security is already taken Care.
+All the OS Level Security,JVM Level Security and Server Level Security is already taken Care.
 
 Here we are talking about Application Level Security.
-For Most of the cases we need to implement Security at Application Level.
-In the Context of Application Level Security,what functionalities we want to allow,whom we want to allow and whom we want to expose data.
+In the Context of Application Level Security,what are the functionalities we want to allow,To whom we want to allow and To whom we want to expose data.
 The biggest thing that the Security makes the challenge is Security threats are constantly evolving and morphing.
 Spring Security is like Security Guard that examines an Application for each and every request and every time it asks who are you and what do you want.
 Spring Security is a Framework that provides Application Level Security.
 
 Spring Security Provides :
 Login and Logout Functionality
-Allow/Block access URL's to Logged in Users
-Allow/Block access URL's to Logged in Users but with Certain Roles
+We can allow/block the user to have an access for the specific path
+We can allow/block the user to have an access for the specific path but with Certain Roles
 
 The above things can be done by using Configuration.
 Spring Security allows us to Configure based on application needs.
@@ -38,8 +37,8 @@ Spring Security can handle common Security vulnerabilities out of box Like
 
 Session Fixation,ClickJacking,Click Site Request Forgery etc.
 
-Spring Security has widely adapted and people are constantly trying to find Vulnerabilities in it.
-However even if The vulnerability is found it is immediately patched.
+Spring Security is widely adapted and people are constantly trying to find Vulnerabilities in it.
+However even if the vulnerability is found it is immediately patched.
 We cannot achieve Security based on secrecy or hiding the vulnerabilities.
 We get the effective security by removing the vulnerabilities.
 
@@ -62,51 +61,51 @@ Method Level Security
 
 1.Authentication :
 ------------------
-Spring Security is like Security Guard in front of Web Application that stops each and every request going In.
-Who are you is Called Authentication and what do you want.
-Most Web Application have some representation of Id Like Face Book,Linked In etc.
+Spring Security is like Security Guard in front of Web Application that authenticates each and every request.
+Who are you is called Authentication and what do you want.
+Most Web Application Like Face Book,Linked In etc have some representation of Id .
 These Sites will have Id's in their System that uniquely corresponding to us.
-After identifying the Id ,Should prove that it is yourself. 
-Common Way It is done by using Password.
+After identifying the Id ,should prove that it is yourself. 
+Common way it is done by using Password.
 This Kind of Authentication is called Knowledge Based Authentication.
-Here Authentication is done based on Knowledge we have like Password,Pin Code or answer to a particular Question.
-Here The Advantage is It is Simple and it is easy to Use.
-The disadvantage is it is not fully Safe if some One steals the Password.
+Here Authentication is done based on knowledge we have like Password,Pin Code or answer to a particular Question.
+Here the Advantage is It is simple and it is easy to use.
+The disadvantage is it is not fully Safe if some one steals the password.
 
-There are Some other Authentication like possession based Authentication 
+There are some other Authentication like possession based Authentication 
 Phone Calls/Text Messages
 Key Cards and Badges
 Access Token Device
-Some Applications uses both Knowledge based and possession based Authentication and Called as Multi Factor Authentication.
+Some Applications uses both Knowledge based and possession based Authentication and are called as Multi Factor Authentication.
 
 Authorization :
 ---------------
 It is nothing but what the User can do and what he is supposed to do.
 It is like Yes or No.
-Once the User is Successfully Authenticated,What the User can do depends on who the user is called Authorization.
+Once the user is successfully Authenticated,What the user can do depends on who the user is called Authorization.
 Authentication and Authorization are widely used in the Software Development.
 
 Principal :
 -----------
 Authentication is the process of identifying the person who is trying to access the Application where as 
-Principal is the person that we have identified through the process of Authentication.
-Principal is the Currently Logged In User.
-Once we have Authenticated to any Application by giving UserName and Password,The Application establishes the Principal and remembers It.
+Principal is the person who has identified through the process of Authentication.
+Principal is the currently Logged In User.
+Once we have Authenticated to any Application by giving UserName and Password then Application establishes the Principal and remembers It.
 This is the only reason we Authenticate with the Application only once and no need to enter the Id and Password for every request on page load.
-There may not be a One To One Mapping between User,Human Being and Principal.
+There may not be any One To One Mapping between User,Human Being and Principal.
 Example: A Single Peron can create Multiple Google Accounts.
-If the User switches from One Account to Another Account,The Principal Will be the Currently Logged in User.
+If the User switches from One Account to Another Account,The Principal will be the currently Logged in User.
 
 Granted Authority :
 -------------------
-How does the Application decide whether to allow or decline for a Particular Access(API).
-In this Case Application Owner or Maintainer should have handled before Access.
+How does the Application decide whether it needs to allow or decline for a particular access(API).
+In this Case Application Owner or Maintainer should have handled before the Access.
 If the User is X and he has access to only some actions in the Application.This Concept of Permission is called Authorization.
-Granted Authority are fine Grained Permissions that a user can do.
+Granted Authority is a fine Grained permissions that a user can do.
 
 Roles :
 -------
-Role is Nothing but Group of Authorities that are usually assigned together.
+Role is nothing but Group of Authorities that are usually assigned together.
 Roles are more fine Grained Permissions than Granted Authority.
 
 ********************************************************* 3.Adding Spring Security To Spring Boot Project :  *********************************************
@@ -126,8 +125,8 @@ Spring Security by default does some of the things :
 3.It handles Login Error
 4.Spring Boot by default comes with an Error Page
 
-When we add the Spring Security in the classpath by default It creates a default user Called User and password in the Console by default.
-We can also Customize the default User and Password by declaring it in the Properties File.
+Whenever we add the Spring Security in the classpath by default it creates a default user Called user and password in the console by default.
+We can also customize the default user and password by declaring it in the Properties File.
 
 ********************************************************* 4.Spring Security Authentication :  *********************************************************
 

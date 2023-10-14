@@ -32,123 +32,119 @@
 
 Producer :
 ----------
-Producer is an Application that Sends Messages to Kafka.
-Some People Will call it as Data.
-Here Message can also be called as Message Record.
-Message can be Small to Medium Size Piece of Data.
-Message can Have Different Meaning or Schema For Us But For Kafka It is Simple Array of Bytes.
-For Example If I Want To Send a File to Kafka I Will Create a Producer Application
-and Send Each Line of the File as Message.
-In this CAse a Message is One Line Of Text For US But For Kafka It is Just an Array of Bytes.
-Similarly If I want to Send all The Records of a Table I will Send Each Row as Message.
-If I Want to Send The Result of a Query to Kafka ,I Will CReate a Producer Application and 
-Fire a Query Against Database,Collect The Result and Start Sending each Row as a MEssage.
-While Working with Kafka and  If We want to Send Some Data We Have to Create a Producer Application 
-We Also get a Ready Made Producer That Fits our Purpose.
+Producer is an Application that sends messages to Kafka.
+Some people will call it as Data.
+Here message can also be called as Message Record.
+Message can be small to medium size piece of Data.
+Message can have different meaning or schema for us but for Kafka it is simple Array of Bytes.
+For example If i want to send a file to Kafka I will create a Producer Application and send each line of the File as message.
+In this case a Message is one line of text for uS but for Kafka it is just an Array of Bytes.
+Similarly if i want to send all the records of a Table i will send each row as Message.
+If i want to send the result of a Query to Kafka ,I will create a Producer Application and fire a Query against Database,collect the result and start sending each row as a message.
+If we want to send some data to Kafka we have to create a Producer Application 
+We also get a ready made Producer that fits our purpose.
 
 Consumer :
 ----------
-Consumer is again an Application that Receives Data.
-If Producers are Sending Data They are Sending Data to Some One.
+Consumer is again an Application that receives the data.
+If Producers are sending the data they are sending the data to some one.
 Consumers are the Recipient.
-Producers don't Send the Data to The  Recipient Address and Sends the Data to The Kafka Server.
-Any One Who is Interested in this Data Can Come Forward and Get The Data Form the Kafka Server.
-An Application that Request Data Form a Kafka Server is a Consumer.
-Consumer Can Request Data Sent By Any Producer Provided That They have Permissions to Read It.
-Consumer Application will Receive Some Lines From the Kafka Server.
-It Will Process them and Again Keep Requesting For Some More Data.
-Here Kafka Will Give New Messages to The Consumer as Long as New Messages are Coming from 
-the Kafka Producer.
+Producers don't send the data to the Recipient Address and sends the data to the Kafka Server.
+Any one who is interested in this data can come forward and get the data from the Kafka Server.
+An Application that request data from a Kafka Server is a Consumer.
+Consumer Can request the data sent by any Producer provided that they have permissions to read It.
+Consumer Application will receive some lines from the Kafka Server.
+It will process them and again keep requesting for some more data.
+Here Kafka will give new messages to the Consumer as long as new messages are coming from the Kafka Producer.
 
 Broker :
 --------
 Broker is a Kafka Server.
-Kafka Server acts as a Message Broker Between the Kafka Producer and Consumer Application.
-Producer and Consumer Application Don't Interact Directly and Use Kafka Server as an Agent To Exchange Applications.
+Kafka Server acts as a Message Broker between the Kafka Producer and Consumer Application.
+Producer and Consumer Application don't interact directly and use Kafka Server as an agent to exchange the data between the Applications.
 
 Cluster :
 ---------
-Cluster is a Group of Systems acting together For a Common Purpose.
-Since Kafka is a Distributed System Cluster has a Same Meaning For Kafka.
-Cluster is a Group of Computers Each Executing One Instance of Kafka Broker.
+Cluster is a group of systems acting together for a common purpose.
+Since Kafka is a Distributed System Cluster has a same meaning for Kafka.
+Cluster is a group of systems each executing one instance of Kafka Broker.
 
 Topic :
 -------
-Producer Sends the Data to the Kafka Broker.
-Consumer Gets the Data Form Kafka Broker.But the Question is Which Data the Consumer has to get.
-Here Broker is Collecting Data From Multiple Producers.Which One Do You Want.
-Consumer ask the Data of Producer ABC.
-Here Producer ABC is Pushing 3 Different type of Records.
-Then Consumer ask the Sales Data.
-The Broker Says that 2 More Producer are Sending Sales Data.
-Here We need to Have Some Identification Mechanism.
-There Comes the Idea of Topic.
+Producer sends the data to the Kafka Broker.
+Consumer gets the data from Kafka Broker.But the question is which data the Consumer has to get.
+Here Broker is collecting data from multiple Producers.which one do you want.
+Consumer ask the data of Producer ABC.
+Here Producer ABC is pushing 3 different type of records.
+Then Consumer asks the sales data.
+The Broker says that 2 more Producer are sending sales data.
+Here we need to have some identification mechanism.
+There comes the idea of Topic.
 
-Topic is an arbitrary name Given to a DataSet i.e unique name for Data Stream.
+Topic is an arbitrary name given to a DataSet i.e unique name for Data Stream.
 
-For Example We create a Topic called Global Orders.
-Every Point of Sale May have a Producer.
-Each of them Send their order Details as a Message to a Single Topic named Global Orders.
-Consumers interested in Order can Subscribe the Same Topic i.e Global Orders.
+For example we create a Topic called Global Orders.
+Every Point of sale may have a Producer.
+Each of them send their order details as a message to a single Topic named Global Orders.
+Consumers interested in Order can subscribe the same Topic i.e Global Orders.
 
 
 Partitions :
 ------------
-Broker Stores the Data in a Topic.
-If The Data is Huge and It may be Larger than the Storage Capacity of Single Computer,
-In that Case Broker May have a Challenge of Storing  the Data.
-One of the Solution is to Break the Data and Distribute it to Multiple Computers.
-Kafka is a Distributed System that Runs on Cluster of Computers.
-Kafka Can Break the Topic into Partitions and Store One Partition in One Computer.
-How Kafka Will Decide the Number of Partitions.
-Some Topics May be Very Large and Some Topics May Be Small.
-Here We have to Take The Decision i.e 
-When We Create a Topic We Decide the Number of Partitions 
-and Kafka Broker Will Create the Number of Partitions.
+Broker stores the data in a Topic.
+If the data is huge and it may be larger than the storage capacity of Single Computer,
+In that case Broker may have a challenge of storing  the data.
+One of the solution is to break the data and distribute it to multiple computers.
+Kafka is a Distributed System that runs on Cluster of Kafka Servers.
+Kafka can break the Topic into Partitions and store one Partition in One Computer.
+How Kafka will decide the number of Partitions.
+Some Topics may be very large and some Topics may be small.
+Here we have to take the decision i.e 
+When we create a Topic we decide the number of Partitions and Kafka Broker will create the number of Partitions.
 Every Partition Sits on a Single Machine.
 
 OffSet :
 --------
-It is A Sequence Number of a Message in a Partition.
-This Number is assigned to a Message as Soon as Message Arrives in the Partition.
-These Numbers Once assigned They Never Change. i.e They are Immutable.
-Kafka Stores the Message in the Order of Arrival within the Partition.
+It is a Sequence Number of a message in a Partition.
+This number is assigned to a Message as soon as message arrives in the Partition.
+These numbers once assigned they never change i.e. They are Immutable.
+Kafka stores the message in the Order of Arrival within the Partition.
 First Message gets an Offset 0,Next Message gets an Offset 1 and  so on.
-There is No Global Offset across Partitions.
-Offset are Local to the Partition.
-If we want to Locate a Message  We Should know 3 things.
-Topic Name ,Partition Number and Offset Number.
+There is no Global Offset across Partitions.
+Offset are local to the Partition.
+If we want to locate a message we should know 3 things.
+Topic Name,Partition Number and Offset Number.
 
 
 Consumer Group :
 ----------------
-Many Consumers Form a Group to Share the Work.
-We Can Consider as One Large Task and Has to be divided among Multiple People.
-So We Create a Group and Members of the Group Can Share the Work.
-For Example We Have a Retail Chain and In Every Store They are Few Billing Counters.
-We Want to Bring all of the Invoices from Every Billing Counter to the Data Center.
-We Use Kafka to Transport Data From Billing Location to the Data Center.
-First Thing We Need to Do is Create a Producer at Every Billing Location.
-These Producers Will Sent Bills as a Message to Kafka Topic.
-The Next Thing We Might want to Create a Consumer.
-Consumer Will Read the Data From Kafka Topic and Write Them into Data Center.
-But the Problem is Scalability.
-Here Hundreds of Producers Pushing the Data into Single Topic.
-Then How the Single Consumer Can Handle the Volume and Velocity.
-Here We Have To Create a Large Kafka Cluster and Partition the Topic.
+Many Consumers form a group to share the work.
+We can consider as one large task and has to be divided among Multiple People.
+So we create a group and members of the group can share the work.
+For example we have a retail chain and in every store they are few billing counters.
+We want to bring all of the invoices from every billing counter to the Data Center.
+We use Kafka to transport data from billing location to the Data Center.
+First thing we need to do is create a Producer at every billing location.
+These Producers will sent the bills as a message to Kafka Topic.
+The next thing we might want to create a Consumer.
+Consumer will read the data from Kafka Topic and write them into Data Center.
+But the problem is Scalability.
+Here hundreds of Producers are pushing the data to a Single Topic.
+Then how the single Consumer can handle the Volume and Velocity.
+Here we have to create a large Kafka Cluster and partition the Topic.
 Here Topic is Partitioned and Distributed across the Cluster.
-Several Brokers are Sharing the Workload to receive and Store Data.
-Form the Source Side We Have Many Producers and Several Brokers to Share the Work Load.
-From The Destination Side We Have a Single Consumer.
-Here Comes the Consumer Group.
-We Create a Consumer Group and Start Executing Multiple Consumers and Tell them to Divide the Work.
-How do We Divide the Work to the Consumers.
-For Example We Have 600 Partitions and Each Consumer can Handle the 6 Partitions.
-If this is Not Sufficient Create Some More Consumers in the Same Group.
-It Can Go Up to 600 Consumers.
-Maximum Number of Consumers in group is  Total Number of Partitions in the Topic.
-Kafka Does not Allow More Than 2 Consumers to Read the Data From the Same Partition Simultaneously.
-This Restriction is Necessary to Avoid Double Reading of Records.
+Several Brokers are sharing the workload to receive and store data.
+Form the source side we have many Producers and several Brokers to share the work load.
+From the destination side we have a Single Consumer.
+Here comes the Consumer Group.
+We create a Consumer Group and start executing multiple Consumers and tell them to divide the work.
+How do we divide the work to the Consumers.
+For example we have 600 Partitions and each Consumer can handle the 6 Partitions.
+If this is not sufficient create some more Consumers in the same Group.
+It can go up to 600 Consumers.
+Maximum Number of Consumers in group is Total Number of Partitions in the Topic.
+Kafka does not allow more than 2 Consumers to read the data from the same Partition simultaneously.
+This restriction is necessary to avoid double reading of Records.
 
 ***************************************************** 5.Installing Kafka In Windows *****************************************************
 

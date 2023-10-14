@@ -33,19 +33,18 @@
 JDBC is a specification that can be used to access the data from the database or to perform CRUD operations at the database.
 All Database operations are performed at one layer ie Data Access Layer.
 
-Hibernate is not Data Access Technology unlike JDBC and not a specification like JDBC.
-Hibernate is an open source Java Application Framework that can be used to perform Data Accessing.
-Hibernate is not a specification and is a Software product that internally uses JDBC.
+Hibernate is an open source ORM ramework which is written in Java that can be used to perform Data Accessing.
+Hibernate is not a specification like JDBC and is a Software product that internally uses JDBC.
 Source code of Hibernate is publicly available.
 In JDBC we copy the jar file and place it in the classpath. 
-Any Java Application that uses Hibernate to access data from Database or to perform CRUD operations at Database is nothing but Hibernate Application.
+Any Java Application that uses Hibernate to access the data from Database or to perform CRUD operations at Database is nothing but Hibernate Application.
 
 *****************************************************  3.Java Persistence Traditional Approach   **********************************************************
 
 In Java Data is stored in Objects and Object resides in Heap Area.
 There is no permanance for the Objects in Heap Area.
-Which java program is creating object eventhough java program is terminated but object state should be permanent.
-process of storing the object state into file is nothing but Persistence.
+Java program which is creating an object eventhough Java program is terminated but object state should be permanent.
+Process of storing the object state into file is nothing but Persistence.
 Here the problem is retreival,modification and security.
 We use file system for Non Business Applications.
 
@@ -74,9 +73,10 @@ catch(Exception e)
 }
 
 Drawbacks of Tarditional Approach :
-If DBMS changes SQL statement changes.
+If DBMS changes SQL statement needs to be changed.
 In case of Traditional Approach we hard code the SQL statements and If the DBMS changes Application may not work fine.
 SQL statements are not portable.
+
 Boiler plate code for Data Access Operation.
 Mismatch between Object Oriented Representation and Relational Representation of Enterprise Data cannot be handled properly.
 Allocation and releasing the resources are same for every CRUD Operations.
@@ -84,13 +84,13 @@ To retreive one record from Database nearly 36 lines of Coding is required.
 
 ***************************************************** 4.Java Persistence ORM Approach *********************************************************
 
-ORM is a technique to perform implicit persistence of java objects into the database using mapping information between  object oriented and relational representation of data.
+ORM is an approach to perform implicit persistence of Java objects into the database using mapping information between object oriented data and relational representation of data.
 If we use ORM,only one method to retrieve the record.
 Here hbm.config file contains the mapping information between the Object and relational representation of Data.
 
 Advantage of ORM :
 ORM overcomes the problem of Traditional Approach.
-We never write SQL statements and improves the Portability.
+We never write SQL statements and improves the portability.
 Inheritance is there in Object Level and not there in Table Level.
 A special Query language to build Queries ie to perform complex CRUD operations.
 
@@ -98,14 +98,14 @@ A special Query language to build Queries ie to perform complex CRUD operations.
 
 In Traditional Approach Java Application uses JDBC API to send the SQL statements and are submitted to the Driver.
 Driver has to communicate with Database.
-In ORM approach Java program uses the ORM API call to perform the CRUD Operations.
+In ORM approach Java program uses ORM API's perform CRUD Operations.
 ORM engine receives the method call from ORM API.
 ORM engine by using mapping information and configuration information generates the SQL statements.
 
 what type of Query that can be known by mapping information.
 what kind of database that can be known by Database information.
 
-ORM Engine directly cannot send the SQL statements and internally it uses JDBC API.
+ORM Engine directly cannot send the SQL statements and internally uses JDBC API.
 ORM approach is a high level abstraction for low level JDBC.
 
 ***************************************************** 6.Persistence Class **********************************************************************
@@ -170,12 +170,12 @@ Hibernate abstracts JDBC from us and internally uses JDBC.
 		</session-factory>
 		</hibernate-configuration>
 
-There must be some Object in Hibernate responsible to read the Files and make it available to Memory ie Configuration Object.
+There must be some Object in Hibernate responsible to read the files and make it available to memory ie Configuration Object.
 First we need to create Configuration Object to load the Meta Information ie
 
 	Configuration cfg=new Configuration();
 	
-whenever configure() is called on the Configuration object required Meta Information is loaded.
+whenever configure() is called on the Configuration object required meta information is loaded.
 
 	cfg.configure();
 
@@ -278,7 +278,7 @@ In every Dao method() Session Object is created,used for CRUD operations and clo
 Limitations of Session :
 Multiple Persistent Objects are not retrieved.
 Bulk Updates and Bulk Deletes are not possible.
-We cannot retreive persistent Object with Non ID Field.
+We cannot retreive persistent Object with non ID Field.
 We cannot perfrom complex CRUD operations using Session Interface.
 To overcome this we use
 
@@ -296,11 +296,13 @@ For this purpose Transaction Object is created and explicitly committed.
 Configuration is a Class and is responsible to load the metadata.
 SessionFactory,Session and Transaction is an Interface and implementation is a part of Hibernate Engine.
 
-Transaction txn=session.beginTransaction();
+	Transaction txn=session.beginTransaction();
+	
 beginTransaction() returns different Transaction Object.
 For each and every request new Transaction Object is created.
 
-Transaction txn=session.getTransaction();
+	Transaction txn=session.getTransaction();
+	
 getTransaction() returns the same Transaction Object for every request.
 we need to call the begin() on the getTransaction() to start the Transaction.
 
@@ -354,7 +356,7 @@ Identity Generator :
 
 ***************************************************** 19.Reverse Engineering ***************************************************************
 
-Process of creating Persistent Class and mapping file from already created Database File is nothing but Reverse Engineering.
+Process of creating Persistent Class and mapping file from already created Database file is nothing but Reverse Engineering.
 	
 ***************************************************** 20.hbm2ddl.auto  *********************************************************************
 

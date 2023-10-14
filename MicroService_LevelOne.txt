@@ -30,29 +30,28 @@ Server Side Discovery
 
 1.Spring Boot Micro Services :
 ******************************
-It is different way of building Applications where each Module is Independent of Other and deployed on different Servers.
-In case of Monolith Application all the functionalities/modules are bundled as Single Entity(Jar/War) and deployed on a Single Server.
+It is different way of developing an Application where each module is independent of other and deployed on different Servers.
+In case of Monolith Application all the functionalities/modules are bundled as single Entity(Jar/War) and deployed on a Single Server.
 Both Monolith and Micro Services have the same pattern of writing the Code.
 
-We Create the Micro Services and make them to communicate with each Other  
-i.e Consider the Big Monolith Application has divided into smaller parts and make them to talk with each Other.
+We Create the Micro Services and make them to communicate with each Other.
 Here we use RestTemplate(Hard Coding the URL),Service Discovery(Eureka Server),WebClient(Hard Coding the URL but calls Asynchronously) and Eureka Client.
-Some of the Common Cloud Platforms used to deploy Micro Services are Spring Cloud,AWS,Google Cloud Platform,Azure and so on.
-As an End Result we get Cohesive Piece of Code as Response(Mostly Json) from Micro Service.
+Some of the common Cloud Platforms used to deploy Micro Services are Spring Cloud,AWS,GCP,Azure and so on.
+As an end result we get cohesive piece of code as response i.e. mostly Json from Micro Service.
 
-Challenges while creating Micro Services are from where to start because there are lots of Technologies that can be used for developing Micro Services and one of them is Spring Cloud.
-In Spring Cloud there are so many Buzz Words/Features and also design Patterns to implement Micro Services.
+Challenges while creating Micro Services are from where to start because there are lots of technologies that can be used to develop Micro Services and one of them is Spring Cloud.
+In Spring Cloud there are so many buzz words/features and also design patterns to implement Micro Services.
 
 2.Why So Many Technologies Involved in MicroServices :
 ******************************************************
-While converting the Monolith Application into Micro Services we are solving some of the problems like Scalability,Modularity of Deployment etc.
-While developing Micro Services we have to check Modularity so that release process is fine
-and also we have to check the Scalability so that there wont be Multiple Copies of Code.
+While converting the Monolith Application into Micro Services we are solving some of the problems like scalability,modularity,deployment etc.
+While developing Micro Services we have to check modularity so that release process is fine.
+Also we have to check the scalability so that there won't be multiple copies of Code.
 
-In Case of Monolith complexity is hidden with in the Application where as in Case of Micro Services complexity is between the Micro Services.
-The problem that comes with Monolith Application are specific to that Module where as the problems with Micro Service are Generic.
-One of  the Example is Load Balancing i.e Here individual Micro Service is doing what an Application is supposed to do.
-and the Common problem is Communicating between the Micro Services.
+In case of Monolith Application complexity is hidden with in the Application where as in case of Micro Services complexity is between the Micro Services.
+The problem that comes with Monolith Application are specific to that module where as the problems with Micro Service are generic.
+One of  them  is Load Balancing.
+Here individual Micro Service is doing what an Application is supposed to do and the common problem is communication between the Micro Services.
 
 There are Lot of Frameworks/Technologies to resolve the common problems of Micro Services.
 Eureka Implements Service Discovery Pattern.
@@ -61,16 +60,18 @@ Hystrix Implements  Circuit Breaker  Pattern.
 3.Micro Service and Service Oriented Architecture :
 ***************************************************
 Service Discovery is a Pattern i.e 
-when we have an Application broken into Micro Services and how Microservices communicate within each other and also how to discover among them to Communicate With.
+when we have an Application broken into Micro Services.
+How Microservices communicate within each other and also how to discover among them to communicate with each other.
 Eureka is one of the Technology that implements Service Discovery Pattern.
+
 Whenever we are implementing Service Oriented Architecture,we are building a Service for reusability and we don't know where the Service is going to be used.
-Using Service Oriented Architecture,we are going to create an Utility and we don't have any Application in mind.
-But In case of Micro Services we have a clear idea of what an Application is supposed to do and It also can be reused If requires.
-Service Oriented Architecture has lot of complexity involved because they are more Standardized,have an explicit contract and lot of precautions.
+Using Service Oriented Architecture,we are going to create an Utility where we don't have any Application in mind.
+But in case of Micro Services we have a clear idea of what an Application is supposed to do and also can be reused if requires.
+Service Oriented Architecture has lot of complexity involved because they are more standardized,have an explicit contract and lot of precautions.
 
 4.Application Building :
 ************************
-PreRequisites For Micro Services are Spring Boot and Java
+PreRequisites for Micro Services are Spring Boot and Java
 
 Movie Catalog Service and the output is 
 
@@ -97,7 +98,7 @@ Output : Movie Details
 Input : userId 
 Output : Movie Id and Ratings
 
-Designing Micro Service is nothing but Creating a Spring Boot Projects.
+Designing Micro Service is nothing but creating a Spring Boot Projects.
 
 6.Creating Spring Boot Micro Service :
 **************************************
@@ -124,15 +125,15 @@ RatingDataController --> getRating(movieId)
 
 11.Using Rest Template To Call an External Movie Info Service API :
 *******************************************************************
-To Make call to Movie Info Service from Movie Catalog Service we use RestTemplate.
-Get the Response back and UnMarshall it And Create an Object Instance out of it and Send the Response.
-Spring Boot Comes with the Client in Built in our Class Path i.e Rest Template
-Rest Template is going to be deprecated in later versions and we can do it by Using WebClient.
+To make call to Movie Info Service from Movie Catalog Service we use RestTemplate.
+Get the response back and unMarshall it and create an object instance out of it and send the response.
+Spring Boot comes with the in built client in our class path i.e Rest Template.
+Rest Template is going to be deprecated in later versions and we can do it by using WebClient.
 Rest Template is easy way and WebClient is some what hard.
 WebClient requires Reactive Programming.
-Programming in Java Language is Synchronous and If we want to get the data Asynchronously then make the Function as Asynchronous.
+Programming in Java Language is synchronous and If we want to get the data asynchronously then make the Function as Asynchronous.
 
-Create a Rest Template and it has some Methods.For Example getForObject().
+Create a Rest Template and it has some methods.for example getForObject().
 getForObject() accepts URL and returns the String and If we Know the it is going to return an Object then it UnMarshals the String into Object.
 
 Note: In Micro Services there may be a chance of multiple copies of same Classes(Model).
@@ -140,18 +141,18 @@ Note: In Micro Services there may be a chance of multiple copies of same Classes
 RestTemplate restTemplate=new RestTemplate();
 Movie movie=restTemplate.getForObject("http://localhost:5002/movies/"+rating.getRating(), Movie.class);
 
-The problem in this case is we are hardCoding the URL and We have to discover the service at Run Time.
+The problem in this case is we are hardCoding the URL and we have to discover the service at run time.
 Here we have created RestTemplate Object.
 We can create a RestTemplate Object once,Annotate with @Bean and reuse it using @Autowired Annotation.
 
 12.Using Bean to Create a Rest Template :
 *****************************************
-To have Single instance of Rest Template and Used across the Application we use @Bean Annotation.
-In The Spring Boot Application Main Class, Create a Method that returns RestTemplate and Mark the Method as @Bean.
+To have Single instance of Rest Template and use it across the Application we use @Bean Annotation.
+In The Spring Boot Application Main Class, Create a Method that returns RestTemplate and mark the method as @Bean.
 
 13.Using Web Client to Make  API Calls :
 ****************************************
-Rest Template is Going to be Deprecated Soon and Web Client is Going to use to make the Rest API Calls.
+Rest Template is going to be deprecated soon and web client is going to use to make the Rest API Calls.
 To create a Web Client we use the Class WebClient Builder and to make it available we have to add the dependency in pom.xml.
 
 		<dependency>
@@ -169,54 +170,54 @@ Movie movie=webClientBuilder.build().get().uri("http://localhost:5002/movies/" +
 							.retrieve().bodyToMono(Movie.class).block();
 
 If we are using block() then it becomes Synchronous.
-To get Asynchronous nature then Return Type of the Service must be Asynchronous.
+To get Asynchronous nature then return type of the Service must be Asynchronous.
 							
 14.Using Rest Template To Call Ratings Service API :
 ****************************************************
-Lets Create Another Service in RatingDataController that returns List.
+Lets create Another Service in RatingDataController that returns List.
 
 @RequestMapping("users/{userId}")
 
-and remove the code that return Ratings List in MovieCatalogController that has been Hard Coded.
+and remove the code that return Ratings List in MovieCatalogController that has been hard coded.
 Here the Problem is the Service is returning List.
 
 15.Avoiding Returning List In API  :
 ************************************
-Here If The Root Node is List and Not an Object then Consumer  does not know Which Object He has to Use.
-We can also Know the List of Object contains what kind of Object it is.
+Here If the Root Node is List and not an Object then Consumer  does not know which Object he has to use.
+We can also know the List of Object contains what kind of Object it is.
 
 De Serialization is on of the Problem.
 If we want to enhance the Object i.e for Example add on new Variable/Field
-we can do that without breaking the Consumers and they don't care about the Extra Field and ignore it.
-Similarly If we want to add a new Variable , then in case of Returning List We Cannot add any more and 
-we have to change the Entire Structure and breaking the Contract between consumer.
-To Resolve This Create an Object and Add The List to an Object and return The Object.
+we can do that without breaking the Consumers and they don't care about the extra Field and ignore it.
+Similarly If we want to add a new Variable , then in case of returning List we cannot add any more.
+We have to change the entire Structure and breaking the contract between consumer.
+To resolve this issue create an Object and add the List to an Object and return the Object.
 
 Questions and Answers :
 -----------------------
-Q: If the Application is being Accessed in Multi Threaded Environment Do We Have any Concurrency Issue.
-A: When we deploy Our Application In Servlet Container,Lot of Threads Run in Parallel.
-Each Request is Treated as One Thread and it is important that all the Services are Thread Safe.
-By Default Rest Template is Thread Safe i.e one call is not going to effect another Call.
+Q: If the Application is being Accessed in Multi Threaded Environment do we have any Concurrency Issue.
+A: When we deploy our Application In Servlet Container lot of Threads run in Parallel.
+Each request is treated as One Thread and it is important that all the Services are Thread Safe.
+By default Rest Template is Thread Safe i.e one call is not going to effect another Call.
 
-Q : Is it Possible To Make a Call to an External API that is Not a Micro Service.
-A: Yes (Also By Using RestTemplate)
+Q : Is it Possible To make a Call to an External API that is not a Micro Service.
+A: Yes (By using RestTemplate)
 
-Q: How do we Handle Security When Communicating Between Micro Services
-A: By Using HTTPS,Basic Authentication and So on.
+Q: How do we handle security when communicating between Micro Services
+A: By using HTTPS,Basic Authentication and So on.
 
 16.Understanding Service Discovery :
 ************************************
-From the Movie Catalog Service,we are calling two Services and the URL is Hard Coded to call the Services.
-The problem is changing the URL frequently and requires update in the Code.
-Whenever we deploy the Micro Services in the Cloud Environment we get dynamic URL's and also it keep on Changes.
-We also need to do the Load Balancing and that is not Possible If the URL is Hard Coded.
+From the Movie Catalog Service,we are calling two Services and the URL is hard coded to call the Services.
+The problem is changing the URL frequently and requires update in the code.
+Whenever we deploy the Micro Services in the Cloud Environment we get the dynamic URL's and it will keep on Change.
+We also need to do the Load Balancing and that is not possible If the URL is hard coded.
 If particular Micro Service has lot of demand and we can spin up to 3 or 4 and in this Case all the URL's will be different for the Single Micro Service.
 Whenever we push the code to Heroku,URL gets changed and we have no Idea about the URL.
-Other drawback of Hard Coding the URL is whenever we deploy the Application in Multiple Environments and we have different URL for each Environment.
+Other drawback of hard coding the URL is whenever we deploy the Application in Multiple Environments and we have different URL for each Environment.
 
-Because of all these reasons we have Service Discovery and it is a Pattern.
-When we build Micro Services,it needs to talk them to with each other and how do they know what do they talk to.We discover the Target.
+Because of all these reasons we have Service Discovery and it is a Design Pattern.
+When we build Micro Services,it needs to communicate with each other and how do they know about the other Micro Service. We discover the Target.
 
 Client Side Discovery Server :
 ------------------------------
@@ -274,7 +275,7 @@ Add the property server.port=8761 in application.properties
 		server.port=8761
 		
 Start the Application and run the URL http://localhost:8761/ to start the Eureka Server.
-In the UI we have an option that shows the Instances that are currently registered with Eureka Server and we get UnKnown because No Eureka Client is registered with the Server.
+In the UI we have an option that shows the Instances that are currently registered with Eureka Server and we get unknown because No Eureka Client is registered with the Server.
 While Starting the Application we get the errors and to fix those errors we have to add values in the Properties file :
 
 eureka.client.register-with-eureka=false
@@ -306,7 +307,7 @@ To get the name of the Application in Eureka Server add the property in properti
 
 		spring.application.name=movie-info-service
 		
-Now We see the Service is registered with Discovery Server.
+Now we see the Service is registered with Discovery Server.
 Eureka Client tries to identify the Discovery Server with default port and it registers with the Server,But it is always not the same Case.
 We have to add the Configuration in the Properties file If the Discovery Server Port is changed.
 Similarly do the above Steps for the other two Services i.e movie-catalog-service and ratings-data-service

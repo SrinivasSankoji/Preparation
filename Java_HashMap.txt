@@ -16,17 +16,19 @@
 15.ConcurrentHashMap Internal				(DZone Arun Pandey)   				[26-AUG-2021]  (Done)
 16.ConcurrentHashMap Internal				(javahungry)   						[23-AUG-2021]  (Done)
 17.HashMap vs ConcurrentHashMap			    (Medium Chinmay Venkata Sabbam)   	[21-AUG-2021]  (Done)
+18.Collission in HashMap					()
+19.HashMap Changes in Java 8				(nagarro)
 
 **************************************************************** 1.HashMap Internal  (DZone Shubham Bansal) ***************************************
 
 HashMap is used to store key value pairs.
 HashMap works on the principle of hashing.
-Hashing is a way of assigning a unique code for any object afetr applying any formula/algorithm on its properties.
+Hashing is a way of assigning a unique code for an object afetr applying any formula/algorithm on its properties.
 
 How Hashmap Calculates the Index of a Bucket :
 ----------------------------------------------
 HashMap maintains an Array to store key value pairs.
-Each Entry stored inside an Array is called Bucket Location.
+Each entry stored inside an Array is called Bucket Location.
 Whenever we store or retrieve any key value pair,HashMap calculates the index of the bucket for each and every operation.
 Key object is used to calculate the index of the Bucket.
 Hash value is calculated using hash(key) i.e private method of HashMap.
@@ -197,13 +199,31 @@ As part of the performance improovement of HashMap in Java 8,LinkedList is repla
 
 **************************************** 5.HashMap – Merge HashMaps (howtodoinjava) **********************************************************
 
+/* Map One*/
+		HashMap<Integer, String> map1 = new HashMap<>();
+		 
+		map1.put(1, "A");
+		map1.put(2, "B");
+		map1.put(3, "C");
+		map1.put(5, "E");
+		 
+		/* Map Two */
+		HashMap<Integer, String> map2 = new HashMap<>();
+		 
+		map2.put(1, "G"); 
+		map2.put(2, "B");
+		map2.put(3, "C");
+		map2.put(4, "D");  
+		
 We can merge HashMap's by using putAll().
 As we know that HashMap does not allow duplicate keys.
 When we merge the maps in this way Duplicate Key's in map1 the value is overwritten by value for the same key in map2.
 
+		map1.putAll(map2); // {1=G, 2=B, 3=C, 4=D, 5=E}
+
 If we don't want to loose the data and and merge the Values when the duplicate Keys are present we use merge() in Java 8.
 
-			map2.forEach((key,value) -> map1.merge(key,value, (v1,v2) -> v1.equalsIgnoreCase(v2)?v1:v1+","+v2));
+		map2.forEach((key,value) -> map1.merge(key,value, (v1,v2) -> v1.equalsIgnoreCase(v2)?v1:v1+","+v2)); // {1=A,G, 2=B, 3=C, 4=D, 5=E}
 
 **************************************** 6.HashMap – Compare HashMaps (howtodoinjava) ********************************************************
 
@@ -233,7 +253,7 @@ We can compare two HashMap's in Java by Keys,Values,and Key-Value Pairs.
 2.Compare HashMap for same Key-Value Pairs :
 --------------------------------------------
 By default HashMap.equals() compares two HashMap's by Key-Value pairs.
-If both the HashMap instances must have exactly same Key_Value pairs and both must be of same size.
+If both the HashMap instances must have exactly same Key Value pairs and both must be of same size.
 
 			System.out.println(map1.equals(map2));  //true
 	        System.out.println(map1.equals(map3));  //false
@@ -253,7 +273,7 @@ Two HashMap's will be equal If they have same set of Keys.
 -----------------------------------
 Two HashMap's will be equal If they have same set of Values.
 HashMap allows duplicate Values.
-We can compare two HashSet's with Duplicates or without Duplicates.
+We can compare two HashMap's with Duplicates or without Duplicates.
 
 			//Compare HashMap with Values - Duplicates are allowed
 	        System.out.println(new ArrayList<>(map1.values()).equals(new ArrayList<>(map2.values()))); // false
@@ -265,6 +285,8 @@ We can compare two HashSet's with Duplicates or without Duplicates.
 
 **************************************** 11.Initial capacity vs Load Factor (javaconceptoftheday) ********************************************
 
+HashMap is DataStructure that can be used to store key value pair as an Entry object in a an Array.
+Particular index location in an Array is called Bucket.
 The capacity of a HashMap is the number of Buckets in the Table.
 Initial Capacity is the capacity of the HashMap at the time of creation ie 16.
 Default initial capacity is 16 and default Load Factor is 0.75f.
@@ -278,7 +300,7 @@ Capacity of HashMap is doubled after the 12th Entry is added to the HashMap.
 
 How Initial Capacity And Load Factor Affect Performance Of HashMap :
 --------------------------------------------------------------------
-When HashMap reaches its Threshold Rehashing takes place.
+When HashMap reaches its Threshold rehashing takes place.
 Rehashing is the process where new HashMap Object with new capacity is created and copies all the Old elements into the new HashMap by recalculating hashCode.
 Process of Rehashing is both space and time consuming.
 Always choose the initial Capacity and Load Factor such that they minimize the number of rehashing Operations.
@@ -335,7 +357,7 @@ remove() works in the same manner.
 1.HashMap is not ThreadSafe where as HashTable is Threadsafe.We can make the HashMap as ThreadSafe by using Collections.synchronizedMap().
 2.HashMap and HashTable both implements Map Interface but HashMap extends AbstractMap Class where as HashTable extends Dictionary Class.
 3.HashMap allows null value as key only once where as HashTable does not allow null key.
-4.HashMap returns only Iterators which can be used to traverse over the elements of the HashMap where as
+4.HashMap returns Iterator which can be used to traverse over the elements of the HashMap where as
 HashTable returns Iterator as well as Enumeration which can be used to traverse over the elements of the HashTable.
 5.Iterator returned by HashMap is fail-fast and throws ConcurrentModificationException where as Iterator returned by HashTable is
 fail-safe and does not throw any Exception.
@@ -350,7 +372,7 @@ Done
 
 ***************************************** 15.ConcurrentHashMap Internal(DZone Arun Pandey)	***********************************************************
 
-ConcurrentHashMap is similar to HashMap Class except that ConcurrentHashMap offers internally maintained concurrency.
+ConcurrentHashMap is similar to HashMap except that ConcurrentHashMap offers internally maintained concurrency.
 We do not need to have synchronized block when accessing ConcurrentHashMap in MultiThreaded Application.
 ConcurrentHashMap allows concurrent access of the Map ie each part of the Map is called Segment and Segment is only getting locked while adding or updating the Map.
 ConcurrentHashMap allows concurrent Threads to read the value without locking at all.

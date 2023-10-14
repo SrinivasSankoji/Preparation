@@ -2,22 +2,34 @@
 2.colelct                                               (winterbe)     			[03-DEC-2021]  	(Done)
 3.FlatMap                                               (winterbe)     			[03-DEC-2021]  	(Done)
 4.Reduce                                                (concretepage)     		[03-DEC-2021]  	(Done)
-
+5.collectingAndThen										(stackabuse)     		[23-SEP-2023]  	()
+6.Collectors.toMap                                   	(stackabuse)     		[23-SEP-2023]  	(Done)
+7.Collectors.groupingBy                               	(stackabuse)     		[23-SEP-2023]  	(Done)
+8.Collectors.partitioningBy								(stackabuse)			[23-SEP-2023]  	(Done)
+9.Duplicate in Streams 									(stackabuse)			[23-SEP-2023]  	(Done)
+10.Convert Map to List                                  (stackabuse)			[23-SEP-2023]  	()
+11.Map and FlatMap                                      (stackabuse)			[23-SEP-2023]  	()
+12.Convert List to String with Join                     (stackabuse)			[23-SEP-2023]  	()
+13.Collectors.reducing                                  (stackabuse)			[23-SEP-2023]  	()
+14.Convert Array to ArrayLit                            (stackabuse)			[23-SEP-2023]  	()
+15.Collect Stream into Unmodifiable List,Set or Map     (stackabuse)			[23-SEP-2023]  	()
 
 ************************************************************ 1.Java 8 Stream  ************************************************************
 
-Streams are Monads thus playing a big part in bringing Functional Programming to Java.
+Streams are monads thus playing a big part in bringing Functional Programming to Java.
 Stream represents a sequence of elements and supports different kind of operations to perform computation on those elements.
 Stream operations are either Intermediate or Terminal.
-Intermediate Operations returns a Stream so that we can chain multiple Intermediate operations without using Semi Colon.
-Where as Terminal Operations either return void or Non Stream result.
+Intermediate Operation returns a Stream so that we can chain multiple Intermediate operations without using Semi Colon.
+Where as Terminal Operations either return void or non Stream result.
 Filter,Map and Sorted are Intermediate Operations where as forEach is Terminal Operation.
 Most Stream Operations accept some kind of Lambda Expression as a Parameter ie Functional Interface specifying the exact behavior of the Operation.
-These Operations must be Non Interfering ans Stateless.
+These Operations must be Non Interfering and Stateless.
 Non Interfering means it does not modify the underlying datasource of the stream.
 Stateless means it does not depend on any mutable variables.
 
 		List<String> myList=Arrays.asList("a1", "a2", "b1", "c2", "c1");
+		
+		// Creating a Stream from an Array
 		 myList.stream().filter(s -> s.startsWith("a"))
 		 .map(String::toUpperCase)
 		.sorted()
@@ -134,7 +146,7 @@ For the most common operations we don't need to implement Collectors ourself.
 	List<Student> results = result.entrySet().stream().map(Map.Entry::getValue).flatMap(List::stream).collect(Collectors.toList());
 	results.forEach(s -> System.out.println(s));
 
-3.Collectors are extremely versatile .We can also create aggregations on the stream ofelements.
+3.Collectors are extremely versatile .We can also create aggregations on the stream of elements.
 
 	List<Integer> list = Arrays.asList(1,2,3,4);
 		Double average=list.stream().collect(Collectors.averagingInt(number->number*2));
@@ -169,7 +181,7 @@ Here keys must be unique otherwise we get IllegalStateException.
 Map can be used to transform the elements of the Stream into another Type of Objects.
 Map is limited because Object can only be mapped to exactly another Object.
 
-FlatMap can be used to flatten/convert the Stream of Collections to a Stream of Objects.
+FlatMap can be used to convert the Stream of Collections into a Stream of Objects.
 The Objects are combined from all the Collections into the Original Stream.
 
 1.Consider the scenario of conevrting List of List to List.
@@ -190,7 +202,7 @@ The Objects are combined from all the Collections into the Original Stream.
 	.flatMap(employeeId -> getEmployeeDetails(employeeId))
 	.collect(Collectors.toList());
 
-************************************************************ Reduce **************************************************************
+************************************************************ 4.Reduce **************************************************************
 
 reduce() combines all the elements of the Stream with the given function.The result is an Optional holding the reduced value.
 reduce() can be used to get the sum of numbers Stored in the Collection,Concatenate the String with the Separator.
@@ -218,5 +230,131 @@ reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> comb
 ---------------------------------------------------------------------------------------
 reduce() accepts three parameters i.e Identity Operator,Binary Operator and Combiner Type Binary Operator,.
 Here Identity Value type is not restricted to particular Object.
+
+
+************************************************************ 5.collectingAndThen(stackabuse) *************************************************************
+
+
+
+
+
+************************************************************ 6.Collectors.toMap(stackabuse) ************************************************************
+
+Collectors represent the implementations of the Collector interface.
+Collectors class offers a series of methods to perform reduction operations.
+The toMap() is a static method from Collectors class that returns a Collector that produces a new Map instance.
+The newly created Map contains all the Keys and values which are calculated by applying the provided mapping function to the input Element.
+
+Here all the provided keys must be unique and repeating a key would result in Illegal state Exception whenever a Collection operation is performed.
+toMap() is commonly used to transform the data structure like an Array or List into a Map by transferring the elements into newly created Map.
+The basic form of toMap() accepts two parameters.
+
+	toMap(Function keyMapper, Function valueMapper)
+	
+keyMapper is a mapping function whose output is the key of the final Map.
+valueMapper is a mapping function whose output is the value of the final Map.
+The return value of the method is a Collector which collects elements into a Map whose pair is previously applied among mapping functions.
+
+	Map<String, Double> result1 = students.stream().collect(Collectors.toMap(Student::getName, Student::getAvgGrade));
+
+Function.identity() is a function that always returns its input argument.
+
+Consider the scenario where we have a duplicate keys in the given Student Object.
+In that case toMap() throws IllegalStateException.
+
+Along with two Mapper function there is one more function parameter in the toMap() i.e. mergeFunction.
+mergeFunction is a function that will be called only if there are duplicate key elements present in the final Map and their values needs to merged and assigned to one Unique Key.
+
+	 Map<String, Double> result2 = students.stream()
+                .collect(Collectors.toMap(Student::getName, Student::getAvgGrade,(a, b) -> (a+b)/2));
+
+The final overloaded version of toMap() accepts a Supplier function which can be used to supply a new implementation of the Map inteface to pack the result in.
+The mapSupplier function specifies the particular implementation of Map we want to use as our final Map.
+Java by default uses HashMap as an implementation to store them.
+
+	Map<String, Double> result3 = students.stream()
+                .collect(Collectors.toMap(Student::getName, Student::getAvgGrade,(a, b) -> (a+b)/2, LinkedHashMap::new));
+        System.out.println(result3); // {John=8.155, Mike=8.4, Michael=7.5, James=9.1, Kyle=9.83}
+
+************************************************************ 7.Collectors.groupingBy(stackabuse) ************************************************************
+
+Collectors.groupingBy() gives us a similar functionality to the Group By in SQL.
+We use Collectors.groupingBy() to group Objects by a given specific property and store the end result in Map.
+Collectors.groupingBy() has 3 overloaded methods.
+
+1.Collectors.groupingBy() with a Classification Function : 
+----------------------------------------------------------
+The first variant of Collectors.groupingBy() method takes only one parameter i.e. a Classification function.
+This method returns a Collector that groups the input elements of Type T according to the Classification function and returns the result in a Map.
+
+	Map<String, List<Student>> result1=students.stream().collect(Collectors.groupingBy(Student::getName));
+    System.out.println(result1);
+	
+2.Collectors.groupingBy() with Classification function and Downstream Collector :
+---------------------------------------------------------------------------------
+When grouping is not just enough, we can also supply downstream Collector to the groupingBy() method.
+
+This method returns the Collector that groups the input elements of type T according to the classification function,
+After applying a reduction operation on the values associated with the given Key using specified Downstream Collector.
+
+	 Map<String, List<String>> result2=students.stream()
+                .collect(Collectors.groupingBy(Student::getCity,Collectors.mapping(Student::getName,Collectors.toList())));
+     System.out.println(result2);
+	 
+Agian reduction operations are more powerful and can be used to find the maximum,minimum and average etc.
+From the above example,instead of reducing to their names, we can reduce to their counts.
+
+	Map<String, Long> result3=students.stream()
+				.collect(Collectors.groupingBy(Student::getCity,Collectors.counting()));
+	System.out.println(result3);
+
+
+3.Collectors.groupingBy() with a Classification Function, Downstream Collector and Supplier :
+---------------------------------------------------------------------------------------------
+This is the final overloaded method of groupingBy().
+This method provides the specific Map implementation we want us to contain as an end result.
+
+	 Map<String, List<String>> result4=students.stream()
+                .collect(Collectors.groupingBy(Student::getCity, TreeMap::new,Collectors.mapping(Student::getName,Collectors.toList())));
+     System.out.println(result4);
+
+************************************************************ 8.Collectors.partitioningBy ************************************************************
+
+Collectors.partitioningBy() can be used to partition the streams based on the certain Predicate.
+There are two overload versions of the method but both return a Collector which partitions the input elements according to Predicate and organizes them into Map<Boolean,List<T>>.
+
+1.Collectors.partitioningBy() using a Predicate :
+-------------------------------------------------
+Here each element of the stream are tested against Predicate.
+Based on the resulting Boolean Value, Collector groups the elements into two Sets and returns the result as Map<Boolean,List<T>>.
+
+	  Map<Boolean, List<Student>> result=students.stream().collect(Collectors.partitioningBy(student -> student.getName().length()>4));
+      System.out.println(result.keySet());
+
+
+2.Collectors.partitioningBy() using a Predicate and a Downstream Collector :
+----------------------------------------------------------------------------
+Instead of passing the Predicate we can also supply the Downstream Collector as well.
+The result is same as PartitioningBy where the values are the result of the DownStream Collector.
+
+	Map<Boolean, List<String>> result2= students.stream().collect(Collectors.partitioningBy(student -> student.getAge()>20,Collectors.mapping(Student::getName,Collectors.toList())));
+        System.out.println(result2);
+		
+************************************************************ 9.Duplicate in Streams (stackabuse) ************************************************************
+
+
+
+
+	 
+	 
+
+
+
+
+
+
+
+	
+
 
 

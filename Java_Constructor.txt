@@ -23,12 +23,13 @@ If we perfrom initialization seperately for each block then length of the code w
 Whenver we are creating an object some peice of code needs to be executed to perform initialization.
 Peice of code is nothing but Constructor.
 Main objective of constructor is to perform initialization of an object.
-For every object creation instance block and constructor will be executed.
+For every object creation first instance block and constructor will be executed.
 
 Difference between instance block and Constructor :
 ---------------------------------------------------
 Main objective of Constructor is to perfrom initialization of an Object.
-Other than initialization activity If we want to perfrom any other activity then we need to define inside static block.
+Other than initialization activity If we want to perfrom any other activity then we need to define inside Static block.
+Static block will be executed only once i.e. when the first time class is loaded into memory.
 For every Object creation both static block and constructor will be executed but static block first followed by contructor.
 
 Both Constructor and instance block will have different purpose.
@@ -156,7 +157,7 @@ We can assign the value to the final field but the same cannot be done using clo
 
 Advantages :
 ------------
-Copy Constrcutor reduces complexities when dealing Object with several parameters.
+Copy Constrcutor reduces the complexities when dealing Object with several parameters.
 If a new field is added to the class, we only need to change the input parameter in the constructor.
 No need of typecasting in Copy Constructor.
 Copy Construtor in Java allows us to change the fields which are declared as final.
@@ -211,21 +212,49 @@ Copy Constrcutor provides completes control over Object Creation.
 
 Constructor chaining is the process of calling one Constrcutor from another Constrcutor with respect to current Object.
 Constrcutor chaining can be done in two ways.
-Within the Same class using this()
-From the Base Class by using super() keyword to call the Constructor from the derived class.
+1.Within the Same class Constructor chaining can be done by using this().
 
+	public class ConstructorChainingUsingThis {
+    /* Default Constructor */
+    ConstructorChainingUsingThis(){
+        System.out.println("Default Constructor");
+    }
+    /* Argument Constructor*/
+    ConstructorChainingUsingThis(int x){
+        this();
+        System.out.println("Value of x : "+x);
+    }
+    /* Parameterized Constructor */
+    ConstructorChainingUsingThis(int x,int y){
+        this(x);
+        System.out.println("Value of x and y : "+x*y);
+    }
+    public static void main(String[] args) {
+        new ConstructorChainingUsingThis(8,10);
+    }
+	}
+	
+Output :
+--------
+Default Constructor
+Value of x : 8
+Value of x and y : 80
+
+2.From the Base Class Constructor chaining can be done by using super() keyword to call the Constructor from the derived class.
 Constructor Chaining occurs through Inheritance.
 Sub Class Constructor task is to call Super Class Constructor First.
 This ensures the creation of Subclass Object start's with the initialization of data members of the Super class.
 
+	
+
 Why Constructor Chaining :
 --------------------------
-This process is used whenever we want to perform multiple tasks in a Single Constructor.
+Constructor Chaining can be used whenever we want to perform multiple tasks in a Single Constructor.
 Create a seperate Constructor for each Task and make their chain which makes the program more readable.
 
 Instance Block :
 ----------------
-Whenever certain amount of code has to be executed with every constructor we can place the code inside Instance Block.
+Whenever certain amount of code has to be executed with every constructor we can place that code inside Instance Block.
 
 ******************************************************* 5.Private Constructors and Singleton Class (scaler) *************************************
 

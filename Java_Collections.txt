@@ -342,7 +342,7 @@ whenever we are implementing Comparator interface we should provide implementati
 
 *************************************************************  9.Map Interface Classes  ******************************************************************
 
-If we want to represent a group of individual objects where objects are stored as key value pairs we go for Map interface.
+If we want to represent a group of individual objects where objects are stored as key value pairs then we go for Map interface.
 Map interface provides 3 collection views which allows map content to be viewed as
 set of keys
 set of values
@@ -392,4 +392,18 @@ TreeMap :
 Here objects are placed based on natural sorting order.
 If we want we can define our own customized sorting order by passing the Comparator.
 
+		Map<String, Integer> map = new HashMap<>();
+		map.put("Jayant", 80);
+		map.put("Abhishek", 90);
+		map.put("Anushka", 80);
+		map.put("Amit", 75);
+		map.put("Danish", 40);
 
+		TreeMap<String, Integer> treeMap = new TreeMap<>();
+		treeMap.putAll(map);
+		treeMap.forEach((key,value) -> System.out.println(key +" - "+value));
+
+
+To sort the Map in reverse Order
+
+		TreeMap<String, Integer> treeMap = new TreeMap<>(Comparator.reverseOrder());

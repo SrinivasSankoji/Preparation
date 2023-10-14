@@ -18,14 +18,13 @@
 
 1.Large Projects are not suitable.
 2.JDBC does not support Abstraction and Polymorphism.
-3.JDBC Exceptions are Checked Exceptions ie we need to handle Checked Exceptions ie should be written in try catch block.
+3.JDBC Exceptions are Checked Exceptions i.e. we need to handle Checked Exceptions i.e. should be written in try catch block.
 Exceptions in ORM are unchecked Exceptions.
-4.SQLExceptionTranslator converts propriatory Database Vendor Exceptions into user defined Exceptions supported by ORM
-where as it is not supported by JDBC.
-5.In SIngleto Design Pattern we write the JDBC Code.
+4.SQLExceptionTranslator which converts Database Vendor Exceptions into user defined Exceptions supported by ORM where as it is not supported by JDBC.
+5.In Singleton Design Pattern we need to write the JDBC Code.
 
 1.JDBC is suitable for small scale projects.
-2.JDBC is limited for small no of functionalities
+2.JDBC is limited for small no of functionalities.
 3.To access large data from database performance is good and simple syntax.
 
 ***************************************************** 2.Session Interface Methods *************************************************************
@@ -112,13 +111,13 @@ This method performs either insert or update operation.
 In case of merge() If the record exists then it perfroms update operation.
 If the record does not exists then it performs insert operation.
 In case of saveOrUpdate() first it performs insert operation and 
-If the record exists then it performs insert operation.
+If the record exists then it performs update operation.
 
 6.public Object get(java.lang.class,serializableId) :
 -----------------------------------------------------
 get() returns null If the Object is not found on Cache as well as database.
 get() is also called as "Early Loading".
-Whenever we call the get() on the Session Object Tt will hit the database,Get the Data from the Database and stores the data into the Entity Object.
+Whenever we call the get() on the Session Object it will hit the database,Get the Data from the Database and stores the data into the Entity Object.
 and Entity Object will be cached on to the Session Object.
 As session.get() returns a fully initialized instance so it is available in in any future detached state.
 use get() If it is sure that the Object exists.
@@ -211,8 +210,7 @@ session.flush() should not be called after txn.commit().
 
 15.Difference between update() and merge() :
 --------------------------------------------
-If the Object is not associated with the session ie session Object does not contain an Entity with the Identifier and
-has a matching record in the database the we call the update().
+If the Object is not associated with the Session and has a matching record in the database then we call update().
 Irrrespective of the state of a session,If there is a need to save the modification in the databse,then we go for merge().
 
 16.public Serializeable getIdentifier(Object obj) throws HibernateException :
@@ -254,7 +252,7 @@ Hibernate uses two different Cache for Objects
 First Level Cache
 Second Level Cache
 
-First Level Cache always associated with Session Object.
+First Level Cache is associated with Session Object.
 Hibernate uses this Cache by default.
 Here it process one Transaction after another Transaction ie won't process one Transaction many times.
 Reduces the no of SQL queries needs to be generated within the given transaction.

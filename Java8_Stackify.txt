@@ -1,6 +1,6 @@
 Map :
 -----
-Map Produces a new Stream after applying function to each element of the original Stream.
+Map produces a new Stream after applying function to each element of the original Stream.
 Here the stream could be of any type.
 
 collect :

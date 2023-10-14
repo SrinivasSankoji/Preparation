@@ -177,17 +177,17 @@ Full Outer Join
 
 Left Outer Join :
 -----------------
-Left Outer Join returns the matching records and unmatching records from the Left Table and only matching records from the Right Table.
+Left Outer Join returns the matching records from the Left Table and only matching records from the Right Table.
 
 Right Outer Join :
 ------------------
-Right Outer Join returns the matching and unmatching records from the Right Table and only matching records from the Left Table.
+Right Outer Join returns the unmatching records from the Right Table and only matching records from the Left Table.
 
 Full Outer Join :
 -----------------
 Returns all the records ie matching and unmatching records from both the Tables.
 But the Rule is applicable to perfrom only one Join.
-If the natch is found then it displays the matching records If not displays null values.
+If the match is found then it displays the matching records If not displays null values.
 
 Natural Join :
 --------------

@@ -13,7 +13,7 @@
 13.jar vs war vs ear                                [24-DEC-2020]  (Done)
 14.web Application vs Enterprise Application        [24-DEC-2020]  (Done)
 15.Web server vs Application Server                 [24-DEC-2020]  (Done)
-16.Classpath vs Path                                [24-NOV-2021]  ()
+16.Classpath vs Path                                [02-OCT-2023]  ()
 17.JDK vs JRE                                       [24-NOV-2021]  ()
 18.Object Creation Ways  (geeksforgeeks)			[25-AUG-2020]  (Done)
 19.Class Loaders									[25-NOV-2021]  ()
@@ -379,11 +379,20 @@ GlassFish etc.
 
 ***********************************************  16.Classpath vs Path  *********************************************************************************
 
+Path :
+------
+Path is an environment variable that can be used to locate the JDK binaries or Executable Files that can be used to run any Java Commands.
+Path is used by Operating System to find the location of the executable files.
+The executable files are present in \bin folder.
+If the Path variable is not we need to move to the directory containing the executables to execute the Java command.
+If the Path variable is set we can run the Java command from anywhere.
 
-
-
-
-
+Classpath :
+-----------
+Classpath is an environment variable that can be used to provide the path for all the .class files which are used in our Application.
+Classpath can be used by Java Class Loader to load .class files.
+In the Classpath we include all the .class files or jar files which are required for our Application.
+Classpath can be overriden by command line options.
 
 ***********************************************  17.JDK vs JRE  ****************************************************************************************
 

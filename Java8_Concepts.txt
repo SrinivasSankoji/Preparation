@@ -2,11 +2,11 @@
 2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
 3.Functional Interfaces and Lambda Expressions                  (beginnersbook)         [03-SEP-2021]	(Done)
 4.Java Stream API For Bulk Data Operations on Collections    	(beginnersbook)         [03-SEP-2021]	(Done)
-5.Java Time API                                                                 		[02-SEP-2021]	()
-6.Collection API Improvements                                                   		[02-SEP-2021]   ()
-7.Concurrency API Improvements                                                  		[02-SEP-2021]   ()
-8.Java IO Improvements                                                          		[02-SEP-2021]   ()
-9.Miscellaneous Core API Improvements                                           		[02-SEP-2021]   ()
+5.Java Time API                                                 ()                  	[02-SEP-2021]	()
+6.Collection API Improvements                                   ()              		[02-SEP-2021]   ()
+7.Concurrency API Improvements                                  ()              		[02-SEP-2021]   ()
+8.Java IO Improvements                                          ()              		[02-SEP-2021]   ()
+9.Miscellaneous Core API Improvements                           ()              		[02-SEP-2021]   ()
 10.Method References                           					(beginnersbook)         [08-SEP-2021]   (Done)
 11.spliterator                                                  ()                      [02-SEP-2021]   ()
 12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
@@ -15,22 +15,22 @@
 15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
 17.Function package 											(javabrahman)           [08-SEP-2021]	(Done)
-18.Base64 Encode Decode                                                                 [02-SEP-2021]   ()
-19.SOLID Principles	(Java Techie)								(javabrahman)			[20-SEP-2021]   (Done)
-20.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
-21.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
-22.PermGen														()						[03-DEC-2021]	()
+18.Base64 Encode Decode                                         ()                      [02-SEP-2021]   ()
+19.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
+20.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
+21.PermGen														()						[03-DEC-2021]	()
+
 
 
 ********************************************  1.For Each Method in Iterable Interface **************************************************************
 
 Foreach loop :
 --------------
-Foreach loop in java does not use any Lambda Operations.
+Foreach loop can be used only for Collection and Arrays and we cannot retrieve the specific element.
+Foreach loop does not support Lambda Operations.
 The operations can be applied on the variables outside the List that we are using for Iteration in the foreach loop.
-foreach loop can be used only for Collection and Arrays and we cannot retrieve the specific element.
 
-"return" statement works within the for loop ie function can return the value at any point of time within the loop.
+"return" statement works within Foreach loop ie function can return the value at any point of time within the loop.
 
 stream.foreach() :
 ------------------
@@ -41,14 +41,14 @@ stream.forEach() can be used to access the Collections and Arrays.
  
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
-Before Java8,Interface can have only abstract Methods ie All the Methods in the interface are by default public and abstract.
-It is not possible to add any new functionality to the existing interface without forcing all the Implementation classes to implement the interface.
-It is also not possible to create interface with implementation.
+Before Java8,Interface can have only abstract Methods i.e. All the Methods in the interface are by default public and abstract.
+It is not possible to add any new functionality to the existing interface without forcing all the implementation classes to implement the interface.
+It is also not possible to create an interface with implementation.
 From Java8 we have interfaces with default and static Methods.
 
 default method :
 ----------------
-By using default() we can add new methods in the existing Interface in such a way that they are Backward Compatible.
+By using default() we can add new methods in the existing Interface in such a way that they are backward compatible.
 Backward Compatibility is adding a new feature without breaking the existing Code.
 default Methods are declared in the interfaces by using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
@@ -203,7 +203,7 @@ Here the new stream can be of different Type.
 collect() is one of the common way to get the stuff out from the stream once done with the processing.
 findFirst() is used to return the first Object from the Stream other wise it returns null.
 
-If we want to get an Array form the stream of elements we use toArray(Employee[]::new)
+If we want to get an Array from the stream of elements we use toArray(Employee[]::new)
 
 FlatMap :
 ---------
@@ -237,7 +237,7 @@ allMatch, anyMatch, and noneMatch :
 -----------------------------------
 allMatch() returns true If all the elements of the stream satisfies the condition.It returns false as soon as it does not match the predicate.
 anyMatch() returns true If it matches with any one of the element in the Stream.
-noneMatch() returns true If none of the element in stream matches the Predicate.
+noneMatch() returns true If none of the element in stream matches with the Predicate.
 
 Stream Specializations :
 ------------------------
@@ -351,7 +351,7 @@ There are four types of Method References.
 		
 		
 		MyInterface reference = () -> example.myMethod();
-		// If the Lambda Expression does not accept any argument and executing a method then we use the Method Reference.
+		// If the Lambda Expression does not accept any argument and executing a method then we can use the Method Reference.
 		MyInterface reference1 = example::myMethod;
 		
 		reference.disply();
@@ -560,19 +560,22 @@ where T is the parameter and boolean is the return type.
 Function :
 ----------
 Function Interface represents a function that takes one type of argument and returns another type of argument.
-Function Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
 Function Interface definition would be
 	
 	interface Function<T,R>
 	{
 		public R apply(T parameter)
 	}
+	
+Function Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
+
+	Function<Integer, Integer> sum = (value -> value + value);
 
 	public class PredefinedFunctionDemo {
-	Function<Integer, Integer> sum = (value -> value + value);
-	Predicate<String> nullCheck = (value -> value != null && value != "");
-	Consumer<String> display = (value -> System.out.println(value));
-	Supplier<String> fetch = () -> "Get the Value from Supplier";
+	static Function<Integer, Integer> sum = (value -> value + value);
+	static Predicate<String> nullCheck = (value -> value != null && value != "");
+	static Consumer<String> display = (value -> System.out.println(value));
+	static Supplier<String> fetch = () -> "Get the Value from Supplier";
 
 	public static void main(String[] args) {
 		PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
@@ -601,9 +604,8 @@ Predicate Interface definition would be
 		public boolean test(T t);
 	}
 	
-	Predicate<String> nullCheck=(value -> value!=null && value!="");
-	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
-	System.out.println(demo.nullCheck.test(""));
+	boolean result = PredicateInterfaceDemo.nullCheck.test("");
+    System.out.println(result);
 	
 Consumer :
 ----------
@@ -620,45 +622,16 @@ Supplier is a fucntion that does not take any argument and returns the result.
 	Supplier<String> fetch=() -> "Get the Value from Supplier";
 	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
 	System.out.println(demo.fetch.get());
+	
+	
+*****************************************************  18.Base64 Encode Decode  ******************************************************************
 
-***************************************************** 19.SOLID Principles	(javabrahman) *****************************************************
+                                                                
+*****************************************************  19.Streams (winterbe)  ********************************************************************
 
-1.Single Responsibility Principle
-2.Open Closed Principle
-3.Liskov Substitution Principle
-4.Interface Segregation Principle
-5.Dependency Inversion Principle
+Done
 
-1.Single Responsibility Principle :
------------------------------------
-Single Responsibility Principle states that a Class should have a Single Responsibility where responsibility is nothing but reason to change.
-When we design our Class we should take care that the Class should be responsible for doing one task among the whole set of responsibilities.
-When there is a change needed in specific functionality that Class needs to be changed.
-Implementation of multiple functionalities in a Single class can mesh up the Code.
-
-2.Open Closed Principle :
--------------------------
-Open Closed Principle states that Software Entities like Class,Module,Functions etc should be able to extend the functionality without modifying it.
-This principal seperates the existing code from the modified code to provide better stability,maintainability and minimizes the changes in the code.
-Open Closed Principe is achieved by using Inheritance and Polymorphism.
-
-3.Liskov Substitution Principle :
----------------------------------
-As per Liskov substitution principle,Class can be replaced by its subClass i.e. Derived class must be completely substitutable for their base classes.
-In Java Super class reference can be used to hold Subclass Object ie Super Class can be replaced by SubClass in a super class reference.
-
-4.Interface Segregation Principle :
------------------------------------
-Interface Segregation principle states that larger interface can be split into smaller ones.
-Because Implementation classes use only the methods that are required.
-We should not force the client to use the methods that they don't require.
-
-5.Dependency Inversion Principle :
-----------------------------------
-Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
-High level modules should not depend on low level modules but both depends on Abstraction.
-
-***************************************************** 21.Map in Java8 (beginnersbook) ************************************************************
+***************************************************** 20.Map in Java8 (beginnersbook) ************************************************************
 
 1.compute :
 -----------
@@ -724,7 +697,7 @@ If the reMapping Function returns null then mapping for the specified key is rem
 		
 4.merge :
 ---------
-merge() is used to combine multiple mapped values for a given key using mapping function.
+merge() can be used to combine multiple mapped values for a given key using mapping function.
 
 Note :
 If the key is not present,It simply outputs the key along with the corresponding value in the HashMap as a new Entry.
@@ -750,5 +723,5 @@ In case key is null,It always mapped to bucket 0 as hash is not calculated for n
 getOrDefault() of HashMap returns the specified default value If the mapping for the specified key is not found.
 
  
-	
+***************************************************** 21.PermGen () *************************************************************************	 					
 

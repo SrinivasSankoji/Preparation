@@ -39,7 +39,7 @@ Sorting the Primitive Data Types :
 	
 Sorting the Object Array :
 --------------------------
-We need to Comparable interface and override the compareTo(Object obj).
+We need to implement the Comparable interface and override the compareTo(Object obj).
 
 	// Not required to override when using Comparator
 	@Override
