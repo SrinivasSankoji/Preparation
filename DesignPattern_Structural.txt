@@ -1,14 +1,81 @@
-1.Adapter												() 			  					[13-OCT-2023]  ()
-2.Bridge                                                () 			  					[13-OCT-2023]  ()
-3.Composite                                             () 			  					[13-OCT-2023]  ()
-4.Decorator                                             (Salitha Chathuranga) 			[13-OCT-2023]  ()
-5.Facade                                                () 			  					[13-OCT-2023]  ()
-6.Flyweight                                             () 			  					[13-OCT-2023]  ()
-7.Proxy                                                 () 			  					[13-OCT-2023]  ()
+1.Adapter												() 			  												[13-OCT-2023]  ()
+2.Bridge                                                () 			  												[13-OCT-2023]  ()
+3.Composite                                             (Salitha Chathuranga & Abdulaziz Pulatjonov) 			  	[15-OCT-2023]  ()
+4.Decorator                                             (Salitha Chathuranga & java67) 								[14-OCT-2023]  (Done)
+5.Facade                                                (Abdulaziz Pulatjonov & & Prabhu Kumar) 			  		[22-OCT-2023]  (Done)
+6.Flyweight                                             (Rajeshvelmani & Abdulaziz Pulatjonov) 			  			[29-OCT-2023]  ()
+7.Proxy                                                 () 			  												[13-OCT-2023]  ()
 
-################################################### 4.Decorator (Salitha Chathuranga) ###################################################
+
+####################################### 3.Composite (Salitha Chathuranga & Abdulaziz Pulatjonov) ########################################
+
+
+
+
+
+
+
+################################################### 4.Decorator (Salitha Chathuranga & java67) ##########################################
 
 https://salithachathuranga94.medium.com/decorator-design-pattern-in-java-1b0931ead0e4
+
+Decorator Design pattern is a structural design pattern that allows us to add a new functionality to an existing Object without changing its structure.
+Decorator Design pattern allows us to do runtime modifications of an Object.
+The traditional way of adding new functionality to an existing Object is by using inheritance i.e. at compile time.
+Decorator Design Pattern uses Composition which makes it flexible to add new functionalities at runtime.
+Because of this flexibility Decorator Design Pattern is one of the darling pattern for many Java Developers.
+
+
+########################################### 5.Facade (Abdulaziz Pulatjonov & Prabhu Kumar) ##############################################
+
+https://blog.devops.dev/structural-design-patterns-in-java-facade-design-pattern-a6d2797ed8de
+
+
+Facade Design Pattern is one of the subtype of structural design pattern.
+Facade Design Pattern provides a unified interface to a set of interfaces in the Complex sub system.
+Facade Design Pattern provides a high level interface that makes the subsystem easier to use.
+Facade Design Pattern provides a simplified interface that the Client can be used to access the System.
+Here business logic can be hidden behind the interface so that Client does not aware of implementation.
+
+Facade Design Pattern is appropriate when we have a Complex System and want in a simplified way.
+The classes and Objects participating in this pattern are 
+
+Subsystem classes
+Subsystem classes forms the complex interface of the existing sub system.
+Facade
+Facade provides simplified interface which delegates calls the to the Classes in the Sub System.
+Client
+Client invokes Facade which shields away complex interface from the Client.
+
+https://prabhuch.medium.com/facade-design-pattern-in-java-29fe1436b1cd
+
+########################################### 6.Flyweight (Rajeshvelmani & Abdulaziz Pulatjonov) ###########################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 

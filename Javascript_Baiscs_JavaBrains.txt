@@ -8,6 +8,7 @@
 8.understanding null                                               	[25-FEB-2020]  (Done)
 9.Difference Undefined and null                                    	[25-FEB-2020]  (Done)
 10.Types Summary                                                    [25-FEB-2020]  (Done)
+
 11.typeof Operator                                                  [25-FEB-2020]  (Done)
 12.Type Coercion and === Operator                                   [25-FEB-2020]  (Done)
 13.Type Coercion Summary                                            [25-FEB-2020]  (Done)
@@ -18,6 +19,7 @@
 18.Difference Dot and Bracket                                       [26-FEB-2020]  (Done)
 19.Nested Objects                                                   [26-FEB-2020]  (Done)
 20.Revisiting == For Objects                                        [26-FEB-2020]  (Done)
+
 21.Revisiting Undefined vs null                                     [26-FEB-2020]  (Done)
 22.Deleting Properties                                              [26-FEB-2020]  (Done)
 23.Introducing Arrays                                               [26-FEB-2020]  (Done)
@@ -28,6 +30,7 @@
 28.Function Returning Values                                        [07-MAY-2020]  (Done)
 29.Function Expressions                                             [07-MAY-2020]  (Done)
 30.Anonymous Functions                                              [07-MAY-2020]  (Done)
+
 31.Function as Arguments                                            [07-MAY-2020]  (Done)
 32.Function on Objects                                              [07-MAY-2020]  (Done)
 33.this Keyword                                                     [08-MAY-2020]  (Done)
@@ -43,108 +46,103 @@
 
 ****************************************** 1.What is Java Script and Java Script as Scripting Language	***************************************************
 
-JavaScript is a Light weight,Interpreted,Object Oriented Language with first Class Functions and is best known as Scripting Language for Web Pages.
-But it is used in Many Non Browser Environment as Well.
+JavaScript is a light weight,interpreted and object oriented programming language with first Class functions.
+JavaScript is best known as scripting language for web pages.
+JavaScript is also used in many non browser environment as well.
 
 Light Weight :
 --------------
-Light Weight Language is nothing But easy to Implement and a Small Memory Foot Print.
+Light weight language is nothing but easy to implement and has a small memory foot print.
 
 Interpreted :
 -------------
-Interpreted Means No Compilation is required and Instructions are executed Directly.
-JavaScript Compilation is Different from other Programming Languages Compilation.
-In case of C++ or Java Intermediated Code will get Generated When we Compile the Code and we run the Generated Code.
-In C++ Object Binary got Generated where as In case of Java Byte Code got Generated.
-We execute that Generated Code.
-In Case of JavaScript there is no Intermediate File and the Code will be executed Directly.
+Interpreted means no compilation is required and instructions are executed directly.
+JavaScript compilation is different from other programming languages compilation.
+In case of C++ or Java intermediate code will be generated when we compile the code and run the generated code.
+In C++ Object binary will get generated where as in case of Java byte code will get generated.
+We execute that generated code.
+In case of JavaScript there is no intermediate file and the code will be executed directly.
 
 Java Script is Object Oriented :
 --------------------------------
-When we write the Code we Model the Code around Objects.
-What are the Steps needed to Solve the Problem.
-When we think about a Problem we Break it into the Objects with data and Functionality.
+When we write the code we model the code around Objects.
+What are the steps needed to solve the problem.
+When we think about the problem we break the problem into Objects with data and functionality.
 
-First Class Functions :
+First class functions :
 -----------------------
-Functions can be used as Values.
-We can Assign Function to a Variable.
-We can pass Function as Parameters to Method Calls.
+Functions can be used as values i.e. We can assign a function to a variable.
+We can also pass functions as parameter to method calls.
 
 Java Script as Scripting Language :
 -----------------------------------
-In Scripting Language instructions are Written for a runtime Environment.
-Best Example of Scripting Language is Shell Script.
-We have Commands that we can run on Runtime Environment.
-Here Runtime Environment Means Operating System.
+In Scripting language instructions are written for a runtime environment.
+Best example of Scripting language is Shell Script.
+We have commands that can run on runtime environment.
+Here runtime environment means Operating System.
+We can also bundle the commands and make them to execute as a file.
+This becomes a script that the shell executes at runtime.
 
-We can also bundle the Command and make them to execute as a File.
-This becomes a Script that the Shell Executes at Runtime.
-
-Here Runtime Environment is Browser.
+Here runtime environment is Browser.
 Browser renders the HTML and runs the JavaScript.
 
-When we make any Request to the Web Application Browser makes the Request to the Web Server.
-Server Responds with Some HTML Content.
-HTML we get as Response travels over HTTP and receives as Piece of HTML Text.
-Browser examines the Text and Convert them into Objects.
-Here Each Tag becomes an Object Tree.
-Tree Object refers to a DOM Tree.
-Browser Builds the DOM Tree and renders the View to the Browser. 
+When we make any request to the web Application,Browser makes the request to the Web Server.
+Web Server process the request and return the response in the form of HTML text.
+Browser examines the text and convert them into Objects.
+Here each HTML tag becomes an Object Tree.
+Object Tree refers to a DOM Tree.
+Browser builds the DOM Tree and renders the view to the Browser. 
 
-Here HTML is a Static Language.
-However HTML Comes with JavaScript and JavaScript is a Dynamic Language.
-JavaScript has the ability to Manipulate the DOM Tree i.e
+Here HTML is a static language.
+However HTML comes with JavaScript and JavaScript is a scripting language.
+JavaScript has the ability to manipulate the DOM Tree i.e
 
-New Nodes can be added to the DOM Tree,
-Removed form the DOM Tree or 
-Update the Existing DOM Tree etc.
-Browser Reflects the view based on the DOM Tree.
-JavaScript is a way to execute Dynamic Functionality on Browser.
+New nodes can be added to the DOM Tree,Removed from the DOM Tree or Update the existing DOM Tree etc.
+Browser reflects the view based on DOM Tree.
+JavaScript is a way to execute dynamic functionality on Browser.
 
 ****************************************** 2.Why Java Script	***************************************************************
 
-JavaScript can be Used For :
+JavaScript can be used for :
 
-Client Side Web Development Because JavaScript is very often used on Browser.
+Client Side web development because JavaScript is very often used on Browser.
 Native JavaScript
-JQuery Library lets us Modify the DOM Tree on the Client Side.
-Advanced Client Side Application Framework Like Angular,React,Ember,Backbone etc.
-We can also Implement Server Side Web Development by Using NodeJs,Express .
+JQuery Library lets us modify the DOM Tree on the client side.
+Advanced client side application framework like Angular,React,Ember,Backbone etc.
+We can also implement server side web development by using NodeJs,Express.
 
-We Can also build Browser extensions with JavaScript For Example Plug Ins.
-There are Some Frameworks that allows to Build Desktop and Mobile Applications with JavaScript.
-JavaScript is gaining Popularity with IOT Applications.
+We can also build Browser extensions with JavaScript for example Plug Ins.
+There are some frameworks that allows to build desktop and mobile applications with JavaScript.
+JavaScript is gaining popularity with IOT Applications.
+JavaScript is standardized as ECMA Script.
 
-JavaScript is Standardized as ECMAScript.
+****************************************** 3.Setting up Java Script  *****************************************
 
-****************************************** 3.Setting up Java Script  **********************************************************
-
-Web Browser is a Runtime Environment for the JavaScript.
+Web Browser is a runtime environment for JavaScript.
 Recommended to use FireFox with ScratchPad Development Tool.
 
 Install bebel 6 Plug In Visual Studio Code and run the Java Script as 
 
 	node hello.js
 
-****************************************** 4.Variable Declaration ******************************************
+****************************************** 4.Variable Declaration ********************************************
 
-In Any Language when we need to hold a Variable we need to declare that Variable.
-In JavaScript we declare the Variable by using var keyword.
+In any Language whenever there is a requirement to hold the variable we need to declare the variable.
+In JavaScript we declare the variable by using var keyword.
 
 	var value1=42;
 	var value2="JavaScript";
 	var value3=true;
 	
-In JavaScript we don't have information about the type of the Variable.
-There is no PreDeclaration of Type Required in order to Create a Variable.
+In JavaScript we don't have information about the type of the variable.
+There is no pre declaration of type required in order to create a variable.
 
 	var value1;
 	value1="JavaScript";
 	
 ******************************************	5.Number Primitive Type ******************************************
 
-Once we declare the Variable we can assign Primitive Types in JavaScript.
+Once we declare the variable we can assign primitive types in JavaScript.
 Primitive Types in JavaScript are
 
 	Number
@@ -153,8 +151,8 @@ Primitive Types in JavaScript are
 	undefined
 	null
 	
-Number in JavaScript are Double Precision 64 Bit Format IEEE 754 Values.
-We don't have Integer,Long Data Types in JavaScript.
+Number in JavaScript are double precision 64 bit format IEEE 754 values.
+We don't have Integer,Long data types in JavaScript.
 
 	var a=10.2;
 	console.log(a);
@@ -165,67 +163,66 @@ We don't have Integer,Long Data Types in JavaScript.
 	var c=true;
 	console.log(c);
 	
-****************************************** 6.String and Boolean ******************************************
+****************************************** 6.String and Boolean **********************************************
 
-String are Sequence of Unicode 16 Bit Characters in JavaScript.
-There is no Character keyword in JavaScript.
-Everything in JavaScript is a String with a Sequence of Character.
+String is a sequence of Unicode 16 bit characters in JavaScript.
+There is no character keyword in JavaScript.
+Everything in JavaScript is a String with a sequence of character.
 
-Boolean Value Can be Either True or False.
+Boolean value can be either True or False.
 
 	var d="Hello"+c;
 	console.log(d);// Hellotrue
 	
-There is no Type Information associated with JavaScript.
+There is no Type information associated with JavaScript.
 
 	a="Hello Java";
 	
-In Another Language It is Going to give Compile Time Error saying Assigning Variable to Another Type.
-A Variable can Hold any Value at any Point of Time.
-This Behavior in JavaScript is Called Loose Typing.
+In another Language It is going to give CTE saying assigning variable to another Type.
+A Variable can hold any value at any point of time.
+This behavior in JavaScript is called Loose Typing.
 
-****************************************** 7.Understanding Undefined   ******************************************
+****************************************** 7.Understanding Undefined   ***************************************
 
-When we want a New Variable we Declare the Variable.
+Whenever we want a new variable we declare the variable.
 
 	var value;  --> 1
 	
-Definition is Nothing But assigning a value to the Variable.
+Definition is nothing but assigning a value to the variable.
 
 	value="Hello";  -->2
 	
 	var value="Hello";  -->3
 	
-The value between Declaration and Definition is undefined.
-If we don't define any value to the Variable then by default it is undefined.
-JavaScript has defined Separate Type Called Undefined for Variables that has been not defined.
+The value between declaration and definition is undefined.
+If we don't define any value to the variable then by default it is undefined.
+JavaScript has defined separate type called Undefined for variables that has not defined.
                                       	
-****************************************** 8.understanding null   ***********************************************
+****************************************** 8.understanding null   ********************************************
 
-null is another Data Type in JavaScript that Contains one Possible Value i.e null.
+null is another primitive data type in JavaScript which contains only one value i.e null.
 
 	var value=null;
 	
-Until we assign a Value to the Variable Default Value is Undefined.
-If we assign a null Value to the Variable the it Displays the Value as null.
+Until we assign a value to the variable default value is Undefined.
+If we assign a null Value to the variable the it displays the value as null.
 
-****************************************** 9.Difference Undefined and null    ******************************************  
+****************************************** 9.Difference Undefined and null    ********************************  
 
-In Some cases we get the Requirement of Default Value for Property Should be null or NA instead of undefined.
-For Example MiddleName Should be null or NA instead of undefined 
+In some cases we get the requirement of default value for property should be null or NA instead of undefined.
+For example middle name should be null or NA instead of undefined .
 Age can be undefined instead of null Value.
     
-****************************************** 10.Types Summary ***********************************************************    
+****************************************** 10.Types Summary ***************************************************   
 
-No Need to Declare Variable Type
-Same Variable Can be assigned to Value of Different Types
-No Scoping Information in the Variable Declaration
+No need to declare variable type.
+Same variable can be assigned to value of different types.
+No scoping information in the variable declaration.
 
 	In Java we have default --> private --> protected --> public which binds with the Class.
 	
-variables and values can be Interrogated.
-                            
-****************************************** 11.typeof Operator  ********************************************************   
+	
+****************************************** 11.typeof Operator  ************************************************  
 
 variables and values can be Interrogated i.e 
 
@@ -235,7 +232,7 @@ It is Important to identify the type of Variable using typeof operator.
 
 	console.log(typeof d);
 	                     
-****************************************** 12.Type Coercion and == Operator  ******************************************   
+****************************************** 12.Type Coercion and == Operator  ***********************************   
 
 Type Coercion in JavaScript is Similar to Typecasting in Java.
 Consider the Variable has defined with a Value and some times interpreter has to do the Automatic Type Conversion for us
@@ -557,7 +554,7 @@ If we add more Parameters then it will be ignored.
 Overloaded Functions are not Possible in JavaScript.
 
    
-******************************************   28.Function Returning Values    ************************************************************************************      
+******************************************   28.Function Returning Values    *************************************************************    
 
 We can also have the Function that returns the Values.
 we can return the Function Value by Using return keyword.
@@ -572,7 +569,7 @@ we can return the Function Value by Using return keyword.
 	
 return can be any data type and can also be  undefined if it does not return anything.
 
-******************************************   29.Function Expressions   ************************************************************************************
+******************************************   29.Function Expressions   *******************************************************************
 
 Most of the Times we use Function Declaration and call the Function Definition when ever we execute the Function.
 There are two ways of Creating Function 
@@ -591,7 +588,7 @@ To execute the above Function
 	demo();
 
 
-******************************************  30.Anonymous Functions    ************************************************************************************
+******************************************  30.Anonymous Functions    *********************************************************************
 
 Function Declaration :
 
@@ -616,7 +613,7 @@ If we reassign the Value of the  Variable then we get an Error.
     console.log("Function Expression");
 	};
 
-******************************************  31.Function as Arguments  ************************************************************************************
+******************************************  31.Function as Arguments  ***********************************************************************
 
 We can assign Function to a Varaible and  to that Function we Pass an argument as a Fucntion and taht will execute.
 	
@@ -634,7 +631,7 @@ We can assign Function to a Varaible and  to that Function we Pass an argument a
 	
 Here we can also pass an argument to the Function i.e f2(f,"Bhaumik");
 
-******************************************  32.Function on Objects    ************************************************************************************
+******************************************  32.Function on Objects    *************************************************************************
 
 Any thing we can assign to a Variable Similarly Anything we can assign to a Obejct Property.
 Object with Property would be a Function.
@@ -648,7 +645,7 @@ Object with Property would be a Function.
 		console.log("Function Object");
 	};
 	
-******************************************  33.this Keyword     ******************************************************************************************      
+******************************************  33.this Keyword     ********************************************************************************      
 
 Common Usage of Methods in an Oject of a Class is Accessor Methods i.e setters and getters.
 Similarly we access the Method inside an Object in JavaScript by using this keyword.
@@ -683,7 +680,7 @@ Here the Solution is able to access the Object which it is part of i.e current o
 	return this.firstName + " "+ this.lastName + " Sankoji";
  
        	
-******************************************  34.Code Exercise     *****************************************************************************************  
+******************************************  34.Code Exercise     ********************************************************************************* 
 
 			var person ={
 			"firstName":"Bhaumik",
@@ -702,11 +699,11 @@ Here the Solution is able to access the Object which it is part of i.e current o
 		};
 
 
-******************************************   35.Exercise Solution    *************************************************************************************   
+******************************************   35.Exercise Solution    ********************************************************************************  
 
       console.log(person.isFromState("TS"));
 
-******************************************   36.Default Function Arguments    ****************************************************************************
+******************************************   36.Default Function Arguments    ***********************************************************************
 
 The arguments that are going to execute in the Function are that we pass in the Parenthesis of the Function.
 Here we also get the implicit arguments to the Function by Default.
@@ -739,7 +736,7 @@ If we want to sum all the arguments
 	
 One thing to Note here that arguments is not an Array but it is an Object.
 
-******************************************  37.Unit Summary    *******************************************************************************************    
+******************************************  37.Unit Summary    *********************************************************************************    
 
 Function Can be written in literal Form.
 Function is a Value that can be assigned to a Variable.

@@ -1,48 +1,88 @@
-1.Introduction														(Code Evolution)   			[11-OCT-2023]  ()
-2.Hello world                                                       (Code Evolution)   			[11-OCT-2023]  ()
-3.Folder Structure                                                  (Code Evolution)   			[11-OCT-2023]  ()
-4.Components                                                        (Code Evolution)   			[11-OCT-2023]  ()
-5.Functional Components                                             (Code Evolution)   			[11-OCT-2023]  ()
-6.Class Components                                                  (Code Evolution)   			[11-OCT-2023]  ()
-7.Hooks update                                                      (Code Evolution)   			[11-OCT-2023]  ()
-8.React JSX                                                         (Code Evolution)   			[11-OCT-2023]  ()
-9.Props                                                             (Code Evolution)   			[11-OCT-2023]  ()
-10.State                                                            (Code Evolution)   			[11-OCT-2023]  ()
-11.setState                                                         (Code Evolution)   			[11-OCT-2023]  ()
-12.Destructuring Props and State                                    (Code Evolution)   			[11-OCT-2023]  ()
-13.Event Handling                                                   (Code Evolution)   			[11-OCT-2023]  ()
-14.Binding Event Handlers                                           (Code Evolution)   			[11-OCT-2023]  ()
-15.Methods as Props                                                 (Code Evolution)   			[11-OCT-2023]  ()
-16.Conditional Rendering                                            (Code Evolution)   			[11-OCT-2023]  ()
-17.List Rendering                                                   (Code Evolution)   			[11-OCT-2023]  ()
-18.Lists and Keys                                                   (Code Evolution)   			[11-OCT-2023]  ()
-19.Index as Key Anti Pattern                                        (Code Evolution)   			[11-OCT-2023]  ()
-20.Styling and CSS Basics                                           (Code Evolution)   			[11-OCT-2023]  ()
-21.Basics of Form Handling                                          (Code Evolution)   			[11-OCT-2023]  ()
-22.Component Life Cycle Methods                                     (Code Evolution)   			[11-OCT-2023]  ()
-23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[11-OCT-2023]  ()
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[11-OCT-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[11-OCT-2023]  ()
-26.Pure Components                                                  (Code Evolution)   			[11-OCT-2023]  ()
-27.Memo                                                             (Code Evolution)   			[11-OCT-2023]  ()
-28.Refs                                                             (Code Evolution)   			[11-OCT-2023]  ()
-29.Refs with Class Components                                       (Code Evolution)   			[11-OCT-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[11-OCT-2023]  ()
-31.Portals                                                          (Code Evolution)   			[11-OCT-2023]  ()
-32.Error Boundary                                                   (Code Evolution)   			[11-OCT-2023]  ()
-33.Higher Order Components Part 1                                   (Code Evolution)   			[11-OCT-2023]  ()
-34.Higher Order Components Part 2                                   (Code Evolution)   			[11-OCT-2023]  ()
-35.Higher Order Components Part 3                                   (Code Evolution)   			[11-OCT-2023]  ()
-36.Render Props Part 1                                              (Code Evolution)   			[11-OCT-2023]  ()
-37.Render Props Part 2                                              (Code Evolution)   			[11-OCT-2023]  ()
-38.Context Part 1                                                   (Code Evolution)   			[11-OCT-2023]  ()
-39.Context Part 2                                                   (Code Evolution)   			[11-OCT-2023]  ()
-40.Context Part 3                                                   (Code Evolution)   			[11-OCT-2023]  ()
-41.HTTP and React                                                   (Code Evolution)   			[11-OCT-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[11-OCT-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[11-OCT-2023]  ()
+1.Introduction														(Code Evolution)   			[02-NOV-2023]  (Done)
+2.Hello world                                                       (Code Evolution)   			[11-NOV-2023]  ()
+3.Folder Structure                                                  (Code Evolution)   			[11-NOV-2023]  ()
+4.Components                                                        (Code Evolution)   			[04-NOV-2023]  ()
+5.Functional Components                                             (Code Evolution)   			[11-NOV-2023]  ()
+6.Class Components                                                  (Code Evolution)   			[11-NOV-2023]  ()
+7.Hooks update                                                      (Code Evolution)   			[11-NOV-2023]  ()
+8.React JSX                                                         (Code Evolution)   			[11-NOV-2023]  ()
+9.Props                                                             (Code Evolution)   			[11-NOV-2023]  ()
+10.State                                                            (Code Evolution)   			[11-NOV-2023]  ()
+11.setState                                                         (Code Evolution)   			[11-NOV-2023]  ()
+12.Destructuring Props and State                                    (Code Evolution)   			[11-NOV-2023]  ()
+13.Event Handling                                                   (Code Evolution)   			[11-NOV-2023]  ()
+14.Binding Event Handlers                                           (Code Evolution)   			[11-NOV-2023]  ()
+15.Methods as Props                                                 (Code Evolution)   			[11-NOV-2023]  ()
+16.Conditional Rendering                                            (Code Evolution)   			[11-NOV-2023]  ()
+17.List Rendering                                                   (Code Evolution)   			[11-NOV-2023]  ()
+18.Lists and Keys                                                   (Code Evolution)   			[11-NOV-2023]  ()
+19.Index as Key Anti Pattern                                        (Code Evolution)   			[11-NOV-2023]  ()
+20.Styling and CSS Basics                                           (Code Evolution)   			[11-NOV-2023]  ()
+21.Basics of Form Handling                                          (Code Evolution)   			[11-NOV-2023]  ()
+22.Component Life Cycle Methods                                     (Code Evolution)   			[11-NOV-2023]  ()
+23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[11-NOV-2023]  ()
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[11-NOV-2023]  ()
+25.Fragments                                                        (Code Evolution)   			[11-NOV-2023]  ()
+26.Pure Components                                                  (Code Evolution)   			[11-NOV-2023]  ()
+27.Memo                                                             (Code Evolution)   			[11-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[11-NOV-2023]  ()
+29.Refs with Class Components                                       (Code Evolution)   			[11-NOV-2023]  ()
+30.Forwarding Refs                                                  (Code Evolution)   			[11-NOV-2023]  ()
+31.Portals                                                          (Code Evolution)   			[11-NOV-2023]  ()
+32.Error Boundary                                                   (Code Evolution)   			[11-NOV-2023]  ()
+33.Higher Order Components Part 1                                   (Code Evolution)   			[11-NOV-2023]  ()
+34.Higher Order Components Part 2                                   (Code Evolution)   			[11-NOV-2023]  ()
+35.Higher Order Components Part 3                                   (Code Evolution)   			[11-NOV-2023]  ()
+36.Render Props Part 1                                              (Code Evolution)   			[11-NOV-2023]  ()
+37.Render Props Part 2                                              (Code Evolution)   			[11-NOV-2023]  ()
+38.Context Part 1                                                   (Code Evolution)   			[11-NOV-2023]  ()
+39.Context Part 2                                                   (Code Evolution)   			[11-NOV-2023]  ()
+40.Context Part 3                                                   (Code Evolution)   			[11-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[11-NOV-2023]  ()
+42.GET Request                                                      (Code Evolution)   			[11-NOV-2023]  ()
+43.POST Request                                                     (Code Evolution)   			[11-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
- 
+React is a project created and maintained by Facebook.
+React is an open source JavaScript library for building user interfaces.
+React is not a JavaScript Framework.
+React does not focus on other aspects of the Application like routing,HTTP request etc.
+React is responsible only for building rich user interface.
+
+React has component based Architecture.
+This breaks down the Application into small encapsulated components which can be reused.
+
+React is declarative.
+We tell react what we want and react will build the actual UI.
+React will make it painless for a developer to create a Complex UI's by abstracting the difficulties.
+React will handle efficiently updating and rendering the components in the Application whenever the data changes.
+DOM updates is one of the most expensive operation is handled gracefully in React.
+
+Prerequsites :
+--------------
+HTML,CSS and JavaScript.
+ES6 features like this,filter,map and reduce.
+let,const,Arrow functions,Template literals,Default Parameters,Object literals,Rest and Spread operators and destructing Assignment.
+
+The other parts of React are
+
+React Fundementals (Current Series)
+React HTTP
+Routing
+State Management with Redux
+Utilities
+
+########################################################### 2.Hello world ###########################################################
+
+
+
+
+
+
+
+
+
+
+
 

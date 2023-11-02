@@ -3,7 +3,7 @@
 3.Iterator
 4.Memento
 5.Observer														()								  [14-OCT-2023]  ()
-6.Startegy														(GeeksForGeeks)			          [25-AUG-2023]  (Done)
+6.Strategy														(GeeksForGeeks)			          [25-AUG-2023]  (Done)
 7.Template Method
 8.Visitor
 9.Mediator
@@ -14,7 +14,7 @@
 
 https://medium.com/javarevisited/importance-of-chain-of-responsibility-pattern-89bf4128bd67
 
-Chain of Responsibility is a behavioral design pattern that allows an object to passed as a request to the chain of handlers until the request is handled or chain is reached.
+Chain of Responsibility is a behavioral design pattern that allows an object to be passed as a request to the chain of handlers until the request is handled or chain is reached.
 This pattern is significant as it promotes loose coupling between elements.
 
 Scenario One :
@@ -64,6 +64,8 @@ If any individual can't make the decission it is passed to the chain of Handlers
 
 
 ################################################### 5.Observer ()  ###################################################
+
+
 
 
 ################################################### 6.Strategy Design Pattern (GeeksForGeeks) ########################################################
