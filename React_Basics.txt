@@ -1,13 +1,14 @@
 1.Introduction														(Code Evolution)   			[02-NOV-2023]  (Done)
-2.Hello world                                                       (Code Evolution)   			[11-NOV-2023]  ()
-3.Folder Structure                                                  (Code Evolution)   			[11-NOV-2023]  ()
-4.Components                                                        (Code Evolution)   			[04-NOV-2023]  ()
-5.Functional Components                                             (Code Evolution)   			[11-NOV-2023]  ()
-6.Class Components                                                  (Code Evolution)   			[11-NOV-2023]  ()
-7.Hooks update                                                      (Code Evolution)   			[11-NOV-2023]  ()
-8.React JSX                                                         (Code Evolution)   			[11-NOV-2023]  ()
-9.Props                                                             (Code Evolution)   			[11-NOV-2023]  ()
-10.State                                                            (Code Evolution)   			[11-NOV-2023]  ()
+2.Hello world                                                       (Code Evolution)   			[05-NOV-2023]  (Done)
+3.Folder Structure                                                  (Code Evolution)   			[05-NOV-2023]  ()
+4.Components                                                        (Code Evolution)   			[05-NOV-2023]  ()
+5.Functional Components                                             (Code Evolution)   			[05-NOV-2023]  ()
+6.Class Components                                                  (Code Evolution)   			[05-NOV-2023]  ()
+7.Hooks update                                                      (Code Evolution)   			[05-NOV-2023]  ()
+8.React JSX                                                         (Code Evolution)   			[05-NOV-2023]  ()
+9.Props                                                             (Code Evolution)   			[05-NOV-2023]  ()
+10.State                                                            (Code Evolution)   			[05-NOV-2023]  ()
+
 11.setState                                                         (Code Evolution)   			[11-NOV-2023]  ()
 12.Destructuring Props and State                                    (Code Evolution)   			[11-NOV-2023]  ()
 13.Event Handling                                                   (Code Evolution)   			[11-NOV-2023]  ()
@@ -18,6 +19,7 @@
 18.Lists and Keys                                                   (Code Evolution)   			[11-NOV-2023]  ()
 19.Index as Key Anti Pattern                                        (Code Evolution)   			[11-NOV-2023]  ()
 20.Styling and CSS Basics                                           (Code Evolution)   			[11-NOV-2023]  ()
+
 21.Basics of Form Handling                                          (Code Evolution)   			[11-NOV-2023]  ()
 22.Component Life Cycle Methods                                     (Code Evolution)   			[11-NOV-2023]  ()
 23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[11-NOV-2023]  ()
@@ -28,6 +30,7 @@
 28.Refs                                                             (Code Evolution)   			[11-NOV-2023]  ()
 29.Refs with Class Components                                       (Code Evolution)   			[11-NOV-2023]  ()
 30.Forwarding Refs                                                  (Code Evolution)   			[11-NOV-2023]  ()
+
 31.Portals                                                          (Code Evolution)   			[11-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[11-NOV-2023]  ()
 33.Higher Order Components Part 1                                   (Code Evolution)   			[11-NOV-2023]  ()
@@ -38,6 +41,7 @@
 38.Context Part 1                                                   (Code Evolution)   			[11-NOV-2023]  ()
 39.Context Part 2                                                   (Code Evolution)   			[11-NOV-2023]  ()
 40.Context Part 3                                                   (Code Evolution)   			[11-NOV-2023]  ()
+
 41.HTTP and React                                                   (Code Evolution)   			[11-NOV-2023]  ()
 42.GET Request                                                      (Code Evolution)   			[11-NOV-2023]  ()
 43.POST Request                                                     (Code Evolution)   			[11-NOV-2023]  ()
@@ -75,8 +79,60 @@ Utilities
 
 ########################################################### 2.Hello world ###########################################################
 
+To create a React Application we will be using Create React App.
+Create React App is an Command Line Interface tool that allows us to quickly create and run React Application with no configuration.
+Simply run the command and Entire React Application will be created.
+
+	npx create-react-app hello-world
+	
+npx is an npm package runner which gets installed when we install node.
+That is the reason we directly create and run React without installing node modules.
+To run the React Application
+
+	npm start
+	
+Here the Application will start with the port number 3000.
+
+Alternate approach for creating React Application :
+---------------------------------------------------
+
+In this approach we install the Create React App globally and then use the Package to generate the Projects.
+
+	npm install create-react-app -g // Creating React App globally
+	create-react-app hello-world // Create the Project
+	
+
+########################################################### 3.Folder Structure ###########################################################
+
+At the root level we have 3 Folders and 4 Files.
+
+package.json contains the dependencies and the scripts required for an Application.
+
+Ther is a folder called node_modules where all the dependencies are installed.
+It will generated when we run the create-react-app command or when we run npm install.
+
+In the public folder we have index.html file.
+This is the only HTML file we are going to have in a React Application.
+The view might dynamically change in the Browser but it is the index.html we get displayed in the Browser.
+Typically we are not going to add any code in the index.html file because we want React to control the UI.
+For that purpose we have on <div> with id="root" i.e.
+
+	<div id="root"></div>
+	
+As a Developer we will be working in the src folder during Development.
+Starting point for React Application is index.js.
+In index.js we specify the Root component i.e. App Component and DOM Element which will be controled by React.
 
 
+
+
+	
+
+
+
+
+
+########################################################### 4.Components #################################################################
 
 
 

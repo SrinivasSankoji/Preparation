@@ -3,7 +3,7 @@
 3.Composite                                             (Salitha Chathuranga & Abdulaziz Pulatjonov) 			  	[15-OCT-2023]  ()
 4.Decorator                                             (Salitha Chathuranga & java67) 								[14-OCT-2023]  (Done)
 5.Facade                                                (Abdulaziz Pulatjonov & & Prabhu Kumar) 			  		[22-OCT-2023]  (Done)
-6.Flyweight                                             (Rajeshvelmani & Abdulaziz Pulatjonov) 			  			[29-OCT-2023]  ()
+6.Flyweight                                             (Rajeshvelmani & Abdulaziz Pulatjonov) 			  			[06-NOV-2023]  ()
 7.Proxy                                                 () 			  												[13-OCT-2023]  ()
 
 
@@ -50,6 +50,42 @@ Client invokes Facade which shields away complex interface from the Client.
 https://prabhuch.medium.com/facade-design-pattern-in-java-29fe1436b1cd
 
 ########################################### 6.Flyweight (Rajeshvelmani & Abdulaziz Pulatjonov) ###########################################
+
+Flyweight Design Pattern is one of the subtype of of the Structural Design Pattern.
+Flyweight Design Pattern suggests minimize the creation of new Objects each time by resusing existing ones.
+Flyweight Design Pattern is particularly useful when dealing with large number of similar Objects by improoving performance and reducing memory footprint.
+Flyweight Design Pattern optimizes the memory usage by sharing common data between multiple Objects.
+Instead of each Object holding its own data,seperates the intrinsic state (shared) and extrinsic state (unique) of an Object.
+
+In Flyweight Design Pattern HashMap is used to store the references to the Object that has been created and and associate them with a unique key.
+So whenever new Object is needed,Client just passes the unique property and is checked in HashMap.
+If an Object with that unique property already exists then reference to that Object will be returned otherwise new Object is created.
+
+Key features of Flyweight Design Pattern are 
+
+Flyweight Interface :
+---------------------
+This interface defines the methods that the Flyweight Object must implement.
+This interface contains the operations that can be shared and executed by multiple Objects.
+
+Flyweight Factory :
+------------------
+Flyweight Factory creates and manages Flyweight Objects.
+Flyweight Factory ensures that Flyweight Objects are shared and reused across multipe Clients.
+
+Concrete Flyweight :
+--------------------
+Concrete Flyweight Class represents the shared Flyweight Object.
+It stores the intrinsic state and provides an implementation for shared operations.
+
+Client :
+--------
+
+
+
+
+
+
 
 
 
