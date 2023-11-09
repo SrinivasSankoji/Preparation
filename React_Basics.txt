@@ -1,13 +1,14 @@
 1.Introduction														(Code Evolution)   			[02-NOV-2023]  (Done)
 2.Hello world                                                       (Code Evolution)   			[05-NOV-2023]  (Done)
 3.Folder Structure                                                  (Code Evolution)   			[05-NOV-2023]  ()
-4.Components                                                        (Code Evolution)   			[05-NOV-2023]  ()
-5.Functional Components                                             (Code Evolution)   			[05-NOV-2023]  ()
-6.Class Components                                                  (Code Evolution)   			[05-NOV-2023]  ()
-7.Hooks update                                                      (Code Evolution)   			[05-NOV-2023]  ()
-8.React JSX                                                         (Code Evolution)   			[05-NOV-2023]  ()
-9.Props                                                             (Code Evolution)   			[05-NOV-2023]  ()
-10.State                                                            (Code Evolution)   			[05-NOV-2023]  ()
+4.Components                                                        (Code Evolution)   			[09-NOV-2023]  (Done)
+5.Functional Components                                             (Code Evolution)   			[09-NOV-2023]  (Done)
+
+6.Class Components                                                  (Code Evolution)   			[10-NOV-2023]  ()
+7.Hooks update                                                      (Code Evolution)   			[10-NOV-2023]  ()
+8.React JSX                                                         (Code Evolution)   			[10-NOV-2023]  ()
+9.Props                                                             (Code Evolution)   			[10-NOV-2023]  ()
+10.State                                                            (Code Evolution)   			[10-NOV-2023]  ()
 
 11.setState                                                         (Code Evolution)   			[11-NOV-2023]  ()
 12.Destructuring Props and State                                    (Code Evolution)   			[11-NOV-2023]  ()
@@ -20,16 +21,16 @@
 19.Index as Key Anti Pattern                                        (Code Evolution)   			[11-NOV-2023]  ()
 20.Styling and CSS Basics                                           (Code Evolution)   			[11-NOV-2023]  ()
 
-21.Basics of Form Handling                                          (Code Evolution)   			[11-NOV-2023]  ()
-22.Component Life Cycle Methods                                     (Code Evolution)   			[11-NOV-2023]  ()
-23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[11-NOV-2023]  ()
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[11-NOV-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[11-NOV-2023]  ()
-26.Pure Components                                                  (Code Evolution)   			[11-NOV-2023]  ()
-27.Memo                                                             (Code Evolution)   			[11-NOV-2023]  ()
-28.Refs                                                             (Code Evolution)   			[11-NOV-2023]  ()
-29.Refs with Class Components                                       (Code Evolution)   			[11-NOV-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[11-NOV-2023]  ()
+21.Basics of Form Handling                                          (Code Evolution)   			[12-NOV-2023]  ()
+22.Component Life Cycle Methods                                     (Code Evolution)   			[12-NOV-2023]  ()
+23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[12-NOV-2023]  ()
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[12-NOV-2023]  ()
+25.Fragments                                                        (Code Evolution)   			[12-NOV-2023]  ()
+26.Pure Components                                                  (Code Evolution)   			[12-NOV-2023]  ()
+27.Memo                                                             (Code Evolution)   			[12-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[12-NOV-2023]  ()
+29.Refs with Class Components                                       (Code Evolution)   			[12-NOV-2023]  ()
+30.Forwarding Refs                                                  (Code Evolution)   			[12-NOV-2023]  ()
 
 31.Portals                                                          (Code Evolution)   			[11-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[11-NOV-2023]  ()
@@ -42,9 +43,9 @@
 39.Context Part 2                                                   (Code Evolution)   			[11-NOV-2023]  ()
 40.Context Part 3                                                   (Code Evolution)   			[11-NOV-2023]  ()
 
-41.HTTP and React                                                   (Code Evolution)   			[11-NOV-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[11-NOV-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[11-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[23-NOV-2023]  ()
+42.GET Request                                                      (Code Evolution)   			[23-NOV-2023]  ()
+43.POST Request                                                     (Code Evolution)   			[23-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
@@ -134,11 +135,148 @@ In index.js we specify the Root component i.e. App Component and DOM Element whi
 
 ########################################################### 4.Components #################################################################
 
+In React Component represnts the part of the user interface.
+The parent component is the app Component which contains all the components.
+Components are reusable.
+
+A component code is placed inside Javascript file.
+For example App Component is placed inside app.js.
+We can also have components placed with .jsx extension.
+
+In React we have two types of Components.
+
+1.Stateless Functional Component
+2.Stateful Class Component
+
+Functional Components are literally JavaScript Functions.
+They return the HTML which describes the UI.
+
+Example :
+---------
+
+	import React from 'react';
+
+	function functionlComponent(){
+			return <h1>Functional Component Example</h1>;
+	}
+
+	export default functionlComponent;
+	
+	import './App.css';
+	import FunctionalComponent from './Components/FunctionalComponent';
+
+	function App() {
+	  return (
+		<div className="App">
+		  <FunctionalComponent></FunctionalComponent>
+		</div>
+	  );
+	}
+
+	export default App;
+
+Class Components on the other hand are regular ES6 classes that extends Componnet Class from React Library.
+They must contain render() which intern returns HTML.
+
+Example :
+---------
+
+########################################################### 5.Functional Components ######################################################
+
+Functional Components are just JavaScript Components which will optionally recieve Object of properties i.e.props and will return an HTML which will describe the UI.
+Here HTML Component is nothing but JSX.
+
+Scenario 1 :
+------------
+
+	import './App.css';
+	import FunctionalComponent from './Components/FunctionalComponent';
 
 
+	function App() {
+	  return (
+		<div className="App">
+		  <FunctionalComponent></FunctionalComponent>
+		</div>
+	  );
+	}
+	
+Here our functional Component is no where connected to React.
+For that we need to export and import the Component.
+
+Scenario 2 :
+------------
+We can also define the Functional Components using Arrow Functions.
+
+	const functionlComponent1 = () => <h1>Functional Component Example Two</h1>;
+
+Note1 :
+-------
+From the above scenario we are exporting the Component with default Component.
+In this case we can import the Componnet with any name.
+
+	export const FunctionlComponent1 = () => <h1>Functional Component Example Two</h1>;
+
+We can also have the named export.
+In this case we need to use the same name while importing the Functional Component.
+
+	import './App.css';
+	import { FunctionlComponent1 } from './Components/FunctionalComponent';
+
+	function App() {
+	  return (
+		<div className="App">
+		  <FunctionlComponent1/>
+		</div>
+	  );
+	}
+
+	export default App;
+	
+Note2 :
+-------
+For most of the cases we will be using default export.
+
+########################################################### 6.Class Components ###########################################################
 
 
+########################################################### 7.Hooks update ###############################################################
 
 
+########################################################### 8.React JSX  #################################################################
+
+                      
+########################################################### 9.Props  #####################################################################
+
+                         
+########################################################### 10.State  ####################################################################                        
 
 
+########################################################### 11.setState  #################################################################
+
+                     
+########################################################### 12.Destructuring Props and State  ############################################
+
+ 
+########################################################### 13.Event Handling  ###########################################################
+
+               
+########################################################### 14.Binding Event Handlers  ###################################################
+
+       
+########################################################### 15.Methods as Props  #########################################################
+
+             
+########################################################### 16.Conditional Rendering   ###################################################
+
+       
+########################################################### 17.List Rendering  ###########################################################
+
+                
+########################################################### 18.Lists and Keys ############################################################
+
+                 
+########################################################### 19.Index as Key Anti Pattern  ################################################
+
+    
+########################################################### 20.Styling and CSS Basics  ###################################################      
