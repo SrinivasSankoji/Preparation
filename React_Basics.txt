@@ -8,43 +8,46 @@
 8.React JSX                                                         (Code Evolution)   			[10-NOV-2023]  (Done)
 9.Props                                                             (Code Evolution)   			[10-NOV-2023]  (Done)
 10.State                                                            (Code Evolution)   			[10-NOV-2023]  (Done)
+11.setState                                                         (Code Evolution)   			[12-NOV-2023]  (Done)
+12.Destructuring Props and State                                    (Code Evolution)   			[12-NOV-2023]  (Done)
+13.Event Handling                                                   (Code Evolution)   			[12-NOV-2023]  (Done)
+14.Binding Event Handlers                                           (Code Evolution)   			[13-NOV-2023]  ()
+15.Methods as Props                                                 (Code Evolution)   			[13-NOV-2023]  ()
 
-11.setState                                                         (Code Evolution)   			[11-NOV-2023]  ()
-12.Destructuring Props and State                                    (Code Evolution)   			[11-NOV-2023]  ()
-13.Event Handling                                                   (Code Evolution)   			[11-NOV-2023]  ()
-14.Binding Event Handlers                                           (Code Evolution)   			[11-NOV-2023]  ()
-15.Methods as Props                                                 (Code Evolution)   			[11-NOV-2023]  ()
-16.Conditional Rendering                                            (Code Evolution)   			[11-NOV-2023]  ()
-17.List Rendering                                                   (Code Evolution)   			[11-NOV-2023]  ()
-18.Lists and Keys                                                   (Code Evolution)   			[11-NOV-2023]  ()
-19.Index as Key Anti Pattern                                        (Code Evolution)   			[11-NOV-2023]  ()
-20.Styling and CSS Basics                                           (Code Evolution)   			[11-NOV-2023]  ()
+16.Conditional Rendering                                            (Code Evolution)   			[13-NOV-2023]  ()
+17.List Rendering                                                   (Code Evolution)   			[13-NOV-2023]  ()
+18.Lists and Keys                                                   (Code Evolution)   			[13-NOV-2023]  ()
+19.Index as Key Anti Pattern                                        (Code Evolution)   			[13-NOV-2023]  ()
+20.Styling and CSS Basics                                           (Code Evolution)   			[13-NOV-2023]  ()
 
-21.Basics of Form Handling                                          (Code Evolution)   			[12-NOV-2023]  ()
-22.Component Life Cycle Methods                                     (Code Evolution)   			[12-NOV-2023]  ()
-23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[12-NOV-2023]  ()
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[12-NOV-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[12-NOV-2023]  ()
-26.Pure Components                                                  (Code Evolution)   			[12-NOV-2023]  ()
-27.Memo                                                             (Code Evolution)   			[12-NOV-2023]  ()
-28.Refs                                                             (Code Evolution)   			[12-NOV-2023]  ()
-29.Refs with Class Components                                       (Code Evolution)   			[12-NOV-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[12-NOV-2023]  ()
+21.Basics of Form Handling                                          (Code Evolution)   			[13-NOV-2023]  ()
+22.Component Life Cycle Methods                                     (Code Evolution)   			[13-NOV-2023]  ()
+23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[13-NOV-2023]  ()
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[13-NOV-2023]  ()
+25.Fragments                                                        (Code Evolution)   			[13-NOV-2023]  ()
 
-31.Portals                                                          (Code Evolution)   			[11-NOV-2023]  ()
-32.Error Boundary                                                   (Code Evolution)   			[11-NOV-2023]  ()
-33.Higher Order Components Part 1                                   (Code Evolution)   			[11-NOV-2023]  ()
-34.Higher Order Components Part 2                                   (Code Evolution)   			[11-NOV-2023]  ()
-35.Higher Order Components Part 3                                   (Code Evolution)   			[11-NOV-2023]  ()
-36.Render Props Part 1                                              (Code Evolution)   			[11-NOV-2023]  ()
-37.Render Props Part 2                                              (Code Evolution)   			[11-NOV-2023]  ()
-38.Context Part 1                                                   (Code Evolution)   			[11-NOV-2023]  ()
-39.Context Part 2                                                   (Code Evolution)   			[11-NOV-2023]  ()
-40.Context Part 3                                                   (Code Evolution)   			[11-NOV-2023]  ()
+26.Pure Components                                                  (Code Evolution)   			[14-NOV-2023]  ()
+27.Memo                                                             (Code Evolution)   			[14-NOV-2023]  ()
 
-41.HTTP and React                                                   (Code Evolution)   			[23-NOV-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[23-NOV-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[23-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[15-NOV-2023]  ()
+29.Refs with Class Components                                       (Code Evolution)   			[15-NOV-2023]  ()
+30.Forwarding Refs                                                  (Code Evolution)   			[15-NOV-2023]  ()
+
+31.Portals                                                          (Code Evolution)   			[16-NOV-2023]  ()
+32.Error Boundary                                                   (Code Evolution)   			[16-NOV-2023]  ()
+
+33.Higher Order Components Part 1                                   (Code Evolution)   			[17-NOV-2023]  ()
+34.Higher Order Components Part 2                                   (Code Evolution)   			[17-NOV-2023]  ()
+35.Higher Order Components Part 3                                   (Code Evolution)   			[17-NOV-2023]  ()
+
+36.Render Props Part 1                                              (Code Evolution)   			[18-NOV-2023]  ()
+37.Render Props Part 2                                              (Code Evolution)   			[18-NOV-2023]  ()
+38.Context Part 1                                                   (Code Evolution)   			[18-NOV-2023]  ()
+39.Context Part 2                                                   (Code Evolution)   			[18-NOV-2023]  ()
+40.Context Part 3                                                   (Code Evolution)   			[18-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[18-NOV-2023]  ()
+42.GET Request                                                      (Code Evolution)   			[18-NOV-2023]  ()
+43.POST Request                                                     (Code Evolution)   			[18-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
@@ -468,13 +471,144 @@ Steps to create state Object.
 
 ########################################################### 11.setState  #################################################################
 
-                     
+Create one Counter component which will have Count value and a button which will increment count value.
+
+	import React from "react";
+	import { Component } from "react";
+
+	class Counter extends Component{
+
+		constructor(){
+			super();
+			this.state={
+				count : 0
+			}
+		}
+		render(){
+			return <h1>Counter value : {this.state.count}</h1>;
+		}
+
+	}
+
+	export default Counter;
+	
+Add a button to the Counter.
+
+	  render(){
+        return(
+            <div>
+            <h1>Counter value : {this.state.count}</h1>
+            <button>Increment</button>
+            </div>
+        )
+    }
+	
+we use the setState() to update the state value on button click.
+setState() accepts an Object as first parameter where as second parameter accepts the arrow function.
+
+	 <button onClick={() => this.increment()}>Increment</button>
+	 
+	  increment() {
+        this.setState({
+            count: this.state.count + 1
+        }
+        )
+    }
+	
+setState() with both the parameters
+	
+	   increment() {
+            this.setState({
+                count: this.state.count + 1
+            },
+				() => {
+					console.log(this.state.count);
+				}
+			) 
+		}
+		
+
+	
+Note :
+------
+1.The only place where we can assign the state is constructor.
+We cannot modify the state directly.If we modify the state React will not re render the Component.
+Always make use of setState and nover modify the state directly.
+
+2.If the code has to be executed after the state has been updated,place the code in the callback function which is the second argument to setState().
+React will group multiple setState calls into single setState for better performance.
+
+3.Whenever we want to update the state based on previous state value,pass in as a function argument instead of regular Object.
+
 ########################################################### 12.Destructuring Props and State  ############################################
 
- 
+Destructuring is an ES6 feature that makes it possible to unpack values from an arrays or props from Objects into distinct variables.
+In React destructuring props and state improoves code reusability.
+Destructuring can be done by using {}.
+
+	import React from "react";
+
+	const Greet = ({name,occupation}) => {
+		return(
+		<div>
+			<h1>Welcome {name} and occupation is {occupation}</h1>
+		</div>
+		)
+	}
+
+	export default Greet;
+	
+The second way to destructure the props is by using function body.
+
+	import React from "react";
+
+	const Greet = (props) => {
+		const {name,occupation} =props;
+		return(
+		<div>
+			<h1>Welcome {name} and occupation is {occupation}</h1>
+		</div>
+		)
+	}
+
+	export default Greet;
+	
+
 ########################################################### 13.Event Handling  ###########################################################
 
-               
+Any web Application we create typically tends to have user interaction.
+When the user interacts with the Application Events are fired. consider the scenario of button click.
+Create the component for Event Handler named FunctionClick.js.
+
+	import React from "react";
+
+	const ClickEvent = () => {
+		return (
+			<div>
+				<h1><button>Click</button></h1>
+			</div>
+		)
+	};
+	export default ClickEvent;
+	
+Our goal is to capture the click event and perform some logic.
+React events are named using camel case.
+
+	   function clickHandler(){
+        console.log('Button clicked');
+	   }
+
+	   return (
+			<div>
+				<h1><button onClick={clickHandler}>Click</button></h1>
+			</div>
+	   )
+
+Note :
+------
+To the button click we pass the function as an Event handler.
+Here we want the handler to be a function and not the function call.
+              
 ########################################################### 14.Binding Event Handlers  ###################################################
 
        

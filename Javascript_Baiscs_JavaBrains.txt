@@ -23,7 +23,6 @@
 23.Introducing Arrays                                               [26-FEB-2020]  (Done)
 24.Secret behind Java Script Arrays                                 [26-FEB-2020]  (Done)
 25.Wrapper Objects                                                  [07-MAY-2020]  (Done)
-
 26.Functions                                                        [07-MAY-2020]  (Done)
 27.Flexible Argument Counts                                         [07-MAY-2020]  (Done)
 28.Function Returning Values                                        [07-MAY-2020]  (Done)
@@ -31,6 +30,7 @@
 30.Anonymous Functions                                              [07-MAY-2020]  (Done)
 31.Function as Arguments                                            [07-MAY-2020]  (Done)
 32.Function on Objects                                              [07-MAY-2020]  (Done)
+
 33.this Keyword                                                     [08-MAY-2020]  (Done)
 34.Code Exercise                                                    [08-MAY-2020]  (Done)
 35.Exercise Solution                                                [08-MAY-2020]  (Done)
@@ -521,7 +521,7 @@ Symbol
 
 ******************************************  26.Functions  ************************************************************************************
 
-Function is a peice of code which will be executed in isolation.
+Function is nothing but a peice of code which will be executed in isolation.
 Function can be defined by using
 
 	function sayHello()
@@ -539,11 +539,11 @@ we can also pass the parameter to the Function without the data type as compared
     console.log(name);
 	}
 	
-we can also send Multiple Parameters using Comma Seperated.
+we can also send multiple parameters using comma seperated.
 
 	function twoArguments(name,timeoftheDay)
 	{
-    console.log(timeoftheDay +' '+name);
+		console.log(timeoftheDay +' '+name);
 	}
 
 
@@ -551,42 +551,43 @@ we can also send Multiple Parameters using Comma Seperated.
 
 	function twoArguments(name,timeoftheDay)
 	{
-    console.log(timeoftheDay +' '+name);
+		console.log(timeoftheDay +' '+name);
 	}
 	
-If I call the Function with One Argument then in Other Language we get the Compile Time Error.
-But Here it will be executed with second value as undefined.
-If we add more Parameters then it will be ignored.
-Overloaded Functions are not Possible in JavaScript.
+	twoArguments('Srinivas');
+	
+If we call the Function with one argument then in other language we will get the Compile Time Error.
+But here it will be executed with second value as undefined.
+If we add more parameters then it will be ignored.
+Overloaded Functions are not possible in JavaScript.
 
-   
 ******************************************   28.Function Returning Values    *************************************************************    
 
-We can also have the Function that returns the Values.
-we can return the Function Value by Using return keyword.
+We can also have the Function that returns the values.
+we can return the Function value by using return keyword.
 
 	function twoArguments(timeoftheDay,name)
 	{
-    return timeoftheDay +' '+name;
+		return timeoftheDay +' '+name;
 	}
 	
 	var wish=twoArguments("Good Evening","Bhaumik");
 	console.log(wish);
 	
-return can be any data type and can also be  undefined if it does not return anything.
+return type can be any data type and can also be undefined if it does not return anything.
 
 ******************************************   29.Function Expressions   *******************************************************************
 
-Most of the Times we use Function Declaration and call the Function Definition when ever we execute the Function.
-There are two ways of Creating Function 
+Most of the times we use Function declaration and call the Function definition whenever we execute the Function.
+There are two ways of creating Function 
 1.Normal Approach
-2.Function Expressions
+2.Function Expression
 
-Functions in JavaScript are First Class Functions i.e function itself is a Value to a Variable in JavaScript.
+Functions in JavaScript are First Class Functions i.e function itself can be assigned as a value to a variable in JavaScript.
 
 	var demo=function funExp()
 	{
-    console.log("Function Expression");
+		console.log("Function Expression");
 	};
 	
 To execute the above Function 
@@ -600,37 +601,37 @@ Function Declaration :
 
 	function twoArguments(timeoftheDay,name)
 	{
-    return timeoftheDay +' '+name;
+		return timeoftheDay +' '+name;
 	}
 	
-Function Expression i.e assigning the Function to a Variable is Called Function Expression.
+Function Expression i.e assigning the Function to a variable is called Function Expression.
 
-	var demo=function funExp()
+	var demo=function funExpression()
 	{
-    console.log("Function Expression");
+		console.log("Function Expression");
 	};
 	
-From the Function Expression we don't need really a Name to the Function.
-In case of Anonnymous Function we create a Inline Function and assign it to the Variable.
-If we reassign the Value of the  Variable then we get an Error.
+In case of Function Expression we don't really need a name to the Function.
+In case of Anonnymous Function we create a inline Function and assign it to the variable.
+If we reassign the value of the variable then we get an Error.
 	
 	var demo=function ()
 	{
-    console.log("Function Expression");
+		console.log("Function Expression");
 	};
 
 ******************************************  31.Function as Arguments  ***********************************************************************
 
-We can assign Function to a Varaible and  to that Function we Pass an argument as a Fucntion and taht will execute.
+We can assign Function to a varaible and to that Function we can pass an argument as a Fucntion.
 	
 	var f2 = function(fn)
 	{
-    fn();
+		fn();
 	};
 	
 	var f1=function ()
 	{
-    console.log("Function argument");
+		console.log("Function argument");
 	}
 
 	f2(f1);
@@ -639,8 +640,8 @@ Here we can also pass an argument to the Function i.e f2(f,"Bhaumik");
 
 ******************************************  32.Function on Objects    *************************************************************************
 
-Any thing we can assign to a Variable Similarly Anything we can assign to a Obejct Property.
-Object with Property would be a Function.
+Any thing we can assign to a variable similarly anything we can assign to an Obejct Property.
+Object with property would be a Function.
 	
 	var myObject={
     "name":"Bhaumik Chary"
@@ -653,7 +654,7 @@ Object with Property would be a Function.
 	
 ******************************************  33.this Keyword     ********************************************************************************      
 
-Common Usage of Methods in an Oject of a Class is Accessor Methods i.e setters and getters.
+Common usage of methods in an Oject of a Class is accessor methods i.e setters and getters.
 Similarly we access the Method inside an Object in JavaScript by using this keyword.
 create the Person Object i.e  
 
