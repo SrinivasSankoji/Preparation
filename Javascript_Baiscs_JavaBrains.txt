@@ -654,8 +654,8 @@ Object with property would be a Function.
 	
 ******************************************  33.this Keyword     ********************************************************************************      
 
-Common usage of methods in an Oject of a Class is accessor methods i.e setters and getters.
-Similarly we access the Method inside an Object in JavaScript by using this keyword.
+Common usage of methods in an Oject is Accessor methods i.e setters and getters.
+Similarly we access the methods inside an Object in JavaScript by using this keyword.
 create the Person Object i.e  
 
 	var person ={
@@ -681,7 +681,7 @@ Here the Problem is we are depending on the name of the Object and if the object
 	
 we get the output as undefined because the person object is empty Now.
 fullname function is hardcoded to the person variable and can reassign to any other obejct any time.
-Here the Solution is able to access the Object which it is part of i.e current object by using this keyword.
+Here the Solution is able to access the Object which is part of i.e. current object by using this keyword.
 
 
 	return this.firstName + " "+ this.lastName + " Sankoji";

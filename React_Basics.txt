@@ -11,34 +11,34 @@
 11.setState                                                         (Code Evolution)   			[12-NOV-2023]  (Done)
 12.Destructuring Props and State                                    (Code Evolution)   			[12-NOV-2023]  (Done)
 13.Event Handling                                                   (Code Evolution)   			[12-NOV-2023]  (Done)
-14.Binding Event Handlers                                           (Code Evolution)   			[13-NOV-2023]  ()
-15.Methods as Props                                                 (Code Evolution)   			[13-NOV-2023]  ()
+14.Binding Event Handlers                                           (Code Evolution)   			[14-NOV-2023]  (Done)
+15.Methods as Props                                                 (Code Evolution)   			[14-NOV-2023]  (Done)
 
-16.Conditional Rendering                                            (Code Evolution)   			[13-NOV-2023]  ()
-17.List Rendering                                                   (Code Evolution)   			[13-NOV-2023]  ()
-18.Lists and Keys                                                   (Code Evolution)   			[13-NOV-2023]  ()
-19.Index as Key Anti Pattern                                        (Code Evolution)   			[13-NOV-2023]  ()
-20.Styling and CSS Basics                                           (Code Evolution)   			[13-NOV-2023]  ()
+16.Conditional Rendering                                            (Code Evolution)   			[15-NOV-2023]  ()
+17.List Rendering                                                   (Code Evolution)   			[15-NOV-2023]  ()
+18.Lists and Keys                                                   (Code Evolution)   			[15-NOV-2023]  ()
+19.Index as Key Anti Pattern                                        (Code Evolution)   			[15-NOV-2023]  ()
+20.Styling and CSS Basics                                           (Code Evolution)   			[15-NOV-2023]  ()
+21.Basics of Form Handling                                          (Code Evolution)   			[15-NOV-2023]  ()
 
-21.Basics of Form Handling                                          (Code Evolution)   			[13-NOV-2023]  ()
-22.Component Life Cycle Methods                                     (Code Evolution)   			[13-NOV-2023]  ()
-23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[13-NOV-2023]  ()
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[13-NOV-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[13-NOV-2023]  ()
+22.Component Life Cycle Methods                                     (Code Evolution)   			[16-NOV-2023]  ()
+23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[16-NOV-2023]  ()
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[16-NOV-2023]  ()
+25.Fragments                                                        (Code Evolution)   			[16-NOV-2023]  ()
 
-26.Pure Components                                                  (Code Evolution)   			[14-NOV-2023]  ()
-27.Memo                                                             (Code Evolution)   			[14-NOV-2023]  ()
+26.Pure Components                                                  (Code Evolution)   			[16-NOV-2023]  ()
+27.Memo                                                             (Code Evolution)   			[16-NOV-2023]  ()
 
-28.Refs                                                             (Code Evolution)   			[15-NOV-2023]  ()
-29.Refs with Class Components                                       (Code Evolution)   			[15-NOV-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[15-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[17-NOV-2023]  ()
+29.Refs with Class Components                                       (Code Evolution)   			[17-NOV-2023]  ()
+30.Forwarding Refs                                                  (Code Evolution)   			[17-NOV-2023]  ()
 
-31.Portals                                                          (Code Evolution)   			[16-NOV-2023]  ()
-32.Error Boundary                                                   (Code Evolution)   			[16-NOV-2023]  ()
+31.Portals                                                          (Code Evolution)   			[18-NOV-2023]  ()
+32.Error Boundary                                                   (Code Evolution)   			[18-NOV-2023]  ()
 
-33.Higher Order Components Part 1                                   (Code Evolution)   			[17-NOV-2023]  ()
-34.Higher Order Components Part 2                                   (Code Evolution)   			[17-NOV-2023]  ()
-35.Higher Order Components Part 3                                   (Code Evolution)   			[17-NOV-2023]  ()
+33.Higher Order Components Part 1                                   (Code Evolution)   			[18-NOV-2023]  ()
+34.Higher Order Components Part 2                                   (Code Evolution)   			[18-NOV-2023]  ()
+35.Higher Order Components Part 3                                   (Code Evolution)   			[18-NOV-2023]  ()
 
 36.Render Props Part 1                                              (Code Evolution)   			[18-NOV-2023]  ()
 37.Render Props Part 2                                              (Code Evolution)   			[18-NOV-2023]  ()
@@ -577,7 +577,8 @@ The second way to destructure the props is by using function body.
 ########################################################### 13.Event Handling  ###########################################################
 
 Any web Application we create typically tends to have user interaction.
-When the user interacts with the Application Events are fired. consider the scenario of button click.
+When the user interacts with the Application Events are fired. 
+Consider the scenario of button click.
 Create the component for Event Handler named FunctionClick.js.
 
 	import React from "react";
@@ -611,11 +612,190 @@ Here we want the handler to be a function and not the function call.
               
 ########################################################### 14.Binding Event Handlers  ###################################################
 
-       
+The reason we bind Event Handlers in React Class Components is purely because of the way this keyword works in JavaScript.
+It is not because of how React works.
+Here the requirement is when we click the button we need to change the message.
+Also create a state property called message and bind it to the user interface.
+	
+	import React from "react";
+	import { Component } from "react";
+
+	class EventBind extends Component{
+		constructor(props){
+			super(props)
+			this.state={
+				message : 'Event Handing using bind'
+			}
+		}
+	render(){
+		return(
+			<div>
+				<h1>{this.state.message}</h1>
+				<button>Click</button>
+			</div>
+		)
+		}
+	}
+
+	export default EventBind;
+	
+Now change the message "Event Handing using bind" to "Binding is done" using Event Handler.
+We can do this by calling the Event Handler on the button click.This can be done by using setState().
+
+	 eventHandler(){
+        this.setState({
+            message: 'Binding is done'
+        })
+    }
+
+	render(){
+		return(
+			<div>
+				<h1>{this.state.message}</h1>
+				<button onClick={this.eventHandler}>Click</button>
+			</div>
+		)
+	}
+	
+Here it will throw an Error message saying "Cannot read properties of undefined".
+There are number of ways to bind Event Handlers in React.
+
+1.First approach is to use the bind keyword i.e. bind the handler in the render()
+
+	 <button onClick={this.eventHandler.bind(this)}>Click</button>
+	 
+The problem with this approach is every update to the state will cause the component to re render.
+This inturn will generate a brand new Event Handler when it re renders.
+The impact of the performance will decrease in large Applications where the Components contains the nested Children Components.
+
+2.Second approach is to use the arrow function in the render()
+
+	<button onClick={() => this.eventHandler()}>Click</button>
+	
+3.Third approach deals with binding the Event handler in the constructor rather than render()
+Because binding happens once in the constructor better than render().
+
+	constructor(props){
+        super(props)
+        this.state={
+            message : 'Event Handing using bind'
+        }
+        this.eventHandler=this.eventHandler.bind(this);
+    }
+	
+	render(){
+    return(
+        <div>
+            <h1>{this.state.message}</h1>
+            <button onClick={this.eventHandler}>Click</button>
+        </div>
+		)
+    }
+
+4.Final approach is to use arrow function as a class property.
+Here we need to change the method we define in the class.
+
+	eventHandler = () => {
+        this.setState({
+            message: 'Binding is done'
+        })
+    }
+	
+	 <button onClick={this.eventHandler}>Click</button>
+
+Note :
+------
+React document suggests to use approach 3 or 4.
+
 ########################################################### 15.Methods as Props  #########################################################
 
-             
+In the earlier videos we have seen how to pass props as parameter from Parent Component to Child Component.
+Here the requirement is the Child Component has to communicate with parent Component.
+Here also we use the props as a reference to the methods.
+	
+Parent Component :
+------------------
+
+	import React from "react";
+	import { Component } from "react";
+	import Child from "./Child";
+
+	class Parent extends Component{
+
+		constructor(){
+			super()
+			this.state={
+				parentName : 'Parent Component'
+			}
+		}
+
+		greetParent = () => {
+			alert(`Greeting from ${this.state.parentName}`)
+		}
+
+		render(){
+			return(
+			<div>
+				<Child></Child>
+			</div>
+			)
+		}
+	}
+	
+Child Component :
+-----------------
+
+	export default Parent;
+	
+	import React from "react";
+
+	function Child(){
+		return( 
+		<div>
+			<button>Greet Parent</button>
+		</div>
+		)
+	}
+
+	export default Child;
+
+Whenever we click on the button in the Child Component,method in the Parent Component has to be executed.
+Here we are passin the method as a reference to the Child Component as a props in the Parent Component.
+
+	<Child greetHandler={this.greetParent}></Child>
+	
+Note :
+------
+We can also pass the parameter from Child Component to Parent Component.
+The best approach is to use arrow function.
+
+In Child Component
+
+	  <button onClick={() => props.greetHandler('Child')}>Greet Parent</button>
+	  
+In Parent Component
+
+	greetParent = (child) => {
+        alert(`Greeting to ${this.state.parentName} from ${child}`)
+    }
+	
+         
 ########################################################### 16.Conditional Rendering   ###################################################
+
+Whenever we are often working on React Application we may need to hide or show HTML based on certain condition.
+Conditional rendering in React works same as the Conditional rendering works in JavaScript.
+There are 4 diffierent approaches for conditional rendering.
+
+1.If else
+2.Element Variables
+3.Ternary operators
+4.Short circuit operators
+
+1.If else :
+-----------
+
+
+
 
        
 ########################################################### 17.List Rendering  ###########################################################
