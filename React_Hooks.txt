@@ -1,33 +1,33 @@
-1.Introduction
-2.useState Hook
-3.useState with previous State
-4.useState with Object
-5.useState with Array
-6.useEffect Hook
-7.useEffect after render
-8.conditionally run effects
-9.run effects only once
-10.useEffect with cleanup 
-11.useEffect with incorrect dependency
-12.fetching data with useEffect part 1
-13.fetching data with useEffect part 2
-14.fetching data with useEffect part 3
-15.useContext Hook part 1
-16.useContext Hook part 2
-17.useContext Hook part 3
-18.useReducer Hook
-19.useReducer Hook Simple state and Action
-20.useReducer Hook Complex state and Action
-21.Multiple Use Reducers
-22.useReducer with useContext
-23.fetching data with useReducer part 1
-24.fetching data with useReducer part 2
-25.useState vs useReducer
-26.useCallBack Hook
-27.useMemo Hook
-28.useRef Hook part 1
-29.useRef Hook part 2
-30.Custom Hooks
-31.useDocumentTitle Custom Hook
-32.useCounter custom Hook
-33.useInput Custom Hook
+1.Introduction															(Code Evolution)   			[01-DEC-2023]  ()
+2.useState Hook                                                         (Code Evolution)   			[01-DEC-2023]  ()
+3.useState with previous State                                          (Code Evolution)   			[01-DEC-2023]  ()
+4.useState with Object                                                  (Code Evolution)   			[01-DEC-2023]  ()
+5.useState with Array                                                   (Code Evolution)   			[01-DEC-2023]  ()
+6.useEffect Hook                                                        (Code Evolution)   			[01-DEC-2023]  ()
+7.useEffect after render                                                (Code Evolution)   			[01-DEC-2023]  ()
+8.conditionally run effects                                             (Code Evolution)   			[01-DEC-2023]  ()
+9.run effects only once                                                 (Code Evolution)   			[01-DEC-2023]  ()
+10.useEffect with cleanup                                               (Code Evolution)   			[01-DEC-2023]  ()
+11.useEffect with incorrect dependency                                  (Code Evolution)   			[01-DEC-2023]  ()
+12.fetching data with useEffect part 1                                  (Code Evolution)   			[01-DEC-2023]  ()
+13.fetching data with useEffect part 2                                  (Code Evolution)   			[01-DEC-2023]  ()
+14.fetching data with useEffect part 3                                  (Code Evolution)   			[01-DEC-2023]  ()
+15.useContext Hook part 1                                               (Code Evolution)   			[01-DEC-2023]  ()
+16.useContext Hook part 2                                               (Code Evolution)   			[01-DEC-2023]  ()
+17.useContext Hook part 3                                               (Code Evolution)   			[01-DEC-2023]  ()
+18.useReducer Hook                                                      (Code Evolution)   			[01-DEC-2023]  ()
+19.useReducer Hook Simple state and Action                              (Code Evolution)   			[01-DEC-2023]  ()
+20.useReducer Hook Complex state and Action                             (Code Evolution)   			[01-DEC-2023]  ()
+21.Multiple Use Reducers                                                (Code Evolution)   			[01-DEC-2023]  ()
+22.useReducer with useContext                                           (Code Evolution)   			[01-DEC-2023]  ()
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[01-DEC-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[01-DEC-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[01-DEC-2023]  ()
+26.useCallBack Hook                                                     (Code Evolution)   			[01-DEC-2023]  ()
+27.useMemo Hook                                                         (Code Evolution)   			[01-DEC-2023]  ()
+28.useRef Hook part 1                                                   (Code Evolution)   			[01-DEC-2023]  ()
+29.useRef Hook part 2                                                   (Code Evolution)   			[01-DEC-2023]  ()
+30.Custom Hooks                                                         (Code Evolution)   			[01-DEC-2023]  ()
+31.useDocumentTitle Custom Hook                                         (Code Evolution)   			[01-DEC-2023]  ()
+32.useCounter custom Hook                                               (Code Evolution)   			[01-DEC-2023]  ()
+33.useInput Custom Hook                                                 (Code Evolution)   			[01-DEC-2023]  ()

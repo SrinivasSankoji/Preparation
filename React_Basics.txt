@@ -13,41 +13,37 @@
 13.Event Handling                                                   (Code Evolution)   			[12-NOV-2023]  (Done)
 14.Binding Event Handlers                                           (Code Evolution)   			[14-NOV-2023]  (Done)
 15.Methods as Props                                                 (Code Evolution)   			[14-NOV-2023]  (Done)
+16.Conditional Rendering                                            (Code Evolution)   			[18-NOV-2023]  (Done)
+17.List Rendering                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
+18.Lists and Keys                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
+19.Index as Key Anti Pattern                                        (Code Evolution)   			[18-NOV-2023]  ()
+20.Styling and CSS Basics                                           (Code Evolution)   			[18-NOV-2023]  ()
+21.Basics of Form Handling                                          (Code Evolution)   			[19-NOV-2023]  (Done)
+22.Component Life Cycle Methods                                     (Code Evolution)   			[19-NOV-2023]  (Done)
+23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[21-NOV-2023]  (Done)
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[22-NOV-2023]  ()
+25.Fragments                                                        (Code Evolution)   			[22-NOV-2023]  ()
 
-16.Conditional Rendering                                            (Code Evolution)   			[15-NOV-2023]  ()
-17.List Rendering                                                   (Code Evolution)   			[15-NOV-2023]  ()
-18.Lists and Keys                                                   (Code Evolution)   			[15-NOV-2023]  ()
-19.Index as Key Anti Pattern                                        (Code Evolution)   			[15-NOV-2023]  ()
-20.Styling and CSS Basics                                           (Code Evolution)   			[15-NOV-2023]  ()
-21.Basics of Form Handling                                          (Code Evolution)   			[15-NOV-2023]  ()
+26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  ()
+27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  ()
+29.Refs with Class Components                                       (Code Evolution)   			[23-NOV-2023]  ()
+30.Forwarding Refs                                                  (Code Evolution)   			[23-NOV-2023]  ()
 
-22.Component Life Cycle Methods                                     (Code Evolution)   			[16-NOV-2023]  ()
-23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[16-NOV-2023]  ()
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[16-NOV-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[16-NOV-2023]  ()
+31.Portals                                                          (Code Evolution)   			[25-NOV-2023]  ()
+32.Error Boundary                                                   (Code Evolution)   			[25-NOV-2023]  ()
+33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  ()
+34.Higher Order Components Part 2                                   (Code Evolution)   			[25-NOV-2023]  ()
+35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  ()
 
-26.Pure Components                                                  (Code Evolution)   			[16-NOV-2023]  ()
-27.Memo                                                             (Code Evolution)   			[16-NOV-2023]  ()
-
-28.Refs                                                             (Code Evolution)   			[17-NOV-2023]  ()
-29.Refs with Class Components                                       (Code Evolution)   			[17-NOV-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[17-NOV-2023]  ()
-
-31.Portals                                                          (Code Evolution)   			[18-NOV-2023]  ()
-32.Error Boundary                                                   (Code Evolution)   			[18-NOV-2023]  ()
-
-33.Higher Order Components Part 1                                   (Code Evolution)   			[18-NOV-2023]  ()
-34.Higher Order Components Part 2                                   (Code Evolution)   			[18-NOV-2023]  ()
-35.Higher Order Components Part 3                                   (Code Evolution)   			[18-NOV-2023]  ()
-
-36.Render Props Part 1                                              (Code Evolution)   			[18-NOV-2023]  ()
-37.Render Props Part 2                                              (Code Evolution)   			[18-NOV-2023]  ()
-38.Context Part 1                                                   (Code Evolution)   			[18-NOV-2023]  ()
-39.Context Part 2                                                   (Code Evolution)   			[18-NOV-2023]  ()
-40.Context Part 3                                                   (Code Evolution)   			[18-NOV-2023]  ()
-41.HTTP and React                                                   (Code Evolution)   			[18-NOV-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[18-NOV-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[18-NOV-2023]  ()
+36.Render Props Part 1                                              (Code Evolution)   			[26-NOV-2023]  ()
+37.Render Props Part 2                                              (Code Evolution)   			[26-NOV-2023]  ()
+38.Context Part 1                                                   (Code Evolution)   			[26-NOV-2023]  ()
+39.Context Part 2                                                   (Code Evolution)   			[26-NOV-2023]  ()
+40.Context Part 3                                                   (Code Evolution)   			[26-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[26-NOV-2023]  ()
+42.GET Request                                                      (Code Evolution)   			[26-NOV-2023]  ()
+43.POST Request                                                     (Code Evolution)   			[26-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
@@ -793,18 +789,371 @@ There are 4 diffierent approaches for conditional rendering.
 
 1.If else :
 -----------
+		
+		import React from 'react'
+		import { Component } from 'react'
+		class UserGreet extends Component {
+			constructor() {
+				super()
+				this.state = {
+					loggedIn : false
+				}
+			}
+			render() {
+				return (
+					<div>
+						<div>Welcome Guest</div>
+						<div>Welcome Srinivas</div>
+					</div>
+				)
+			}
+		}
+		export default UserGreet;
+		
+Here the message should be conditionally rendered based on loggedIn parameter.
 
+	render() {
+        if (this.state.loggedIn) {
+            return (
 
+                <div>Welcome Guest</div>
+            )
+        }
+        else {
+            return (<div>Welcome Srinivas</div>)
+        }
+    }
 
+2.Element Variables :
+---------------------
+We cannot write the if else statements inside the JSX.
+We use JavaScript elements to store the variables.
 
-       
+	    render() {
+			let message;
+			if (this.state.loggedIn) {
+				message = <div>Welcome Guest</div>
+			}
+			else {
+				message = <div>Welcome Srinivas</div>
+			}
+			return message;
+		}
+		
+3.Ternary operators :
+---------------------
+		
+		return this.state.loggedIn? <div>Welcome Guest</div>:<div>Welcome Srinivas</div>
+		
+3.Short Circuit operator :
+--------------------------
+Short Circuit Operator is a specific case of Ternary Operator.
+Whenever we want to render the data only if certain condition satisfies then we use Short Circuit Operator.
+
+		 return this.state.loggedIn  && <div>Welcome Srinivas</div>
+		
+		
 ########################################################### 17.List Rendering  ###########################################################
 
-                
+Whenever we build any Web Applications common scenario is to display the List of items.
+Here we repeat the item for each element in the List.
+One of the main advantage in React is it relies mostly on the JavaScript libraries and not introduced any methods to manipulate data.
+Create the Component to render the List.
+
+	import React from "react";
+	import { Component } from "react";
+
+	class List extends Component{
+		constructor(){
+			super()
+			this.state={
+				message: 'Lits Render'
+			}
+		}
+		render(){
+			return(
+				<div>
+					<h1>List Render</h1>
+				</div>
+			)
+		}
+	}
+	export default List;
+	
+Create the List of names Array.
+
+	 const names =['Srinivas','Nandini','Bhauik','Aadvik']
+	 
+To iterate the List of elements 
+
+	 render(){
+        const names =['Srinivas','Nandini','Bhauik','Aadvik']
+        return(
+            <div>
+                <h2>{
+                        names.map(name => <h3>{name}</h3>)
+                    }
+                </h2>
+            </div>
+        )
+    }
+	
+To make it simpler we format the code
+
+	render(){
+        const names =['Srinivas','Nandini','Bhauik','Aadvik']
+        const nameList=names.map(name => <h3>{name}</h3>);
+        return (
+            <div>{nameList}</div>
+        )
+    }
+	
+Note :
+------
+Typically we are going to have List of Objects with few properties that has to be rendered.
+It is always a good idea to refactor the JSX into seperate Component and then use the Component in the map() JSX.
+
+	render(){
+        const persons =[
+            {
+                id:'22',
+                name: 'Srinivas',
+                age: '37',
+                skill : 'Fullstack'
+
+            },
+            {
+                id:'27',
+                name: 'Nandini',
+                age: '32',
+                skill : 'Java'
+
+            },
+            {
+                id:'23',
+                name: 'Bhaumik',
+                age: '7',
+                skill : 'React'
+
+            },{
+                id:'15',
+                name: 'AAdvik',
+                age: '2',
+                skill : 'AWS'
+
+            }
+        ]
+        const names =['Srinivas','Nandini','Bhauik','Aadvik']
+        const nameList=names.map(name => <h3>{name}</h3>);
+        return (
+            <div>{nameList}</div>
+        )
+    }
+	
+Now for each person in the List now need to render the name,age and skill.
+
+		const personList=persons.map(person => 
+            <h3>{person.name} started studying {person.skill} </h3>
+            
+        );
+        return (
+            <div>{personList}</div>
+        )
+The recomended way is to refactor the JSX into Seperate Component.
+Create new Component named Person.js which accepts the person as props.
+
+	import React from "react";
+	function Person({person}){
+		return(
+			<div>
+				<h3>{person.name} started studying {person.skill} </h3>
+			</div>
+		)
+	}
+	
+In the List Componen call the Person Component.
+	
+   const personList=persons.map(person =>  <Person Person person={person} />);
+	return (
+		<div>{personList}</div>
+	)
+	            
 ########################################################### 18.Lists and Keys ############################################################
 
-                 
+Whenever we render the List of elements without key React will throw a warning in the console i.e.
+
+	"Each child in an Array or Iterable should have a unique key prop"
+
+Each item rendered in the List using map operator to have a prop called "key" and the value to the prop should be unique within the List.
+
+	const personList=persons.map(person =>  <Person key={person.id} Person person={person} /> );
+
+Note :
+------
+Key prop cannot be accessible to the child components.
+Key prop is an id to render the List efficiently and is reserved.
+
+A Key is the special String attribute that we need to include when creating List of items.
+Keys give the elements a stable identity.
+Key helps in identifying React which element in the List is modified i.e. Added,Updated or Deleted.
+This way instead of updating the whole DOM Tree,React will update the specific DOM Tree wherever Key is updated.
+
+            
 ########################################################### 19.Index as Key Anti Pattern  ################################################
 
     
-########################################################### 20.Styling and CSS Basics  ###################################################      
+########################################################### 20.Styling and CSS Basics  ################################################### 
+
+
+########################################################### 21.Basics of Form Handling ###################################################
+
+Here we will see how to capture input from form elements like input,textarea and select and have the data available for form submission.
+In regular HTML form elements like input,textarea etc are responsible on their own to handle the user input and update the respective values.
+Here we want to React to control the form elements.
+Such form elements whose value is controlled by React is called Controlled Components.
+Consider the scenario 
+
+	<input type="text" value="" onChange="" />
+	
+We deal with the values that can change within the Component by using state() and setState().
+In the Controlled Component the value of the input field is set to the state property.
+Alos we have an onChange Event fired when there is a change in the input field value.
+In the OnChange Event handler we use setState to update the state.
+
+When the state gets updated render() is called and new state is assigned as a value to the input element.
+So there is a cycle from setting the value of the initial state,propogating the changed value to the state and back to the input field.
+React will always have access to the Component state which reflects the updated value of the form elements.
+That state object then can be used to submit the form data.
+
+	 render(){
+        return(
+            <form>
+                <div>
+                    <label>Student name : </label>
+                    <input type='text' value='' ></input>
+                </div>
+            </form>
+            
+        )
+    }
+	
+The above code is regular HTML.
+To convert the above code into Controlled Component we need to follow the two steps.
+
+1.Create the Component state that will control the value of the input element.
+
+	 constructor(){
+        super()
+        this.state={
+            userName :''
+        }
+    }
+	
+	<input type='text' value={this.state.userName} ></input>
+	
+2.Now we nned to handle the onChange Event  handler.
+Whenever we assign a handler to the onChange event, the event itself will be passed as a handler to the onChange event.
+From this event we can extract the value of the input element.
+
+	 handleUserName = (event) =>{
+        this.setState({
+            userName : event.target.value
+        }
+     )
+    }
+
+	<input type='text' value={this.state.userName} onChange={this.handleUserName}></input>
+	
+To submit the form data we use submit button.
+If we submit the data form data gets cleared.
+The common approach is to have JavaScript function that handles the form.
+That function will also have an access to the data entered  by the user into the form.
+
+	 submitStuedntForm = (event) =>{
+        alert(`${this.state.userName} - ${this.state.comments} ${this.state.skill}`)
+    }
+
+	 <form onSubmit={this.submitStuedntForm}>
+	 <button type='submit'>Submit</button>
+
+Whenever we dismiss the alert, Form data is cleared.
+To avoid this we have to call preventDefault().
+
+	submitStuedntForm = (event) =>{
+        alert(`${this.state.userName} - ${this.state.comments} ${this.state.skill}`)
+        event.preventDefault();
+    }
+
+########################################################### 22.Component Life Cycle Methods ##############################################
+
+When we create a React Component,Component goes through several stages in its Lifecycle.
+React provides built in methods that we can override at particular stages in the Lifecycle.
+Lifecycle methods are available for Class Component and not for the Functional Component.
+We can classify the methods into 4 phases.
+
+1.Mounting
+Mounting Lifecycle methods are called whenever an instance of the Component is being created and inserted into the DOM.
+During the Mounting Lifecycle phase we have 4 methods.
+
+1.constructor()
+2.getDerivedStateFromProps()
+3.render()
+4.componentDidMount()
+
+2.Updating
+Updating Lifecycle methods are called when a Component is being re-rendered as a result of changes to either its props or state.
+
+3.Unmounting
+Unmounting Lifecycle methods are called when a Component is being removed from the DOM.
+
+4.Error Handling
+Error Handling methods are called when there is an Error during rendering,Lifecycle method or in the Constructor of any Child Component.
+
+
+########################################################### 23.Component Mounting Lifecycle Methods ######################################
+
+Mounting Lifecycle methods are called whenever an instance of the Component is being created and inserted into the DOM.
+We will be going through the order in which Mounting Lifecycle methods will be inoked.
+
+1.Constructor :
+---------------
+Constructor is a special function that will get called whenever a new Component is created.
+Constructor is used for initializing the state and binding the event handlers to the Class instance.
+We cannot make HTTP Request from the Constructor.
+In the Component we have access to this.props only after calling super(props) from the Constructor.
+Constructor is the only place where we initialize the state.
+In all other scenarios we have to use this.setState().
+
+2.getDerivedStateFromProps(props,state) :
+-----------------------------------------
+React Documentation officially specifies that it is a rarely used Lifecycle method.
+This method is used when the state of the Component depends on changes in props over time.
+Consider the scenario where we have a Component.
+Here initial state of the Component depends on the props being passed to the Component.
+In such scenario we can use this method to set the state.
+Since this method is a static method it does not have access to this keyword.
+We cannot call this.setState() and we need to return an Object that represents new state of the Component.
+
+3.render() :
+------------
+render() is the only required method in Class Component.
+render() simply reads the props and state and returns the JSX which describes the UI.
+In the render() do not change the state of the Component or interact with DOM or make AJAX calls.
+Since the render() returns the JSX which also contains other children Components,Children Component Lifecycle methods will also get executed.
+
+4.componentDidMount() :
+-----------------------
+Ths method will be called only once in the whole Lifecycle of the given Component.
+This method will be invoked immideately after the Component and all its Child Component have been rendered to the DOM.
+This method is the perfect place to call side effects i.e. interact with DOM or perform any AJAX calls to load the data.
+
+########################################################### 24.Component Updating Lifecycle Methods ######################################
+
+
+########################################################### 25.Fragments #################################################################
+
+                                
+########################################################### 26.Pure Components ###########################################################
+
+
+########################################################### 27.Memo ######################################################################                                     
