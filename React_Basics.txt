@@ -21,26 +21,29 @@
 21.Basics of Form Handling                                          (Code Evolution)   			[19-NOV-2023]  (Done)
 22.Component Life Cycle Methods                                     (Code Evolution)   			[19-NOV-2023]  (Done)
 23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[21-NOV-2023]  (Done)
-24.Component Updating Lifecycle Methods                             (Code Evolution)   			[22-NOV-2023]  ()
-25.Fragments                                                        (Code Evolution)   			[22-NOV-2023]  ()
+24.Component Updating Lifecycle Methods                             (Code Evolution)   			[23-NOV-2023]  (Done)
+25.Fragments                                                        (Code Evolution)   			[23-NOV-2023]  (Done)
+26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  (Done)
+27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
 
-26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  ()
-27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  ()
-28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  ()
+28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
 29.Refs with Class Components                                       (Code Evolution)   			[23-NOV-2023]  ()
 30.Forwarding Refs                                                  (Code Evolution)   			[23-NOV-2023]  ()
 
 31.Portals                                                          (Code Evolution)   			[25-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[25-NOV-2023]  ()
+
 33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  ()
 34.Higher Order Components Part 2                                   (Code Evolution)   			[25-NOV-2023]  ()
 35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  ()
 
 36.Render Props Part 1                                              (Code Evolution)   			[26-NOV-2023]  ()
 37.Render Props Part 2                                              (Code Evolution)   			[26-NOV-2023]  ()
+
 38.Context Part 1                                                   (Code Evolution)   			[26-NOV-2023]  ()
 39.Context Part 2                                                   (Code Evolution)   			[26-NOV-2023]  ()
 40.Context Part 3                                                   (Code Evolution)   			[26-NOV-2023]  ()
+
 41.HTTP and React                                                   (Code Evolution)   			[26-NOV-2023]  ()
 42.GET Request                                                      (Code Evolution)   			[26-NOV-2023]  ()
 43.POST Request                                                     (Code Evolution)   			[26-NOV-2023]  ()
@@ -1112,7 +1115,7 @@ Error Handling methods are called when there is an Error during rendering,Lifecy
 
 ########################################################### 23.Component Mounting Lifecycle Methods ######################################
 
-Mounting Lifecycle methods are called whenever an instance of the Component is being created and inserted into the DOM.
+Mounting Lifecycle methods will get called whenever an instance of the Component is being created and inserted into the DOM.
 We will be going through the order in which Mounting Lifecycle methods will be inoked.
 
 1.Constructor :
@@ -1127,33 +1130,175 @@ In all other scenarios we have to use this.setState().
 2.getDerivedStateFromProps(props,state) :
 -----------------------------------------
 React Documentation officially specifies that it is a rarely used Lifecycle method.
-This method is used when the state of the Component depends on changes in props over time.
+This method recieves props as its parameter and is used whenever state of the Component depends on changes in props over time.
 Consider the scenario where we have a Component.
 Here initial state of the Component depends on the props being passed to the Component.
 In such scenario we can use this method to set the state.
 Since this method is a static method it does not have access to this keyword.
-We cannot call this.setState() and we need to return an Object that represents new state of the Component.
+We cannot call this.setState() as it is a static method.
+getDerivedStateFromProps() has to return either null or an Object that represents new/updated state of the Component.
+This method is called everytime when a Component is re rendered.
 
 3.render() :
 ------------
 render() is the only required method in Class Component.
-render() simply reads the props and state and returns the JSX which describes the UI.
-In the render() do not change the state of the Component or interact with DOM or make AJAX calls.
+render() reads the props and state and returns the JSX which describes the UI.
+In the render() avoid changing the state of the Component or interact with DOM or make AJAX calls.
 Since the render() returns the JSX which also contains other children Components,Children Component Lifecycle methods will also get executed.
 
 4.componentDidMount() :
 -----------------------
 Ths method will be called only once in the whole Lifecycle of the given Component.
-This method will be invoked immideately after the Component and all its Child Component have been rendered to the DOM.
+This method will be invoked immideately after the Component and it's Child Component have been rendered to the DOM.
 This method is the perfect place to call side effects i.e. interact with DOM or perform any AJAX calls to load the data.
 
 ########################################################### 24.Component Updating Lifecycle Methods ######################################
 
+Updating Lifecycle methods will get called whenever a Component is being re rendered because of the changes either in props or state.
+There are 5 methods in Updating Lifecycle methods out of which 3 methods are rearely used.
+
+1.getDerivedStateFromProps() :
+------------------------------
+
+2.shouldComponentUpdate(props,state) :
+--------------------------------------
+This method recieves the updated props and state.
+The purpose of this method is to re render the Component or not.
+By default all the Class Components will re render whenever the props they recieve or the state changes.
+This method can return the default behavior by returining false.
+What we can do here is by comparing the state with the previous state and based on the result we can re render the Component.
+This method can be used for performance optimization.
+We need to avoid calling setState() and performing AJAX calls.
+
+3.render() :
+------------
+
+4.getSnapshotBeforeUpdate(prevProps,pervState) :
+------------------------------------------------
+React Documentation officially specifies that it is a rarely used Lifecycle method.
+This method accepts prevProps and prevState as its parameter and is called right before the changes from the Virtual DOM to be reflected into the DOM.
+We use this method to capture some information from the DOM.
+We can read the user scroll position and after updating the DOM maintain the scroll position by performing some calculations.
+This method will return either null or return a value.
+Returned value will be passed as a third parameter to the next method.
+
+5.componentDidUpdate(prevProps,pervState,snapshot) :
+----------------------------------------------------
+This method will get called after the render is finished in the re render Lifecycle.
+This means we can be sure that the Component and all its sub Components have properly rendered itself after the update.
+This method is gauranteed to called only once in each re render Lifecycle.
+This method is the perfect place to call side effects i.e. interact with DOM or perform any AJAX calls to load the data.
+Before performing any calls we need to compare prevProps with the new props otherwise we are making unwanted requests.
+
+Create the Component named UpdatingLifecycle.js.
+To trigger the updating Lifecycle we nned to change either the state or props.
+
 
 ########################################################### 25.Fragments #################################################################
 
-                                
+Scenarion 1 :
+-------------
+Fragments allows us to group list of Children nodes without adding extra nodes to the DOM.
+JSX will expect only one element for that we enclose all the statement in the <div>.
+Here the <div> will be added to the DOM Tree.
+
+We can replace the <div> with Fragment that will prevent from adding extra node to the DOM Tree.
+
+	import React from 'react'
+
+	function FragmentDemo(){
+
+		return(
+			<React.Fragment>
+				<h2>Fragment Demo</h2>
+				<p>This describes the Fragment Demo Component</p>
+			</React.Fragment>
+		)
+	}
+
+	export default FragmentDemo
+	
+After adding React.Fragment we no longer have <div> in the DOM Tree.
+
+Scenarion 2 :
+-------------
+React Fragment can also be used in Table data where column data is define in another Component which contains multiple data.
+If we define in <div> then <div> cannot be child tag of <td>.
+In this scenario we use React.Fragement.
+
+Scenario 3:
+-----------
+React Fragment accepts the key attribute while rendering the List.
+
+Note :
+------
+Alternative syntax of React.Fragment is <>.
+The drawback of this syantx is we cannot add key attribute.
+                     
 ########################################################### 26.Pure Components ###########################################################
 
+There is an another way to create Component in React i.e. by extending PureComponent.
+To understand the difference between Component and PureComponent consider the scenario.
 
-########################################################### 27.Memo ######################################################################                                     
+Lets create 3 Components
+
+1.ParentComponentDemo
+2.RegularComponentDemo
+3.PureComponentDemo
+
+Then include the Regular and Pure Components into Parent Component by passing the name as Props.
+The difference between Regular Component and Pure Component is Pure Component is never re rendered.
+
+Regular Componnet does not implement shouldComponentUpdate() and always returns true by default.
+
+PureComponent implements shouldComponentUpdate() with shallo props and state comparison.
+Pure Component does a Shallow Comparison of Previous State/Previous Props with Current State/Current Props 
+and if it finds any difference then only it will re render the Component.
+
+Note :
+------
+If the Parent does not re render then child also will not re render.
+
+Pure Components can be used to avoid unnecessary renders to improove the performance.
+Don't mutate the List by pushing the elements into the List because reference to the Array never changes.
+Because Pure Component will only check the reference to re render the Componenet.
+
+It is the best practice to ensure that all the Child Components are also pure to avoid unexpected behavior.
+
+########################################################### 27.Memo ######################################################################
+
+Pure Components only re render the Class Component when there is a difference in the shallow comparison of props and state.
+Pure Components only works with Class Components.
+If we want to achieve the same in Functional Component we use React.Memo.
+
+Create the Component named MemoDemo.js
+	
+########################################################### 28.Refs  #####################################################################
+
+Refs make it possible to access DOM node directly within React.
+Consider the scenario of focusing the input text element i.e. username when the page loads.
+Using Refs we can do in 3 steps.
+
+Step 1 :
+--------
+Create the Ref
+Attach the Ref to the input element.
+Call the focus() on the current input reference.
+
+
+Scenario 2 :
+------------
+Second possible usecase is to fetch the user input value.
+
+Another approach to create ref is by using callback reference.
+Using callback reference we can do it in 4 steps.
+
+Create the property
+Use it as a reference
+Change the State of the property
+Call the focus() on the property.
+                      	
+###########################################################  29.Refs with Class Components  ##############################################
+
+                                       
+########################################################### 30.Forwarding Refs  ##########################################################              

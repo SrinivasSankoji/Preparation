@@ -1,59 +1,62 @@
 
 Shortcut Keys :
-
- Ctrl + Shift P  			Search
- Ctrl+P 					Open the File
- Ctrl+Shift K 				Delete the Line
- 
-
-
+---------------
+Ctrl + Shift P  			Search
+Ctrl+P 						Open the File
+Ctrl+Shift K 				Delete the Line
+ALT+SHIFT+O                 To remove unused imports
 
 
-1.Adding Java Extension to VIsual Studio Code :
-
-	Language Support For Java by Red Hat and 
-	Debugger For Java
-
-	Instead of the above two Micro Soft has BUndled Java Extension Pack.
 
 
-2.To set Up the Environment Variable For Java 
 
-	If is already in Class path By Default it will get in the Visual Code Terminal.
-	java -version
 
-3.Run the Java Application
 
-   javac Hello.java
-   java Hello
+########################################################### 1.Adding Java Extension to VIsual Studio Code ##########################################
+
+Language Support For Java by Red Hat and 
+Debugger For Java
+Instead of the above two Micro Soft has BUndled Java Extension Pack.
+
+
+########################################################### 2.To set Up the Environment Variable For Java ##########################################
+
+If is already in Class path By Default it will get in the Visual Code Terminal.
+java -version
+
+########################################################### 3.Run the Java Application #############################################################
+
+javac Hello.java
+java Hello
    
-4.Debug the Java Application
+########################################################### 4.Debug the Java Application ###########################################################
   
-  Select the BreakPoint
-  Select Debug on Left Hand Side and Select Debug
+Select the BreakPoint
+Select Debug on Left Hand Side and Select Debug
   
-5.Setting Up Maven to Visual Studio Code
+########################################################### 5.Setting Up Maven to Visual Studio Code ###############################################
 
-  Add the Maven Configuration to ClassPath.
-  run the Command mvn -version in Terminal
+Add the Maven Configuration to ClassPath.
+run the Command mvn -version in Terminal
   
-6.Add the Lombok Dependency to Visual Studio Code
+########################################################### 6.Add the Lombok Dependency to Visual Studio Code ######################################
 
-7.Creating Spring Boot Application in Visual Studio Code
 
-  Ctrl + Shift P  ()
-  Select Maven Project
-  Select GroupId
-  Select ArtifactId
-  Add Dependencies
-  
-  Ctrl+P to Open the File
-  
+########################################################### 7.Creating Spring Boot Application in Visual Studio Code ###############################
+
+Ctrl + Shift P  ()
+Select Maven Project
+Select GroupId
+Select ArtifactId
+Add Dependencies
+
+Ctrl+P to Open the File
+
 To run the Spring Boot Application
-	
-  In the Left Corner We Have Spring Boot DashBoard
-  Right Click on the Project
-  Start or Debug
+
+In the Left Corner We Have Spring Boot DashBoard
+Right Click on the Project
+Start or Debug
   
   
   
