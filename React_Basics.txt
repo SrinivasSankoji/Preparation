@@ -25,28 +25,25 @@
 25.Fragments                                                        (Code Evolution)   			[23-NOV-2023]  (Done)
 26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  (Done)
 27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
-
 28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
-29.Refs with Class Components                                       (Code Evolution)   			[23-NOV-2023]  ()
-30.Forwarding Refs                                                  (Code Evolution)   			[23-NOV-2023]  ()
-
+29.Refs with Class Components                                       (Code Evolution)   			[25-NOV-2023]  (Done)
+30.Forwarding Refs                                                  (Code Evolution)   			[25-NOV-2023]  ()
 31.Portals                                                          (Code Evolution)   			[25-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[25-NOV-2023]  ()
+33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  (Done)
+34.Higher Order Components Part 2                                   (Code Evolution)   			[25-NOV-2023]  (Done)
+35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 
-33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  ()
-34.Higher Order Components Part 2                                   (Code Evolution)   			[25-NOV-2023]  ()
-35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  ()
+36.Render Props Part 1                                              (Code Evolution)   			[25-NOV-2023]  ()
+37.Render Props Part 2                                              (Code Evolution)   			[25-NOV-2023]  ()
 
-36.Render Props Part 1                                              (Code Evolution)   			[26-NOV-2023]  ()
-37.Render Props Part 2                                              (Code Evolution)   			[26-NOV-2023]  ()
+38.Context Part 1                                                   (Code Evolution)   			[25-NOV-2023]  ()
+39.Context Part 2                                                   (Code Evolution)   			[25-NOV-2023]  ()
+40.Context Part 3                                                   (Code Evolution)   			[25-NOV-2023]  ()
 
-38.Context Part 1                                                   (Code Evolution)   			[26-NOV-2023]  ()
-39.Context Part 2                                                   (Code Evolution)   			[26-NOV-2023]  ()
-40.Context Part 3                                                   (Code Evolution)   			[26-NOV-2023]  ()
-
-41.HTTP and React                                                   (Code Evolution)   			[26-NOV-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[26-NOV-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[26-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[25-NOV-2023]  ()
+42.GET Request                                                      (Code Evolution)   			[25-NOV-2023]  ()
+43.POST Request                                                     (Code Evolution)   			[25-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
@@ -1257,7 +1254,7 @@ and if it finds any difference then only it will re render the Component.
 
 Note :
 ------
-If the Parent does not re render then child also will not re render.
+If the Parent does not re-render then child will not re-render.
 
 Pure Components can be used to avoid unnecessary renders to improove the performance.
 Don't mutate the List by pushing the elements into the List because reference to the Array never changes.
@@ -1267,38 +1264,295 @@ It is the best practice to ensure that all the Child Components are also pure to
 
 ########################################################### 27.Memo ######################################################################
 
-Pure Components only re render the Class Component when there is a difference in the shallow comparison of props and state.
+Pure Components only re-render the Class Component only when there is a difference in the shallow comparison of props and state.
 Pure Components only works with Class Components.
-If we want to achieve the same in Functional Component we use React.Memo.
+If we want to achieve the same in Functional Component we use React.Memo
 
 Create the Component named MemoDemo.js
 	
 ########################################################### 28.Refs  #####################################################################
 
-Refs make it possible to access DOM node directly within React.
+Refs makes it possible to access the DOM node directly within React.
 Consider the scenario of focusing the input text element i.e. username when the page loads.
 Using Refs we can do in 3 steps.
 
-Step 1 :
---------
+Scenario 1 :
+------------
 Create the Ref
 Attach the Ref to the input element.
-Call the focus() on the current input reference.
+Call the focus() on the current input reference in componentDidMount().
+
+	constructor(props) {
+        super(props)
+        this.userNamereference = React.createRef()
+        this.state = {
+            name: 'Username',
+        }
+    }
+	
+	<input type='text' ref={this.userNamereference}></input>
+	
+	componentDidMount(){
+        this.userNamereference.current.focus()
+    }
+}
 
 
 Scenario 2 :
 ------------
-Second possible usecase is to fetch the user input value.
-
 Another approach to create ref is by using callback reference.
 Using callback reference we can do it in 4 steps.
 
 Create the property
 Use it as a reference
 Change the State of the property
-Call the focus() on the property.
+Call the focus() on the property in componentDidMount().
+
+	class RefsDemo extends Component{
+    constructor(props) {
+        super(props)
+        this.userNamereference = React.createRef()
+        this.state = {
+            name: 'Username',
+        }
+        this.surname = null
+        this.setSurname = element => {
+            this.surname = element
+        }
+        
+    }
+
+    userNameHandler = () =>{
+        alert(`Username : ${this.userNamereference.current.value} and surname : ${this.surname.value}` )
+    }
+
+    render(){
+        return(
+            <div>{this.state.name}
+            <input type='text' ref={this.userNamereference}></input>
+            <input type='text' ref={this.setSurname}></input>
+            <button onClick={this.userNameHandler}>Submit</button>
+            </div>
+        )
+    }
+
+    componentDidMount(){
+        if(this.surname){
+            this.surname.focus()
+        } 
+    }
+	}
+	export default RefsDemo
+	
+Note :
+------
+Using Ref we can also fetch the user input value.
                       	
 ###########################################################  29.Refs with Class Components  ##############################################
 
-                                       
-########################################################### 30.Forwarding Refs  ##########################################################              
+It is also possible to add Ref to a Class Component.
+Create the Component named RefsClassDemo.
+Add the input text element.
+Consider the scenario of focusing the input text element i.e. username when the page loads.
+Using Refs we can do in 3 steps.
+
+1.Create the Ref using React.createRef() 
+2.Attach it to the input element.
+3.Call the focus() in the componentDidMount()
+
+Here instead of using componentDidMount() we use regular method which will focus the input element.
+This method will be called by the Parent Component and the input element in the Child Component will recieve the focus.
+We achieve this using Refs on input Component.
+
+Create the Parent Component named FocusUsername.js.
+
+1.Create the Ref in the Parent Component
+2.Attach the ref to the Componnet
+3.Add the Click handler button and using this method call the Child Component method using ref.
+
+
+Note :
+------
+Refs makes it possible to access the DOM node directly and can also be attached to Class Component.
+Refs cannot be attached to Functional Component.
+                                
+########################################################### 30.Forwarding Refs  ##########################################################
+
+             
+########################################################### 31.Portals  ##################################################################
+
+                      
+########################################################### 32.Error Boundary  ###########################################################
+               
+
+########################################################### 33.Higher Order Components Part 1  ###########################################
+
+Create the Component name ClickCounter.js
+
+	render() {
+        return(
+            <React.Fragment>
+            <h2>{this.state.name}</h2>
+            <button>Clicked x Times</button>
+        </React.Fragment>
+        )
+    }
+	
+Implement the Click Counter on the button Click.
+
+	 <button onClick={this.incrementCount}>Clicked {this.state.count} Times</button>
+
+	 incrementCount=() =>{
+        this.setState((previousState) =>{
+            return {
+                count: previousState.count+1
+            }
+     })
+    }
+	
+Now the Click Counter functionality is working fine.
+But there is one more requirement where we want the hover Count.
+Create the Component name HoverCounter.js
+Similarly If there is a requirement of KeyUp Counter again we need to create one more Component.
+Here we are duplicating the code and not reusing the functionality.
+One of the approach will be moving the state to the Parent Component and pass it as a handler to the props.
+Define the Counter functionality in the App Component and provide the state and handler as props to Click Counter and Hover Counter.
+If there is a scenario where the Counter Component are not child of Parent Component then in this case we have to drill down till the Child Component.
+So there is a need to share the common functionalities between the Components without having Parent to Child Relationship.
+Here we use Higher Order Components.
+
+########################################################### 34.Higher Order Components Part 2  ###########################################
+
+Higher Order Component is a pattern where function takes a Component as an argument and returns a new Component.
+
+	const newComponent=higherOrderComponent(OriginalComponent)
+	
+Typlically Higher Order Component adds additional data to Original Component.
+So the new Component is also referred to as enhanced Component.
+
+Setps to create an Higher Order Component :
+1.Create a HOC named withCounter.js
+
+	const NewComponent = (OriginalComponent) => {
+
+    class NewComponent extends OriginalComponent{
+        render(){
+            return <OriginalComponent name='Srinivas'></OriginalComponent>
+        }
+    }
+    return NewComponent;
+	}
+
+2.For the ClickCounter to return the same Component itself,return the HOC with the ClickCounter Component.
+
+	export default UpdatedComponent(ClickCounter)
+	
+3.Now in both the Components we can render the name property.
+
+	 render() {
+        return(
+            <React.Fragment>
+            <h2>{this.state.name}</h2>
+            <button onClick={this.incrementCount}>{this.props.name} Clicked {this.state.count} Times</button>
+        </React.Fragment>
+        )
+    }
+	
+4.Here we want Counter functionality to be shared across the Components from the HOC.
+In the HOC we need to pass the state and incrementCounter() as props so that original Component can make use of that.
+
+	render(){
+            return <OriginalComponent name ='Srinivas' count={this.state.count} incrementCount={this.incrementCount}></OriginalComponent>
+        }
+	
+And in the Child Component we use the props count and incrementCount.
+
+	class ClickCounter extends Component {
+    render() {
+			return(
+				<React.Fragment>
+				<h2>Click Counter</h2>
+				<button onClick={this.props.incrementCount}>{this.props.name} Clicked {this.props.count} Times</button>
+			</React.Fragment>
+			)
+		}
+	}
+	export default UpdatedComponent(ClickCounter)
+	
+Note :
+------
+The Function name and the Component name should be same.
+
+########################################################### 35.Higher Order Components Part 3  ###########################################
+
+Scenario 1 :
+------------
+Passing down the props.
+Consider the scenario we passed one parameter from App Component to ClickCounter i.e. message
+
+	function App() {
+	  return(
+		<div className='App'>
+		  <ClickCounter message='HOC props parameter'></ClickCounter>
+		  <HoverCounter></HoverCounter>
+		</div>
+	  )
+	}
+	
+If we want to read the prop in ClickCounter Component
+
+	class ClickCounter extends Component {
+    render() {
+			return(
+				<React.Fragment>
+				<h2>Click Counter</h2>
+				<button onClick={this.props.incrementCount}>{this.props.message} {this.props.name} Clicked {this.props.count} Times</button>
+			</React.Fragment>
+			)
+		}
+	}
+	
+Here we cannot see the message props in the ClickCounter Component because props is passed to HOC i.e. withCounter and not ClickCounter.
+To fix this issue we need we need to pass the remaining props to the wrapped Component using Spread Operator.
+
+	render() {
+		console.log(`From App Component to HOC : ${this.props.message}`)
+		return <OriginalComponent name='Srinivas'
+			count={this.state.count}
+			incrementCount={this.incrementCount}
+			{... this.props}
+			></OriginalComponent>
+        }
+		
+Scenario 1 :
+------------
+Passing parameters to the HOC function.
+Consider the scenario where we increment the count by 5 in ClickCounter and 10 in HoverCounter Component.
+We can do that by passing the parameter to the HOC function.
+
+	const withCounter = (OriginalComponent,incrementNUmber) => {
+	}
+	
+	incrementCount = () => {
+		this.setState((previousState) => {
+			return {
+				count: previousState.count + incrementNUmber
+			}
+		})
+    }
+	
+	export default withCounter(ClickCounter,5)
+
+########################################################### 36.Render Props Part 1 #######################################################
+
+    
+########################################################### 37.Render Props Part 2 #######################################################   
+
+
+########################################################### 38.Context Part 1   ##########################################################
+
+      
+########################################################### 39.Context Part 2   ##########################################################
+
+
+########################################################### 40.Context Part 3   ##########################################################         
