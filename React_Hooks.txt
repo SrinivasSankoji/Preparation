@@ -1,33 +1,294 @@
-1.Introduction															(Code Evolution)   			[01-DEC-2023]  ()
-2.useState Hook                                                         (Code Evolution)   			[01-DEC-2023]  ()
-3.useState with previous State                                          (Code Evolution)   			[01-DEC-2023]  ()
-4.useState with Object                                                  (Code Evolution)   			[01-DEC-2023]  ()
-5.useState with Array                                                   (Code Evolution)   			[01-DEC-2023]  ()
-6.useEffect Hook                                                        (Code Evolution)   			[01-DEC-2023]  ()
-7.useEffect after render                                                (Code Evolution)   			[01-DEC-2023]  ()
-8.conditionally run effects                                             (Code Evolution)   			[01-DEC-2023]  ()
-9.run effects only once                                                 (Code Evolution)   			[01-DEC-2023]  ()
-10.useEffect with cleanup                                               (Code Evolution)   			[01-DEC-2023]  ()
-11.useEffect with incorrect dependency                                  (Code Evolution)   			[01-DEC-2023]  ()
-12.fetching data with useEffect part 1                                  (Code Evolution)   			[01-DEC-2023]  ()
-13.fetching data with useEffect part 2                                  (Code Evolution)   			[01-DEC-2023]  ()
-14.fetching data with useEffect part 3                                  (Code Evolution)   			[01-DEC-2023]  ()
+1.Introduction															(Code Evolution)   			[02-DEC-2023]  (Done)
+2.useState Hook                                                         (Code Evolution)   			[09-DEC-2023]  (Done)
+3.useState with previous State                                          (Code Evolution)   			[09-DEC-2023]  (Done)
+4.useState with Object                                                  (Code Evolution)   			[09-DEC-2023]  (Done)
+5.useState with Array                                                   (Code Evolution)   			[09-DEC-2023]  (Done)
+6.useEffect Hook                                                        (Code Evolution)   			[09-DEC-2023]  (Done)
+7.useEffect after render                                                (Code Evolution)   			[09-DEC-2023]  (Done)
+
+8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  ()
+9.run effects only once                                                 (Code Evolution)   			[10-DEC-2023]  ()
+10.useEffect with cleanup                                               (Code Evolution)   			[10-DEC-2023]  ()
+11.useEffect with incorrect dependency                                  (Code Evolution)   			[10-DEC-2023]  ()
+12.fetching data with useEffect part 1                                  (Code Evolution)   			[10-DEC-2023]  ()
+13.fetching data with useEffect part 2                                  (Code Evolution)   			[10-DEC-2023]  ()
+14.fetching data with useEffect part 3                                  (Code Evolution)   			[10-DEC-2023]  ()
+
 15.useContext Hook part 1                                               (Code Evolution)   			[01-DEC-2023]  ()
 16.useContext Hook part 2                                               (Code Evolution)   			[01-DEC-2023]  ()
 17.useContext Hook part 3                                               (Code Evolution)   			[01-DEC-2023]  ()
-18.useReducer Hook                                                      (Code Evolution)   			[01-DEC-2023]  ()
-19.useReducer Hook Simple state and Action                              (Code Evolution)   			[01-DEC-2023]  ()
-20.useReducer Hook Complex state and Action                             (Code Evolution)   			[01-DEC-2023]  ()
-21.Multiple Use Reducers                                                (Code Evolution)   			[01-DEC-2023]  ()
-22.useReducer with useContext                                           (Code Evolution)   			[01-DEC-2023]  ()
-23.fetching data with useReducer part 1                                 (Code Evolution)   			[01-DEC-2023]  ()
-24.fetching data with useReducer part 2                                 (Code Evolution)   			[01-DEC-2023]  ()
-25.useState vs useReducer                                               (Code Evolution)   			[01-DEC-2023]  ()
-26.useCallBack Hook                                                     (Code Evolution)   			[01-DEC-2023]  ()
-27.useMemo Hook                                                         (Code Evolution)   			[01-DEC-2023]  ()
-28.useRef Hook part 1                                                   (Code Evolution)   			[01-DEC-2023]  ()
-29.useRef Hook part 2                                                   (Code Evolution)   			[01-DEC-2023]  ()
+
+18.useReducer Hook                                                      (Code Evolution)   			[09-DEC-2023]  ()
+19.useReducer Hook Simple state and Action                              (Code Evolution)   			[09-DEC-2023]  ()
+20.useReducer Hook Complex state and Action                             (Code Evolution)   			[09-DEC-2023]  ()
+21.Multiple Use Reducers                                                (Code Evolution)   			[09-DEC-2023]  ()
+22.useReducer with useContext                                           (Code Evolution)   			[09-DEC-2023]  ()
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[09-DEC-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[09-DEC-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[09-DEC-2023]  ()
+
+26.useCallBack Hook                                                     (Code Evolution)   			[10-DEC-2023]  ()
+27.useMemo Hook                                                         (Code Evolution)   			[10-DEC-2023]  ()
+28.useRef Hook part 1                                                   (Code Evolution)   			[10-DEC-2023]  ()
+29.useRef Hook part 2                                                   (Code Evolution)   			[10-DEC-2023]  ()
 30.Custom Hooks                                                         (Code Evolution)   			[01-DEC-2023]  ()
 31.useDocumentTitle Custom Hook                                         (Code Evolution)   			[01-DEC-2023]  ()
 32.useCounter custom Hook                                               (Code Evolution)   			[01-DEC-2023]  ()
 33.useInput Custom Hook                                                 (Code Evolution)   			[01-DEC-2023]  ()
+
+
+########################################################### 1.Introduction	 ###########################################################
+
+Hooks is a new feature added in React version 16.8 which allows us to use React features without having to write a Class.
+For example State of a Component without writing a Class.
+Hooks don't work inside Classes and allows us to use React without Classes.
+
+Problem 1 :
+-----------
+To work with classes we must understand how "this" keyword works in Javascript which is different from other languages.
+Also we need to bind the Event Handlers in the Class Component.
+Classes don't minify very well and make the hot reloading very unreliable.
+With Hooks we don't work with Class any more and we don't face any of these problems.
+
+Problem 2 :
+-----------
+While working with React there is no particular way to reuse stateful logic between Components.
+HOC and Render props addresses these problems but we have to restructure the Components which kinds of results in awkward looking Code.
+We end up in wrapping the Components with several other Components to share the functionality and makes the code hard to follow.
+There is a need to share the stateful logic in a better way.
+Hooks allows us to reuse the stateful logic without changing the Component hierarchy.
+
+Problem 3 :
+-----------
+Final reason is how the code is placed in the Component and the fact that the Complex Components become hard to understand.
+Consider the scenario of creating the Components for complex scenarios such as data fetching and subscribing to Events.
+Here the related code is not organized in one place but scattered across different life cycle methods.
+
+1.Data fetching can be done in componentDidMount() and componentDidUpdate()
+2.Event Listeners can be done in componentDidMount() and componentWillUnmount()
+
+Also Completely unrelated code will end up in the same code block i.e. in componentDidMount().
+Because of stateful logic it is not possible to break the Components into smaller ones.
+It is so much better if all the related code is together.
+
+Notes :
+-------
+Hooks can be used from version 16.8 or higher.
+Hooks are completely opt in i.e. If we don't want to use Hooks then we can ignore it.
+Hooks does not contain any breaking changes and the release is backward compatible.
+Classes won't be removed from React.
+We can't use Hooks inside Class Component and can be used along with the Functional Components.
+Hooks doesn't replace our existing knowledge of React concepts.  
+Hooks provides a more direct API to the React Concepts that we already know.
+			
+########################################################### 2.useState Hook  ###########################################################
+
+Create the Class Componenet with the counter functionality.
+Then implement the same functionality using Functional Component.
+
+The 3 steps to implement the counter functionality are 
+1.Functional Component
+2.State property initialized to 0
+3.Method that is capable of setting the state property value
+
+Hook is a special function that allows us to hook into React features.
+useState is a hook that allows us to add React State into functional Component.
+
+useState() accepts two arguments
+1.initial value of state property which returns the current value of the state property.
+2.method that is capable of updating the state property.
+
+	function UseStateCounter() {
+    const [count, setCount] = useState(0)
+    return (
+        <div>
+            <button onClick={() => setCount(count + 1)}>Count Value {count}</button>
+        </div>
+    )
+	}
+	export default UseStateCounter
+	
+Note :
+------
+Variable count always contains the current value of the count.
+setCount accepts an argument and returns the updated count value.
+When the Component renders state variable is created and initialized with default value.
+The default value is never used on re-render.
+setCount will cause the Component to re-render.
+
+Rules of Hooks :
+----------------
+1.Call hooks only at the Top Level and don't call hooks inside loops,conditions or nested functions.
+2.Call hooks only from React Functions and not from regular Javascript Functions.
+
+            
+########################################################### 3.useState with previous State #############################################
+
+Create the Component to increment,decrement amd reset the count value.
+
+	function UseStateCounterPreviousState() {
+    const initialCount = 0;
+    const [count, setCount] = useState(initialCount)
+		return (
+			<div>
+				Count {count}
+				<button onClick={() => setCount(initialCount)}>Reset</button>
+				<button onClick={() => setCount(count + 1)}>Increment</button>
+				<button onClick={() => setCount(count - 1)}>Decrement</button>
+			</div>
+		)
+	}
+	
+The above code is not the correct approach if we increment the value by some other number.
+
+	const incrementCounter = () => {
+        for (let i = 0; i < 5; i++) {
+            (setCount(count + 1))
+        }
+    }
+        
+    return (
+        <div>
+            Count {count}
+            <button onClick={() => setCount(initialCount)}>Reset</button>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+            <button onClick={() => setCount(count - 1)}>Decrement</button>
+
+            <button onClick={incrementCounter}>Custom Increment By 5</button>
+        </div>
+    )
+
+
+In this case count value will give unpredectible results i.e. every time it updates the Custom Increment by 1 instead of 5
+Any time if we want to update the state value based on previous value always prefer the setState() which accpets the older value and sets the new value.
+
+	 const incrementCounter = () => {
+        for (let i = 0; i < 5; i++) {
+            (setCount(previousCount => previousCount+1))
+        }
+    }
+ 
+########################################################### 4.useState with Object #####################################################
+
+A State variable can include Number,String,Boolean,Object or even an Array.
+UseState does not automatically merge and update the Object and we have to do it manually.
+This can be done by using Spread Operator i.e. copy every property in the name Object and override firstName with the different value.
+
+	function UseStateObject() {
+    const [name, setName] = useState({ firstName: '', lastName: '' })
+    return (
+        <div>
+            <form>
+                <div>
+                    <label>First name : </label>
+                    <input type='text' value={name.firstName} onChange={elemet => setName({...name,firstName:elemet.target.value})}></input>
+                </div>
+                <div>
+                    <label>Last name : </label>
+                    <input type='text' value={name.lastName} onChange={element => setName({...name,lastName:element.target.value})}></input>
+                </div>
+                <h2>{JSON.stringify(name)}</h2>
+            </form>
+        </div>
+    )
+	}
+         
+########################################################### 5.useState with Array ######################################################
+
+	function UseStateArray() {
+    const [items, setItems] = useState([])
+    const addItem = () => {
+        setItems([...items, {
+            id: items.length,
+            value: Math.floor(Math.random() * 10) + 1
+        }])
+    }
+    return (
+        <div>
+            <h2>Use State Array</h2>
+            <button onClick={addItem}>Add Item</button>
+            <ul>
+                {
+                    items.map(item =>
+                        (<li key={item.id}>{item.value}</li>)
+                    )
+                }
+            </ul>
+        </div>
+		)
+	}
+
+########################################################### 6.useEffect Hook  ##########################################################
+
+We perform side effects in the Class Component by using Life cycle methods.
+Updating the DOM,fetching the data from an End point,setting up subscriptions,timers etc will cause side effects.
+Since the render() will be too early to perform side effects we use Component Lifecycle methods.
+
+Consider the scenario of updating the Document title to the current Counter value.
+For the initial render Document Title set to "Clicked 0 times".
+This code will be written inside ComponentDidMount() which will be executed only once in the Component Lifecycle.
+We then have a button to increment the count value.
+Along with the updated count value Document title needs to be updated.
+This can be done by writing the code inside ComponentDidUpdate() Life cycle method.
+
+Consdier another side effect which is timer.
+On the ComponentDidMount() we set up a timer to the console which will display the message every 5 seconds.
+We can clear the timer when the Component is being removed from the DOM.
+We do this by using ComponentWillMount() Lifecycle method.
+
+The problems with the above approach are
+1.To update the Document title we are writing it in two places i.e. in both ComponentDidMount() and ComponentDidUpdate().
+2.The code which is related to timer are placed in different Lifecycle methods.
+3.The code which is unrelated are placed together.
+
+The useEffect hook performs side effects in Functional Components.
+The useEffect is a close replacement of ComponentDidMount(),ComponentDidUpdate() and ComponentWillMount().
+                                   
+########################################################### 7.useEffect after render  ##################################################
+
+Implement the Counter using useState hook.
+useEffect() is a function which accepts a parameter and will get executed after every render of the Component.
+
+	function DocumentTitleUseEffect(){
+    const [count,setCount] = useState(0)
+    useEffect( () =>{
+        document.title=`Clicked ${count} times`
+    })
+    return(
+        <div>
+            <h3>Document title using useEffect</h3>
+            <button onClick={() => setCount(previousCount => previousCount+1)}>Clicked {count} times</button>
+        </div>
+		)
+	}
+
+
+When we are specifying useEffect we are request React to execute the function which is passed as an argument every time the Component renders.
+useEffect runs after every render of the Component.
+useEffect is placed inside the Component using which we can easily access Component State and props without having to write any additional code.
+            
+########################################################### 8.conditionally run effects ################################################
+
+By default useEffect runs after every render of the Component.
+In some cases applying the useEffect might create some performance problems.
+We need a way to conditionally run the useEffect from Functional Component.
+
+
+ 
+              
+########################################################### 9.run effects only once  ###################################################
+
+                  
+########################################################### 10.useEffect with cleanup  #################################################
+
+               
+########################################################### 11.useEffect with incorrect dependency #####################################
+
+    
+########################################################### 12.fetching data with useEffect part 1  ####################################
+
+ 
+########################################################### 13.fetching data with useEffect part 2 #####################################
+
+   
+########################################################### 14.fetching data with useEffect part 3 #####################################   

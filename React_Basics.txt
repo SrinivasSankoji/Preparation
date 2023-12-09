@@ -25,42 +25,43 @@
 25.Fragments                                                        (Code Evolution)   			[23-NOV-2023]  (Done)
 26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  (Done)
 27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
+
 28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
 29.Refs with Class Components                                       (Code Evolution)   			[25-NOV-2023]  (Done)
 30.Forwarding Refs                                                  (Code Evolution)   			[25-NOV-2023]  ()
 31.Portals                                                          (Code Evolution)   			[25-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[25-NOV-2023]  ()
+
 33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 34.Higher Order Components Part 2                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 
-36.Render Props Part 1                                              (Code Evolution)   			[25-NOV-2023]  ()
-37.Render Props Part 2                                              (Code Evolution)   			[25-NOV-2023]  ()
+36.Render Props Part 1                                              (Code Evolution)   			[25-NOV-2023]  (Done)
+37.Render Props Part 2                                              (Code Evolution)   			[26-NOV-2023]  (Done)
 
-38.Context Part 1                                                   (Code Evolution)   			[25-NOV-2023]  ()
-39.Context Part 2                                                   (Code Evolution)   			[25-NOV-2023]  ()
-40.Context Part 3                                                   (Code Evolution)   			[25-NOV-2023]  ()
+38.Context Part 1                                                   (Code Evolution)   			[25-NOV-2023]  (Done)
+39.Context Part 2                                                   (Code Evolution)   			[26-NOV-2023]  (Done)
+40.Context Part 3                                                   (Code Evolution)   			[26-NOV-2023]  (Done)
 
-41.HTTP and React                                                   (Code Evolution)   			[25-NOV-2023]  ()
-42.GET Request                                                      (Code Evolution)   			[25-NOV-2023]  ()
-43.POST Request                                                     (Code Evolution)   			[25-NOV-2023]  ()
+41.HTTP and React                                                   (Code Evolution)   			[25-NOV-2023]  (Done)
+42.GET Request                                                      (Code Evolution)   			[26-NOV-2023]  (Done)
+43.POST Request                                                     (Code Evolution)   			[26-NOV-2023]  ()
 
 ########################################################### 1.Introduction	####################################################
 
-React is a project created and maintained by Facebook.
-React is an open source JavaScript library for building user interfaces.
-React is not a JavaScript Framework.
-React does not focus on other aspects of the Application like routing,HTTP request etc.
-React is responsible only for building rich user interface.
+1.React is a project created and maintained by Facebook.
+2.React is an open source JavaScript library which is responsible only for building rich user interface.
+3.React is not a JavaScript Framework.
+4.React does not focus on other aspects of the Application like Routing,HTTP request etc.
 
-React has component based Architecture.
-This breaks down the Application into small encapsulated components which can be reused.
+5.React has component based Architecture.
+This breaks down the Application into smaller encapsulated components which can be reused.
 
-React is declarative.
-We tell react what we want and react will build the actual UI.
-React will make it painless for a developer to create a Complex UI's by abstracting the difficulties.
-React will handle efficiently updating and rendering the components in the Application whenever the data changes.
-DOM updates is one of the most expensive operation is handled gracefully in React.
+6.React is declarative i.e. we tell React what we want and React will build the actual UI.
+React will make the developer life easy to create a Complex UI's by abstracting the difficulties.
+
+7.React will handle the Component updating and rendering efficiently whenever the data changes.
+DOM updates is one of the most expensive operation which is handled gracefully in React.
 
 Prerequsites :
 --------------
@@ -79,8 +80,8 @@ Utilities
 ########################################################### 2.Hello world ###########################################################
 
 To create a React Application we will be using Create React App.
-Create React App is an Command Line Interface tool that allows us to quickly create and run React Application with no configuration.
-Simply run the command and Entire React Application will be created.
+Create React App is a CLI that allows us to quickly create and run React Application with no configuration.
+Simply run the command and entire React Application will be created.
 
 	npx create-react-app hello-world
 	
@@ -134,17 +135,17 @@ In index.js we specify the Root component i.e. App Component and DOM Element whi
 ########################################################### 4.Components #################################################################
 
 In React Component represnts the part of the user interface.
-The parent component is the app Component which contains all the components.
+The parent component is the App Component which contains all the components.
 Components are reusable.
 
-A component code is placed inside Javascript file.
-For example App Component is placed inside app.js.
+A Component code is placed inside Javascript file.
+For example App Component is placed inside App.js.
 We can also have components placed with .jsx extension.
 
 In React we have two types of Components.
 
-1.Stateless Functional Component
-2.Stateful Class Component
+1.Functional Component (Stateless)
+2.Class Component      (Stateful)
 
 Functional Components are literally JavaScript Functions.
 They return the HTML which describes the UI.
@@ -207,7 +208,8 @@ Example :
 
 ########################################################### 5.Functional Components ######################################################
 
-Functional Components are just JavaScript Components which will optionally recieve Object of properties i.e.props and will return an HTML which will describe the UI.
+Functional Components are nothing but JavaScript Functions which will optionally recieve Object of properties i.e. props 
+and will return an HTML which will describe the UI.
 Here HTML Component is nothing but JSX.
 
 Scenario 1 :
@@ -215,7 +217,6 @@ Scenario 1 :
 
 	import './App.css';
 	import FunctionalComponent from './Components/FunctionalComponent';
-
 
 	function App() {
 	  return (
@@ -225,7 +226,7 @@ Scenario 1 :
 	  );
 	}
 	
-Here our functional Component is no where connected to React.
+Here our Functional Component is no where connected to React.
 For that we need to export and import the Component.
 
 Scenario 2 :
@@ -264,16 +265,15 @@ For most of the cases we will be using default export.
 ########################################################### 6.Class Components ###########################################################
 
 Class Componnets are basically ES6 Classes.
-Similar to Functional Componnet, A Class Component optionally recieves props as an input and returns HTML.
+Similar to Functional Componnet,Class Component optionally recieves props as an input and returns an HTML which describes the UI.
 Class Component can maintain its private internal state and uses that information to describe the user interface.
 
 Whenever we are creating Class Component we need to import two Components 
-
-React
-Component
+1.React
+2.Component
 
 For the Class to become React Component It should extend Component Class and override the render().
-render() either return HTML or null.
+render() should return either HTML or null.
 
 	import React from "react";
 	import { Component } from "react";
@@ -303,7 +303,7 @@ render() either return HTML or null.
 	
 Difference between Functional Components and Class Components :
 ---------------------------------------------------------------
-Functional Componnets are simple functions which recieves optionally props and returns the HTML.
+Functional Componnets are JavaScript functions which optionally recieves props and returns the HTML.
 Use Functional Components as much as possible.
 Always prefer Functional Components.
 Absence of this keyword in Functional Component.
@@ -316,7 +316,7 @@ Class Components are more feature rich.
 Class Components can maintain their own private data i.e. state.
 Class Components can contain complex UI logic.
 Class Components provide life cycle hooks.
-This is the reason Functional Components are Stateful/Smart/Container Components.
+This is the reason Class Components are Stateful/Smart/Container Components.
 
 Note :
 ------
@@ -329,13 +329,12 @@ Here we are not returning regular HTML but we are returning JSX.
 ########################################################### 8.React JSX  #################################################################
 
 JavaScript Xml (JSX) is an extension to JavaScript language syntax.
-With React library we can  write the XML like code for elements and Components.
+With React library we can write the XML like code for Elements and Components.
 Just like XML,JSX tags can have tag name,attributes and children.
 
 JSX is not a necessity to write React Application.
 We can definitely write React Application without JSX.
 But JSX makes React code simpler and elegant.
-
 JSX ultimately transpiles to pure JavaScript which is understood by the Browser.
 
 How JSX works :
@@ -348,26 +347,24 @@ Create the Component using JSX.
 
 	export default Hello;
 	
-Create the Component without using JSX.
-React library provides CreateElement method to create a Component without using JSX.
+We can also create the Component without using JSX.
+React library provides CreateElement() method to create a Component without using JSX.
 CreateElement() accepts 3 parameters.
 
-First parameter is the String which specifies the HTML element to be rendered.
-Second parameter is the optional parameter.It is an Object with key value pair which can be applied to the element.
-Third parameter is the children for the HTML element.
+1.First parameter is the String which specifies the HTML element to be rendered.
+2.Second parameter is the optional parameter.It is an Object with key value pair which can be applied to the element.
+3.Third parameter is the children for the HTML element.
 
 	const Hello = () => {
     return React.createElement('div',{id:'hello',className:'dummy'},React.createElement('h1',null,'Welcome Srinivas'));
 	}
 	
-Here each JSX element is syntactically replacement of React.createElement which inturn uses React Library.
+Here each JSX Element is syntactically replacement of React.createElement which inturn uses React Library.
 That is the reason we are importing React library whenever we are using JSX.
-
-                     
+                  
 ########################################################### 9.Props  #####################################################################
 
-props is an optional input which the Component accepts.
-It also allows the Component to be dynamic.
+Props is an optional input to the Component which makes the Component dynamic.
 Requirement here is to pass the name from App Component to the Greet Componnet and render that name in the Browser.
 
 	import React from "react";
@@ -400,26 +397,26 @@ Requirement here is to pass the name from App Component to the Greet Componnet a
 	
 Note :
 ------
-If no value is assigned then {props.children} will not display anything.
+If no values are assigned then {props.children} will not display anything.
 Irrespective of the Components properties are mentioned as attributes.
-props are immutable and its value cannot be canged.
+Props are Immutable and its value cannot be canged.
                          
 ########################################################### 10.State  ####################################################################                        
 
 Every React Component returns JSX which describes the UI.
-It is posssible to influence what is rendered in the screen using props.
+The way to influence what is rendered into the screen is by using props.
 The second way to influence what is rendered in the screen is by using state.
 Both props and state holds the information which influences the UI.
 
 props :
 props are passed to the Component.
 props can be used as Function parameters.
-props are immutable because variables are passed down from the Parent Component to child Component.
+props are Immutable because variables are passed down from Parent Component to child Component.
 
 state :
-state is managed within the Component.
-variables are declared in the function body.
-state can be changed because Component has full control of it.
+State is managed within the Component.
+State variables are declared in the function body.
+State can be changed because Component has full control of it.
 
 Create the Component named Message.js.
 Here the requirement is need to have subscribe button.
@@ -500,7 +497,7 @@ Add a button to the Counter.
     }
 	
 we use the setState() to update the state value on button click.
-setState() accepts an Object as first parameter where as second parameter accepts the arrow function.
+setState() accepts an Object as first parameter and Arrow function as second parameter.
 
 	 <button onClick={() => this.increment()}>Increment</button>
 	 
@@ -527,18 +524,18 @@ setState() with both the parameters
 	
 Note :
 ------
-1.The only place where we can assign the state is constructor.
-We cannot modify the state directly.If we modify the state React will not re render the Component.
-Always make use of setState and nover modify the state directly.
+1.The only place where we can assign the state is constructor.	
+We cannot modify the state directly.If we modify the state React will not re-render the Component.
+Always make use of setState and never modify the state directly.
 
 2.If the code has to be executed after the state has been updated,place the code in the callback function which is the second argument to setState().
-React will group multiple setState calls into single setState for better performance.
+React will group multiple setState() calls into single setState for better performance.
 
 3.Whenever we want to update the state based on previous state value,pass in as a function argument instead of regular Object.
 
 ########################################################### 12.Destructuring Props and State  ############################################
 
-Destructuring is an ES6 feature that makes it possible to unpack values from an arrays or props from Objects into distinct variables.
+Destructuring is an ES6 feature that makes possible to unpack values from arrays or props from Objects into distinct variables.
 In React destructuring props and state improoves code reusability.
 Destructuring can be done by using {}.
 
@@ -572,8 +569,8 @@ The second way to destructure the props is by using function body.
 
 ########################################################### 13.Event Handling  ###########################################################
 
-Any web Application we create typically tends to have user interaction.
-When the user interacts with the Application Events are fired. 
+Any Web Application we create typically tends to have user interaction.
+When the user interacts with the Application events are fired. 
 Consider the scenario of button click.
 Create the component for Event Handler named FunctionClick.js.
 
@@ -603,14 +600,14 @@ React events are named using camel case.
 
 Note :
 ------
-To the button click we pass the function as an Event handler.
+To the button click we are passing the function as an Event handler.
 Here we want the handler to be a function and not the function call.
               
 ########################################################### 14.Binding Event Handlers  ###################################################
 
-The reason we bind Event Handlers in React Class Components is purely because of the way this keyword works in JavaScript.
+The reason we bind Event Handlers in Class Component is purely because of the way this keyword works in JavaScript.
 It is not because of how React works.
-Here the requirement is when we click the button we need to change the message.
+Here the requirement is when we click on the button we need to change the message.
 Also create a state property called message and bind it to the user interface.
 	
 	import React from "react";
@@ -656,12 +653,12 @@ We can do this by calling the Event Handler on the button click.This can be done
 Here it will throw an Error message saying "Cannot read properties of undefined".
 There are number of ways to bind Event Handlers in React.
 
-1.First approach is to use the bind keyword i.e. bind the handler in the render()
+1.First approach is to use the bind keyword i.e. bind the handler in the render() If we are calling the normal Function on Button Click.
 
 	 <button onClick={this.eventHandler.bind(this)}>Click</button>
 	 
-The problem with this approach is every update to the state will cause the component to re render.
-This inturn will generate a brand new Event Handler when it re renders.
+The problem with this approach is every update to the state will cause the component to re-render.
+This inturn will generate a brand new Event Handler when it re-renders.
 The impact of the performance will decrease in large Applications where the Components contains the nested Children Components.
 
 2.Second approach is to use the arrow function in the render()
@@ -756,9 +753,9 @@ Child Component :
 	export default Child;
 
 Whenever we click on the button in the Child Component,method in the Parent Component has to be executed.
-Here we are passin the method as a reference to the Child Component as a props in the Parent Component.
+Here we are passing the method as a reference to the Child Component as a props in the Parent Component.
 
-	<Child greetHandler={this.greetParent}></Child>
+	<Child greetHandler={this.greetParent}>Greet Parent</Child>
 	
 Note :
 ------
@@ -993,7 +990,7 @@ Note :
 Key prop cannot be accessible to the child components.
 Key prop is an id to render the List efficiently and is reserved.
 
-A Key is the special String attribute that we need to include when creating List of items.
+A Key is the special String attribute that we need to include when render the List of items.
 Keys give the elements a stable identity.
 Key helps in identifying React which element in the List is modified i.e. Added,Updated or Deleted.
 This way instead of updating the whole DOM Tree,React will update the specific DOM Tree wherever Key is updated.
@@ -1007,10 +1004,10 @@ This way instead of updating the whole DOM Tree,React will update the specific D
 
 ########################################################### 21.Basics of Form Handling ###################################################
 
-Here we will see how to capture input from form elements like input,textarea and select and have the data available for form submission.
-In regular HTML form elements like input,textarea etc are responsible on their own to handle the user input and update the respective values.
-Here we want to React to control the form elements.
-Such form elements whose value is controlled by React is called Controlled Components.
+Here we will see how to capture input from Form Elements like input,textarea and select and have the data available for Form submission.
+In regular HTML Form Elements like input,textarea etc are responsible on their own to handle the user input and update the respective values.
+Here we want to React to control the Form Elements.
+Such Form elements whose values are controlled by React is called Controlled Components.
 Consider the scenario 
 
 	<input type="text" value="" onChange="" />
@@ -1076,7 +1073,7 @@ That function will also have an access to the data entered  by the user into the
 	 <form onSubmit={this.submitStuedntForm}>
 	 <button type='submit'>Submit</button>
 
-Whenever we dismiss the alert, Form data is cleared.
+Whenever we dismiss the alert,Form data is cleared.
 To avoid this we have to call preventDefault().
 
 	submitStuedntForm = (event) =>{
@@ -1086,7 +1083,7 @@ To avoid this we have to call preventDefault().
 
 ########################################################### 22.Component Life Cycle Methods ##############################################
 
-When we create a React Component,Component goes through several stages in its Lifecycle.
+When we create any React Component,Component goes through several stages in its Lifecycle.
 React provides built in methods that we can override at particular stages in the Lifecycle.
 Lifecycle methods are available for Class Component and not for the Functional Component.
 We can classify the methods into 4 phases.
@@ -1101,24 +1098,24 @@ During the Mounting Lifecycle phase we have 4 methods.
 4.componentDidMount()
 
 2.Updating
-Updating Lifecycle methods are called when a Component is being re-rendered as a result of changes to either its props or state.
+Updating Lifecycle methods are called whenever a Component is being re-rendered as a result of changes either to its props or state.
 
 3.Unmounting
-Unmounting Lifecycle methods are called when a Component is being removed from the DOM.
+Unmounting Lifecycle methods are called whenever a Component is being removed from the DOM.
 
 4.Error Handling
-Error Handling methods are called when there is an Error during rendering,Lifecycle method or in the Constructor of any Child Component.
+Error Handling methods are called whenever there is an Error during rendering,Lifecycle method or in the Constructor of any Child Component.
 
 
 ########################################################### 23.Component Mounting Lifecycle Methods ######################################
 
-Mounting Lifecycle methods will get called whenever an instance of the Component is being created and inserted into the DOM.
+Mounting Lifecycle methods are called whenever an instance of the Component is being created and inserted into the DOM.
 We will be going through the order in which Mounting Lifecycle methods will be inoked.
 
 1.Constructor :
 ---------------
 Constructor is a special function that will get called whenever a new Component is created.
-Constructor is used for initializing the state and binding the event handlers to the Class instance.
+Constructor is used for initializing the state and binding the Event handlers to the Class instance.
 We cannot make HTTP Request from the Constructor.
 In the Component we have access to this.props only after calling super(props) from the Constructor.
 Constructor is the only place where we initialize the state.
@@ -1134,7 +1131,7 @@ In such scenario we can use this method to set the state.
 Since this method is a static method it does not have access to this keyword.
 We cannot call this.setState() as it is a static method.
 getDerivedStateFromProps() has to return either null or an Object that represents new/updated state of the Component.
-This method is called everytime when a Component is re rendered.
+This method is called everytime when a Component is re-rendered.
 
 3.render() :
 ------------
@@ -1145,7 +1142,7 @@ Since the render() returns the JSX which also contains other children Components
 
 4.componentDidMount() :
 -----------------------
-Ths method will be called only once in the whole Lifecycle of the given Component.
+Ths method will be invoked only once in the Lifecycle of the given Component.
 This method will be invoked immideately after the Component and it's Child Component have been rendered to the DOM.
 This method is the perfect place to call side effects i.e. interact with DOM or perform any AJAX calls to load the data.
 
@@ -1160,10 +1157,10 @@ There are 5 methods in Updating Lifecycle methods out of which 3 methods are rea
 2.shouldComponentUpdate(props,state) :
 --------------------------------------
 This method recieves the updated props and state.
-The purpose of this method is to re render the Component or not.
-By default all the Class Components will re render whenever the props they recieve or the state changes.
+The purpose of this method is to re-render the Component or not.
+By default all the Class Components will re-render whenever the props they recieve or the state changes.
 This method can return the default behavior by returining false.
-What we can do here is by comparing the state with the previous state and based on the result we can re render the Component.
+What we can do here is by comparing the state with the previous state and based on the result we can re-render the Component.
 This method can be used for performance optimization.
 We need to avoid calling setState() and performing AJAX calls.
 
@@ -1244,28 +1241,28 @@ Lets create 3 Components
 3.PureComponentDemo
 
 Then include the Regular and Pure Components into Parent Component by passing the name as Props.
-The difference between Regular Component and Pure Component is Pure Component is never re rendered.
+The difference between Regular Component and Pure Component is Pure Component is never re-rendered.
 
 Regular Componnet does not implement shouldComponentUpdate() and always returns true by default.
 
-PureComponent implements shouldComponentUpdate() with shallo props and state comparison.
+Pure Component implements shouldComponentUpdate() with shallo props and state comparison.
 Pure Component does a Shallow Comparison of Previous State/Previous Props with Current State/Current Props 
-and if it finds any difference then only it will re render the Component.
+and if it finds any difference then only it will re-render the Component.
 
 Note :
 ------
-If the Parent does not re-render then child will not re-render.
+If the Parent Component does not re-render then child Component will not re-render.
 
 Pure Components can be used to avoid unnecessary renders to improove the performance.
-Don't mutate the List by pushing the elements into the List because reference to the Array never changes.
+Also don't mutate the List while pushing the elements into the List because reference to the Array never changes.
 Because Pure Component will only check the reference to re render the Componenet.
 
-It is the best practice to ensure that all the Child Components are also pure to avoid unexpected behavior.
+It is best practice to ensure that all the Child Components are also pure to avoid unexpected behavior.
 
 ########################################################### 27.Memo ######################################################################
 
-Pure Components only re-render the Class Component only when there is a difference in the shallow comparison of props and state.
-Pure Components only works with Class Components.
+Pure Components re-render the Class Component only when there is a difference in the shallow comparison of props and state.
+Pure Components works with Class Components.
 If we want to achieve the same in Functional Component we use React.Memo
 
 Create the Component named MemoDemo.js
@@ -1278,35 +1275,35 @@ Using Refs we can do in 3 steps.
 
 Scenario 1 :
 ------------
-Create the Ref
-Attach the Ref to the input element.
-Call the focus() on the current input reference in componentDidMount().
+1.Create the Ref
+2.Attach the Ref to the input element.
+3.Call the focus() on the current input reference in componentDidMount().
 
 	constructor(props) {
         super(props)
-        this.userNamereference = React.createRef()
+        this.userNamereference = React.createRef() // Creating Ref
         this.state = {
             name: 'Username',
         }
     }
 	
-	<input type='text' ref={this.userNamereference}></input>
+	<input type='text' ref={this.userNamereference}></input> // Adding Ref to input element
 	
 	componentDidMount(){
-        this.userNamereference.current.focus()
+        this.userNamereference.current.focus() // Calling focus() on input Ref
     }
 }
 
 
 Scenario 2 :
 ------------
-Another approach to create ref is by using callback reference.
+Another approach to create a Ref is by using callback reference.
 Using callback reference we can do it in 4 steps.
 
-Create the property
-Use it as a reference
-Change the State of the property
-Call the focus() on the property in componentDidMount().
+1.Create the property with the default value.
+2.Use the setState of the property as a reference.
+3.Change the State of the property.
+4.Call the focus() on the property in componentDidMount().
 
 	class RefsDemo extends Component{
     constructor(props) {
@@ -1346,17 +1343,17 @@ Call the focus() on the property in componentDidMount().
 	
 Note :
 ------
-Using Ref we can also fetch the user input value.
+By using Ref we can also fetch the user input value.
                       	
 ###########################################################  29.Refs with Class Components  ##############################################
 
-It is also possible to add Ref to a Class Component.
+It is also possible to add Ref to Class Component.
 Create the Component named RefsClassDemo.
 Add the input text element.
 Consider the scenario of focusing the input text element i.e. username when the page loads.
-Using Refs we can do in 3 steps.
+Using Refs we can do it in 3 steps.
 
-1.Create the Ref using React.createRef() 
+1.Create the Ref using React.createRef()
 2.Attach it to the input element.
 3.Call the focus() in the componentDidMount()
 
@@ -1370,6 +1367,61 @@ Create the Parent Component named FocusUsername.js.
 2.Attach the ref to the Componnet
 3.Add the Click handler button and using this method call the Child Component method using ref.
 
+Parent Component :
+------------------
+
+	class FocusUsername extends Component{
+		constructor(props){
+			super(props)
+			this.state={
+				name:'Focus Username'
+			}
+			this.parentUseNameRef=React.createRef()
+		}
+
+		parentFocusUserName = () =>{
+			this.parentUseNameRef.current.focusUserName()
+		}
+
+		render(){
+			return(
+				<div>
+					<RefsClassDemo ref={this.parentUseNameRef}></RefsClassDemo>
+					<button onClick={this.parentFocusUserName}>Focus Username</button>
+				</div>
+			)
+		}
+	}
+	
+Child Component :
+-----------------
+
+	class RefsClassDemo extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: 'Refs using Class Component'
+        }
+        this.userNameRef=React.createRef()
+    }
+
+    focusUserName(){
+        this.userNameRef.current.focus()
+    }
+        
+    render() {
+        return (
+            <React.Fragment>
+                <h2>
+                    {this.state.name}
+                </h2>
+                <br></br>
+                <label>Username : </label>
+                <input type="text" ref={this.userNameRef}></input>
+            </React.Fragment>
+        )
+    }
+	}
 
 Note :
 ------
@@ -1418,24 +1470,23 @@ Here we are duplicating the code and not reusing the functionality.
 One of the approach will be moving the state to the Parent Component and pass it as a handler to the props.
 Define the Counter functionality in the App Component and provide the state and handler as props to Click Counter and Hover Counter.
 If there is a scenario where the Counter Component are not child of Parent Component then in this case we have to drill down till the Child Component.
-So there is a need to share the common functionalities between the Components without having Parent to Child Relationship.
+So there is a need to share the common functionalities between the Components without having any Parent Child Relationship.
 Here we use Higher Order Components.
 
 ########################################################### 34.Higher Order Components Part 2  ###########################################
 
 Higher Order Component is a pattern where function takes a Component as an argument and returns a new Component.
-
-	const newComponent=higherOrderComponent(OriginalComponent)
-	
 Typlically Higher Order Component adds additional data to Original Component.
 So the new Component is also referred to as enhanced Component.
+
+	const newComponent=higherOrderComponent(OriginalComponent)
 
 Setps to create an Higher Order Component :
 1.Create a HOC named withCounter.js
 
-	const NewComponent = (OriginalComponent) => {
+	const withCounter = (OriginalComponent) => {
 
-    class NewComponent extends OriginalComponent{
+    class WithCounter extends OriginalComponent{
         render(){
             return <OriginalComponent name='Srinivas'></OriginalComponent>
         }
@@ -1524,7 +1575,7 @@ To fix this issue we need we need to pass the remaining props to the wrapped Com
 			></OriginalComponent>
         }
 		
-Scenario 1 :
+Scenario 2 :
 ------------
 Passing parameters to the HOC function.
 Consider the scenario where we increment the count by 5 in ClickCounter and 10 in HoverCounter Component.
@@ -1545,14 +1596,324 @@ We can do that by passing the parameter to the HOC function.
 
 ########################################################### 36.Render Props Part 1 #######################################################
 
-    
+Render Props is similar to Higher Order Component.
+
+Create the Component named 
+ClickCounterTwo.js
+HoverCounterTwo.js
+ 
 ########################################################### 37.Render Props Part 2 #######################################################   
 
+In React it is possible to use a prop whose value is a function to control what is actually rendered by a Component.
+The term "render props" refers to a technique for sharing code between Components using a prop whose value is a function.
+
+Create the Component named User.js
+
+Scenario 1:
+-----------
+To the User Component pass the name as props from App Component.
+
+	function App() {
+	  return (
+		<div className='App'>
+		  <ClickCounterTwo/>
+		  <HoverCounterTwo/>
+		  <User name='Srinivas from App Component'/>
+		</div>
+	  )
+	}
+	
+	render(){
+		return(
+			<React.Fragment>
+			   {this.props.name}
+			</React.Fragment>
+		)
+    }
+	
+Scenario 2 :
+------------
+Instead of passing the name as String,pass the function which will return a String.
+
+	function App() {
+	  return (
+		<div className='App'>
+		  <ClickCounterTwo/>
+		  <HoverCounterTwo/>
+		  <User name={() => 'Srinivas from App Component'}></User>
+		</div>
+	  )
+	}
+	
+	render(){
+        return(
+            <React.Fragment>
+               {this.props.name()}
+            </React.Fragment>
+        )
+    }
+	
+Scenario 3 :
+------------
+Now pass the parameter to the function from App Component to User Component.
+
+	function App() {
+	  return (
+		<div className='App'>
+		  <ClickCounterTwo/>
+		  <HoverCounterTwo/>
+		  <User name={(loggedIn) => loggedIn?'Srinivas':'Guest'}></User>
+		</div>
+	  )
+	}
+	
+	render(){
+        const {loggedIn} =this.props
+        return(
+            <React.Fragment>
+               {this.props.name(loggedIn)}
+            </React.Fragment>
+        )
+    }
+
+Scenario 4 :
+------------
+In React it is possible to use a prop whose value is a function to control what is actually rendered into the Component.
+From the above 3 Scenarios we have learnt how to use prop whose value is a function
+Now we will see how to share the functionality.
+
+Create the Component named Counter.js
+Copy the common functionality i.e. state and incrementCounter.
+
+	function App() {
+	  return (
+		<div className='App'>
+		  <Counter
+			render={(count, incrementCount) => (<ClickCounterTwo count={count} incrementCount={incrementCount}>
+			</ClickCounterTwo>) 
+			}
+		  ></Counter>
+		  <Counter
+			render={(count, incrementCount) => (<HoverCounterTwo count={count} incrementCount={incrementCount}>
+			</HoverCounterTwo>)
+			}
+		  ></Counter>
+		</div>
+	  )
+	}
 
 ########################################################### 38.Context Part 1   ##########################################################
 
-      
+Consider the scenario we have lot of Components.
+
+	Component A   Component B        Component C
+					  ^					 ^
+				  Component D		 Component E
+										 ^
+									 Component F
+									
+Here the requirement is that Component A,D and F are supposed to display Logged in Username.
+Here the Username is the property in the App Component.
+For Component A it is straight forward i.e. we can pass it as props.
+It will become complex when the Componnet hierarchy grows as it has to pass through all the Components.
+Context provides a way to pass the data through the Component Tree without having to pass props down to the Tree manually at every Level.
+ 
 ########################################################### 39.Context Part 2   ##########################################################
 
+Here we will be implementing User Context which will enable Component at any Level to read a props that is passed at Top level.
+Our goal is passs the name from App Component and read that value in Component F using the Context.
+Create the File named userContext.js
+There are 3 steps to implement the Context
+1.Create the Context
 
-########################################################### 40.Context Part 3   ##########################################################         
+	import React from "react";
+
+	const UserContext=React.createContext()
+	const UserProvider=UserContext.Provider
+	const UserConsumer=UserContext.Consumer
+
+	export {UserProvider,UserConsumer}
+	
+2.Provide the Context value
+The place we provide the Provider is important because only the descendant Components can consume it.
+We place the Provider in the App Component.
+
+	function App() {
+	  return (
+		<div className='App'>
+		  <UserProvider value='Srinivas'>
+			  <C></C>
+		  </UserProvider>
+		</div>
+	  )
+	}
+
+3.Consume the Context value in necessary Component.
+To consume the Context Value we need to use the Consumer Component.
+
+	class F extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            message: 'Component F'
+        }
+    }
+    render() {
+        return (
+            <UserConsumer>
+                {
+                    (username) => {
+                        <h2>Component F</h2>
+                        return <React.Fragment>Hello {username} </React.Fragment>
+                    }
+                }
+            </UserConsumer>
+        )
+    }
+	}
+	export default F
+
+########################################################### 40.Context Part 3   ##########################################################
+
+Usecase 1 :
+-----------
+We can set the default value to the Context while creating the Context.
+It is passed as an argument to createContext().
+
+	import React from "react";
+
+	const UserContext=React.createContext('Code Evolution')
+	const UserProvider=UserContext.Provider
+	const UserConsumer=UserContext.Consumer
+
+	export {UserProvider,UserConsumer}
+	
+	function App() {
+	  return (
+		<div className='App'>
+			  <C></C>
+		</div>
+	  )
+	}
+	
+Usecase 2 :
+-----------
+In the above example we used UserConsumer to consume the Context value.
+We can also get the Consumer value by using Context Type property on a Class.
+
+There are 2 setps to get the context value by using Context Type
+1.export the Context itself
+	
+	import React from "react";
+
+	const UserContext=React.createContext('Code Evolution')
+	const UserProvider=UserContext.Provider
+	const UserConsumer=UserContext.Consumer
+
+	export {UserProvider,UserConsumer}
+	export default UserContext
+	
+Step 2 :
+--------
+Assign the UserContext to the contextType property on the Class.
+
+	class E extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            message: 'Component E'
+        }
+    }
+    render() {
+        return (
+            <React.Fragment>
+			 {this.context}
+                <F></F>
+            </React.Fragment>
+        )
+    }
+	}
+
+	E.contextType=UserContext (or)  static contextType=UserContext
+	export default E
+
+Notes :
+-------
+Context Type works only with Class Component.
+We can subscribe only to a single Context using Context Type.
+
+########################################################### 41.HTTP and React ############################################################
+
+Whenever we are building any Web Application we do not often reach to Server to fetch the data or to send the data.
+We use API's to perform these tasks.
+React is a library for building User Interfaces.React is no where concerned about HTTP.
+React Component simply reads the props & state and render the UI.
+Here we make use of HTTP Library.
+There are few popular HTTP libraries like axios,fetch API etc.
+We will be using axios to communicate with the Server.
+Add the axios package to the React Application.
+
+	npx create-react-app react-http
+		
+To install the axios package
+
+	npm install axios
+		      
+########################################################### 42.GET Request  ##############################################################
+
+To fetch the API we need to have an API End Point.
+For that we will be using Json Place Holder.
+Create the Component named PostList.js.
+
+Step 1 :
+--------
+import the axios library.
+
+	import axios from 'axios'
+
+Step 2 :
+--------
+Create the state property which will hold List of Posts.
+
+	 constructor(props){
+		super(props)
+		this.state={
+			posts:[]
+		}
+	}
+	
+Step 3 :
+--------
+Use the axios to make the GET request to an API in the componentDidMount() Lifecycle method.
+
+	 componentDidMount(){
+        axios.get('https://jsonplaceholder.typicode.com/posts1').then(response => {
+            this.setState({
+                posts:response.data
+            })
+        }).catch(error => {
+            this.setState({
+                errorMessage:'Error in fetching the post'
+            })
+        })
+    }
+	
+	 render() {
+        const {posts,errorMessage} =this.state
+        return (
+            <React.Fragment>
+                <h2>List of Posts</h2>
+                {posts.map(post => 
+                    <div key={post.id}>
+                        {post.title}
+                    </div>
+                )}
+                {
+                    errorMessage?<div><h3>{errorMessage}</h3></div>:null
+                }
+            </React.Fragment>
+        )
+    }
+
+
+########################################################### 43.POST Request ##############################################################  
