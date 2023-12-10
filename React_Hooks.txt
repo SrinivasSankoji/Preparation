@@ -6,31 +6,35 @@
 6.useEffect Hook                                                        (Code Evolution)   			[09-DEC-2023]  (Done)
 7.useEffect after render                                                (Code Evolution)   			[09-DEC-2023]  (Done)
 
-8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  ()
-9.run effects only once                                                 (Code Evolution)   			[10-DEC-2023]  ()
-10.useEffect with cleanup                                               (Code Evolution)   			[10-DEC-2023]  ()
-11.useEffect with incorrect dependency                                  (Code Evolution)   			[10-DEC-2023]  ()
-12.fetching data with useEffect part 1                                  (Code Evolution)   			[10-DEC-2023]  ()
-13.fetching data with useEffect part 2                                  (Code Evolution)   			[10-DEC-2023]  ()
-14.fetching data with useEffect part 3                                  (Code Evolution)   			[10-DEC-2023]  ()
+8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  (Done)
+9.run effects only once                                                 (Code Evolution)   			[10-DEC-2023]  (Done)
+10.useEffect with cleanup                                               (Code Evolution)   			[11-DEC-2023]  ()
+11.useEffect with incorrect dependency                                  (Code Evolution)   			[11-DEC-2023]  ()
 
-15.useContext Hook part 1                                               (Code Evolution)   			[01-DEC-2023]  ()
-16.useContext Hook part 2                                               (Code Evolution)   			[01-DEC-2023]  ()
-17.useContext Hook part 3                                               (Code Evolution)   			[01-DEC-2023]  ()
+12.fetching data with useEffect part 1                                  (Code Evolution)   			[12-DEC-2023]  ()
+13.fetching data with useEffect part 2                                  (Code Evolution)   			[12-DEC-2023]  ()
+14.fetching data with useEffect part 3                                  (Code Evolution)   			[12-DEC-2023]  ()
 
-18.useReducer Hook                                                      (Code Evolution)   			[09-DEC-2023]  ()
-19.useReducer Hook Simple state and Action                              (Code Evolution)   			[09-DEC-2023]  ()
-20.useReducer Hook Complex state and Action                             (Code Evolution)   			[09-DEC-2023]  ()
-21.Multiple Use Reducers                                                (Code Evolution)   			[09-DEC-2023]  ()
-22.useReducer with useContext                                           (Code Evolution)   			[09-DEC-2023]  ()
-23.fetching data with useReducer part 1                                 (Code Evolution)   			[09-DEC-2023]  ()
-24.fetching data with useReducer part 2                                 (Code Evolution)   			[09-DEC-2023]  ()
-25.useState vs useReducer                                               (Code Evolution)   			[09-DEC-2023]  ()
+15.useContext Hook part 1                                               (Code Evolution)   			[13-DEC-2023]  ()
+16.useContext Hook part 2                                               (Code Evolution)   			[13-DEC-2023]  ()
+17.useContext Hook part 3                                               (Code Evolution)   			[13-DEC-2023]  ()
 
-26.useCallBack Hook                                                     (Code Evolution)   			[10-DEC-2023]  ()
-27.useMemo Hook                                                         (Code Evolution)   			[10-DEC-2023]  ()
+18.useReducer Hook                                                      (Code Evolution)   			[16-DEC-2023]  ()
+19.useReducer Hook Simple state and Action                              (Code Evolution)   			[16-DEC-2023]  ()
+20.useReducer Hook Complex state and Action                             (Code Evolution)   			[16-DEC-2023]  ()
+21.Multiple Use Reducers                                                (Code Evolution)   			[16-DEC-2023]  ()
+22.useReducer with useContext                                           (Code Evolution)   			[16-DEC-2023]  ()
+
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[17-DEC-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[17-DEC-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[17-DEC-2023]  ()
+
+26.useCallBack Hook                                                     (Code Evolution)   			[17-DEC-2023]  ()
+27.useMemo Hook                                                         (Code Evolution)   			[17-DEC-2023]  ()
+
 28.useRef Hook part 1                                                   (Code Evolution)   			[10-DEC-2023]  ()
 29.useRef Hook part 2                                                   (Code Evolution)   			[10-DEC-2023]  ()
+
 30.Custom Hooks                                                         (Code Evolution)   			[01-DEC-2023]  ()
 31.useDocumentTitle Custom Hook                                         (Code Evolution)   			[01-DEC-2023]  ()
 32.useCounter custom Hook                                               (Code Evolution)   			[01-DEC-2023]  ()
@@ -225,7 +229,7 @@ Updating the DOM,fetching the data from an End point,setting up subscriptions,ti
 Since the render() will be too early to perform side effects we use Component Lifecycle methods.
 
 Consider the scenario of updating the Document title to the current Counter value.
-For the initial render Document Title set to "Clicked 0 times".
+For the initial render,Document title set to "Clicked 0 times".
 This code will be written inside ComponentDidMount() which will be executed only once in the Component Lifecycle.
 We then have a button to increment the count value.
 Along with the updated count value Document title needs to be updated.
@@ -273,16 +277,151 @@ By default useEffect runs after every render of the Component.
 In some cases applying the useEffect might create some performance problems.
 We need a way to conditionally run the useEffect from Functional Component.
 
+	class DocumentTitle extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            count: 0,
+            message: 'Documet title',
+            name:''
+        }
+    }
 
- 
-              
+    incrementCount = () => {
+        this.setState((previousCount) => {
+            return {
+                count: previousCount.count + 1
+            }
+        })
+    }
+
+    componentDidMount() {
+        document.title = `Clicked ${this.state.count} times`
+    }
+
+    componentDidUpdate(previousProps, prevState) {
+        console.log(`Executing Component Did Update Life cycle`)
+        document.title = `Clicked ${this.state.count} times`
+    }
+
+    nameHandler = (event) => {
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Document title</h3>
+                <input type='text' value={this.state.name} onChange={this.nameHandler}></input>
+                <button onClick={this.incrementCount}>Clicked {this.state.count} times</button>
+            </div>
+        )
+    }
+	}
+
+From the above code componentDidUpdate() will get executed even if there is no change in the count value.
+To resolve this we can compare the count value before and after the update.
+If there is a change in count value then execute the componentDidUpdate().
+
+	 componentDidUpdate(previousProps, prevState) {
+        if(prevState.count !== this.state.count){
+            console.log(`Executing Component Did Update Life cycle`)
+            document.title = `Clicked ${this.state.count} times`
+        }
+    }
+	
+If we want to achieve the same using useEffect in Functional Component.
+The way we need to inform React to conditionally render the useEffect is by passing the props or state as a second parameter in the useEffect.
+
+	function DocumentTitleUseEffect(){
+    const [count,setCount] = useState(0)
+    const [name,setName] =useState('')
+    useEffect( () =>{
+        console.log(`Executing useEffect`)
+        document.title=`Clicked ${count} times`
+    },[count])
+    return(
+        <div>
+            <h3>Document title using useEffect</h3>
+            <input type='text' value={name} onChange={element => setName(element.target.value)}></input>
+            <button onClick={() => setCount(previousCount => previousCount+1)}>Clicked {count} times</button>
+        </div>
+		)
+	}
+            
 ########################################################### 9.run effects only once  ###################################################
 
-                  
+Here we will see how to run the useEffect only once i.e how to mimic ComponentDidMount() with useEffect along with Functional Component.
+Consider the scenario of displaying the mouse cordinates by using eventListener.
+We need to listen the mousemove event and log the mouse position in the state variables.
+
+	class MousePosition extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            message:'Mosue coordinates',
+            x:0,
+            y:0
+        }
+    }
+    logMousePosition = (event) => {
+        this.setState({
+            x:event.clientX,
+            y:event.clientY
+        })
+    }
+    componentDidMount(){
+        console.log('Mouse Move event')
+        window.addEventListener('mousemove',this.logMousePosition)
+    }
+    render(){
+        return(
+            <div>
+                <h2>{this.state.message}</h2>
+                X coordinates - {this.state.x} and Y coordinates {this.state.y}
+            </div>
+        )
+    }
+	}
+	
+Note :
+------
+Here we set up the Event Listener only once i.e. by using componentDidMount() Lifecycle method.
+
+Now we achieve the same functionality by using useEffect hook.
+
+	function MousePositionUseEffect(){
+    const [x,setX]=useState(0)
+    const [y,setY]=useState(0)
+
+    const logMousePosition = event => {
+        console.log('Mouse Move using useEffect')
+        setX(event.clientX)
+        setY(event.clientY)
+    }
+
+    useEffect( () =>{
+        window.addEventListener('mousemove',logMousePosition)
+    },[])
+
+    return (
+        <div>
+            <h2> Mouse coordinates using useEffect</h2>
+            X coordinates {x} and Y coordinates {y}
+        </div>
+		)
+	}
+                
 ########################################################### 10.useEffect with cleanup  #################################################
+
+
 
                
 ########################################################### 11.useEffect with incorrect dependency #####################################
+
+
 
     
 ########################################################### 12.fetching data with useEffect part 1  ####################################
