@@ -8,12 +8,12 @@
 
 8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  (Done)
 9.run effects only once                                                 (Code Evolution)   			[10-DEC-2023]  (Done)
-10.useEffect with cleanup                                               (Code Evolution)   			[11-DEC-2023]  ()
+10.useEffect with cleanup                                               (Code Evolution)   			[12-DEC-2023]  (Done)
 11.useEffect with incorrect dependency                                  (Code Evolution)   			[11-DEC-2023]  ()
 
-12.fetching data with useEffect part 1                                  (Code Evolution)   			[12-DEC-2023]  ()
-13.fetching data with useEffect part 2                                  (Code Evolution)   			[12-DEC-2023]  ()
-14.fetching data with useEffect part 3                                  (Code Evolution)   			[12-DEC-2023]  ()
+12.fetching data with useEffect part 1                                  (Code Evolution)   			[12-DEC-2023]  (Done)
+13.fetching data with useEffect part 2                                  (Code Evolution)   			[12-DEC-2023]  (Done)
+14.fetching data with useEffect part 3                                  (Code Evolution)   			[12-DEC-2023]  (Done)
 
 15.useContext Hook part 1                                               (Code Evolution)   			[13-DEC-2023]  ()
 16.useContext Hook part 2                                               (Code Evolution)   			[13-DEC-2023]  ()
@@ -416,9 +416,37 @@ Now we achieve the same functionality by using useEffect hook.
                 
 ########################################################### 10.useEffect with cleanup  #################################################
 
+When we unmounted the Component we also make sure to cancel all the subscriptions and listeners i.e. clean up the Component.
+In case of Class Component we will be using componentWillUnmount() Lifecycle method.
 
+	 componentWillUnmount(){
+        console.log('removing mouse event listener')
+        window.removeEventListener('mousemove',this.logMousePosition)
+    }
+	
+If we want to implement the same using useEffect hook is quite simple.
+The function which is passed to useEffect can return a function which will be executed when the Component will unmount.
 
-               
+	function MousePositionUnmount() {
+    const [display, setDisplay] = useState(true)
+    return(
+        <div>
+            <button onClick={() =>setDisplay(!display)}>Toggle mouse over</button>
+            {display && <MousePositionUseEffect></MousePositionUseEffect>}
+        </div>
+		)
+	}
+	
+	useEffect( () =>{
+        console.log('useEffect Called')
+        window.addEventListener('mousemove',logMousePosition)
+
+        return () =>{
+            console.log('Component Unmounting code')
+            window.removeEventListener('mousemove',logMousePosition)
+        }
+    },[])
+        
 ########################################################### 11.useEffect with incorrect dependency #####################################
 
 
@@ -426,8 +454,114 @@ Now we achieve the same functionality by using useEffect hook.
     
 ########################################################### 12.fetching data with useEffect part 1  ####################################
 
- 
+	function FetchPost(){
+    const [posts,setPosts]=useState([])
+    useEffect(() =>{
+        axios.get('https://jsonplaceholder.typicode.com/posts').then(response => {
+            console.log(response)
+            setPosts(response.data)
+        }).catch(error =>{
+            console.log(error)
+        })
+    },[])
+    return (
+        <div>
+            <h2>Fethcing post data</h2>
+            <ul>
+                {
+                    posts.map(post => <li key={post.id}>{post.title}</li>)
+                }
+            </ul>
+        </div>
+		)
+	}
+	
+Note :
+------
+If we don't specify the [] as the second parameter in useEffect it will keep on execute the useEffect hook.
+To make the useEffect hook as componentDidMount() Lifecycle we pass the [] as second parameter so that it will be executed only once.
+
 ########################################################### 13.fetching data with useEffect part 2 #####################################
 
-   
-########################################################### 14.fetching data with useEffect part 3 #####################################   
+Here we will see how to get the individual post by passing the postid to the GET request.
+Here we need to append the post id to the GET request.
+	
+	function FetchPost(){
+    const [post,setPost]=useState({})
+    const[postId,setPostId]=useState(1)
+    useEffect(() =>{
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+        .then(response => {
+            console.log(response)   
+            setPost(response.data)
+        }).catch(error =>{
+            console.log(error)
+        })
+    },[postId])
+    return (
+        <div>
+            <h2>Fethcing individual post data</h2>
+            <input type='text' value={postId} onChange={event => {setPostId(event.target.value)}}></input>
+            <br></br>
+            {post.title}
+        </div>
+		)
+	}
+Note :
+------
+For every input change it is calling the API.
+To avoid this we will call the API based on request using Button.
+
+########################################################### 14.fetching data with useEffect part 3 #####################################
+
+	function FetchPost(){
+    const [post,setPost]=useState({})
+    const[id,setId]=useState(1)
+    const[postId,setPostId]=useState(1)
+    useEffect(() =>{
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+        .then(response => {
+            console.log(response)   
+            setPost(response.data)
+        }).catch(error =>{
+            console.log(error)
+        })
+    },[postId])
+
+    const getPost = () =>{
+        setPostId(id)
+    }
+
+    return (
+        <div>
+            <h2>Fethcing individual post data</h2>
+            <input type='text' value={id} onChange={event => {setId(event.target.value)}}></input>
+            <button onClick={getPost}>Fetch post</button>
+            <br></br>
+            {post.title}
+        </div>
+		)
+	}
+	
+########################################################### 15.useContext Hook part 1  ###########################################################
+
+                   
+########################################################### 16.useContext Hook part 2  ###########################################################
+
+                   
+########################################################### 17.useContext Hook part 3  ###########################################################
+                    
+
+########################################################### 18.useReducer Hook  ##################################################################
+
+                         
+########################################################### 19.useReducer Hook Simple state and Action  ##########################################
+
+
+########################################################### 20.useReducer Hook Complex state and Action ##########################################
+
+
+########################################################### 21.Multiple Use Reducers  ############################################################
+
+                  
+########################################################### 22.useReducer with useContext  #######################################################              
