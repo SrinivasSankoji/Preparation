@@ -5,35 +5,30 @@
 5.useState with Array                                                   (Code Evolution)   			[09-DEC-2023]  (Done)
 6.useEffect Hook                                                        (Code Evolution)   			[09-DEC-2023]  (Done)
 7.useEffect after render                                                (Code Evolution)   			[09-DEC-2023]  (Done)
-
 8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  (Done)
 9.run effects only once                                                 (Code Evolution)   			[10-DEC-2023]  (Done)
 10.useEffect with cleanup                                               (Code Evolution)   			[12-DEC-2023]  (Done)
 11.useEffect with incorrect dependency                                  (Code Evolution)   			[11-DEC-2023]  ()
-
 12.fetching data with useEffect part 1                                  (Code Evolution)   			[12-DEC-2023]  (Done)
 13.fetching data with useEffect part 2                                  (Code Evolution)   			[12-DEC-2023]  (Done)
 14.fetching data with useEffect part 3                                  (Code Evolution)   			[12-DEC-2023]  (Done)
+15.useContext Hook part 1                                               (Code Evolution)   			[13-DEC-2023]  (Done)
+16.useContext Hook part 2                                               (Code Evolution)   			[14-DEC-2023]  (Done)
+17.useContext Hook part 3                                               (Code Evolution)   			[13-DEC-2023]  (Done)
 
-15.useContext Hook part 1                                               (Code Evolution)   			[13-DEC-2023]  ()
-16.useContext Hook part 2                                               (Code Evolution)   			[13-DEC-2023]  ()
-17.useContext Hook part 3                                               (Code Evolution)   			[13-DEC-2023]  ()
-
-18.useReducer Hook                                                      (Code Evolution)   			[16-DEC-2023]  ()
-19.useReducer Hook Simple state and Action                              (Code Evolution)   			[16-DEC-2023]  ()
-20.useReducer Hook Complex state and Action                             (Code Evolution)   			[16-DEC-2023]  ()
-21.Multiple Use Reducers                                                (Code Evolution)   			[16-DEC-2023]  ()
+18.useReducer Hook                                                      (Code Evolution)   			[18-DEC-2023]  ()
+19.useReducer Hook Simple state and Action                              (Code Evolution)   			[15-DEC-2023]  ()
+20.useReducer Hook Complex state and Action                             (Code Evolution)   			[15-DEC-2023]  ()
+21.Multiple Use Reducers                                                (Code Evolution)   			[15-DEC-2023]  ()
 22.useReducer with useContext                                           (Code Evolution)   			[16-DEC-2023]  ()
-
-23.fetching data with useReducer part 1                                 (Code Evolution)   			[17-DEC-2023]  ()
-24.fetching data with useReducer part 2                                 (Code Evolution)   			[17-DEC-2023]  ()
-25.useState vs useReducer                                               (Code Evolution)   			[17-DEC-2023]  ()
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[16-DEC-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[16-DEC-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[16-DEC-2023]  ()
 
 26.useCallBack Hook                                                     (Code Evolution)   			[17-DEC-2023]  ()
 27.useMemo Hook                                                         (Code Evolution)   			[17-DEC-2023]  ()
-
-28.useRef Hook part 1                                                   (Code Evolution)   			[10-DEC-2023]  ()
-29.useRef Hook part 2                                                   (Code Evolution)   			[10-DEC-2023]  ()
+28.useRef Hook part 1                                                   (Code Evolution)   			[16-DEC-2023]  ()
+29.useRef Hook part 2                                                   (Code Evolution)   			[16-DEC-2023]  ()
 
 30.Custom Hooks                                                         (Code Evolution)   			[01-DEC-2023]  ()
 31.useDocumentTitle Custom Hook                                         (Code Evolution)   			[01-DEC-2023]  ()
@@ -545,12 +540,138 @@ To avoid this we will call the API based on request using Button.
 	
 ########################################################### 15.useContext Hook part 1  ###########################################################
 
-                   
+Context provides a way to pass the data through the Component Tree without having to pass the props down to the Tree manually at every level.
+              
 ########################################################### 16.useContext Hook part 2  ###########################################################
 
-                   
+Create the Component C,E and F where the Components are nested inside other Component.
+Here the requirement is to pass the name as props from App Component to F Component.
+
+To create the Context we need to follow 3 steps.
+
+1.Create the Context
+2.Provide the Provider and Consumer
+3.Get the value from Consumer
+
+
+	import './App.css';
+	import C from './UseContext/C';
+	import React from 'react'
+
+	export const UserContext=React.createContext();
+
+	function App() {
+	  return (
+		<div className="App">
+		  <UserContext.Provider value={'Srinivas'}>
+			<C></C>
+		  </UserContext.Provider>
+		  
+		</div>
+	  );
+	}
+	
+	import React from 'react'
+	import { UserContext } from '../App'
+
+	function F() {
+		return (
+			<div>
+				<h2>Component F</h2>
+				<UserContext.Consumer>
+					{
+						name => {
+							return <div>User Contaxt value is {name}</div>
+						}
+					}
+				</UserContext.Consumer>
+			</div>
+		)
+	}
+
+
+The above code is to get the data from single context.
+Consider the scenario to fetching the data from multiple context i.e. ChannelContext.
+
+	function App() {
+	  return (
+		<div className="App">
+		  <UserContext.Provider value={'Srinivas'}>
+			<Channelontext.Provider value={'Nandini'}>
+			  <C></C>
+			</Channelontext.Provider>
+		  </UserContext.Provider>
+		</div>
+	  );
+	}
+	
+	function F() {
+    return (
+        <div>
+            <h2>Component F</h2>
+            <UserContext.Consumer>
+                {
+                    user => {
+                        return (
+                            <Channelontext.Consumer>
+                                {
+                                    channel => {
+                                        return (
+                                            <div>
+                                                user name is {user} and channel is {channel}
+                                            </div>
+                                        )
+                                    }
+                                }
+                            </Channelontext.Consumer>
+                        )
+                    }
+                }
+            </UserContext.Consumer>
+        </div>
+    )
+	}
+	
+Note :
+------
+From the above code to get the data from multiple context the code is bulky and difficult to understand.
+To resolve this we use useContext approach.
+                
 ########################################################### 17.useContext Hook part 3  ###########################################################
-                    
+
+The first two steps i.e. creating the Context and providing the Context is same.
+The useContext only makes the consumption of the context value simpler.
+There are 3 simple steps to consume the Context value.
+
+1.import useContext from React.
+2.import the necessary Context.
+3.Call the useContext() function by passing in the Context as its argument.
+
+	export const UserContext=React.createContext();
+	export const ChannelContext=React.createContext();
+
+	function App() {
+	  return (
+		<div className="App">
+		  <UserContext.Provider value={'Srinivas'}>
+			<Channelontext.Provider value={'Nandini'}>
+			  <C></C>
+			</Channelontext.Provider>
+		  </UserContext.Provider>
+		</div>
+	  );
+	}
+
+	function E() {
+    const username=useContext(UserContext)
+    const channelname=useContext(ChannelContext)
+    return (
+        <div>
+            {username} and {channelname}
+        </div>
+		)
+	}
+	export default E
 
 ########################################################### 18.useReducer Hook  ##################################################################
 
@@ -564,4 +685,20 @@ To avoid this we will call the API based on request using Button.
 ########################################################### 21.Multiple Use Reducers  ############################################################
 
                   
-########################################################### 22.useReducer with useContext  #######################################################              
+########################################################### 22.useReducer with useContext  #######################################################
+
+
+########################################################### 23.fetching data with useReducer part 1  #############################################
+
+                
+########################################################### 24.fetching data with useReducer part 2  #############################################
+
+  
+########################################################### 25.useState vs useReducer  ###########################################################
+
+
+########################################################### 26.useCallBack Hook  #################################################################
+
+
+                  
+########################################################### 27.useMemo Hook   ####################################################################

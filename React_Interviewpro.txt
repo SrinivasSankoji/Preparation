@@ -1,0 +1,135 @@
+1.Conditionl Rendering							(InterviewPro)   			[17-DEC-2023]  ()
+2.Higher Order Component                        (InterviewPro)   			[14-DEC-2023]  (Done)
+3.UseEffect                                     (InterviewPro)   			[17-DEC-2023]  (Done)
+4.UseContext                                    (InterviewPro)   			[17-DEC-2023]  ()
+5.useReducer                                    (InterviewPro)   			[17-DEC-2023]  ()
+6.useMemo                                       (InterviewPro)   			[17-DEC-2023]  ()
+7.useCallback                                   (InterviewPro)   			[17-DEC-2023]  ()
+8.useSearchParams                               (InterviewPro)   			[17-DEC-2023]  ()
+9.Lazy Loading                                  (InterviewPro)   			[17-DEC-2023]  ()
+10.Loader                                       (InterviewPro)   			[17-DEC-2023]  ()
+
+########################################################### 1.Conditionl Rendering ###########################################################
+
+
+
+########################################################### 2.Higher Order Component #########################################################
+
+1.Higher Order Component :
+--------------------------
+
+	const Counter = (OriginalComponent) => {
+
+    const CounterComponent = () => {
+        const [count, setCount] = useState(0)
+
+        const incrementCount = () => {
+            setCount(count => count + 1)
+        }
+        return(
+            <div>
+                <OriginalComponent incrementCount={incrementCount} count={count}/>
+            </div>
+			)
+		}
+		return CounterComponent
+	}
+
+	export default Counter
+	
+2. ClickCounter Component :
+---------------------------
+
+	const ClickCounter = (props) => {
+    return (
+        <div>
+            <h2>Higher Order Component </h2>
+            <p>Count : {props.count}</p>
+            <button onClick={props.incrementCount}>Increment</button>
+        </div>
+		)
+	}
+	export default Counter(ClickCounter)
+	
+
+########################################################### 3.UseEffect  #####################################################################
+
+We get the data from Network when an API is being called.
+The API has to load the data whenever the Component is mounted.
+In the Class Component it can be done by using componentDidMount() Lifecycle method.
+
+Mounting with useEffect :
+-------------------------
+
+	const Home = () => {
+    const [users,setUsers]=useState([])
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+          .then(response => response.json())
+          .then(users => setUsers(users))
+    },[])
+    return (
+        <>
+            <UserList users={users}></UserList>
+        </>
+		)
+	}
+	export default Home
+
+Updating with useEffect :
+-------------------------
+Consider the scenrio where we display the user information based on user id.
+Above the user List we need to display the selected user list.
+For that create the Component named User.
+
+	const UserList = (props) => {
+    const [selectedUser,setSelectedUser]=useState({})
+    const [id,setId]=useState(0)
+    useEffect(() => {
+        if (id > 0) {
+            fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+                .then(response => response.json())
+                .then(user => setSelectedUser(user))
+        }
+    }, [id])
+    return (
+        <div>
+            <User user={selectedUser}></User>
+            {
+                props.users.map(user => (<li key={user.id} onClick={() => setId(user.id)}>{user.name}</li>))
+            }
+        </div>
+		)
+	}
+
+
+Unmounting with useEffect :
+---------------------------
+Here the requirement is to display the current time in the page and has to be updated every second.
+
+	 const [date,setDate]=useState(new Date().toString())
+	 
+	 useEffect(() => {
+        const timer=setInterval(() => {
+            setDate(new Date().toString())
+        },1000)
+			console.log(timer)
+	 })
+	 
+Here it will be executed continuously.
+To resolve this we use the callback function in useEffect which will remove the timer before creating the new timer.
+
+	useEffect(() => {
+        const timer=setInterval(() => {
+            setDate(new Date().toString())
+        },1000)
+        return () =>{
+            clearInterval(timer)
+            console.log(timer +'cleared')
+        }
+        console.log(timer)
+    },[])
+	
+########################################################### 4.UseContext  ###########################################################
+
+

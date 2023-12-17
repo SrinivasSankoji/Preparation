@@ -1721,18 +1721,19 @@ Context provides a way to pass the data through the Component Tree without havin
 ########################################################### 39.Context Part 2   ##########################################################
 
 Here we will be implementing User Context which will enable Component at any Level to read a props that is passed at Top level.
-Our goal is passs the name from App Component and read that value in Component F using the Context.
+Our goal is to passs the name from App Component and read that value in Component F using the Context.
 Create the File named userContext.js
 There are 3 steps to implement the Context
-1.Create the Context
+1.Create the Context in userContext.js
 
 	import React from "react";
 
-	const UserContext=React.createContext()
+	const UserContext=React.createContext('Code Evolution')
 	const UserProvider=UserContext.Provider
 	const UserConsumer=UserContext.Consumer
 
 	export {UserProvider,UserConsumer}
+	export default UserContext
 	
 2.Provide the Context value
 The place we provide the Provider is important because only the descendant Components can consume it.
