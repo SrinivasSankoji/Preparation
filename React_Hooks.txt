@@ -15,18 +15,19 @@
 15.useContext Hook part 1                                               (Code Evolution)   			[13-DEC-2023]  (Done)
 16.useContext Hook part 2                                               (Code Evolution)   			[14-DEC-2023]  (Done)
 17.useContext Hook part 3                                               (Code Evolution)   			[13-DEC-2023]  (Done)
+18.useReducer Hook                                                      (Code Evolution)   			[25-DEC-2023]  (Done)
+19.useReducer Hook Simple state and Action                              (Code Evolution)   			[25-DEC-2023]  (Done)
+20.useReducer Hook Complex state and Action                             (Code Evolution)   			[30-DEC-2023]  (Done)
+21.Multiple Use Reducers                                                (Code Evolution)   			[30-DEC-2023]  (Done)
 
-18.useReducer Hook                                                      (Code Evolution)   			[18-DEC-2023]  ()
-19.useReducer Hook Simple state and Action                              (Code Evolution)   			[15-DEC-2023]  ()
-20.useReducer Hook Complex state and Action                             (Code Evolution)   			[15-DEC-2023]  ()
-21.Multiple Use Reducers                                                (Code Evolution)   			[15-DEC-2023]  ()
-22.useReducer with useContext                                           (Code Evolution)   			[16-DEC-2023]  ()
-23.fetching data with useReducer part 1                                 (Code Evolution)   			[16-DEC-2023]  ()
-24.fetching data with useReducer part 2                                 (Code Evolution)   			[16-DEC-2023]  ()
-25.useState vs useReducer                                               (Code Evolution)   			[16-DEC-2023]  ()
+22.useReducer with useContext                                           (Code Evolution)   			[31-DEC-2023]  (Done)
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[31-DEC-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[31-DEC-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[31-DEC-2023]  ()
 
 26.useCallBack Hook                                                     (Code Evolution)   			[17-DEC-2023]  ()
 27.useMemo Hook                                                         (Code Evolution)   			[17-DEC-2023]  ()
+
 28.useRef Hook part 1                                                   (Code Evolution)   			[16-DEC-2023]  ()
 29.useRef Hook part 2                                                   (Code Evolution)   			[16-DEC-2023]  ()
 
@@ -675,20 +676,253 @@ There are 3 simple steps to consume the Context value.
 
 ########################################################### 18.useReducer Hook  ##################################################################
 
-                         
+useReducer is a hook that is used for state management.
+useReducer is an alternative to state management.
+useState is internally built using useReducer.
+useReducer is more primitive compared to useState hook.
+If both are meant for managing the state then which one to use when ?
+
+reduce :
+--------
+reduce() method executes a reducer() function on each element of the array which resulting in a single output value.
+reducer() accepts the accumulator and the current value and returns the single value.
+
+useReducer :
+------------
+useReducer has two parameters i.e. reducer()  and initialState.
+reducer() accepts two parameters i.e. currentState and action and returns the new state.
+Here the action parameter dictates the state transition from the current state to the new state.
+useReducer returns a pair of values i.e. newState and dispatch which is specifically used to specify the action.
+
+                   
 ########################################################### 19.useReducer Hook Simple state and Action  ##########################################
+
+Here the requirement is to implement the counter functionality using useReducer hook.
+Here the action is nothing but an instruction to the reducer function.
+Based on the specified action the reducer() performs the necessary state transition.
+
+	import React, { useReducer } from "react";
+
+	const initialCount = 0
+	const counterIncrement = (currentCount, action) => {
+		switch (action) {
+			case 'increment':
+				return currentCount + 1
+			case 'decrement':
+				return currentCount - 1
+			case 'reset':
+				return initialCount
+			default:
+				return currentCount
+		}
+	}
+
+	function Counter() {
+		const [count, dispatch] = useReducer(counterIncrement, initialCount)
+		return (
+			<div>
+				<div>{count}</div>
+				<button onClick={() => dispatch('increment')}>Increment</button>
+				<button onClick={() => dispatch('decrement')}>Decrement</button>
+				<button onClick={() => dispatch('reset')}>Reest</button>
+			</div>
+		)
+	}
+	export default Counter
 
 
 ########################################################### 20.useReducer Hook Complex state and Action ##########################################
 
+Instead of using simple State and Action we will be using State object and Action object.
+This is the pattern that is familiar for the redux users.
+Create the Component named CounterObject.js.
+
+Convert the simple state to Object.
+
+	const initialCount = {
+		firstCounter:0
+	}
+	
+Then convert the simple String action into an Object.
+The object conatins the proprty called type which is String.
+And in the switch expression accepts the action object with the type. 
+Finally for the increment,decrement and reset action we now need to return the Object.
+
+	const counterIncrement = (currentCount, action) => {
+    switch (action.type) {
+        case 'increment':
+            return { firstCounter: currentCount.firstCounter + 1 }
+        case 'decrement':
+            return { firstCounter: currentCount.firstCounter - 1 }
+        case 'reset':
+            return initialCount
+        default:
+            return currentCount;
+    }
+	}
+
+	function CounterObject() {
+		const [count, dispatch] = useReducer(counterIncrement, initialCount)
+
+		return (
+			<div>
+				<div>Count is {count.firstCounter}</div>
+				<button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+				<button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+				<button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+			</div>
+		)
+	}
+
+There is an advantage of using action as an Object i.e. we can pass the additional data to the object.
+1.The value by which we want to increment and decrement the counter.
+If we want to increment and decrement the value by certain number then we use another property of action object i.e. value.
+
+	<div>
+		<button onClick={() => dispatch({ type: 'increment5', value: 5 })}>Increment By 5</button>
+		<button onClick={() => dispatch({ type: 'decrement5', value: 5 })}>Decrement By 5</button>
+	</div>
+
+	case 'increment5':
+            return { firstCounter: currentCount.firstCounter + action.value }
+	case 'decrement5':
+            return { firstCounter: currentCount.firstCounter - action.value }
+
+There is an advantage using state as an Object i.e. If we want to use two different counters and is simplified by using state as an object.
+To get the expected output we need to merge the state properties and that can be done by using spread operator.
+
+	const initialCount = {
+		firstCounter: 0,
+		secondCounter:5
+	}
+	
+	<div>Count is {count.secondCounter}</div>
+		<button onClick={() => dispatch({ type: 'increment5', value: 5 })}>Increment By 5</button>
+		<button onClick={() => dispatch({ type: 'decrement5', value: 5 })}>Decrement By 5</button>
+	</div>
+
+Note :
+------
+We can maintain both state and action as an object.
+By using action as an object we are able to pass an additional data to the reducer function.
+By using state as an object we are able to use multiple state variables.
+The approach of maintaining multiple variables in a single state object is suitable when dealing with global state.
+In the above example we are dealing with local state.
+When dealing with local state we have another way to keep track of multiple variables i.e. Multiple use Reducers.
 
 ########################################################### 21.Multiple Use Reducers  ############################################################
 
-                  
+We maintained the state object to track two different counters.
+To update the secondcounter we created additional switch cases in the reducer function.
+Here two different counters are using the same state transition.
+This can be simplified by using multiple use reducers.
+
+	function MultipleUseReducer() {
+    const [firstCount, dispatchOne] = useReducer(counterIncrement, initialCount)
+    const [secondCount, dispatchTwo] = useReducer(counterIncrement, initialCount)
+    return (
+			<div>
+            <div>{firstCount}</div>
+                <button onClick={() => dispatchOne('increment')}>Increment</button>
+                <button onClick={() => dispatchOne('decrement')}>Decrement</button>
+                <button onClick={() => dispatchOne('reset')}>Reest</button>
+            <div>
+                <div>{secondCount}</div>
+                <button onClick={() => dispatchTwo('increment')}>Increment</button>
+                <button onClick={() => dispatchTwo('decrement')}>Decrement</button>
+                <button onClick={() => dispatchTwo('reset')}>Reest</button>
+            </div>
+			</div>
+		)
+	}
+
+Note :
+------
+When dealing with multiple state variables that are using the same state transition it is a good idea to use multiple state variables.
+This will prevents us in duplicating the code in the reducer function.
+               
 ########################################################### 22.useReducer with useContext  #######################################################
 
+We have seen useReducer for Local state management i.e. at the Component Level.
+At some point we might want to share the state between the Components i.e. Global State Management.
+We manage global state by combining useReducer and useContext.
+
+Consider the scenario where we have lots of Components.
+Each of these Components maintain their own Counter functionaity.
+Here the functionality can be shared by maintaining the common Component and can be passed as a props to the other Component.
+The Components then have the handler that will manage the props.
+If the Components are nested deep down the Component Tree passing down as a method props will be tedious.
+This can be resolved by using useContext so that it will be available to all the Components.
+
+Create the Components named
+A.js
+B.js
+C.js
+D.js
+E.js
+F.js
+
+Requirement is to maintain the state in UseReducerWithContext.js and modify the state from Component A,D and F. 
+First step is to provide the Counter functionality in UseReducerWithContext.js.
+
+	const countDeclaration = {
+    initialCount: 0
+	}
+
+	const incrementCounter = (currentCount, action) => {
+		switch (action) {
+			case 'increment':
+				return { initialCount: currentCount.initialCount + 1 }
+			case 'decrement':
+				return { initialCount: currentCount.initialCount - 1 }
+			case 'reset':
+				return countDeclaration
+			default:
+				return currentCount
+		}
+	}
+	
+Second step is to provide the context in the UseReducerWithContext.js and consume the context in the required Component.
+
+	export const CountContext=React.createContext()
+	
+	function UseReducerWithContext() {
+    const [count, dispatch] = useReducer(incrementCounter, countDeclaration)
+    return (
+        <CountContext.Provider value={{count:count,action:dispatch}}>
+        <div>
+            <h2>Use reducer with context example</h2>
+            <A></A>
+            <B></B>
+            <C></C>
+        </div>
+        </CountContext.Provider>
+		)
+	}
+	
+Then in the Component A
+
+	function A(){
+        const countcontext=useContext(CountContext)
+    return (
+			<div>
+				<button onClick={() => countcontext.countDispatch('increment')}>Increment</button>
+				<button onClick={() => countcontext.countDispatch('decrement')}>Decrement</button>
+				<button onClick={() => countcontext.countDispatch('reset')}>Reest</button>
+				Component A count {countcontext.countState.initialCount}
+			</div>
+		)
+	}
+	export default A
 
 ########################################################### 23.fetching data with useReducer part 1  #############################################
+
+We have already done the data fetching using useEffect hook.
+However with useEffect we are using useState hook.
+Here instead of useState we will be using useReducer hook.
+Both useState and useReducer are used for state management.
+
+
 
                 
 ########################################################### 24.fetching data with useReducer part 2  #############################################

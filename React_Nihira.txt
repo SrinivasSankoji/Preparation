@@ -1,0 +1,47 @@
+1.Complete Tutorial								(Nihira)             [18-DEC-2023]  ()
+2.Overview                                      (Nihira)             [18-DEC-2023]  ()
+3.Environmental Setup                           (Nihira)             [18-DEC-2023]  ()
+4.Folder structure                              (Nihira)             [18-DEC-2023]  ()
+5.Dynamic data binding                          (Nihira)             [18-DEC-2023]  ()
+6.Event Handling                                (Nihira)             [18-DEC-2023]  ()
+7.useState hook                                 (Nihira)             [18-DEC-2023]  ()
+8.Load Table body from List                     (Nihira)             [18-DEC-2023]  ()
+9.Pass data using props                         (Nihira)             [18-DEC-2023]  ()
+10.Pass function as props                       (Nihira)             [18-DEC-2023]  ()
+11.useEffect                                    (Nihira)             [18-DEC-2023]  ()
+12.JSON server Rest API                         (Nihira)             [18-DEC-2023]  ()
+13.Conditional Template                         (Nihira)             [18-DEC-2023]  ()
+14.Error Handling                               (Nihira)             [18-DEC-2023]  ()
+15.Custom hooks                                 (Nihira)             [18-DEC-2023]  ()
+16.Routing                                      (Nihira)             [18-DEC-2023]  ()
+17.Routing with parameters                      (Nihira)             [18-DEC-2023]  ()
+18.Reusable Custom hooks                        (Nihira)             [18-DEC-2023]  ()
+19.Developer Tools                              (Nihira)             [18-DEC-2023]  ()
+20.Install Bootstrap                            (Nihira)             [18-DEC-2023]  ()
+21.useEffect hook cleanup                       (Nihira)             [18-DEC-2023]  ()
+22.useNavigate hook                             (Nihira)             [18-DEC-2023]  ()
+23.Form validation                              (Nihira)             [18-DEC-2023]  ()
+24.Post request                                 (Nihira)             [18-DEC-2023]  ()
+25.Put request                                  (Nihira)             [18-DEC-2023]  ()
+26.Delete request                               (Nihira)             [18-DEC-2023]  ()
+27.CRUD Operation                               (Nihira)             [18-DEC-2023]  ()
+
+
+########################################################### 20.Install Bootstrap ###########################################################
+
+Step 1 :
+--------
+To install the bootstrap packages we use the command 
+
+	npm install bootstrap
+	
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Once the installation is done we can check in package.json.
+
+Step 2 :
+--------
+We need to refer the bootstrap in our application.
+
+
+
