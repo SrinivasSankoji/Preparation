@@ -1,19 +1,29 @@
 1.Introduction										(Code Evolution)   			[01-JAN-2024]  (Done)
-2.Installation                                      (Code Evolution)   			[01-JAN-2024]  ()
-3.Configuring Routes                                (Code Evolution)   			[01-JAN-2024]  ()
-4.Links                                             (Code Evolution)   			[01-JAN-2024]  ()
-5.Active Links                                      (Code Evolution)   			[01-JAN-2024]  ()
-6.Navigating Programatically                        (Code Evolution)   			[01-JAN-2024]  ()
-7.Match Route                                       (Code Evolution)   			[01-JAN-2024]  ()
-8.Nested Routes                                     (Code Evolution)   			[01-JAN-2024]  ()
-9.Index Route                                       (Code Evolution)   			[01-JAN-2024]  ()
-10.Dynamic Routes                                   (Code Evolution)   			[01-JAN-2024]  ()
-11.URL params                                       (Code Evolution)   			[01-JAN-2024]  ()
-12.Search Params                                    (Code Evolution)   			[01-JAN-2024]  ()
-13.Relative Links                                   (Code Evolution)   			[01-JAN-2024]  ()
-14.Lazy Loading                                     (Code Evolution)   			[01-JAN-2024]  ()
-15.Authentication and Protected Routes              (Code Evolution)   			[01-JAN-2024]  ()
-16.
+2.Installation                                      (Code Evolution)   			[03-JAN-2024]  (Done)
+3.Configuring Routes                                (Code Evolution)   			[03-JAN-2024]  (Done)
+4.Links                                             (Code Evolution)   			[03-JAN-2024]  (Done)
+5.Active Links                                      (Code Evolution)   			[04-JAN-2024]  (Done)
+6.Navigating Programatically                        (Code Evolution)   			[05-JAN-2024]  (Done)
+7.No Match Route                                    (Code Evolution)   			[05-JAN-2024]  (Done)
+8.Nested Routes                                     (Code Evolution)   			[05-JAN-2024]  (Done)
+9.Index Route                                       (Code Evolution)   			[05-JAN-2024]  (Done)
+10.Dynamic Routes                                   (Code Evolution)   			[06-JAN-2024]  (Done)
+11.URL params                                       (Code Evolution)   			[06-JAN-2024]  (Done)
+12.Search Params                                    (Code Evolution)   			[06-JAN-2024]  ()
+13.Relative Links                                   (Code Evolution)   			[06-JAN-2024]  ()
+14.Lazy Loading                                     (Code Evolution)   			[06-JAN-2024]  ()
+15.Authentication and Protected Routes              (Code Evolution)   			[05-JAN-2024]  ()
+16.React Router Introduction						(InterviewPro)				[05-JAN-2024]  ()
+17.Switch                                           (InterviewPro)				[05-JAN-2024]  ()
+18.Route Parameters                                 (InterviewPro)				[05-JAN-2024]  ()
+19.Programatically navigate                         (InterviewPro)				[05-JAN-2024]  ()
+20.Programatically navigate Routing                 (InterviewPro)				[05-JAN-2024]  ()
+21.Nested Routes                                    (InterviewPro)				[05-JAN-2024]  ()
+22.NavLink                                          (InterviewPro)				[05-JAN-2024]  ()
+23.useHistory                                       (InterviewPro)				[05-JAN-2024]  ()
+24.Routes                                           (InterviewPro)				[05-JAN-2024]  ()
+25.useNavigate                                      (InterviewPro)				[05-JAN-2024]  ()
+26.useLocation                                      (InterviewPro)				[05-JAN-2024]  ()
 
 
 ########################################################### 1.Introduction (Code Evolution) ###########################################################
@@ -24,3 +34,425 @@ React router library provides unique URL's for different Components in the Appli
 If we are building medium to large scale Application then React router library is must have feature.
 
 ########################################################### 2.Installation (Code Evolution  ###########################################################
+
+To install the raect router we use the command
+
+	npm install react-router-dom
+	
+########################################################### 3.Configuring Routes ######################################################################
+
+Here we will see how to configure the routes using react router.
+The first route is home route i.e. if the user navigates to http://localhost:3000 it should navigate to Home page and
+If the user navigates to http://localhost:3000/about it should navigate to About page.
+
+First step to configure the routes with react router is to connect the url in the browser with our React Application.
+For that React router provides a Component called Browser router with which we need to wrap our entire App Component in index.js.
+
+	 <React.StrictMode>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	  </React.StrictMode>
+	  
+It allows us to use all the features of React router within the App Component.
+Create the two Components named Home.js and About.js.
+For the routes to be configured we need two Components from React router i.e. Routes, Route.
+Then in the Route Component we need to specify two properties i.e. path and element.
+path represents the url of the Browser and elemnet refers to the Component needs to be rendered for the particular path.
+
+	function App() {
+	  return (
+		<div className="App">
+		  <Routes>
+			<Route path='/' element={<Home></Home>}></Route>
+			<Route path='/about' element={<About></About>}></Route>
+		  </Routes>
+		</div>
+	  );
+	}
+	
+########################################################### 4.Links (Code Evolution) ###########################################################
+
+Here we wiil see how to navigate to different routes using an element in the UI.
+Here we will add Nav bar in the App Component with two links.
+On click of these two links we should be able to navigate between these two routes.
+To navigate to another route React router provides the Link Component.
+Here instead of href attribute we specify the "to" property which accepts the path.
+
+	export const Navbar = () => {
+		return (
+			<div>
+				<nav>
+					<Link to='/'>Home</Link>
+					<Link to='/about'>About</Link>
+				</nav>
+			</div>
+		)
+	}
+	
+Note :
+------
+If we inspect the Link tag in the browser it will be a href tag internally.
+We can use Link attribute for Client side navigation i.e. navigating within the Application.
+
+If the requirement is to navigate through an external web site we can use plain old HTML anchor tag.
+If the path starts with "/" then it is absolute path.
+
+########################################################### 5.Active Links (Code Evolution) ###########################################################
+
+When navigating between different Components using Link attribute all the Links will appear the same irrespective of which route we are currently viewing.
+It is a best practice where the Link corresponding to the Active Route are highlighted which improoves the User Experience.
+React router provides another Component which is Navlink which knows whether Link is active or not.
+By default NavLink recieves an active Class when the Link is the current route.
+
+	<a class="active" href="/about" aria-current="page">About</a>
+	
+	nav a.active{
+	  text-decoration: none;  // removes the underline
+	  font-weight: bold;
+	}
+	
+After adding the above CSS the Active Link is styled differently.
+We can also make use of style prop for the Active Link.
+
+	export const Navbar = () => {
+
+    const navLinkStyle = ({ isActive }) => {
+        return {
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: isActive ? 'none' : 'underline'
+        }
+    }
+
+    return (
+        <div>
+            <nav>
+                <NavLink style={navLinkStyle} to='/'>Home</NavLink>
+                <NavLink style={navLinkStyle} to='/about'>About</NavLink>
+            </nav>
+        </div>
+		)
+	}
+
+To set a different style on active link make use of NavLink Component.
+We can either make use of active Class that is applied in css or we can make use of isActive property injected into the Style function.
+
+Note :
+------
+NavLink Component is specifically meant for building Components like Navbar,Breadcumb or a set of Tabs where we want to highlight the current selected item
+and provide useful context for the UI.
+If we want to navigate to route to the other parts of the App Link should be the Component to use as we need not required the active class to be applied.
+
+
+########################################################### 6.Navigating Programatically (Code Evolution) #############################################
+
+Sometimes we may need to programatically route to the Component.
+Consider the scenario where we are placing an order in Amazon.Once the order is placed we will get the Order confirmation page.
+In our scenario we implement the button click handler where we programitically navigate to the other Component of the Application.
+
+Create the two Components named
+
+OrderSummary
+OrderConfirmed
+
+React router provides useNavigate hook to navigate between the routes programitically.
+Call the useNavigate hook within the Component and use the return function to navigate using either path or a number(which indicates change in history path).
+
+	export const Home = () => {
+    const navigate = useNavigate()
+    return (
+        <div>
+            Home Component
+            <div>
+                <button onClick={() => navigate('order-confirmed')}>Place order</button>
+            </div>
+        </div>
+		)
+	}
+	
+	export const OrderSummary = () => {
+    const navigate = useNavigate()
+    return (
+        <>
+            Order confirmed
+            <div>
+                <button onClick={() => navigate(-1)}>Back</button>
+            </div>
+        </>
+		)
+	}
+	
+We might also want to replace the history instead of pushing a route on to the stack.
+For that we pass the second parameter i.e. replace to "true".
+
+	export const Home = () => {
+    const navigate = useNavigate()
+    return (
+        <div>
+            Home Component
+            <div>
+                <button onClick={() => navigate('order-confirmed',{replace:true})}>Place order</button>
+            </div>
+        </div>
+		)
+	}
+
+########################################################### 7.No Match Route (Code Evolution) #########################################################
+
+If we try to navigate to the route which is not configured we will get an empty page and in the console we will see the warning saying "No routes matched location".
+Here the user might assume that the App is still loading or there is an error with the given url.
+Here we need to inform the user that the URL does not match to any of the routes.
+
+Create the Component named NoMatchRoute.js
+
+	function App() {
+	  return (
+		<div className="App">
+		  <Navbar></Navbar>
+		  <Routes>
+			<Route path='/' element={<Home></Home>}></Route>
+			<Route path='/about' element={<About></About>}></Route>
+			<Route path='/order-confirmed' element={<OrderSummary></OrderSummary>}></Route>
+			<Route path='*' element={<NoMatchRoute></NoMatchRoute>}></Route>
+		  </Routes>
+		</div>
+	  )
+	}
+	
+	export const NoMatchRoute = () => {
+    return (
+        <>
+            Page not found
+        </>
+		)
+	}
+
+########################################################### 8.Nested Routes (Code Evolution) ##########################################################
+
+React router helps us to navigate across the Components in an Application. 
+React router also helps us to switch between the portion of the view in the page.
+
+Consider the scenario where we have products navigation.
+Inside the navigation we have search bar and two more links i.e. Featured and New.
+If we click on Feature URL navigates to Feature page but Feature Component will be displayed under Feature Link.
+Similarly If we click on New URL navigates to New page but New Component will be displayed under New Link.
+
+Create the Product Component with Search bar and Links.
+Add it to the Navbar Component.
+
+	export const Product = () => {
+    return (
+        <div>
+            <div>
+                <input type='search' placeholder='Search product'></input>
+            </div>
+            <nav>
+                <Link to='featured'>Featured</Link>
+                <Link to='new'>New</Link>
+            </nav>
+            <Outlet></Outlet>
+        </div>
+    )
+	}
+	
+	export const Navbar = () => {
+  
+    const navLinkStyle = ({ isActive }) => {
+        return {
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: isActive ? 'none' : 'underline'
+        }
+    }
+
+    return (
+        <div>
+            <nav className='primary-nav'>
+                <NavLink style={navLinkStyle} to='/'>Home</NavLink>
+                <NavLink style={navLinkStyle} to='/about'>About</NavLink>
+                <NavLink style={navLinkStyle} to='/product'>Product</NavLink>
+            </nav>
+        </div>
+		)
+	}
+
+Note :
+------
+Products page does not know where to render the Child Component.
+For that React router provides outlet Component.
+
+########################################################### 9.Index Route (Code Evolution) ############################################################
+
+Nested Routes will be loaded only when there is a change in URL.
+When the Parent Component loads at that time we also need to load the Child COmponent by default with the Parent Component URL we use Index route.
+
+	function App() {
+	  return (
+		<div className="App">
+		  <Navbar></Navbar>
+		  <Routes>
+			<Route path='/' element={<Home></Home>}></Route>
+			<Route path='about' element={<About></About>}></Route>
+			<Route path='order-confirmed' element={<OrderSummary></OrderSummary>}></Route>
+			<Route path='product' element={<Product></Product>}>
+			  <Route index element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='featured' element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='new' element={<NewProduct></NewProduct>}></Route>
+			</Route>
+			<Route path='*' element={<NoMatchRoute></NoMatchRoute>}></Route>
+		  </Routes>
+		</div>
+	  )
+	}
+
+	export default App
+
+########################################################### 10.Dynamic Routes (Code Evolution) ########################################################
+
+Consider the scenario of UserDetails and Individual User Component.
+If the URL is /users then it should display all the Users.
+Similarly if the URL is /users/id then it should display the individual user details.
+
+Create the Component named Users.js and UserDetails.js.
+
+	export const Users = () => {
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
+            setUsers(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [])
+    return (
+        <div>
+            {
+                users.map(user => <li key={user.id}>{user.name}</li>)
+            }
+        </div>
+		)
+	}
+
+	export const UserDetails = (props) => {
+    const [user, setUser] = useState({})
+    const [userId, setUserId] = useState(1)
+    useEffect(() => {
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+            .then(response => setUser(response.data))
+            .catch(error => console.log(error))
+    }, [userId])
+
+    return (
+        <>
+            {user.id}
+            {user.name}
+        </>
+		)
+	}
+	
+To configure the dynamic route we use : along with the variable.
+
+	function App() {
+	  return (
+		<div className="App">
+		  <Navbar></Navbar>
+		  <Routes>
+			<Route path='/' element={<Home></Home>}></Route>
+			<Route path='about' element={<About></About>}></Route>
+			<Route path='order-confirmed' element={<OrderSummary></OrderSummary>}></Route>
+			<Route path='product' element={<Product></Product>}>
+			  <Route index element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='featured' element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='new' element={<NewProduct></NewProduct>}></Route>
+			</Route>
+			<Route path='users' element={<Users></Users>}></Route>
+			<Route path='users/:userId' element={<UserDetails></UserDetails>}></Route>
+			<Route path='*' element={<NoMatchRoute></NoMatchRoute>}></Route>
+		  </Routes>
+		</div>
+	  )
+	}
+	
+Here in the path variable we can pass any data type i.e. number or String.
+React will match with the exact value.
+Dynamic routes can also be nested.
+
+########################################################### 11.URL params (Code Evolution) ############################################################
+
+Here the requirement is to extract the userId from URL.
+To extract the route parameter we need to use the useParams hook from React router.
+useParams hook returns an object of key value pair.
+The key value pair contains the dynamic params from the currrent URL.
+
+Note :
+userId on the params Object corresponds to the dynamic segment specified in the Route configuration.
+
+	export const UserDetails = (props) => {
+    const [user, setUser] = useState({})
+    const { userId } = useParams(1)
+    useEffect(() => {
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+            .then(response => setUser(response.data))
+            .catch(error => console.log(error))
+    }, [userId])
+    return (
+        <>
+            <h2>
+                {user.id} : {user.name}
+            </h2>
+        </>
+		)
+	}
+	
+	function App() {
+	  return (
+		<div className="App">
+		  <Navbar></Navbar>
+		  <Routes>
+			<Route path='/' element={<Home></Home>}></Route>
+			<Route path='about' element={<About></About>}></Route>
+			<Route path='order-confirmed' element={<OrderSummary></OrderSummary>}></Route>
+			<Route path='product' element={<Product></Product>}>
+			  <Route index element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='featured' element={<FeaturedProduct></FeaturedProduct>}></Route>
+			  <Route path='new' element={<NewProduct></NewProduct>}></Route>
+			</Route>
+			<Route path='users' element={<Users></Users>}>
+			  <Route path=':userId' element={<UserDetails></UserDetails>}></Route>
+			</Route>
+			<Route path='*' element={<NoMatchRoute></NoMatchRoute>}></Route>
+		  </Routes>
+		</div>
+	  )
+	}
+
+	export const Users = () => {
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
+            setUsers(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [])
+    return (
+        <div>
+            {
+                users.map(user => <li key={user.id}>{user.name}</li>)
+            }
+            <div>
+                <UserDetails></UserDetails>
+            </div>
+        </div>
+		)
+	}
+
+########################################################### 12.Search Params (Code Evolution) #########################################################
+
+
+
+
+
+########################################################### 13.Relative Links (Code Evolution) ########################################################
+
+ 
+########################################################### 14.Lazy Loading (Code Evolution) ########################################################## 
