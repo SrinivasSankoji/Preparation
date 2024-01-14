@@ -20,9 +20,9 @@
 20.useReducer Hook Complex state and Action                             (Code Evolution)   			[30-DEC-2023]  (Done)
 21.Multiple Use Reducers                                                (Code Evolution)   			[30-DEC-2023]  (Done)
 22.useReducer with useContext                                           (Code Evolution)   			[31-DEC-2023]  (Done)
-23.fetching data with useReducer part 1                                 (Code Evolution)   			[31-DEC-2023]  ()
-24.fetching data with useReducer part 2                                 (Code Evolution)   			[31-DEC-2023]  ()
-25.useState vs useReducer                                               (Code Evolution)   			[31-DEC-2023]  ()
+23.fetching data with useReducer part 1                                 (Code Evolution)   			[31-JAN-2023]  ()
+24.fetching data with useReducer part 2                                 (Code Evolution)   			[31-JAN-2023]  ()
+25.useState vs useReducer                                               (Code Evolution)   			[31-JAN-2023]  ()
 
 26.useCallBack Hook                                                     (Code Evolution)   			[17-DEC-2023]  ()
 27.useMemo Hook                                                         (Code Evolution)   			[17-DEC-2023]  ()
@@ -40,7 +40,7 @@
 
 Hooks is a new feature added in React version 16.8 which allows us to use React features without having to write a Class.
 For example State of a Component without writing a Class.
-Hooks don't work inside Classes and allows us to use React without Classes.
+Hooks don't work inside the Classes and allows us to use React without Classes.
 
 Problem 1 :
 -----------
@@ -90,8 +90,8 @@ The 3 steps to implement the counter functionality are
 2.State property initialized to 0
 3.Method that is capable of setting the state property value
 
-Hook is a special function that allows us to hook into React features.
-useState is a hook that allows us to add React State into functional Component.
+Hook is a special feature that allows us to hook into React features.
+useState is a hook that allows us to add State into Functional Component.
 
 useState() accepts two arguments
 1.initial value of state property which returns the current value of the state property.

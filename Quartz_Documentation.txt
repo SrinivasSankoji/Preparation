@@ -1,0 +1,362 @@
+1.Quartz Scheduler with Spring Boot to schedule Jobs             (Dineshchandgr)	 [11-JAN-2024]	(Done)
+2.Spring Boot & Quartz Scheduler								 (Necmeddin Tapan)	 [12-JAN-2024]	()
+3.Setting up the scheduler                                       (Lilium Code)	     [14-JAN-2024]	(Done)
+4.Building Job Details and Trigger                               (Lilium Code)	     [14-JAN-2024]	(Done)
+5.Scheduling and executing a Job                                 (Lilium Code)	     [14-JAN-2024]	(Done)
+6.Fetching Jobs                                                  (Lilium Code)	     [14-JAN-2024]	(Done)
+7.Updating and Deleting a Job                                    (Lilium Code)	     [14-JAN-2024]	()
+8.JDBC Job store                                                 (Lilium Code)	     [14-JAN-2024]	()
+9.Schedule Jobs With Quartz in Spring Boot                       (hackernoon)        [14-JAN-2024]	()
+
+##################################### 1.Quartz Scheduler with Spring Boot to schedule Jobs (Dineshchandgr) ##############################
+
+Job scheduling is the process of running the scheduled Jobs in an application to automate things and reduce manual intervention.
+Most of the companies schedule the jobs usually in the weak hours where the servers are generally idle so that it won't impact the performance of an application.
+Job scheduling can be achieved by using the program called Job schedulers.
+Job scheduler has the ability to start and control jobs.
+Job scheduler can be used for the following use cases.
+
+1.Audit trails meant for regulation compliance purposes and generate reports.
+2.Report scheduling
+3.Automated restart and recovery in case of failures
+4.Genarating reports of incidents
+
+What is Quartz :
+----------------
+Quartz is an open source scheduling framework written in java and developed by a company called Terracota.
+Quartz can run thousands of tasks and supports complex scheduling in simple intervals formats or using CRON expressions.
+Quartz provides great flexibility in scheduling jobs for use cases like
+
+1.What to do on every Friday at 1.30 pm i.e. Weekly Activity Report.
+2.What to do on the last day of every month i.e. Payroll processing.
+3.What to do one hour before specific time i.e. Notification to users.
+
+Quartz scheduler allows an enterprise application to schedule a job at a specified date and time.
+Quartz scheduler allows us to perform the operations to be scheduled or unschedule the jobs.
+Quartz scheduler provides operations to start or stop or pause the scheduler.
+Quartz scheduler provides reminder services.
+
+Features of Quartz :
+--------------------
+Runtime Environment
+Job scheduling
+Job execution
+Job persistence
+Transaction
+Clustering and Load balancing
+Fail over and random load distribution
+
+The architecture of Quartz Framework :
+--------------------------------------
+Scheduler is the back bone of Quartz framework and is responsible for managing the runtime environment of an Application.
+To ensure scalability Quartz is based on multi threaded architecture and hence we can use multiple threads to run the jobs.
+Thread settings are configurable as well.
+
+Components of Quartz scheduler are
+
+1.Scheduler 
+Scheduler manages evrything like scheduling jobs,managing listeners,clustering transactions and Job persistence.
+Scheduler provides a primary API for interacting with scheduler of the framework for scheduling,unscheduling,adding and removing jobs.
+
+2.SchedulerFactory
+SchedulerFactory is an interface for creating a scheduler instance.
+
+3.SchedulerRepository
+Holds references to scheduler instances to ensure uniqueness and preventing garbage collection.
+SchedulerRepository also allows global look ups within the class loader.
+
+4.Job
+Job is an interface which has to be implemented by the Components that we wish to be executed.
+Job has a single method called execute() on which we need to provide the details to be performed by the Job.
+
+5.JobDetail
+JobDetails is an instance of the Job.
+JobDetail contains additional data called JobDataMap that has to be passed to the Job when it is executed.
+JobDetail is identified by a JobKey which consists of name and group and name must be unique within a group.
+
+6.JobBuilder
+Builder pattern implementation that can be used to create a JobDetail instance
+
+7.Trigger
+Trigger is a Component that determines the scheduler on which given Job has to be performed.
+Trigger is identified by the Trigger key that has name and group and the name must be unique within the group.
+Trigger can also send the data to the Job.
+
+8.TriggerBuilder
+Builder pattern implementation to create a Trigger instance.
+
+9.Threadpool
+
+
+10.WorkerThread
+
+
+11.Jobstore
+Place where the Scheduler keeps the information about Job/Trigger/Calendar etc.
+This could be an in memory store in RAM or the Database.
+
+12.Datasources
+Used when using a JDBCJobStore
+
+13.TriggerListeners
+
+
+14.SchedulerListeners
+Recieve notification of events within the scheduler itself like addition/removal of job/trigger etc.
+
+
+Jobs and Triggers :
+-------------------
+Quartz works on the concept of Job and Trigger
+
+Job is nothing but some piece of code or functionality to be executed when an event occurs or when the scheduled time is reached.
+Trigger is nothing but an event which contains time for when this event should occur.
+
+The realtionship between Trigger and Job is
+
+1.One Trigger must be designed as One Job.
+2.One Job can run multiple times and at different times.
+3.One Trigger cannot have more than One Job.
+
+There are two types of Triggers
+
+1.Simple Trigger
+SimpleTrigger can be used to execute a Job exactly once at a specific moment in time (or)
+Specific moment in time followed by the repeats at a specific interval.
+
+2.Cron Trigger
+For scheduling a Job which has complex times like execute a Job that recurs based on Calendar notions.
+
+Setting up Quartz in Spring Boot :
+----------------------------------
+
+
+##################################### 2.Spring Boot & Quartz Scheduler (Necmeddin Tapan) #####################################
+
+
+
+
+
+##################################### 3.Setting up the scheduler (Lilium Code) ###############################################
+
+Quartz is library that enables us to schedule the Jobs.
+Create the project with web and quartz starter dependencies.
+Here we are going to build an Application that can schedule a Job.
+Here Job is nothing but a Task that we want to execute.
+
+
+Setps :
+-------
+1.Create the Job
+
+	@Component
+	public class HelloWorldJob implements Job {
+		@Override
+		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+
+		}
+	}
+	
+execute() will be executed every time when the timer fires.
+This is the place where we write the code.
+
+2.Create the Scheduler :
+Scheduler is the class coming from Quartz library and can be used to schedule the Jobs.
+To schedule the Job we need to start the Scheduler.
+Similarly when the Application is stopped we need to stop the Scheduler.
+
+	@Service
+	public class SchedulerService {
+
+    private static final Logger logger = LoggerFactory.getLogger(SchedulerService.class);
+
+    @Autowired
+    private Scheduler scheduler;
+
+    @PostConstruct
+    public void init() throws SchedulerException {
+        scheduler.start();
+    }
+
+    @PreDestroy
+    public void destroy() throws SchedulerException {
+        scheduler.shutdown();
+    }
+	}
+	
+#####################################  4.Building Job Details and Trigger (Lilium Code) ##################################### 
+
+Here we are going to create the configuration for the timer we create.
+Every timer we create may not be the same.
+Some of them will run once,some of them will run forever,some of them will run for 5 times and this can be configured.
+Here Quartz library will offer those information and we need to configure them.
+Here to pass the information we are going to create new Class i.e. TimerInfo.
+
+	@Builder
+	@Value
+	public class TimerInfo {
+      int totalFireCount;
+      boolean runForever; /* Timer will be executed forever */
+      Long repeatIntervalInMilliSeconds; /* For every second it will repeat*/
+      Long initialOffsetInMilliSeconds; /* When we start the timer how long it will wait for the timer to execute*/
+      String callbackData; /* Data needs to be passed to the Job */
+	}
+  
+Lets create a Util class to build the JobDetails.
+
+	public final class TimerUtil {
+    private TimerUtil() {
+    }
+    public static JobDetail buildJobDetail(final Class jobClass, final TimerInfo timerInfo) {
+        JobDataMap jobDataMap = new JobDataMap();
+        jobDataMap.put(jobClass.getSimpleName(), timerInfo);
+        return JobBuilder.newJob(jobClass)
+                .withIdentity(jobClass.getSimpleName())
+                .setJobData(jobDataMap)
+                .build();
+    }
+    public static Trigger buildTrigger(final Class jobClass, final TimerInfo timerInfo){
+        SimpleScheduleBuilder scheduler = SimpleScheduleBuilder.simpleSchedule().withIntervalInMilliseconds(timerInfo.getRepeatIntervalInMilliSeconds());
+        if (timerInfo.isRunForever()) {
+            scheduler = scheduler.repeatForever();
+        } else {
+            scheduler = scheduler.withRepeatCount(timerInfo.getTotalFireCount() - 1);
+        }
+        return TriggerBuilder.newTrigger()
+                .withIdentity(jobClass.getSimpleName())
+                .withSchedule(scheduler)
+                .startAt(new Date(System.currentTimeMillis()+timerInfo.getInitialOffsetInMilliSeconds()))
+                .build();
+		}
+	}
+
+##################################### 5.Scheduling and executing a Job (Lilium Code) ########################################
+
+Here we need to write a method that is capable of scheduling the Job.
+In the Scheduler service 
+
+	  public void schedule(final Class jobClass, final TimerInfo timerInfo) throws SchedulerException {
+        JobDetail jobDetail = TimerUtil.buildJobDetail(jobClass, timerInfo);
+        Trigger trigger = TimerUtil.buildTrigger(jobClass, timerInfo);
+        scheduler.scheduleJob(jobDetail, trigger);
+    }
+	
+Now call the Scheduler service from the actual service.
+
+	@Service
+	public class PlaygroundService {
+		@Autowired
+		private SchedulerService schedulerService;
+		public void runHelloWorldJob() throws SchedulerException {
+			TimerInfo timerInfo = TimerInfo.builder()
+					.totalFireCount(5)
+					.repeatIntervalInMilliSeconds(2000l)
+					.initialOffsetInMilliSeconds(1000l)
+					.callbackData("Hello Quartz Scheduler")
+					.build();
+			schedulerService.schedule(HelloWorldJob.class, timerInfo);
+		}
+	}
+	
+Also create the Controller which will call the Scheduler service.
+
+	@RestController
+	@RequestMapping ("/api/timer")
+	public class QuartzController {
+
+		@Autowired
+		private PlaygroundService playgroundService;
+
+		@GetMapping ("/run")
+		public void runHelloWorld() throws SchedulerException {
+			playgroundService.runHelloWorldJob();
+		}
+	}
+	
+Also do the required changes in Job.
+
+	@Component
+	public class HelloWorldJob implements Job {
+		private static final Logger logger= LoggerFactory.getLogger(HelloWorldJob.class);
+
+		@Override
+		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+			JobDataMap jobDataMap=jobExecutionContext.getJobDetail().getJobDataMap();
+			TimerInfo timerInfo= (TimerInfo) jobDataMap.get(HelloWorldJob.class.getSimpleName());
+			logger.info(timerInfo.getCallbackData());
+		}
+	}
+
+##################################### 6.Fetching Jobs (Lilium Code) ######################################################################
+
+Here we will see how to query the Jobs which we have created.
+Here we also need to check whether the Job is running or not.
+Whenever we are creating a Job It may belong to certain group.
+Some of the Jobs related to Database, some of the Jobs related to Reports etc.
+If we don't specify any group then it is default group.
+
+	public List<TimerInfo> getAllRunningJobs() {
+        try {
+            return schedulerFactory.getScheduler().getJobKeys(GroupMatcher.anyGroup())
+                    .stream().map(jobKey -> {
+                        try {
+                            JobDetail jobDetail = schedulerFactory.getScheduler().getJobDetail(jobKey);
+                            return (TimerInfo) jobDetail.getJobDataMap().get(jobKey.getName());
+                        } catch (SchedulerException schedulerException) {
+                            logger.error(schedulerException.getMessage());
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        } catch (SchedulerException schedulerException) {
+            logger.error(schedulerException.getMessage());
+            return Collections.emptyList();
+        }
+    }
+	
+Now call the getAllRunningJobs() from the Service and Controller.
+
+	public List<TimerInfo> getAllRunningJobs(){
+        return schedulerService.getAllRunningJobs();
+    }
+	
+	@GetMapping
+    public List<TimerInfo> getAllRunningJobs(){
+        return playgroundService.getAllRunningJobs();
+    }
+	
+We can also get the Individual Job based on Id.
+
+	public TimerInfo getRunningJob(String jobName) throws SchedulerException {
+        JobDetail jobDetail=schedulerFactory.getScheduler().getJobDetail(new JobKey(jobName));
+        if(jobDetail==null){
+            return null;
+        }
+        return (TimerInfo) jobDetail.getJobDataMap().get(jobName);
+    }
+	
+	public TimerInfo getRunningJob(String jobName) throws SchedulerException {
+        return schedulerService.getRunningJob(jobName);
+    }
+	
+	@GetMapping("/{jobName}")
+    public TimerInfo getRunningJob(@PathVariable String jobName) throws SchedulerException {
+        return playgroundService.getRunningJob(jobName);
+    }
+	
+##################################### 7.Updating and Deleting a Job (Lilium Code) ###################################################################
+
+
+
+
+
+
+	
+
+	
+
+
+
+	
+

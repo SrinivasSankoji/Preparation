@@ -1,14 +1,17 @@
-1.Pagination							(danvega)   				[17-AUG-2021]	(Done)
-2.Sorting								(javaguides)   				[17-AUG-2021]	()
-3.Paging with Spring Boot				(reflectoring)   			[17-AUG-2021]	()
-3.Query DSL
-4.Audit of Domain Classes
-5.Dynamical Queries
-6.@Modify
-7.Criteria
-8.@Filter Annotation
-9.
-
+1.Pagination																(danvega)   				[17-AUG-2021]	(Done)
+2.Sorting																	(javaguides)   				[17-AUG-2021]	()
+3.Paging with Spring Boot													(reflectoring)   			[17-AUG-2021]	()
+3.Query DSL				                                					()							[09-JAN-2024]	()
+4.Audit of Domain Classes                               					()							[09-JAN-2024]	()
+5.Dynamic Queries                                       					()							[09-JAN-2024]	()
+6.@Modify                                                                   ()                          [09-JAN-2024]	()
+7.Criteria API                                              				(javatute,Suraj Mishra)		[09-JAN-2024]	(Done)
+8.Sprig Data JPA Criteria Queries 											(Bouali Ali)				[09-JAN-2024]	()
+9.@Filter Annotation														()							[09-JAN-2024]	()
+10.Getting Started with Spring Data Specifications       					(reflectoring)				[13-JAN-2024]	(Done)
+11.Criteria API with Spring Data JPA Specifications							(Ardi Jorganxhi)			[13-JAN-2024]	(Done)
+12.Spring Data JPA Specifications to filter SQL queries 					(Miguel Duque)				[09-JAN-2024]	()
+13.Advanced Search and Filtering using Spring Data JPA Specification		(Carl Mapada)				[09-JAN-2024]	()
 
 ################################################### 1.Pagination (danvega) ###################################################
 
@@ -52,6 +55,183 @@ Then hit the URL
 
 	http://localhost:8080/api/people?size=2&sort=lastName,asc
 	
+
+
+################################################### 7.Criteria Queries (javatute,Suraj Mishra) ###################################################
+
+Spring Data JPA provides multiple ways to query the data from the database such as JPQL,Native Query and also using Repository Methods.
+
+Using Spring Data JPA :
+public List<Student> findByName(String name); 
+
+
+Using Spring data JPQL :
+@Query("select s from Student s where s.name = ?1")
+List<Student> findStudents(String name);
+
+Using Spring Data native query :
+@Query(value = "select * from Student s where s.name = ?1", nativeQuery = true)
+List<Student> findStudentsUsingNativeQuery(String name);
+	 
+However there will be some scenarios where we want to fetch the data programatically and it can be done by using Criteria API.
+Criteria API allows us to write the queries in Object oriented way so that we no need to write the raw SQL Queries.
+Criteria API provides a Set of Interfaces and Classes that helps in build and execute the Queries.
+Criteria API provides a flexible and programatic Approach for constructing Complex queries in Spring Data JPA.
+Criteria API allows us to define query conditions dynamically,handle multiple query conditions and build queries based on runtime Conditions.
+This gives more flexibility compare to static Queries defined in Annotations or methods.
+
+Steps to work with Criteria API
+1.Create the CriteriaBuilder Object using entityManager.
+
+	CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+	 
+2.Once we have the CriteriaBuilder Object we can construct a Criteria query which will be required to get the root Object and execution of the query.
+
+	CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+    Root<Student> root = criteriaQuery.from(Student.class);
+	
+3.Once we have CriteriaQuery and the Root Object we can define our query such as
+
+	criteriaQuery.orderBy(criteriaBuilder.desc(root.get("name")));
+	 
+4.Last step is to execute the query and get the result.
+
+	return entityManager.createQuery(criteriaQuery).getResultList();
+	
+Final code to get the results using Criteria API is 
+
+	public List<Student> getStudents() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = criteriaQuery.from(Student.class);
+        criteriaQuery.orderBy(criteriaBuilder.desc(root.get("name")));
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+################################################### 10.Getting Started with Spring Data Specifications (reflectoring) ###################################################
+
+Specification is another way to perform database queries with Spring Data JPA .
+Whenever we are building a Criteria Query we are required to manage Root,CriteriaQuery and CriteriaBuilder Object by ourselves.
+Specifications are built on top of Criteria API to simplify the developer experience.
+Simply we need to implement the Specification Interface.
+Using Specification we can build atomic Predicates and combine those Predicates to build dynamic Complex Queries.
+Specifications are inspired by Domain Driven Specification.
+
+	interface Specification<T> {
+	
+		Predicate toPredicate(Root root, CriteriaQuery<?> query, CriteriaBuilder<?> criteriaBuilder);
+	
+	}
+
+Why do we need Specifications :
+-------------------------------
+One of the most common ways to perform dynamic queries in Spring boot is by using Query methods.
+The problem with query methods is that we can only specify a fixed number of columns.
+Also the number of Query method increases rapidly as the usecase increases.
+With Specification we can tackle this issue by creating atomic predicates and by giving those Predicates a meaningful name.
+
+Writing queries with Specifications :
+-------------------------------------
+Lets convert the findAllByNameLike(String name) using Specification.
+
+An equivalent Specification for the query method is like below.
+
+	private Specification<Product> nameLike(String name){
+		return new Specification<Product>(){
+		    @Override
+			public Predicate toPredicate(Root<Product> root, CriteriaQuery query, CriteriaBuilder criteriaBuilder){
+			return criteriaBuilder.like(root.get("name"),"%"+name+"%")
+		}
+	};
+	
+Using Java 8 Lambda we can simplify the above code.
+
+	private Specification<Product> nameLike(String name){
+			return (root, query, criteriaBuilder) -> {
+			  criteriaBuilder.like(root.get("name"),"%"++"%")
+			}
+	}
+
+To execute Specification we need to extend JPASpecificationExecutor Interface to our JPARepository.
+The JPASpecificationExecutor has the overloaded methods which allows the Pagination and Sorting.
+Finally to execute the Query
+
+	List<Product> products=productRepository.findAll(nameLike("reflectoring"));
+	
+Specification Interface also has public static methods like and(), or() , where() which allows us to combine multiple Specifications.
+Specification Interface also provides a not() which allows us to negate the Specification.
+Consider the scenario where we want to get the Premium products.
+
+    private Specification<Product> belongsToCategory(List<Ctegory> catgories){
+			return (root,query,criteriaBuilder) -> criteriaBuilder.in(root.get("Category").value(catgories))
+	}
+	
+Dynamic queries with Specifications :
+-------------------------------------
+Consider the scenario of creating an API which allows us to fetch all the products and also filter them based on no of properties.
+Here we don't know the combination of properties the client is going to use to Filter the Products.
+The better solution is to take the Predicates directly from the Client and convert them into Database queries using Specifications.
+
+Lets take an input Object to take the Filter from the Client.
+
+	public class Filter {
+		private String field;
+		private QueryOperator operator;
+		private String value;
+		private List<String> values;
+	}
+	
+Then we need to convert the Filter to a Specification.
+
+	private Specification<Product> createSpecification(Filter input)
+	{
+		switch(input.getOperator){
+		CASE EQUALS : 
+			return (root,query, criteriaBuilder) -> criteriaBuilder.equal(root.get(input.getField()),root.get(input.getField().getJavaType(),input.getValue());
+		}
+	}
+	
+The above code works fine for most of the cases but there is room for improovement.
+If we want to query based on nested Entity properties.
+
+
+################################### 11.Criteria API with Spring Data JPA Specifications (Ardi Jorganxhi) #########################################
+
+Spring Data JPA sepcification is a fetaure provided by Spring Data JPA Framework which is the larger part of Spring Data JPA Project.
+Specification in the COntext of Spring Data JPA allows us to build complex ,dynamic queries as Java Objects.
+Specification then can be combined to create flexible and type safe queries.
+
+	public interface PhoneRepository extends JpaRepository<Phone,Integer>, JpaSpecificationExecutor<Phone> {
+	}
+	
+JpaSpecificationExecutor<S> interface is a part of SPring Data JPA and is tpically used in conjuction with our JPARepository interface.
+The <S> represents the Entity type.
+By extending this interface our Repository gains the ability to execute the queries based on Specifications.
+
+	public class PhoneSpecification {
+    private Specification<Phone> phoneBrand(String phoneBrand){
+        return ((root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("phoneBrand"),"%"+phoneBrand+"%"));
+    }
+    private Specification<Phone> phoneName(String phoneName){
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get(phoneName),"%"+phoneName+"%");
+    }
+    private Specification<Phone> phoneNameAndBrand(String phoneBrand, String phoneName) {
+        return (root, query, criteriaBuilder) -> {
+            Predicate phoneBrandPredicate = criteriaBuilder.like(root.get("phoneBrand"), "%" + phoneBrand + "%");
+            Predicate phoneNamePredicate = criteriaBuilder.like(root.get(phoneName), "%" + phoneName + "%");
+            return criteriaBuilder.and(phoneBrandPredicate, phoneNamePredicate);
+        };
+     }
+	}
+	
+################################### 12.Spring Data JPA Specifications to filter SQL queries (Miguel Duque) #######################################
+
+
+
+
+
+
+
 
 
 

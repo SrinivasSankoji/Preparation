@@ -22,7 +22,7 @@ https://salithachathuranga94.medium.com/decorator-design-pattern-in-java-1b0931e
 Decorator Design pattern is a structural design pattern that allows us to add a new functionality to an existing Object without changing its structure.
 Decorator Design pattern allows us to do runtime modifications of an Object.
 The traditional way of adding new functionality to an existing Object is by using inheritance i.e. at compile time.
-Decorator Design Pattern uses Composition which makes it flexible to add new functionalities at runtime.
+Decorator Design Pattern uses Composition which makes it flexible to add new functionality at runtime.
 Because of this flexibility Decorator Design Pattern is one of the darling pattern for many Java Developers.
 
 

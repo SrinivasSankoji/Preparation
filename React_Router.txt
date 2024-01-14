@@ -13,6 +13,7 @@
 13.Relative Links                                   (Code Evolution)   			[06-JAN-2024]  ()
 14.Lazy Loading                                     (Code Evolution)   			[06-JAN-2024]  ()
 15.Authentication and Protected Routes              (Code Evolution)   			[05-JAN-2024]  ()
+
 16.React Router Introduction						(InterviewPro)				[05-JAN-2024]  ()
 17.Switch                                           (InterviewPro)				[05-JAN-2024]  ()
 18.Route Parameters                                 (InterviewPro)				[05-JAN-2024]  ()
@@ -31,7 +32,7 @@
 React router is a fully featured Client and Server side routing library for React.
 React router helps us to create the routes, navigate to different routes that makes an Application.
 React router makes sure that URL's are unique for different Components of an Application so that UI can be easily shareable with other users.
-If we are building medium to large scale Application then React router library is must have feature.
+If we are building a medium to large scale Application then React router library is must have feature.
 
 ########################################################### 2.Installation (Code Evolution  ###########################################################
 

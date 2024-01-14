@@ -62,8 +62,91 @@ The chain can be dynamically restructured to bypass the Manager and pass the req
 If any individual can't make the decission it is passed to the chain of Handlers.
 4.Here each Handler is a Modular Entity and If there are any changes in the Handler we can modify or extend in the future.
 
+Development with Chain of Responsibility Design Pattern :
+---------------------------------------------------------
 
-################################################### 5.Observer ()  ###################################################
+ApprovalRequest.java :
+----------------------
+
+	public class ApprovalRequest {
+    public static void main(String[] args) {
+        ApprovalProcess ceo = new CEO();
+        ApprovalProcess director = new Director(ceo);
+        ApprovalProcess manager = new Manager(director);
+        ApprovalProcess teamLead = new TeamLead(manager);
+        teamLead.approveRequest(500000);
+		}
+	}
+
+ApprovalProcess.java :
+----------------------
+
+	public interface ApprovalProcess {
+    void next(ApprovalProcess approvalProcess);
+    void approveRequest(int amount);
+	}
+
+TeamLead.java :
+---------------
+
+	@AllArgsConstructor
+	public class TeamLead implements ApprovalProcess {
+    private ApprovalProcess approvalProcess;
+
+    @Override
+    public void next(ApprovalProcess approvalProcess) {
+    }
+
+    @Override
+    public void approveRequest(int amount) {
+        if (amount <= 1000) {
+            System.out.println("Team Lead can approve the purchase of $" + amount);
+        } else if (approvalProcess != null) {
+            approvalProcess.approveRequest(amount);
+			}
+		}
+	}
+	
+Manager.java :
+--------------
+	@AllArgsConstructor
+	public class Manager implements ApprovalProcess{
+
+		private ApprovalProcess approvalProcess;
+
+		@Override
+		public void next(ApprovalProcess handler) {
+		}
+
+		@Override
+		public void approveRequest(int amount) {
+			if (amount <= 2000) {
+				System.out.println("Manager can approve the purchase of $" + amount);
+			} else if (approvalProcess != null) {
+				approvalProcess.approveRequest(amount);
+			}
+		}
+	}
+	
+CEO.java :
+----------
+	
+	@AllArgsConstructor
+	public class CEO implements ApprovalProcess {
+
+		@Override
+		public void next(ApprovalProcess handler) {
+		}
+
+		@Override
+		public void approveRequest(int amount) {
+			System.out.println("CEO can approve the purchase of $" + amount);
+		}
+	}
+
+################################################### 5.Observer ()  ##################################################################################
+
+
 
 
 
