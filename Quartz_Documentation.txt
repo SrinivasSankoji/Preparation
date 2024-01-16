@@ -4,8 +4,8 @@
 4.Building Job Details and Trigger                               (Lilium Code)	     [14-JAN-2024]	(Done)
 5.Scheduling and executing a Job                                 (Lilium Code)	     [14-JAN-2024]	(Done)
 6.Fetching Jobs                                                  (Lilium Code)	     [14-JAN-2024]	(Done)
-7.Updating and Deleting a Job                                    (Lilium Code)	     [14-JAN-2024]	()
-8.JDBC Job store                                                 (Lilium Code)	     [14-JAN-2024]	()
+7.Updating and Deleting a Job                                    (Lilium Code)	     [16-JAN-2024]	(Done)
+8.JDBC Job store                                                 (Lilium Code)	     [16-JAN-2024]	()
 9.Schedule Jobs With Quartz in Spring Boot                       (hackernoon)        [14-JAN-2024]	()
 
 ##################################### 1.Quartz Scheduler with Spring Boot to schedule Jobs (Dineshchandgr) ##############################
@@ -347,7 +347,86 @@ We can also get the Individual Job based on Id.
 	
 ##################################### 7.Updating and Deleting a Job (Lilium Code) ###################################################################
 
+Here we are going to update the Scheduler and the requirement is what is the remaining totalFireCount.
+Create a variable named remainingFireCount.
+Update the remainingFireCount in PlaygroundService.
 
+	public void runHelloWorldJob() throws SchedulerException {
+        TimerInfo timerInfo = TimerInfo.builder()
+                .totalFireCount(5)
+                .remainingFireCount(0)
+                .repeatIntervalInMilliSeconds(2000)
+                .initialOffsetInMilliSeconds(1000)
+                .callbackData("Hello Quartz Scheduler")
+                .build();
+        schedulerService.schedule(HelloWorldJob.class, timerInfo);
+    }
+	
+Create a method in SchedulerService which accepts the timerId and timerInfo and updates the timerInfo of the Scheduler.
+
+	public void updateTimer(final String jobName, final TimerInfo timerInfo) throws SchedulerException {
+        JobDetail jobDetail = quartzScheduler.getJobDetail(new JobKey(jobName));
+        if (jobDetail == null) {
+            return;
+        }
+        jobDetail.getJobDataMap().put(jobName, timerInfo);
+    }
+	
+Calling of this method will be done from TriggerListener.
+Quartz library has an interface which we need to implement and is triggered every time when it is triggered.
+From the triggerFired() we need to call updateTimer().
+For that we need jobName and TimerInfo information.
+We also need to register the TriggerListener.
+
+	public class SimpleTriggerListener implements TriggerListener {
+
+    private SchedulerService schedulerService;
+
+    public SimpleTriggerListener(SchedulerService schedulerService) {
+        this.schedulerService = schedulerService;
+    }
+
+    @Override
+    public String getName() {
+        return SimpleTriggerListener.class.getSimpleName();
+    }
+
+    @Override
+    public void triggerFired(Trigger trigger, JobExecutionContext jobExecutionContext) {
+        String jobName=trigger.getKey().getName();
+        JobDataMap jobDataMap=jobExecutionContext.getJobDetail().getJobDataMap();
+        TimerInfo timerInfo= (TimerInfo) jobDataMap.get(jobName);
+        try {
+            if (!timerInfo.isRunForever()) {
+                int remainingFireCount = timerInfo.getRemainingFireCount();
+                if(remainingFireCount==0){
+                    return;
+                }
+                timerInfo = timerInfo.toBuilder().remainingFireCount(remainingFireCount - 1).build();
+            }
+            schedulerService.updateJob(jobName, timerInfo);
+        } catch (SchedulerException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean vetoJobExecution(Trigger trigger, JobExecutionContext jobExecutionContext) {
+        return false;
+    }
+
+    @Override
+    public void triggerMisfired(Trigger trigger) {
+
+    }
+
+    @Override
+    public void triggerComplete(Trigger trigger, JobExecutionContext jobExecutionContext, Trigger.CompletedExecutionInstruction completedExecutionInstruction) {
+
+    }
+	}
+
+##################################### 8.JDBC Job store (Lilium Code) ################################################################################
 
 
 
