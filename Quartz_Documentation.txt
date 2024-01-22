@@ -5,7 +5,7 @@
 5.Scheduling and executing a Job                                 (Lilium Code)	     [14-JAN-2024]	(Done)
 6.Fetching Jobs                                                  (Lilium Code)	     [14-JAN-2024]	(Done)
 7.Updating and Deleting a Job                                    (Lilium Code)	     [16-JAN-2024]	(Done)
-8.JDBC Job store                                                 (Lilium Code)	     [16-JAN-2024]	()
+8.JDBC Job store                                                 (Lilium Code)	     [16-JAN-2024]	(Done)
 9.Schedule Jobs With Quartz in Spring Boot                       (hackernoon)        [14-JAN-2024]	()
 
 ##################################### 1.Quartz Scheduler with Spring Boot to schedule Jobs (Dineshchandgr) ##############################
@@ -428,6 +428,19 @@ We also need to register the TriggerListener.
 
 ##################################### 8.JDBC Job store (Lilium Code) ################################################################################
 
+Here we will see how to use the JDBC JobStore for the schedler.
+The Schedulers we created earlier are stored in memory and when the application restarts we dont have any information about the Job.
+In some cases we need to persist the Scheduler Information and when we restart the application we use the existing Job information.
+
+1.Get the SQL scripts for Quartz Scheduler and run the scripts.
+2.Configure the database and quartz in application.properties.
+3.Create the datasource in the Configuration class.
+4.We need to implement the TimerInfo class with Serializable Object as we are persisting it state in Database.
+
+
+#####################################  9.Schedule Jobs With Quartz in Spring Boot (hackernoon)  #####################################################
+
+  
 
 
 

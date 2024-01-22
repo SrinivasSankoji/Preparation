@@ -1,6 +1,6 @@
 1.Adapter												() 			  												[13-OCT-2023]  ()
 2.Bridge                                                () 			  												[13-OCT-2023]  ()
-3.Composite                                             (Salitha Chathuranga & Abdulaziz Pulatjonov) 			  	[15-OCT-2023]  ()
+3.Composite                                             (Salitha Chathuranga & Abdulaziz Pulatjonov) 			  	[16-JAN-2024]  (Done)
 4.Decorator                                             (Salitha Chathuranga & java67) 								[14-OCT-2023]  (Done)
 5.Facade                                                (Abdulaziz Pulatjonov & Prabhu Kumar) 			  			[22-OCT-2023]  (Done)
 6.Flyweight                                             (Rajeshvelmani & Abdulaziz Pulatjonov) 			  			[11-NOV-2023]  ()
@@ -9,11 +9,165 @@
 
 ####################################### 3.Composite (Salitha Chathuranga & Abdulaziz Pulatjonov) ########################################
 
+Composite/Composition represents a group of Objects through a defined structure or hierarchy.
+Composite design pattern allows us to treat individual Objects and composition of Objects in the same way.
+Tree structure could be the perfect example for Composite design pattern as it inherits a base type and can be represented as a part of whole hierarchy.
+Composite design pattern can be classified into 4 types.
 
+1.Component
+2.Leaf
+3.Composite
+4.Client
 
+1.Component :
+-------------
+Component is an interface or abstract class with the methods which has to be implemented in the Child composites.
+Component is considered as the parent for all the composite Objects.
 
+2.Leaf :
+--------
+Leaf is an Object which implements the behavior of the Component part and does not contain any references to other Objects.
 
+3.Composite :
+-------------
+Composite is an Object which implements the behavior of the Component part and contains the references to other composite objects.
+Composite is similar to Leaf but the only difference is it references to other Composite or Leaf Objects.
 
+4.Client :
+----------
+Client is an instance of an Object which has access to composition elements by using Component Object.
+
+Consider the scenario of Employee and Company.
+
+Employee is the Component.
+CEO,Manager,QA,Developer are the Leaf objects which does not contain any reference to other Objects.
+CompanyDirectory is a composite object which implements the Component part and contains the reference to other Composite or Leaf objects.
+Contains the reference of adding or removing the Composite or Leaf objects.
+
+CEO.java :
+----------
+
+	public class CEO implements  Employee{
+    private final String name;
+    private final String dept;
+    private final String job;
+
+    public CEO(String name, String dept, String job) {
+        this.name = name;
+        this.dept = dept;
+        this.job = job;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "CEO{" +
+                "name='" + name + '\'' +
+                ", dept='" + dept + '\'' +
+                ", job='" + job + '\'' +
+                '}';
+    }
+	}
+
+Developer.java :
+----------------
+
+	public class Developer implements Employee{
+    private final String name;
+    private final String dept;
+    private final String job;
+
+    public Developer(String name, String dept, String job) {
+        this.name = name;
+        this.dept = dept;
+        this.job = job;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Developer{" +
+                "name='" + name + '\'' +
+                ", dept='" + dept + '\'' +
+                ", job='" + job + '\'' +
+                '}';
+    }
+	}
+	
+CompanyDirectory.java :
+-----------------------
+
+	public class CompanyDirectory implements Employee {
+
+    private final List<Employee> employees;
+
+    public CompanyDirectory() {
+        this.employees = new ArrayList<>();
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+    }
+
+    @Override
+    public void showDetails() {
+        for (Employee employee:employees){
+            employee.showDetails();
+        }
+    }
+	}
+	
+Company.java :
+--------------
+
+	public class Company extends CompanyDirectory {
+
+    private final String name;
+
+    public Company(String name) {
+        super();
+        this.name = name;
+    }
+
+    public void showCompanyName() {
+        System.out.println("Company: " + name);
+    }
+	}
+	
+CompositeDemo.java :
+--------------------
+
+	public class CompositeDemo {
+    public static void main(String[] args) {
+        CEO ceo = new CEO("Nandini", "COM", "Chief Executive Officer");
+
+        Developer developer1 = new Developer("Srinivas", "ENG", "Project manager");
+        Developer developer2 = new Developer("XYZ", "ENG", "Associate Software Engineer");
+
+        CompanyDirectory softwareCompany=new CompanyDirectory();
+        softwareCompany.addEmployee(ceo);
+        softwareCompany.addEmployee(developer1);
+        softwareCompany.addEmployee(developer2);
+
+        Company company = new Company("N Technologies");
+        company.addEmployee(softwareCompany);
+        company.showCompanyName();
+        company.showDetails();
+		}
+	}
+	
 
 ################################################### 4.Decorator (Salitha Chathuranga & java67) ##########################################
 

@@ -155,8 +155,8 @@ CEO.java :
 
 Strategy design pattern is a behavioral design pattern that allows the behavior of an Object to be selected at runtime.
 It is one of the Gang of four design pattern which are widely used in programming language.
-The strategy design pattern is based on the idea of encapsulating a family of algorithms into seperate class that implements common interface.
-The pattern consists of three main components
+The strategy design pattern is based on the idea of encapsulating a family of algorithms/functionalities into seperate class that implements common interface.
+The pattern consists of 3 main components
 
 Context
 Strategy
@@ -176,7 +176,6 @@ Testability :
 Strategy Pattern makes it easy to test the Alogorithm without affecting over all behavior of the code.
 Open closed Principle :
 Strategy Pattern follows the Open closed principle which states that open for extension and closed for modification.
-
 
 Disadvantages :
 ---------------
