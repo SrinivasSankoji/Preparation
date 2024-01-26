@@ -1,5 +1,5 @@
 1.Chain of Responsibility										(Skilled Coder Medium) 			  [14-OCT-2023]  (Done)
-2.Command														()								  [14-OCT-2023]  ()
+2.Command														(Medium)						  [25-JAN-2024]  (Done)
 3.Iterator                                                      ()								  [14-OCT-2023]  ()
 4.Memento                                                       ()								  [14-OCT-2023]  ()
 5.Observer														()								  [14-OCT-2023]  ()
@@ -143,6 +143,89 @@ CEO.java :
 			System.out.println("CEO can approve the purchase of $" + amount);
 		}
 	}
+
+################################################### 2.Command  ######################################################################################
+
+Bhuvnesh Maheshwari : https://medium.com/swlh/command-pattern-what-it-is-and-how-to-use-it-7ccbc810266d
+Larry | Peng Yang : https://medium.com/must-know-computer-science/mastering-design-patterns-with-examples-command-pattern-2dc68803f9ce   
+Anmol Sehgal : https://anmolsehgal.medium.com/command-design-pattern-java-with-live-project-usage-example-5d6c721fbd3b
+
+Command design pattern is a behavioral design pattern that allows us to encapsulate a request or action as an Command Object,
+there by promoting loose coupling and greater control over the request's lifecycle.
+Command design pattern is widely used in Software development to decouple the Object that initiates the request from the Object that actually performs the action.
+
+Advantages :
+------------
+1.By using Command design pattern we are encapsulating a request or method call into concrete commands along with request data.
+By doing this we are not only making the code more readable but also adding or removing the commands in much cleaner way.
+Here we are not required to do the changes in existing classes or methods to add new behavior.
+Design principle : System should be open for extension and closed for modification.
+
+2.By using Command design pattern as an Object opens up whole new possibilities.
+For instance we can store command Objects in a List,Stack,Set and Map and manipulate them however we want.
+So that we can easily maintain the history of all the commands or we can see the frequently used commands.
+We can also perform the "undo" of the given command if we are maintaing the order of execution.
+
+3.By using Command design pattern we are decoupling the logic of the execution of the command from the command invoker.
+Design principle : Seperating Layers of concern.
+
+Command design pattern has 3 components i.e. Invoker,Reciever and Command.
+Here invoker recieves the request,encapsulates the request into Command Object which then passes the request to the appropriate reciever.
+
+Command.java :
+--------------
+
+	public interface Command {
+
+		void execute();
+		void rollback();
+	}
+
+	public class Cart implements Command{
+    @Override
+    public void execute() {
+        System.out.println("Product added to cart");
+    }
+
+    @Override
+    public void rollback() {
+        System.out.println("Product removed from cart");
+    }
+
+Note : Similar are the classes for Payment,Order,Logistics,Dispatch.
+
+Invoker.java :
+--------------
+
+	public class Invoker {
+		private Command command;
+
+		public Invoker(Command command) {
+			this.command = command;
+		}
+
+		public void executeCommand() {
+			this.command.execute();
+		}
+
+		public void rollbackCommand() {
+			this.command.rollback();
+		}
+	}
+	
+CommandDemo.java :
+------------------
+
+	public class CommandDemo {
+    public static void main(String[] args) {
+        List<Command> commandHistory = new ArrayList<>();
+        Command cart = new Cart();
+        commandHistory.add(cart);
+        Invoker invoker = new Invoker(cart);
+        invoker.executeCommand();
+		}
+	}
+
 
 ################################################### 5.Observer ()  ##################################################################################
 
