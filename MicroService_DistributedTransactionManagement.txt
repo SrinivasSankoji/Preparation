@@ -1,0 +1,62 @@
+1.Saga Design Pattern                     							(medium)        (Kishore Karnatakapu)     [28-SEP-2023]  ()
+2.Distributed Transactions in Spring Boot Microservices				(medium)        (anudeep billa)     	  [30-MAR-2024]  ()
+
+
+
+################################ 2.Distributed Transactions in Spring Boot Microservices	(medium) (anudeep billa & Amit Himani) ##################################
+
+A Transaction in a software system is nothing but a group of operations that are executed as a single unit.
+This concept is cruicial for maintaining data integrity and consistency particular in database operations.
+
+Atomocity :
+-----------
+Atomocity ensures that all the Operations within a Transaction are treated as a single unit.
+Either all the transactions has to be executed successfully or roll back in case of failure.
+
+Consistency :
+-------------
+Consistency ensures that the Transaction can bring the system from one valid state to another valid state, maintaining database rules and constraints.
+
+Isolation :
+-----------
+Transactions are oftened executed concurrently.
+Isolation ensures that concurrent transactions do not interfer with each other.
+
+Durability :
+------------
+Once the Transaction is committed it remains so and even in case of system failures.
+This ensures that results of the Transaction are permanently recorded.
+
+Distributed Transaction Management in MicroServices refer to transactions that involve multiple micro services each handling the part of the Transaction.
+Here coordination is required to ensure the Transaction's Atomicity, Consistency, Isolation and Durability.
+Spring boot provides several features to manage distributed transactions in micro services architecture.
+We can use either Two phase commit or Saga pattern to manage distributed transactions.
+
+Two-Phase Commit — 2PC :
+------------------------
+
+
+
+
+Saga Pattern :
+--------------
+Saga Pattern is a sequence of local Transactions where each Service performs its part of the process.
+If any step fails compensating Transactions are executed to undo the previous steps ensuring data consistency without the need for two-phase commit.
+Saga Pattern can be implemented in two ways.
+
+Choreography :
+--------------
+Choreography means each Service will be executed independently.
+Once the Task is completed it invokes the next task in the sequence.
+In cas if the next task fails it invokes the compensating tasks of the previous Transaction.
+
+Orchestration :
+---------------
+Orchestration means the Services are executed by another Parent Task.
+Parent Task plays the role of an Orchestrator.
+Parent Task calls each Task in sequence and based on their response Parent Task decides whether to call the next Task or the Compensating Task.
+
+
+
+
+

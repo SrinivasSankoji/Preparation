@@ -23,6 +23,16 @@
 21.ETCD Backup                                              [07-MAY-2021]  ()
 22.ETCD Database Restore                                    [07-MAY-2021]  ()
 23.Nginx Ingress Controller                                 [07-MAY-2021]  ()
+24.Helm Introduction
+25.Helm Charts
+26.Helm hooks
+27.Network policies
+28.Service Accounts
+29.Read only access
+30.Kubernetes Resources
+31.Argocd in Kubernetes
+32.Pod Topology Spread Constraints
+33.Headless Services 
 
 Pod Lifecycle
 Services
@@ -35,23 +45,23 @@ Label Nodes
 
 *************************************************************  3.Kube API Server  ***********************************************************
 
-API Server is responsibele for all the communication on the Kubernetes.
-Whenever we are running any kubectl command,we are actually intercating with API Serevr.
-API Server exposes some API that the user can interact with.we can also intercat with API server using curl Request.
-Consider the scenario of creating a Pod and the Steps are 
+API Server is responsible for all the communication on the Kubernetes.
+Whenever we are running any kubectl command we are actually intercating with API Serevr.
+API Server exposes some API that a user can interact with.we can also intercat with API server using curl Request.
+Consider the scenario of creating a Pod and the steps are 
 
 create the yml file
 apply
 
-Here request goes to the API Server and creates the Pod object and updates the ETCD and shows the user that Pod object is created.
-The Scheduler which is running in the Kubernetes Cluster continuously monitors the API Server for the newly created Pod Objects.
-Whenever Scheduler finds any newly created Pod object,It looks for the Node where the Pod has to be placed.
+Here request goes to the API Server, creates the Pod, updates the ETCD and shows the user that Pod is created.
+The Scheduler which is running in the Kubernetes Cluster continuously monitors the API Server for the newly created Pods.
+Whenever Scheduler finds any newly created Pod, It looks for the Worker Node where the Pod has to be placed.
 
-Scheduler gets all the information of Hardware Configuration of Worker Nodes from Configuration files i.e indirectly from ETCD data store.
-Whenever Scheduler has scheduled a Pod,it will check which Node will best fit to schedule a Pod based on Hardware Configuration of a Node.
+Scheduler gets all the configuration information of Worker Nodes from configuration files i.e. indirectly from ETCD data store.
+Whenever Scheduler has scheduled a Pod,it will check which Worker Node is suitable to schedule a Pod based on hardware configuration of a Node.
 
 Scheduler then transfers the information to the API Server.
-API Server again updates the ETCD with the Node information.
+API Server again updates the ETCD with the Worker Node information.
 API Server then sends the information to the kubelet which is running on the worker Node.
 kubelet gets the Pod specification from the API Server and communicates with the Container Runtime to create the Pod.
 Container Runtime actually creates the Pod and updates the kubelet and then kubelet then updates the API Server that the Pod has created.
@@ -60,7 +70,7 @@ API Server then updates the ETCD about the Pod creation.
 ETCD is the place where we have complete information about the Cluster.
 
 If we install the Kubernetes as Hardware,download the binary and run the API Server as a Service.
-If we install the Kubernetes using the kubeadm,kubadm runs the API Server as Pod.
+If we install the Kubernetes using kube admin,kube admin runs the API Server as Pod.
 
 Note:
 Switch to the console and we can see how the API Server is running as Pod and we can also view all the Configuration details.
@@ -87,9 +97,14 @@ If we want to see the response in Json format
 
 	kubectl get pods -o json
 
+Note :
+------
+To run the kubectl commnads in docker desktop, we need to enable Kubernetes in Docker desktop settings and then apply.
+
+
 *************************************************************  4.ETCD in Kubernetes  ***************************************************************
 
-ETCD is a open source,distributed,consistent and highly available key value data store that can be used to store all the cluster data in the in Kubernetes.
+ETCD is an open source,distributed,consistent and highly available key value data store that can be used to store all the cluster data in the in Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
 ETCD stores everything that is happening in the Kubernetes Cluster i.e Adding Node,Pod Creation,Any Deployment etc.
 Whenever we do migration in Kubernetes,ETCD is the most importnat Component and If we loose the ETCD we loose the data.

@@ -49,6 +49,25 @@ Define the Properties in application.properties
 
 *************************************************** 3.OneToOne Techprimers  *************************************************************************************
 
+One to One relationship is nothing but one row in a table is associated with exactly one row in another table.
+Here we are dividing the data of a single table into 2 seperate tables for the ease of data retrieval and processing.
+
+One to One relationship is of 3 types.
+
+1.Shared Primary key
+2.Foreign Key (Parent table wll hold the reference of Child primary key)
+3.Join Table
+
+1.Shared Primary key :
+----------------------
+Consider the scenario of Product and Product Details Table.
+Here Primary key of Product and Product Details Table will be same.
+
+2.Foreign Key :
+---------------
+
+
+
 Create the UsersContact Table and Linke the UsersContact Table with UserRelationship Table.
 This can be done by Using onetoone Mapping in Chil Table.
 
@@ -68,7 +87,7 @@ Whenever we are trying to Update the UsersContact Then Update the UserRelationsh
 
 	@OneToOne(cascade = CascadeType.ALL)
 
-To get the Same Primary Ley in bothe the Tables use the below code in Child Table.
+To get the Same Primary key in bothe the Tables use the below code in Child Table.
 
 	@Id
 	@GeneratedValue(generator="SharedPrimaryKeyGenerator")

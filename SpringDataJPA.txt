@@ -74,9 +74,9 @@ Using Spring Data native query :
 List<Student> findStudentsUsingNativeQuery(String name);
 	 
 However there will be some scenarios where we want to fetch the data programatically and it can be done by using Criteria API.
-Criteria API allows us to write the queries in Object oriented way so that we no need to write the raw SQL Queries.
-Criteria API provides a Set of Interfaces and Classes that helps in build and execute the Queries.
-Criteria API provides a flexible and programatic Approach for constructing Complex queries in Spring Data JPA.
+Criteria API allows us to write the queries in Object oriented manner so that we no need to write the raw SQL Queries.
+Criteria API provides a set of Interfaces and Classes which helps in building and executing the Queries.
+Criteria API provides a flexible and programatic approach for constructing complex queries in Spring Data JPA.
 Criteria API allows us to define query conditions dynamically,handle multiple query conditions and build queries based on runtime Conditions.
 This gives more flexibility compare to static Queries defined in Annotations or methods.
 
@@ -198,7 +198,7 @@ If we want to query based on nested Entity properties.
 ################################### 11.Criteria API with Spring Data JPA Specifications (Ardi Jorganxhi) #########################################
 
 Spring Data JPA sepcification is a fetaure provided by Spring Data JPA Framework which is the larger part of Spring Data JPA Project.
-Specification in the COntext of Spring Data JPA allows us to build complex ,dynamic queries as Java Objects.
+Specification in the Context of Spring Data JPA allows us to build complex and dynamic queries as Java Objects.
 Specification then can be combined to create flexible and type safe queries.
 
 	public interface PhoneRepository extends JpaRepository<Phone,Integer>, JpaSpecificationExecutor<Phone> {

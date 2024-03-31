@@ -12,13 +12,13 @@
 
 ***********************************************************  1.Kubernetes Introduction	***********************************************************
 
-Kubernetes is a Container Management tool or Container Orchestration tool that manages Containerized Applications i.e 
+Kubernetes is a Container Management tool or Container Orchestration tool that manages Containerized Applications i.e. 
 Applications deployed on Container platform like Docker.
 Kubernetes was developed by Google Lab and later donated to CNCF (Cloud Native Computing Foundation).
 Kubernetes is open source and written in GO Language.
 Container Management tool automates deploying,scaling and managing containerized application on a group of servers.
 
-Different process that takes care in the process of Container Management are
+Different tasks that takes care in the process of Container Management are
 
 Deployment or RollOut's
 Scheduling  i.e where to deploy the Pod on the Worker Node
@@ -306,10 +306,10 @@ kubelet does not manage the Containers which are not created by Kubernetes.
 2.kube-proxy :
 --------------
 kube-proxy is a networking component in a Worker Node and it can also intercat with the external world.
-This is the Component which is responsible for maintaining the Network Configuration and Rules.
+This is the Component which is responsible for maintaining all the Network Configuration and Rules.
 
-All Node runs the daemon called kube-proxy which watches the API server on the Master Node,
-So that it communicate with Master Node using API Server and it gets all the information like addition and removal of Services and Endpoints.
+All Worker Nodes runs the daemon called kube-proxy which watches the API server on the Master Node.
+So that it communicate with Master Node using API Server and gets all the information like addition and removal of Services and Endpoints.
 
 Note :
 API Server of the Master Node interacts with kube-proxy and kubelet of the worker Node.
@@ -317,7 +317,7 @@ API Server of the Master Node interacts with kube-proxy and kubelet of the worke
 3.Container Runtime :
 ---------------------
 Kubernetes does not have the capabilty to directly handle the Containers.
-In order to run and manage a Container's lifecycle,Kubernetes requires a Container Runtime on the Node where a Pod and its Containers are to be scheduled.
+In order to run and manage a Container's lifecycle,Kubernetes requires a Container Runtime on the Worker Node where a Pod and its Containers are to be scheduled.
 Container Runtime is a software that is responsible for running the Containers.
 Most common Container platfrom used in Kubernetes is Docker.
 

@@ -23,7 +23,7 @@
 
 ******************************************************   4.Docker Installation :  ************************************************************************
 
-If we install the Docker Tool Box on Windows Machine,installer automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
+If we install the Docker Tool box on Windows Machine,installer automatically installs Oracle Virtual Box to run the Docker Virtual Machine.
 Here Docker will be running  inside the Virtual Machine and we interact with Docker Server using Docker Client.
 To install Docker we ensure that we have 64 Bit OS and Windows 7 or Higher.
 
