@@ -41,7 +41,9 @@ Label Nodes
 
 ************************************************************* 2.Setup MiniKube  *************************************************************
 
+To install the Kubernetes we use the command
 
+	minikube start
 
 *************************************************************  3.Kube API Server  ***********************************************************
 
@@ -121,6 +123,10 @@ If we set up the Kubernetes cluster using kubeadm,kubeadm deploys ETCD as Pod.
 Note :
 In production Environment we normally see the ETCD as an external Component and not deployed along with the Kubernetes Cluster.
 
+To start the kubernetes we use the command
+
+	minikube start
+
 To view all the Pods in the Kubernetes system,we use the command
 
 	kubectl get pods -n kube-system
@@ -147,7 +153,7 @@ To insert the data into the ETCD
 
 Controller Manager :
 --------------------
-Control Manager is the component of the Master that runs different Managers.we have 
+Control Manager is the component of the Master Node that runs different Managers.we have 
 
 KUBE-CONTROLLER-MANAGER
 CLOUD-CONTROLLER-MANAGER

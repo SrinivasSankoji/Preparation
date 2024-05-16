@@ -1,0 +1,53 @@
+1.Text Blocks												(javarevisited)		[14-MAY-2024]  (Done)
+2.Improved Switch Statement                                 (javarevisited)		[14-MAY-2024]  ()
+3.Record Type                                               (javarevisited)		[14-MAY-2024]  ()
+4.Sealed Classes                                            (javarevisited)		[14-MAY-2024]  ()
+5.Pattern matching with instance Of                         (javarevisited)		[14-MAY-2024]  (Done)
+6.Helpful NullPointerException                              (javarevisited)		[14-MAY-2024]  (Done)
+
+
+######################################################### 1.Text Blocks  ##############################################################################################
+
+https://medium.com/javarevisited/java-17-vs-java-11-exploring-the-latest-features-and-improvements-6d13290e4e1a
+
+Java has introduced Text blocks to make the code more readable and to avoid unnecessary String fromatting.
+Now we can place our code within the triple quotesAA and having double quoted String within the triple quoted String without having to use escape characters.
+Also two new escape characters have been introduced for use inside text blocks.
+\s for adding a space and \ for removing the new line.
+These are specially useful when writing the long SQL statements.
+
+		 String json= """
+                     {
+                        "name":"Srinivas",
+                        "technology":"java",
+                        "designation":"senior"
+                     }
+                     """;
+					 
+######################################################### 5.Pattern matching with instance Of (javarevisited) #########################################################
+
+We usually use the instance of opertaor to to check whether an Object belongs to certain class or not.
+Then we need to explicitly cast the Object to that particular class if we want to explicitly perform some operation on it.
+
+
+	if(object instanceof Grape)
+	{
+	  Grape garpe=(Grape)object;
+	  System.out.println("");
+	}
+	
+With Java 17 we can change this to
+
+	if(object instanceof Grape grape)
+	{
+	  System.out.println("");
+	}
+	
+######################################################### 6.Helpful NullPointerException (javarevisited) ############################################################
+
+Before Java 17 when we get the NullPointerException we only get the line number on which the exception has occured.
+We don't get the method or variable which resolved to null.
+With Java 17 messaging has improved and it shows the method invocation where exactly it got the NullPointerException. 	
+
+
+

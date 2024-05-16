@@ -1,8 +1,11 @@
 1.Kubernetes Introduction											[28-MAR-2021]  (Done)
+
 2.Kubernetes Features Part One                                      [28-MAR-2021]  (Done)
 3.Kubernetes Features Part Two                                      [29-MAR-2021]  (Done)
+
 4.Kubernetes Architecture Part One                                  [29-MAR-2021]  (Done)
 5.Kubernetes Architecture Part Two                                  [30-MAR-2021]  (Done)
+
 6.Kubernetes How to use                                             [30-MAR-2021]  ()
 7.Kubernetes Playground                                             [28-MAR-2021]  ()
 8.Play with Kubernetes                                              [28-MAR-2021]  ()
@@ -21,7 +24,7 @@ Container Management tool automates deploying,scaling and managing containerized
 Different tasks that takes care in the process of Container Management are
 
 Deployment or RollOut's
-Scheduling  i.e where to deploy the Pod on the Worker Node
+Scheduling  i.e where to deploy the Pod on the Worker Node.
 Scaling
 Load Balancing
 
@@ -180,7 +183,7 @@ It keeps on Monitoring the CPU Usage and based on those Metrics it will sends th
 In an Organization we have a Manager,Manager manages the Team Members and together they form the Team.
 In Kubernetes we have a Master Node and Worker Node together they form a Cluster.
 When we set up the Kubernetes we get a Cluster and Cluster is nothing but a Set of Machines called Nodes.
-A Cluster has atleast one Master Node and atleast one Worker Node to form a Cluster.
+A Cluster has atleast one Master Node and atleast one Worker Node together to form a Cluster.
 There can be more than one Master Node in a Cluster to provide a Cluster with fail over and high availability.
 There can be Multiple Clusters in Kubernetes Architecture.
 
@@ -193,7 +196,7 @@ Virtual Machine on Cloud
 Worker Nodes host the Pods that are the Components of an Application.
 Master Node is responsible for monitoring and managing the worker Nodes in the Cluster.
 Whenever there is a failure of the Worker Node,Master Node will move the workload to the other Worker Node.
-Master Node will take care of the overall working of the Kubernetes Cluster.
+Master Node will take care of overall working of the Kubernetes Cluster.
 
 Kubernetes Cluster can support upto 5000 Nodes.
 For a Single Node there cannot be more than 100 Pods.
@@ -221,7 +224,7 @@ kubectl is a Go Language Libraray.
 -------------
 Scheduler is a Component of Master Node that schedules the Pods across multiple Worker Nodes i.e
 Scheduler watches the newly created Pods that has no Worker Node assigned to it  and selects a Worker Node for them to run on.
-Here Worker Nodes can be a physical Machine or virtual Machine.
+Here Worker Node can be a physical Machine or virtual Machine.
 We can have different infrastructure or Hardware Configuration for the Worker Nodes.
 Scheduler gets all the information about the Worker Nodes from Configuration files i.e indirectly from ETCD data store.
 Whenever Scheduler has scheduled a Pod,it will check which Worker Node will best fit to schedule a Pod based on Hardware Configuration of a Worker Node.
@@ -277,10 +280,10 @@ We can disable the controller loops by setting the --cloud--provider flag to ext
 
 4.ETCD :
 --------
-ETCD is a open source,distributed,consistent and highly available key value data store that can be used to store all the cluster data in the in Kubernetes.
+ETCD is an open source,distributed,consistent and highly available key value data store that can be used to store all the cluster data in the in Kubernetes.
 ETCD is a single source of truth for all the components of the Kubernetes Cluster.
 API server is the only component that intercats with ETCD data store.
-ETCD can be a part of Kubernetes Master or can be configured externally.
+ETCD can be a part of Kubernetes Master Node or can be configured externally.
 
 WORKER NODE :
 Worker Nodes can be a Physical Machine or Virtual Machine where the Containers are deployed.
