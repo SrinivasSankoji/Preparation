@@ -1,4 +1,4 @@
-1.Introduction
+1.Introduction																		[19-MAY-2024]  (Done)						
 2.Kubernetes Architecture
 3.Install Kubernetes
 4.How to manage hundred's of Kubernetes Cluster
@@ -17,10 +17,105 @@
 
 ######################################################### 1.Introduction  ##########################################################################
 
+If we are good at CI CD then it will be the role of Build and Release Engineer or Release Engineer roles.
+People has moved to micro services in the recent years.
+The only pre requisite to learn Kubernetes is Docker or Container.
+We must know the basics of the Container. 
+
+How it is different from VM
+Why it is light weight
+Networking isolation
+Namespace isolation
+How do we secure the Container
+Multi stage builds
+
+Docker is a Container platform which makes the interaction with the Container very easy.
+Docker provides the complete lifecycle of the Container by using either Docker engine or Docker CLI.
+Where as Kubernetes is a Container Orchestration platform.
+
+1.Single Host :
+-------------
+Containers are ephimeral in nature i.e. short living.
+Containers can die and revive in nature.
+Consider the scenario where we installed the Docker on some machine i.e. Single Host.
+100 containers are running on the same host.
+Out of 100 Conatiners 1 Container is taking memory.
+Then it will impact the 50th Container because it is not getting the enough resources.
+If the Container is not scheduled then the Container will not get started.
+Here there is no way the impacted Container will be created again.
+Also there is no relationship between Container 1 and Conatiner 50.
+By default the nature of Docker or Conatiner platform is scoped to Single Host.
+
+2.Auto healing :
+--------------
+If some one kills the Container then the Application which is running inside the Container will not be available.
+User has to act upon the killed Container then only Application will be available.
+This behavior is nothing but Auto healing.
+Auto healing is nothing but without User manual intervention the Container should start by itself.
+There are 100's of reasons why the Container can go down.
+
+3.Auto scaling :
+--------------
+Consider the scenario where we installed the Docker on some host machine and created 1 Container.
+Here the resources allocated to the host machine are 4 GB Ram and 4 CPU.
+Container can also maximum can consume upto 4 GB Ram and 4 CPU.
+Mostly we don't get the maximum resources of the Host because Host itself will have lot of process.
+
+Consider the scenario where the Application has 1K users.
+There is some scenario where the users has increased from 1K to 1M.
+Here the Container has to act upon the increasing load which is nothing but Auto scaling.
+
+There are two ways.
+Manually increase the load.
+Automatically
+
+Here Docker does not support both of the ways.
+Even if we create more Containers we also need to support Load balancing i.e. which Container has to handle the request.
+
+Enterprise level support :
+--------------------------
+Docker is very simple and does not support any of the Enterprise Level support.
+The minimum things to run an Application are
+
+Load Balancer
+Firewall
+Auto scale
+Auto Healing
+API Gateways
+Blacklist
+Whitelist etc.
+
+The above concepts are Enterprise level standards.
+Kubernetes will solve all the above problems.
+
+By default Kubernetes is a Cluster or group of Clusters.
+Cluster is nothing but group of Nodes.
+Here each node can be a machine or VM in the cloud.
+
+When we install the Kubernetes as Cluster If there is any issue in scheduling the pod in one Node then Kubernetes will schedule the pod in another Node.
+Faulty Pod can be immideately scheduled in the different Node because we have Cluster like Architecture.
+
+Kubernetes has something called Replication controller or ReplicaSet.
+We have to mention to increase the replicas from 1 to 10.
+This is manual Auto scale.
+Kubernetes has something called Horizonal Pd Autoscale.
+Once the threshold has reached to the limit increase the Containers.
+
+Whenever there is a damage Kubernetes has to control and fix the damage.
+For some resaon one of the Container got damaged then in Docker there won't be any approach to restart the Container.
+Kubernetes has a feature called Auto healing and whenever the container is going down it will create the new Container.
+Kubernetes has something called API Server which has all the information about the pods.
+If any of the container goes down it will immideately roll out the new Container.
+
+Kubernetes does not provide all the functionalities.
+We can extend the Kubernetes functionalities by adding some custom resources and custom resource definitions.
+By default Kubernetes does not support advance load balancing capabilities and will provide the basic load balancing like round robin.
+What Kubernetes has suggested the vendors to create Kubernetes controller using which people can use your load balancer even in Kubernetes.  
+This concept is nothing but Ingress Controller.
+
+######################################################### 2.Kubernetes Architecture #########################################################
 
 
-
-######################################################### 2.Kubernetes Architecture ################################################################
 
 
 
