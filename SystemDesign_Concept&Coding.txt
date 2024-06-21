@@ -1,21 +1,52 @@
-1.Decomposition Desgn Pattern 							[18-MAY-2024]  ()
-2.SAGA Design Pattern                                   [18-MAY-2024]  ()
-3.Strangle Design Pattren                               [18-MAY-2024]  ()
-4.Scale to 1 Million Users                              [18-MAY-2024]  ()
-5.URL Shortner Design Pattern                           [18-MAY-2024]  ()
-6.SQL vs NO SQL Differences                             [18-MAY-2024]  ()
-7.Rate Limiter Design Pattern                           [18-MAY-2024]  ()
-8.Idempotent Post API Design Pattern                    [18-MAY-2024]  ()
-9.High availability and Resilient System                [18-MAY-2024]  ()
-10.Distributed Messaging Queue                          [18-MAY-2024]  ()
-11.Proxy vs Reverse Proxy                               [18-MAY-2024]  ()
-12.Load Balancer                                        [18-MAY-2024]  ()
-13.Distributed Caching                                  [18-MAY-2024]  ()
-14.Distributed Transaction                              [18-MAY-2024]  ()
-15.Concurrency Control                                  [18-MAY-2024]  ()
-16.Two phase Locking                                    [18-MAY-2024]  ()
-17.Symmetric and Assymetric Encryption                  [18-MAY-2024]  ()
+1.Introduction											[18-MAY-2024]  ()
+2.Network Protocols                                     [18-MAY-2024]  ()
+3.CAP Theorem                                           [18-MAY-2024]  ()
+4.Decomposition Desgn Pattern 							[18-MAY-2024]  ()
+5.SAGA Design,Strangler and CQRS Design Pattren       	[18-MAY-2024]  ()
+6.Scale to 1 Million Users                              [18-MAY-2024]  ()
+7.Consistent Hashing                                    [18-MAY-2024]  ()
+8.URL Shortner Design Pattern                           [18-MAY-2024]  ()
+9.Envelope System Design                                [18-MAY-2024]  ()
+10.Key value store                                      [18-MAY-2024]  ()
+11.SQL vs NO SQL Differences                            [18-MAY-2024]  ()
+12.Whats App System Design                              [18-MAY-2024]  ()
+13.Rate Limiter Design Pattern                          [18-MAY-2024]  ()
+14.Zoom System Design                                   [18-MAY-2024]  ()
+15.Idempotent Post API Design Pattern                   [18-MAY-2024]  ()
+16.High availability and Resilient System               [18-MAY-2024]  ()
+17.Distributed Messaging Queue                          [18-MAY-2024]  ()
+18.Proxy vs Reverse Proxy                               [18-MAY-2024]  ()
+19.Load Balancer                                        [18-MAY-2024]  ()
+20.Distributed Caching                                  [18-MAY-2024]  ()
+21.Distributed Transaction                              [18-MAY-2024]  ()
+22.Database Indexing                                    [18-MAY-2024]  ()
+23.Concurrency Control                                  [18-MAY-2024]  ()
+24.Two phase Locking                                    [18-MAY-2024]  ()
+25.OAuth2                                               [18-MAY-2024]  ()
+26.Symmetric and Assymetric Encryption                  [18-MAY-2024]  ()
+27.JWT													[18-MAY-2024]  ()
 
 
 ######################################################### 1.Decomposition Desgn Pattern #########################################################
 
+
+
+######################################################### 4.Scale to 1 Million Users ############################################################
+
+Load Balancer
+Database Replication
+CQRS
+Cache
+CDN
+Data Center
+Mesagaing Queues
+Publisher Subscriber
+Rabit MQ
+Database Scaling
+Database Sharding
+Normalization
+DeNormalization
+Hashing
+Consistent Hashing
+ 
+                              
