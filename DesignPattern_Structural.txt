@@ -9,9 +9,9 @@
 
 ####################################### 3.Composite (Salitha Chathuranga & Abdulaziz Pulatjonov) ########################################
 
-Composite/Composition represents a group of Objects through a defined structure or hierarchy.
+Composition represents a group of Objects defined through a structure or hierarchy.
 Composite design pattern allows us to treat individual Objects and composition of Objects in the same way.
-Tree structure could be the perfect example for Composite design pattern as it inherits a base type and can be represented as a part of whole hierarchy.
+Tree structure could be the perfect example for Composite design pattern as it inherits the base type and can be represented as a part of whole hierarchy.
 Composite design pattern can be classified into 4 types.
 
 1.Component
@@ -21,12 +21,12 @@ Composite design pattern can be classified into 4 types.
 
 1.Component :
 -------------
-Component is an interface or abstract class with the methods which has to be implemented in the Child composites.
+Component is an interface or abstract class with the methods which has to be implemented in its Child composites.
 Component is considered as the parent for all the composite Objects.
 
 2.Leaf :
 --------
-Leaf is an Object which implements the behavior of the Component part and does not contain any references to other Objects.
+Leaf is an Object which implements the behavior of the Component and does not contain any references to other Objects.             
 
 3.Composite :
 -------------
