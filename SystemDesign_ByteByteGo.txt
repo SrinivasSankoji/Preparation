@@ -1,58 +1,81 @@
-1.Key Memory and Storage System
-2.DNS
-3.Latency Number Programmer
-4.Rest API
-5.Key Data Structure
-6.Cache System 
-7.Cloud Native
-8.Debugging
-9.Redis Usecases
-10.CI CD
-11.Kubernetes Architecture
-12.CAP Theorem
-13.OSI Model
-14.CDN
-15.RPC
-16.Graph QL
-17.API Gateway
-18.Proxy vs Reverse Proxy
-19.Micro services
-20.Kafka
-21.Password in Database
-22.VM and Containers
-23.HTTP1,HTTP2 and HTTP3
-24.Redis Single Threaded
-25.Distributed System Pattern
-26.SQL Execution Order
-27.AWS Serverless
-28.API Architecture Styles
-29.Deployment Strategies
-30.Trillion of messages
-31.Stack overflow Architeture
-32.OAuth2
-33.Evolution of Netflix
-34.Devops vs SRE vs Platform Engineering
-35.API performance
-36.Single Repository
-37.GIT merge vs Rebase
-38.Load Balancing Algorithms
-39.Apache Kafka
-40.HTTP Status codes
-41.GIT Works
-42.JWT
-43.Vertical vs Horizontal Scaling
-44.API testing
-45.Client Architecture Patterns
-46.Tools to turn code into Diagrams
-47.Caching Pitfalls
-48.Reverse Proxy vs API Gateway vs Load Balancer
-49.Kafka Popular
-50.ACID Properties
-51.API Security
-52.API protocols
-53.KISS,SOLID,CAP,BASE
-54.Data Pipeline
-55.Kafka vs Rabit MQ
+1.Key Memory and Storage System											[22-JUN-2024]  ()
+2.DNS                                                                   [22-JUN-2024]  ()
+3.Latency Number Programmer                                             [22-JUN-2024]  ()
+4.Rest API                                                              [22-JUN-2024]  ()
+5.Key Data Structure                                                    [22-JUN-2024]  ()
+6.Cache System                                                          [22-JUN-2024]  ()
+7.Cloud Native                                                          [22-JUN-2024]  ()
+8.Debugging                                                             [22-JUN-2024]  ()
+9.Redis Usecases                                                        [22-JUN-2024]  ()
+10.CI CD                                                                [22-JUN-2024]  ()
+11.Kubernetes Architecture                                              [22-JUN-2024]  ()
+12.CAP Theorem                                                          [22-JUN-2024]  ()
+13.OSI Model                                                            [22-JUN-2024]  ()
+14.CDN                                                                  [22-JUN-2024]  ()
+15.RPC                                                                  [22-JUN-2024]  ()
+16.Graph QL                                                             [22-JUN-2024]  ()
+17.API Gateway                                                          [22-JUN-2024]  ()
+18.Proxy vs Reverse Proxy                                               [22-JUN-2024]  ()
+19.Micro services                                                       [22-JUN-2024]  ()
+20.Kafka                                                                [22-JUN-2024]  ()
+21.Password in Database                                                 [22-JUN-2024]  ()
+22.VM and Containers                                                    [22-JUN-2024]  ()
+23.HTTP1,HTTP2 and HTTP3                                                [22-JUN-2024]  ()
+24.Redis Single Threaded                                                [22-JUN-2024]  ()
+25.Distributed System Pattern                                           [22-JUN-2024]  ()
+26.SQL Execution Order                                                  [22-JUN-2024]  ()
+27.AWS Serverless                                                       [22-JUN-2024]  ()
+28.API Architecture Styles                                              [22-JUN-2024]  ()
+29.Deployment Strategies                                                [22-JUN-2024]  ()
+30.Trillion of messages                                                 [22-JUN-2024]  ()
+31.Stack overflow Architeture                                           [22-JUN-2024]  ()
+32.OAuth2                                                               [22-JUN-2024]  ()
+33.Evolution of Netflix                                                 [22-JUN-2024]  ()
+34.Devops vs SRE vs Platform Engineering                                [22-JUN-2024]  ()
+35.API performance                                                      [22-JUN-2024]  ()
+36.Single Repository                                                    [22-JUN-2024]  ()
+37.GIT merge vs Rebase                                                  [22-JUN-2024]  ()
+38.Load Balancing Algorithms                                            [22-JUN-2024]  (Done)
+39.Apache Kafka                                                         [22-JUN-2024]  ()
+40.HTTP Status codes                                                    [22-JUN-2024]  ()
+41.GIT Works                                                            [22-JUN-2024]  ()
+42.JWT                                                                  [22-JUN-2024]  ()
+43.Vertical vs Horizontal Scaling                                       [22-JUN-2024]  ()
+44.API testing                                                          [22-JUN-2024]  ()
+45.Client Architecture Patterns                                         [22-JUN-2024]  ()
+46.Tools to turn code into Diagrams                                     [22-JUN-2024]  ()
+47.Caching Pitfalls                                                     [22-JUN-2024]  ()
+48.Reverse Proxy vs API Gateway vs Load Balancer                        [22-JUN-2024]  ()
+49.Kafka Popular                                                        [22-JUN-2024]  ()
+50.ACID Properties                                                      [22-JUN-2024]  ()
+51.API Security                                                         [22-JUN-2024]  ()
+52.API protocols                                                        [22-JUN-2024]  ()
+53.KISS,SOLID,CAP,BASE                                                  [22-JUN-2024]  ()
+54.Data Pipeline                                                        [22-JUN-2024]  ()
+55.Kafka vs Rabit MQ                                                    [22-JUN-2024]  ()
 
 ############################################################### 1.Key Memory and Storage System ###############################################################
+
+############################################################### 38.Load Balancing Algorithms ##################################################################
+
+How the Big web paltforms will handle millions of request.
+Load Balancer is criticl Component of any Large scale Application.
+By distributing work load across multiple servers Load Balancer helps in high availability,responsiveness and scalability.
+By understanding the core Load Balancing Algorithms allows us for better Architecture,troubleshoot and optimize our Applications.
+
+Static Load Balancer algorithms distribute the request to the Server without taking into account Servers real time conditions and performance metrics.
+Main advantage is simplicity.
+Disadvantage is less adaptivity and precission.
+
+Stick Round Robin Algorithm :
+-----------------------------
+This is an extension of Round Robin Algorithm.
+Sends the subsequent requests from the same user to the same Server.
+The Advantage here is to improve the performance by having related data on the same server.
+Disdvantage is uneven loads can easily occur since newly arriving users are assigned randomly.
+
+Dynamic Load Balancing Algorithms takes the active performance metrics and Server conditions into Account when distributing requests.
+
+
+
 

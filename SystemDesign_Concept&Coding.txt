@@ -3,7 +3,7 @@
 3.CAP Theorem                                           [18-MAY-2024]  ()
 4.Decomposition Desgn Pattern 							[18-MAY-2024]  ()
 5.SAGA Design,Strangler and CQRS Design Pattren       	[18-MAY-2024]  ()
-6.Scale to 1 Million Users                              [18-MAY-2024]  ()
+6.Scale to 1 Million Users                              [18-MAY-2024]  (InProgress)
 7.Consistent Hashing                                    [18-MAY-2024]  ()
 8.URL Shortner Design Pattern                           [18-MAY-2024]  ()
 9.Envelope System Design                                [18-MAY-2024]  ()
@@ -16,10 +16,10 @@
 16.High availability and Resilient System               [18-MAY-2024]  ()
 17.Distributed Messaging Queue                          [18-MAY-2024]  ()
 18.Proxy vs Reverse Proxy                               [18-MAY-2024]  ()
-19.Load Balancer                                        [18-MAY-2024]  ()
+19.Load Balancer                                        [22-JUN-2024]  (Done)
 20.Distributed Caching                                  [18-MAY-2024]  ()
 21.Distributed Transaction                              [18-MAY-2024]  ()
-22.Database Indexing                                    [18-MAY-2024]  ()
+22.Database Indexing                                    [18-MAY-2024]  (InProgress)
 23.Concurrency Control                                  [18-MAY-2024]  ()
 24.Two phase Locking                                    [18-MAY-2024]  ()
 25.OAuth2                                               [18-MAY-2024]  ()
@@ -49,4 +49,128 @@ DeNormalization
 Hashing
 Consistent Hashing
  
-                              
+######################################################### 19.Load Balancer  ####################################################################
+
+When a request comes from Client to the Server, All the request should not go to one single Server.
+This will overload the Server.
+We will keep the Load balancer to handle the requests from the Client that will point to different Servers.
+The main purpose of the Load Balancer is to distribute the traffic to the appropriate Server so that none of the Server will get overloaded.
+
+There are two types of Load Balancer types.
+
+1.Network Load Balancer Type (L4)
+2.Application Load Balancer Type (L7)
+
+Application Load Balancer can read the Header,Request Data,Session and even Response also.
+Application Load Balancer can take decission to distribute the traffic based on the information present in Header,Request Data,Session,Cookie etc.
+Application Load Balancer also has the capability of doing the caching because it can read the response.
+Application Load Balancer is more advanced.
+
+Network Load Balancer cn have TCP port,UDP port,IP Address of source and Destination etc.
+Based on these information only Network Load Balancer can take the decission to route the request to appropriate Server.
+Network Load Balancer is faster.
+
+There are different type of Algorithms used by Load Balancer to handle the requests.
+
+Static Algorithms :
+1.Round Robin Algorithm
+2.Weighted Round Robin Algorithm
+3.IP Hash
+
+Static Load Balancer algorithms distribute the request to the Server without taking into account Servers real time conditions and performance metrics.
+Main advantage is simplicity.
+
+Dynamic Algorithms :
+Least Connection
+Weighted Least Connection
+Least Response Time
+
+Round Robin Algorithm :
+-----------------------
+Consider the scenario of 4 User Requests and have two Servers.
+Here Load Balancer will distribute the traffic to the Server based on Round Robin manner.
+
+Advantages :
+It is very easy to implement.
+Equal Load Distribution to all the Servers.
+
+Disadvantages:
+One Server with high capacity and another Server with Low capacity will be treated as the same.
+There is chance that Low capacity Server will get slow down because of the overload of requests.
+
+Weighted Round Robin Algorithm :
+--------------------------------
+In case of Weighted Round Robin Algorithm, Load Balancer considers the capacity of the Server and based on the capacity 
+It will distribute the request to the Server.
+Consider the Server1 has 3 times capacity then Server2.
+Consider the scenario of 4 User Requests and have two Servers.
+Here Request 1,2,3 goes to Server1 and Request 4 goes to Server2.
+
+Advantages :
+Low capacity Server will get saved from recieving Large number of Requests.
+Easy to implement as the weights are static and no dynamic computation.
+When any New Server is getting added, Will provide the weight to the Server.
+Load Balancer konows the Weight of the newly added Server.
+
+Disadvantages :
+If the request has different processing time then it is possible that Low Capacity Server
+will get high processing requests and get over burdened.
+Because some of the requests will take more time to process the request.
+In that case Low Capacity Server will contains the requests which are in processing and new Requests will get added.
+
+IP Hash :
+---------
+Consider the scanario of Client Sending the Request to the Server.
+Each Client has an IPAddress.
+Load Balancer will use the IPAddress to compute the hash.
+Using the hash function will get some value and based on the value Load Balancer will assign the request to the Server.
+
+Advantages :
+It is good for the Usecase where same Client needs to conenct to Same Server.
+It is easy to implement.
+
+Disadvantages :
+If the Client request is coming from Proxy then all the Clients will have teh same IPAddress then it will overload the Server.
+One more disadvantage is it cannot ensure equal distribution.
+
+Least Connection :
+------------------
+Dynamically computed to determine the Load Balancing.
+Load Balancer will check the number of active connections on each Server.
+The server which has the less active connections then Load Balancer will route the request to the particular Server.
+
+Advantages :
+Considers the Load on each Server.
+There is no chance of burden on the Server which has equal capacity.
+
+Disadvantages :
+Consider the case of TCP connections.
+Here always it will be considered as active but there is a possibility of no traffic.
+Consider the scenario of TCP connection where the Request1 and Request2 are processed by Server1.
+Where as Request3 which has huge traffic from Request3 which is processed by Server2 because Server1 has 2 active connections.
+Here Low Capacity Server will get over burdened.
+
+Weighted Least Connection :
+---------------------------
+In this case Server will be assigned with the weight.
+Consider the scenario where the Server1 has 10 times capacity of Server2.
+Also the Server has the information of active connections.
+When a new Request comes Load Balancer will calculate the ratio of no of active connections to its weight.
+
+Sever1 has 2 active connections i.e 2/10 = 0.5
+Server2 has 1 active connections  i.e 1/1= 1
+Then Load Balancer will transfer the request to Server2 which has minimum ratio.
+
+Least Response Time :
+---------------------
+TTFB stands for Time to First Byte.
+The Time Interval between sending a request and recieving the response from the Server.
+
+Load Balancer will forward the request to the Server which has least Active COnnection and least TTFB.
+
+	least actve connection * TTFB
+	
+In case if anny clash happens then it follows the Round Robin.
+
+
+                                       
