@@ -18,7 +18,7 @@
 18.Database Replication                                 [22-JUN-2024]  (InProgress)
 19.CAP                                                  [22-JUN-2024]  ()
 20.CAP Theorem                                          [22-JUN-2024]  ()
-21.Database Sharding                                    [22-JUN-2024]  (InProgress)
+21.Database Sharding                                    [23-JUN-2024]  (Done)
 22.Key based Sharding                                   [22-JUN-2024]  ()
 23.Range based Sharding                                 [22-JUN-2024]  ()
 24.Directory based Sharding                             [22-JUN-2024]  ()
@@ -26,11 +26,119 @@
 26.Consistent Hashing                                   [22-JUN-2024]  ()
 27.Capacity Estimation                                  [22-JUN-2024]  ()
 
-############################################################### Introduction ##########################################################################
+############################################################### 1.Introduction ##########################################################################
 
 
 
-############################################################### 18.Database Replication ###############################################################
+############################################################### 9.Caching Patterns ######################################################################
+
+https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo
+
+
+############################################################### 18.Database Replication #################################################################
+
+
+
+
+############################################################### 21.Database Sharding ####################################################################
+
+Consider the scenario of building a User Management System which stores lot of User data.
+When the number of User increease we will increease the storage of Database.
+What if the Users increases 10 times.
+Here the Database Server cannot fit those many Users.
+The solution is to partition the data i.e. to store data into multiple databases which is nothing but Database Sharding.
+
+If we have lot of data and increasing the storage does not suffice we end storing the data into multiple machines.
+This is also called as Data Partitioning.
+
+Consider the scenario where we have 1 million users and the storage capacity is 256 GB.
+Now the Users increased to 2 Million and again we need to increase the storage capacity from 256 GB to 512 GB.
+There is some limit in storage capacity and beyond that we cannot increase the storage capacity.
+
+The solution is to divide the data into multiple databases.
+If we have 4 Million users then we split the data into 4 different Databases with the capacity of each Database as 1 TB.
+Here we are partitioning the data and all of them combine will represent the complete data set.
+
+There are two ways to partition the date.
+One way is to store all the columns in different shards.
+It is a kind of dividing some of the columns and storing it into different databases.
+This is konwn as Vertical Partitioning.
+
+Logical Shard vs Physical Shard :
+---------------------------------
+Another way is to divide the rows which is nothing but Horizontal Partitioning or Sharding.
+Horizontal Sharding is the widely used technique to store large data,highly available and scalable databases.
+
+Shard is nothing but partition of data or subset of the whole data.
+The subset could be logical or physical.
+
+Consider the scenario where we have 4 million Users where each database has storage capacity of 1 TB.
+
+Database 1 : 0 to 1 Million  (Partition 1)
+Database 1 : 1 to 2 Million  (Partition 2)
+Database 2 : 2 to 3 Million  (Partition 3)
+Database 2 : 3 to 4 Million  (Partition 4)
+
+Partition1 and Partition2 are logical Shards and sits on Database1 which is nothing but physical Shard.
+Finally the whole Database is divided into 2 Physical Databases(Physicl Shards) with 4 Logical Shards.
+
+Advantages :
+------------
+1.We are not able to store data in Single Database and which runs out of storage.
+This will be avoided by partitioning the data.
+2.If we want to write teh search the query which has to search in all the records in the database.
+The query performance will be slower.
+If we partition the data, then the query has to search in one of the database which will improve the performance of the Query.
+3.We can place the Physical Shards into different Geographical Locations.
+4.If we have single Database then it is a single point of failure.
+If we have multiple physical instances even though one the instance is failed,Still we can able to serve the data with the remaining Physical instances.
+
+Sharding strategies :
+---------------------
+If we have to partition the data based on userid,city or zone etc.
+Ther are two types of Sharding strategies.
+
+1.Algorithmic Sharding
+2.Dynamic Sharding
+
+Consider the scenario where the Database is being used by our Application for reads and writes.
+If the App knows which Partition it has to use for read and write then it is Algorithmic Sharding.
+Algorithmic Sharding is static Sharding where we cannot increase or decrease the Shards.
+
+There will be a separate service which tells where the Query has to be routed which is called Dynamic Sharding.
+This service will be consumed by the Application.
+By using Dynamic Sharding we can increase the decrease the Shards.
+
+Drawbacks of Sharding :
+-----------------------
+1.The way we are distributing the data is very critical.
+If we don't do it correctly the whole data will not be evenly distributed in these partitions.
+Some of the partitions are over loaded and some of the partitions will have less data.
+2.Once we partition the data and If we want to come back to non sharded architecture then it is very difficult.
+3.If there is no other way then only prefer the sharding.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
