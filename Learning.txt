@@ -1636,11 +1636,21 @@ Database Index ()
 Normalization ()
 Database Partitioning ()
 Database Sharding (Done)
-Hashing and Consistent Hashing ()
+Hashing (Done)
+Hashing Collision Resolution Techniques (Done)
+Consistent Hashing ()
 Caching and Distributed Caching ()
-Distributed Transaction ()
-Concurrency Control ()
+Caching Pitfalls ()
+
+HshMap Revise ()
 
 
 ----------------------------------------- July 2024  ------------------------------------------------
 
+Distributed Transaction ()
+Concurrency Control ()
+Distributed Message Queue ()
+
+High Availability and Resilience System ()
+Fault and Failure in Distributed System ()
+Scaling ()

@@ -4426,18 +4426,22 @@ Load Balancer (Done)
 
 23-JUNE-2024 :
 --------------
-Caching Patterns     ()
+Caching Patterns     (InProgress)
 Database Sharding    (Done)
-Distributed Caching  ()
-Database Replication ()
+Distributed Caching  (InProgress)
+Database Replication (Done)
 
 24-JUNE-2024 :
 --------------
-Hashing ()
-Consistent Hashing  ()
+Hashing (Done)
+HashMap Revise ()
+Hashing Collision Resolution Techniques (Done)
+Caching Patterns ()
+Distributed Caching  ()
 
 25-JUNE-2024 :
 --------------
+Consistent Hashing  ()
 
 
 

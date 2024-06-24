@@ -6,7 +6,7 @@
 6.Database Types                                        [22-JUN-2024]  ()
 7.Anatomy of Application Services                       [22-JUN-2024]  ()
 8.API                                                   [22-JUN-2024]  ()
-9.Caching Patterns                                      [22-JUN-2024]  ()
+9.Caching Patterns                                      [22-JUN-2024]  (InProgress)
 10.Rest API                                             [22-JUN-2024]  ()
 11.Message Queues                                       [22-JUN-2024]  ()
 12.Publisher Subscriber                                 [22-JUN-2024]  ()
@@ -22,7 +22,7 @@
 22.Key based Sharding                                   [22-JUN-2024]  ()
 23.Range based Sharding                                 [22-JUN-2024]  ()
 24.Directory based Sharding                             [22-JUN-2024]  ()
-25.Hashing                                              [22-JUN-2024]  ()
+25.Hashing                                              [24-JUN-2024]  (Done)
 26.Consistent Hashing                                   [22-JUN-2024]  ()
 27.Capacity Estimation                                  [22-JUN-2024]  ()
 
@@ -36,6 +36,69 @@ https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo
 
 
 ############################################################### 18.Database Replication #################################################################
+
+Replication means to have a copy.
+Consider the scenario where we have one Database and we want one more Database with the exact copy of the data.
+The another Database which has the copy of the data is called Replica.
+The Database which is the main source for writes and updates is called Master Data or Primary Database.
+The Database which is the main source for reads is called Slave Database or Secondary Database.
+
+Advantages :
+------------
+1.Having a Replica helps in great dealing with Faults.
+For some reasons if the Master Database goes down then in that case having a Replica helps.
+First we will not loose the data.
+One of the Replica will act as a Master Database.
+
+2.Having Replica helps in reducing the Network latencies.
+Placing the Replica's in different Geographic Locations will help in reducing the Network Traffic to access the data.
+Based on Geographic Location Data wil be fetched from nearest Data Center.
+
+3.If we are having Replica's it is very common factor that the Master Database will be used for Writes and Updates.
+Replica Databases will be used for Read Operations.
+
+4.Consider the scenario of ECommerce Application where we have less no of writes/updates for the Products.
+Read operations will be more for the Product details.
+Having Replica's allows us to increase the Application performance and increase the system scalability.
+
+Replication Lag :
+-----------------
+There are lot of complexities while handling the Replications while updating the data,making the data availabe to all the Replica's.
+Replication Lag is the time it takes for the value to be copied from Master Database to Replica Database.
+Consider the scenario of the request where we have write and read are at the same time.
+In this scenario i.e. Replication Lag is higher then we cannot get the updated data from Replica Database and provides the inconsistent data.
+Design the System in such a way that we always get the consistent data in terms of writes and reads.
+The way these problems are solved called as Consistency Models or Consistency Algorithms.
+One of the Consistent Model is Read After Write Consistency.
+ 
+Read After Write Consistency (or) Synchronous Replication :
+-----------------------------------------------------------
+In this case when a new Request comes it will insert the data into Master Database and 
+it will also insert into the Replica Database and gets the ackonwledgment from Replica Database.
+Once the acknowledgement is OK then Master Database says the Write is completed.
+In this scenario Replication Lag is Zero because Master Database is taking care of updating the Data in all the Replica's and not declaring the write as complete.
+This is also known as Synchronous Replication.
+
+Advantage :
+-----------
+1.Relication Lag is zero.
+2.Data is always consistent in the System.
+
+Disadvantages :
+---------------
+The performance might take a hit because every Write operation has to wait till all the Replica Database has to be updated and acknowledged.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -117,8 +180,90 @@ Some of the partitions are over loaded and some of the partitions will have less
 2.Once we partition the data and If we want to come back to non sharded architecture then it is very difficult.
 3.If there is no other way then only prefer the sharding.
 
+################################################################### 25.Hashing  ###################################################################
 
- 
+Hashing is nothing but a way of assigning a unique value for an Object after applying algorith/function on its properties.
+Hashing will return a hashcode in the form of Integer.
+
+Consider the scenario of List of Strings with some names.
+For each name if we apply hash function it will generate a unique number.
+If we want to search for the particular name then we have to iterate over the List of names.
+If we implement the hash function for that then we directly go that index location based on hash value.
+Here we are acessing the value using index.
+
+Range of hash values will be from 0 to 2 power 32.
+We cannot keep that much array to store these names.
+Even if we store 1000 names in an Array then also Array is too large.
+If we are going to map the hash values with the index of an Array then also we end up with a large Array which will consume lot of space.
+
+
+The solution is after calculating the hash we will take the modulous.
+Consider the scenario of storing 4 names we wll take twice or thrice the size of an Array.
+Then we will take the mod on the hash values.
+
+Ankit  12
+Neha   42
+Ankur  34
+Ruchi  67
+
+Considering the Array size is 8.
+
+0
+1
+2  Neha Ankur
+3  Ruchi
+4  Ankit
+5
+6
+7
+
+Here after applying mod the hashcode of Neha and Ankur are the same.
+In this case we are storing the data in the form of List in that particular index.
+This approach allows us to store key value pairs and acessing key value pairs very efficiently.
+The scenario where multiple values are stored in the same index is nothing but collision.
+
+Hashing Use cases :
+-------------------
+Saving the data into key value pairs will help in Caching.
+For example Redis or MemCache which are key value storage.
+We can store lot of key value pairs in one single machine and if the size the key value pair increases then we can distribute it across multiple machines.
+
+Consider the scenario of storing the names in 4 different Servers.
+
+Ankit  16  S0
+Neha   25  S1
+Ankur  30  S2
+Ruchi  23  S3
+
+This is how data will be distributed across servers.
+If we want to search for Ankit then hash the Ankit by applying mod 4 (Server count) it will give where Ankit has stored.
+
+Disadvantages :
+---------------
+When the load increases or decreases we have to increase or decrease the Servers.
+Consider the scenario we have reduced 1 Server.
+In this case the data distributed across the servers will be redistributed.
+
+Ankit  16  S1
+Neha   25  S1
+Ankur  30  S0
+Ruchi  23  S2
+
+Basic condition of scalable system is that it can scale up or scale down the System as the requirement increase or decrease.
+We need to handle the scenario where If the no of Servers increse or decrease we have to minimize the data movement.
+This can be done by Consistent Hashing.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
