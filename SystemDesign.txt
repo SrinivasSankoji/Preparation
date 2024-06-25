@@ -1,7 +1,7 @@
-1.Hashing Algorithm 										(Coding Simplified)   			[24-JUN-2024]  (Done)
+1.Hashing 										(Coding Simplified)   			[24-JUN-2024]  (Done)
 
 
-############################################################### 1.Hashing Algorithm  ###############################################################
+############################################################### 1.Hashing  ###############################################################
 
 Hashing can be used to improove the performance of the System.
 
@@ -75,14 +75,14 @@ There are different types of Collision resolution techniques to avoid Collision.
 
 1.Chaining :
 ------------
-We can have a seperate Chaining whenever there is more than one item in the Cell.
-Here New Item will be in the Front.
+We can have a seperate Chaining i.e. by using LinkedList whenever there is more than one item in the index Location.
+Here new item will be in the Front.
 By using this we can insert all the items but search and deletion will take time.
 First we will apply the Hash function and apply the Linear search in the Linked List.
 
 2.Open Addressing :
 -------------------
-In the Open Addressing Hashing there is no need to create a separate Chaining  or LinkedList to avoid the Collision.
+In the Open Addressing Hashing there is no need to create a separate Chaining i.e. LinkedList to avoid the Collision.
 Here we are storing all the data in the same HashTable.
 This can be done by using in multiple ways.
 

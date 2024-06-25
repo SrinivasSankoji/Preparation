@@ -1636,16 +1636,30 @@ Database Index ()
 Normalization ()
 Database Partitioning ()
 Database Sharding (Done)
+
+HashMap Revise ()
 Hashing (Done)
 Hashing Collision Resolution Techniques (Done)
 Consistent Hashing ()
+
 Caching and Distributed Caching ()
 Caching Pitfalls ()
 
-HshMap Revise ()
-
-
 ----------------------------------------- July 2024  ------------------------------------------------
+
+URL Shortening ()
+Rate Limiter ()
+Idempotent Post API ()
+Client Server Architecture ()
+Store Passwords in Database ()
+SQL Execution Order ()
+API Architecture Styles ()
+API Performance ()
+Client Architecture ()
+How to design a System - Coding Simplified ()
+
+
+----------------------------------------- August 2024  ------------------------------------------------
 
 Distributed Transaction ()
 Concurrency Control ()

@@ -6,7 +6,7 @@
 6.Database Types                                        [22-JUN-2024]  ()
 7.Anatomy of Application Services                       [22-JUN-2024]  ()
 8.API                                                   [22-JUN-2024]  ()
-9.Caching Patterns                                      [22-JUN-2024]  (InProgress)
+9.Caching Patterns                                      [22-JUN-2024]  (Done)
 10.Rest API                                             [22-JUN-2024]  ()
 11.Message Queues                                       [22-JUN-2024]  ()
 12.Publisher Subscriber                                 [22-JUN-2024]  ()
@@ -15,7 +15,7 @@
 15.Performance Metrics of Components                    [22-JUN-2024]  ()
 16.Fault and Failure in Distributed System              [22-JUN-2024]  ()
 17.Scaling                                              [22-JUN-2024]  ()
-18.Database Replication                                 [22-JUN-2024]  (InProgress)
+18.Database Replication                                 [22-JUN-2024]  (Read)
 19.CAP                                                  [22-JUN-2024]  ()
 20.CAP Theorem                                          [22-JUN-2024]  ()
 21.Database Sharding                                    [23-JUN-2024]  (Done)
@@ -23,7 +23,7 @@
 23.Range based Sharding                                 [22-JUN-2024]  ()
 24.Directory based Sharding                             [22-JUN-2024]  ()
 25.Hashing                                              [24-JUN-2024]  (Done)
-26.Consistent Hashing                                   [22-JUN-2024]  ()
+26.Consistent Hashing                                   [22-JUN-2024]  (Read)
 27.Capacity Estimation                                  [22-JUN-2024]  ()
 
 ############################################################### 1.Introduction ##########################################################################
@@ -33,6 +33,111 @@
 ############################################################### 9.Caching Patterns ######################################################################
 
 https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo
+
+Cache is defined as a Hardware or Software Component which helps in serving the data which is frequently requested.
+The data which is not changed frequently can be stored in the Cache to improove the performance of the System.
+
+Consider the scenario where the Client is requesting the images from the Server.
+Server has to fetch the images from Disc/Database and sent it as a response to the Client.
+If multiple Clients are requesting for the same image,fetching the the images from Disc/Database is an expensive operation.
+
+To avoid this we have two solutions.
+1.we can Cache or Copy the image in the Server Side i.e. by using Reverse Proxy.
+2.Cache the copy of an image at the Client side i.e. Browser Cache.
+
+Consider the scenario of fetching the data from the Database.
+If the same request is repeated then fetching the data from Database is redundant.
+This can be avoided by keeping the request and response in the Cache.
+Next time when the Request comes it will check in the Cache whether the requested data is present or not.
+If it is present (Cache Hit) it will fetch the data from the Cache otherwise it is Cache Miss. Then it will fetch the data from the Database.
+
+Cache Invalidation :
+--------------------
+The data which is kept in the Cache is going to change at some point of time.
+If the data got changed then the data in the Cache has to be invalidated or removed from the Cache.
+This is called Cache invalidation.
+
+Consider the case of users in the Security Expert System.
+There are multiple ways to invalidate the Cache.
+
+1.Cache Expiry Time :
+Cache Expiry Time can be done by using TTL (Time to Live).
+In this case against each entry will mention the expiry time.
+Disadvantage is if we keep the low TTL then evry time it will hit the Database and get the data from Database and keep it in Cache.
+In this scenario we are not utilizing the Cache feature.
+If we keep the TTL high then we will not get the updated data.
+The above scenario will be resolved based on the business requirement.
+
+2.There are some other methods which also invalidate the Cache other than Cache Expiry Time.
+Whenever the Cient requests for the new data then Cache Miss will happen and Application will fetch the data from Database. 
+Application then removes the data from the Cache and places the new data.
+Application can also update the data in the Cache instead of replacing it with the new data.
+In this case Cache Miss will not happen.
+
+Cache Eviction :
+----------------
+Consider the scenario where even after applying expiry time there are many keys in the Cache.
+Every Cache solution has a limit to store the keys in the Cache.
+Consider the scenario where the Cache limit is 1000 and already there are 1000 keys in the Cache.
+If a new key has to be placed in the Cache then any of the existing key in the Cache has to removed.
+This is called Cache Eviction.
+There are multiple ways through which Cache Eviction is implemented.
+
+1.First In First Out 	(FIFO)
+2.Least Recently Used 	(LRU)
+3.Least Frequently Used (LFU)
+
+Different type of Cache providers implement different Eviction strategies depending on the usecase.
+
+Caching strategies :
+--------------------
+There are different Caching strategies to implement the Caching.
+
+1.Cache aside
+2.Read Through
+3.Write Through
+4.Write Around
+5.Write Back
+
+1.Cache aside :
+---------------
+In Cache aside pattern Cache always communicatees with the Application Server.
+In this case Cache is kept a side and never communicates with Database.
+The problem with this approach is when the Database is updated then the Cache has to be invalidated or updated with the data.
+
+Advantages :
+Even if the Cache is not available then the Application will not go down.
+
+Disadvantages :
+If the Cache is not available then every time it has to get the data from Database which will impact the performance.
+
+2.Read Through :
+----------------
+In case of Read Through pattern Cache is placed in between the Application Server and the Database.
+Application Server never communicates with the Database.
+This kind of approach is more used when there are frequent read operations.
+Also the Cache is preloaded with the data to avoid Cache Miss.
+In Read Through pattern Caching is implemented by third party Libraries.
+Also the Data Modelling between Cache and Database should be similar.
+ 
+3.Write Through :
+-----------------
+Write through is similar to Read Through.
+Read Through will read the data from the Cache where as Write through will write the data through the Cache which inturn writes to the Database.
+
+4.Write Around :
+----------------
+In case of Write Around Applicatio will read the data from the Cache and writes the data to the Database.
+Advantage is reducing one layer to write the data to the Database.
+Write Around can be used when there are lot of writes and less no of reads.
+ 
+5.Write Back :
+--------------
+In case of Write Back All the write requests to an Application are kept in Cache and provides the response saying Write is accepted.
+After certain time all the writes in bulk are sent to Database.
+Write Back can be used when there are lot of writes.
+This pattern can handle DB failure for some time.
+Disadvantage is if the Cache goes down all the writes are lost.
 
 
 ############################################################### 18.Database Replication #################################################################

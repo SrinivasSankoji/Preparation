@@ -3,7 +3,7 @@
 3.CAP Theorem                                           [18-MAY-2024]  ()
 4.Decomposition Desgn Pattern 							[18-MAY-2024]  ()
 5.SAGA Design,Strangler and CQRS Design Pattren       	[18-MAY-2024]  ()
-6.Scale to 1 Million Users                              [18-MAY-2024]  (InProgress)
+6.Scale to 1 Million Users                              [18-MAY-2024]  (Read)
 7.Consistent Hashing                                    [18-MAY-2024]  ()
 8.URL Shortner Design Pattern                           [18-MAY-2024]  ()
 9.Envelope System Design                                [18-MAY-2024]  ()
@@ -17,9 +17,9 @@
 17.Distributed Messaging Queue                          [18-MAY-2024]  ()
 18.Proxy vs Reverse Proxy                               [18-MAY-2024]  ()
 19.Load Balancer                                        [22-JUN-2024]  (Done)
-20.Distributed Caching                                  [18-MAY-2024]  (InProgress)
+20.Distributed Caching                                  [18-MAY-2024]  (Read)
 21.Distributed Transaction                              [18-MAY-2024]  ()
-22.Database Indexing                                    [18-MAY-2024]  (InProgress)
+22.Database Indexing                                    [18-MAY-2024]  (Read)
 23.Concurrency Control                                  [18-MAY-2024]  ()
 24.Two phase Locking                                    [18-MAY-2024]  ()
 25.OAuth2                                               [18-MAY-2024]  ()
@@ -173,4 +173,7 @@ Load Balancer will forward the request to the Server which has least Active COnn
 In case if anny clash happens then it follows the Round Robin.
 
 
-                                       
+#########################################################  20.Distributed Caching  ######################################################### 
+
+
+                                    
