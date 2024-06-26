@@ -1,7 +1,9 @@
 1.Hashing 										(Coding Simplified)   			[24-JUN-2024]  (Done)
+2.Three Tier Architecture						(Be A Better Dev)
+3.Client Server Model							(Be A Better Dev)
 
 
-############################################################### 1.Hashing  ###############################################################
+############################################################### 1.Hashing(Coding Simplified)  ###############################################################
 
 Hashing can be used to improove the performance of the System.
 
@@ -14,7 +16,7 @@ Here the data is in random order and it will take O(n) time to search the data.
 If we want to perform the search faster then index the name column.
 
 Hashing is nothing but a way of assigning a unique value for an Object by applying some algorithms/functions on its properties.
-Hashing will have a hash function which accepts the value and generates the hash value and store it into Hash Table.
+Hashing will have a hash function which accepts the key and generates the hash value and stores it into Hash Table.
 Whenever we search for any name It will get the hash value for the given name and based on hash value it will search for that particular hash value in the Hash Table.
 
 2.Cryptographic Application

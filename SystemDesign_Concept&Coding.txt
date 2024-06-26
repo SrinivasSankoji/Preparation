@@ -4,7 +4,7 @@
 4.Decomposition Desgn Pattern 							[18-MAY-2024]  ()
 5.SAGA Design,Strangler and CQRS Design Pattren       	[18-MAY-2024]  ()
 6.Scale to 1 Million Users                              [18-MAY-2024]  (Read)
-7.Consistent Hashing                                    [18-MAY-2024]  ()
+7.Consistent Hashing                                    [18-MAY-2024]  (Read)
 8.URL Shortner Design Pattern                           [18-MAY-2024]  ()
 9.Envelope System Design                                [18-MAY-2024]  ()
 10.Key value store                                      [18-MAY-2024]  ()
@@ -48,6 +48,11 @@ Normalization
 DeNormalization
 Hashing
 Consistent Hashing
+
+######################################################### 18.Proxy vs Reverse Proxy  ###########################################################
+
+Proxy Server acts as an intermediatory server that acts as a Gateway between Client and Server.
+
  
 ######################################################### 19.Load Balancer  ####################################################################
 

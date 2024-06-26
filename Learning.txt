@@ -1640,30 +1640,55 @@ Database Sharding (Done)
 HashMap Revise ()
 Hashing (Done)
 Hashing Collision Resolution Techniques (Done)
-Consistent Hashing ()
+Consistent Hashing (Done)
 
 Caching and Distributed Caching ()
 Caching Pitfalls ()
 
+References for System Design :
+------------------------------
+Concept and Coding
+SudoCode
+ByteByteGo
+Coding Simplified
+Arpit Bhayani
+Be a Better Dev
+High-Performance Programming (Refer for Postgres)
+
 ----------------------------------------- July 2024  ------------------------------------------------
 
-URL Shortening ()
-Rate Limiter ()
-Idempotent Post API ()
-Client Server Architecture ()
-Store Passwords in Database ()
-SQL Execution Order ()
+3 Tier Architecture - Be a Better Dev ()
+Client Server Model - Be a Better Dev ()
+Client Server Architecture - Sudo Code ()
 API Architecture Styles ()
 API Performance ()
 Client Architecture ()
+
 How to design a System - Coding Simplified ()
 
+URL Shortening () 
+Rate Limiter ()
+Idempotent Post API ()
 
------------------------------------------ August 2024  ------------------------------------------------
+Store Passwords in Database ()
+SQL Execution Order ()
+
+Technical Stack for CICD :
+--------------------------
+Version Control: BitBucket
+CI/CD Tool: Jenkins
+Build Tool: Maven or Gradle
+Code Quality: SonarQube
+Vulnerability Scanning: Dependency-Check (OWASP)
+Deployment: Apache Tomcat
+
+
+----------------------------------------- August 2024  ----------------------------------------------
 
 Distributed Transaction ()
 Concurrency Control ()
 Distributed Message Queue ()
+Distributed Tracing ()
 
 High Availability and Resilience System ()
 Fault and Failure in Distributed System ()

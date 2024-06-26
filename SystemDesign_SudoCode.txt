@@ -1,6 +1,6 @@
 1.Introduction											[22-JUN-2024]  ()
 2.Components of System Design                           [22-JUN-2024]  ()
-3.Client Server Architecture                            [22-JUN-2024]  ()
+3.Client Server Architecture                            [22-JUN-2024]  (Read)
 4.Proxies                                               [22-JUN-2024]  ()
 5.Data and Data flow                                    [22-JUN-2024]  ()
 6.Database Types                                        [22-JUN-2024]  ()
@@ -23,7 +23,7 @@
 23.Range based Sharding                                 [22-JUN-2024]  ()
 24.Directory based Sharding                             [22-JUN-2024]  ()
 25.Hashing                                              [24-JUN-2024]  (Done)
-26.Consistent Hashing                                   [22-JUN-2024]  (Read)
+26.Consistent Hashing                                   [22-JUN-2024]  (Done)
 27.Capacity Estimation                                  [22-JUN-2024]  ()
 
 ############################################################### 1.Introduction ##########################################################################
@@ -34,7 +34,7 @@
 
 https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo
 
-Cache is defined as a Hardware or Software Component which helps in serving the data which is frequently requested.
+Cache is defined as a Hardware or Software Component which stores the data which is frequently requested.
 The data which is not changed frequently can be stored in the Cache to improove the performance of the System.
 
 Consider the scenario where the Client is requesting the images from the Server.
@@ -45,7 +45,7 @@ To avoid this we have two solutions.
 1.we can Cache or Copy the image in the Server Side i.e. by using Reverse Proxy.
 2.Cache the copy of an image at the Client side i.e. Browser Cache.
 
-Consider the scenario of fetching the data from the Database.
+Consider the other scenario of fetching the data from the Database.
 If the same request is repeated then fetching the data from Database is redundant.
 This can be avoided by keeping the request and response in the Cache.
 Next time when the Request comes it will check in the Cache whether the requested data is present or not.
@@ -62,13 +62,13 @@ There are multiple ways to invalidate the Cache.
 
 1.Cache Expiry Time :
 Cache Expiry Time can be done by using TTL (Time to Live).
-In this case against each entry will mention the expiry time.
+In this case against each entry we will mention the expiry time.
 Disadvantage is if we keep the low TTL then evry time it will hit the Database and get the data from Database and keep it in Cache.
 In this scenario we are not utilizing the Cache feature.
 If we keep the TTL high then we will not get the updated data.
 The above scenario will be resolved based on the business requirement.
 
-2.There are some other methods which also invalidate the Cache other than Cache Expiry Time.
+2.There are some other methods which can also invalidate the Cache other than Cache Expiry Time.
 Whenever the Cient requests for the new data then Cache Miss will happen and Application will fetch the data from Database. 
 Application then removes the data from the Cache and places the new data.
 Application can also update the data in the Cache instead of replacing it with the new data.
@@ -84,10 +84,10 @@ This is called Cache Eviction.
 There are multiple ways through which Cache Eviction is implemented.
 
 1.First In First Out 	(FIFO)
-2.Least Recently Used 	(LRU)
-3.Least Frequently Used (LFU)
+2.Least Recently Used 	- Time based 	 (LRU)
+3.Least Frequently Used - Occupncy based (LFU)
 
-Different type of Cache providers implement different Eviction strategies depending on the usecase.
+Different type of Cache providers implement different Cache eviction strategies depending on the usecase.
 
 Caching strategies :
 --------------------
@@ -106,7 +106,7 @@ In this case Cache is kept a side and never communicates with Database.
 The problem with this approach is when the Database is updated then the Cache has to be invalidated or updated with the data.
 
 Advantages :
-Even if the Cache is not available then the Application will not go down.
+Even if the Cache is not available then the Application will not go down and fetches the data from Database.
 
 Disadvantages :
 If the Cache is not available then every time it has to get the data from Database which will impact the performance.
@@ -127,13 +127,13 @@ Read Through will read the data from the Cache where as Write through will write
 
 4.Write Around :
 ----------------
-In case of Write Around Applicatio will read the data from the Cache and writes the data to the Database.
+In case of Write Around pattern Application will read the data from the Cache and writes the data to the Database.
 Advantage is reducing one layer to write the data to the Database.
 Write Around can be used when there are lot of writes and less no of reads.
  
 5.Write Back :
 --------------
-In case of Write Back All the write requests to an Application are kept in Cache and provides the response saying Write is accepted.
+In case of Write Back pattern all the write requests to an Application are kept in Cache and provides the response saying Write is accepted.
 After certain time all the writes in bulk are sent to Database.
 Write Back can be used when there are lot of writes.
 This pattern can handle DB failure for some time.
@@ -357,6 +357,41 @@ Ruchi  23  S2
 Basic condition of scalable system is that it can scale up or scale down the System as the requirement increase or decrease.
 We need to handle the scenario where If the no of Servers increse or decrease we have to minimize the data movement.
 This can be done by Consistent Hashing.
+
+############################################################### 26.Consistent Hashing  ###############################################################
+
+The problem with hashing is whenever we are adding or removing a new Server.
+In this case we need to remap the existing keys.
+We need to solve the problem of remapping the keys when the server is added or removed.
+This can be done by Consistent Hashing.
+
+Consider the scenario of Circular Queue.
+For each key perform the hashing and place the generated hash value in the Circular Queue.
+For the Servers also generate the hash value based on IpAddress or range and place it in the Circular Queue.
+Now both the keys and Servers are in the same range of Circular Queue.
+
+Here the concept is every value is mapped to certain angle and placed in the Queue.
+The Output range is decided based on the Circle.
+
+To map the keys to the Servers we can follow either Clockwise direction or Anti Clockwise direction.
+In case of Clockwise direction the key searches for closest server in the Circular Queue.
+In case of remapping i.e. If any of the Server has removed then key will be placed in the immideate Server.
+So that no of remappings will be reduced.
+By this approach 50% of remapping is reduced.
+Disadvantage is in the Circular Queue some of the Servers will get overloaded becuase of this approach.
+Servers will not evenly distributed.
+
+The other approach is to create the replica's of the Servers.
+In this case no of keys to be replaced is reduced.
+
+############################################################### 27.Capacity Estimation ################################################################
+
+
+
+
+
+###############################################################  END ##################################################################################
+
 
 
 
