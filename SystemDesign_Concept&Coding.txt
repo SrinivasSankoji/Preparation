@@ -15,7 +15,7 @@
 15.Idempotent Post API Design Pattern                   [18-MAY-2024]  ()
 16.High availability and Resilient System               [18-MAY-2024]  ()
 17.Distributed Messaging Queue                          [18-MAY-2024]  ()
-18.Proxy vs Reverse Proxy                               [18-MAY-2024]  ()
+18.Proxy vs Reverse Proxy                               [27-MAY-2024]  (Done)
 19.Load Balancer                                        [22-JUN-2024]  (Done)
 20.Distributed Caching                                  [18-MAY-2024]  (Read)
 21.Distributed Transaction                              [18-MAY-2024]  ()
@@ -51,9 +51,67 @@ Consistent Hashing
 
 ######################################################### 18.Proxy vs Reverse Proxy  ###########################################################
 
-Proxy Server acts as an intermediatory server that acts as a Gateway between Client and Server.
+Proxy Server is as an intermediatory server which acts as a Gateway between Client and Server.
+All the requests which are coming from the Client are handled by Proxy Server and Proxy Server forwards the request to the required Server.
+Proxy Server can take the requests from multiple Clients.
+Here no Client and Server can communicate directly with each other.
 
- 
+There are two types of Proxy Servers.
+1.Forward Proxy
+2.Reverse Proxy
+
+1.Forward Proxy :
+-----------------
+Consider the scenario of closed Network i.e. Intranet where we have group of Computers.
+These group of Computers Communicates with the Forward Proxy.
+Proxy Server communicates with the Internet outside world and reaches to the particular Server and sends the response back to the Client.
+Forward Proxy sits between Client and the Internet.
+Forward Proxy hides the Client Network to the Server.
+Server does not know the information about the Client as the request is made from Proxy Server.
+
+Advantages :
+------------
+1.Forward Proxy provides Anonymity by hiding the Client's IPAddress.
+2.Forward Proxy can group the similar requests and send it as a Single Request.
+3.Forward Proxy allows the users to access region restricted content by bypassing internet censorship.
+Consider the scenario where the Client is is in India and the Client makes a request to the website which is in UK.
+Through proxy Server we can call the website and get the data.
+4.Forward Proxy provides the additional layer of security by restricting the Clinet to provide the access to certain content.
+5.Forward proxy helps the organization to enforce internet usage policies and monitor user activities.
+6.Forward Proxy provides additional layer of security by filtering out malicious content and protects the internal network from external threats.
+7.Forward proxy provides the Caching by storing the frequently requested data.
+
+Disadvantages :
+---------------
+1.Forward Proxy is a single point of failure.If the Proxy Server goes down then Client may loose the Internet.
+2.By adding an Extra Server in the communication path can increase the latency and slows down the internet.
+3.Setting up the Proxy Server and maintaining the Proxy Server requires additional resources and is cost effective.
+4.Forward Proxy Server works on the Application Layer.If we have 10 applications then we need to set up the 10 different Proxy Server.
+
+2.Reverse Proxy :
+-----------------
+In case of Reverse Proxy, Proxy Server sits in between the Internet and the List of Servers.
+The request which is coming from Internet cannot access the Server directly.
+Proxy Server will send the request to the appropriate Server.
+
+Advantages :
+------------
+Reverse Proxy will provide the security by hiding the Server's IPAddress.
+Attacker can only attack the Reverse Proxy Server.
+Some of the Reverse Proxy servers are CDN, Nginx etc.
+Reverse proxy provides the Caching.
+Reverse Proxy provides the latency and Load Balancing.
+
+Proxy vs VPN :
+--------------
+
+Proxy vs Load Balancer :
+------------------------
+
+Proxy vs Firewall :
+-------------------
+
+
 ######################################################### 19.Load Balancer  ####################################################################
 
 When a request comes from Client to the Server, All the request should not go to one single Server.
