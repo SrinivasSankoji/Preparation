@@ -17,12 +17,12 @@ If we want to perform the search faster then index the name column.
 
 Hashing is nothing but a way of assigning a unique value for an Object by applying some algorithms/functions on its properties.
 Hashing will have a hash function which accepts the key and generates the hash value and stores it into Hash Table.
-Whenever we search for any name It will get the hash value for the given name and based on hash value it will search for that particular hash value in the Hash Table.
+Whenever we search for any name It will get the hash value for the given name and based on hash value it will search for that particular value in the Hash Table.
 
 2.Cryptographic Application
 Hashing is one of the way to enable security during the process of message transmission.
 Consider the scenario where the passowrd has to be transmitted over the network.
-We can apply the MD5 hash function and transfer through Netwrok call.
+We can apply the MD5 hash function and transfer through it through the Netwrok call.
 
 3.Sharding the Keys :
 
@@ -58,10 +58,8 @@ Consider the size of the Hash Table is 10.
 Good Hash Function :
 --------------------
 1.A good has function should be easy to compute.
-2.A good Hash function should be evently distributed
-From the above example some of the indexes in Hash table does not have values and 56,96 are stored at the same index.
-3.Less Collision
-From the above example 56,96 are stored at the same index which is nothing but Collision.
+2.A good Hash function should be evenly distributed i.e. from the above indexes in Hash table does not have values and 56,96 are stored at the same index.
+3.Less Collision i.e. From the above example 56,96 are stored at the same index which is nothing but Collision.
 
 The above scenarios needs to be taken care whenever we are applying the Hash function.
 
@@ -94,6 +92,8 @@ Double Hashing
 
 
 
+
+############################################################### 2.Three Tier Architecture ###############################################################
 
 
 

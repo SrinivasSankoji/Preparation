@@ -1654,6 +1654,7 @@ Coding Simplified
 Arpit Bhayani
 Be a Better Dev
 High-Performance Programming (Refer for Postgres)
+Tech Dummies Narendra L
 
 ----------------------------------------- July 2024  ------------------------------------------------
 
@@ -1664,26 +1665,12 @@ Client Server Model - Be a Better Dev ()
 Client Server Architecture - Sudo Code ()
 API Architecture Styles ()
 API Performance ()
-Client Architecture ()
 
 How to design a System - Coding Simplified ()
 
 URL Shortening () 
 Rate Limiter ()
 Idempotent Post API ()
-
-Store Passwords in Database ()
-SQL Execution Order ()
-
-Technical Stack for CICD :
---------------------------
-Version Control: BitBucket
-CI/CD Tool: Jenkins
-Build Tool: Maven or Gradle
-Code Quality: SonarQube
-Vulnerability Scanning: Dependency-Check (OWASP)
-Deployment: Apache Tomcat
-
 
 ----------------------------------------- August 2024  ----------------------------------------------
 
