@@ -13,7 +13,7 @@
 13.Rate Limiter Design Pattern                          [18-MAY-2024]  ()
 14.Zoom System Design                                   [18-MAY-2024]  ()
 15.Idempotent Post API Design Pattern                   [18-MAY-2024]  ()
-16.High availability and Resilient System               [28-JUN-2024]  (Read)
+16.High availability Data Resilient System              [28-JUN-2024]  (Done)
 17.Distributed Messaging Queue                          [18-MAY-2024]  ()
 18.Proxy vs Reverse Proxy                               [27-MAY-2024]  (Done)
 19.Load Balancer                                        [22-JUN-2024]  (Done)
@@ -48,6 +48,86 @@ Normalization
 DeNormalization
 Hashing
 Consistent Hashing
+
+######################################################### 16.High availability Data Resilient System ###########################################
+
+Resilience is Microservices refers to the ability of the system to handle and recover from failures.
+Resilience can be asked in another way like How will you design a system with 99% availability or How will you handle Single Point of Failure.
+Resilience w.r.t data has two architectural styles i.e. Active-Passive Architecture or Active-Active Architecture.
+
+Single Node :
+-------------
+With the Single Node Architecture we cannot achieve high available data resilience system.
+Consider the scenario where we have the client with the Load Balancer which will route to different server's.
+Here all the Servers are connected to the Single Database.
+The problem with this approach is if the Database goes down entire Application will goes down.
+Database does not have the capability to recover from the failure.
+
+MultiNode :
+-----------
+MultiNode has two types of architectures.
+
+1.Active-Passive :
+------------------
+Every organization has atleast two Data Centers based on region.
+Consider the scenario where we have a Client with the Load Balancer.
+Load Balancer will route the request to nearest Data Center i.e. DC1 or DC2.
+In each Data Center multiple instances of an Application will be running to handle the request.
+Also multiple instances are connected to the Database.
+
+In Active-Passive architecture out of multiple Data Centers one Data Center will be Primary Data Center and other will be Disaster Recovery Data Center.
+The Primary Data Center Database is Primary/Live Database which will be used for Read/Write Operations.
+The Disaster Recovery Data Center Database will be Replica Database.
+
+Consider the scenario of Write request and through Load Balancer request came to DC1 which is primary.
+Then one of the Server process the request and saves the data into Primary Database.
+If one more request came for Read and through Load Balancer request came to DC1 which is primary.
+Then one of the Server process the request and fetched the data into Primary Database and send it as a response.
+Similary one more request came for Write and through Load Balancer request came to DC2 which is Disaster Recovery Data Center.
+Then one of the Server process the request and saves the data into Primary Database instead of Replica Database.
+This is nothing but Active-Passive architecture.
+In this case there will be a sync up between Primary Database to Replica Database.
+
+From the above scenario the Replica Database is not utilized.
+The reason is some of the Databases like Oracle/MySql/Postgres are not Multi Mastered.
+This means which can write into one Primary Database and read from Replica Database.
+Replica Database are also known as Read Only Database.
+
+Advantages :
+------------
+If the Primary Database goes down then one of the Replica Database will act as a Primary Database.
+
+Disadvantages :
+---------------
+1.If the request came to DC2 through Load Balancer and some latency is there in storing the data to Primary Database.
+If another request came for Read then the updated data will not be available.
+2.If the Primary Database goes down and there are some of the Write Requests at the same time.
+In this case will lose the Write Requests.
+
+2.Active-Active :
+-----------------
+Most of the NoSQL Databases support Multi Master.
+
+Consider the scenario of Write request and through Load Balancer request came to DC1 which is Primary.
+Then one of the Server process the request and saves the data into Primary Database.
+If one more request came for Read and through Load Balancer request came to DC1 which is primary.
+Then one of the Server process the request and fetched the data into Primary Database and send it as a response.
+Similary one more request came for Write and through Load Balancer request came to DC2 which is also Primary Database.
+Then one of the Server process the request and saves the data into DC2  Primary Database.
+This is nothing but Active-Active architecture.
+In this case there will be a bi-directional sync up between Primary Database in DC1 to Primary Database in DC2.
+
+Advantages :
+------------
+Here we are completely utilizing the Server resources in all the Data Centers.
+Can handle more traffic as it will take care of both Read and Write.
+
+Disadvantages :
+---------------
+The problem with the above approach is sync up between the both Primary Databases.
+1.Consider the scenario where the Write request came DC1 and Read request for DC2 then it won't have the updated data.
+2.If there is an Update request for both DC1 and DC2 then there will be a conflict.
+
 
 ######################################################### 18.Proxy vs Reverse Proxy  ###########################################################
 

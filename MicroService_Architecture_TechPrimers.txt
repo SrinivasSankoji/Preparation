@@ -1,0 +1,89 @@
+1.Client Side Load Balancing					(Tech Primers)          [01-JUL-2024]  ()
+2.Server Side Load Balancing                    (Tech Primers)          [01-JUL-2024]  ()
+3.SAGA Pattern               					(Tech Primers)          [01-JUL-2024]  (Done)
+4.API Gateway                                   (Tech Primers)          [01-JUL-2024]  ()
+5.Highly Available Architecture                 (Tech Primers)          [01-JUL-2024]  ()
+6.Service Mesh                                  (Tech Primers)          [01-JUL-2024]  ()
+7.Microservice Communication                    (Tech Primers)          [01-JUL-2024]  ()
+8.C4 Architecture Model                         (Tech Primers)          [01-JUL-2024]  ()
+9.Strangler Application Pattern                 (Tech Primers)          [01-JUL-2024]  ()
+10.Rapids River Ponds                           (Tech Primers)          [01-JUL-2024]  ()
+11.Caching Architecture                         (Tech Primers)          [01-JUL-2024]  ()
+12.Batch Processing vs Stream Processing        (Tech Primers)          [01-JUL-2024]  ()
+13.Event Sourcing & CQRS                        (Tech Primers)          [01-JUL-2024]  ()
+14.MicroFrontEnds and MonoRepos                 (Tech Primers)          [01-JUL-2024]  ()
+15.SAGA2                                        (Tech Primers)          [01-JUL-2024]  ()
+16.SAGA Choreography Implementation             (Tech Primers)          [01-JUL-2024]  ()
+17.Exponential BackOff                          (Tech Primers)          [01-JUL-2024]  ()
+18.Long Running Transaction                     (Tech Primers)          [01-JUL-2024]  ()
+19.Rate Limiting vs Load Shedding               (Tech Primers)          [01-JUL-2024]  ()
+20.Load Shedding                                (Tech Primers)          [01-JUL-2024]  ()
+21.HA vs Fault Tolerance                        (Tech Primers)          [01-JUL-2024]  ()
+22.Long Polling vs SSE                          (Tech Primers)          [01-JUL-2024]  ()
+23.Latency                                      (Tech Primers)          [01-JUL-2024]  ()
+24.Lambda Archtitecture                         (Tech Primers)          [01-JUL-2024]  ()
+25.Timeout Pattern                              (Tech Primers)          [01-JUL-2024]  ()
+
+
+############################################################### 1.SAGA Pattern (Tech Primers) ###############################################################
+
+SAGA design pattern is a Microservice architectural design pattern that can be used to manage distributed transactions in a reliable and scalabe manner.
+SAGA design pattern provides a way to ensure data consistency.
+
+In case of SAGA design pattern we will create a sequence of local transactions where each transaction updates the within the single service.
+These local transactions are coordinated in such a way that they can be rolled back to maintain the consistency.
+Each Local transaction within the SAGA will have a corresponding compensation Transaction.
+If the Local Transaction fails then SAGA executes the compensation transaction for all previously successful transactions to undo their effects.
+
+SAGA design pattern can be implemented in two ways.
+
+1.Choreography or Event based Mechanism
+2.Orchestration or Command based Mechanism
+
+1.Choreography :
+----------------
+Choreography design pattern is an Event based design pattern to handle distributed transactions.
+Here Events will intercat with Microservices.
+Here we don't require synchronous Transaction in Microservices.
+
+Consider the scenario of Uber Eats service.
+We have different services to deliver the food.
+
+Order Service --> Payment Service --> Restaurant Service --> Delivery Service
+
+Whenever user selects any food from Restaurant, request comes to the Order service. (1)
+Order service will forward the request to the Payment Service for the Payment. (2)
+Once the Payment is successfully done Payment Service will notify the Order Service that the Payment is successfully done. (3)
+Then Order Service will call the Restaurant Service to prepare the Order. (4)
+Once the Food is prepared then the Restaurant Service will notify the Order Service that the food is prepared. (5)
+Order Service will call the Delivery service to deliver the food.(6)
+Once the Delivery is done then Delivery service notified the Order service that Order is delivered. (7)
+Finally Order service provides the response saying Order is completed. (8)
+
+Advantages :
+------------
+1.Loose coupling between Microservices.
+2.Recomended If we have less number of Events.
+
+Disadvantages :
+---------------
+1.There may be a chance of entering into dead lock because One Service is dependent on other.
+2.If there are more number of Events we might miss the sequence of the workflow.
+3.It might be tidious to test the Individual MicroServices and Integration Tests when we have too many Events.
+
+2.Orchestration :
+-----------------
+Orchestration design pattern is a command based design pattern to handle distribution Transactions.
+Here we have a central Orchestration service which takes the commands and delegates the request to different Microservices.
+
+Advantages :
+------------
+
+
+
+Disadvantages :
+---------------
+1.Single service has to interact with multiple Microservices and it should have the Information about each service.
+This will defeat the purpose of individual Microservices.
+2.If there is any change in Service then Orchestrator Service has to be changed.
+	

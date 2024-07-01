@@ -1,11 +1,8 @@
-1.Scenario   [24-JUL-2019]  (Done)
-2.What Can Go Wrong in a Micro Service Architecture   [24-JUL-2019]  (Done)
-3.Why Do You Need to Make Services Resilient   [24-JUL-2019]  (Done)
-4.How to Make Your Services Resilient
-5.Design Patterns to Ensure Service Resiliency
+1.Resilience Introduction 
+2.Design Patterns to Ensure Service Resiliency
 
-Scenario :
-**********
+############################################################### 1.Introduction ###############################################################
+
 In Case of Monolith Application Single Error has the Potential of Bringing The Entire Application Down.
 This Can Be Resolved By Making Each Functionality has Independent Deployable Modules Which Won't Effect the Entire System.
 This Doesn't Mean that Micro Services are Resilient.
@@ -13,19 +10,19 @@ While Developing Distributed Applications we Should assume that Failures will Ha
 In Short Design Your Micro Services with Failure in Mind.
 
 What Can Go Wrong in a Micro Service Architecture :
-***************************************************
+---------------------------------------------------
 There are Number of Moving Components in Micro Services Architecture and There are More Chances of Failures.
 Failures Cab be Caused By Variety Of Reasons.
 
 Why Do You Need to Make Services Resilient :
-********************************************
+--------------------------------------------
 Problem With Distributed Applications is that They Communicate Over The Network which is UnReliable.
 Hence We Need To Design Micro Services that They Must be Fault Tolerant and Handle the Failures Gracefully.
 In Distributed Application One Micro Service may Communicate with More No Of Micro Services and Make Sure That
 If One Micro Service Goes Down that Should Not Effect the Entire Application Down.
 
 How to Make Your Services Resilient :
-*************************************
+-------------------------------------
 Design The Micro Service in such a Way that Let them Fail and try to Recover from the Failure.
 Then Identify The Failure Scenarios :
 Service A is Not Able to Communicate With Service Be
@@ -46,11 +43,15 @@ Design the Micro Service in such a way that there is No Single Point of Failure.
 We Should be Able To Handle The Client Request all the Time Hence Ensuring the
 Availability across the Micro Services Eco System is Critical.
 
+Resilience in Micro services refers to the ability of a system to handle and recover from failures,
+ensuring overall system remains functional even when some of the components fails.
+This is cruicial because Micro services Architecture involves multiple services that communicate over the network,
+making it more susceptible to various types of failures.
 
-Design Patterns to Ensure Service Resiliency :
-**********************************************
-Circuit Breaker Pattern :
--------------------------
+############################################################### 2.Design Patterns to Ensure Service Resiliency ###############################################################
+
+1.Circuit Breaker Pattern :
+---------------------------
 If There are Failures in The Micro Service Eco System We need to fail Fats By Opening the Circuit.
 This ensures that no additional Calls are Made to the Failing Service Once the Circuit Breaker is Open.
 We return an Exception Immediately.This also Monitors the System for Failures and once things are back Normal The Circuit is 
@@ -58,17 +59,44 @@ closed to allow Normal Functionality.
 This is Very Common Cascading Pattern to avoid Cascade Failures in Micro Service Eco System.
 Most Popular Third Party Libraries to Implement Circuit Breaker Pattern  are Polly and Hystrix.
 
-Retry Design Pattern:
----------------------
+2.Retry Design Pattern :
+------------------------
 This Pattern Ensures that we can retry a Connection which has Failed Earlier due to an Exception.
 This Very Handy in case of Temporary Issues and lot of Times simple Retry can Fix the Issue.
 Load Balancer Might Point to a Different Healthy Server on retry and at that Time our Service call might be a Success.
 
-Timeout Design Pattern :
-------------------------
+3.Timeout Design Pattern :
+--------------------------
 Time Out Design Pattern Ensures that we should not wait for the Service Response for an Indefinite amount of Time and
 throw an Exception instead of Waiting too Long.
 Once the Timeout Period is Met Thread is Freed up. 
+
+4.Bulkhead Pattern :
+--------------------
+
+
+5.Fallback Pattern :
+--------------------
+
+
+6.Load Balancing :
+------------------
+
+
+7.Health Checks and Monitoring :
+--------------------------------
+
+
+8.Rate Limiting :
+-----------------
+
+
+9.Service Mesh :
+----------------
+
+
+10.Data Replication and Sharding :
+----------------------------------
 
 
 
