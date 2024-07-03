@@ -27,8 +27,7 @@
 
 Data Hiding means hiding the Data.
 Our internal data sholud not go out diretly i.e outside person is not allowed to access the internal data directly.
-By using private modifier we can acheive Data Hiding.
-Instead of providing the data directly,provide the access through method.
+Instead of providing the data directly,provide the data through method.
 Consider the scenario of Bank customer,even though we are valid customer of the bank after providing credentails only we can access Account balance.
 Main advantage of data hiding is security.
 Recomended modifier for Data Hiding is private.
@@ -36,19 +35,19 @@ Recomended modifier for Data Hiding is private.
 **********************************************************  2.Abstraction  **********************************************************************
 
 Hiding the internal implementation and highlighting the set of services i.e required information is called as Abstraction.
-All the Operations are performed internally by highlighting the set of services.
+Here all the Operations are performed internally by highlighting the set of services.
 Bank people will highlight the set of services what they offer by hiding the internal implementation.
 Abstraction improoves the maintainability and modularity of an application.
 Abstraction improoves the easyness to use the system because not required to know about the internal implementation.
 
 ********************************************************** 3.Encapsulation  **********************************************************************
 
-If any componenet of Java class follows both Data Hiding and Abstraction then it is called Encapsulation.
+If any componenet of Java class which follows both Data Hiding and Abstraction then it is called Encapsulation.
 Binding the data and corresponding functionalities together into a single module is called Encapsulation.
 Every Java class is an example of Encapsulation.
 
 In case of Encapsulation,we are not aware which code it got executed and where it is executed.
-Here we are hiding the data behind the methods i.e. It is a main concept of Encapsulation.
+Here we are hiding the data behind the methods and that is the main concept of Encapsulation.
 Main Advantage of Encapsulation is we can acheive security and Enhancement will become easy.
 Encapsulation improoves the maintainability and modularity of an Application.
 
@@ -60,7 +59,7 @@ Perfromance of the system will be impacted.
 
 Whenever we are very strict about Data Hiding,we go for Tightly Encapsulatd class.
 A class is said to be tightly Encapsulated class If each and every variable of the class is declared as private.
-Whether the class contains corresponding setter or not,getter methods or not,whether these methods are declared as public or not.
+Whether the class contains corresponding setter methods or not,getter methods or not,whether these methods are declared as public or not.
 These things are not required to check.
 
 Note :
@@ -70,8 +69,8 @@ If the Parent class is not tightly encapsulated then no child class is not tight
 
 Is a Relationship is also known as Inheritance.
 By using extends keyword we can implement is a relationship.
-Advantage is reusability of code.
-If several components have the same functionality then it is not recomended to define that common functionality in every component.
+Main Advantage is reusability of code.
+If several components have the same functionality then it is not recomended to define that same functionality in each and every component.
 We need to define the common functionality in one class and specific functionality in the child class.
 This approach improoves the reusability of the code and reduces the development time.
 Entire Java API is implemented based on Simple inheritance.
@@ -191,7 +190,7 @@ Class B extends A
 ************************************************************* 6.Has a Relationship  *************************************************************
 
 It is also known as Composition or Aggregation.
-Whenever the functionality is repeatedly required,write it in one class and call this functionality whereever it is required.
+Whenever the functionality is repeatedly required,write it in one class and call this functionality wherever it is required.
 There is no specfic keyword to implement has a relationship but most of the times we use new keyword.
 Main Advantage of has a relationship is reusability of the code.
 
@@ -215,12 +214,12 @@ Aggregation :
 Consider the scenario of department.
 Many Professors works under one department.
 There may also be a scenario where the Department has no Professors in it.
-Here without existing container object(Department) there may also be a chance of existing contained object(Professor).
+Here without existing container object(Department) there may be a chance of existing contained object(Professor).
 Container objects and contained objects are weakly associated with each other and is called Aggregation.
 
 Note :
 ------
-In Composition,Container object holds Contained Objects i.e Conatiner and Contained Objects are Strongly associated.
+In Composition,Container object holds the Contained Objects i.e Conatiner and Contained Objects are Strongly associated.
 In Aggregation,Container Object holds the references of Contained Objects i.e Conatiner and Contained Objects are weakly associated.
 
 ************************************************************* 7.Method Signature   **********************************************************************
@@ -229,7 +228,7 @@ In Aggregation,Container Object holds the references of Contained Objects i.e Co
 			
 In Java Method Signature consists of name of the Method and Argument Types.
 Return type is not a part of Method Signature.
-For each call performed by the Thread,One Entry will be stored inside the Stack Area.
+For each call performed by the Thread, One Entry will be stored inside the Stack Area.
 
 public class MethodSignatureDemo {
 

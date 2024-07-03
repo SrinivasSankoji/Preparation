@@ -1,74 +1,10 @@
 
-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
 
-Linux File Permission :
------------------------
-sudo chmod -R ugo+rw /mnt/my-address
 
-022629255555 IO-N Internet
-9130395724 --  vijay hdfc bank
 
-Micro Services Principles Nathan Peck Medium :
-----------------------------------------------
-Decentralized Data Management
-Decentralized Governance
-Smart Endpoints and Dumb Pipes
- 
-MVN Command :
------------
-mvn install:install-file -Dfile=F:\\ojdbc7-12.1.0.2.jar  -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
-<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 
-Sql Server :
-------------
-spring.datasource.url= jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=smart-school
-spring.datasource.username= sa
-spring.datasource.password= bhaumik@23
-spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.SQLServerDialect
 
-Wifi Password :
----------------
-bhaumik@23
 
-Postgree Database :
--------------------
-bhaumik@23
-
-Coding Practice :
-*****************
-https://hackernoon.com/	
-
-Quick Start
-Videos
-Book
-Project	
-
-***************************************** Free Lancer  ***************************************
-
-Java BPM 
-Ninja Trader
-Java 9+ 
-Groovy 
-Spring Boot 
-Hibernate  
-PostgreSQL  
-Redis  
-RabbitMQ 
-Kafka 
-React.js 
-Spock 
-Jenkins
-Docker
-Kubernetes
-AWS
-Ansible
-Apache HTTP Server 
-NGINX 
-Apache Tomcat
-
-AWS :
------
-Load Balancer,CIDR Notations,IP's,Firewall,ACL,VPC etc.
  
 --------------------------------------------------------  December 2018   ------------------------------------------------------
 
@@ -1663,21 +1599,28 @@ https://medium.com/@roopa.kushtagi/low-level-design-interview-preparation-roadma
 
 3 Tier Architecture - Be a Better Dev ()
 Client Server Model - Be a Better Dev ()
-Client Server Architecture - Sudo Code ()
+Client Server Architecture - Sudo Code (Done)
 API Architecture Styles ()
 API Performance ()	
 
 How to design a System - Coding Simplified ()
 
 URL Shortening () 
-Rate Limiter ()
+Rate Limiter (Done)
 Idempotent Post API ()
+
 Decomposition Pattern ()
 Starngler Pattern ()
 SAGA Pattern ()
 Aggregator Pattern ()
 CQRS ()
 Circuit Breaker Pattern ()
+
+Atomic Integer
+Cyclic Barier
+LinkedList and Binary Tree
+G1 Garbage Collector
+HashMap Sort based on Values
 
 ----------------------------------------- August 2024  ----------------------------------------------
 

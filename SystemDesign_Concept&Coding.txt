@@ -10,7 +10,7 @@
 10.Key value store                                      [18-MAY-2024]  ()
 11.SQL vs NO SQL Differences                            [18-MAY-2024]  ()
 12.Whats App System Design                              [18-MAY-2024]  ()
-13.Rate Limiter Design Pattern                          [18-MAY-2024]  ()
+13.Rate Limiter Design Pattern                          [18-MAY-2024]  (Done)
 14.Zoom System Design                                   [18-MAY-2024]  ()
 15.Idempotent Post API Design Pattern                   [18-MAY-2024]  ()
 16.High availability Data Resilient System              [28-JUN-2024]  (Done)
@@ -48,6 +48,53 @@ Normalization
 DeNormalization
 Hashing
 Consistent Hashing
+
+######################################################### 13.Rate Limiter Design Pattern #######################################################
+
+Consider the scenario of DDOS(Distributed Denial of Service) attack.
+In case of DDOS, attacker sends the unwanted requests/huge no of requests to the Server.
+Each Server has limited resources and it will consume all the server resources.
+When a new request comes the request will be declined as there is no space for the new request.
+To prevent this we use Rate Limiter.
+There are five different algorithms to implement the Rate Limiter.
+
+1.Token Bucket
+2.Leaking Bucket
+3.Fixed Window Counter
+4.Sliding Window Log
+5.Sliding Window Counter
+
+1.Token Bucket :
+----------------
+In Token Bucket Algorithm there will be a Bucket with certain capacity to hold the Tokens.
+Consider the scenario where we have Token Bucket with the capacity 4 i.e. It will hold 4 Tokens.If we try to add more Token it will overflow.
+There is something called refiller.
+Refiller is nothing but in specified minutes how many Tokens we can add to the Token Bucket.
+In Token Bucket algorithm everything i.e. Capacity,refill etc is done by using configuration.
+
+Whenever any new request comes it will validate is there any Token present within the Token Bucket(Capacity).
+If the Token is present in the Token Bucket then the request consumes the Token and the capacity will be reduced in the Token Bucket.
+If there is no Token present in the Token Bucket then the request will be denied.
+
+we can cofigure the Token Bucket per user.
+For each user there will be 3 Tokens per minute to POST an API.
+
+User --> POST request --> Counter : 2 , Time 04:00:10 (Within a Minute and Refiller not started)
+User --> POST request --> Counter : 1 , Time 04:00:30 (Within a Minute and Refiller not started)
+User --> POST request --> Counter : 0 , Time 04:00:45 (Within a Minute and Refiller not started)
+User --> POST request --> Counter : --> request declined sayiing 429 status code i.e. Excess Requests in a Time Limit.
+
+If the request comes at 04:03:45 then refiller tries to add 2 times i.e. from 04:01 to 04:03 but the capacity is limited to 3 then Token Bucket capacity will be 3.
+Then it will Post the request by decrementing the counter to 2.
+
+2.Leaking Bucket :
+------------------
+
+
+ 
+
+
+
 
 ######################################################### 16.High availability Data Resilient System ###########################################
 

@@ -1,6 +1,6 @@
 1.Introduction											[22-JUN-2024]  ()
 2.Components of System Design                           [22-JUN-2024]  ()
-3.Client Server Architecture                            [22-JUN-2024]  (Read)
+3.Client Server Architecture                            [03-JUL-2024]  (Done)
 4.Proxies                                               [22-JUN-2024]  ()
 5.Data and Data flow                                    [22-JUN-2024]  ()
 6.Database Types                                        [22-JUN-2024]  ()
@@ -28,6 +28,31 @@
 
 ############################################################### 1.Introduction ##########################################################################
 
+############################################################### 3.Client Server Architecture ############################################################
+
+2 Tier :
+--------
+In case of Client Server Architecture Client requests for the data and Server provides the response for the given request.
+There are some cases where we need to process the data.
+In Client Server Architecture both the logic and the data are present in the same Server.
+
+Thick Client vs Thin Client :
+-----------------------------
+It is not mandatory that logical processing of the data should be done at Server Side i.e. Thin Client.
+There may also be cases that logical processing can be done at Client Side.
+These are called as Thick Client.
+
+3 Tier :
+--------
+In certain scenarios where the processing is huge or data is huge then the logic and data layers are broken separately.
+Then the 2 Tier Architecture becomes 3 Tier Architecture.
+Here the processing/logic and data part are separated.
+
+N Tier :
+--------
+In some of the cases where 3 Tier is not enough to design large and Complex applications.
+Consider the case of Load Balancer between Client and Server, Cache between Server and Database etc.
+This is called N Tier Architecture.
 
 
 ############################################################### 9.Caching Patterns ######################################################################
