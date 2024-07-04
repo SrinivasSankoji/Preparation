@@ -408,7 +408,7 @@ At runtime JVM will check whether the method is overriding in the child class or
 If yes child class method will get executed.
 
 In overriding Method Resolution is always taken care by compiler based on Runtime Object.
-Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
+Method Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism or Late Binding.
 
 Rules for Overriding :
 ----------------------
@@ -603,7 +603,7 @@ Polymorphism talks about flexibility.
 
 ******************************************************************* 13.Static Block  **********************************************************************
 
-Static block will be executed only once at the time of Class Loading i.e. when the first time class is loaded into memory.
+Static block will be executed only once at the time of Class Loading i.e. when the Class is loaded into memory.
 Hence at the time of Class Loading If we want to perform any other activity,then we have to define the code inside static block.
 
 Scenario One :
@@ -753,8 +753,8 @@ Refer Java_Constructor
 
 ******************************************************************* 18.Singleton Class  **************************************************************************
 
-For any Java Class If we are allowed to create only one Object,then such class is said to be Singleton Object.
-Advantage of Singleton Object is instead of creating the multiple Objects for the same purpose,create the object only once and reuse the same object for every request.
+For any Java Class If we are allowed to create an Object only once,then such class is said to be Singleton Object.
+Advantage of Singleton is instead of creating the multiple Objects of the same Class, create an Object only once and reuse object for every request.
 so that performance and memory utilizations will be improved.
 
 If we want to get the runtime object
@@ -763,7 +763,7 @@ If we want to get the runtime object
 	
 Using Runtime object we can communicate with JVM.
 Here getRuntime() verifies is there any object is present or not.
-If present reuses the object otherwise creates the new Runtime object.
+If present reuses the Object otherwise creates the new Runtime object.
 
 Creation of our own Singleton Object :
 --------------------------------------
@@ -786,7 +786,7 @@ public class SingletonDemo {
 	private SingletonDemo() {
 		System.out.println("Private Constructor");
 	}
-	private static SingletonDemo getSingleton() {
+	public static SingletonDemo getSingleton() {
 		if (singleton == null) {
 			singleton = new SingletonDemo();
 		}

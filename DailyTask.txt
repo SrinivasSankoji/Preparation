@@ -4484,15 +4484,19 @@ Client Server Architecture (Done)
 3 Tier Architecture ()
 Strangler Pattern ()
 Rate Limiter (Done)
-OOPS ()
+OOPS (Done)
 
 04-JULY-2024 :
 --------------
+Bulk Head Pattern (Done)
 Exception Handling ()
-URL Shortening ()
+Circuit Breaker Pattern ()
+Constructor ()
+Singleton ()
 
 05-JULY-2024 :
 --------------
+URL Shortening ()
 Idempotent Post API ()
 
 06-JULY-2024 & 07-JULY-2024 : 

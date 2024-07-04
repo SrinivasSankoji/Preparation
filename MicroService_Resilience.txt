@@ -1,63 +1,77 @@
 1.Resilience Introduction 
 2.Design Patterns to Ensure Service Resiliency
+3.Circuit Breaker Pattern											(Defog Tech)          [04-JUL-2024]  ()
+4.Bulk Head Pattern													(Defog Tech)          [04-JUL-2024]  (Done)
+5. 
 
 ############################################################### 1.Introduction ###############################################################
 
-In Case of Monolith Application Single Error has the Potential of Bringing The Entire Application Down.
-This Can Be Resolved By Making Each Functionality has Independent Deployable Modules Which Won't Effect the Entire System.
-This Doesn't Mean that Micro Services are Resilient.
-While Developing Distributed Applications we Should assume that Failures will Happen and design them For Resiliency.
-In Short Design Your Micro Services with Failure in Mind.
+In case of Monolith Application single error has the potential of bringing the entire application down.
+This can be resolved by making each functionality as an independent deployable modules which won't effect the entire System.
+This doesn't mean that Micro services are resilient.
+While developing distributed applications we should assume that failures will happen and design them for resiliency.
+In short design your Micro services with failure in mind.
 
-What Can Go Wrong in a Micro Service Architecture :
+What can go wrong in a Micro service architecture :
 ---------------------------------------------------
-There are Number of Moving Components in Micro Services Architecture and There are More Chances of Failures.
-Failures Cab be Caused By Variety Of Reasons.
+There are number of moving components in Micro services architecture and there are more chances of failures.
+Failures can be caused by variety of reasons.
 
-Why Do You Need to Make Services Resilient :
+Why do you need to make services resilient :
 --------------------------------------------
-Problem With Distributed Applications is that They Communicate Over The Network which is UnReliable.
-Hence We Need To Design Micro Services that They Must be Fault Tolerant and Handle the Failures Gracefully.
-In Distributed Application One Micro Service may Communicate with More No Of Micro Services and Make Sure That
-If One Micro Service Goes Down that Should Not Effect the Entire Application Down.
+Problem with distributed applications is that they communicate over the network which is unreliable.
+Hence we need to design Micro services that they must be Fault Tolerant and handle the failures gracefully.
+In distributed application one Micro service may communicate with more no of Micro services and make sure that
+If one Micro service goes down that should not effect the entire application down.
 
 How to Make Your Services Resilient :
 -------------------------------------
-Design The Micro Service in such a Way that Let them Fail and try to Recover from the Failure.
-Then Identify The Failure Scenarios :
-Service A is Not Able to Communicate With Service Be
-Service B is Not Able To Access Database.
-Service B Is Down.
-Service B response is Taking Time.
-Server is Down.
-
+Design the Micro service in such a way that let them fail and try to recover from the failure.
+Then identify the failure scenarios :
+Service A is not able to communicate with Service B.
+Service B is not able to access Database.
+Service B Is down.
+Service B response is taking time.
+Server is down.
 
 Avoid Cascading Failures :
 --------------------------
-When we ave Service Dependencies Built in our Architecture,Make Sure that One Service does not effect the Entire Chain Down.
-i.e Do Not Hammer a Service with Additional Request If It is Already Down and Give the Time to Service to Recover.
+When we have Service dependencies built in our architecture,make sure that One service does not effect the entire chain down.
+i.e Do not hammer a Service with additional request If it is already down and give the time to Service to recover.
 
-Avoid Single Points of Failure :
---------------------------------
-Design the Micro Service in such a way that there is No Single Point of Failure.
-We Should be Able To Handle The Client Request all the Time Hence Ensuring the
-Availability across the Micro Services Eco System is Critical.
+Avoid single point of failure :
+-------------------------------
+Design the Micro service in such a way that there is No single point of failure.
+We should be able to handle the Client request all the time.
+Hence ensuring the availability across the Micro services eco system is critical.
 
-Resilience in Micro services refers to the ability of a system to handle and recover from failures,
-ensuring overall system remains functional even when some of the components fails.
-This is cruicial because Micro services Architecture involves multiple services that communicate over the network,
-making it more susceptible to various types of failures.
+Resilience in Micro services refers to the ability of a system to handle and recover from failures and continue to function correctly.
+This ensures overall system remains functional even when some of the components fails.
+This is cruicial because Micro services Architecture involves multiple services that communicate with each other over the network.
+This makes more suspectible to various types of failures.
+Implementing Resilience in MicroServices is cruicial to ensure high availability, reliability and better user experience.
+Some of the key strategies and patterns used to enhance Resilience in MicroServices Architecture.
+
+1.Fault Tolerance
+2.Redundancy
+
+Ways to implement Resilience in Micro services
+
+1.Circuit Breaker Pattern
+2.Retry Pattern
+3.Bulkhead Pattern
+4.Rate Limiting
+5.Load Balancing
+6.Health Checks and Monitorings
+7.Graceful Shutdown
+8.Auto Scaling
+9.Service Mesh
+10.Data Replication and Sharding
+11.Timeout Pattern
+12.Fallback Pattern
+
 
 ############################################################### 2.Design Patterns to Ensure Service Resiliency ###############################################################
-
-1.Circuit Breaker Pattern :
----------------------------
-If There are Failures in The Micro Service Eco System We need to fail Fats By Opening the Circuit.
-This ensures that no additional Calls are Made to the Failing Service Once the Circuit Breaker is Open.
-We return an Exception Immediately.This also Monitors the System for Failures and once things are back Normal The Circuit is 
-closed to allow Normal Functionality.
-This is Very Common Cascading Pattern to avoid Cascade Failures in Micro Service Eco System.
-Most Popular Third Party Libraries to Implement Circuit Breaker Pattern  are Polly and Hystrix.
 
 2.Retry Design Pattern :
 ------------------------
@@ -71,33 +85,45 @@ Time Out Design Pattern Ensures that we should not wait for the Service Response
 throw an Exception instead of Waiting too Long.
 Once the Timeout Period is Met Thread is Freed up. 
 
-4.Bulkhead Pattern :
---------------------
+############################################################### 3.Circuit Breaker Pattern (Defog Tech) #########################################################
 
+If there are any failures in the Micro service eco system we need to fail fast by opening the Circuit.
+This ensures that no additional calls are made to the failing service once the Circuit Breaker is open and return an exception immediately.
+This also monitors the system for failures and once things are normal the Circuit is closed to perform normal functionality.
+This is very common cascading Pattern to avoid cascade failures in Micro service eco system.
+Most popular third party libraries to implement Circuit Breaker Pattern are Polly and Hystrix.
 
-5.Fallback Pattern :
---------------------
+############################################################### 4.Bulk Head Pattern (Defog Tech) ###############################################################
 
+Bulk Head pattern in Micro services architecture is a design pattern that helps to improove the resilience and stability of a system by isolating different parts of services.
+This isolation prevents a failure in one part of the system cascading to other parts of the system.
+Consider the scenario where we have set of Micro services.
 
-6.Load Balancing :
-------------------
+Order service
+Payment service
+Cart service
+Inventory service
 
+Here Order service communicates with all the services to complete the flow.
+For each request based on the type Order service communicates with the other services.
 
-7.Health Checks and Monitoring :
---------------------------------
+Consider the Order service is built using Spring boot which internally uses Tomcat.
+Tomcat will have a Servlet Thread pool with size of Maximum 200.
+On every request a Thread will be assigned to serve the Request.
+Responsibility of the Thread is to call the other service based on the type.
+Once the response is recieved from the other service, the Thread is freed in Servlet Thread pool and can serve another request.
 
+Since the Servlet Thread pool size is 200 it can serve as many requests.
+Consider the scenario where the Payment service is taking time to execute and there are frequent request for other services also.
+After some time request reaches to the size of the Servlet Thread pool.
+Then there will be no resources to handle the new request.
 
-8.Rate Limiting :
------------------
+To ensure that slowness in one service does not effect any other dependency we have to rouhly divide the Thread pool into the number of services we have.
+Consider the pool size is 9 and we need to ensure Order service can take upto 3 requests from the Thread pool.
+This can be implemented by using Decorator pattern
 
-
-9.Service Mesh :
-----------------
-
-
-10.Data Replication and Sharding :
-----------------------------------
-
+Instead of custom implementation for BulkHead we can use the ResilienceJ library or Hystrix.
+We docorate the service with the Bulk Head Logic and this can be done by using Decorator design pattern.
 
 
 

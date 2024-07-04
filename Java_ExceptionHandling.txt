@@ -49,7 +49,7 @@ This way of providing alternative is nothing but Exception Handling.
 
 ******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
 
-Every Java program contains one Thread.
+Every Java program contains one Thread i.e.Main Thread.
 For every Thread JVM will create a seperate Runtime Stack.
 For every Method call performed by the Thread one entry will be stored inside the corresponding Stack.
 Each Entry in the Stack is called Activation Record or Stack Frame.
