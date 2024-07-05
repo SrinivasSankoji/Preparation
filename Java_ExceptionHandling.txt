@@ -39,9 +39,9 @@ We have to provide the local File to continue to rest of the program normally.
 
 Scenario 2 :
 ------------
-Opened the database and while reading the data from the database SQLException is raised.
+Opened the database connection and while reading the data from the database SQLException is raised.
 Here program terminates abnormally without closing the connection.
-If 10 connections are opened and program terminates without closing the connection then resources are wasted.
+If 10 connections are opened and the program terminates without closing the connection then resources are wasted.
 Eventhough program terminates abnormally,close the DB connection and stop the program.
 
 Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue to the rest of the program normally.
@@ -51,7 +51,7 @@ This way of providing alternative is nothing but Exception Handling.
 
 Every Java program contains one Thread i.e.Main Thread.
 For every Thread JVM will create a seperate Runtime Stack.
-For every Method call performed by the Thread one entry will be stored inside the corresponding Stack.
+For every Method call performed by the Thread one entry will be stored inside the corresponding Stack Area.
 Each Entry in the Stack is called Activation Record or Stack Frame.
 After completing the Method corresponding entry from the Stack will be removed.
 After completing all the Methods Stack will be empty.
@@ -86,7 +86,7 @@ Hello
 Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 After creating an Exception object by the Method,This Method hand overs the Exception object to the JVM.
-JVM will check in which method problem raises,This Method has Exception Handling code or not.
+JVM will check in which method the problem raises,This Method has Exception Handling code or not.
 If Not JVM terminates the program abnormally and removes the method from the Satck.
 JVM handovers the responsibility of Exception Handling to the Default ExceptionHandler which is a part of JVM.
 
@@ -100,18 +100,21 @@ If all the methods are terminated normally then only program will be terminated 
 Throwable Class acts as a Root Class for Java Exception Hierarchy.
 It contains following two Child Classes.
 
-											Exception                                        								Error
-RuntimeException   			IOException 			InterruptedException  	RemoteException  				VirtualMachineError StackOverflowError
-ArithematicException		FileNotFoundException
-NullPointerException		EOFException
+											Exception                                        														Error
+RuntimeException   	|		IOException 	|		InterruptedException | SQLException | ClassNotFoundException  | RemoteException  	VirtualMachineError 	|	LinkageError
+ArithematicException		FileNotFoundException																							StackOverflowError
+NullPointerException		EOFException																									OutOfMemoryError
 ClassCastException			InterruptedIOException
 IllegalArgumentException 
-IndexOutOfBoundException
+IllegalStateException
+IndexOutOfBoundsException
+	StringIndexOutOfBoundsException
+	ArrayIndexOutOfBoundsException
  
 ********************************************************************  5.Exception and Error ***************************************************************************
 
 Most of the times Exceptions are caused by programmers and are recoverable.
-If our requirement is to read the data from the remote file and at runtime remote file is not available we get compile time error saying FileNotFoundException.
+If our requirement is to read the data from the remote file and at runtime remote file is not available then we will get CTE saying FileNotFoundException.
 If FileNotFoundException occurs we can provide local file so that rest of the program will be continued normally.
 
 Most of the times Errors are caused by lack of system resources and are not recoverable.
@@ -123,11 +126,9 @@ Each and every Exception occurs at Runtime.
 The Exceptions which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
 In our program sometimes there may be a chance of getting an Exception at Runtime.
 Compiler verifies whether we are handling that Exception or not.i.e writing catch block or not is the only requirement of the compiler.
-
 Example :FileNotFoundException
 
 There are some Exceptions which are not checked by the compiler.These type of Exception are called UncheckedException.
-
 Example :
 ArithematicException
 NullPointerException
@@ -157,7 +158,7 @@ Exception
 ******************************************************************** 8.Exception Handling using try catch block  ********************************************************
 
 We can make the program as graceful terminataion by using try catch block.
-The code which makes the program termination is called risky code and should be placed inside try catch block.
+The code which causes the program termination is called risky code and should be placed inside try catch block.
  
 	public class ExceptionDemoTwo {
 	public static void main(String[] args) {
@@ -178,7 +179,7 @@ Statement 3
 	
 ******************************************************************** 9.Control flow in try catch block  ******************************************************************
 
-1.Within the try block If any where an exception is raised,rest of the try block won't be executed even though we handled the exception.
+1.Within the try block If any where an Exception is raised,rest of the try block won't be executed even though we handled the exception.
 Hence within the try block we have to take only risky code and lenth of the risky code should be as less as possible.
 2.There may be a chance of getting an Exception in catch and finally block also in addition to try block.
 3.If any satetment which is not part of try block raising an exception,then it is always abnormal termination of the program.
@@ -193,8 +194,8 @@ e.printStacktrace()  - Name of the Exception : Description : StackTrace
 
 ******************************************************************** 11.Try with Multiple Catch Block  *******************************************************************
 
-The way of Handling the Exception varies from Exception to Exception.
-For every Exception it is recomended to take seperate catch block.
+The way of handling the Exception varies from Exception to Exception.
+For every Exception it is recomended to have a seperate catch block.
 Try with Multiple Catch block is recomended to use.
 
 Within the try block at any point of time there may be a chance of getting only one Exception at a time.
@@ -209,7 +210,7 @@ It is never recomended to write clean up code within the try block because there
 It is not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
 We required a place to maintain the clean up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
 such type of place is nothing but finally block.
-Main purpose of finally block is to maintain clean up code which should be executed always.
+Main purpose of finally block is to maintain the clean up code which should be executed always.
 
 	public class FinallyDemoOne {
 	public static void main(String[] args) {
@@ -425,7 +426,7 @@ Here we get Compile Time Error and can be resolved by adding
 ********************************************************************  18.throws keyword  ************************************************************************
 
 In our program If there is any chance of raising checked Exception,compulsory we should handle that checked Exception.
-Other wise we get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
+Other wise we will get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
 
 	public class ThrowsDemoOne {
 	public static void main(String[] args) {
@@ -440,7 +441,7 @@ Other wise we get Compile Time Error saying unreported Exception must be caught 
 	}
 	}
 
-Here Thread enters into the sleeping state and other Thread have the chance of Interrupting the Thread.
+Here Thread enters into the sleeping state and other Thread may have the chance of Interrupting the Thread.
 We get CTE saying Unhandled exception type FileNotFoundException.
 
 We can handle Compile Time Errors either by using Try Catch block or by using throws keyword.
@@ -526,7 +527,7 @@ incompatible types : using for non throwable types
 
 ********************************************************************  20.Customized Exception   **********************************************************************
 
-sometimes to meet programmer requirement we have to create our own Exception which is called customized Exception or user defined Exception.
+sometimes to meet the programmer requirement we have to create our own Exception which is called customized Exception or user defined Exception.
 
 	public class TooYoungException  extends RuntimeException{
 	private static final long serialVersionUID = 1L;
@@ -579,14 +580,14 @@ Here we are not required to close explicitly.
 
 Note :
 ------
-1.We can take any number of resources and should be seperated with ,.
-2.Resources whatever we are taking are Autoclosable Resources i.e corresponding Class implements AutoClosable interface.
+1.We can take any number of resources and should be comma seperated.
+2.Resources whatever we are taking should be Autoclosable Resources i.e corresponding Class should implement AutoClosable interface.
 3.Resource reference variable should be declared as final so that we cannot perform reassignment for that variable.
-4.untill 1.6 try should be associated with catch or finally but from 1.7 we can only have try with Autoclosable interface.
+4.untill 1.6 try should be associated with either catch or finally but from 1.7 we can only have try with Autoclosable interface.
 
 *************************************************************** 23.Multi Catch Block  *********************************************************************************
 
-Untill 1.6 for different Exceptions we have same Exception Handling code.
+Untill 1.6 for different Exceptions we have different Exception Handling code i.e. different Catch blocks.
 Compulsory we have to write seperate catch block for every Exception Type.
 Problem in this approach is it increases the length of the code and reduces readability.
 We can resolve this problem by using Multicatch block.
@@ -677,8 +678,8 @@ Whenever Exception is occured in try block and corresponding catch and finally b
  
 *************************************************************** 25.ClassNotFoundException (Scaler) ***************************************************************
 
-ClassNotFoundException is a checked Exception in Java that occurs when the JVM tries to load the specific class in the class path but it cannot locate the class in the Classpath.
-ClassNotFoundException must be explicitly handled either by using try-catch or throw clause.
+ClassNotFoundException is a checked Exception in Java that occurs when JVM tries to load the specific class from the class path but it cannot locate the class in the Classpath.
+ClassNotFoundException must be explicitly handled either by using try-catch or throws clause.
 Since we are loading the class using ClassLoader then ClassNotFoundException will always occur at runtime.
 Java Compiler has no way of identifying whether the Class is present at the Classpath at runtime.
 
