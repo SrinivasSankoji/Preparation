@@ -2,7 +2,8 @@
 2.Design Patterns to Ensure Service Resiliency
 3.Circuit Breaker Pattern											(Defog Tech)          [04-JUL-2024]  ()
 4.Bulk Head Pattern													(Defog Tech)          [04-JUL-2024]  (Done)
-5. 
+5.Timeout Pattern													(TechPrimers)         [04-JUL-2024]  ()
+6.Retry Pattern 													(JavaTechie)          [04-JUL-2024]  ()
 
 ############################################################### 1.Introduction ###############################################################
 
@@ -125,7 +126,11 @@ This can be implemented by using Decorator pattern
 Instead of custom implementation for BulkHead we can use the ResilienceJ library or Hystrix.
 We docorate the service with the Bulk Head Logic and this can be done by using Decorator design pattern.
 
+############################################################### 5.Timeout Pattern (TechPrimers)  ###################################################################
 
+https://vinsguru.medium.com/resilient-microservice-design-with-spring-boot-timeout-pattern-72b5f5174d2a
+
+https://medium.com/@zaidali753/timeout-strategies-in-microservices-architecture-an-overview-a811a3aff8b2
 
 
 

@@ -1610,16 +1610,17 @@ Rate Limiter (Done)
 Idempotent Post API ()
 
 Decomposition Pattern ()
-Starngler Pattern ()
+Strangler Pattern ()
+Builder Design Pattern ()
 SAGA Pattern ()
 Aggregator Pattern ()
 CQRS ()
 Circuit Breaker Pattern ()
 
-Atomic Integer
+Atomic Integer ()
 Cyclic Barier
-LinkedList and Binary Tree
-G1 Garbage Collector
+LinkedList and Binary Tree ()
+G1 Garbage Collector ()
 HashMap Sort based on Values
 
 ----------------------------------------- August 2024  ----------------------------------------------

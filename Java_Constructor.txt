@@ -25,14 +25,14 @@ Peice of code is nothing but Constructor.
 Main objective of constructor is to perform initialization of an object.
 For every object creation first instance block and constructor will be executed.
 
-Difference between instance block and Constructor :
+Difference between static block and Constructor :
 ---------------------------------------------------
 Main objective of Constructor is to perfrom initialization of an Object.
 Other than initialization activity If we want to perfrom any other activity then we need to define inside Static block.
 Static block will be executed only once i.e. when the first time class is loaded into memory.
 For every Object creation both static block and constructor will be executed but static block first followed by contructor.
 
-Both Constructor and instance block will have different purpose.
+Both Constructor and static block will have different purpose.
 Replacing one concept with another concept is not possible.
 
 public class ConstructorDemo {
@@ -129,7 +129,7 @@ Abstract Class constructor will be executed whenever we are creating child class
 
 Note :
 ------
-Constrcutor is applicable only to class to perform initialization.
+Constrcutor is applicable only for class to perform initialization.
 Parent Class Constructor is not avaialbale to Child Class Constructor.
 Inheritance and overriding concept is not applicable for Constructors.
 
@@ -150,18 +150,16 @@ If a Child class Constructor throws unchecked Exception then the Parent Class Co
 
 ******************************************************* 2.Copy Constructor in Java (scaler)  *********************************************
 
-Copy Constructor in Java allows us to create an exact copy of an existing Object of the same class such changes made to an existing Object
-does not affect the new copy.
+Copy Constructor allows us to create an exact copy of an existing Object of the same class.
+Changes made to an existing Object does not affect the new copy.
 To create a Copy Constructor we need to pass the existing Object as an argument and initialize the value of the instance variables with the values obtained in the Object.
-We can assign the value to the final field but the same cannot be done using clone().
+Copy Construtor allows us to change the fields which are declared as final but the same cannot be done using clone().
 
 Advantages :
 ------------
-Copy Constrcutor reduces the complexities when dealing Object with several parameters.
-If a new field is added to the class, we only need to change the input parameter in the constructor.
-No need of typecasting in Copy Constructor.
-Copy Construtor in Java allows us to change the fields which are declared as final.
-Copy Constrcutor provides completes control over Object Creation.
+Copy Constrcutor reduces the complexity when dealing an Object with large no of parameters.
+If a new field is added to the class, we only need to change the input parameter in the copy constructor.
+Copy Constrcutor provides complete control over Object Creation.
 
 	public class Student {
 
@@ -169,12 +167,14 @@ Copy Constrcutor provides completes control over Object Creation.
     private String lastName;
     private int age;
 
+    /* Argument Constructor */
     public Student(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
 
+    /* Copy Constructor */
     public Student(Student student) {
         this.firstName = student.firstName;
         this.lastName = student.lastName;
@@ -201,12 +201,16 @@ Copy Constrcutor provides completes control over Object Creation.
     }
 
     public static void main(String[] args) {
+        /* call to argument constructor */
         Student s1=new Student("Srinivas","Chary",37);
+        /* call to copy constructor */
         Student s2=new Student(s1);
-        System.out.println(s1==s2);
-        System.out.println(s1.equals(s2));
+        System.out.println(s1==s2); //false
+        System.out.println(s1.equals(s2)); //true
 
     }
+
+}
 
 ******************************************************* 4.Constructor Chaining (geeksforgeeks) **************************************************
 
@@ -244,8 +248,6 @@ Value of x and y : 80
 Constructor Chaining occurs through Inheritance.
 Sub Class Constructor task is to call Super Class Constructor First.
 This ensures the creation of Subclass Object start's with the initialization of data members of the Super class.
-
-	
 
 Why Constructor Chaining :
 --------------------------

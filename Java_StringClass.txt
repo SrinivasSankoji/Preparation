@@ -58,7 +58,7 @@ Note :
 ------
 Object creation in SCP is always optional.
 First JVM will check is there any object already available with required content or not.
-If the object is already available then JVM will use the existing object.
+If the object is already available then JVM will reuse the existing object.
 If the object is not already available then only a new object will be created.
 Garbage Collector is not allowed to access SCP area eventhough object does not have any reference.
 All SCP objects will be destroyed automatically at the time of JVM shut down.
@@ -150,8 +150,8 @@ If i want reference to be pointed to the SCP object we use intern().
 
 Importance of String Content Pool :
 -----------------------------------
-If any String object is required to use repeatedly it is not recomended to create a seperate object for each requirement.
-Problem in this approach is performance will be impacted and memory utilization will be reduced.
+If any String object is frequently used then it is not recomended to create a seperate object for each requirement.
+Problem with this approach is performance will be impacted and memory utilization will be reduced.
 To resolve this problem we can create only one object and we can reuse the same object with multiple references.
 we can acheive this by using SCP.
 
@@ -206,7 +206,7 @@ Rules to create a Final Class :
 6.use the new operator to create the Object.
 
 final class Immutable {
-	private int i;
+	private final int i;
 	public Immutable(int i)
 	{
 		this.i=i;
@@ -229,8 +229,8 @@ public class ImmutableTest {
 		Immutable i1=new Immutable(10);
 		Immutable i2=i1.modify(10);
 		Immutable i3=i2.modify(100);
-		System.out.println(i1==i2);
-		System.out.println(i2==i3);
+		System.out.println(i1==i2); //true
+		System.out.println(i2==i3); //false
 	}
 }
 
@@ -254,14 +254,14 @@ private constructor :
 If the content is fixed and won't change frequently we go for String.
 In String for every change a new object will be created.
 If the content is not fixed and keep on changing then we go for StringBuffer.
-In StringBuffer for every change new object won't be created and all changes will be done in the existing object.
+In StringBuffer for every change new object won't be created and changes will be done in the existing object.
 All the methods in StringBuffer are synchronized.
-At a time only one Thread is allowed to operate on the object and performance of the system is going down.
+At a time only one Thread is allowed to operate on the object and performance of the system will go down.
 To resolve this problem we go for StringBuilder.
 
 *************************************************************** 3.StringBuilder *********************************************************
 
-Only difference between StringBuffer and StringBuilder is all the methods present in StringBuilder are non synchronized.
+The only difference between StringBuffer and StringBuilder is all the methods present in StringBuilder are non synchronized.
 StringBuilder is introduced in Java 1.5.
 
 *************************************************************** 4.Method Chaining *******************************************************
@@ -278,7 +278,7 @@ If String is immutable then different String variables can refer to the same Str
 
 2.If Strings are not Immutable then it would cause a severe Security threat to the Application.
 Consider the scenario where we want to connect to the Database.
-We provide the Database credentials like username,password,hostname and port details in the form os String.
+We provide the Database credentials like username,password,hostname and port details in the form of String.
 Any Hacker could the change the value of the Database details which causes Security issues to an Application.
 
 3.Since String is Immutable it can be safe for MultiThreading.
@@ -296,11 +296,7 @@ This makes the String great choice for the key in the Map and its processing is 
 *************************************************************** 7.Immutable Class in Java (scientecheasy) *******************************
 
 An Immutable Class in Java is a Class whose state of an Object cannot be changed or modified once it is created.
-Immutable Classes are useful in Java because they always remains the same.
-They can be passed in different areas of the program without worrying about its changes.
-
-Am Immutable Object in Java is an Object whose state cannot be changed after its construction.
-Once we construct an Object of Immutable Class, we cannot change or update its content.
+Advantage is that it always remains the same and can be passed in different areas of the program without worrying about its changes.
 
 All wrapper Classes in Java like Integer,Long,Short,Byte,Boolean,Float and Double are Immutable Classes.
 String,BigInteger,BigDecimal,CopyOnWriteArrayList and CopyonWriteArraySet are also Immutable Classes.
@@ -337,7 +333,7 @@ Output :
 Name: Bhaumik
 Roll no: 7
 		
-The above class is declared as final so no one will create a sub class for this.
+The above class is declared as final so that no one will create a sub class for this.
 The instance variables inside the class are declared as private and final so that it cannot be accessed from outside the class and cannot change the value of the instance variable.
 There are no setter methods declared inside the class to change the value of the instance variable.
 
@@ -397,8 +393,8 @@ Creating an Immutable Class is easy and understandable.
 Testing an Immutable Class is easy and Simple.
 Since we cannot modify the Object after Creation, an Immutable Class can be used in MultiThreading Environment safely.
 Immutable Object can also be used for Caching Purpose as the State of an Immutable Object cannot be changed.
-Immutable Objects are good for hash keys as their hashCode is cached at the time of creation and does not need to be calculated again and again 
-and also reused for better performance.
+Immutable Objects are good for hash keys as their hashCode is cached at the time of creation and 
+does not need to be calculated again and again and also reused for better performance.
 
 
 

@@ -25,7 +25,7 @@
 25.Timeout Pattern                              (Tech Primers)          [01-JUL-2024]  ()
 
 
-############################################################### 1.SAGA Pattern (Tech Primers) ###############################################################
+############################################################### 3.SAGA Pattern (Tech Primers) ###############################################################
 
 SAGA design pattern is a Microservice architectural design pattern that can be used to manage distributed transactions in a reliable and scalabe manner.
 SAGA design pattern provides a way to ensure data consistency.
@@ -42,9 +42,8 @@ SAGA design pattern can be implemented in two ways.
 
 1.Choreography :
 ----------------
-Choreography design pattern is an Event based design pattern to handle distributed transactions.
-Here Events will intercat with Microservices.
-Here we don't require synchronous Transaction in Microservices.
+Choreography SAGA pattern is an Event based design pattern to handle distributed transactions.
+Here Events will intercat with Microservices and not required any synchronous Transactions.
 
 Consider the scenario of Uber Eats service.
 We have different services to deliver the food.
@@ -57,8 +56,15 @@ Once the Payment is successfully done Payment Service will notify the Order Serv
 Then Order Service will call the Restaurant Service to prepare the Order. (4)
 Once the Food is prepared then the Restaurant Service will notify the Order Service that the food is prepared. (5)
 Order Service will call the Delivery service to deliver the food.(6)
-Once the Delivery is done then Delivery service notified the Order service that Order is delivered. (7)
+Once the Delivery is done then Delivery service notifies the Order service that Order is delivered. (7)
 Finally Order service provides the response saying Order is completed. (8)
+
+There are many ways to implement Choreography SAGA pattern in Microservices.
+Spring Boot and Spring Cloud
+Event Driven Architecture using RabitMQ
+Event Driven Architecture using Kafka
+Event Sourcing
+Workflow Engines
 
 Advantages :
 ------------
@@ -67,14 +73,14 @@ Advantages :
 
 Disadvantages :
 ---------------
-1.There may be a chance of entering into dead lock because One Service is dependent on other.
+1.There may be a chance of entering into dead lock because one Service is dependent on other service.
 2.If there are more number of Events we might miss the sequence of the workflow.
-3.It might be tidious to test the Individual MicroServices and Integration Tests when we have too many Events.
+3.It might be difficult for Integration Tests when we have too many Events.
 
 2.Orchestration :
 -----------------
-Orchestration design pattern is a command based design pattern to handle distribution Transactions.
-Here we have a central Orchestration service which takes the commands and delegates the request to different Microservices.
+Orchestration SAGA pattern is a command based design pattern to handle distribution Transactions.
+Here we have a central Orchestration service which will accept the commands and delegates the request to different Microservices.
 
 Advantages :
 ------------

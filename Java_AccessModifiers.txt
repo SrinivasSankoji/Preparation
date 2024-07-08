@@ -33,7 +33,7 @@ For Inner Classes protected,static and private are also applicable.
 
 ***************************************************************  2.private modifier	 *****************************************************************
 
-Scope of private modifier is limited to the class only.
+Scope of private modifier is limited to that class only.
 Class and Interface cannot be declared as private where as nested Classes can be declared as private.
 If a method is declared as private we can access that method only within the Class and outside the Class we cannot access.
 If the constructor is declared as private then we cannot create the Object of that Class from outside of the class.
