@@ -6,14 +6,13 @@
 
 Java Singleton Design Pattern is one of the four design patterns and comes under Creational Design Pattern.
 Singleton Design Pattern restricts the instantiation of the class and ensures that only one instance of a class exists in JVM.
-Singleton Class must provide a global access point to get the instance of a Class.
 Singleton Design Pattern is used for Logging,Driver Objects,Caching and Thread Pool.
 
 Singleton Rules :
 -----------------
-private Constructor to restrict the instantiation of class from other classes.
-private static reference variable of the same class and is the only instance of the class.
-puublic static method that returns the instance of the class ie Global access point for the outer world to get the instance.
+Declare the private static reference variable of the same class.
+Declare the private Constructor to restrict the instantiation of class from other classes.
+Declare the puublic static method that returns the instance of the class i.e. Global access point for the outer world to get the instance.
 
 Following are the different approaches of Singleton pattern Implementation.
 

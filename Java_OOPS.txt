@@ -754,7 +754,10 @@ Refer Java_Constructor
 ******************************************************************* 18.Singleton Class  **************************************************************************
 
 For any Java Class If we are allowed to create an Object only once,then such class is said to be Singleton Object.
-Advantage of Singleton is instead of creating the multiple Objects of the same Class, create an Object only once and reuse object for every request.
+
+Advantages :
+------------
+Instead of creating the multiple Objects of the same Class create an Object only once and reuse object for every request.
 so that performance and memory utilizations will be improved.
 
 If we want to get the runtime object

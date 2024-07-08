@@ -11,7 +11,12 @@
 
 ***************************************************************   1.Limitation of Arrays	*****************************************************
 
-An Array is an indexed collection of fixed number of Homogenous data elements.
+An Array is a data structure that can be used to store collection of elements of the same type.
+Each element in an Array is identified by an index which starts from 0 to n-1 where n is size of an Array.
+
+  int[] numbers;
+  String[] names;
+
 Main Limitation of Arrays are 
 1.Arrays are fixed in size.once we create an Array there is no chance of increasing or decreasing its size based on our requirement.
 2.Arrays can hold only Homogenous elements.
@@ -27,15 +32,15 @@ We can resolve the above problem by using Object Array but at the time of retrie
 		object[1]=new Integer(10);
 		object[2]="Bhaumik";
 		
-By using Object Array we can add Hetergogenous Elements.
-3.For Arrays there is no underlying Data Structure i.e For every requirement we have to write the code explicitly. 
+By using Object Array we can add hetergogenous elements.
+3.For Arrays there is no underlying Data Structure i.e For each and every requirement we have to write the code explicitly. 
 There is no default readymade support like sorting,searching etc.
-4.We cannot represent Array elements in sorting order by default.
+4.We cannot represent the Array elements in sorting order by default.
 5.we cannot prevent duplicate elements in Arrays.
 
 To resolve all the issues sun people introduced Collections.
 For every requirement readymade method support is available.
-By using Collection we can represent all the elements in sorting order and we can also prevent duplicate object insertion by default.
+By using Collection we can represent all the elements in sorting order and we can also prevent duplicate insertion by default.
 
 *************************************************************  2.Comparison between Collections and Arrays  *********************************************
 
@@ -55,7 +60,7 @@ Collections can hold Hetergogenous Elements.
 Collections can hold only objects but not primitives.
 With respect to memory Collections are recomended to use.
 With respect to Performance Collections are not recomended to use.
-Every Collection object has built by using some underlying data structure.
+Every Collection object is built by using some underlying data structure.
 
 ************************************************************* 3.Collections Framework   *******************************************************************
 
@@ -74,7 +79,7 @@ Key Interfaces in Collection Framework are
 --------------
 Collection interface is the root interface for entire collection framework.
 Collection interface can be used for representing a group of individual objects as a single entity.
-Collection interface defines the most common methods that can be applicable for any collection object.
+Collection interface defines the most common methods that are applicable for every collection object.
 There is no concrete class which implements Collection interface directly.
 
 Difference between Collection and Collections :
