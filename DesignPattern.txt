@@ -1,8 +1,9 @@
 1.Service Locator Design Pattern          (Java Techie)     		          [15-JUL-2023]  ()
 2.Dependency Injection Design Pattern     ()     		                      [15-JUL-2023]  ()
-4.Command Pattern                         (GeeksForGeeks)			          [25-AUG-2023]  ()
-5.Facade Design Pattern 				  (GeeksForGeeks)					  [25-AUG-2023]  ()
-7.Object-Oriented Programming Roadmap	  (Skilled Coder Medium) 			  [14-OCT-2023]  ()
+3.Command Pattern                         (GeeksForGeeks)			          [25-AUG-2023]  ()
+4.Facade Design Pattern 				  (GeeksForGeeks)					  [25-AUG-2023]  ()
+5.Object-Oriented Programming Roadmap	  (Skilled Coder Medium) 			  [14-OCT-2023]  ()
+
            
 
 ################################################### 1.Service Locator Design Pattern (Java Techie) ###################################################
@@ -13,12 +14,12 @@ Service Locator acts as a Central registry that provides implementations of diff
 Spring Framework internally uses Service Locator Design Pattern to manage Dependency Injection.
 
 
-################################################### 4.Command Pattern (GeeksForGeeks) ###################################################
+################################################### 3.Command Pattern (GeeksForGeeks) ###################################################
 
 Command Pattern encapsulates a request as an Object there by letting us paraeterize other Objects with different request,log requests and support undoable operations.
 
 
-###################################################  5.Facade Design Pattern (GeeksForGeeks) ############################################
+###################################################  4.Facade Design Pattern (GeeksForGeeks) ############################################
 
 Facade Design Pattern is the Structural Design Pattern which is the part of Gang of Four Design Pattern.
 Facade hides the complexity of the System and provides an Interface to the Client from where the Client can access the System.
@@ -28,7 +29,7 @@ The implementation we are not concerned about and is left to the Vendor of the D
 
 Facade defines a higher level interface that makes the sub system easier to use.
 
-###################################################  7.Object-Oriented Programming Roadmap ################################################### 
+###################################################  5.Object-Oriented Programming Roadmap ################################################### 
 
 https://blog.devgenius.io/object-oriented-programming-roadmap-9bf29b86478c
 

@@ -89,7 +89,7 @@ Collections is a class which is present in java.lang package which defines sever
 2.List :
 --------
 List interface can be used for representing a group of individual objects as a single entity where insertion order is preserved and duplicate objects are allowed.
-List interface is the Child interfaace of Collection.
+List interface is the child interfaace of Collection.
 List implementation classes are 
 
 ArrayList
@@ -199,7 +199,7 @@ Vector is the worst choice If the frequnet operation is insertion or deletion.
 Difference between ArrayList and Vector :
 Every method present inside ArrayList is non synchronized where as every method present inside Vector is Synchronized.
 Vector is Thread Safe where as ArrayList is not Thread Safe.
-Performance of Vector is low where as Performance of ArrayList is high.
+Performance of Vector is slow where as Performance of ArrayList is high.
 
 we can get the synchronized version of ArrayList as
 	
@@ -250,15 +250,15 @@ By using iterator we can perform removal operations along with read operations.
 
 Limitations of Iterator :
 Enumeration and Iterator are Single direction cursors.They always move in the forward direction.
-By using Iterator we can perform read and remove operations and we cannot perform replace or addition of new elements.
+By using Iterator we can perform read and remove operations but we cannot add or update new elements.
 To overcome this we go for ListIterator.
 
 3.ListIterator :
 ----------------
 ListIterator is the child interface of Iterator.
 It is a bidirectional cursor.
-Based on requirement we can move either to the forward diretion or backward direction.
-While iterating elements, we can perform replace and add operations in addition to read and remove operation.
+Based on requirement we can move the cursor either to the forward diretion or backward direction.
+While iterating the elements, we can perform modify and add operations in addition to read and remove operation.
 Most powerful cursor is ListIterator but it is applicable only to List interface Implemented classes.
 
 *************************************************************  7.Set Interface Classes  ************************************************************
@@ -347,7 +347,7 @@ whenever we are implementing Comparator interface we should provide implementati
 
 *************************************************************  9.Map Interface Classes  ******************************************************************
 
-If we want to represent a group of individual objects where objects are stored as key value pairs then we go for Map interface.
+If we want to represent a group of individual objects as key value pairs then we go for Map interface.
 Map interface provides 3 collection views which allows map content to be viewed as
 set of keys
 set of values

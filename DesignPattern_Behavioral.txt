@@ -8,6 +8,7 @@
 8.Visitor                                                       ()								  [14-OCT-2023]  ()
 9.Mediator                                                      ()								  [14-OCT-2023]  ()
 10.State                                                        ()								  [14-OCT-2023]  ()
+6.Null Object Design Pattern              						(Concept&Coding)				  [09-JUL-2024]  ()
 
 
 ################################################### 1.Chain of Responsibility (Skilled Coder Medium) ###################################################
@@ -265,3 +266,7 @@ Disadvantages :
 Strategy pattern has some drawbacks which includes the increase of multiple classes.
 Strategy Pattern has potential performance issues if the selection of algorithm is done frequently at runtime.
 
+################################################### 6.Null Object Design Pattern (Concept&Coding) ###################################################
+
+Null object design pattern is a behaviorial design pattern that uses polymorphism to provide a default object to stand in for a null reference.
+This approach avoids null references by providing an object that does nothing.

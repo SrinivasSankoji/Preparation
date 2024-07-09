@@ -7,12 +7,12 @@
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
-Serialization is the process of converting the state of an Object into ByteStream ie File supported form or Network supported form 
+Serialization is the process of converting the state of an Object into ByteStream i.e. File supported form or Network supported form 
 So that it can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
 By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 
 The process of creating an Object from ByteStream is called Deserialization.
-Byte Stream created is platfrom independent ie Object Serialized in one Platfrom can be deserialized on a different Platform.
+Byte Stream created is platfrom independent i.e. Object Serialized in one Platfrom can be deserialized on a different Platform.
 By using FileInputStream and ObjectInputStream we can achieve DeSerialization.
 
 An Object is said to be Serializable If the Corresponding Class implements Serializable Interface.

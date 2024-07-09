@@ -17,10 +17,10 @@
 15.ConcurrentHashMap Internal				(DZone Arun Pandey)   				[26-AUG-2021]  (Done)
 16.ConcurrentHashMap Internal				(javahungry)   						[23-AUG-2021]  (Done)
 17.HashMap vs ConcurrentHashMap			    (Medium Chinmay Venkata Sabbam)   	[21-AUG-2021]  (Done)
-18.Collission in HashMap					()
+18.Collission in HashMap					(chatgpt)							[09-JUL-2024]  (Done)
 19.HashMap Changes in Java 8				(nagarro)
 
-**************************************************************** 1.HashMap Internal  (DZone Shubham Bansal) ***************************************
+################################################################ 1.HashMap Internal  (DZone Shubham Bansal) #######################################
 
 HashMap is a dataStructure that can be used to store key value pair as an Entry object inside an Array.
 HashMap works on the principle of hashing.
@@ -79,7 +79,7 @@ HashMap calls the equals() on the key object for each Entry.
 All the Entry objects in the LinkedList will have the same hashCode but equals() will test for true equality.
 If both key objects are equal then the value object will be replaced.
 
-************************************************ 2.HashMap - Internal  (howtodoinjava)  *********************************************
+################################################ 2.HashMap - Internal  (howtodoinjava)  #############################################
 
 1.What is Hashing :
 -------------------
@@ -199,9 +199,9 @@ hashCode for null is always 0 and such Entry object will be stored inside 0 inde
 ----------------------------------
 As part of the performance improovement of HashMap in Java 8,LinkedList is replaced by BalancedTree to store the Entry objects in the Array.
 
-**************************************** 5.HashMap – Merge HashMaps (howtodoinjava) **********************************************************
+######################################## 5.HashMap – Merge HashMaps (howtodoinjava) ##########################################################
 
-/* Map One*/
+/# Map One#/
 		HashMap<Integer, String> map1 = new HashMap<>();
 		 
 		map1.put(1, "A");
@@ -209,7 +209,7 @@ As part of the performance improovement of HashMap in Java 8,LinkedList is repla
 		map1.put(3, "C");
 		map1.put(5, "E");
 		 
-		/* Map Two */
+		/# Map Two #/
 		HashMap<Integer, String> map2 = new HashMap<>();
 		 
 		map2.put(1, "G"); 
@@ -227,7 +227,7 @@ If we don't want to loose the data and and merge the values when the duplicate K
 
 		map2.forEach((key,value) -> map1.merge(key,value, (v1,v2) -> v1.equalsIgnoreCase(v2)?v1:v1+","+v2)); // {1=A,G, 2=B, 3=C, 4=D, 5=E}
 
-**************************************** 6.HashMap – Compare HashMaps (howtodoinjava) ********************************************************
+######################################## 6.HashMap – Compare HashMaps (howtodoinjava) ########################################################
 
 We can compare two HashMap's in Java by using Keys,Values,and Key-Value Pairs.
 
@@ -285,7 +285,7 @@ We can compare two HashMap's with duplicates or without duplicates.
 	        System.out.println(new HashSet<>(map1.values()).equals(new HashSet<>(map2.values()))); //true
 	        System.out.println(new HashSet<>(map1.values()).equals(new HashSet<>(map3.values()))); //false
 
-**************************************** 11.Initial capacity vs Load Factor (javaconceptoftheday) ********************************************
+######################################## 11.Initial capacity vs Load Factor (javaconceptoftheday) ############################################
 
 HashMap is DataStructure that can be used to store key value pair as an Entry object in a an Array.
 Particular index location in an Array is called Bucket.
@@ -295,9 +295,9 @@ Default initial capacity is 16 and default Load Factor is 0.75f.
 Capacity is doubled each time when it reaches the Threshold.
 Threshold of a Hashmap is 
 
-	Threshold = (CurrentCapacity)*(Load Factor)
+	Threshold = (CurrentCapacity)#(Load Factor)
 	
-ie  Threshold = 16*0.75 =12
+ie  Threshold = 16#0.75 =12
 Capacity of HashMap is doubled after the 12th Entry is added to the HashMap.
 
 How Initial Capacity And Load Factor Affect Performance Of HashMap :
@@ -307,7 +307,7 @@ Rehashing is the process where new HashMap Object with new capacity is created a
 Process of Rehashing is both space and time consuming.
 Always choose the initial Capacity and Load Factor such that they minimize the number of rehashing Operations.
 
-*******************************************************************  12.HashSet Internal (javaconceptoftheday)  *********************************************************
+###################################################################  12.HashSet Internal (javaconceptoftheday)  #########################################################
 
 HashSet internally uses HashMap to store its objects.
 Whenever we create a HashSet object,one HashMap object associated with it is also created.
@@ -354,7 +354,7 @@ remove() works in the same manner.
 		map.remove(e)=PRESENT;
 	}
 	
-***************************************** 13.HashMap vs HashTable(javaconceptoftheday) ****************************************************************
+######################################### 13.HashMap vs HashTable(javaconceptoftheday) ################################################################
 
 1.HashMap is not ThreadSafe where as HashTable is Threadsafe.We can make the HashMap as ThreadSafe by using Collections.synchronizedMap().
 2.HashMap and HashTable both implements Map Interface but HashMap extends AbstractMap Class where as HashTable extends Dictionary Class.
@@ -368,11 +368,11 @@ fail-safe and does not throw any Exception.
 8.HashMap is always recomended to use If we don't want ThreadSafety.
 If we want Thread Safety we can use either ConcurrentHashMap or make the HashMap Thread Safe by using Collections.synchronizedMap().
 
-***************************************** 14.HashMap Programs & Examples(15) (javaconceptoftheday)*****************************************************
+######################################### 14.HashMap Programs & Examples(15) (javaconceptoftheday)#####################################################
 
 Done
 
-***************************************** 15.ConcurrentHashMap Internal(DZone Arun Pandey)	***********************************************************
+######################################### 15.ConcurrentHashMap Internal(DZone Arun Pandey)	###########################################################
 
 ConcurrentHashMap is similar to HashMap except that ConcurrentHashMap offers internally maintained concurrency.
 We do not need to have synchronized block when accessing ConcurrentHashMap in MultiThreaded Application.
@@ -380,18 +380,24 @@ ConcurrentHashMap allows concurrent access of the Map ie each part of the Map is
 ConcurrentHashMap allows concurrent Threads to read the value without locking at all.
 ConcurrentHashMap has a default capacity of 16 ie 16 Threads are allowed to work on the ConcurrentHashMap at at time.
 	
-***************************************** 16.ConcurrentHashMap Internal	(javahungry)*******************************************************************
+######################################### 16.ConcurrentHashMap Internal	(javahungry)###################################################################
 
 ConcurrentHashMap does not allow null value and null key because If map.get(key) returns null we can't detect whether the key explicitly maps to null or key is not mapped.
 In a non Concurrent Map we can check this via map.contains(Key) but in a ConcurrentMap Map might have changed between the Calls.
 
-***************************************** 17.HashMap vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) *********************************************
+######################################### 17.HashMap vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) #############################################
 
 Eventhough both HashTable and ConcurrentHashMap are ThreadSafe,HashTable has the poor performance in Multi Threaded Environment.
 In case of HashTable If one Thread allows to perform any kind of Operation,the Other Thread has to wait until the completion of the Thread.
 HashTable is synchronized ie It acquires the lock on complete HashTable Object.
 To overcome the inefficiency of the HashTable Java introduces ConcurrentHashMap.
 
+########################################################## 18.Collission in HashMap  ##################################################################
 
- 
+Collission in HashMap occurs when two different keys produce the same hashcode.
+Since hashcode is used to determine the bucket location where the key needs to be stored and both the keys points to the same index.
+To handle collision we use different strategies
+
+1.Chaining
+2.Open Addressing
 

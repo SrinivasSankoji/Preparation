@@ -20,17 +20,17 @@ Class Test
   }
 }
 
-Here it extends Object Class because Class is a Child Class of Object Class.
+Here it extends Object Class because Class is a child Class of Object Class.
 System class,String class are present in java.lang package.
 For writing any Java Program whether it is small or complex most commonly required classes and interfaces are encapsulated into a seperate package 
 which is nothing but java.lang package.
 It is not required to import java.lang package explicitly.
-All classes and interfaces are present in this package and are by default available to every Java Program.
+All the classes and interfaces which are present in lang package and are by default available to every Java Program.
 
 Object Class :
 --------------
-Every Class in Java should be a Child class of Object Class either directly or indirectly.
-Object Class acts as a root Class for all Java Classes.
+Every class in Java should be a child class of Object class either directly or indirectly.
+Object class acts as a root class for all Java Classes.
 Most common required methods for every class are encapsulated into a seperate class nothing but Object Class.
 
 Methods in Object Class :
@@ -54,7 +54,7 @@ public String toString() :
 We use toString() to get the String representation of an Object.
 Whenever we are trying to print an Object reference it internally calls Object class toString(). 
 If we want to get the meaningful String representation of an Object we need to override the toString().
-Object Class toString() is implemented as below
+Object class toString() is implemented as below
 
 	public String toString()
 	{
@@ -84,22 +84,22 @@ O/P : Name of the Student is Srinivas And his Rollno is 36
 
 Note :
 ------
-In Collection Classes,Wrapper Classes and String Class toString() is overridden for meaningful String representation of an Object.
+In Collection classes,Wrapper classes and String class toString() is overridden for meaningful String representation of an Object.
 It is highly recomended to override toString() in user defined class also.
 
 ************************************************************** 3.hashCode()  ***********************************************************************
 
 public native int hashCode() :
 
-hashCode() does not represent address of an object.
+The hashCode() does not represent address of an object.
 For every object JVM is going to assign one unique number(Integer) which is nothing but hashCode and based on hashCode object will be inserted.
-hashCode() returns a unique Integer value for every Object.
+The hashCode() returns a unique Integer value for every Object.
 By default Integer value is derived from the Memory address of an Object.
 
-JVM internally uses hashCode() while storing the data into hashing related data structure like HashTable,HashMap,HashSet etc.
-hashCode() is used for determining the bukcet location when the object needs to be stored in hashing related data structure like HashTable,HashMap,HashSet etc.
+JVM internally uses hashCode while storing the data into hashing related data structure like HashTable,HashMap,HashSet etc.
+hashCode is used to determine the bukcet location when the object needs to be stored in hashing related data structure like HashTable,HashMap,HashSet etc.
 To search for a particular object,what is the hashcode of that object,then it directly goes to that object with that hashCode.
-Main advantage of storing objects based on hashCode() is search option will become efficient.
+Main advantage of storing objects based on hashCode is search operation will become efficient.
 
 Most successful alogorithm is 
 
@@ -108,7 +108,7 @@ Binay Search    --> Search Algorithm is O(logN/2)
 Linear Search   --> Search Algorithm is O(n)
 
 Hashing is the most powerful Search Algorithm.
-Object class hashCode() generates the hashCode based on the address of object if we are not overriding.
+Object class hashCode() generates the hashCode based on the memory address of object if we are not overriding.
 Based on our requirement we can override hashCode() in our class.
 While overriding hashCode() for every object we have to generate a unique number and is called proper way of overriding.
 
@@ -252,10 +252,10 @@ Main purpose of cloning is to maintain backup.
 
 Rules for Cloning :
 -------------------
-To perform Cloning,an Object must be clonable object.
-An Object is said to be clonable If the corresponding Class implements Clonable interface.
-Clonable interface is present in java.lang package and it does not contain any method.It is a Marker Interface.
-If we are trying to perfrom Cloning on Non Clonable objects we get RTE saying CloneNotSupportedExcpetion.
+To perform Cloning,an Object must be cloneable object.
+An Object is said to be cloneable if the corresponding Class implements Cloneable interface.
+Cloneable interface is present in java.lang package and it does not contain any method.It is a Marker Interface.
+If we are trying to perfrom cloning on non cloneable objects then we will get RTE saying CloneNotSupportedExcpetion.
 
 public class CloneDemo implements Cloneable{
 	int i=10;
@@ -275,10 +275,10 @@ public class CloneDemo implements Cloneable{
 Shallow Cloning :
 -----------------
 Process of creating bitwise copy of an object is called Shallow Cloning.
-If the Main object contains primitive variables then exactly duplicate objects will be created in the cloned object.
-If the Main object contains any reference variables then duplicate object won't be created and reference variable will be created pointing to the old content object.
+If the main object contains primitive variables then exactly duplicate objects will be created in the cloned object.
+If the main object contains any reference variables then duplicate object won't be created and reference variable will be created pointing to the old content object.
 By using clone object reference If we perform any changes to the cloned object then those changes will be reflected to the original object.
-By default Object Class clone() menat for Shallow Cloning ie "field by field copy"
+By default Object class clone() menat for Shallow Cloning ie "field by field copy"
 Shallow Cloning is the best choice If the object contains primitive variables and not recomended when there are any reference variables.
 To overcome this we go for Deep Cloning.
 
