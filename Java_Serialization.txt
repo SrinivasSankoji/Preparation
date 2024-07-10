@@ -3,19 +3,19 @@
 3.Customized Serialization                              (SCJP)      		[20-AUG-2021]  (Done)
 4.Inheritance in Serialization                          (SCJP)      		[20-AUG-2021]  (Done)
 5.Serialization and De-Serialization in Java			(Dzone)     		[20-AUG-2021]  (Done)
-6.Serialization in Java									(techvidvan)     	[20-AUG-2021]  (Done)
+6.SerialVersionUID in Java								(techvidvan)     	[20-AUG-2021]  (Done)
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
 Serialization is the process of converting the state of an Object into ByteStream i.e. File supported form or Network supported form 
 So that it can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
+Byte Stream created is platfrom independent i.e. Object Serialized in one platfrom can be deserialized on a different Platform.
 By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 
 The process of creating an Object from ByteStream is called Deserialization.
-Byte Stream created is platfrom independent i.e. Object Serialized in one Platfrom can be deserialized on a different Platform.
 By using FileInputStream and ObjectInputStream we can achieve DeSerialization.
 
-An Object is said to be Serializable If the Corresponding Class implements Serializable Interface.
+An Object is said to be Serializable If the corresponding Class implements Serializable Interface.
 Serializable Interface is present in java.io package and it does not contain any methods or Fields.
 Serializable Interface is a Marker Interface.
 If we are trying to perform Serialization on a non Serializable Object we will get RuntimeException saying NonSerializableException.
@@ -23,25 +23,25 @@ If we are trying to perform Serialization on a non Serializable Object we will g
 Transient keyword :
 -------------------
 Transient modifier is applicable only for variables but not for methods and Classes.
-At the time of Serialization If we don't want to Serialize the value of a particular variable to meet security constraints,we declare those variable as transient.
+At the time of Serialization If we don't want to serialize the value of a particular variable to meet security constraints,we declare those variables as transient.
 While performing Serialization JVM ignores the original values of the transient variables and saves the default values to the file.
-Hence Transient means not to Serialize.
+Hence transient means not to serialize.
 
 transient vs static :
 ---------------------
-static variables are not part of Object and hence they won't participate in Serialization.
-Declaring static variables as tarnsient has no impact.
+static variables are not part of object and hence they won't participate in serialization.
+Declaring static variables as transient has no impact.
 
 final vs transient :
 --------------------
-Final variables will be participated in the Serialization directly by the value.
+Final variables will be participated in the serialization directly with the value.
 Hence declaring final variables as transient has no impact.
 		
 *********************************************** 2.Serialization Object Graph(SCJP) ************************************************
 
-Whenever we are saving an Object to a file all the Objects which are reachable from the Object will be saved by default.
+Whenever we are saving an Object to a file, All the Objects which are reachable from the Object will be serialized by default.
 This group of Objects are called "Object Graph".
-In the Object Graph If any Object is not Serializable we will get RuntimeException saying Not Serializable Exception.
+In an Object Graph If any of the Object is not Serializable then we will get RuntimeException saying Not Serializable Exception.
 
 *********************************************** 3.Customized Serialization(SCJP) **************************************************
 
@@ -173,7 +173,7 @@ After Serialization
 22
 27
 
-*********************************************** 6.Serialization in Java(techvidvan) *************************************************
+*********************************************** 6.SerialVersionUID in Java(techvidvan) *************************************************
 
 SerialVersionUID :
 ------------------

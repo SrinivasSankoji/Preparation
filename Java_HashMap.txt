@@ -1,25 +1,26 @@
-1.HashMap - Internal  						(DZone Shubham Bansal)   			[22-JAN-2021]  (Done)
-2.HashMap - Internal 						(howtodoinjava)   					[22-JAN-2021]  (Done)
-3.HashMap – Custom Key Design               (howtodoinjava)   					[21-JAN-2021]  ()
-4.HashMap – Synchronize HashMap             (howtodoinjava)   					[21-JAN-2021]  ()
-5.HashMap – Merge HashMaps                  (howtodoinjava)   					[26-AUG-2021]  (Done)
-6.HashMap – Compare HashMaps                (howtodoinjava)   					[26-AUG-2021]  (Done)
+1.HashMap - Internal  											(DZone Shubham Bansal)   			[22-JAN-2021]  (Done)
+2.HashMap - Internal 											(howtodoinjava)   					[22-JAN-2021]  (Done)
+3.HashMap – Custom Key Design               					(howtodoinjava)   					[21-JAN-2021]  ()
+4.HashMap – Synchronize HashMap             					(howtodoinjava)   					[21-JAN-2021]  ()
+5.HashMap – Merge HashMaps                  					(howtodoinjava)   					[26-AUG-2021]  (Done)
+6.HashMap – Compare HashMaps                					(howtodoinjava)   					[26-AUG-2021]  (Done)
 
-7.HashMap – Iterations                      (howtodoinjava)   					[21-JAN-2021]  ()
-8.HashMap – Cloning                         (howtodoinjava)   					[21-JAN-2021]  ()
-9.HashMap - Internal  						(javaconceptoftheday)   			[21-JAN-2021]  ()
-10.HashMap vs ConcurrentHashMap				(javaconceptoftheday)   			[21-AUG-2021]  ()
+7.HashMap – Iterations                      					(howtodoinjava)   					[21-JAN-2021]  ()
+8.HashMap – Cloning                         					(howtodoinjava)   					[21-JAN-2021]  ()
+9.HashMap - Internal  											(javaconceptoftheday)   			[21-JAN-2021]  ()
+10.HashMap vs ConcurrentHashMap									(javaconceptoftheday)   			[21-AUG-2021]  ()
 
-11.Initial capacity vs Load Factor			(javaconceptoftheday)   			[25-AUG-2021]  (Done)
-12.HashSet Internal							(javaconceptoftheday)   			[23-AUG-2021]  (Done)
-13.HashMap vs HashTable						(javaconceptoftheday)   			[26-AUG-2021]  (Done)
-14.HashMap Programs & Examples	(15)		(javaconceptoftheday)   			[26-AUG-2021]  (Done)
-15.ConcurrentHashMap Internal				(DZone Arun Pandey)   				[26-AUG-2021]  (Done)
-16.ConcurrentHashMap Internal				(javahungry)   						[23-AUG-2021]  (Done)
-17.HashMap vs ConcurrentHashMap			    (Medium Chinmay Venkata Sabbam)   	[21-AUG-2021]  (Done)
-18.Collission in HashMap					(chatgpt)							[09-JUL-2024]  (Done)
-19.HashMap Changes in Java 8				(nagarro)							[10-JUL-2024]  ()
-20.Internal working of Concurrent HashMap	(Code With Ease - By Varsha)		[10-JUL-2024]  ()
+11.Initial capacity vs Load Factor								(javaconceptoftheday)   			[25-AUG-2021]  (Done)
+12.HashSet Internal												(javaconceptoftheday)   			[23-AUG-2021]  (Done)
+13.HashMap vs HashTable											(javaconceptoftheday)   			[26-AUG-2021]  (Done)
+14.HashMap Programs & Examples	(15)							(javaconceptoftheday)   			[26-AUG-2021]  (Done)
+15.ConcurrentHashMap Internal									(DZone Arun Pandey)   				[26-AUG-2021]  (Done)
+16.ConcurrentHashMap Internal									(javahungry)   						[23-AUG-2021]  (Done)
+17.HashMap vs ConcurrentHashMap			    					(Medium Chinmay Venkata Sabbam)   	[21-AUG-2021]  (Done)
+18.Collission in HashMap										(chatgpt)							[09-JUL-2024]  (Done)
+19.HashMap Changes in Java 8									(nagarro)							[10-JUL-2024]  ()
+20.Internal working of Concurrent HashMap						(Code With Ease - By Varsha)		[10-JUL-2024]  ()
+21.Internal Working of HashMap & Java-8 Enhancement 			(WebEncyclop Tutorials)             [10-JUL-2024]  (Done)
 
 ################################################################ 1.HashMap Internal  (DZone Shubham Bansal) #######################################
 
@@ -396,9 +397,16 @@ To overcome the inefficiency of the HashTable Java introduces ConcurrentHashMap.
 ########################################################## 18.Collission in HashMap  ##################################################################
 
 Collission in HashMap occurs when two different keys produce the same hashcode.
-Since hashcode is used to determine the bucket location where the key needs to be stored and both the keys points to the same index.
-To handle collision we use different strategies
+Since hashcode is used to determine the bucket location where the key needs to be stored.
+Then it applies the equals() on the existing key and if both are same it replaces the key and value gets updated.
+Otherwise it will handle the collision by using different collision strategies.
 
 1.Chaining
 2.Open Addressing
 
+########################################################## 21.Internal Working of HashMap & Java-8 Enhancement (WebEncyclop Tutorials) ################
+
+Consider the scenario where we have multiple keys that are generating the same hashcode.
+In this case all the keys will be stored in the form of LinkedList.
+As part of Java 8 improovement if the elements in the LinkedList reaches the Treeify threshold then the LinkedList will be converted to Binary Tree.
+In case of Binary Search Tree or Red Balck Tree JVM will internally uses comparTo() to compare the Objects.

@@ -26,10 +26,10 @@ Definition One :
 Any service requirement specification is by default considred as an Interface.
 
 JDBC API acts as a requirement specification to develop Database driver.
-To develop our own Database driver we have to provide implementation for JDBC API.
+To develop our own Database driver we have to provide an implementation for JDBC API.
 
 Servlet API acts as a requirement specification to develop Web server.
-To develop our own Web server we have to provide implementation for Servlet API.
+To develop our own Web server we have to provide an implementation for Servlet API.
 
 Definition Two :
 ----------------
