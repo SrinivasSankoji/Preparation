@@ -4,7 +4,7 @@
 
 ************************************************* 1.Java Singleton Design Pattern Best Practices  *************************************************
 
-Java Singleton Design Pattern is one of the four design patterns and comes under Creational Design Pattern.
+Java Singleton Design Pattern comes under Creational Design Pattern.
 Singleton Design Pattern restricts the instantiation of the class and ensures that only one instance of a class exists in JVM.
 Singleton Design Pattern is used for Logging,Driver Objects,Caching and Thread Pool.
 
@@ -139,7 +139,7 @@ Helper class will not be loaded when the class is loaded and will be called when
 
 6.Reflection to destroy Singleton :
 -----------------------------------
-Reflection can be used to destroy the Singleton Pattern.
+Reflection can destroy the Singleton Pattern.
 
 	public static void main(String[] args) {
 		LazyInitialization instanceOne = LazyInitialization.getInstance();
@@ -221,18 +221,34 @@ If we clone the Singleton Class then duplicate Singleton Class will be created.T
 	}
 
 	protected Object clone() throws CloneNotSupportedException {
-		CloneableSingleton cloneableSingleton = (CloneableSingleton) super.clone();
-		return cloneableSingleton;
+		return super.clone();
 	}
+}
+
+public class CloneableSingletonDemo {
+
+	public static void main(String[] args) throws CloneNotSupportedException {
+		CloneableSingleton instanceOne=CloneableSingleton.getInstance();
+		CloneableSingleton instanceTwo=(CloneableSingleton)instanceOne.clone();
+		System.out.println(instanceOne.hashCode()); // 1721931908
+		System.out.println(instanceTwo.hashCode()); // 1198108795
 	}
+}
 	
-Output :
---------
-Output of two hashCode's is different and it breaks the nature of Singleton.
+Here output of two hashCode's is different and it breaks the nature of Singleton.
 To avoid this either throw an Exception or retuen the same instance from the clone().
 
 	protected Object clone() throws CloneNotSupportedException {
 		return getInstance();
 	}
 
+public class CloneableSingletonDemo {
+
+	public static void main(String[] args) throws CloneNotSupportedException {
+		CloneableSingleton instanceOne=CloneableSingleton.getInstance();
+		CloneableSingleton instanceTwo=(CloneableSingleton)instanceOne.clone();
+		System.out.println(instanceOne.hashCode()); // 1721931908
+		System.out.println(instanceTwo.hashCode()); // 1721931908
+	}
+}
 			

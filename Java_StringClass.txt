@@ -196,8 +196,8 @@ Creation of our Own Immutable Class :
 Once we create a String object we cannot perform any changes in the existing object.If we are trying with those changes a new object will be created .
 If there is no change in the content existing object will be reused.This behavior is nothing but Immutability.
 
-Rules to create a Final Class :
--------------------------------
+Rules to create a Immutable Class :
+-----------------------------------
 1.Declare the Class as final so that it cannot be extended.
 2.Make all the variables as private and final so that direct access is not allowed.
 3.Declare the Constructor as public.
@@ -271,12 +271,12 @@ Hence after applying method call based on the return type we can apply another m
 
 *************************************************************** 5.Why Strings are Immutable in Java (digitalocean) **********************
 
-1.Consider the scenario where we have created a String variable and the memory is allocated to that variable in the Heap Area.
-If there is a change in the existing String,one more variable is created in the Heap Area.
+1.Consider the scenario where we have created a String and the memory is allocated to that String in the Heap Area.
+If there is a change in the existing String,one more String is created in the Heap Area.
 This way lot of memory is occupied in the Heap Area.
-If String is immutable then different String variables can refer to the same String variable in the pool.
+If String is immutable then multiple Strings with the same content can refer to the same String in the pool.
 
-2.If Strings are not Immutable then it would cause a severe Security threat to the Application.
+2.If String is not Immutable then it would cause a severe Security threat to an Application.
 Consider the scenario where we want to connect to the Database.
 We provide the Database credentials like username,password,hostname and port details in the form of String.
 Any Hacker could the change the value of the Database details which causes Security issues to an Application.
@@ -286,11 +286,18 @@ A Single String instance can be shared across multiple Threads.
 This avoids the usage of Synchronization for Thread Safety.
 Strings are implicitly Thread Safe.
 
-4.Strings are used in Java Classloader and Immutability provides security that correct Class is getting loaded by the Classloader.
+4.String is used in Java Classloader.
+Since String is immutable,it provides the security that correct Class is getting loaded by the Classloader.
 Consider the scenario where we are loading the Driver Class and if it is changed to unwanted Driver Class then there may be effect on the Database.
 
-5.Since String is Immutable its hashCode is cached at the time of creation and it does not need to be calculated again.
-This makes the String great choice for the key in the Map and its processing is faster than other HashMap key objects.
+5.Since String is immutable its hashCode is cached at the time of creation and stored in cached hashCode field within the Object.
+Any subsequent calls to hashCode will use the cached hashCode to avoid recomputation and improoves performance.
+
+6.Many Java methods accepts String as a parameter.
+If string is mutable, changing the content of a String after passing it to a method would introduce security risks.
+Since String is immutable it ensures that the content remains consistent throughout the method execution.
+
+This makes the String great choice for the keys in the Map and its processing is faster than other HashMap key objects.
 
 
 *************************************************************** 7.Immutable Class in Java (scientecheasy) *******************************
