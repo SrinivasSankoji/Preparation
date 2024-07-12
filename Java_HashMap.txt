@@ -396,7 +396,7 @@ To overcome the inefficiency of the HashTable Java introduces ConcurrentHashMap.
 
 ########################################################## 18.Collission in HashMap  ##################################################################
 
-Collission in HashMap occurs when two different keys produce the same hashcode.
+Collission in HashMap occurs when two different keys generate the same hashcode.
 Since hashcode is used to determine the bucket location where the key needs to be stored.
 Then it applies the equals() on the existing key and if both are same it replaces the key and value gets updated.
 Otherwise it will handle the collision by using different collision strategies.
@@ -406,7 +406,9 @@ Otherwise it will handle the collision by using different collision strategies.
 
 ########################################################## 21.Internal Working of HashMap & Java-8 Enhancement (WebEncyclop Tutorials) ################
 
-Consider the scenario where we have multiple keys that are generating the same hashcode.
+Consider the scenario where we have multiple keys which are generating the same hashcode.
 In this case all the keys will be stored in the form of LinkedList.
 As part of Java 8 improovement if the elements in the LinkedList reaches the Treeify threshold then the LinkedList will be converted to Binary Tree.
 In case of Binary Search Tree or Red Balck Tree JVM will internally uses comparTo() to compare the Objects.
+In case of LinkedList to searcj for the particular key it has to iterate all the elements in the LinkedList.
+Since the keys are stored based on sorting order, to search for the particular key It will take less no of iterations.
