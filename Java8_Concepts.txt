@@ -30,17 +30,15 @@
 
 Foreach loop :
 --------------
-Foreach loop can be used only for Collection and Arrays and we cannot retrieve the specific element.
-Foreach loop does not support Lambda Operations.
+for-each loop is applicable only for Arrays and Collections and and we cannot modify the element.
+for-each loop does not support Lambda Operations.
 The operations can be applied on the variables outside the List that we are using for Iteration in the foreach loop.
-
-"return" statement works within Foreach loop ie function can return the value at any point of time within the loop.
+"return" statement works within for-each loop i.e. function can return the value at any point of time.
 
 stream.foreach() :
 ------------------
+stream.forEach() can be used to access Arrays and Collections.
 In stream.forEach() lambda's are used and thus operations on the variables outside the loop are not allowed.
-stream.forEach() can be used to access the Collections and Arrays.
-
 "return" statement doesn't work within the stream.foreach().
  
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
@@ -52,9 +50,9 @@ From Java8 we have interfaces with default and static Methods.
 
 default method :
 ----------------
-By using default() we can add new methods in the existing Interface in such a way that they are backward compatible.
-Backward Compatibility is adding a new feature without breaking the existing Code.
-default Methods are declared in the interfaces by using default keyword and can be overridden and accessible by the instances of the implementation classes.
+By using default methods we can add new methods in the existing Interface in such a way that they are backward compatible.
+Backward Compatibility is adding a new feature without breaking the existing code.
+default methods are declared in the interfaces by using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
    interface Printer
    {
@@ -95,7 +93,7 @@ With the introduction of default methods in Interface,we can add additional feta
 
 Default Method and Multiple Inheritance :
 -----------------------------------------
-When we have two interfaces that contains default() with the same signature then Multiple inheritance problem can occur.
+When we have two interfaces which contains default() with the same signature then Multiple inheritance problem can occur.
 To resolve the issue override the default method in the Implementation class.
 
 Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
@@ -112,10 +110,41 @@ Rule 3:
 If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override and provide a method with same Method definition.
 We can invoke the specific implementation in Java8 using 
 
-	@Override
-	public void defaultMethod() {
-		StaticInterface.super.defaultMethod();
-	}
+public interface InterfaceA {
+    default void commonMethod() {
+        System.out.println("InterfaceA's commonMethod");
+    }
+}
+
+public interface InterfaceB {
+    default void commonMethod() {
+        System.out.println("InterfaceB's commonMethod");
+    }
+}
+
+public class ImplementationClass implements InterfaceA, InterfaceB {
+    @Override
+    public void commonMethod() {
+        System.out.println("ImplementationClass's commonMethod");
+    }
+
+    /* Explicitly specify which default method to use */
+    public void callInterfaceADefault() {
+        InterfaceA.super.commonMethod();
+    }
+
+    /* Explicitly specify which default method to use */
+    public void callInterfaceBDefault() {
+        InterfaceB.super.commonMethod();
+    }
+
+    public static void main(String[] args) {
+        ImplementationClass obj = new ImplementationClass();
+        obj.commonMethod(); // Calls the overridden method in ImplementationClass
+        obj.callInterfaceADefault(); // Calls InterfaceA's default method
+        obj.callInterfaceBDefault(); // Calls InterfaceB's default method
+    }
+}
 
 ***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
 

@@ -19,12 +19,17 @@
 Streams are monads thus playing a big part in bringing Functional Programming to Java.
 Stream represents a sequence of elements and supports different kind of operations to perform computation on those elements.
 Stream operations are either Intermediate or Terminal.
-Intermediate Operation returns a Stream so that we can chain multiple Intermediate operations without using Semi Colon.
-Where as Terminal Operations either return void or non Stream result.
-Filter,Map and Sorted are Intermediate Operations where as forEach is Terminal Operation.
-Most Stream Operations accept some kind of Lambda Expression as a Parameter ie Functional Interface specifying the exact behavior of the Operation.
-These Operations must be Non Interfering and Stateless.
-Non Interfering means it does not modify the underlying datasource of the stream.
+
+Intermediate operation returns a stream so that we can chain multiple Intermediate operations without using Semi Colon.
+Important characteristic of Intermediate operation is Laziness.
+An Intermediate operation will only be executed when the Terminal operation is present.
+
+Terminal operation either return void or non stream result.
+Filter,Map and Sorted are Intermediate operations where as forEach is Terminal Operation.
+
+Most Stream operations accept some kind of Lambda Expression as a parameter i.e. Functional Interface specifying the exact behavior of the operation.
+These operations must be non interfering and stateless.
+Non interfering means it does not modify the underlying datasource of the stream.
 Stateless means it does not depend on any mutable variables.
 
 		List<String> myList=Arrays.asList("a1", "a2", "b1", "c2", "c1");
@@ -39,35 +44,42 @@ In the above example filter,map and sorted are Intermediate operations where as 
 
 Ways of creating a Stream :
 ---------------------------
-Streams can be created fromm various sources like Collections,Arrays,Stream.generate() and Stream.iterate().
-List and Set supports new Methods like stream() and paralellStream() to create Sequential Stream and Parallel Stream.
+Streams can be created fromm various sources like Collections,Arrays,Stream.of(),Stream.generate() and Stream.iterate().
+List and Set supports new methods like stream() and paralellStream() to create sequential stream and parallel stream.
 Parallel Streams are capable of operating on Multiple Threads.
 
-Stream.of() can be used to create the Stream of Objects.
+1.Stream.of() :
+---------------
+Stream.of() can be used to create the stream of Objects.
+Stream.of("a1","a2","a3").findFirst().ifPresent(System.out::println);
 
-	Stream.of("a1","a2","a3").findFirst().ifPresent(System.out::println);
-	
-	String[] stringArray={"program","creek","java"};
-	Stream<String> arrayStream=Arrays.stream(stringArray);
-	
-	Stream<Double> generate=Stream.generate(Math::random).limit(10);
-		Double[] strArray=generate.toArray(Double[]::new);
-		System.out.println(Arrays.toString(strArray));
-		
-	Stream<Integer> intStream=Stream.iterate(0, n -> n+1).limit(10);
-		Integer[] intArray=intStream.toArray(Integer[]::new);
-		System.out.println(Arrays.toString(intArray));
+2.Arrays :
+----------
+String[] stringArray={"program","creek","java"};
+Stream<String> arrayStream=Arrays.stream(stringArray);
+
+3.Stream.generate :
+-------------------
+Stream<Double> generate=Stream.generate(Math::random).limit(10);
+Double[] strArray=generate.toArray(Double[]::new);
+System.out.println(Arrays.toString(strArray));
+
+4.Stream.iterate :
+------------------
+Stream<Integer> intStream=Stream.iterate(0, n -> n+1).limit(10);
+Integer[] intArray=intStream.toArray(Integer[]::new);
+System.out.println(Arrays.toString(intArray));
 		
 Java8 comes with the special kind of streams to work with primitive data types.
 IntStream,LongStream,DoubleStream etc.
 
 	IntStream.range(1, 4).forEach(System.out::println);
 
-To convert IntStream to the Stream we used boxed().
+To convert IntStream to the List of Integer we used boxed().
 
 	List<Integer> intList=IntStream.range(1, 4).boxed().collect(Collectors.toList());
 	
-Primitive Streams support the Additional Aggregation Operations like average() and sum().
+Primitive Streams support additional aggregation operations like average() and sum().
 
 	Arrays.stream(new int[] { 1, 2, 3 }).map(n -> 2 * n + 1).average().ifPresent(System.out::println);
 	
@@ -77,17 +89,11 @@ Here we use mapToInt,mapToLong,mapToDouble.
 	Stream.of("a1", "a2", "a3").map(value -> value.substring(1)).mapToInt(Integer::parseInt).max()
 				.ifPresent(System.out::println);
 		
-Processing Order In Streams :
------------------------------
-Important characteristic of Intermediate operation is Laziness.
-An Intermediate Operation will only be executed when the Terminal Operation is present.
-In native Approach elements would be executed one after Other.
-
 Why Order Matters :
 -------------------
-Use Filter First and Then Map.
+Use Filter first and then Map.
 Filter will always be executed If it doesn't match the condition also.
-If we are using any Stateless Operation like sorted then the Order would be Filter,Sorted,Map and Terminal Operation.
+If we are using any Stateless operation like sorted then the Order would be Filter,Sorted,Map and Terminal Operation.
 
 Reusing Streams :
 -----------------
@@ -97,8 +103,8 @@ Java 8 Streams cannot be reused once we call the Terminal Operation.
 		stream.anyMatch(s -> true);
 		//stream.noneMatch(s -> true);//Streams cannot be reused and throws IllegalStateException stream has already been operated upon or closed
 
-To overcome this we have to create a New Stream Chain for every Terminal Operation.
-We have to create a Stream Supplier to construct a new Stream with all Intermediate operations already Set Up.
+To overcome this we have to create a new stream chain for every Terminal Operation.
+We have to create a Stream Supplier to construct a new Stream with all intermediate operations already set up.
 
 		private static void exampleThirteen() {
 		System.out.println("Example Thirteen --> Stream Supplier With get --> Start ");
@@ -122,13 +128,13 @@ We have to create a Stream Supplier to construct a new Stream with all Intermedi
 		
 ************************************************************ 2.Collect ************************************************************
 
-Collect is an extremely useful Terminal Operation to get the stuff out from the Stream once done with the peocessing.
-collect accepts Collectors which consists of four different arguments ie Supplier,Accumulator,Combiner and Finisher.
-collect is used to perform many operations like Summation,Grouping,Joining etc.
+collect() is an extremely useful Terminal operation that can be used to get the stuff out from the stream once done with the processing.
+collect() accepts Collectors which consists of four different arguments i.e. Supplier,Accumulator,Combiner and Finisher.
+collect() can be used to perform many operations like Summation,Grouping,Joining etc.
 Java8 supports various built in Collectors via the Collectors Class.
 For the most common operations we don't need to implement Collectors ourself.
 
-1.To Transform the Stream of elements into another kind of result and get the data out from the Stream ie basic collect
+1.To Transform the Stream of elements into another kind of stream and get the data out from the Stream i.e. basic collect
 
 	List<Person> persons = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
 				new Person("David", 12));
@@ -146,7 +152,7 @@ For the most common operations we don't need to implement Collectors ourself.
 	List<Student> results = result.entrySet().stream().map(Map.Entry::getValue).flatMap(List::stream).collect(Collectors.toList());
 	results.forEach(s -> System.out.println(s));
 
-3.Collectors are extremely versatile .We can also create aggregations on the stream of elements.
+3.Collectors are extremely versatile .We can also perform aggregations on the stream of elements.
 
 	List<Integer> list = Arrays.asList(1,2,3,4);
 		Double average=list.stream().collect(Collectors.averagingInt(number->number*2));
@@ -154,19 +160,15 @@ For the most common operations we don't need to implement Collectors ourself.
 	List<Integer> integerArray=Arrays.asList(25,36,81);
 		IntSummaryStatistics statistics=integerArray.stream().collect(Collectors.summarizingInt(number->number+number));
 
-joining :
----------
-We can convert the List into String format that can be passed as argument to IN parameter of SQL Statement.
-This can be done by using joining method of Collectors Class.
+4.We can convert the List into String format that can be passed as argument to IN parameter of SQL Statement.
+This can be done by using joining()  of Collectors Class.
 To the joining() we can pass the delimiter,prefix and suffix too in concatenation.
 
 	List<String> names=Arrays.asList("Ram","Shyam","Shiv","Mahesh");
 	String result=names.stream().collect(Collectors.joining("','", "['", "']"));
 	System.out.println(result);
 
-Collect to Map :
-----------------
-In order to transfrom the stream of elements into Map,we have to specify both keys and values.
+5.In order to transfrom the stream of elements into Map,we have to specify both keys and values.
 Here keys must be unique otherwise we get IllegalStateException.
 
 	List<Person> list = new ArrayList<>();
@@ -178,7 +180,7 @@ Here keys must be unique otherwise we get IllegalStateException.
 
 ************************************************************ 3.FlatMap ************************************************************
 
-Map can be used to transform the elements of the Stream into another Type of Objects.
+Map can be used to transform the stream of elements into another Type of Objects.
 Map is limited because Object can only be mapped to exactly another Object.
 
 FlatMap can be used to convert the Stream of Collections into a Stream of Objects.
@@ -205,7 +207,7 @@ The Objects are combined from all the Collections into the Original Stream.
 ************************************************************ 4.Reduce **************************************************************
 
 reduce() combines all the elements of the Stream with the given function.The result is an Optional holding the reduced value.
-reduce() can be used to get the sum of numbers Stored in the Collection,Concatenate the String with the Separator.
+reduce() can be used to get the sum of numbers stored in the Collection,Concatenate the String with the separator etc.
 
 Java 8 supports 3 different kind of reduce() methods.
 
