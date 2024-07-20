@@ -206,14 +206,14 @@ The Objects are combined from all the Collections into the Original Stream.
 
 ************************************************************ 4.Reduce **************************************************************
 
-reduce() combines all the elements of the Stream with the given function.The result is an Optional holding the reduced value.
+reduce() combines all the elements of the Stream with the given function.The result is an optional holding the reduced value.
 reduce() can be used to get the sum of numbers stored in the Collection,Concatenate the String with the separator etc.
 
 Java 8 supports 3 different kind of reduce() methods.
 
 reduce(BinaryOperator accumulator) :
 ------------------------------------
-reduce() accepts a Binary Operator i.e BiFunction where both operands share the same type.
+reduce() accepts a Binary Operator i.e. BiFunction where both operands share the same type.
 BiFunctions are like functions but accept two arguments.
 
 	Arrays.stream(intArray).reduce((x,y) -> x+y).ifPresent(System.out::println);

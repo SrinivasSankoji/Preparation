@@ -35,13 +35,14 @@ Java8 Concepts
 Java8 Comparator 
 Java8 Stream API 
 Java8 Lambda Java Brains ()
+Java8 Functions
 
 ***************************************** Design Patterns  *************************************
 
 
 ***************************************** System Design  ***************************************
 
-
+System Design Principles
 
 ***************************************** Front End  *******************************************
 
@@ -70,14 +71,14 @@ Sorting Techniques
 
 ***************************************** Spring Boot  *****************************************
 
-Spring AOP
-Spring Batch
+Spring IOC
+Spring Security
 Spring Data JPA
 Relationship
-Spring Scheduler
-Spring Security
 Actuator
-Spring IOC
+Spring AOP
+Spring Batch
+Spring Scheduler
 
 Spring Core Annotations
 Spring Web Annotations

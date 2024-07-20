@@ -1,6 +1,7 @@
 1.Dependency Injection Design Pattern           							(DZone)  			[16-AUG-2021]  (Done)
 2.Spring IOC Container Overview												(JavaGuides)		[16-AUG-2021]  (Done)
 3.Spring Bean Life Cycle													(mrbool)			[25-AUG-2021]  (Done)
+
 4.Spring IOC Container Java Config Example									(JavaGuides)		[16-AUG-2021]  (Done)
 5.Spring IOC Container XML Config Example                                   (JavaGuides)        [16-AUG-2021]  (Done)
 6.Spring BeanFactory Interface Example                                      (JavaGuides)        [16-AUG-2021]  (Done)
@@ -12,6 +13,7 @@
 
 11.Guide to Spring Bean Scopes                                              (JavaGuides)        [17-AUG-2021]  (Done)
 12.Singleton and Prototype Scopes                                           (JavaGuides)        [17-AUG-2021]  (Done)
+
 13.InitializingBean and DisposableBean Example                              (JavaGuides)        [17-AUG-2021]  (Done)
 14.initMethod and destroyMethod Attributes Example                 			(JavaGuides)        [17-AUG-2021]  (Done)
 15.@Scope annotation with Prototype Scope Example                           (JavaGuides)        [17-AUG-2021]  (Done)
@@ -37,18 +39,18 @@
 
 ************************************************** 1.Dependency Injection Design Pattern (DZone) ***********************************************
 
-IOC is a principle which states that we don't create the Objects manually instead we describe that how they should be created.
-Spring Container will instantiate the required classes.
-IOC is a principle which is implemented using Dependency Injection Design Pattern.
+IOC is a principle which states that don't create the Objects manually instead describe how they should be created.
+Then Spring Container will instantiate the required classes.
+IOC is a principle which is implemented by using Dependency Injection Design Pattern.
 
-Dependecny Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,extendable and maintainable.
+Dependecny Injection is a design pattern using which we can remove the hard coded dependencies and make our Application loosely coupled,extendable and maintainable.
 Dependency Injection can be implemented by using
 1.Runtime Polymorphism
 2.Has a Relationship
 
-In Spring Dependency Injection can be done in two ways
-Setter Injection
-Constructor Injection
+Dependency Injection can be done in two ways
+1.Setter Injection
+2.Constructor Injection
 
 public interface QuizMaster {
 
@@ -94,11 +96,10 @@ public class QuizMasterController {
 Here the Architecture is tightly coupled.
 We created the instance of QuizMaster in the QuizMasterService related to Spring.
 If we want to create the instance of QuizMaster in the QuizMasterService related to Struts we need to do the changes in QuizMasterService.
-We can avoid this by using dependency injection design pattern.
+We can avoid this by using Dependency Injection design pattern.
 In the above example we are directly creating an Object of the QuizMaster in the QuizMaster Service.
-Spring Container will do the Job for us.
+Spring Container will do the job for us.
 Instead of hardcoding we allow the Spring Container to inject the required dependencies.
-We can inject the dependencies using Setter Injection and Constructor Injection.
 
 public class QuizMasterService {
 
@@ -130,63 +131,52 @@ Define the beans.xml
 
 ************************************************** 2.Spring IOC Container Overview **************************************************
 
-Spring Framework provides powerful Container to manage the Components.
-Container is based on Inversion of Control Principle and is implemented using Dependency Injection Design Pattern.
-Component only needs to choose a way to accept the resources and Container will deliver the resource to the Components.
+Spring Framework provides powerful Spring Container to manage the Spring Components.
+Spring Container is based on Inversion of Control Principle and is implemented by using Dependency Injection Design Pattern.
+Component only needs to choose a way to accept the resources and Spring Container will deliver the resources to the Components.
 
 Spring Container is responsible for instantiating the Spring beans.
-The Container gets its instructions on what Objects to instantiate by reading Configuration Metadata.
-Configuration metadata is represented in XML,Java Annotations or Java Code.
-Responsibilities of IOC Container are 
-
-Instantiating the Bean.
-Wiring the Beans together.
-Assembling the Beans together.
-Manging the Beans Lifecycle.
-
-Spring Framework provides two types of Containers.
-BeanFactory Container
-ApplicationContext Container
-
-BeanFactory is the root Interface of Spring IOC Container.
-ApplicationContext is the Child Interface of BeanFactory that provides the feature of Spring AOP,I18N etc.
-The Main difference between BeanFactory and ApplicationContext is that BeanFactory Container instantiates the bean whenever we call the getBean() whereas
-ApplicationContext Conatiner instantiates the bean whenever the Conatiner is started and it doesn't wait for the getBean() to be called.
-
-Configuration Metadata :
-------------------------
-Configuration Metadata tells the Spring Container to instantiate,configure and assemble the Spring beans in our Application.
-There are three ways we can supply Configuration Metadata to Spring IOC Container.
+Spring Container gets its instructions on what Objects to instantiate by reading the Configuration metadata.
+Configuration Metadata informs the Spring Container to instantiate,configure and assemble the Spring Beans in our Application.
+There are three ways we can supply Configuration Metadata to Spring Container.
 1.XML based Configuration
 2.Annotation based Configuration
 3.Java based Configuration
 
-Spring provides many ApplicationContext Interface implementations.
+Spring Framework provides two types of Containers.
+1.BeanFactory Container
+2.ApplicationContext Container
+
+BeanFactory is the root Interface of Spring IOC Container.
+ApplicationContext is the Child Interface of BeanFactory that provides the features like Spring AOP,I18N etc.
+The Main difference between BeanFactory and ApplicationContext is that BeanFactory Container instantiates the bean whenever we call the getBean() whereas
+ApplicationContext Conatiner instantiates the bean whenever the Conatiner is started and it doesn't wait for the getBean() to be called.
+
+Spring Container Creation :
+---------------------------
+Spring provides many ApplicationContext Interface implementations to create the Spring Container.
 
 FileSystemXmlApplicationContext
 ClasspathXmlApplicationContext
 AnnotationConfigApplicationContext
 
-If we are using Spring in Stand alone Java Application and using XML or Annotations then
-we can use this implementation Class to initialize the Container and get the bean Objects.
-
-Note :
-AnnotationConfigWebApplicationContext and XmlWebApplicationContext are use for Web Applications.
-
-Spring Container Creation :
----------------------------
 To create a Spring Container using BeanFactory
 
 	BeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
 	
 To create a Spring Container using XML 
 
+	ApplicationContext context = new FileSystemXmlApplicationContext("C:/path/to/applicationContext.xml");
 	ApplicationContext context=new ClasspathXmlApplicationContext("applicationContext.xml");
 	
 To create a Spring Container using Configuration File
 
 	AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(AppConfig.class);
-	
+
+Note :
+If we are using Spring in Stand alone Java Application using XML or Annotations then we can use this implementation Class to initialize the Container and get the bean Objects.
+AnnotationConfigWebApplicationContext and XmlWebApplicationContext are used for Web Applications.
+
 Retrieve Bean from Spring Container :
 -------------------------------------
 Both BeanFactory and ApplicationContext interface provides getBean() to retreive bean from Spring Container.
@@ -201,18 +191,25 @@ Both BeanFactory and ApplicationContext interface provides getBean() to retreive
 BeanFactory vs ApplicationContext in Spring :
 ---------------------------------------------	
 Difference between BeanFactory and ApplicationContext interface is that
-BeanFactory based Container instantiates the Bean whenever we call the getBean() ie Lazy Loading whereas
-ApplicationContext based Container instantiates the Bean whenever the Container is started ie Eager Loading.
+BeanFactory based Container instantiates the Bean whenever we call the getBean() i.e. Lazy Loading whereas
+ApplicationContext based Container instantiates the Bean whenever the Container is started i.e. Eager Loading.
+
+Responsibilities of Spring Container :
+--------------------------------------
+Instantiating the Bean.
+Wiring the Beans together.
+Assembling the Beans together.
+Manging the Beans Lifecycle.
 
 ************************************************** 3.Spring Bean Life Cycle (mrbool) ***********************************************************
 
-Most important feature of Spring is Bean based Approach.
-Spring Bean is defined by using Sterotype Annotation or XML based Configuration.
+Most important feature of Spring is its Bean based Approach.
+Spring Bean is defined by using Sterotype Annotations or XML based Configuration.
 When we run the Application Spring Container gets created.
-Spring Container creates an instance of the beans as per the Configuration and inject the dependencies.
-As soon as the Bean is created it will be loaded into ApplicationContextt and JVM Memory.
-When the Bean is instantiated it might require to perform some initialization to get into usable state.
-Similarly when the Bean is no longer required and is removed from the Container.
+Spring Container instantiates the Beans as per the Configuration and inject the dependencies.
+Once the Spring Bean is created  it will reside in the memory area of the JVM.
+When the Spring Bean is instantiated it might require to perform some initialization to get into usable state.
+Similarly when the Spring Bean is no longer required then it should be removed from the Container.
 There are some other activities between initialization and destruction phase.
 Following are the stages of the Bean's lifecycle.
 
@@ -272,7 +269,7 @@ Constructor based Dependency Injection
 
 ************************************************** 8.Spring Setter Injection Example  ********************************************************
 
-Setter based Injection is accomplished by the Container calling setter methods on our beans to instantiate your bean.
+Setter Injection is accomplished by the Container calling setter methods on our beans to instantiate the bean.
 
 	@Service("SMSService")
 	public class SMSService implements MessageService{
@@ -343,9 +340,17 @@ To call the MessageService via Setter Injection make any one of the MessageServi
 	
 ************************************************** 9.Spring Constructor Injection Example  *************************************************** 
 
-Constructor based DI is accomplished by the Container invoking a Constructor with the number of arguments each representing a Dependency.
-Create a Spring Configuration file ie ApplicationConfiguration which is annotated with @Configuration Annotation.
+Constructor Injection is accomplished by the Container calling a Constructor with the number of arguments each representing a dependency.
+This approach ensures that class is always instantiated with require dependencies.
+
+Create a Spring Configuration file i.e. ApplicationConfiguration which is annotated with @Configuration Annotation.
 This is equivalent to XML Configuration without beans Definition.
+
+	@Configuration
+	@ComponentScan(basePackages = {"com.ioc.javaguides.service"})
+	public class DependencyInjectionConfiguration {
+	}
+
 Create the MessageService interface and provide more than two implementations for it.
 If there are multiple implementations for MessageService interface and to avoid ambiguity we use @Qualifier Annotation.
 To avoid decoupling always use interfaces or Abstract Classes as an instance variable and Constructor arguments.
@@ -375,7 +380,7 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
   
 ************************************************** 10.@DependsOn Annptation Example ************************************************************
 
-@DependsOn annotation forces the Spring Container to initialize one or more beans before the bean which is annotated by @DependsOn annotation.
+@DependsOn annotation forces the Spring Container to instantiate one or more beans before the bean which is defined by using @DependsOn annotation.
 @DependsOn annotation may be used on any class directly or indirectly with annotated with @Component or methods annotated with @Bean.
 
 	@Configuration
@@ -403,18 +408,24 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 Spring Framework supports following Bean Scopes.
 
 1.Singleton
-Scopes a Single bean definition to Single Object instance per Spring Container.
+Default scope in Spring.
+Ensures a single instance of the Bean per Spring IoC container.
+The same instance is returned for every request of that Bean.
 
 2.prototype
-Scopes a Single bean definition to any number of Object instances.
+A new instance of the Bean is created and returned every time it is requested from the container.
+Suitable for stateful Beans where each user or operation requires a distinct instance.
+Unlike Singleton Beans, prototype Beans are not managed by the container once they are created. 
+This means that their lifecycle methods i.e. init and destroy are not called automatically.
 
 3.request
-Scopes a Single bean definition to the lifecycle of a single HttpRequest.
-Each HttpRequest has its own instance of a bean craeted.
+A new instance of the Bean is created for each HTTP request.
+The Bean is available for the duration of the HTTP request and is discarded afterward.
 Only applicable in the context of Web Aware Spring Application Context.
 
 4.session
-Scopes a Single bean definition to the life cycle of a HttpSession.
+A new instance of the Bean is created for each HttpSession.
+The Bean is available for the duration of the HttpSession and is discarded afterward.
 Only applicable in the context of Web Aware Spring Application Context.
 
 5.application
@@ -449,7 +460,7 @@ To define the bean as Singleton at Bean Level :
 		}
 	}
 	
-To define the bean as Singleton at Class Level :
+To define the Bean as Singleton at Class Level :
 
 When we define a bean with prototype scope,Spring Container creates a new instance every time when the request is made for that bean.
 Use the Prototype scope for stateful beans and Singleton scope for stateless beans.
@@ -473,7 +484,7 @@ Done
 
 In Spring,Spring Bean Lifecycle is managed by the Spring Container.
 To interact with Container Management of the Bean Lifecycle we can implement InitializingBean and DisposableBean interfaces.
-After the Container has performed the initialization of an instance ie all the properties have been set we need to call the afterProperties().
+After the Container has performed the initialization of an instance i.e. all the properties have been set then we need to call the afterProperties().
 Before the Container is going to delete the bean we need to call the destroy().
 
 Note:
@@ -718,7 +729,7 @@ public static void main(String[] args) {
 ************************************************** 21.@Qualifier Annotation Example ************************************************************* 
 
 @Qualifier can be used to resolve ambigious problems.
-There may be scenarios where we have more than one bean of the same type and want to Autowire only one of them.
+There may be scenarios where we have more than one bean of the same type and want to autowire only one of them.
 This can be done by using @Qualifier along with @Autowired Annotation.
 
 ************************************************** 22.Spring Java Based Configuration Basics *************************************************** 
