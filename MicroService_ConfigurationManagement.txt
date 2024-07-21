@@ -1,6 +1,10 @@
 Micro services and Spring Cloud Config Server :
 ***********************************************
 
+Centralized Configuration
+Use tools like Spring Cloud Config or Consul for centralized configuration management.
+Store configuration data centrally and make it accessible to all microservices.
+
 References :
 ------------
 

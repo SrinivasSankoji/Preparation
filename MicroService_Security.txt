@@ -1,0 +1,7 @@
+API Gateway Security
+Implement authentication and authorization at the API Gateway level.
+Use OAuth2 and JWT for securing APIs.
+
+Service-to-Service Security
+Use mTLS (Mutual TLS) for secure communication between microservices.
+Integrate a service mesh like Istio to manage and enforce security policies.

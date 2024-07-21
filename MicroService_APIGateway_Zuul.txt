@@ -1,60 +1,61 @@
-1.Micro services Communication Zuul API Gateway                 (Dzone)    			[31-JUL-2020]  (Done)
+1.Zuul API Gateway                 								(Dzone)    			[31-JUL-2020]  (Done)
 2.Spring Netfilx ZUUL API Gateway 								(levelup)  			[31-JUL-2020]  (Done)
 3.Spring Netflix ZUUL API Gateway Example						(Devglan)  			[31-JUL-2020]  (Done)
 4.Spring Netflix ZUUL API Gateway Example						(HowtoDoInJava)  	[31-JUL-2020]  (Done)
 
-*******************************************************  1.Micro services Communication Zuul API Gateway (Dzone) *******************************************************
+*******************************************************  1.Zuul API Gateway (Dzone) *******************************************************
 
-The Crux of MicroService pattern is that create an independent service which has to be scaled and deployed Independently.
-So In a Complex Business Domain,we have more than 50 to 100 Micro Services.
-Lets Imagine a System Where We have to implement a UI which is a kind of Dashboard,which calls 50 to 100 Micro Services to fetch the Information and Show it to the UI.
-From a UI Developer Perspective,He has to call these 50 to 100 Micro Services and he has to Maintain All the details of Micro Services like URL,Port and Rest End Point.
-More over The Common Aspects of a Web Program are CORS,Authentication,Authorization,Security and Monitoring  etc.
-Here Each Micro Service has to develop all these Aspects on its Own and Same Code has to be replicated over Fifty Micro Services.
-To Make it Robust,Code has to Be Changed in Such a Way that we have Only One Entry Point,where all the Common Aspects of the Code is Written and Client Communicates with that Service.
-The Concept of ZUUL Comes into the Picture.
+The crux of MicroService architecture is that create an independent service which has to be scaled and deployed independently.
+In a complex Enterprise Application we have more than 50 to 100 Micro Services.
+Lets imagine a System where we have to implement a UI which is a kind of Dashboard which calls 50 to 100 Micro Services to fetch the information and shows to the UI.
+From a UI Developer perspective he has to call these 50 to 100 Micro Services and he has to maintain all the details of Micro Services like URL, Port and End Point.
+More over the common aspects of a Web Program are CORS, Authentication, Authorization, Security, Monitoring etc.
+Here each Micro Service has to develop all these Aspects on its own and same code has to be replicated in all the Micro Services.
+To make it robust code has to be changed in such a way that we have only one Entry Point.
+All the common aspects of the code is written and client communicates with that service.
+Here the concept of ZUUL comes into the picture.
 
-ZUUL Acts as an API Gateway.It receives all the request that are coming from the UI and then delegates the Request to the Internal Micro Service.
-So we have to Create a brand new Service which is Zuul Enabled and this Service Sits on Top of all Micro Services.
-It Acts as an Edge Service or Client Facing Service and it Should be exposed to the Client UI.
-Client Calls this Service as a Proxy for an Internal Micro Service and this Service delegates the Request to the Appropriate Service.
-We Can also implement routing Rules and Filter Implementation.
-We can also perform Load Testing to the ZUUL Service as it is Independently Scalable and Deployable.
+ZUUL acts as an API Gateway.
+It receives all the request that are coming from the UI and then delegates the request to the internal Micro Service.
+So we have to create a brand new Service which is Zuul enabled and this service sits on top of all Micro Services.
+It acts as an edge service or client facing service and it should be exposed to the Client UI.
+Client calls this service as a proxy for an internal Micro Service and this service delegates the request to the appropriate service.
+We can also implement routing rules and filter implementation.
+We can also perform Load Testing to the ZUUL service as it is independently scalable and deployable.
 
 Spring Netflix Zuul :
 *********************
-ZuuL Proxy Can be used to route to different Micro Services.
-When We have Multiple Micro Services Running,ZuuL Proxy does the Intelligent Routing based on Requested Resource.
-We can also perform some Filters to the requests and perform some operations before the execution of actual Request.
+ZuuL Proxy can be used to route to different Micro Services.
+When we have multiple Micro Services running,Zuul Proxy does the intelligent routing based on requested resource.
+We can also apply Filters to the requests and perform some operations before the execution of actual request.
 
 API Gateway means Single Point of Entry for all the Requests.
-We have Single Interface Exposed on behalf of all the Micro Services Running.
-This gateway at run time will identify the correct service to be invoked.To achieve this routing we will have Netflix ZUUL Proxy.
-ZUUL is and Edge Service that provides Dynamic Routing,Monitoring,Resiliency,Security and so on.
+We have Single Interface exposed on behalf of all the Micro Services running.
+API Gateway at run time will identify the correct service to be invoked.To achieve this routing we will have Netflix ZUUL Proxy.
+ZUUL is an edge service that provides Dynamic Routing,Monitoring,Resiliency,Security and so on.
 
 Zuul Filter Implementation :
 ****************************
-Some Times it is required to intercept the Request and Response that is passed through the Gateway.
-Doing So We can add Some Validations or Modify Headers of Request Response.
-For This Zuul Provides Filter Implementation and this Filter Implementation has full control of how to proceed with request and response.
-We Have 4 Types of Filters :
+Some Times it is required to intercept the request and response that is passed through the Gateway.
+Doing So we can add some validations or modify headers of request response.
+For this Zuul provides Filters and this Filter implementation has full control of how to proceed with request and response.
+We have 4 types of Filters :
 
-1.PreFilter is executed Before the request is routed to the Actual Request.
-2.Route Filter is to redirect the Request.
-3.Post Filter is executed after the Request is routed.
+1.PreFilter is executed before the request is routed to the actual Request.
+2.RouteFilter is to redirect the request.
+3.PostFilter is executed after the request is routed.
 4.ErrorFilter is executed when any error is occurred during routing.
-
 
 ********************************************************* 2 .Spring Netfilx ZUUL API Gateway (levelup) ********************************************************
 
-Gateway acts as a Middleware between the UI and MicroService.
+Gateway acts as a middleware between the UI and MicroService.
 
 The two Advantages of Gateway approach are
+
 1.UI does not need to be aware of the Network Location of the individual Micro Service and needs to know only the Network Location of the Gateway MicroService.
 Gateway will route the incoming request to the relevant Backend Services.
-
 2.Cross Cutting Concerns such as Authentication,Security,Monitoring,CORS etc will be handled by the Gateway.
-Whenever Change is required in any of these aspects,that Change can be made in Single Place to affect all the Micro Services.
+Whenever Change is required in any of these aspects,that change can be made in single place to affect all the Micro Services.
 
 ZUUL is an API Gateway or an Edge Server developed by Netflix and is capable of performing the below Tasks.
 
@@ -62,10 +63,10 @@ ZUUL is an API Gateway or an Edge Server developed by Netflix and is capable of 
 Identifying Authentication requirements for each resource and rejecting request that do not satisfy them.
 
 2.Insights and Monitoring
-Tracking Meaningful data and statistics at the edge in order to give us an accurate view of Production.
+Tracking Meaningful data and statistics at the edge in order to give us an accurate view of production.
 
 3.Dynamic Routing
-Dynamically routing Request to different Backend Services as needed.
+Dynamically routing request to different Backend Services as needed.
 
 4.Stress Testing
 Gradually increasing the traffic to a Cluster in order to Gauge Performance
@@ -78,23 +79,21 @@ Building some responses directly at the Edge Server instead of forwarding them t
 
 Integration with Eureka :
 -------------------------
-ZUUL works hand in hand with Service Discovery Tools like Eureka.
-ZUUL does not maintain hard coded network Locations (HostName and Port Number) of back end Micro Services.
-Instead ZUUL Intercats with Service Registry and dynamically obtains the target Network Locations.
+ZUUL works hand in hand with Service discovery tools like Eureka.
+ZUUL does not maintain hard coded network locations (HostName and Port Number) of back end Micro Services.
+Instead ZUUL intercats with Service Registry and dynamically obtains the target Network Locations.
 
-Following are the important properties which Enable ZUUL to perform the Request Routing.
+Following are the important properties which Enable ZUUL to perform the request routing.
 
 	zuul.routes.courseservice.path=/course-service/**
 	zuul.routes.courseservice.serviceId=course-service
 	
-If the request comes to the URL path /course-service/** that request will be redirected to the service registered with service id  course-service.
-While Redirecting ZUUL will by default strip the /course-service/ portion of the URL.
-
-
+If the request comes to the URL with the path /course-service/** that request will be redirected to the service registered with service id  course-service.
+While redirecting ZUUL will by default strip the /course-service/ portion of the URL.
 
 ********************************************************* 3.Spring Netflix ZUUL API Gateway Example (Devglan) ************************************************
 
-By Default Zuul routes request by Service Name which is resolved by Discovery Server.
+By default Zuul routes request by Service Name which is resolved by Discovery Server.
 If the request is like http://localhost:8092/first-service/getRequestHeader then Zuul discovers the Service Name with first-service and 
 routes the request to it for url mapping first.
 
