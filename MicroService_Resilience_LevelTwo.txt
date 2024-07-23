@@ -34,8 +34,8 @@ What is Fault Tolerance :
 In the given Micro Service,If there is a fault then what is the impact of the fault.
 How much tolerance does the system has for the specific fault and is nothing but Fault Tolerance.
 
-Example : If one Micro Service Application goes down,does the whole Application goes down ?
-If a part of The Application functionality goes down and we have some way Of handling failures,then we don't have any impact.
+Example : If one Micro Service Application goes down, does the whole Application goes down ?
+If one Micro Service goes down and has some way Of handling failures then we don't have any impact.
 
 What is Resilient:
 ------------------
@@ -54,8 +54,8 @@ Registered With Discovery Server(Spring Boot Application)
 
 4.Calling an External API
 **************************
-Use MovieDB for Movie Information(Movie info Service) and For This Make a External Call to an Service .
-If More no Of External Calls then More Chances of Failures.
+Use MovieDB for Movie Information(Movie info Service) and for This make a external call to Service .
+If more no Of external calls then more chances of failures.
 
 https://www.themoviedb.org/?language=en-US
 
@@ -63,8 +63,8 @@ srinivassankoji  --> User Name
 srinivaschary.chary@gmail.com
 1234 --> Password
 
-5.What If Micro Services goes down
-***********************************
+5.What If Micro Service goes down
+*********************************
 Here the Micro Service is not resilient because we don't have single catch block.
 
 							--> Movie Info Service   -->  Movie DB
@@ -79,49 +79,49 @@ The above scenario is not fault tolerant because If one micro service fails,enti
 Question is how do we make resilient ?
 One of the problem with Micro Service is that if particular instance goes down,we don't want the entire Application to go down.
 In this case we make multiple instances of Micro Service.
-We don't have to do any thing this to work because we make the Service as Eureka Client that Registers with Eureka Server.
-Eureka Server knows that for that particular Micro Service two instances are running(By using Load Balancing Technology called Ribbon) and 
+We don't have to do any thing this to work because we make the service as Eureka Client that registers with Eureka Server.
+Eureka Server knows that for that particular Micro Service how many instances are running i.e. By using Load Balancing Technology called Ribbon.
 If one Service goes down,Eureka Server will automatically point to another Micro Service.
-There is a client side Load Balancing Technology called Ribbon and it does a Round Robin i.e If it sees more than one instance
-of a Micro Service,It manages the load between the other Micro Services.
+There is a client side Load Balancing Technology called Ribbon and it does a Round Robin.
+If it sees more than one instance of a Micro Service then it manages the load between other Micro Services.
 
 6.What If Micro Services goes slow
-**********************************
+***********************************
 If a Micro Service is slow it is a much bigger problem.
 In the above example we have made an external call from Movie Info Service to get Movie DB.
-Movie Catalog Service is the Client and from this Service we are making the calls to Movie Info Service and Ratings Data Service.
-From the Movie Catalog Service we are Calling Other two Services.
-If Any API that Depends on Movie Info Service will be slow because Movie DB Service is Slow.but in this Case Other Services will also be affected.
+Movie Catalog Service is the client and from this service we are making the call to Movie Info Service and Ratings Data Service.
+From the Movie Catalog Service we are calling other two Services.
+If any API that depends on Movie Info Service will be slow because Movie DB Service is slow.but in this case other services will also be affected.
 Because for each call to the API,It will create a Thread in the Thread Pool and it will be there in the Thread Pool until it returns the response.
-If there are multiple calls to the Slow API then number of waiting  Threads in the Thread Pool will Increase and 
-After some period no new Threads will be created  to make the new API Calls. 
+If there are multiple calls to the slow API then number of waiting  Threads in the Thread Pool will increase. 
+After some period no new Threads will be created to make the new API Calls. 
 
-7.The Problem With Threads
+7.The problem with Threads
 **************************
-Let us Consider the Web Server and It Process the Request ad Returns the Response.
-For Each Request It Creates a New Thread and Executes the Request,Gives Back the Response and Thread is removed from the Web Server.
-If The Request Comes in a faster way than Processing the Request,
-At Certain Point of Time no Space will be Available for the New Thread to Create.
-In this Case Entire Application will Go Down In case of Micro Services.
+Let us Consider the Web Server and it process the request ad returns the response.
+For each Request it creates a new Thread and executes the request,gives back the response and Thread is removed from the Web Server.
+If the request comes in a faster way than processing the request,
+At certain point of time no space will be available for the new Thread to create.
+In this case entire Application will go down in case of Micro Services.
 
-8.Possible Solution For Slow Micro Services
+8.Possible Solution for Slow Micro Services
 *******************************************
-Possible Solution for Slow Micro Services are TimeOut.
-Once the Micro Service is taking time,Return Back with an Error.
-Once we Send back the Response,Thread form the Web Server will be Removed.
-The Other Solutions are Increase the Size of the Tomcat Thread Pool.
-In case of Web Application,we have 100 of Users and If Each User Click on Refresh Button then It Multiplies the Number of Requests
-At this Point of Time Application Goes Down.
-Increasing the Thread pool Size is Not The Long Term Solution.
-With Time Out We Technically Have Solution For the Problem of Micro Service Being Slow Down.
+Possible solution for slow Micro Services are TimeOut.
+Once the Micro Service is taking time then return back with an Error.
+Once we send back the response,Thread form the Web Server will be removed.
+The other solutions are to increase the size of the Tomcat Thread Pool.
+In case of Web Application we have 100 of Users and if each user click on refresh button then it multiplies the number of requests.
+At this Point of time Application goes down.
+Increasing the Thread pool size is not the Long term solution.
+With Time Out mechanism, we technically have solution for the problem of Micro Service being slow down.
 It also allows the New Requests.
 We are using Rest Template to make the API Call and we can also set the Time Out to The Rest Template.
-This is One of the Way to set the Time Out but Not The Preferred Way.
+This is one of the way to set the Time Out but not the preferred way.
 
 9.Adding Timeout to Rest Template
 *********************************
-In Movie Catalog Application i.e calling Movie Info Service and  Ratings Data Service,
-Where we Configured the Rest Template,create the HttpComponentsClientHttpRequestFactory and
+In Movie Catalog Application i.e. calling Movie Info Service and  Ratings Data Service,
+Where we configured the Rest Template,create the HttpComponentsClientHttpRequestFactory and
 set the Time Out to the setConnectTimeout() Method.
 
 HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory=
@@ -131,15 +131,13 @@ HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory=
 Pass the HttpComponentsClientHttpRequestFactory to the Rest Template i.e 
 return new RestTemplate(httpComponentsClientHttpRequestFactory);
 
-10.We Haven't Solved the Problem Yet
+10.We haven't solved the problem yet
 ************************************
-If we Have Set the Timeout For 3 Seconds Then it is not the Correct Solution.
-Here Each Request will Wait for 3 Seconds For any Single Request and once the Response is not received within 3 Seconds,It will throw an Error.
-Here the Scenario is Threads Still exists on the Web Server Because of this Scenario.
-A Thread is Going to wait For 3 Seconds when there is a call to Slow Micro Service and once it receives the Response,Thread will be Removed from the Web Server.
-If the Response Does not Receive within 3 Seconds,then also Thread will be Removed from the Web Server.
-If there is a Request per Second and the Time Out is 3 Seconds,After Some Time there is No Space for the New Threads in the Web Server.
-Time Out Will Solve the Problem as long as the Number of Request Per Second is Less than Time Out.
+If we have set the Timeout for 3 seconds then it is not the correct solution.
+Here Thread is going to wait for 3 Seconds and once it receives the response then Thread will be removed from the Web Server.
+If the response is not receive within 3 seconds, it will throw an Error and Thread will be removed from the Web Server.
+If there is a request per second and the Time Out is 3 seconds After some time there is no space for new Threads in the Web Server.
+Time Out will solve the problem as long as the number of request per second is less than Time Out duration.
 
 11.Understanding The Circuit Breaker Pattern
 *********************************************

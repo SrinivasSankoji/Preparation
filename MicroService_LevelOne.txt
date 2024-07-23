@@ -216,7 +216,7 @@ Example we have one Client here i.e. MovieCatalogService and two other Services 
 Here how does the MovieCatalogService discover the other two Services.
 Minimum thing required here is URL's.
 We need to provide a layer of Abstraction(Discovery Server) so that Client will call the Discovery Server to get the URL and calls the Service.
-Here each Micro Service has to register with Discovery Server.(Mark the main method in Spring Boot Annotated with @EnableEurekaServer)
+Here each Micro Service has to register with Discovery Server.(Mark the main method in Spring Boot Annotated with @EnableDiscoveryClient)
 Here Discovery Server is a kind of Phone Book that maintains all the URL details of each Micro Service.
 Here the Problem is Client calls the Discovery Server to get where exactly the Micro Service is and once it finds the Address(URL),then It calls the Service.
 Here additional call is required instead of directly calling the Service.
@@ -318,7 +318,7 @@ We can make use of Rest Template or WebClient to call the Service that is regist
 
 Then change the http://localhost:8761/ to instance name in Service Discovery
 The above code will do the Service Discovery in a Load Balanced Way.
-Do the Same Steps for all the Services
+Do the same steps for all the services.
 
 21.Client Side Load Balancing :
 *******************************

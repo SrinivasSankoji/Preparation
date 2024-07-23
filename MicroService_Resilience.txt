@@ -10,20 +10,19 @@
 In case of Monolith Application single error has the potential of bringing the entire application down.
 This can be resolved by making each functionality as an independent deployable modules which won't effect the entire System.
 This doesn't mean that Micro services are resilient.
-While developing distributed applications we should assume that failures will happen and design them for resiliency.
+While developing Micro Service application we should assume that failures will happen and design them for resiliency.
 In short design your Micro services with failure in mind.
 
 What can go wrong in a Micro service architecture :
 ---------------------------------------------------
-There are number of moving components in Micro services architecture and there are more chances of failures.
+There are number of moving components in Micro services architecture and there will be more chances of failures.
 Failures can be caused by variety of reasons.
 
 Why do you need to make services resilient :
 --------------------------------------------
-Problem with distributed applications is that they communicate over the network which is unreliable.
-Hence we need to design Micro services that they must be Fault Tolerant and handle the failures gracefully.
-In distributed application one Micro service may communicate with more no of Micro services and make sure that
-If one Micro service goes down that should not effect the entire application down.
+Problem with Micro Service communication is that they communicate with each other over the network which is unreliable.
+Hence we need to design Micro services in such a way that they must be Fault Tolerant and handle the failures gracefully.
+We also need to make sure that if one Micro service goes down then it should not effect the entire application down.
 
 How to Make Your Services Resilient :
 -------------------------------------
@@ -38,11 +37,11 @@ Server is down.
 Avoid Cascading Failures :
 --------------------------
 When we have Service dependencies built in our architecture,make sure that One service does not effect the entire chain down.
-i.e Do not hammer a Service with additional request If it is already down and give the time to Service to recover.
+i.e Do not hammer a Service with additional request If it is already down and give the time for service to recover.
 
 Avoid single point of failure :
 -------------------------------
-Design the Micro service in such a way that there is No single point of failure.
+Design the Micro service in such a way that there is no single point of failure.
 We should be able to handle the Client request all the time.
 Hence ensuring the availability across the Micro services eco system is critical.
 
@@ -82,9 +81,8 @@ Load Balancer Might Point to a Different Healthy Server on retry and at that Tim
 
 3.Timeout Design Pattern :
 --------------------------
-Time Out Design Pattern Ensures that we should not wait for the Service Response for an Indefinite amount of Time and
-throw an Exception instead of Waiting too Long.
-Once the Timeout Period is Met Thread is Freed up. 
+Time Out Design pattern ensures that we should not wait for the Service response for an indefinite amount of time and throw an Exception instead of waiting too Long.
+Once the Timeout period is met Thread is freed up. 
 
 ############################################################### 3.Circuit Breaker Pattern (Defog Tech) #########################################################
 
@@ -96,7 +94,7 @@ Most popular third party libraries to implement Circuit Breaker Pattern are Poll
 
 ############################################################### 4.Bulk Head Pattern (Defog Tech) ###############################################################
 
-Bulk Head pattern in Micro services architecture is a design pattern that helps to improove the resilience and stability of a system by isolating different parts of services.
+Bulk Head pattern is a Micro services architectural pattern that helps to improove the resilience of a system by isolating different parts of services.
 This isolation prevents a failure in one part of the system cascading to other parts of the system.
 Consider the scenario where we have set of Micro services.
 
