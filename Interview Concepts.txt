@@ -1,13 +1,12 @@
 
 ***************************************** Java Basics  *****************************************
 
-Java Memory Model
-Java Memory Management
+Java Memory Model and Management
 OOPS
 Exception Handling
 Lang Package
 Interface and Modifiers
-Java_AccessModifiers
+Java Access Modifiers
 String Class
 Collections
 Generics
@@ -39,6 +38,11 @@ Java8 Functions
 
 ***************************************** Design Patterns  *************************************
 
+Strategy
+Decorator
+Builder
+Proxy
+Flyweight
 
 ***************************************** System Design  ***************************************
 
@@ -68,7 +72,6 @@ Hashset Implementation
 LinkedList Implementation
 Sorting Techniques
 
-
 ***************************************** Spring Boot  *****************************************
 
 Spring IOC
@@ -76,9 +79,10 @@ Spring Security
 Spring Data JPA
 Relationship
 Actuator
-Spring AOP
-Spring Batch
-Spring Scheduler
+Spring AOP (Optional)
+Spring Batch (Optional)
+Spring Scheduler (Optional)
+Quartz Framework (Optional)
 
 Spring Core Annotations
 Spring Web Annotations
@@ -89,6 +93,7 @@ SQL Part 1
 SQL Part 2
 SQL Basics
 PL SQL
+Flyway Migration (Optional)
 
 ***************************************** Testting  ********************************************
 
@@ -154,9 +159,6 @@ Kafka
 
 
 ***************************************** Jenkins *********************************************
-
-
-***************************************** Maven ***********************************************
 
 
 ***************************************** Docker **********************************************

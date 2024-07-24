@@ -29,11 +29,13 @@
 23.Spring Java Based Configuration Example                                  (JavaGuides)        [19-AUG-2021]  (Done)
 24.@Bean Annotation with Example                                     		(JavaGuides)        [19-AUG-2021]  (Done)
 25.@Configuration Annotation with Example                            		(JavaGuides)        [19-AUG-2021]  (Done)
+
 26.@PropertySource Annotation with Example                           		(JavaGuides)        [19-AUG-2021]  (Done)
 27.@Import Annotation with Example                                          (JavaGuides)        [19-AUG-2021]  (Done)
 28.@ImportResource Annotation Example                                       (JavaGuides)        [19-AUG-2021]  (Done)
 29.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  (Done)
-30.@Profile Annotation														(amitph)			[02-JAN-2022]  ()
+
+30.@Profile Annotation														(amitph)			[02-JAN-2022]  (Done)
 31.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
 32.5 Types of Autowiring in Spring											(DZone)
 
@@ -484,8 +486,33 @@ Done
 
 In Spring,Spring Bean Lifecycle is managed by the Spring Container.
 To interact with Container Management of the Bean Lifecycle we can implement InitializingBean and DisposableBean interfaces.
-After the Container has performed the initialization of an instance i.e. all the properties have been set then we need to call the afterProperties().
-Before the Container is going to delete the bean we need to call the destroy().
+After the Container has performed the initialization of an instance i.e. all the properties have been set then Spring Container will call the afterPropertiesSet().
+Before the Container is going to delete the Bean then Spring Container call the destroy().
+
+	@Component
+	public class DatabaseInitialization implements InitializingBean, DisposableBean {
+		private List<User> listOfUsers = new ArrayList<>();
+		@Override
+		public void afterPropertiesSet() throws Exception {
+			User user = new User(1, "User");
+			User user1 = new User(2, "Admin");
+			User user2 = new User(3, "SuperAdmin");
+			listOfUsers.add(user);
+			listOfUsers.add(user1);
+			listOfUsers.add(user2);
+			System.out.println("-----------List of users added in init() method ------------");
+			for (Iterator<User> iterator = listOfUsers.iterator(); iterator.hasNext();) {
+				User user3 = (User) iterator.next();
+				System.out.println(user3.toString());
+			}
+		}
+		@Override
+		public void destroy() throws Exception {
+			listOfUsers.clear();
+			System.out.println("-----------After of users removed from List in destroy() method ------------");
+			System.out.println("List is clean up ..");
+		}
+	}
 
 Note:
 @PostConstruct and @PreDestroy annotations are considered as a best practice for receiving lifecycle callbacks.
@@ -493,7 +520,7 @@ Using the above annotations means we are not coupled to spring specific interfac
              
 ################################################## 14.@Bean’s initMethod and destroyMethod Attributes Example  ###############################
 
-initMethod and destroyMethod can be used to perform certain actions after bean initialization or before bean destruction by the Container.
+initMethod and destroyMethod can be used to perform certain actions after Bean initialization or before Bean destruction by the Container.
 As we use init-method and destroy-method in XML Bean Configuration,same way we can use initMethod and destroyMethod in the Java Configuration.
 
 	<bean id="" class="" init-method="init" destroy-method="destroy"></bean>
@@ -506,8 +533,8 @@ As we use init-method and destroy-method in XML Bean Configuration,same way we c
 
 ################################################## 15.@Scope annotation with Prototype Scope Example ##########################################
 
-We use @Scope annotation to define the scope of a @Component Class or @Bean definition.
-When a Spring bean is scoped as Prototype,Spring Container creates a new instance every time when a request is made for that bean.
+We use @Scope annotation to define the scope of a Component Class or Bean definition.
+When a Spring bean is scoped as Prototype,Spring Container creates a new instance every time when a request is made for that Bean.
 we define the scope of a bean as Prototype using @Scope("prototype") or @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 
 @Service
@@ -543,7 +570,6 @@ public class UserService {
 }
 
 @Configuration
-@ComponentScan("com.ioc.javaguides.singleton.model")
 public class SingletonConfiguration {
 
 	@Bean
@@ -560,7 +586,7 @@ From Spring 2.5 it is possible to configure the dependency injection using Annot
 Instead of XML to perform the bean wiring we can move the bean Configuration to the Component class itself using Annotations at Class Level,Method Level and Field Level.
 Note :
 Annotation Injection is performed before XML Injection.
-Annotation wiring is not turned on Spring Container and we need to enable it in Spring COnfiguration File.
+Annotation wiring is not turned on in Spring Container and we need to enable it in Spring Configuration File.
 
 	<context:annotation-config>
 	
@@ -575,8 +601,10 @@ Different Annotations provided by Spring are
 
 ################################################## 18.Spring @Autowired Annotation with Example ################################################# 
 
-We use @Autowired to mark dependency Injection which Spring is going to resolve and Inject.
-We can use this Annotation at Constructor Level,Setter Level and Field Level.
+We use @Autowired can be used for automatic Dependency Injection.
+This means Spring will automatically resolve and inject the required dependencies into the Bean.
+Whenever we are using @Autowired not required to explicitly mention about the Bean in the Configuration.
+We can use this annotation at Constructor Level,Setter Level and Field Level.
 
 Constructor Injection :
 -----------------------
@@ -664,10 +692,10 @@ publci class CustmerController
 ################################################## 19.@Primary Annotation Example  ############################################################## 
 
 @Primary Annotation can be used to give a higher preference to a bean when there are multiple beans of the same type.
-When we have multile beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
-Here @Qualifier won't applicable at the Configuration time.
+When we have multile Beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
+But @Qualifier won't be applicable during the Configuration time.
 To resolve this issue we use @Primary Annotation.
-@Primary Annotation can be applied on any Class diretly or indirectly anootated with @Component or methods annotated with @Bean.
+@Primary Annotation can be applied on any Class diretly or indirectly annotated with @Component or methods annotated with @Bean.
 
 public interface MessageService {
 
@@ -735,11 +763,13 @@ This can be done by using @Qualifier along with @Autowired Annotation.
 ################################################## 22.Spring Java Based Configuration Basics ################################################### 
 
 If we want to explicitly declare a Bean rather than Spring doing it automatically we use @Bean Annotation.
+@Bean is a method level Annotation and is a direct analog of XML element </bean>.
 Method Annotated with @Bean produces a Bean that has to be managed by the Spring Container.
 It decouples the declaration of the Bean from the Class Definition.
 @Bean Annotation cannot be declared at Class Level.
 Most of the the times we use @Bean with @Configuration Classes.
 Annotating a Class with @Configuration indicates that its primary purpose is a source of Bean definitions.
+@Bean Annotation supports some of the attributes such as initMethod,destroyMethod,autowiring and name.
 By default it will use the name of the Method as the Bean Id/Name.
 
 We can create Spring Container by instantiating AnnotationConfigApplicationContext by passing Configuration Class.
@@ -752,11 +782,9 @@ This is particulary useful when programatically building an AnnotationConfigAppl
 
 ################################################## 23.Spring Java Based Configuration Example ##################################################
 
-We have used @Configuration and @Bean Annotations to develop a Spring based Applications.
 @Import annotation can be used to load the bean definitions from another Configuration class.
 
 @Configuration
-@ComponentScan("com.journaldev.ioc.qualifier.service")
 @Import(ImportConfiguration.class)
 public class QualifierConfiguration {
 
@@ -772,7 +800,6 @@ public class QualifierConfiguration {
 }
 
 @Configuration
-@ComponentScan("com.journaldev.ioc.qualifier.service")
 public class ImportConfiguration {
 
 	@Bean(name = "twitterService")
@@ -792,7 +819,8 @@ By default Bean name will be same as the Method name and we can change the Bean 
 We can also have the scope for the Bean definition and default scope is Singleton.
 
 Note :
-Single Bean can have multiple names ie also called as Bean Aliasing.
+------
+Single Bean can have multiple names i.e. also called as Bean Aliasing.
 We use the name attribute of the Bean for Bean aliasing.
 
 ################################################## 25.@Configuration Annotation with Example ###################################################

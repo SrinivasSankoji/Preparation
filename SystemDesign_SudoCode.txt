@@ -50,7 +50,7 @@ Here the processing/logic and data part are separated.
 
 N Tier :
 --------
-In some of the cases where 3 Tier is not enough to design large and Complex applications.
+In some of the cases where 3 Tier is not enough to design large and complex applications.
 Consider the case of Load Balancer between Client and Server, Cache between Server and Database etc.
 This is called N Tier Architecture.
 
