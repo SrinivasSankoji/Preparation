@@ -5,12 +5,14 @@
 5.Architecture of ORM										  (Book One)	[02-AUG-2021]  (Done)  
 6.Persistence Class											  (Book One)	[02-AUG-2021]  (Done)  
 7.Features of Hibernate									      (Book One)	[02-AUG-2021]  (Done)  
-8.Program One												  (Book One)	[02-AUG-2021]  ()  
+8.Program One												  (Book One)	[02-AUG-2021]  ()
+  
 9.Mapping File(hbm.xml file)					          	  (Book One)	[02-AUG-2021]  (Done)  
 10.Configuration File 								          (Book One)	[02-AUG-2021]  (Done)  
 11.get()													  (Book One)	[02-AUG-2021]  (Done)  
 12.Persistent Object Lifecycle								  (Book One)	[02-AUG-2021]  (Done)  
 13.Dialect Class											  (Book One)	[02-AUG-2021]  (Done)
+
 14.SessionFactory 						 		              (Book One)	[02-AUG-2021]  (Done)    
 15.Session                                                    (Book One)	[02-AUG-2021]  (Done)  
 16.Transaction												  (Book One)	[02-AUG-2021]  (Done)
@@ -31,22 +33,17 @@
 *****************************************************  2.Hibernate Introduction  ***************************************************** *************************
 
 JDBC is a specification that can be used to access the data from the database or to perform CRUD operations at the database.
-All Database operations are performed at one layer ie Data Access Layer.
-
-Hibernate is an open source ORM ramework which is written in Java that can be used to perform Data Accessing.
-Hibernate is not a specification like JDBC and is a Software product that internally uses JDBC.
-Source code of Hibernate is publicly available.
-In JDBC we copy the jar file and place it in the classpath. 
-Any Java Application that uses Hibernate to access the data from Database or to perform CRUD operations at Database is nothing but Hibernate Application.
+Hibernate is an open source ORM framework which is written in Java that can be used to perform Data accessing.
+Hibernate is not a specification like JDBC and and is a library that internally uses JDBC.
 
 *****************************************************  3.Java Persistence Traditional Approach   **********************************************************
 
-In Java Data is stored in Objects and Object resides in Heap Area.
-There is no permanance for the Objects in Heap Area.
+In Java Data is stored in Objects and Object resides in Heap area.
+There is no permanance for the Objects present in Heap Area.
 Java program which is creating an object eventhough Java program is terminated but object state should be permanent.
 Process of storing the object state into file is nothing but Persistence.
-Here the problem is retreival,modification and security.
 We use file system for Non Business Applications.
+Here the problem is retreival,modification and security.
 
 Process of storing the Object state into relational database is nothing but Java Persistence.
 In Java Enterprise Application Business Data is stored in two ways.
@@ -58,6 +55,7 @@ Relational representation of Enterprise data provides security,easy retreival an
 Same Enterprise data which is stored in Database is represented in Object Oriented manner for processing,transforming and showing o/p to the user.
 
 Traditional Approach :
+----------------------
 In case of Traditional Approach we write the SQL statements in the form of String and send them using JDBC API to DBMS.
 Java program uses the library methods of JDBC API to communicate with the Driver and Driver is responsible for sending SQL statements to the DBMS.
 
@@ -73,37 +71,38 @@ catch(Exception e)
 }
 
 Drawbacks of Tarditional Approach :
-If DBMS changes SQL statement needs to be changed.
+-----------------------------------
 In case of Traditional Approach we hard code the SQL statements and If the DBMS changes Application may not work fine.
 SQL statements are not portable.
 
-Boiler plate code for Data Access Operation.
-Mismatch between Object Oriented Representation and Relational Representation of Enterprise Data cannot be handled properly.
+Boiler plate code for every Data Access Operation.
 Allocation and releasing the resources are same for every CRUD Operations.
-To retreive one record from Database nearly 36 lines of Coding is required.
+To retreive one record from Database nearly 36 lines of coding is required.
+Mismatch between Object Oriented representation and Relational representation of an Enterprise Data cannot be handled properly.
 
 ***************************************************** 4.Java Persistence ORM Approach *********************************************************
 
 ORM is an approach to perform implicit persistence of Java objects into the database using mapping information between object oriented data and relational representation of data.
-If we use ORM,only one method to retrieve the record.
+If we use ORM,only one method is required to save/retrieve the data.
 Here hbm.config file contains the mapping information between the Object and relational representation of Data.
 
 Advantage of ORM :
+------------------
 ORM overcomes the problem of Traditional Approach.
-We never write SQL statements and improves the portability.
+We never write SQL statements and it improves the portability.
 Inheritance is there in Object Level and not there in Table Level.
-A special Query language to build Queries ie to perform complex CRUD operations.
+ORM provides a special Query language to build Queries i.e. to perform complex CRUD operations.
 
 ***************************************************** 5.Architecture of ORM	 ******************************************************************
 
-In Traditional Approach Java Application uses JDBC API to send the SQL statements and are submitted to the Driver.
+In Traditional approach Java Application uses JDBC API to send the SQL statements and are submitted to the Driver.
 Driver has to communicate with Database.
-In ORM approach Java program uses ORM API's perform CRUD Operations.
-ORM engine receives the method call from ORM API.
+In ORM approach Java Application uses ORM API's perform CRUD Operations.
+ORM Engine receives the method call from ORM API.
 ORM engine by using mapping information and configuration information generates the SQL statements.
 
 what type of Query that can be known by mapping information.
-what kind of database that can be known by Database information.
+what kind of database that can be known by Configuration information.
 
 ORM Engine directly cannot send the SQL statements and internally uses JDBC API.
 ORM approach is a high level abstraction for low level JDBC.
@@ -111,10 +110,8 @@ ORM approach is a high level abstraction for low level JDBC.
 ***************************************************** 6.Persistence Class **********************************************************************
 
 For each Table we need to create one Java Class which is mandatory in ORM approach and optional in Traditional Approach.
-The Java Classes whose instances are stored in database is nothing but Persistence Class.
+The Java Classes whose state is stored in Database is nothing but Persistence Class.
 These are also known as Entity Class.
-A Class is said to be POJO Class If it does not inherit any Class or Interface.
-These are also known as Data Transfer Objects.
 
 ***************************************************** 7.Features of Hibernate  *****************************************************************
 
@@ -124,7 +121,7 @@ Java Object whose state is stored into the Database is nothing but Persistent Ob
 By using Hibernate we can change the state of Persistent Object.
 3.If we make any changes to the variables of an Object then Hibernate will do the changes at Relational Database.This is called Synchronization.
 4.Session Object is used to insert the record and to perform CRUD operations at Database.
-5.Hibernate Engine to perform Database Operations needs two peices of information ie
+5.Hibernate Engine to perform Database Operations needs two peices of information i.e.
 Mapping File
 Configuration File
 Two Files has to be loaded into Hibernate Engine.
@@ -133,15 +130,15 @@ To load the information into Hibernate Engine,Configuration Object is required a
 ***************************************************** 10.Mapping File(hbm.xml file) *************************************************************
 
 Hibernate Engine needs mapping File.
-Based on Mapping File only Hibernate gets all the details of Tables and its corresponding Classes.
+Based on Mapping file only Hibernate gets all the details of Tables and its corresponding Entity Classes.
 <hibernate-mapping> is the root tag.
-Hibernate Engine uses mapping File to Map which variables of the Class is mapped to which Column of the Table.
+Hibernate Engine uses mapping file to Map which variables of the Class is mapped to which column of the Table.
 
 		<hibernate-mapping>
-		<class name="com.jio.ngo.timesheet.model.Timesheet" table="TIMESHEET">
-		<id name="" column=""/>
-		<property name="" column=""/>
-		</class>
+			<class name="com.jio.ngo.timesheet.model.Timesheet" table="TIMESHEET">
+			<id name="" column=""/>
+			<property name="" column=""/>
+			</class>
 		</hibernate-mapping>
 
 ***************************************************** 11.Configuration File *********************************************************************
@@ -161,17 +158,18 @@ Hibernate abstracts JDBC from us and internally uses JDBC.
 <hibernate-configuration> is the root tag.
 
 		<hibernate-configuration>
-		<session-factory>
-		<property name="connection.driver_class">Oracle.jdbc.driver.OracleDriver</property>
-		<property name="connection.url"></property>
-		<property connection.username>system</property>
-		<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
-		<mapping resource="Timesheet.hbm.xml"></mapping>
-		</session-factory>
+			<session-factory>
+			<property name="connection.driver_class">Oracle.jdbc.driver.OracleDriver</property>
+			<property name="connection.url"></property>
+			<property connection.username>system</property>
+			<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+			<mapping resource="Timesheet.hbm.xml"></mapping>
+			</session-factory>
 		</hibernate-configuration>
 
-There must be some Object in Hibernate responsible to read the files and make it available to memory ie Configuration Object.
-First we need to create Configuration Object to load the Meta Information ie
+There must be some object in Hibernate which is responsible to read the above two files and make it available to memory.
+This is nothing but Configuration Object.
+First we need to create Configuration Object to load the Meta Information i.e.
 
 	Configuration cfg=new Configuration();
 	
@@ -197,7 +195,9 @@ This method belongs to Session interface and implemantation is a part of Hiberna
 get() return type is object and if there is no record found with that id then it return null.
 
 	public Object get(java.lang.class,java.lang.serializable)
-	
+
+Note :
+------	
 Any method in Java If parameter type is class then supply .class file as an argument.
  
 *****************************************************  13.Persistent Object Lifecycle  ******************************************************
@@ -217,20 +217,20 @@ In the Transient state we never call the update().
 2.Managed State :
 -----------------
 Persistent Object is said to be in Managed State or Persistent State If it is in sync with Database and has matching record in the Database.
-If there are any changes to the Persistent Object,then Hibernate will automatically update the corresponding record in the Database.
-Whatever modifications we do to the Persistent Object that will automatically reflect in the Database and no need to call update().
+If there are any changes made to the Persistent Object,then Hibernate will automatically update the corresponding record in the Database.
+In the Managed state not required to call the update().
 
 3.Detached State :
 ------------------
 Persistent Object is said to be in detached State If it is not asociated with Session and has a matching record in the Database.
-Here save() cannot be called because record is there in Database.
+Here save() cannot be called because there is a record in the Database.
 If we want to do any modifications to the Database then we need to call the update().
 
 Dirty Checking :
 ----------------
-Only modified fields are updated.
-which particular field of object is different in the record that particular field is updated.
-For the remaining fields it will check and update.
+Dirty checking in Hibernate is a mechanism that automatically detects the changes to the state of an Object and
+synchronize those changes with the database during flush operation.
+This process helps that only modified fields of an Entity are updated reducing the amount of unnecessary SQL update statements which improoves the performance.
 
 ***************************************************** 14.Dialect Class	*********************************************************************
 
@@ -240,46 +240,37 @@ Dialect is one Java Class.
 	<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
 	
 Role of Dialect Class is to provide syntactical details of that particular dbms supported SQL statements and wrapped into the Class.
-Dialect is one per supported supported DBMS.
+Dialect is one per supported DBMS.
 
 ***************************************************** 14.SessionFactory Interface ***************************************************************
 
-In JDBC DriverManager creates Connection Object.
-DriverManager is a factory of Connections.
-JDBC Driver implements JDBC API ie All the implementation Classes of JDBC API are present in JDBC Driver.
-In JDBC we call the executeUpdate() on the Statement Object to perform CRUD Operations.
-
-In Hibernate SessionFactory creates Session Object and SessionFactory is a factory of Sessions.
-All the implementation Classes of Hibernate API are present in Hibernate Engine.
-In Hibernate to perfrom CRUD operations,Session Object is required.
+SessionFactory is an interface which is responsible for creating Session objects which in turn are used to interact with the database.
+SessionFactory is a factory of Sessions.
 From the Configuration object we create the SessionFactory.
-SessionFactory is not Singleton.
-SessionFactory is ThreadSafe and heavy weight.
+SessionFactory is a heavyweight because it contains database connections,MetaInfromation,caches and other configuration settings.
+It is generally recommended to make SessionFactory Singleton.
+SessionFactory is ThreadSafe.
 If any Connection Pool is used DataSource Object is encapsulated into SessionFactory.
-MetaInfromation is encapsulated into SessionFactory.
-SessionFactory is mainly used for creating Sessions.
-SessionFactory encapsulates 
 
+SessionFactory encapsulates 
 1.Second Level Cache
 2.Connection Pool
 3.Meta Information
 
-Hibernate Application making an API call on the Session object and Hibernate Engine is the recipient of the API Call.
-Hibernate Engine creates the SQL statements and transfers to the DBMS with the help of JDBC.
-
 ***************************************************** 15.Session  ***************************************************************************
 
-org.hibernate.session is an interface and Implementation is a part of Hibernate Engine.
+Session is an interface and implementation is a part of Hibernate Engine.
 Session Object acts as a Persistent Manager.
 Session Object is light weigt and it encapsulates Connection Object and First Level Cache.
 Session Object is not Thread Safe.
 In every Dao method() Session Object is created,used for CRUD operations and closed.
 
 Limitations of Session :
-Multiple Persistent Objects are not retrieved.
-Bulk Updates and Bulk Deletes are not possible.
-We cannot retreive persistent Object with non ID Field.
-We cannot perfrom complex CRUD operations using Session Interface.
+------------------------
+Multiple persistent objects are not retrieved.
+Bulk updates and deletes are not possible.
+We cannot retreive persistent object with non Id field.
+We cannot perfrom complex CRUD operations using Session interface.
 To overcome this we use
 
 HQL
@@ -288,32 +279,37 @@ Native SQL
 
 ***************************************************** 16.Transaction ************************************************************************
 
-org.hibernate.Transaction is an interface and implementation is a part of Hibernate Engine.
-Whenver we perfrom any CRUD operations the changes will not be reflected into the Database.
-Because Connection Object associated with Session Object is by default auto commit disabled mode.
-For this purpose Transaction Object is created and explicitly committed.
+Transaction is an interface and implementation is a part of Hibernate Engine.
+Whenver we perfrom any CRUD operations those changes will not be reflected into the Database immideately.
+Because Connection object associated with Session object is by default auto commit disabled mode.
+For this purpose Transaction object is created and explicitly committed.
 
 Configuration is a Class and is responsible to load the metadata.
-SessionFactory,Session and Transaction is an Interface and implementation is a part of Hibernate Engine.
+SessionFactory,Session and Transaction are interfaces and implementation is a part of Hibernate Engine.
 
 	Transaction txn=session.beginTransaction();
 	
-beginTransaction() returns different Transaction Object.
-For each and every request new Transaction Object is created.
+beginTransaction() returns new Transaction.
+Every time a new Transaction Object is created.
 
 	Transaction txn=session.getTransaction();
 	
-getTransaction() returns the same Transaction Object for every request.
-we need to call the begin() on the getTransaction() to start the Transaction.
+getTransaction() returns the current Transaction associated with the Session without starting a new Tranaction.
+If the Transaction is not active we need to call the begin().
+
+	if (!txn.isActive()) {
+		txn.begin();
+	}
 
 Note :
+------
 If an object is modified several times within the same transaction,
 Hibernate will generate only one SQL Update statement at the end of the Transaction containing all the modifications. 
 
 ***************************************************** 17.Connection Pooling in Hibernate *****************************************************
 
-By default Connection Pooling is not enabled.
-To enable the Connection Pooling in Hibernate we use the following property in the Configuration File.
+By default Connection pooling is not enabled.
+To enable the Connection pooling in Hibernate we use the following property in the Configuration file.
 
 	<property name="connection.pool_size">5</property>
 	
@@ -360,10 +356,10 @@ Process of creating Persistent Class and mapping file from already created Datab
 	
 ***************************************************** 20.hbm2ddl.auto  *********************************************************************
 
-hbm2ddl.auto is one of the properties configured in Configuration File.
-This property instructs the Hibernate Engine to generate the Table creation in the Database by using Mapping information.
+hbm2ddl.auto is one of the properties configured in Hibernate Configuration file.
+This property instructs the Hibernate Engine to create the Table in the Database by using Mapping information.
 If "create" value is given to this property,If the Table is present then it drops the Table and creates the new Table.
-If the Table is not there the new Table will be created.
+If the Table is not present then the new Table will be created.
 
 
 		
