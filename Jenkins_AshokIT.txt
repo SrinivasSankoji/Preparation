@@ -1,0 +1,73 @@
+1.Introduction														[26-JUL-2024] ()
+2.Installation                                                      [26-JUL-2024] ()
+3.First Job                                                         [26-JUL-2024] (Done)
+4.Maven and GIT                                                     [26-JUL-2024] (Done)
+5.Tomcat Setup                                                      [27-JUL-2024] (Done)
+6.Deploy Application into Tomcat using Jenkins                      [31-JUL-2024] (Done)
+7.Pipeline Introduction                                             [28-JUL-2024] ()
+8.Pipeline Creation                                                 [28-JUL-2024] ()
+9.Email Notification                                                [28-JUL-2024] ()
+10.Disaster Recovery                                                [28-JUL-2024] ()
+
+###########################################################  3.First Job  ###############################################################
+
+Create Free style project.
+Select the build Job as Build Periodically.
+Provide the below Windows Batch Script.
+
+	javac HelloWorld.java
+	java HelloWorld
+	
+Provide the CRON job to execute every 1 minute
+
+	* * * * *
+	
+The build will trigger for every 1 minute and executes the HelloWorld.java.
+
+###########################################################  4.Maven and GIT  ###########################################################
+
+Install Maven,Git and GitHub Plugins.
+
+Create a Project.
+Create the Repository in GitHub.
+Push the code to GitHub Repository.
+
+https://github.com/SrinivasSankoji/SmartSchool.git
+
+Now configure the JAVA_HOME in Jenkins Server.
+Manage Jenkins --> Tools --> Add JDK.
+Copy the path of Java and paste it in JAVA_HOME.
+F:\Java\jdk-17.0.7
+
+Requirement here is when we commit the code to GitHub Repository, build has to trigger in Jenkins.
+
+Description
+Add the GitHub Project URL
+Source Code Management i.e. Git Repository.
+Credentials of Jenkins
+
+Note :
+------
+For Testing purpose we can click on build now.
+
+########################################################### 5.Tomcat Setup ##############################################################
+
+Download Apache Tomcat 10.
+Open server.xml in config folder.
+
+Add the username and password in server.xml.
+Also add the roles in tomcat-users.xml.
+
+	<tomcat-users xmlns="http://tomcat.apache.org/xml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+              version="1.0">
+ <user username="admin" password="admin" roles="manager-gui,manager-script"/>
+ <role rolename="manager-script"/>
+ 
+Then start the Tomcat and it will run on port 8080.
+
+########################################################### 6.Deploy Application into Tomcat using Jenkins ##############################
+
+Install Deploy Container plugin in Jenkins for integration with Tomcat.
+Here the requirement is to create a Jenkons Job that will deploy the Git Repository project into Tomcat Server.

@@ -1,9 +1,9 @@
-1.What is SonarQube and configuring Maven Project for Code Coverage (Tech Primers)            [10-JUL-2022]  (Done)
-2.Java Source code Analysis using SonarQube (Java Techie)									  [11-JUL-2022]  (Done)
-3.Sonarqube Introduction and Server Setup and Integration with Spring Boot (Green Learner)	  [10-JUL-2022]  ()
-4.Sonarqube Installation and analyze Sonarqube Report for a Basic Java Project (Siva Reddy)   [10-JUL-2022]  ()
-5.How to analyze code quality using Sonarqube (Engineer)									  [10-JUL-2022]  ()
-
+1.What is SonarQube and configuring Maven Project for Code Coverage 				(Tech Primers)            		[10-JUL-2022]  (Done)
+2.Java Source code Analysis using SonarQube 										(Java Techie)					[11-JUL-2022]  (Done)
+3.Sonarqube Introduction and Server Setup and Integration with Spring Boot 			(Green Learner)	  				[10-JUL-2022]  ()
+4.Sonarqube Installation and analyze Sonarqube Report for a Basic Java Project 		(Siva Reddy)   					[10-JUL-2022]  ()
+5.How to analyze code quality using Sonarqube 										(Engineer)						[10-JUL-2022]  ()
+6.What and why is SonarQube 														(Valaxy Technologies)			[04-AUG-2024]  ()
 
 
 ********************************  1.What is SonarQube and configuring Maven Project for Code Coverage (Tech Primers)  *******************************************
@@ -35,17 +35,12 @@ To run the Sonarqube we use the command "F:\sonarqube-9.5.0.56709\sonarqube-9.5.
 Local Sonarqube Dashboard walkthrough :
 ---------------------------------------
 
-
-
-
-
 Sonarqube documentation walkthrough :
 -------------------------------------
 
 
 Significance of jacoco plugin and how to configure it :
 -------------------------------------------------------
-
 
 
 ******************************** 2.Java Source code Analysis using SonarQube (Java Techie)  ****************************************************************

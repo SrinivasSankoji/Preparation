@@ -1,16 +1,21 @@
-1.EC2 Dashboard								   (AWS Management Console)	[29-MAY-2021]  (Done)   							
-2.EC2 Introduction   						   (Vishal Padghan)         [21-MAY-2021]  (Done)   (Refer Articles)
-3.Connect to Linux Instance using SSH          (Michael Galarnyk)   	[29-MAY-2021]  (Done)
-4.EC2 Bootstrap Script          			   ()              		    [22-MAY-2021]  ()
-5.EC2 Windows Instance          			   ()             			[22-MAY-2021]  ()
-6.EC2 Metadata                                 ()              		    [22-MAY-2021]  ()
-7.EC2 Placement Groups                         ()              		    [22-MAY-2021]  ()
-8.EC2 AutoScaling                              (Chris Hare)             [22-MAY-2021]  ()
-9.Spring Boot Docker EC2					   (Simple Programming)		[22-JUN-2021]  ()	
-10.Spring Boot Docker EC2					   (Daily Code Buffer)		[22-JUN-2021]  ()	
-11.Restore EC2 from Snapshot				   (Vishal Padghan)         [21-JUN-2021]  () 
+1.EC2 Dashboard								   		(AWS Management Console)	[29-MAY-2021]  (Done)   							
+2.EC2 Introduction   						   		(Vishal Padghan)         	[21-MAY-2021]  (Done)   (Refer Articles)
+3.Connect to Linux Instance using SSH          		(Michael Galarnyk)   		[29-MAY-2021]  (Done)
+4.EC2 Bootstrap Script          			   		()              		    [22-MAY-2021]  ()
+5.EC2 Windows Instance          			   		(Avinash Reddy)             [15-AUG-2024]  ()
+6.EC2 Metadata                                 		()              		    [22-MAY-2021]  ()
+7.EC2 Placement Groups                         		()              		    [22-MAY-2021]  ()
+8.EC2 AutoScaling                              		(Chris Hare)             	[22-MAY-2021]  ()
+9.Spring Boot Docker EC2					   		(Simple Programming)		[22-JUN-2021]  ()	
+10.Spring Boot Docker EC2					   		(Daily Code Buffer)			[22-JUN-2021]  ()	
+11.Restore EC2 from Snapshot				   		(Vishal Padghan)         	[21-JUN-2021]  ()
+12.EC2 Deep dive 							   		(Abhishek Veeramalla)		[13-AUG-2024]  ()
+13.Connect to EC2 from Windows                 		(Abhishek Veeramalla)		[13-AUG-2024]  ()
+14.EC2 Introduction 								(Avinash Reddy)				[15-AUG-2024]  (Read)
+15.EC2 Instance types								(DGR Uploads)				[15-AUG-2024]  (Done)
+16.EC2 Pricing Plans							    (Rakesh Taninki)			[15-AUG-2024]  ()
 
-*******************************************************************  1.EC2 Dashboard	*******************************************************
+###################################################################  1.EC2 Dashboard	#######################################################
 
 1.Instances :
 Instances
@@ -41,7 +46,7 @@ Launch Configurations
 Auto Scaling Groups
 
 
-******************************************************************* 2.EC2 Introduction (Vishal Padghan) ***************************************
+################################################################### 2.EC2 Introduction (Vishal Padghan) #######################################
 
 1.Drawback
 2.Introduction
@@ -69,9 +74,9 @@ We may under estimate the requirement which leads to the crash of an Application
 
 2.Introduction :
 ----------------
-EC2 is a service from AWS that provides a resizable computing services on the cloud.
+EC2 is a service from AWS that provides a resizable computing capacity in the cloud.
 Other services include S3,ECS,IAM etc.
-Resizable because we can quickly scale up or scale down the number of server instances that we are using,If the computing requirement changes.
+Resizable because we can quickly scale up or scale down the number of server instances as per our computing requirements.
 
 EC2 is a way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
@@ -92,7 +97,7 @@ When we use EC2 or any other service we use it through an Instance i.e t2.micro 
 
 3.Instance :
 ------------
-Instance is a Virtual Server for running Application on EC2.
+Instance is a virtual Server for running Application on EC2.
 It can be considered as a tiny part of a large computer,whcih has its own harddrive,network connection,os etc.
 We can have multiple tiny computers on a single physical server and each tiny computer is called as an Instance.
 
@@ -106,9 +111,9 @@ Based on load we cannot scale up or scale down the servers with immideate effect
 There are some other problems which makes the EC2 stronger.
 
 5.Types of EC2 Instances :
---------------------------------
+--------------------------
 Computing is a very broad term and the nature of task decides what kind of computing we need.
-AWS EC2 offers 5 types of instances 
+AWS EC2 offers 6 types of instances 
 
 General Instances
 Compute Instances
@@ -118,7 +123,7 @@ Accelerated Computing instances
 
 General Instances :
 For an Application that require a balance of perfromance and cost effective.
-Consider the case of Email Responding Systems where we need a prompt response as well as cost effective because it doesn't require much processing.
+Consider the case of Email responding systems where we need a prompt response as well as cost effective because it doesn't require much processing.
 
 Compute Instances :
 For an Application that requires a lot of processing from the CPU.
@@ -266,8 +271,8 @@ Since they have the customers across the globe they have set up multiple Availab
 Elastic IP Address's are the static IP Address's that are associated with our AWS Account.
 They can be used to mask the failure of an instance by automatically remapping our address to another working instance in our Account.
 
-15.AWS EC2 Pricing :
---------------------
+15.AWS EC2 Pricing / Purchasing options :
+-----------------------------------------
 AWS EC2 Free tier allows 750 Hours of t2.micro instance usage per month.
 Free Tier is valid for 1 year.
 
@@ -278,8 +283,8 @@ The price we set for EC2 is hourly basis.
 The moment when the price of the instance becomes greater than what we have set,the instance shut downs automatically.
 
 2.On Demand Instances
-These are used when we want to pay for the hour with no long term commitments ad upfront payments.
-These are useful for Applications deployed for the first time or test Applications.
+These are used when we want to pay for the hour with no long term commitments and upfront payments.
+These are useful for Applications deployed for the first time or to Test Applications.
 
 3.Reserved Instances
 With this we can have reserved instances for a specific period of time with 3 payment options and 2 terms.
@@ -327,7 +332,7 @@ Converting Your Private Key Using PuTTYgen :
 
 
 
-****************************************** 2.Connect to EC2 Instance using SSH from Ubuntu (Michael Galarnyk)  *********************************
+########################################## 2.Connect to EC2 Instance using SSH from Ubuntu (Michael Galarnyk)  #################################
 
 To connect to the EC2 instance from Ubuntu
 Navigate to the Folder where the pem file is present
@@ -354,5 +359,97 @@ Reference :
 https://www.youtube.com/watch?v=bi7ow5NGC-U
 
 
-******************************************* 9.Spring Boot Docker EC2  (Simple Programming) *******************************************************
+########################################### 9.Spring Boot Docker EC2  (Simple Programming) #######################################################
+	
 
+
+########################################### 14.EC2 Introduction (Avinash Reddy)  #################################################################
+
+EC2 Instance Types :
+--------------------
+
+
+
+
+EC2 Pricing options :
+---------------------
+
+
+
+EC2 Compute Isolation :
+-----------------------
+
+
+
+Virtualization options :
+------------------------
+
+
+###########################################  15.EC2 Instance types (DGR Uploads) ##################################################################
+
+AWS provides a wide range of EC2 instance types that are optimized for different use cases.
+Instance type comprises of varying combination of CPU, Memory storage and Network capacity.
+This gives us the flexibility to choose the most appropriate mix of resources for the applications.
+Each Instance type includes one or more instance sizes that allows us to scale the resources based on target workloads.
+
+1.General purpose
+2.Compute optimized
+3.Memory optimized
+4.Storage optimized
+5.Accelerated computing
+6.HPC optimized
+
+https://aws.amazon.com/ec2/instance-types/
+
+1.General purpose :
+-------------------
+General purpose instance provides a balance of compute, memory and networking resources and can be used for a variety of diverse workloads.
+These instances are ideal for an application that use the resources in equal proportions such as Web Servers, Code repositories etc.
+For an Application that require a balance of perfromance and cost effective.
+Consider the case of Email responding systems where we need a prompt response as well as cost effective because it doesn't require much processing.
+
+2.Compute optimized :
+---------------------
+For an Application that requires a lot of processing from the CPU we use Compute optiized instance.
+Instances belonging to this category are well suited for below applications.
+
+Batch processing workloads
+Media transcoding
+High performance web servers
+High performance computing (HPC) 
+Scientific modeling
+Dedicated gaming servers
+Ad server engines
+Machine learning inference
+Compute intensive applications like Twitter where we analyse the data from a stream of data.
+
+3.Memory optimized :
+--------------------
+Memory optiized instances are designed to deliver fast performance for workloads that process large datasets in memory.
+Memory optimized instances are ideal for Memory-intensive workloads such as open source databases, in-memory caches, and real-time big data analytics.
+For an Application that are heavy in nature and requires a lot of RAM.
+Consider the scenario where lot of Applications are running in the background i.e. multitasking.
+
+4.Storage optimized :
+---------------------
+For an Application that are huge in size or occupies a lot of space.
+
+Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage. 
+They are optimized to deliver tens of thousands of low-latency, random I/O operations per second (IOPS) to applications.
+
+Storage optimized instances are optimized for I/O intensive applications and are targeted to customers using transactional databases (Amazon DynamoDB, MySQL, and PostgreSQL), 
+Amazon OpenSearch Service, and real-time analytics such as Apache Spark.
+
+5.Accelerated computing :
+-------------------------
+For an Application that requires heavy graphics rendering.
+Consider the scenario of 3D modelling etc.
+
+Accelerated computing instances use hardware accelerators or co-processors to perform functions.
+Such as floating point number calculations, graphics processing, data pattern matching more efficiently than is possible in software running on CPUs.
+
+
+6.HPC optimized :
+-----------------
+High performance computing (HPC) instances are purpose built to offer the best price performance for running HPC workloads at scale on AWS. 
+HPC instances are ideal for applications that benefit from high-performance processors such as large, complex simulations and deep learning workloads.

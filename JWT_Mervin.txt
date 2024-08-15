@@ -1,6 +1,5 @@
 
 Use Builder Lombok instead of Using New Operator.
-
 Configuration Properties -- Model Class -- Autowired i.e 
 Define the JWT Related Configuration in Properties File and Create the Model That is Annotated With
 @ConfigurationProperties and Autowired The Model.

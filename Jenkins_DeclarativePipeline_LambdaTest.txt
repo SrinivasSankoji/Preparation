@@ -16,28 +16,26 @@
 16.Making Build as Unstable                                     [16-SEP-2021] (Done)
 17.Triggers                                                     [16-SEP-2021] (Done)
 
-*********************************************** 1.Jenkinsfile *****************************************
+############################################### 1.Jenkinsfile #########################################
 
-A Job in Jenkins can created using Jenkins UI as a Free Style Jobs.
-These Jobs can be chained together in a sequence called as Pipeline.
-Jenkins 2.0 introduced the new way of creating the Jobs in Jenkins as a Pipeline as a Code.
-In case of Pipeline as a Code,Jobs are created using a script file that contains the steps that has to be executed.
-The Script File is called Jenkinsfile.
+A Job in Jenkins can be created using Jenkins UI as a Free style Job.
+These Jobs can be chained together in a sequence called as pipeline.
+Jenkins 2.0 introduced the new way of creating the Jobs in Jenkins i.e. Pipeline as a code.
+In case of Pipeline as a code, Jobs are created using a script file that contains the steps that has to be executed.
+The script file is called Jenkinsfile.
 
-Jenkins provides two ways of developing Pipeline as a Code.
-1.Scripted Pipeline Syntax
-2.Declarative Pipeline Syntax
+Jenkins provides two ways of developing Pipeline as a code.
+1.Scripted Pipeline syntax
+2.Declarative Pipeline syntax
 
-Jenkinsfile is a text file usually checked in along with the project's source code in Git Repo.
+Jenkinsfile is a text file usually checked in along with the project's source code in Git Repository.
 Ideally every Application has its own Jenkinsfile.
 
-*********************************************** 2.Jenkins Scripted Pipeline ***************************
-Jenkins Pipeline are traditionally written as Scripted Pipeline.
-Scripted Pipeline is written in Groovy.
+############################################### 2.Jenkins Scripted Pipeline ###########################
 
-Scripted Pipeline requires knowledge of Groovy.
-Scripted Pipeline start with word node.
-Scripted Pipeline contains standard programming constructs like If else block and try catch block.
+Scripted pipeline is written in Groovy and requires knowledge of Groovy.
+Scripted pipeline starts with word node.
+Scripted pipeline contains standard programming constructs like if else block and try catch block.
 
 Sample Scripted Pipeline :
 --------------------------
@@ -48,16 +46,14 @@ Sample Scripted Pipeline :
 		}
 	}
 
-*********************************************** 3.Jenkins Declarative Pipeline ************************
-Jenkins Declarative Pipeline is relatively new and provides a simplified opinionated syntax.
+############################################### 3.Jenkins Declarative Pipeline ########################
 
-Declarative Pipeline needs to use the predefined constructs to create a Pipeline.
-Hence it is not flexible as Scripted Pipeline.
-Declarative Pipeline starts with word "pipeline".
-Declarative Pipeline does not need the understanding of Groovy Lanmguage.
+Declarative pipeline is relatively new and provides a simplified, opinionated syntax.
+Declarative pipeline uses the predefined constructs to create a pipeline. Hence it is not flexible as Scripted pipeline.
+Declarative pipeline starts with word "pipeline".
+Declarative pipeline does not require the knowledge of Groovy.
 
-We can also validat the Declarative Pipeline code before running the Job.
-Hence saves lot of runtime issues with Build Script.
+We can also validate the Declarative pipeline code before running the job which saves lot of runtime issues with build script.
 
 Sample Declarative Pipeline :
 -----------------------------
@@ -74,7 +70,8 @@ Sample Declarative Pipeline :
 		}
 	}
 
-*********************************************** 4.Running First Declarative Pipeline ******************
+############################################### 4.Running First Declarative Pipeline ##################
+
 	pipeline{
 		agent any
 		stages{
@@ -87,12 +84,15 @@ Sample Declarative Pipeline :
 		}
 	}
 
-*********************************************** 5.Declarative Pipeline Syntax *************************
-Declarative Pipeline contains one or more Declarative Steps or Dierctives.
+############################################### 5.Declarative Pipeline Syntax #########################
+
+Declarative pipeline consists of one or more directives where each directive defines a specific part of the pipeline.
+Common directives include pipeline, agent, stages, stage, steps, environment, and post. 
+Each directive has a specific role in the pipeline, and they work together to complete the build process.
 
 Pipeline :
 ----------
-Entire Declarative Pipeline should be written inside Pipeline block.
+Entire Declarative pipeline should be written inside Pipeline block.
 It is a mandatory block.
 
 	pipeline{
@@ -100,7 +100,7 @@ It is a mandatory block.
 	
 agent :
 -------
-Specifies where the Jenkins Build Job should run.
+Specifies where the Jenkins job should run.
 Agent can be at Pipeline level or at Stage Level.
 Its mandatory to define an agent.
 
@@ -114,15 +114,15 @@ Run Job or Stage on any available agent.
 	}
 
 2.none
-Don't allocate Agent globally for the Pipeline.
-Every Stage should specify their own Agent to run.
+Don't allocate the agent globally for the Pipeline.
+Every stage should specify their own agent to run.
 
 	pipeline{
 		agent none
 	}
 
 3.label
-Run the Job in an Agent which matches the given label.
+Run the Job in an agent which matches the given label.
 Jenkins CI/CD can work on Master Agent Architecture.
 Master Nodes delegates the Job to run in Agent Nodes.
 Nodes on creation given a name and label to identify them later.
@@ -136,10 +136,11 @@ Example : All Linux Nodes can be labelled as linux-machine.
 	}
 
 4.docker
-Run the Job in a given Docker Container.
+Run the job in a given Docker container.
 
-*********************************************** 6.Stages **********************************************
-Stages block constitutes different executable stage blocks.
+############################################### 6.Stages ##############################################
+
+Stages block contains different executable stage blocks.
 Atleast one stage block is mandatory inside stages block.
 
 	pipeline{
@@ -151,11 +152,12 @@ Atleast one stage block is mandatory inside stages block.
 		}
 	}
 
-*********************************************** 7.Stage ***********************************************
+############################################### 7.Stage ###############################################
+
 Stage block contains the actual execution steps.
 Stage block has to be defined within the Stages block.
 It is mandatory to have atleast on stage block inside stages block.
-It is also mandatory to name each stage block and this will be shown in Stage View when we run the Job.
+It is also mandatory to name each stage block as this will be shown in Stage view when we run the Job.
 
 	pipeline{
 		agent 
@@ -169,10 +171,11 @@ It is also mandatory to name each stage block and this will be shown in Stage Vi
 		}
 	}
 
-*********************************************** 8.Steps ***********************************************
-Step block contains the actual build step.
-It is mandatory to have atleast one step block inside the stage block.
-Depending on the Agent Operating System ie where the Jenkins Job runs we can use shell,bat etc in the steps command.
+############################################### 8.Steps ###############################################
+
+Steps block contains the actual build step.
+It is mandatory to have atleast one steps block inside the stage block.
+Depending on the agent Operating System i.e. where the Jenkins Job runs, we can use shell,bat etc in the steps command.
 
 	pipeline{
 		agent 
@@ -189,8 +192,9 @@ Depending on the Agent Operating System ie where the Jenkins Job runs we can use
 		}
 	}
 
-*********************************************** 9.Parameters ******************************************
-Parameters directive provides a way for Jenkins Job to interact with Jenkins CI/CD users during the Job run.
+############################################### 9.Parameters ##########################################
+
+Parameters provides a way for Jenkins Job to interact with users during the Job run.
 Parameters can be of the following types.
 
 String
@@ -217,8 +221,9 @@ If the Parameter directive is used in the Pipeline then Jenkins changes the opti
 		}
 	}
 
-*********************************************** 10.Script *********************************************
-Script block allows us to write the Groovy code inside the Jenkins Declarative Pipeline.
+############################################### 10.Script #############################################
+
+Script block allows us to write the Groovy code inside the Declarative pipeline.
 
 	pipeline{
 	agent any
@@ -243,7 +248,8 @@ Script block allows us to write the Groovy code inside the Jenkins Declarative P
 	}
 	}
 
-*********************************************** 11.Environment ****************************************
+############################################### 11.Environment ########################################
+
 Environment are the key value pairs which helps in passing the values to the Job during runtime from outside of Jenkinsfile.
 It is one of the way of externalizing configuration.
 
@@ -312,7 +318,8 @@ Load credentials via environment block :
 
 
 
-*********************************************** 12.When ***********************************************
+############################################### 12.When ###############################################
+
 when acts like If condition to decide whether to run the particular stage or not.
 It is an optional block.
 
@@ -420,7 +427,8 @@ When block with Multiple Conditions and Any of the given Condition should be sta
 		}
 	}
 
-*********************************************** 13.Tools **********************************************
+############################################### 13.Tools ##############################################
+
 tools block allows us to add pre-configured tools like Maven,Java etc.
 To use the tol block they have to pre-configured under the "Global Tools Configuration" Section.
 
@@ -440,7 +448,8 @@ To use the tol block they have to pre-configured under the "Global Tools Configu
 		}
 	}
 
-*********************************************** 14.Paralell *******************************************
+############################################### 14.Paralell ###########################################
+
 paralell block allows us to run multiple stage blocks concurrently.
 When we have stage blocks that can run independently we define those stage blocks inside paralell block.
 Here stage block will run on its own agent.
@@ -472,7 +481,8 @@ Here stage block will run on its own agent.
 		}
 	}
 
-*********************************************** 15.Post ***********************************************
+############################################### 15.Post ###############################################
+
 post block can be used to perform additional action on completion of the Pipeline.
 Additional action includes 
 
@@ -518,7 +528,8 @@ Then build can be marked as unstable.
 		}
 	}
 	
-*********************************************** 16.Making Build as Unstable ***************************
+############################################### 16.Making Build as Unstable ###########################
+
 There are scenarios where we dont want to mark the build as failure but want to mark the build as Unstable.
 If the Test coverage does not cross the threshold then mark the build as Unstable.
 
@@ -549,10 +560,10 @@ If the Test coverage does not cross the threshold then mark the build as Unstabl
 			stage('Code Coverage'){
 				steps {
                jacoco(
-                    execPattern: '**/target/**.exec',
-                    classPattern: '**/target/classes',
-                    sourcePattern: '**/src',
-                    inclusionPattern: 'com/iamvickyav/**',
+                    execPattern: '##/target/##.exec',
+                    classPattern: '##/target/classes',
+                    sourcePattern: '##/src',
+                    inclusionPattern: 'com/iamvickyav/##',
                     changeBuildStatus: true,
                     minimumInstructionCoverage: '30',
                     maximumInstructionCoverage: '80')
@@ -561,7 +572,8 @@ If the Test coverage does not cross the threshold then mark the build as Unstabl
 		}		
 	}
 	
-*********************************************** 17.Triggers *******************************************
+############################################### 17.Triggers ###########################################
+
 Instead of triggering the build manually we can cofigure the build to run in certain time intervals using triggers block.
 We can use the special method called cron() within the triggers block to configure the build schedule.
 cron() takes 5 parameters
@@ -570,7 +582,7 @@ Minute(0-50),Hour(0-23),Day(0-31),Month(1-12),Day of the Week(0-7)
 	pipeline{
 		agent any
 		triggers{
-			cron('H/2 * * * *')
+			cron('H/2 # # # #')
 		}
 		stages{
 			stage('Trigger Block'){
@@ -581,4 +593,4 @@ Minute(0-50),Hour(0-23),Day(0-31),Month(1-12),Day of the Week(0-7)
 		}
 	}
 	
-*********************************************** Completed *******************************************
+############################################### Completed ###########################################

@@ -24,37 +24,37 @@
 24.Clone a Git Repo Using Jenkinsfile									[14-SEP-2021] ()
 
 
-********************************************** 1.Jenkins Introduction   *******************************************************************
+############################################## 1.Jenkins Introduction   ###################################################################
 
-Jenkins is a Java Application and is platform Independent ie It does not require any platform (Window,Mac or Linux).
+Jenkins is a Java Application and is platform Independent.
 Jenkins is used for Continuous Integration and Continuous Delivery.
-Whenever we work in the team we work with different developers and each developer will do some changes in the code and commit the code in the Repository.
-At the end of the day,there are many developers who are changing the code and check in the code to the Repository and now the build has failed.
-It is very difficult to identify at which point the build has failed and who has done the Changes.
+
+Whenever we work in the team we work with different developers.
+Each developer will do some changes in the code and commit the code to the Repository.
+At the end of the day,there are many developers who has changed the code and check in the code to the repository and now the build has failed.
+It is very difficult to identify at which point the build has failed and who has done the changes.
 To resolve the above situation we use Jenkins.
-As soon as developer commits the code into the shared Repository,Jenkins will pull the latest code and trigger the build.
-Build Notification will be sent out and If there are any issues we can revert back.
-If the build is successful we can also integrate unit Test as a post build action and sent the report back.
+As soon as developer commits the code into the repository, Jenkins will pull the latest code from the repository and trigger the build.
+Build Notification will be sent out and if there are any issues we can revert back.
+If the build is successful we can also integrate the Test cases as a post build action and sent the report back.
 
 Continuous Integration :
 ------------------------
-Continuous Integration is a software development practice where developers regularly merge their code changes into a central Repository
-after which Automated Builds and Tests are run.
-But the Application is not automatically deployed on to the Test Servers in oreder to validate It.
+Continuous Integration is a practice where developers continuously merge their code into a repository after which automated builds and tests are run.
+But the Application is not automatically deployed on to the Test Servers in order to validate It.
 
 Continuous Delivery :
 ---------------------
-Continuous Delivery is a software development practice where Application is continuously deployed on to the Test Servers.
-We can say that Applcation is ready to release for Production any time.
+Continuous Delivery is a practice where application is continuously deployed on to the Test servers.
+We can say that applcation is ready to release for production any time.
 
 Continuous Deployment :
 -----------------------
-In case of Continuous Deployment,We are deploying it an Automated Fashion.
+In case of Continuous Deployment,we are deploying it an automated way.
 
 
 Download Jenkins :
 ------------------
-
 Download the Jenkins from  https://jenkins.io/download/ --> Extract the Zip File --> Run the Executable File.
 It will be installed in C:/Program Files/Jenkins
 Then Copy the Jenkins.war File and place in any directory i.e D:\Software.
@@ -64,12 +64,12 @@ Open the Jenkins in the Browser --> http://localhost:8500/ and enter the Passwor
 C:\Users\Bhaumik Chary\.jenkins\secrets\initialAdminPassword --> 
 Enter it --> Select the option you Want --> Then continue as Admin.
 
-********************************************** 2.Setting up Jenkins on Tomcat   *************************************************************
+############################################## 2.Setting up Jenkins on Tomcat   #############################################################
 
 Download and Install Tomcat 
 
 
-********************************************** 3.Change Home Directory   ********************************************************************
+############################################## 3.Change Home Directory   ####################################################################
 
 Whenever we install jenkins It will create a default folder in the user profile of the system named .jenkins.
 Common reason to change the home directory is that it is stored in the users directory and there may be a chance of space issue.
@@ -96,11 +96,11 @@ Reference :
 http://tech.nitoyon.com/en/blog/2014/02/25/jenkins-home-win/
 
 
-********************************************** 4.Using CLI   ********************************************************************************
+############################################## 4.Using CLI   ################################################################################
 
 
 
-********************************************** 5.Create Users,Manage and Assign Roles   *****************************************************
+############################################## 5.Create Users,Manage and Assign Roles   #####################################################
 
 Create New Users :
 ------------------
@@ -168,7 +168,7 @@ We can Create Roles Specific to Project
 
 We have two Options
 Role to add   :  Developer
-Role Pattern  : Dev*(Project Name)
+Role Pattern  : Dev#(Project Name)
 
 Click on Apply and then Save
 
@@ -178,11 +178,11 @@ Manage Jenkins --> Manage And Assign Roles --> Assign Roles --> Select The Appro
 To Test the Scenario --> Create New Item(Project)
 
 
-********************************************** 6.Basic Configuration in Jenkins ***************************************************************
+############################################## 6.Basic Configuration in Jenkins ###############################################################
 
 
 
-********************************************** 7.Getting Started With Jobs ********************************************************************
+############################################## 7.Getting Started With Jobs ####################################################################
 
 Steps involved in Jobs  are
 
@@ -199,7 +199,7 @@ After that 6 Tabs will be Opened.
 2.Source Code  Management --> To get the code from any Repository
 3.Build Triggers --> Build Options  -->  
 				   Poll SCM For Git Repository
-				   Build Periodically (* * * * *) For Every Minute  (H/60 * * * * ) To run it Hourly
+				   Build Periodically (# # # # #) For Every Minute  (H/60 # # # # ) To run it Hourly
 				   Run the Job Remotely
 				   
 4.Build Environment --> 
@@ -215,7 +215,11 @@ Copy the URL and paste it it on the browser i.e JENKINS_URL/job/Test1/build?toke
 Repleace Jenkins URL with HostName or localhost
 Then it will build the Job --> then see the build version in the project.
 
+JENKINS_URL/job/Remote%20Job/build?token=TOKEN_NAME or /buildWithParameters?token=TOKEN_NAME
+
 http://localhost:3001/job/Test2/build?token=1234
+
+http://localhost:7070/job/Remote%20Job/build?token=SmartSchool
 
 3.Chain Job Execution :
 -----------------------
@@ -227,7 +231,7 @@ i.e In Test1 Project --> Configure --> Build Trigger Options
 After Successful Execution of Test2 --> Post Build Actions --> Select the Option Build Other Project --> Add the Test 3 Project
 Finally Build the Project Test1 and it Internally Chains the Other Projects.
 
-********************************************** 8.Jenkins Integration With GIT  *****************************************************************
+############################################## 8.Jenkins Integration With GIT  #################################################################
 
 Create a Java Program :
 -----------------------
@@ -259,12 +263,12 @@ i.e whenever any Changes done in Git Repository it will build automatically in J
 
 we have to provide the cron Expression.
 
-* * * * *
+# # # # #
 
 Here It will check the Repositroy for every Minute.
 
 
-**********************************************  9.Add GitHub Credentials **************************************************************************
+##############################################  9.Add GitHub Credentials ##########################################################################
 
 Manage Jenkins --> Manage Credentials --> Jenkins --> Global credentials (unrestricted) --> Add Credentials -->  Add
 
@@ -280,7 +284,7 @@ Then the new Job will be saved in the provided GitHub WorkSpace.
 In the General Tab Specify the GitHub Project URL.
 In the General Tab,create custom workspace, then all the jobs will be created in the Workspace.
 
-********************************************** 10. How to Use CatLight ****************************************************************************
+############################################## 10. How to Use CatLight ############################################################################
 
 Cat Light is a status Notifier for Developers.
 Cat Light will monitor all the Jobs on Jenkins i.e whenever there is any status change that needs our attention then it will pop up on our desk top.
@@ -297,26 +301,29 @@ Select the Project which ever you want and save.
 We will get the Cat Light icon at the Bottom.
 We can also change the CatLight Settings If required.
 
-********************************************** 11.Automated Deployment ******************************************************
+############################################## 11.Automated Deployment ######################################################
 
-Automated Deployment is the process of automating the Deployment Process in a Continuous Delivery System.
-Before Understanding Automated Deployment,The Main stages in Continuous Integration and Continuous Delivery of a Project are
-Build --> Deploy --> Test --> Release.
-Each stage has a job and every job is chained i.e when the build job is successful then only deployment job has to run and so on.
-All the jobs are chained in a Continuous Integrated System.
-After every Job notification will be sent which will tell the status of the Job ie If there are any issues for that job,information about the Job etc.
+Automated Deployment is the process of automating the deployment process in a continuous integration and delivery system.
+Before understanding automated deployment, it is important to know the main stages in continuous integration and continuous delivery of a project.
 
-Project Set Up :
-----------------
-   --> Developers commit the Code in VCS(GIT).
-   --> Build the Project in Jenkins whenever any commit has done in GIT (Build Stage).
-   --> Out come of the Job is an Artifact that can be either War or Jar.
-   --> Deploy an Artifact to the Server (Deployment Stage)
-   --> Once the deployment is done we will have different Test jobs that will perform the Testing (Test Stage)
-   --> Once Every thing is successful we will release to Production (Release Stage).
-	   Deployment to the Test server and Production Server are the actual Deployment Steps.	   
+Build --> Test --> Deploy --> Release.
+
+Build   : The source code is compiled and built into an executable format.
+Test    : Automated tests are run to verify the integrity and functionality of the code.
+Deploy  : The built and tested code is deployed to a staging or production environment.
+Release : The final step where the code is released for use, often involving additional steps such as versioning and documentation.
+
+Each stage has a job and every job is chained. When the build job is successful then only the test job will run and so on. 
+All the jobs are chained in a continuous integration system.
+After every job, a notification will be sent, providing the status of the job, any issues encountered, and information about the job.
+
+1.Commit            : Developers commit the code in Version Control System (GIT).
+2.Build Stage 		: Whenever a commit is made in GIT build the project in Jenkins. The outcome of the build job is an artifact which can be a WAR or JAR file.
+3.Deployment Stage  : Deploy the artifact to a Test server.
+4.Test Stage        : Execute different test jobs to perform testing on the deployed artifact.
+5.Release Stage     : If all tests are successful then proceed with the release to production. Deployment to the production server.  
 	    
-********************************************** 12 .Setting up Tomcat  ************************************************************************	
+############################################## 12 .Setting up Tomcat  ########################################################################	
 
 1.Download and start Tomcat on Windows
 2.Different Methods of Starting and Stopping Tomcat
@@ -360,7 +367,7 @@ Place the jenkins.war inside this folder and start the Tomcat.
 http://localhost:8088/jenkins 
 
 
-********************************************** 13.Implementing Automated Deployment **********************************************************
+############################################## 13.Implementing Automated Deployment ##########################################################
 
 Here the Scenario is Deploying war on Tomcat.
 
@@ -378,7 +385,7 @@ Download the Sample War File to demo the Automated Deployment.
 Step 4:
 Add the Post Build Action i.e Deploy Ear/War to the Container.
 
-Select the War File as **/*.war i/e It will take the war file available in Workspace
+Select the War File as ##/#.war i/e It will take the war file available in Workspace
 Place the War File in Jenkins Home i.e C:\Users\Bhaumik Chary\.jenkins\workspace\AutomatedDeployment
 Then in the Context Path provide the name of the war.
 Then add the Container i.e Select Tomcat 8 --> Provide the Tomcat URL  -> http://localhost:8088/ (Tomcat Should be running)
@@ -387,11 +394,11 @@ Finally Build the Project and run the URL --> http://localhost:8088/sample/
 It will show the Sample Application.
 
 
-********************************************** 14.Sending Email Notification and PipeLine ****************************************************
+############################################## 14.Sending Email Notification and PipeLine ####################################################
 
 
 
-**********************************************  15.Pipeline in Jenkins  **********************************************************************
+##############################################  15.Pipeline in Jenkins  ######################################################################
 
 Pipeline is a workflow with a group of events or jobs that are chained and integrated with each other in a Sequence.
 
@@ -406,7 +413,7 @@ We call it as Continuous Delivery pipeline.
 Build Section have build jobs and there will be a Notification or Feedback for that build.
 All these Sections work together in a sequence in an integrated way and is called Continuous Delivery Pipeline.
 
-********************************************** 16. Delivery Pipeline In Jenkins ***************************************************************
+############################################## 16. Delivery Pipeline In Jenkins ###############################################################
 
 Step 1:
 Chain requires Jobs in sequence i.e For every Job add the Upstream and Downstream Jobs.
@@ -446,7 +453,7 @@ We have an option to build the Job alone without starting the PipeLine ie "Enabl
 We can build the Job from Pipeline by using the option "Enable start of new pipeline build"
 
 
-********************************************** 17.Build PipeLine In Jenkins *******************************************************************
+############################################## 17.Build PipeLine In Jenkins ###################################################################
 
 Adding the Build Pipeline PlugIn :
 ----------------------------------
@@ -464,16 +471,16 @@ To view the last five Builds --> No Of Displayed Builds to 5.
 To Display the Console --> Select the Option New Window.
 
 
-********************************************** 18.Build Ocean in Jenkins  *********************************************************************
+############################################## 18.Build Ocean in Jenkins  #####################################################################
 
 
-********************************************** 19.Trigger Job With Email in  Jenkins  *********************************************************
+############################################## 19.Trigger Job With Email in  Jenkins  #########################################################
 
 
-********************************************** 20.Build Monitor View Jenkins  *****************************************************************
+############################################## 20.Build Monitor View Jenkins  #################################################################
 
 
-********************************************** 22.Create Jenkins File	**********************************************************************************
+############################################## 22.Create Jenkins File	##################################################################################
 
 Till now we have created the Jobs on GUI ie from New Item and run the job from GUI.
 PipeLine is a workflow with a group of events or Jobs that are chained and integrated with each other in a sequence.
@@ -535,7 +542,7 @@ Note :
 ------
 We can create the Pipeline Script in the GUI or clone it from the Repository.
 
-********************************************** 23.Get Jenkins File from GIT SCM	 *************************************************************************
+############################################## 23.Get Jenkins File from GIT SCM	 #########################################################################
 
 Instead of creating the Pipeline Script from the Jenkins UI,get the Jenkinsfile from the Repoitory.
 Make the changes to the PipelineDemo Job ie
@@ -543,11 +550,11 @@ Pipeline --> Select Pipeline Script from SCM.
 Add the GitHub Credentials --> Then Build the Pipeline Job.
 In the console we can see the Jenkinsfile is downloaded from Repository.
 
-********************************************** 24.Clone a Git Repo Using Jenkins File	******************************************************************
+############################################## 24.Clone a Git Repo Using Jenkins File	##################################################################
 
 
 
-**********************************************  Build and Deployment (Siva Reddy)  ***********************************************************************
+##############################################  Build and Deployment (Siva Reddy)  #######################################################################
 
 Here we need to write the Pipeline script or Jenkinsfile to provide the sequence of steps that starts from 
 Cloning the project from GitHub till the deployment of War File to the Web Server.

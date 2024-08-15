@@ -34,10 +34,10 @@ Here it does not store any data on the hard disk of a computer.
 In Cloud computing we can access the data from the Remote Server.
 
 AWS stands for Amazon Web Services.
-AWS has a wide range of computing products that allows us to operate tasks on the cloud on demand.
-Computing Products like Storage,Database,Analytics,Networking,Mobile,Development Tools,Enterprise Applications etc.
-AWS is designed to be quite low level and it is not designed for casual web site builder.
-AWS is built for large enterprises to build their entire business on.
+AWS has a wide range of computing products that allows us to operate the tasks on the cloud.
+Computing products like Storage,Database,Analytics,Networking,Mobile,Development Tools,Enterprise Applications etc.
+AWS is designed to be quite low level and is not designed for casual web site builder.
+AWS is built for large enterprises to build their entire business.
 AWS is not only low level but there are many different services and lot of services that even substitute with each other.
 
 AWS is a platform that offers Reliable,Scalable,Flexible,Easy to use and cost effective cloud computing solutions.
@@ -48,37 +48,32 @@ WHERE TO START LEARNING AWS :
 -----------------------------
 While learning AWS we should focus on 3 Areas.
 
-1.AWS Core Services
-2.Hands on Learning on AWS Core Services.
-3.Structure the Learning 
-
-Within AWS many services are periphery services which are built on other AWS services.
-AWS has a service called ECS(Elastic Container Service) that allows us to run container based services.
-When we run the services on ECS,we need to configure the host for our containers to run on.
-One of the option to run the host is EC2.
+1.AWS Core services
+2.Hands on learning on AWS Core services.
+3.Structure the learning 
 
 Core Services in AWS are EC2,IAM and S3.
 
 EC2 (Elastic Cloud Compute) :
 -----------------------------
-EC2 is a service from Amazon that provides a resizable computing services on the cloud.
-Resizable because we can quickly scale up or scale down the number of server instances we are using,if the computing requirement changes.
+EC2 is a service from Amazon that provides resizable computing capacity in the cloud.
+Resizable because we can quickly scale up or scale down the number of instances as per our computing requirements.
 
 EC2 is way of running the computer in the cloud.
 In EC2 we can launch Linux Machine,Windows Machine etc.
-EC2 is like having a Computer at the push of a Button.
+EC2 is like having a Computer at the push of a button.
 
 In EC2 we can run different type of workloads.
-We can install wordpress to build a web site.We also can install database and store data directly on EC2.
+We can install wordpress to build a web site.We also can install database and store the data directly on EC2.
 Imagine we can run everything on EC2.
 
 Note :
+------
 Since EC2 is more flexible we don't run everything on EC2.
 If we run the database on EC2 we need to manage ourself.
 AWS offers RDS which takes care of maintaining our own database.
-Here AWS run it under the hood of EC2.
 
-we not only run machines on the cloud i.e EC2,we also need other features such as permissions.
+we not only run machines on the cloud i.e. EC2 we also need other features such as permissions.
 IAM comes into the picture.
 
 IAM :

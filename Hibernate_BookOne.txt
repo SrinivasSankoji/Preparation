@@ -280,7 +280,7 @@ Native SQL
 ***************************************************** 16.Transaction ************************************************************************
 
 Transaction is an interface and implementation is a part of Hibernate Engine.
-Whenver we perfrom any CRUD operations those changes will not be reflected into the Database immideately.
+Whenver we perfrom any CRUD operations those changes will not be reflected to the Database immideately.
 Because Connection object associated with Session object is by default auto commit disabled mode.
 For this purpose Transaction object is created and explicitly committed.
 

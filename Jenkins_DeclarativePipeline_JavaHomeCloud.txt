@@ -1,0 +1,74 @@
+1.Introduction														[03-AUG-2024] ()
+2.Git Checkout                                                      [03-AUG-2024] (Done)
+3.Maven Build                                                       [03-AUG-2024] (Done)
+4.Continuous Delivery                                               [03-AUG-2024] ()
+5.Custom Display Name                                               [03-AUG-2024] ()
+6.CICD for Kubernetes                                               [03-AUG-2024] ()
+7.Automate Kubernetes Deployment                                    [03-AUG-2024] ()
+8.Deploy to Kubernetes Cluster                                      [03-AUG-2024] ()
+9.Validate Jenkinsfile                                              [03-AUG-2024] ()
+10.Reusable Jenkins Pipeline as code                                [03-AUG-2024] ()
+11.Multiple Agents in a single Pipeline                             [03-AUG-2024] ()
+12.AWS Integration with Jenkins                                     [03-AUG-2024] ()
+13.Jenkins Parameters                                               [03-AUG-2024] ()
+14.When Condition                                                   [03-AUG-2024] ()
+15.List Git branches                                                [03-AUG-2024] ()
+
+
+######################################################### 1.Introduction  #########################################################
+
+
+
+
+######################################################### 2.Git Checkout ##########################################################
+
+Command to generate the SSH Key :
+---------------------------------
+ssh-keygen -t ed25519 -C "srinivaschary.chary@gmail.com"
+
+https://github.com/SrinivasSankoji/SmartSchool.git
+
+git branch: 'main', credentialsId: 'github-pipeline-integration', url: 'https://github.com/SrinivasSankoji/smart-school.git'
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                git branch: 'main', credentialsId: 'github-pipeline-integration', url: 'https://github.com/SrinivasSankoji/smart-school.git'
+            }
+        }
+    }
+}
+
+This way of creating Pipeline is inline.
+We can also pull the script from Source code management tools.
+In the above case we use poll for scm option.
+
+######################################################### 3.Maven Build  ##########################################################
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checkout from repository ...'
+                git branch: 'main', credentialsId: 'github-pipeline-integration', url: 'https://github.com/SrinivasSankoji/smart-school.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                echo 'Maven build ...'
+                bat 'mvn clean compile test package'
+            }
+        }
+    }
+}
+
+
+Note :
+------
+Maven Compiler plugin in Jenkins and code should be compatible.
+
