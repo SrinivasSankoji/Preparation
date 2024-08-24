@@ -103,7 +103,7 @@ MAINTAINER 				: Optional value for the MAINTAINER of the Script.
 
 *********************************************************  4.Spring Boot with Docker Container (Simple Programming)  *************************************
 
-To Containerize a Spring Boot Application we need a Docker File.
+To containerize a Spring Boot Application we need a Docker File.
 Docker File is a text file that contains instructions to build the Docker Image.
 
 Note :
@@ -118,7 +118,7 @@ WORKDIR F:/DockerImages
 ENTRYPOINT [ "java","-jar","/springboot-docker.jar" ]
 EXPOSE 8080
 
-To build the Docker image navigate to the Directory where the Dockerfile is present i.e  F:\DevOps\springboot-docker
+To build the Docker image navigate to the directory where the Dockerfile is present i.e  F:\DevOps\springboot-docker
 Then run the command 
 
 	docker build -t springboot-docker:1.0 .

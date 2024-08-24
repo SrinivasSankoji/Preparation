@@ -1,9 +1,62 @@
-1.Run & Deploy Spring Boot Application in K8s        (Java Techie)     		[15-JUL-2023]  ()
+1.Run & Deploy Spring Boot Application in K8s cluster       				(Java Techie)     		[24-AUG-2024]  (Done)
+2.Run & Deploy Spring Boot Application in K8s Cluster using yaml			(Java Techie)     		[25-AUG-2024]  ()
 
 
-################################################### 1.Run & Deploy Spring Boot Application in K8s  (Java Techie)  ###################################################
+################################################### 1.Run & Deploy Spring Boot Application in K8s cluster (Java Techie)  ################################
 
 https://medium.com/@javatechie/kubernetes-tutorial-run-deploy-spring-boot-application-in-k8s-cluster-using-yaml-configuration-3b079154d232
+
+
+Install Minikube which is a single node kubernetes cluster.
+Create the Spring boot application with Dockerfile.
+Dokcerize the Spring boot application and create an image for Spring boot application.
+
+
+Now we need to run the particular image inside pod.
+For that we need to create Deployment object.
+Deployment are Kubernetes objects that are used for managing the pods.
+We can describe Deployment object using yml file or we can directly use the command prompt.
+
+	kubectl create deployment springboot-k8s --image=srinivassankoji/springboot-docker:1.0
+	
+Then it will create the Deployment object.
+To verify it we need to run the command
+
+	kubetcl get deployment
+	
+To verify the spring boot application is running inside the pod, run the command
+
+	kubectl logs springboot-k8s-774477f994-z4shk(pod name)
+	
+Now the application is running inside the pod.
+To access the application from outside we need to expose it through service object.
+To create a service object we need to expose the deployment with the specific service type.
+
+	kubectl expose deployment springboot-k8s --type=NodePort --port=8080 --target-port=8080
+
+To verify the service has created or not run the command
+
+	kubectl get service
+	
+To get the endpoint as we have only single pod
+
+	minikube service springboot-k8s --url
+	
+
+Note :
+------
+To see the spring boot application in kubernetes dashboard we run the command
+
+	minikube dashboard
+
+
+################################### 2.Run & Deploy Spring Boot Application in K8s Cluster using yaml (Java Techie) ##################################
+
+
+	
+
+	
+
 
 
 

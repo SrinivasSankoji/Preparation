@@ -369,7 +369,7 @@ and it would be terminated because number of Replica's is already defined in Rep
 ************************************************************* 12.Deployment in Kubernetes   ****************************************************
 
 Deployment can be used to deploy the Application in Kubernetes.
-If we want to deploy any Application in Kubernetes,we deploy them using Deployment.
+If we want to deploy any Application in Kubernetes,we need to deploy them using Deployment.
 It is similar to Replica Set with additional features like updating the image of an Application,RollOut's and Rollback of an Application.
 To create the deployment manifest file in an imperative way we use the commad 
 
