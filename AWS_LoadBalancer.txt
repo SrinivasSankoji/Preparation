@@ -5,10 +5,11 @@
 5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 6.AWS ALB with Path based Routing 							(AWS Training Center)		[01-JUN-2021]  ()
 7.Production level Load Balancing 							(Crishantha Nanayakkara)    [22-JUN-2021]  ()
+8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  ()
 
 ****************************************** 1.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
 
-1.What is Load Balancer	 (Done)			
+1.What is Load Balancer	 			(Done)			
 2.Difference between ALB and NLB	(Done)				   (Depends on OSI Model) (Done)
 3.ALB and NLB Specific Features		()
 4.HTTP Host and Path Based Routing  (Done)
@@ -23,9 +24,9 @@
 1.What is Load Balancer :
 -------------------------
 Load Balancer plays an important role in building great Internet Applications.
-LB accepts incoming Network traffic from Client and based on some criteria in the traffic it distributes the communication to one or more Back End servers.
+Load Balancer accepts incoming request from Client and based on some criteria it redirects the request to the appropriate server.
 Load Balancer can be of physical hardware or virtual software.
-Load Balancer provides the benefits of Redundancy and scalability.
+Load Balancer provides the benefits of redundancy and scalability.
 
 Redundancy :
 As long as there is only one Application Server,
@@ -33,10 +34,10 @@ Load Balancer accepts the incoming request from the client and redirects the req
 
 Scalability :
 By running 2 Servers behind the Load Balancer we can now handle 2X requests from the client.
-Load Balancer provides a way to add more and more Backend Servers If the incoming network traffic increases.
+Load Balancer provides a way to add more and more Servers if the incoming network traffic increases.
 
-Elastic Load Balancer must have two Availability Zones.
-Elastic Load Balancer cannot be cross Region and can be created only one per Region.
+Load Balancer must have two Availability zones.
+Load Balancer cannot be cross region and can be created only one per region.
 
 OSI Model :
 OSI model is a conceptual model that characterizes and standardizes the communication mechanism of computing systems without 

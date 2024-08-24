@@ -1633,12 +1633,32 @@ Jenkins with Docker ()
 
 Spring Security ()
 JWT ()
-OAuth2 ()
-Forge Authentication ()
+
+Kafka LimeGuru ()
+Flyway Migration with PostgreSQL ()
+
+AWS EC2 (Done)
+AWS EBS ()
+AWS VPC ()
+ALB  ()
+Autoscaling ()  
+NLB ()
 
 ----------------------------------------- September 2024  ----------------------------------------------
 
-Kafka LimeGuru ()
+Kubernetes ()
+Helm ()
+EKS  ()
+
+AWS IAM ()
+AWS Route53 ()
+AWS S3  ()
+
+ECR ()
+ECS ()
+
+OAuth2 ()
+Forge Authentication ()
 
 Distributed Transaction ()
 Concurrency Control ()
@@ -1648,6 +1668,8 @@ Distributed Tracing ()
 High Availability and Resilience System ()
 Fault and Failure in Distributed System ()
 Scaling ()
+
+----------------------------------------- October 2024  ----------------------------------------------
 
 Spring Cloud Gateway ()
 Microservice Resilience ()

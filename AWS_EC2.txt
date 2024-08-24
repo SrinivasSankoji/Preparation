@@ -9,7 +9,7 @@
 9.Spring Boot Docker EC2					   		(Simple Programming)		[22-JUN-2021]  ()	
 10.Spring Boot Docker EC2					   		(Daily Code Buffer)			[22-JUN-2021]  ()	
 11.Restore EC2 from Snapshot				   		(Vishal Padghan)         	[21-JUN-2021]  ()
-12.EC2 Deep dive 							   		(Abhishek Veeramalla)		[13-AUG-2024]  ()
+12.EC2 Deep dive with Jenkins 						(Abhishek Veeramalla)		[24-AUG-2024]  (Done)
 13.Connect to EC2 from Windows                 		(Abhishek Veeramalla)		[13-AUG-2024]  ()
 14.EC2 Introduction 								(Avinash Reddy)				[15-AUG-2024]  (Read)
 15.EC2 Instance types								(DGR Uploads)				[15-AUG-2024]  (Done)
@@ -213,25 +213,24 @@ Example :
 Some processes in every organization are highly confidential.
 
 11.How to run systems in EC2 :
-
 ------------------------------
 Login to AWS Account and click on AWS EC2.
 Under Create instance Click on Launch Instance.
-Whenever we want to Launch an Instance we have to specify which AMI we want to use.It can be Ubuntu,Windows etc.
+Whenever we want to launch an Instance we have to specify which AMI we want to use.It can be Ubuntu,Windows etc.
 
-Select the AMI.AMI's are Templates of OS and they provide the information needed to Launch an Instance.
+Select the AMI.AMI's are Templates of OS and they provide the information needed to launch an Instance.
 1.AMI's could be preconfigured or we can configure on its own.
 For preconfigured AMI's we have to select it from market place.
 For setting up our own,go to quick start and select one.
-2.While configuring an AMI,we will reach to a point where we have to select an EBS Option.
+2.While configuring an AMI,we will reach to a point where we have to select an EBS.
 
-EBS i.e Elastic Block Storage is a persistent block level Storage Volume that can be used along with EC2.
+EBS i.e. Elastic Block Store is a persistent block level storage volume that can be attached to an EC2 instance.
 Here each block acts as a Hard drive.
-Just like Computer needs a Hard drive,EC2 needs a Storage Volume to store the OS which we have specified during the instance creation.
-Optons for EBS are 
+Just like Computer needs a Hard drive, EC2 needs a storage volume to store the OS which we have specified during the instance creation.
 
+Optons for EBS are 
 1.Provisioned IOPS :
-This category is for workloads which are mission critical i.e it provides high IOPS rates.
+This category is for workloads which are mission critical i.e. it provides high IOPS rates.
 2.General Purpose :
 This category is for workloads which needs balance of performance and cost effective.
 3.Magnetic :
@@ -241,7 +240,7 @@ After selecting the suitable option in EBS,provide a name for an instance and th
 
 Security Group :
 ----------------
-Security Group acts as a Firewall to control Inbound and Outbound traffic.
+Security Group acts as a firewall to control Inbound and Outbound traffic.
 Each Security Group has rules according to which the traffic is governed.
 Each Instance can be assigned upto 5 Security Groups.
 
@@ -259,7 +258,7 @@ public-key and private-key are known as key value pair.
 
 13.Auto Scaling :
 -----------------
-Auto Scaling is a Service provided in AWS using which we can automatically scale up or scale down the EC2 instances 
+Auto Scaling is a service provided in AWS using which we can automatically scale up or scale down the EC2 instances 
 based on user-defined profiles,schedulers and health checks.
 
 14.Elastic Load Balancing :
@@ -345,8 +344,8 @@ To connect to the EC2 instance from Windows :
 ---------------------------------------------
 Select the Instance --> Connect --> Select the Command.
 Navigate to the ppk folder --> then run the selected command.
-Open the Putty --> Paste the Selected URL in the Session --> ubuntu@ec2-3-109-208-224.ap-south-1.compute.amazonaws.com
-Add the UserName in tha Data Section. ie ubuntu
+Open the Putty --> Paste the Selected URL in the Session --> ubuntu@ec2-65-2-80-33.ap-south-1.compute.amazonaws.com
+Add the UserName in tha Data Section. i.e. ubuntu
 Browse the Generated ppk file in the Auth Section.
 Now it will connect to the EC2 instance.
 
@@ -453,3 +452,59 @@ Such as floating point number calculations, graphics processing, data pattern ma
 -----------------
 High performance computing (HPC) instances are purpose built to offer the best price performance for running HPC workloads at scale on AWS. 
 HPC instances are ideal for applications that benefit from high-performance processors such as large, complex simulations and deep learning workloads.
+
+############################################ 12.EC2 Deep dive with Jenkins (Abhishek Veeramalla) #########################################################
+
+Names and Tags  --> jenkins-ec2-instance.
+Select AMI --> Ubuntu.
+Create a new key pair to access the EC2 instance from outside.
+Then launch the instance.
+
+To connect to the Ubuntu EC2 instance using Gitbash
+
+ssh -i "aws-login.pem" ubuntu@ec2-65-2-80-33.ap-south-1.compute.amazonaws.com
+
+In the EC2 instance :
+update the package manager --> sudo apt update
+
+Install Java in the EC2 instance :
+----------------------------------
+sudo apt install openjdk-17-jdk
+
+Install Jenkis in EC2 instance :
+--------------------------------
+Go to official jenkins website
+
+	https://www.jenkins.io/doc/book/installing/linux/
+	
+Select the Linux distribution long term support --> copy the bash script and run it in Gitbash.
+Now the Jenkins has installed.
+
+Start the Jenkins in EC2 instance :
+-----------------------------------
+Run the command to see the status of the Jenkins
+
+	systemctl status jenkins
+	
+Open the jenkins from the browser.
+
+	http://65.2.80.33:8080/
+	
+	
+Note :
+------
+To get the password run the command in EC2 instance
+	
+	sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+############################################ 13.Connect to EC2 from Windows (Abhishek Veeramalla) #########################################################
+
+
+
+############################################ 16.EC2 Pricing Plans (Rakesh Taninki) ########################################################################
+
+
+
+
+
+################################################################### END ###################################################################################

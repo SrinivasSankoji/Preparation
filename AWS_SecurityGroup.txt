@@ -1,0 +1,36 @@
+1.AWS Security Group and NACL                     (Abhishek)				[24-AUG-2024]  (Done)
+2.AWS Security Group and NACL                     (Rakesh)					[19-AUG-2024]  ()
+3.AWS security group                      		  (Java Home Cloud)			[19-AUG-2024]  ()
+4.What is an AWS Security Group					  (Be A Better Dev)			[19-AUG-2024]  ()
+5.What is an Internet Gateway					  (Be A Better Dev)			[19-AUG-2024]  ()
+
+
+###################################################### 1.AWS Security Group and NACL (Abhishek) ###########################################################
+
+Create a VPC with default public subnet.
+Create an EC2 instance within the VPC.
+Install the python Application within the EC2 instance.
+
+Connect to an EC2 instance using Gitbash.
+
+	ec2-13-232-43-112.ap-south-1.compute.amazonaws.com
+	
+Update the packages in EC2.
+
+	sudo apt upate
+	
+To verify python has installed or not run the command
+
+	python3
+	
+Install the HttpServer
+
+	python3 -m http.server 8080
+	
+To verify the server in the browser
+
+	http://13.232.43.112:8080/
+	
+
+
+	

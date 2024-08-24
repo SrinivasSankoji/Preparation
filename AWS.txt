@@ -14,20 +14,28 @@
 
 AWS Solution Architect Associate :
 ----------------------------------
-1.EC2
-2.Elastic Block Storage
+1.IAM
+2.EC2
 3.AMI
-4.VPC
-5.S3
-6.AWS Lambda
-7.ECS (Elastic Container Service)
-8.Route53
-9.IAM
-10.RDS
-11.SNS(Simple Notification Service) and SQS(Simple Queue Service)
-12.ECR (Elastic Container Registry)
-13.
+4.Elastic Block Storage,Elastic IP,Auto scaling
+5.VPC,Security Groups, NACL
+6.Route53
+7.S3
+8.ECR (Elastic Container Registry)
+9.ECS (Elastic Container Service)
+10.ALB /ELB
+11.AWS Certificate Manager
+12.AWS CloudWatch
+13.AWS Secret Manager
+14.Helm
+15.EKS
 
+Optional :
+----------
+1.AWS Lambda
+2.RDS
+3.SNS(Simple Notification Service) and SQS(Simple Queue Service)
+4.AWS Dynamo DB
 
 Cloud Computing is a term referred to storing and accessing the data over the Internet.
 Here it does not store any data on the hard disk of a computer.
@@ -354,3 +362,4 @@ Login into  https://aws.amazon.com/
 
 Select the Region -- Asia Pacific Mumbai.
 
+t@XQsengHgAjMc)!oKj9ziwO-3mWdLYg

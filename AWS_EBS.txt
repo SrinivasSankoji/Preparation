@@ -1,12 +1,14 @@
-1.AWS EBS- Elastic Block Store                 (Gaurav Gupta)          [22-MAY-2021]  (Done)
-2.What is Amazon Elastic Block Store (EBS)	   (Kunal Yadav)           [22-MAY-2021]  (Done)
-3.What is EBS								   (Eddie Segal)           [22-MAY-2021]  ()
-4.AWS EBS Volumes and Monitoring			   (Aravind G V)           [22-MAY-2021]  ()
-5.AWS EBS Volume Types & What to Use Them For  (Jay Chapel)            [22-MAY-2021]  ()
-6.AWS EBS Volume,SnapShot and Restore		   (AWS Training Center)   [22-MAY-2021]  ()
-7.AWS EC2 Instance Store Volumes			   (Crishantha Nanayakkara)[22-MAY-2021]  ()
+1.AWS EBS- Elastic Block Store                 (Gaurav Gupta)            [22-MAY-2021]  (Done)
+2.What is Amazon Elastic Block Store (EBS)	   (Kunal Yadav)             [22-MAY-2021]  (Done)
+3.What is EBS								   (Eddie Segal)             [22-MAY-2021]  ()
+4.AWS EBS Volumes and Monitoring			   (Aravind G V)             [22-MAY-2021]  ()
+5.AWS EBS Volume Types & What to use Them For  (Jay Chapel)              [22-MAY-2021]  ()
+6.AWS EBS Volume,SnapShot and Restore		   (AWS Training Center)     [22-MAY-2021]  ()
+7.AWS EC2 Instance Store Volumes			   (Crishantha Nanayakkara)  [22-MAY-2021]  ()
+8.Elastic Block Storage						   (Aakib)				     [18-AUG-2024]  (Done)
+9.Create and Modify EBS                        (Rahul wagh)			 	 [24-AUG-2024]  ()
 
-************************************************** 1.AWS EBS- Elastic Block Store (Gaurav Gupta)  ***********************************************
+################################################## 1.AWS EBS- Elastic Block Store (Gaurav Gupta)  ###############################################
 
 1.why we need EBS
 2.What is mean by persistent storage
@@ -26,25 +28,26 @@
 
 1.why we need EBS :
 -------------------
-EC2 Machine looses its root Volume(Main Drive) when it is manually terminated.Unexpected terminations might happen from time to time.
+EC2 Machine looses its root volume(Main Drive) when it is manually terminated.Unexpected terminations might happen from time to time.
 Sometimes we need a way to store our instance data somewhere.
-AWS EBS is a persistent block level storage volume that can be used along with EC2 instances in the Cloud.
-Just like Computer needs a Hard drive,EC2 needs a Storage Volume to store the OS which we have specified during the instance creation.
+AWS EBS is a persistent block level storage volume that can be attached to an EC2 instances.
+Just like Computer needs a Hard drive, EC2 needs a Storage volume to store the OS which we have specified during the instance creation.
+EBS allows the user to create and manage persistent block level storage volumes, similar to hard disks which can be attached to EC2 instances as virtual hard disks.
+EBS Volumes are highly available and can provide durable storage for various applications and workloads.
 
 2.What is mean by persistent storage :
 --------------------------------------
-Persistent Storage is a data Storage device that retains the data even power to that device is shut off.
-Persistent Storage is also known as non volatile storage device.
+Persistent storage is a data Storage device that retains the data even if the associated EC2 instance is stopped or terminated.
+Persistent Storage is also known as non-volatile storage device.
 Hard Disk and SSD(Solid State Drive) are common type of Persistent Storage.
-Once the Persistent Storage is attached we can create the File System on top of these Volumes,run the Database etc.
+Once the Persistent Storage is attached we can create the File System on top of these volumes, run the Database etc.
 
-EBS are Availablity Zone specific and automatically replicated with its Availablity Zone to protect from Component Failure,
-Offering a high Availablity and durability.
+EBS are Availablity Zone specific and automatically replicated with its Availablity Zone to protect from Component Failure, Offering a high Availablity and durability.
 With EBS we can scale our usage up or down within Minutes.
 
 3.Few Points for EBS Volume :
 -----------------------------
-EBS is a network drive  and not a physical drive.
+EBS is a network drive and not a physical drive.
 EBS uses the network to communicate with the instance so there might be a bit of latency.
 EBS can be detached from one instance and attached to another one quickly.
 EBS are specific to Availablity Zone.
@@ -55,52 +58,55 @@ We can increase the capacity of the drive at any time.
 
 4.Types of EBS :
 ----------------
+1.General Purpose SSD
+2.Provisioned IOPS SSD
+3.Throughput Optimized HDD
+4.Cold HDD
 
-
-5.General Purpose SSD :
------------------------
-This is the default Volume that EC2 chooses by default as a Root Volume for the instance.
+General Purpose SSD :
+---------------------
+This is the default volume that EC2 chooses by default as a root volume for the instance.
 It provides the balance of performance and cost effective.
 
-SSD stands for Solid State Drive which is multiple times faster than HDD(Hard Disk Drive) for small input and Output Operations.
-Having SSD as the Root Volume for an instance can significantly increase the perfromance of the Server.
+SSD i.e. Solid State Drive which is multiple times faster than HDD(Hard Disk Drive) for small input and output operations.
+Having SSD as the root volume for an instance can significantly increase the perfromance of the server.
 
 Here performance is measured in terms of IOPS.
-How many input and output Operations our Server can handle per second.
-EBS Volume provides a ratio of 3 IOPS per GB with the ability to burst upto 3000 IOPS for a fixed period of time.
+How many input and output operations our server can handle per second.
+EBS volume provides a ratio of 3 IOPS per GB with the ability to burst upto 3000 IOPS for a fixed period of time.
 
 Note :
-IOPS refers to the Operations on blocks that are upto 256 KB in size. 
+IOPS refers to the operations on blocks that are upto 256 KB in size. 
 
 Usecase :
 Most workloads such as Virtual Desktop,Dev and Test Environments and low latency interactive Apps.
 
-6.Provisioned IOPS SSD :
-------------------------
+Provisioned IOPS SSD :
+----------------------
 This is the fastest and most expensive EBS volume.
-Designed foe intensive Applications such as large Relational Databases and No SQL Databases.
+Designed for intensive applications such as large Relational Databases and No SQL Databases.
 
 Usecase :
 Mission critical Applications,large database workloads such as MongoDB etc.
 
-7.Throughput Optimized HDD :
-----------------------------
+Throughput Optimized HDD :
+--------------------------
 These are low cost magnetic storage volumes which defines performance in terms of throughput.
-Designed for large sequential workloads like BigData,Data Ware Houses ,Log Processing etc.
-Mostly we use this Volume for Hadoop Cluster.
+Designed for large sequential workloads like BigData, Data Ware Houses, Log Processing etc.
+Mostly we use this volume for Hadoop cluster.
 
-8.Cold HDD :
------------- 
-These are even cheapre than low cost magentic storage volume.
+Cold HDD :
+----------
+These are even cheaper than low cost magentic storage volume.
 Designed for storage of large File Server.
 
 Magnetic Storage :
 These are previous generation magnetic drives that are suitable for workloads where the data is accessed infrequently.
 
-9.EBS Snapshots :
+5.EBS Snapshots :
 -----------------
 Snapshot is simply and AMI.
-Snapshot can be used as a backup of a Volume and stored in S3 so automatically we get the high durability.
+Snapshot can be used as a backup of a volume and stored in S3 so automatically we get the high durability.
 We can use these snapshots to create a new EBS Volume and attach to the newly created instance.
 Snapshot can only be accessed form EC2 dashboard.
 We can copy Snapshot across Availablity Zone or Region. 
@@ -108,8 +114,8 @@ We can also make an image from Snapshot.
 Snapshot can be automated using Amazon Data Life Cycle Manager.
 
 Note :
-It is recomended to detach Volume to do Snapshot.
-Should not run the Snapshot while the Application is handling a lot of traffic.
+It is recomended to detach volume to do Snapshot.
+Should not run the snapshot while the Application is handling a lot of traffic.
 
 Some Facts about EBS :
 ----------------------
@@ -117,11 +123,11 @@ Some Facts about EBS :
 If we want to assign a volume to Multiple Instances we use Elastic File System.
 2.Volumes other than root Volumes can be encrypted.
 3.By default root volumes are deleted on termination of instances.
-4.We can copy snapshots between AWS regios to create volumes in different regions.
+4.We can copy snapshots between AWS regions to create volumes in different regions.
 5.Size of an EBS Volume can be upto 16 TB.
 
-10.EBS Migration :
-------------------
+6.EBS Migration :
+-----------------
 EBS Volumes are specific to Availablity Zone.
 To migrate it to different Availablity Zone 
 
@@ -129,24 +135,80 @@ Snapshot the Volume and make sure that volume is detached before snapshot.
 Copy the Volume to different Region.
 Create the Volume from the Snapshot in the required Availablity Zone.
 
-11.EBS Encryption :
--------------------
-
-
-12.Encryption: encrypt an unencrypted EBS volume :
---------------------------------------------------
-
-
-13.EBS vs Instance Store :
---------------------------
-
-
-14.Pros and Cons :
+7.EBS Encryption :
 ------------------
 
 
-15.Point to Note :
+8.Encryption: encrypt an unencrypted EBS volume :
+-------------------------------------------------
+
+
+9.EBS vs Instance Store :
+-------------------------
+
+
+10.Pros and Cons :
 ------------------
 
 
+11.Point to Note :
+------------------
+
+
+############################################################# 8.Use Cases for EBS (Aakib) ############################################################
+
+Key Features of EBS :
+
+1.Durability
+2.Elasticity
+3.Performance
+4.Snapshots
+
+1.Durability :
+--------------
+EBS volumes are designed for durability i.e. Data stored in EBS volumes is highly resistant for failures.
+AWS replicates the data within the same availability zone to ensure redundancy and reliability.
+
+2.Elasticity :
+--------------
+EBS volumes can be easily created, resized and attached to an EC2 instance as per the application requirement.
+This allows the flexibility and scalability, ensuring our storage needs can met as the workload grows.
+
+3.Performance :
+---------------
+EBS volumes offer different volume types.
+Each volume type is optimized for specific usecases. 
+
+4.Snapshots :
+-------------
+EBS allows us to take snapshot of the volumes, creating backups that can be used for data recovery or to create new volumes.
+These snapshots are stored in Amazon S3 and offer an effective way to protect the data.
+
+
+The different usecases for EBS are :
+
+1.Database storage
+2.Web server storage
+3.Data analytics
+4.Disaster recovery
+
+
+1.Database storage :
+--------------------
+EBS volumes provide durable and high performance storage for Databases like MySQL, PostgreSQL or Oracle
+
+2.Web server storage :
+----------------------
+EC2 instances hosting Web Application can leverage EBS volumes for storing static and dynamic content.
+
+3.Data analytics :
+------------------
+EBS is suitable for Data analytics workloads providing the necessary storage and the capacity for processing large datasets.
+
+4.Disaster recovery :
+---------------------
+EBS Snapshots allows us to create back up of volumes, enabling efficient disaster recovery solutions.
+
+
+############################################################# 9.Create and Modify EBS (Rahul wagh) #############################################################
 
