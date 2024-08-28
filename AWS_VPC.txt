@@ -10,6 +10,13 @@
 10.Custom VPCs on AWS					(Crishantha Nanayakkara)			[22-APR-2021]  ()
 11.AWS S3 VPC endpoint					(Be A Better Dev)					[22-APR-2021]  ()
 12.Introduction to Amazon VPC			(Be A Better Dev)					[22-APR-2021]  ()
+13.Bastion Host							(Rahul wagh & Dhfernando)			[28-AUG-2024]  (Done)
+14.VPC Peering							(Rahul wagh)						[28-AUG-2024]  (Done)
+13.Transit Gateway						(Rahul wagh)						[28-AUG-2024]  ()
+14.NAT Gateway                          (Rahul wagh)						[28-AUG-2024]  ()
+15.VPC Flow logs                        (Rahul wagh)						[28-AUG-2024]  ()
+16.VPC End Point                        (Rahul wagh)						[28-AUG-2024]  ()
+17.VPC End Point Service                (Rahul wagh)						[28-AUG-2024]  ()
 
 IGW
 NAT Gateway
@@ -25,7 +32,7 @@ NACL
 
 Security becomes more important when some resources needs to be shared with third party vendors because we run the risk of exposing sensitive data to them.
 VPC is a private cloud in the AWS Environment that enables us to launch the AWS Services into the virtual Network that we have defined.
-We can also have control over the virtual network and we can restrict the incoming traffic using Security Groups.
+We can also have control over the virtual network and we can restrict the incoming traffic using Security Groups and NACL's.
 
 There are two types of VPC
 Default VPC i.e. created by Amazon.
@@ -287,8 +294,8 @@ Then modify Auto Assign IP Settings.
 
 #################################################### 7.VPC Peering (Crishantha Nanayakkara) ####################################################
 
-VPC Peering provides a Network connection between two VPC's that enables us to route traffic between them privately.
-VPC Peering Connection can be between two VPC's within the same Account or different Account or other Regions.
+VPC Peering provides a network connection between two VPC's that enables us to route traffic between them privately.
+VPC Peering Connection can be between two VPC's within the same account or different account or other regions.
 VPC Peering Connection's are fault tolerant and there is no single point of failure.
 AWS makes sure that connection is stable irrespective of the load.
 
@@ -302,20 +309,27 @@ The connection between VPC's are always point to point.
 
 Note :
 ------
-VPC does not support Edge Routing or Transitive Peering ie It cannot connect one VPC from another VPC.
+VPC does not support Edge Routing or Transitive Peering i.e. It cannot connect one VPC from another VPC.
 
 #################################################### 8.VPC Peering (Chris Hare) ################################################################
 
-Depending on the Organization we may have more than one VPC or VPC deployed in more tha one Region.
-There are many cases for multiple VPC :
+Depending on the organization, we may have multiple VPC's or VPC's deployed across different regions. 
+There are several scenarios where having multiple VPCs is advantageous.
 
-For different stages in Development process.
-Service deployment in multiple Regions.
-Use different VPC for various Business Units.
-Seggregate the Application based on some criteria like Functions,security level etc.
+For different stages in the development process.
+To deploy services in multiple regions.
+To use different VPCs for various business units.
+To segregate applications based on criteria such as functions, security levels, etc.
 
-As we know that AWS comes with default VPC in every supported Region.
-Every default VPC uses the same CIDR block.
+When you have multiple VPCs, you might need to connect them to allow communication between resources in different VPCs. 
+One common method for achieving this connectivity is VPC Peering. 
+VPC Peering allows you to connect two VPCs, either within the same region or across different regions,enabling them to route traffic between each other using private IP addresses.
+
+However, VPC Peering has some limitations:
+It is not transitive; if VPC A is peered with VPC B, and VPC B is peered with VPC C, VPC A cannot communicate with VPC C.
+Peering connections are established on a per-VPC basis, so managing a large number of VPCs with many peering connections can become complex.
+For more scalable and flexible connectivity, particularly in larger environments, AWS Transit Gateway is another option. 
+Transit Gateway allows you to connect multiple VPCs and on-premises networks through a central hub, enabling more straightforward and more scalable network architectures.
 
 Regardless of the reasons for multiple VPC,sometimes we need to connect them together so that they can exchange information.
 There are two methods for achieving this connectivity
@@ -324,19 +338,19 @@ There are two methods for achieving this connectivity
 
 1.VPC Peering :
 ---------------
-VPC Peering means establishing a Route between two or more VPC's so that they communicate with each other.
+VPC Peering means establishing a route between two or more VPC's so that they communicate with each other.
 It starts getting complicated when there are more than two VPC's in the peering arrangement.
 
 VPC Peering does not support Transitive Peering.
 Transitive Peering means If VPC A is connected to VPC B and VPC B is connected to VPC C.
-Then VPC A can communicate with the resources present in VPC C via VPC B.
-This Networking arrangement is not supported in VPC Peering Model.
+Then VPC A cannot communicate with the resources present in VPC C.
+This networking arrangement is not supported in VPC peering Model.
 
-Consequently we can use Mesh Topology to create Peering between Multiple VPC's.
-Eventhough It is referred to as Mesh Topology Each Peering Connection is still Point to Point.
-If there is a Failure between one of the Peering Connections,Traffic cannot be routed across different Connection.
+Consequently we can use Mesh topology to create peering between multiple VPC's.
+Eventhough it is referred to as Mesh topology each peering connection is still Point to Point.
+If there is a failure between one of the peering connections,Traffic cannot be routed across different connection.
 
-Setting Up :
+Setting up :
 ------------
 1.Create two VPC's which do not have overlapping of CIDR blocks.
 2.Create Peering connection request between two VPC's.
@@ -344,7 +358,7 @@ Setting Up :
 4.Configure Routes on both VPC
 5.Adjust affected Security Groups
 
-Peering within the Same AWS Account :
+Peering within the same AWS Account :
 -------------------------------------
 The VPC where the request is made from is known as Requestor VPC and the other is Acceptor VPC.
 When both the Requestor and Acceptor are in the same AWS Account and VPC Peering Request is created using CloudFormation
@@ -358,9 +372,155 @@ Requestor
 Acceptor
 Account and Region
 
-#################################################### 9.AWS VPC Endpoints  ####################################################
+#################################################### 9.AWS VPC Endpoints  #########################################################################
 
 
+#################################################### 13.Bastion Host (Rahul wagh & Dhfernando) ####################################################
+
+When it comes to cloud computing security is utmost important.
+AWS provides a service called VPC which is virtual private cloud that enables us to launch AWS resources in the network that we have defined.
+One of the most critical components in securing an AWS VPC environment is Bastion Host.
+
+Bastion host is an EC2 instance which is deployed within the VPC which has access to the internet and acts as a gateway between the Internet and private subnet in the VPC.
+Private Subnet is not accessible from outside.
+Bastion host is referred to as Jump Host or Jump Server because it is used to jump from the internet to the private network.
+Bastion host acts as a single point of entry to access the private subnet within the VPC from the internet.
+
+
+Create a VPC and add CIDR range.
+
+	bastion-host-vpc
+	12.0.0.0/16
+		
+Create the Internet Gateway and attachc it to the newly created VPC.
+
+	bastion-host-internet-gateway
+	
+Now create the Public subnet and Private subnet within the VPC.
+
+	Select the VPC i.e. bastion-host-vpc
+	Provide the Subnet Name  i.e. bastion-host-public-subnet
+	Select the Availability zone
+	Add the CIDR range  i.e. 12.0.1.0/24
+	
+	Select the VPC i.e. bastion-host-vpc
+	Provide the Subnet Name  i.e. bastion-host-private-subnet
+	Select the Availability zone
+	Add the CIDR range  i.e. 12.0.2.0/24
+	
+Create a Route Table for Public Subnet.
+
+Provide the Route Table name and select the VPC.
+The add the Subnet to the Route Table in the Edit Subnet Association.
+Also add the Route to the Internet in the Route Table.
+
+	rt-bastion-host-public
+	bastion-host-vpc
+	
+	Destination as 0.0.0.0/0
+	Target as bastion-host-internet-gateway
+	
+Create a Route Table for Private Subnet.
+The add the Subnet to the Route Table in the Edit Subnet Association.
+
+	rt-bastion-host-private
+	bastion-host-vpc
+ 
+Create the Bastion Host within the Public Subnet :
+
+	Name : bastion-host-ec2
+	AMI : ubuntu
+	Instance Type: t2.micro
+	Key pair : aws-login
+	Network settings : 
+			Select bastion-host-vpc as VPC 
+			rt-bastion-host-public as Subnet
+			Enable Auto assign public ip
+			Create the security group i.e. bastion-host-public-sg
+			Then launch the instance.
+
+
+Create the EC2 instance within the private Subnet
+
+	Name : bastion-host-ec2-private
+	AMI : ubuntu
+	Instance Type: t2.micro
+	Key pair : aws-login
+	Network settings : 
+			Select bastion-host-vpc as VPC 
+			rt-bastion-host-public as Subnet
+			Enable Auto assign public ip
+			Create the security group i.e. bastion-host-private-sg
+			Here we need to change the source type i.e. 12.0.1.0/24 so that t can only be accessed from public Subnet.
+			Then launch the instance.
+			
+Login to the Bastion host using Gitbash.
+
+	ssh -i "aws-login.pem" ubuntu@35.154.108.49
+
+Now to enter into into the private instance from Bastion Host
+	
+	Copy the private key i.e. aws-login into Bastion host.
+	To do this copy the key from local host using the command cat aws-login.
+	Create the file in Bastion host i.e. aws-login-from-bastion.
+	Open it in vi mode and paste the key which has copied from local.
+	Convert to chmod 400 aws-login-from-bastion.
+	
+Copy the private ip of private Instance and form the command.
+
+	ssh -i "aws-login-from-bastion" ubuntu@12.0.2.161
+	
+
+########################################################### 14.VPC Peering (Rahul wagh) #########################################################
+
+Create Two VPC's :
+vpc-peering-one
+11.0.0.0/16
+
+vpc-peering-two
+12.0.0.0/16
+
+Create Route Table for both the VPC's :
+rt-peering-one
+rt-peering-two
+
+Create public Subnet in one VPC and private Subnet in another VPC.
+
+peering-one-public-subnet
+Select the Availability zone
+11.0.1.0/24
+
+peering-two-private-subnet
+Select the Availability zone
+12.0.1.0/24
+
+Add subnet Association for the route Tables.
+
+In the public subnet route table we need to grant the internet access i.e. rt-peering-one
+For this we need to create an Internet Gateway.
+
+	vpc-peering-one-ig
+	vpc-peering-two-ig
+	
+Create an EC2 instance in vpc-peering-one :
+Add one more security group along with SSH.
+Also add the user data and connect to an EC2 instance.
+
+	#!/bin/bash
+	yes | sudo apt update
+	yes | sudo apt install apache2
+	echo "<h1>Server Details</h1><p><strong>Hostname:</strong> $(hostname)
+	</p><p><strong>IP Address</strong> $(hostname -I | cut -d ' ' -f1)</p>" >
+	/var/www/html/index.html
+	sudo systemctl restart apache2
+
+Create an EC2 instance in vpc-peering-two.
+
+
+	
+
+	
+	
 
 
 

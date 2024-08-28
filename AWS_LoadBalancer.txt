@@ -5,7 +5,7 @@
 5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 6.AWS ALB with Path based Routing 							(AWS Training Center)		[01-JUN-2021]  ()
 7.Production level Load Balancing 							(Crishantha Nanayakkara)    [22-JUN-2021]  ()
-8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  ()
+8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  (Read)
 
 ****************************************** 1.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ******************************************
 
@@ -72,7 +72,7 @@ Here Client has to send its communication down the stack,the communication then 
 Then the Load Balancer sends the communication back down the stack to redirect it to the destination server.
 Finally Destination Server travels the stack up again.
 
-1.ALB works at the Application Layer ie Layer 7 of the OSI model where as NLB works at the Transport Layer ie Layer 4 of the OSI Model.
+1.ALB works at the Application Layer i.e. Layer 7 of the OSI model where as NLB works at the Transport Layer i.e. Layer 4 of the OSI Model.
 2.In case of ALB,Network communication must travel all the way back to the Application Layer and reads the HTTP request to determine where it should be redirect.
 In case of NLB,Network communication must travel all the way to the Transport Layer and reads the TCP packet information to redirect to the correct place.
 Here it does not read the content inside those packets.

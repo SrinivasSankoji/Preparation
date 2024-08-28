@@ -6,7 +6,7 @@
 6.AWS EBS Volume,SnapShot and Restore		   (AWS Training Center)     [22-MAY-2021]  ()
 7.AWS EC2 Instance Store Volumes			   (Crishantha Nanayakkara)  [22-MAY-2021]  ()
 8.Elastic Block Storage						   (Aakib)				     [18-AUG-2024]  (Done)
-9.Create and Modify EBS                        (Rahul wagh)			 	 [24-AUG-2024]  ()
+9.Create and Modify EBS                        (Rahul wagh)			 	 [25-AUG-2024]  (Done)
 
 ################################################## 1.AWS EBS- Elastic Block Store (Gaurav Gupta)  ###############################################
 
@@ -155,7 +155,7 @@ Create the Volume from the Snapshot in the required Availablity Zone.
 ------------------
 
 
-############################################################# 8.Use Cases for EBS (Aakib) ############################################################
+############################################################# 8.Use Cases for EBS (Aakib) #######################################################
 
 Key Features of EBS :
 
@@ -210,5 +210,77 @@ EBS is suitable for Data analytics workloads providing the necessary storage and
 EBS Snapshots allows us to create back up of volumes, enabling efficient disaster recovery solutions.
 
 
-############################################################# 9.Create and Modify EBS (Rahul wagh) #############################################################
+############################################################# 9.Create and Modify EBS (Rahul wagh) ##############################################
+
+Create a VPC with two availability zones.
+Create and EC2 instance
+Create an EBS Volume
+Attachan EBS volume to an EBS intance.
+
+Once we create an EC2 instance connect to an EC2 instance and check the default volume in the EC2 instance.
+
+	ssh -i "aws-login.pem" ubuntu@ec2-13-233-162-173.ap-south-1.compute.amazonaws.com
+	sudo lsblk
+	
+It will show only one option with disk which has 8GB capacity.
+Under EC2 instance --> Elastic Block store --> Volume --> select Create Volume with the default options.
+
+Now attach an EBS Volume to an EC2 instance.
+Select the EBS Volume --> select attach Volume --> Select the instance and attach the Volume.
+Now if we run the same command again it will show the disk volume of 100 GB.
+
+To list the disk partition of an EC2 instance
+	
+	sudo fdisk l
+	
+Copy the path of the Disk partition which we have created i.e. /dev/xvdk
+We need to verify is there any file system for that the EBS volume using the command
+
+	sudo file -s /dev/xvdk.
+	
+If this command is giving the output as data, then there is no file system.
+We need to create the File system for the newly created EBS volume.
+
+	sudo mkfs -t xfs /dev/xvdk
+	
+Once the File system is created we need to mount the File system to the particular directory.
+	
+	sudo mkdir /ebs-volume
+	sudo mount /dev/xvdk /ebs-volume
+	
+To view the newly created directory
+
+	ls -lart /ebs-volume
+	
+To verify the volume is mounted to the newly created directory
+
+	df -h
+	
+Then create two new files in the newly created directory.
+
+	cd /ebs-volume
+	
+Create the snapshot from the EC2 instance.
+Select the newly created volume --> Actions --> Create Snapshot.
+Once the snapshot is created, create the volume from the snapshot.
+
+	select the snapshot --> create the volume from the snapshot.
+	
+
+################################################## End ############################################################################
+	
+
+	
+	
+
+	
+
+
+
+	
+
+
+	
+
+
 

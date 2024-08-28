@@ -1643,6 +1643,7 @@ AWS VPC ()
 ALB  ()
 Autoscaling ()  
 NLB ()
+AWS CLI ()
 
 ----------------------------------------- September 2024  ----------------------------------------------
 
@@ -1650,15 +1651,21 @@ Kubernetes ()
 Helm ()
 EKS  ()
 
-AWS IAM ()
-AWS Route53 ()
 AWS S3  ()
+AWS RDS ()
 
 ECR ()
 ECS ()
 
+Spring Security ()
+JWT ()
 OAuth2 ()
 Forge Authentication ()
+
+----------------------------------------- October 2024  ----------------------------------------------
+
+AWS IAM ()
+AWS Route53 ()
 
 Distributed Transaction ()
 Concurrency Control ()
@@ -1669,8 +1676,8 @@ High Availability and Resilience System ()
 Fault and Failure in Distributed System ()
 Scaling ()
 
------------------------------------------ October 2024  ----------------------------------------------
-
 Spring Cloud Gateway ()
 Microservice Resilience ()
 Micro Service Communication ()
+
+----------------------------------------- November 2024  ----------------------------------------------

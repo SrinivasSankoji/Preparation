@@ -3,7 +3,6 @@
 3.AWS Basics		 			(SimpliLearn Video)					[30-DEC-2020]  ()
 4.AWS Services 		 			(AWS Training Center Video)  		[30-DEC-2020]  ()
 5.AWS Introduction	 			(Online Tutorials)					[01-MAR-2021]  (Done)
-6.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  ()
 7.AWS Account Creation			(Guilherme Virtuoso)				[22-MAY-2021]  ()
 8.AWS Account Creation			(Kangze Huang)						[22-MAY-2021]  ()
 9.AWS Account Creation			(Harriet Ryder)						[22-MAY-2021]  ()
@@ -282,7 +281,7 @@ For a long time we have been into the private Cloud Model.
 Here Organizations built their own data centers inside the Building.
 
 Hybrid Cloud :
-It is combination of both private Cloud and Public Cloud.
+It is combination of both private cloud and public cloud.
 
 AWS Account :
 -------------
@@ -292,9 +291,9 @@ AWS Account :
 
 1.What is AWS CLI :
 -------------------
-AWS CLI is a unified interface using which we can monitor and manage all the AWS Services from a terminal Session on a Client.
+AWS CLI is a unified interface using which we can monitor and manage all the AWS Services from a terminal session on a Client.
 Although most of the services can be managed by using AWS Management Console or API's,the third way is AWS CLI.
-AWS has made it possible for Linux,Mac and Windows users to manage the AWS services from the local terminal or commad line.
+AWS has made it possible for Linux, Mac and Windows users to manage the AWS services from the local terminal or commad line.
 We can run commands on AWS EC2 instance using a remote terminal such as putty or SSH.
 AWS CLI also provides direct access to AWS services public API.
 
@@ -302,14 +301,14 @@ AWS CLI also provides direct access to AWS services public API.
 -------------------
 1.Easy Installation
 2.Saves Time
-If we want to Search the large file in S3 Folder
+If we want to search large file in S3 Folder
 Login into Account
 Search for the bucket
 Search for the Folder
-Serahc for the File
+Search for the File
 3.Automates Process 
 AWS CLI gives the ability to automate the entire process of monitoring and managing the AWS Services through scripts.
-4.Supports ALL AWS Services 
+4.Supports all AWS Services 
 AWS control's all the AWS Service from one tool
 
 3.Installing AWS CLI :
