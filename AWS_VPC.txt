@@ -11,8 +11,8 @@
 11.AWS S3 VPC endpoint					(Be A Better Dev)					[22-APR-2021]  ()
 12.Introduction to Amazon VPC			(Be A Better Dev)					[22-APR-2021]  ()
 13.Bastion Host							(Rahul wagh & Dhfernando)			[28-AUG-2024]  (Done)
-14.VPC Peering							(Rahul wagh)						[28-AUG-2024]  (Done)
-13.Transit Gateway						(Rahul wagh)						[28-AUG-2024]  ()
+14.VPC Peering							(Rahul wagh & AWS with Chetan)		[28-AUG-2024]  (Done)
+13.Transit Gateway						(Rahul wagh & Nishita Mohanty)		[28-AUG-2024]  ()
 14.NAT Gateway                          (Rahul wagh)						[28-AUG-2024]  ()
 15.VPC Flow logs                        (Rahul wagh)						[28-AUG-2024]  ()
 16.VPC End Point                        (Rahul wagh)						[28-AUG-2024]  ()
@@ -447,6 +447,7 @@ Create the EC2 instance within the private Subnet
 	Instance Type: t2.micro
 	Key pair : aws-login
 	Network settings : 
+	
 			Select bastion-host-vpc as VPC 
 			rt-bastion-host-public as Subnet
 			Enable Auto assign public ip
@@ -456,68 +457,125 @@ Create the EC2 instance within the private Subnet
 			
 Login to the Bastion host using Gitbash.
 
-	ssh -i "aws-login.pem" ubuntu@35.154.108.49
+	ssh -A -i "aws-login.pem" ubuntu@35.154.108.49
 
 Now to enter into into the private instance from Bastion Host
 	
 	Copy the private key i.e. aws-login into Bastion host.
 	To do this copy the key from local host using the command cat aws-login.
-	Create the file in Bastion host i.e. aws-login-from-bastion.
+	Create the file in Bastion host i.e. touch aws-login-from-bastion
 	Open it in vi mode and paste the key which has copied from local.
-	Convert to chmod 400 aws-login-from-bastion.
-	
+	Convert to chmod 400 aws-login-from-bastion
+		
 Copy the private ip of private Instance and form the command.
 
-	ssh -i "aws-login-from-bastion" ubuntu@12.0.2.161
+	ssh -i "aws-login-from-bastion" ubuntu@10.100.0.199
 	
+Note :
+------
+If there is any issue in connecting from public subnet to private subnet, run the below commands in public subnet instance.
 
-########################################################### 14.VPC Peering (Rahul wagh) #########################################################
+sudo apt-get update
+sudo apt-get install --reinstall openssl
 
-Create Two VPC's :
-vpc-peering-one
-11.0.0.0/16
+########################################################### 14.VPC Peering (Rahul wagh & AWS with Chetan) #########################################################
 
-vpc-peering-two
-12.0.0.0/16
+VPC peering connection is a networking connection between several VPC's that enables us to route traffic between them using private IPv4 or IPv6 address.
 
-Create Route Table for both the VPC's :
-rt-peering-one
-rt-peering-two
+Create First VPC :
+------------------
+first-vpc
+10.100.0.0/16
 
-Create public Subnet in one VPC and private Subnet in another VPC.
+For this we need to create an Internet Gateway and attach it to First VPC.
 
-peering-one-public-subnet
+	first-vpc-ig
+
+Create public and private subnet in first-vpc.
+
+public-subnet-first-vpc
 Select the Availability zone
-11.0.1.0/24
+10.100.0.0/24
 
-peering-two-private-subnet
+private-subnet-first-vpc
 Select the Availability zone
-12.0.1.0/24
+10.100.1.0/24
 
-Add subnet Association for the route Tables.
+Create Route Table for public subnet and private subnet in first-vpc :
+rt-public-subnet-first-vpc
+rt-private-subnet-first-vpc
 
-In the public subnet route table we need to grant the internet access i.e. rt-peering-one
-For this we need to create an Internet Gateway.
+Add subnet Association and edit the route Tables to add an Integnet Gateway.
+In the first-vpc,first-vpc-public-subnet route table i.e.rt-public-subnet-first-vpc  we need to grant the internet access.
+For private subnet i.e. private-subnet-first-vpc no need of Internet Gateway.
 
-	vpc-peering-one-ig
-	vpc-peering-two-ig
+Create an EC2 instance in public-subnet-first-vpc :
+Add one more security group along with SSH which is HTTP port 80 from MyIP.
+
+Create an EC2 instance in private-subnet-first-vpc.
+Add one more security group along with SSH which is ALL IMCP to accept only requests from from Public Subnet of VPC i.e. public-subnet-first-vpc.
+Here we need to specify the CIDR of Public subnet i.e. 10.100.0.0/24 in the security group for both SSH and All IMCP.
+Once after logged in to the EC2 instance ping for Private subnet will get the packets are transmitted.
+
+Now to connect from Publci EC2 instance to Private EC2 instance we use Bastion Host.
+
+	Copy the private key i.e. aws-login into Bastion host.
+	To do this copy the key from local host using the command cat aws-login.
+	Create the file in Bastion host i.e. touch aws-login-from-bastion
+	Open it in vi mode and paste the key which has copied from local.
+	Convert to chmod 400 aws-login-from-bastion
 	
-Create an EC2 instance in vpc-peering-one :
-Add one more security group along with SSH.
-Also add the user data and connect to an EC2 instance.
+	Copy the private ip of private Instance and form the command.
 
-	#!/bin/bash
-	yes | sudo apt update
-	yes | sudo apt install apache2
-	echo "<h1>Server Details</h1><p><strong>Hostname:</strong> $(hostname)
-	</p><p><strong>IP Address</strong> $(hostname -I | cut -d ' ' -f1)</p>" >
-	/var/www/html/index.html
-	sudo systemctl restart apache2
+	ssh -i "aws-login-from-bastion" ubuntu@10.100.1.85
 
-Create an EC2 instance in vpc-peering-two.
+Create Second VPC :
+-------------------
+second-vpc
+10.200.0.0/16
 
+For this we need to create an Internet Gateway which has no route to the Internet.
 
+	second-vpc-ig
 	
+Create Private subnet in second-vpc.
+
+second-vpc-private-subnet
+Select the Availability zone
+10.200.1.0/24
+
+Create Route Table first-vpc :
+rt-private-subnet-second-vpc
+
+Private subnet has to be accessed from private subnet of first-vpc.
+
+
+
+
+########################################################### 13.Transit Gateway (Rahul wagh & Nishita Mohanty) ###########################################################
+
+There are two ways where to connect multiple vpc's together.
+
+1.VPC Peering
+2.Transit Gateway
+
+1.VPC Peering :
+---------------
+VPC peering connection is a networking connection between several VPC's that enables us to route traffic between them using private IPv4 or IPv6 address.
+
+2.Transit Gateway :
+-------------------
+Transit Gateway is a service that enables us to connect the VPC's together in a single Gateway.
+Transit Gateway establishes the communication between VPC's in a simpler way.
+
+Transit Gateway is preferred over VPC Peering because if the no of network increases then no of VPC Peering also increases.
+The formula to establish the peering connection is n(n-1)/2.
+
+
+
+
+
+
 
 	
 	

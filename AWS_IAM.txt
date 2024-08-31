@@ -3,7 +3,7 @@
 3.AWS IAM and Its Features 			(Prabhu Rajendran)		   		[22-APR-2021]  ()
 4.AWS IAM Deep Dive 				(Abhishek Veeramalla)			[13-AUG-2024]  ()
 
-*********************************************************************  1.IAM Roles and Policies   **********************************************
+#####################################################################  1.IAM Roles and Policies   ##############################################
 
 IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
 IAM is a part of Security.
@@ -67,7 +67,7 @@ Policies i.e A permission document that can be attached to User,Group,Role.
 Consider the scenario where in EC2 we will launch virtual servers and in S3 is a Storage.
 If EC2 wants to communicate with S3 in a secured way,provide the Role to EC2.
 
-***************************************************** 3.AWS IAM and Its Features (Prabhu Rajendran)  *****************************************
+##################################################### 3.AWS IAM and Its Features (Prabhu Rajendran)  #########################################
 
 Consider the scenario where we don't have IAM.
 Here Organization has to create multiple User Accounts and each has it's own billing and subscription to AWS Accounts.

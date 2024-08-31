@@ -8,25 +8,37 @@
 8.S3 Glacier                                ()         	                      [22-OCT-2021]  ()
 9.Hosting Static Website on S3				(AWS Training Center)			  [22-OCT-2021]  ()
 10.S3 Tutorial								(Be A Better Dev)				  [22-OCT-2021]  ()
+11.S3 Tutorial								(Abhishek)				  		  [31-AUG-2021]  ()
+12.S3 Hands-On 								(Furqan Butt)				  	  [31-AUG-2021]  ()
+13.S3 Hands-On 								(Sahdev Grover)				  	  [31-AUG-2021]  ()
+14.AWS S3									(JasCloudTech)				  	  [31-AUG-2021]  ()
 
-*********************************************** 1.S3 Introduction (Lewis Gavin)  **********************************************************
+
+Abhishek
+Be A Better Dev
+Rahul wagh
+Online Tutorial
+
+############################################### 1.S3 Introduction (Lewis Gavin)  ##########################################################
+
 S3 stands for simple storage service.
-S3 is like Virtual Drive to store and retrieve any amount of Data at any point of time.
-S3 is an Object based storage service for uploading Files.
+S3 is like virtual drive using which we can store and retrieve any amount of data at any point of time.
+S3 is an Object based storage service for uploading files.
 File can be of any size from 0 Bytes to 5 Terra Bytes and the storage capacity is effectively unlimited.
-Amazon will continuously increase the size at the Back end.
-It is used in Applications like Dropbox that allows user to store Files of different types in a cloud based File System.
+Amazon will continuously increase the size at the back end.
+It is used in Applications like Dropbox that allows user to store files of different types in a cloud based File system.
 
-When a File is uploaded to S3 It will be stored in a Bucket.
-Bucket is just like a Folder or Repository which will be the holding point for all Sub Folders and Files.
-S3 has a Universal Namespace ie each Bucket we have created must have unique name that is not being used by anyone in the world.
-This is because Bucket Name makes up part of the S3 URL which must be unique.
+When a file is uploaded to S3 it will be stored in a Bucket.
+Bucket is just like a folder or repository which will hold all the sub folders and files.
+S3 has a universal namespace i.e. each Bucket we created must have unique name which is not being used by anyone in the world.
+This is because Bucket name makes up part of the S3 URL which must be unique.
 
-Reading and Writing Data To and From S3 :
+Reading and Writing data to and from S3 :
 -----------------------------------------
-When a File is uploaded to S3 It has Read and Write efficiency.
-This means once the file is succesfully written to S3 It is immideately available for reading any where in the world.
-However If we are updating or deleting the File,S3 has eventual Consistency.
+When a file is uploaded to S3, it has read and write efficiency. 
+This means once the file is successfully written to S3, it is immediately available for reading anywhere in the world. 
+Additionally, S3 now offers strong consistency for both read-after-write and read-after-update/delete operations, 
+ensuring that updates or deletions are immediately reflected in subsequent read operations.
 
 Storage Classes :
 -----------------
@@ -34,54 +46,51 @@ Data Stored in S3 can be held in 4 Storage Classes.
 
 Standard S3 :
 This is the most durable Storage Class.
-If the Files are accessed frequently and requires quick access.
+If the files are accessed frequently and requires quick access.
 
 S3 InFrequently Accessed :
-As the name suggests If the Files are accessed less frequently and still Available for us.
+If the files are accessed less frequently and still available for us.
 
 S3 Redundancy Storage :
-This can be used for the Data that can be reproduced such as Auto generated Docs.
+This can be used for the data that can be reproduced such as Auto generated Docs.
 
 Glacier :
-This has the data archive capability.We can hold the Data here super cheaply.
-However we have to wait upto 3 to 5 hours for Data Access.
+This can be used for data archive.We can hold the data here with low cost.
+However we have to wait upto 3 to 5 hours for Data access.
 
-Files are stored with the following Attributes
-Key : Filename
-Value : File Data
-VersionId : If the Versioning is turned on,we can keep track of the Current Version.
-Versioning will store all the versions of an Object and is useful for Backup's.
-
-Metadata :
-Data about the Data ie uploadTime,LastAccessedTime etc.
+Files are stored with the following attributes
+Key : 		Filename
+Value : 	File Data
+VersionId : If the Versioning is turned on,we can keep track of the Current version.Versioning will store all the versions of an Object and is useful for Backup's.
+Metadata :	Data about the Data i.e. uploadTime,LastAccessedTime etc.
 
 S3 LifeCycle Management :
 ---------------------------
-As the Data Ages within S3,we can set up the flow through each of the Storage Classes In order to reduce Costs.
-So the Data that is old can be put into Glacier for example.
-Life Cycle Management can be applied to Current and Previous versions of Files.
-We can move the Files into S3 IA after atleast 30 Days and then into Glacier another 30 Days.
-So to move the Files into Glacier Files have to be atleast 60 Days in S3 Storage and S3 IA.
-These Numbers are User Configurable but can't be below the Minimum of 30 Days.
+As the data ages within S3,we can set up the flow through each of the Storage classes in order to reduce costs.
+For example, the data that is old can be put into Glacier.
+Life Cycle Management can be applied to current and previous versions of files.
+We can move the files into S3 IA after atleast 30 Days and then into Glacier another 30 days.
+So to move the files into Glacier files it needs atleast 60 Days in both S3 Standard and S3 IA.
+These numbers are user configurable but can't be below the minimum of 30 days.
 
  
-******************************************************* 2.S3 Introduction (AWS and More) *******************************************************
+####################################################### 2.S3 Introduction (AWS and More) #######################################################
 
-By default Bucket blocks all the public Access and we have to unblock and give permission publicly.
-Similarly When we Upload the Files into S3,Files has no public access and we have to provide the public access.
+By default, S3 bucket blocks all public access, and we must explicitly unblock and configure permissions to allow public access. 
+Similarly, when files are uploaded to S3, they do not have public access by default, and you must manually grant public access to those files if needed.
 
-******************************************************* 3.S3 Introduction (Dhaval Nagar) *******************************************************
+####################################################### 3.S3 Introduction (Dhaval Nagar) #######################################################
 
-By default we can create 100 Bukcets in each AWS Account.
-S3 Buckets are HTTP enabled so that we can access the Object Stored inside them with a unique URL.
+By default we can create 100 S3 Bukcets in each AWS Account.
+S3 Buckets are HTTP enabled so that we can access the Object stored inside the Bucket with a unique URL.
 
 Version Control :
 -----------------
-By default GET request will retrieve the latest written version Object.
-Older version of an Object can be retrieved by specifying the version in the request.
-When the User performs DELETE operation on an Object,Un Versioned requests will no longer retrieve the Object.
-However all versions of that Object will continue to be preserved in S3 Bucket.
-Only the Owner of the S3 Bucket can permanently DELETE a Version.
+By default, a GET request will retrieve the latest version of an object in S3. 
+Older versions of an object can be retrieved by specifying the version ID in the request. 
+When a user performs a DELETE operation on an object, unversioned requests will no longer retrieve that object, 
+but all versions of the object will continue to be preserved in the S3 bucket. 
+Only the owner of the S3 bucket or an authorized user with the necessary permissions can permanently delete a specific version of an object
 
 Note :
 Once the versioning is enabled It can only be suspended but cannot be disabled.
@@ -122,15 +131,15 @@ S3 Select :
 
 
 
-******************************************************* 4.S3 Hands On (Furqan Butt) ***********************************************************
+####################################################### 4.S3 Hands On (Furqan Butt) ###########################################################
 
 
-******************************************************* 9.Hosting Static Website on S3 (AWS Training Center) **********************************
+####################################################### 9.Hosting Static Website on S3 (AWS Training Center) ##################################
 
 
 
 
-******************************************************* 10.S3 Tutorial (Be A Better Dev) ******************************************************
+####################################################### 10.S3 Tutorial (Be A Better Dev) ######################################################
 
 S3 is extremely cost effective.Cost decreases the more that we store on S3.
 When we perform GET request It is cost effective.
@@ -174,8 +183,9 @@ Download CSV File from AWS S3 :
 Copy S3 Files between Buckets :
 -------------------------------
 
+############################################################ 11.S3 Tutorial (Abhishek) ############################################################
 
-
+				  		  
 
 
 

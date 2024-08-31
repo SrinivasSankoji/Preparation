@@ -1,3 +1,25 @@
-1.AWS Lambda  							(Vishal Padghan)  					[04-OCT-2021]  ()		(Refer Articles)
-2.AWS Lambda  							(guru99)  							[04-OCT-2021]  ()
-3.AWS Lambda  							(Taavi Rehemägi Dzone)  			[04-OCT-2021]  ()		
+1.AWS Lambda  							(Vishal Padghan)  					[31-AUG-2024]  (Done)
+2.AWS Lambda  							(Abhishek)  						[31-AUG-2024]  ()
+3.AWS Lambda  							(Rahul wagh)  						[31-AUG-2024]  ()
+4.AWS Lambda  							(Be a Better Dev)  					[31-AUG-2024]  ()
+
+############################################################# 1.AWS Lambda (Vishal Padghan) ####################################################
+
+AWS Lambda is a serverless compute service that allows us to run the code without managing the servers.
+Serverles compute means as a Developer we don't have to much worry about the AWS resources to launch or to manage them.
+We just put the code into Lambda and it will run the code.
+
+AWS Lambda executes the code by managing the underlying resources.
+Manage includes launching or terminating the instances, Health checkups, auto-scaling, updates etc.
+
+How it will work :
+------------------
+The code we put in Lambda and want to run is called Lambda Fucntion.
+As we know that Function will be executed only when it is triggered.
+Here Event source is the entity which triggers the Lambda function and the task will be executed.
+
+############################################################# 2.AWS Lambda (Abhishek) #############################################################
+
+
+
+	

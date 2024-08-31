@@ -5,7 +5,7 @@
 5.EC2 Windows Instance          			   		(Avinash Reddy)             [15-AUG-2024]  ()
 6.EC2 Metadata                                 		()              		    [22-MAY-2021]  ()
 7.EC2 Placement Groups                         		()              		    [22-MAY-2021]  ()
-8.EC2 AutoScaling                              		(Chris Hare)             	[22-MAY-2021]  ()
+8.EC2 AutoScaling                              		(Chris Hare & Rahul wagh)   [22-MAY-2021]  ()
 9.Spring Boot Docker EC2					   		(Simple Programming)		[22-JUN-2021]  ()	
 10.Spring Boot Docker EC2					   		(Daily Code Buffer)			[22-JUN-2021]  ()	
 11.Restore EC2 from Snapshot				   		(Vishal Padghan)         	[21-JUN-2021]  ()
@@ -356,6 +356,18 @@ open puttygen --> Load the Pem File --> save as private key.
 Reference :
 -----------
 https://www.youtube.com/watch?v=bi7ow5NGC-U
+
+
+########################################### 8.EC2 AutoScaling (Chris Hare & Rahul wagh) ##########################################################
+
+Launch Template :
+-----------------
+Launch Template is a feature in EC2 which reduces the number of steps that are required to create an EC2 instance by capturing all the launch parameters within one resource.
+Before creating an Auto scaling group we need to create a Launch Template with the parameters required to launch an EC2 instance.
+These parameters includes AMI Id, Instance type,EBS provisioned IOPS, EBS Volume tagging, T2 unlimited instance, Elastic Inference and Dedicated Host etc.
+
+
+
 
 
 ########################################### 9.Spring Boot Docker EC2  (Simple Programming) #######################################################
