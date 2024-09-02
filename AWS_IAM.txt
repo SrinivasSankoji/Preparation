@@ -1,34 +1,37 @@
 1.IAM Roles and Policies                               				[22-MAR-2021]  (Done)
 2.IAM user Roles with EC2 CLI                         				[22-MAR-2021]  ()
 3.AWS IAM and Its Features 			(Prabhu Rajendran)		   		[22-APR-2021]  ()
-4.AWS IAM Deep Dive 				(Abhishek Veeramalla)			[13-AUG-2024]  ()
+4.AWS IAM Deep Dive 				(Abhishek Veeramalla)			[01-SEP-2024]  (Done)
 
 #####################################################################  1.IAM Roles and Policies   ##############################################
 
-IAM stands for Identity and Access Management which allows the user to define their access and their level of Access.
-IAM is a part of Security.
-Consider the scenario we have created an Account for AWS in a Company and have to do the complete Set up.
+IAM stands for Identity and Access Management which allows the user to define their access and their level of access.
+IAM is a part of security.
+Consider the scenario we have created an AWS account for a Company and have to do the complete set up.
 First thing we are going to look into is IAM.
-This is the place where we are going to add the Users and who will have the access to my AWS Account and which user have what Level of Access.
+This is the place where we are going to add the users to have an access to AWS Account and which user have what level of access.
 
 Note :
-IAM is not only how users get access to do things in AWS but also how we grant machines to talk to each other.
+IAM is not only for how the users get access to do things in AWS but also how we grant machines to talk to each other.
 
 Advantages of IAM :
 -------------------
 1.Centralized control of AWS Account.
-2.Shared Access for AWS Account (Multiple Administrators)
-3.Granular Permissions (Until what level user can have the specific Access.We can also define the specific documnet)
+2.Shared access for an AWS Account (Multiple Administrators)
+3.Granular permissions (Until what level user can have the specific access.we can also define the specific documnet)
 4.Identity Federation
-If the company got more than 1000 users it is difficult to add each user in IAM section.
-Here we can integrate with the Active Dircetory so that all the  users can use the userId and password of the company itself.
+If the company has more than 1000 users it is difficult to add each user in IAM section.
+Here we can integrate with the LDAP so that all the users can use the userId and password of the company itself.
 We can also do the Identity Federation with Facebook and LinkedIn.
+
 5. MultiFactor Authentication (Two Level Authentication)
-6.Provide Temporary Accss for users/devices and services wherever necessary
-As a Company we might get the requirent that we can hire some third party Engineer to resolve the issue.
+6.Provide temporary accss for users/devices and services wherever necessary
+As a Company we might get the requirent that we can hire some third party engineer to resolve the issue.
 Here he willget the Temporary access until the work is done.
+
 7.Allows us to set up our own password rotation policy.
-Password should be case sensitive,Atleast contain one Capital Letter etc.
+Password should be case sensitive,atleast contain one capital letter etc.
+
 8.Intergrates with many different AWS Services 
 9.Supports PCI DSS Compliance
 
@@ -39,30 +42,35 @@ Groups
 Roles
 Policies
 
-Users  : 
-End user who is going to access the AWS Management console for interactive Tasks.
-User can make programatic requests to AWS services using the API or CLI.
-Each User is associated with one and only one AWS account.
-User consists of name and password to sign into AWS Management Console.
-User can contain upto two access keys that can be used by API or CLI.
+Users :
+-------
+IAM users can access the AWS Management Console to perform tasks interactively.
+IAM users can also make programmatic requests to AWS services using the API or CLI when they have appropriate access keys.
+An IAM user is created within a single AWS account and is associated with that account only.
+An IAM user consists of a username and a password to sign into the AWS Management Console. 
+However, the IAM user can also have other security credentials like access keys for programmatic access.
+An IAM user can have up to two active access keys at any given time, which can be used for programmatic access via the API or CLI.
 
-Groups : 
-Collection of Users under one set of permissions whcih makes easier to manage Users instead of giving individual access.
-Any User in the group automatically has the permissions that are assigned to the group.
+Groups :
+--------
+Collection of users under one set of permissions whcih makes easier to manage users instead of giving individual access.
+Any User in the Group automatically will have the permissions that are assigned to the group.
 Group is the only way to attach policies to multiple users at a time.
 
-Roles  : 
-Role is an Identity with permission policies that determines what I can do and cannot do in AWS.
+Roles :
+-------
+Role is an identity with permission policies that determines what I can do and cannot do in AWS.
 Role doesn't have any credential associated with it.
 User can assume a Role temporarily and can take different permissions for a specific task.
 Role can also be assigned to a Federated User who can sign in using third party provider instead of AWS.
 We can create Roles and assign them to AWS Resources.
 Groups can be assigned to the users where as Roles can be assigned to the services.
 
-Policies : 
+Policies :
+----------
 It is a document that defines one or more permissions.
 what kind of permission that a specific User will have,Group will have,Role will have.
-Policies i.e A permission document that can be attached to User,Group,Role.
+Policies i.e. A permission document that can be attached to User,Group,Role.
 
 Consider the scenario where in EC2 we will launch virtual servers and in S3 is a Storage.
 If EC2 wants to communicate with S3 in a secured way,provide the Role to EC2.
@@ -160,4 +168,6 @@ It can be applied to both IAM User and IAM Role.
 
 8.Creating IAM Roles :
 ----------------------
+
+##################################################### 4.AWS IAM Deep Dive (Abhishek Veeramalla) #####################################################
 

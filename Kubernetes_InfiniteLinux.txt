@@ -256,24 +256,29 @@ Succeded
 ************************************************************* 8.Pod Networking  *************************************************************
 
 lets consider how the Docker Networking works.
-Whenever Docker is installed,default Bridge network named bridge is created.
-This default Bridge network gets an IP Address and all the newly created Containers are attached to the default Bridge network.
+Whenever we install Docker, Bridge network is created by default.
+This default Bridge network gets an IP Address and all the newly created containers are attached to the default Bridge network.
 
-Whenever we create the Pod all the Containers within the Pod shares the same Network namespace and can communicate with each other using localhost.
-In Kubernetes one Pod can reach out to another Pod using IP Address.
+Whenever we create a pod in Kubernetes, all the containers within the pod share the same network namespace and can communicate with each other using localhost. 
+This means that containers within the pod can access each other directly through the loopback interface.
 
-Consider the Scenario where the Kubernetes Cluster has 2 Nodes and they are on the Network and can communicate with each other either by using Router or API Gateway.
-Each Node has a corresponding IP Address.
+In Kubernetes, one pod can reach out to another pod using its IP address. 
+Each pod is assigned a unique IP address, which allows for direct communication between pods across the cluster.
 
-When we set up the Kubernetes Cluster,Networking PlugIns are not installed and it informs what kind of networking structure it expects.
-We need to set up the Networking PlugIns outside the Cluster.
-If the Network PlugIns are not installed then there will be no next hop and ends up in creating the same IP for all the Nodes.
-There is no mechanism to tell how to send the packet from one Node to another Node.
-Here Network PlugIn comes into the picture.
+Consider a scenario where a Kubernetes cluster has two nodes.
+These nodes are on a network that allows them to communicate with each other, either via a router or an API Gateway. 
+Each node in the cluster has its own unique IP address.
 
-Functionality of Network PlugIn is to run the Overlay Network across all the Nodes.
-Network PlugIn covers the Bridge Netwrok and assigns the IP Address to all the Nodes within the Bridge Network.
-Containers running inside the Pod will get the Sequential IP Address.
+Whenever we set up a Kubernetes cluster, networking plugins are not installed by default. 
+Kubernetes expects certain networking structures to be in place, but it does not provide these out of the box. 
+Without these plugins, Kubernetes will not be able to correctly route the traffic between nodes.
+This will cause the issues such as all nodes ending up with the same IP address, and no mechanism will exist to route packets from one node to another.
+
+This is where the networking plugin comes into picture. 
+The networking plugin is responsible for running an overlay network across all the nodes in the cluster. 
+It handles the creation of a bridge network and assigns IP addresses to all pods within the bridge network. 
+This ensures that each pod will receive a unique IP address within the network, allowing for proper communication between nodes and pods in the cluster. 
+The containers running inside the pods will receive sequential IP addresses as managed by the networking plugin.
 
 ************************************************************* 9.Static Pods ********************************************************************* 
 
@@ -287,15 +292,16 @@ Containers running inside the Pod will get the Sequential IP Address.
 
 ************************************************************* 11.Replica Sets  ******************************************************************
 
-Replica Set or Replication Controller ensures that the number of Pods are running as per the Configuration.
-Replica Set gaurantees the availability of Pod at any given point of time.
+ReplicaSet or Replication Controller ensures that the number of Pods are running as per the configuration.
+ReplicaSet gaurantees the availability of Pods at any given point of time.
 
 Note :
-We never run the pods behind the Replica Set directly.
-There is a high level feature called Deployment which provides lots more feature than Replica Set.
+------
+We never run the pods behind the ReplicaSet directly.
+There is a high level feature called Deployment which provides lots more feature than ReplicaSet.
 Deployment actually creates the Replica Set.
 we cannot generate the yaml file for ReplicaSet using kubectl command like we created the yaml file for pods.
-Create a deployment manifest file and run it as a Replica Set.
+Create a Deployment manifest file and run it as a ReplicaSet.
 
 	kubectl create deployment myreplica --image=nginx --dry-run=true -o yaml >rs.yaml
 	

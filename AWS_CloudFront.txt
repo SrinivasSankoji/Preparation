@@ -1,0 +1,35 @@
+1.CDN 										(ChatGPT)		   		[31-AUG-2024]  (Done)
+2.AWS CloudFront							(Abhishek)		   		[31-AUG-2024]  (Done)
+
+
+
+
+
+##################################################################### 1.CDN (ChatGPT) #####################################################################	
+
+A Content Delivery Network (CDN) is a distributed network of servers strategically located across various geographic locations. 
+The primary purpose of a CDN is to deliver content to users more efficiently by reducing latency and load time. 
+Content includes web pages, images, videos, and other static or dynamic files, .
+
+CDN Works based on below concepts
+
+Geographical Distribution :
+---------------------------
+CDNs distribute copies of your content to servers (known as edge servers) located closer to end users around the globe. 
+When a user requests content, it is served from the nearest edge server instead of the origin server.
+
+Caching :
+--------- 
+CDN edge servers cache content, which means they store a temporary copy of the files after the first request. 
+This reduces the load on the origin server and speeds up subsequent requests from nearby users.
+
+Load Balancing :
+---------------- 
+CDNs use load balancing to distribute incoming traffic across multiple servers to prevent any single server from being overwhelmed, ensuring high availability and reliability.
+
+Security :
+---------- 
+Many CDNs offer security features such as DDoS protection, SSL/TLS encryption, and Web Application Firewalls (WAF) to safeguard content and prevent malicious attacks.
+
+##################################################################### 2.AWS CloudFront (Abhishek) ###########################################################
+

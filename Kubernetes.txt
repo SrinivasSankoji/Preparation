@@ -1,8 +1,14 @@
-1.Run Nginx on Kubernetes     (Mike Vincent)     	[12-JUL-2023]  (Done)   https://nonanom.medium.com/run-nginx-on-kubernetes-ee6ea937bc99
-2.Kubernets Objects 		  (Harshal Kathar)     	[15-JUL-2023]  ()       https://katharharshal1.medium.com/kubernetes-objects-pods-replicasets-and-deployments-44f16b38d9f7
+1.Run Nginx on Kubernetes     			(Mike Vincent)     		[12-JUL-2023]  (Done)   
+2.Kubernets Objects 		  			(Harshal Kathar)     	[15-JUL-2023]  () 
+3.Kubernetes Deployment       			(Jack Roper)     		[02-SEP-2024]  ()
+4.Kubernetes Deployment Template     	(Jack Dwyer)     		[02-SEP-2024]  ()
+5.Kubernetes environment variables
+6.
 
 
 ################################################### 1.Run Nginx on Kubernetes (Mike Vincent)  ###################################################
+
+https://nonanom.medium.com/run-nginx-on-kubernetes-ee6ea937bc99
 
 A Kubernetes manifest is a configuration file.
 When the manifest file is applied to a cluster then it becomes an object on the cluster.
@@ -35,7 +41,8 @@ spec:
          ports:
            - containerPort: 80
              protocol: TCP
----
+
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -61,9 +68,15 @@ Lets redirect the port from our local machine to the port running in the contain
 
 ################################################### 2.Kubernets Objects (Harshal Kathar) ###################################################
 
+https://katharharshal1.medium.com/kubernetes-objects-pods-replicasets-and-deployments-44f16b38d9f7
 
 
 
+################################################### 3.Kubernetes Deployment (Jack Roper) ###################################################
+
+https://spacelift.io/blog/kubernetes-deployment-yaml
 
 
+################################################### 4.Kubernetes Deployment Template (Jack Dwyer) ##########################################
 
+https://zeet.co/blog/kubernetes-deployment-template

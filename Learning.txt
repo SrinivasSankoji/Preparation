@@ -1639,7 +1639,7 @@ Flyway Migration with PostgreSQL ()
 
 AWS EC2 (Done)
 AWS EBS ()
-AWS VPC ()
+AWS VPC (Done)
 ALB  ()
 Autoscaling ()  
 NLB ()
@@ -1649,10 +1649,9 @@ AWS CLI ()
 
 Kubernetes ()
 Helm ()
-EKS  ()
 
+AWS IAM ()
 AWS S3  ()
-AWS RDS ()
 
 ECR ()
 ECS ()
@@ -1664,8 +1663,9 @@ Forge Authentication ()
 
 ----------------------------------------- October 2024  ----------------------------------------------
 
-AWS IAM ()
+EKS  ()
 AWS Route53 ()
+AWS RDS ()
 
 Distributed Transaction ()
 Concurrency Control ()
