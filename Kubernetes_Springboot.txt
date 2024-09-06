@@ -1,5 +1,5 @@
 1.Run & Deploy Spring Boot Application in K8s cluster       				(Java Techie)     		[24-AUG-2024]  (Done)
-2.Run & Deploy Spring Boot Application in K8s Cluster using yaml			(Java Techie)     		[25-AUG-2024]  ()
+2.Run & Deploy Spring Boot Application in K8s Cluster using yaml			(Java Techie)     		[06-SEP-2024]  (Done)
 
 
 ################################################### 1.Run & Deploy Spring Boot Application in K8s cluster (Java Techie)  ################################
@@ -52,8 +52,99 @@ To see the spring boot application in kubernetes dashboard we run the command
 
 ################################### 2.Run & Deploy Spring Boot Application in K8s Cluster using yaml (Java Techie) ##################################
 
+To copy the local image to minikube, run the below command in windows powershell.
+
+	& minikube -p minikube docker-env | Invoke-Expression
+	docker build -t spring-boot-docker-yaml:1.0 .
+	
+create the Deployment
+
+	kubectl apply -f deployment.yml
+
+verify the Deployment and pods are created or not using the commands
+
+	kubectl get deployments
+	kubectl get pods
+	
+To watch the Container creation in the Pods, use the command
+
+	kubectl get pods -w
+	
+To watch the application logs inside the container
+
+	kubectl logs spring-boot-docker-yaml-76b765866-jd7xm(pod name)
+	
+To expose the application outside the Pod we create the Service.
+Kubernetes service plays the role of service discovery using selectors and labels,load balance between the pods.
+
+Deployment.yml :
+----------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-docker-yaml
+  labels:
+    app: spring-boot-docker-yaml
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-docker-yaml
+  template:
+    metadata:
+      labels:
+        app: spring-boot-docker-yaml
+    spec:
+      containers:
+        - name: spring-boot-docker-yaml
+          image: spring-boot-docker-yaml:1.0
+          ports:
+            - containerPort: 8080
+			
+Service.yml :
+-------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-docker-yaml-service
+spec:
+  selector:
+    app.kubernetes.io/name: spring-boot-docker-yaml
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 9376
+  type: NodePort
+  
+Using the Kubectl command to expose the service
+
+	kubectl expose deployment spring-boot-docker-yaml --type=NodePort --port=8080
+  
+To run the Application in the Browser, run the command
+
+	http://192.168.49.2:31646/yaml/kubectl
+
+To check the application is accessible from the pod we use the command
+
+	kubectl exec -it spring-boot-docker-yaml-7b7c5b9f78-2q45p -- curl http://localhost:8080/yaml/kubectl
+	
+To verify that the service is correctly routing traffic to the pods by checking the service's endpoints.
+Here we should see IPs of the pods and the corresponding port (8080). 
+
+	kubectl get endpoints spring-boot-docker-yaml
+	
+
+
+
+
 
 	
+
+
+	
+
+
+
 
 	
 
