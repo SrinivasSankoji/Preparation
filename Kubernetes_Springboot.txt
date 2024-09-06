@@ -11,7 +11,6 @@ Install Minikube which is a single node kubernetes cluster.
 Create the Spring boot application with Dockerfile.
 Dokcerize the Spring boot application and create an image for Spring boot application.
 
-
 Now we need to run the particular image inside pod.
 For that we need to create Deployment object.
 Deployment are Kubernetes objects that are used for managing the pods.
@@ -32,8 +31,9 @@ Now the application is running inside the pod.
 To access the application from outside we need to expose it through service object.
 To create a service object we need to expose the deployment with the specific service type.
 
-	kubectl expose deployment springboot-k8s --type=NodePort --port=8080 --target-port=8080
-
+	kubectl expose deployment springboot-k8s --type=NodePort --port=8080
+	
+This will map port 8080 of the container to a NodePort i.e. dynamically assigned port between 30000 and 32767.
 To verify the service has created or not run the command
 
 	kubectl get service
@@ -41,8 +41,8 @@ To verify the service has created or not run the command
 To get the endpoint as we have only single pod
 
 	minikube service springboot-k8s --url
+	http://127.0.0.1:50215/docker
 	
-
 Note :
 ------
 To see the spring boot application in kubernetes dashboard we run the command

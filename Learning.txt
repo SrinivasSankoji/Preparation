@@ -1647,12 +1647,11 @@ AWS CLI ()
 
 ----------------------------------------- September 2024  ----------------------------------------------
 
-Kubernetes ()
-Helm ()
+Kubernetes Basics till Monitoring ()
+Helm Basics()
 
 AWS IAM ()
 AWS S3  ()
-
 ECR ()
 ECS ()
 
@@ -1663,21 +1662,18 @@ Forge Authentication ()
 
 ----------------------------------------- October 2024  ----------------------------------------------
 
+Kubernetes Cluster Setup ()
 EKS  ()
-AWS Route53 ()
-AWS RDS ()
-
-Distributed Transaction ()
-Concurrency Control ()
-Distributed Message Queue ()
-Distributed Tracing ()
-
-High Availability and Resilience System ()
-Fault and Failure in Distributed System ()
-Scaling ()
-
-Spring Cloud Gateway ()
-Microservice Resilience ()
-Micro Service Communication ()
 
 ----------------------------------------- November 2024  ----------------------------------------------
+
+AWS Route53 ()
+AWS RDS ()
+Kubernetes Advanced ()
+
+----------------------------------------- December 2024  ----------------------------------------------
+
+
+----------------------------------------- January 2025  ----------------------------------------------
+
+Static Web Application Deployment in AWS ()

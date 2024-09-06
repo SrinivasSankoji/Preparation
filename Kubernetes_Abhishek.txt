@@ -3,7 +3,7 @@
 3.Install Kubernetes                                            (Abhishek)				[02-SEP-2024]  ()
 4.How to manage hundred's of Kubernetes Cluster                 (Abhishek)				[02-SEP-2024]  ()
 5.Kubernetes Pods                                               (Abhishek)				[02-SEP-2024]  ()
-6.Kubernetes Replicaset                                         (Abhishek)				[02-SEP-2024]  ()
+6.Kubernetes Replicaset and Deployment                          (Abhishek)				[02-SEP-2024]  ()
 7.Kubernetes Services                                           (Abhishek)				[02-SEP-2024]  ()
 8.Interview Questions                                           (Abhishek)				[02-SEP-2024]  ()
 9.Kubernetes Services in depth                                  (Abhishek)				[02-SEP-2024]  ()
@@ -11,15 +11,20 @@
 11.Kubernetes Ingress                                           (Abhishek)				[02-SEP-2024]  ()
 12.Kubernetes RBAC                                              (Abhishek)				[02-SEP-2024]  ()
 13.Kubernetes Custom Controller                                 (Abhishek)				[02-SEP-2024]  ()
-14.Kubernetes Live Project                                      (Abhishek)				[02-SEP-2024]  ()
+14.Kubernetes ConfigMaps and Secrets							(Abhishek)				[02-SEP-2024]  ()
 15.Kubernetes Monitoring                                        (Abhishek)				[02-SEP-2024]  ()
+
+16.Node Selector, Node Affinity, Taints and Tolerants           (Abhishek)				[02-SEP-2024]  ()
+17.Statefulset with Persistent Volumes                          (Abhishek)				[02-SEP-2024]  ()
+18.Service Mesh                                                 (Abhishek)				[02-SEP-2024]  ()
+19.Secure your Database using Network Policies                  (Abhishek)				[02-SEP-2024]  ()
 
 
 ######################################################### 1.Introduction  ##########################################################################
 
 If we are good at CI CD then it will be the role of Build and Release Engineer or Release Engineer roles.
 People has moved to micro services in the recent years.
-The only pre requisite to learn Kubernetes is Docker or Container.
+The only pre-requisite to learn Kubernetes is Docker or Container.
 We must know the basics of the Container. 
 
 How it is different from VM
@@ -98,7 +103,7 @@ Faulty Pod can be immideately scheduled in the different Node because we have Cl
 Kubernetes has something called Replication controller or ReplicaSet.
 We have to mention to increase the replicas from 1 to 10.
 This is manual Auto scale.
-Kubernetes has something called Horizonal Pd Autoscale.
+Kubernetes has something called Horizonal Pod Autoscale.
 Once the threshold has reached to the limit increase the Containers.
 
 Whenever there is a damage Kubernetes has to control and fix the damage.

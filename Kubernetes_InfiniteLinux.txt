@@ -18,8 +18,9 @@
 16.Manual Scheduling                                        [05-MAY-2021]  ()
 17.Kubernetes Affinity and Anti Affinity                    [05-MAY-2021]  ()
 18.Kubernetes Taints and Tolerants                          [06-MAY-2021]  ()
-19.ConfigMaps                                               [06-MAY-2021]  ()
+19.ConfigMaps and Secrets                                   [06-MAY-2021]  ()
 20.Persistent Volumes and Claims                            [06-MAY-2021]  ()
+
 21.ETCD Backup                                              [07-MAY-2021]  ()
 22.ETCD Database Restore                                    [07-MAY-2021]  ()
 23.Nginx Ingress Controller                                 [07-MAY-2021]  ()
@@ -259,15 +260,15 @@ lets consider how the Docker Networking works.
 Whenever we install Docker, Bridge network is created by default.
 This default Bridge network gets an IP Address and all the newly created containers are attached to the default Bridge network.
 
-Whenever we create a pod in Kubernetes, all the containers within the pod share the same network namespace and can communicate with each other using localhost. 
-This means that containers within the pod can access each other directly through the loopback interface.
+Consider a scenario where a Kubernetes cluster has two nodes.
+These nodes are on a network that allows them to communicate with each other, either via a router or an API Gateway. 
+Each node in the cluster has its own unique IP address.
 
 In Kubernetes, one pod can reach out to another pod using its IP address. 
 Each pod is assigned a unique IP address, which allows for direct communication between pods across the cluster.
 
-Consider a scenario where a Kubernetes cluster has two nodes.
-These nodes are on a network that allows them to communicate with each other, either via a router or an API Gateway. 
-Each node in the cluster has its own unique IP address.
+Whenever we create a pod in Kubernetes, all the containers within the pod share the same network namespace and can communicate with each other using localhost. 
+This means that containers within the pod can access each other directly through the loopback interface.
 
 Whenever we set up a Kubernetes cluster, networking plugins are not installed by default. 
 Kubernetes expects certain networking structures to be in place, but it does not provide these out of the box. 
@@ -461,7 +462,7 @@ Whenever request originates for the Ip,it redirects the request to the Node whic
 Communication Between Pods :
 ----------------------------
 For the communication to happen between the pods the flow will be
-Each node will get the unique Ip Address and there should be an overlay network between the nodes ie Bridge Network.
+Each node will get the unique Ip Address and there should be an overlay network between the nodes i.e. Bridge Network.
 Bridge Network connects to the Ethernet of the Nodes and it internally connects to the Gateway.
 Gateway then communicates with the Ethernet of another Node and which connects to the Bridge Network and the connects to the virtual ethernet of the Pod.
 
