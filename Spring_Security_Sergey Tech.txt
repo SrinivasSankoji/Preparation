@@ -1,0 +1,115 @@
+1.Introduction											(Sergey Tech)		[08-SEP-2024]  (Done)
+2.Filter Chain                                          (Sergey Tech)		[08-SEP-2024]  (Done)
+3.Create Filter in Spring                               (Sergey Tech)		[08-SEP-2024]  (Done)
+4.OncePerRequestFilter                                  (Sergey Tech)		[08-SEP-2024]  (Done)
+5.Order of Filters                                      (Sergey Tech)		[08-SEP-2024]  ()
+6.FilterRegistrationBean                                (Sergey Tech)		[08-SEP-2024]  ()
+7.Spring security Filter Chain                          (Sergey Tech)		[08-SEP-2024]  ()
+8.Spring security architecture						    (Sergey Tech)		[15-AUG-2024]  ()
+
+######################################################### 1.Introduction (Sergey Tech)  ############################################################################
+
+What is Filter
+How it works
+Filter Location
+Create our own Filter using Filter interface
+Explore other Filters
+Order of Filters
+Filter vs Interceptor
+Filters in WebFlux
+
+######################################################### 2.Filter Chain (Sergey Tech) #############################################################################
+
+Filter is a Java class that will be executed for each incoming request and outgoing response.
+This is the place where we can keep the code that will reach before the Spring controller and the Client.
+Filter is primarily a Web Servlet Container concept which is applicable for all the Applications.
+
+	User ---> Web Container --> Filter --> DispatcherServlet --> Controller.
+
+Suitable use cases for Filter are 
+1.Authentication and Authorization
+2.Logging
+3.Handling the Duplication across the Application
+
+Most of the times we are going to work with Multiple Filters.
+These collection of Filters are called FilterChain.
+At any point of time any Filter can decide to block the request from falling down the chain and return early with some error.
+The error will be unauthorized or forbidden.
+
+######################################################### 3.Create Filter in Spring (Sergey Tech) ##################################################################
+
+To create a Filter in Spring, Annotate the class with @Component and implement the Filter interface from jakarta package.
+
+init(FilterConfig filterConfig)
+doFilter(ServletRequesr servletRequest,ServletResponse servletResponse,FilterChain filterChain)
+destroy()
+
+init() will be called when the WebContainer keeps the Filter in the ApplicationContext.
+destory() will be called when the Filter is removed from ApplicationContext.
+
+doFilter() will be called for each request and it shoud return the filterChain by sending the response.
+Otherwise it assumes that the request won't be forward to the controller.
+
+	@Component
+	@Slf4j
+	public class LogFilter implements Filter {
+		@Override
+		public void init(FilterConfig filterConfig) throws ServletException {
+			log.info("LogFilter init method has called");
+			Filter.super.init(filterConfig);
+		}
+
+		@Override
+		public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+			HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+			Collections.list(httpServletRequest.getHeaderNames())
+					.forEach(header ->
+							log.info("Header key {} = {}", header, httpServletRequest.getHeader(header)));
+			filterChain.doFilter(httpServletRequest, servletResponse);
+		}
+
+		@Override
+		public void destroy() {
+			log.info("LogFilter destroy method has called");
+			Filter.super.destroy();
+		}
+	}
+
+######################################################### 4.OncePerRequestFilter (Sergey Tech) #####################################################################
+
+Every time a request comes in, Web Container passes the request through a series of filters in a Filter Chain. 
+If there are multiple servlets in an application, there is a possibility that the same Filter might be executed multiple times for a single request, 
+which can lead to redundant processing. 
+To avoid this, Spring provides a class called OncePerRequestFilter, which ensures that the filter is executed only once per request, 
+regardless of how many servlets or filters are involved in the chain.
+
+This guarantees that even in the case of multiple servlets, the filter will only process the request once.
+
+	@Component
+	@Slf4j
+	public class LogFilter extends OncePerRequestFilter {
+
+		@Override
+		public void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws IOException, ServletException {
+        Collections.list(httpServletRequest.getHeaderNames())
+                .forEach(header ->
+                        log.info("Header key {} = {}", header, httpServletRequest.getHeader(header)));
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+		}
+	}
+	
+######################################################### 5.Order of Filters (Sergey Tech) ###########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+

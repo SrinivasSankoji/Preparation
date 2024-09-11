@@ -1,0 +1,261 @@
+1.Fundementals of Spring Secuirty				(EmbarkX)		[11-SEP-2024]  (Done)
+2.How Spring Security works                     (EmbarkX)		[11-SEP-2024]  (Done)
+3.Form based Authentication                     (EmbarkX)		[11-SEP-2024]  (Done)
+4.Custom Security Filter                        (EmbarkX)		[11-SEP-2024]  (Done)
+5.InMemory Authentication                       (EmbarkX)		[11-SEP-2024]  (Done)
+6.Role Based Authentication                     (EmbarkX)		[11-SEP-2024]  ()
+7.Enabling H2 Database                          (EmbarkX)		[11-SEP-2024]  (Done)
+8.Database Authentication                       (EmbarkX)		[11-SEP-2024]  (Done)
+9.JWT Authentication                            (EmbarkX)		[11-SEP-2024]  ()
+
+
+################################################################# 1.Fundementals of Spring Secuirty #################################################################
+
+By using Security we can achieve :
+Privacy Protection i.e. only Authorized users can access the System
+Trust
+Integriry i.e. Data remains unchanged
+Compliance
+
+Role of Spring Security within Spring Eco System :
+Spring Framework
+Spring Boot
+Spring Data
+Spring Security
+	Authentication
+	Authorization
+	
+Below are the Key Security Principles :
+Least Privilige for the users to complete the Task.
+Secure by Design
+Fail Safe Defaults
+Secure Communication
+Input Validation
+Audit and Log
+Regular updates and patch Management
+
+################################################################# 2.How Spring Security works (EmbarkX) #############################################################
+
+When a request comes in, it goes through a series of filters known as the Filter Chain, which depends on the Spring Security configuration and custom filters. 
+These filters have specific responsibilities related to security and configuration.
+
+If Spring Security is enabled, additional security-related filters are added to this filter chain.
+One of the important filters is the Authentication Filter, which is responsible for intercepting the request that requires authentication, such as a login request.
+
+This request typically contains credentials (e.g., username and password) or other forms of authentication (e.g., token). 
+The Authentication Filter then creates an Authentication object and hands it over to the AuthenticationManager.
+
+The AuthenticationManager is responsible for delegating the authentication process to one or more AuthenticationProviders.
+An AuthenticationProvider is responsible for validating the credentials (e.g., username and password). 
+
+For the AuthenticationProvider to validate the credentials, it relies on two components:
+
+PasswordEncoder – for securely comparing the password.
+UserDetailsService – for retrieving the user information from a database or another source.
+
+Once the AuthenticationProvider successfully authenticates the credentials, it retrieves the UserDetails object, which contains information such as username, roles, and permissions. 
+This UserDetails object is then used to create a fully authenticated Authentication object.
+
+AuthenticationManager then updates the SecurityContext with the authenticated Authentication object, 
+making the user authenticated within the application context for the duration of the session or request lifecycle.
+
+
+################################################################# 3.Form based Authentication (EmbarkX) ##############################################################
+
+When we create a Spring Security application by default it is Form based Authentication.
+All the API's are secured by default.
+Default user is user and password is displayed in the console.
+
+We can also set the username and password in the properties file.
+
+
+################################################################# 4.Custom Security Filter (EmbarkX) #################################################################
+
+If we are working with Rest API Form based Authentication is not required.
+We need to disable the Form based Authentication and should provide the Basic Authentication.
+The default Authentication is present in SpringBootWebSecurityConfiguration.
+
+		@Bean
+		@Order(SecurityProperties.BASIC_AUTH_ORDER)
+		SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+			http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
+			http.formLogin(withDefaults());
+			http.httpBasic(withDefaults());
+			return http.build();
+		}
+		
+To enable the Basic Authentication we need to write our own Configuration class with Basic Authentication as default authentication.
+	
+		@Configuration
+		@EnableWebSecurity
+		public class SpringSecurityConfiguration {
+			@Bean
+			@Order (SecurityProperties.BASIC_AUTH_ORDER)
+			SecurityFilterChain basicSecurityFilterChain(HttpSecurity http) throws Exception {
+				http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
+				http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+				http.httpBasic(withDefaults());
+				return http.build();
+			}
+		}
+		
+When we use Basic Authentication, login details are sent in the Authorization Header as Basic authentication.
+By default cookies are enabled. If we want to diable it from server side.
+
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		
+
+################################################################# 5.InMemory Authentication (EmbarkX) #################################################################
+
+Till now we have hard coded the username and password in the properties file.
+We can also configure the user details in memory.
+UserDetailsService is responsible for fetching the UserDetails from the Database.
+UserDetailsService internally uses the PasswordEncoder for encrypting the password.
+To implement the InMemory we need to create an Object of InMemoryUserDetailsManager.
+
+	@Configuration
+	@EnableWebSecurity
+	public class SecurityConfiguration {
+
+		@Bean
+		public UserDetailsService userDetailsService() {
+			UserDetails user = User.withUsername("user")
+					.password(passwordEncoder().encode("password"))
+					.roles("USER")
+					.build();
+
+			UserDetails admin = User.withUsername("admin")
+					.password(passwordEncoder().encode("admin"))
+					.roles("ADMIN")
+					.build();
+
+			return new InMemoryUserDetailsManager(user, admin);
+		}
+
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
+
+		@Bean
+		public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+			httpSecurity
+					.authorizeHttpRequests(authorize -> authorize
+							.requestMatchers("/admin/**").hasRole("ADMIN")
+							.requestMatchers("/user/**").hasRole("USER")
+							.anyRequest().authenticated()
+					)
+					.httpBasic(withDefaults())
+					.sessionManagement(session -> session
+							.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+					);
+			return httpSecurity.build();
+		}
+	}
+	
+		@GetMapping("/default")
+		public String defaultApi() {
+			return "Welcome to the default API, accessible to all authenticated users!";
+		}
+
+		@GetMapping("/user")
+		public String userApi() {
+			return "Hello User! You have access to user-specific features.";
+		}
+
+		@GetMapping("/admin")
+		public String adminApi() {
+			return "Welcome Admin! You have access to admin-specific features.";
+		}
+
+
+################################################################# 6.Role Based Authentication #################################################################
+
+
+		
+
+################################################################# 7.Enabling H2 Database ######################################################################
+
+To enable H2 Database we need to add h2 and Spring Data JPA dependencies.
+In the application.properties file we need to add the details related to H2 Database.
+Also create the Entity for User.
+
+	@Configuration
+	@EnableWebSecurity
+	public class SecurityConfiguration {
+
+		private final CustomUserDetailsService customUserDetailsService;
+
+		public SecurityConfiguration(CustomUserDetailsService customUserDetailsService) {
+			this.customUserDetailsService = customUserDetailsService;
+		}
+
+		@Bean
+		public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+			httpSecurity
+					.authorizeHttpRequests(authorize -> authorize
+							.requestMatchers("/h2-console/**").permitAll()
+							.requestMatchers("/admin/**").hasRole("ADMIN")
+							.requestMatchers("/user/**").hasRole("USER")
+							.anyRequest().authenticated()
+					)
+					.csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+					.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+					.httpBasic(withDefaults())
+					.sessionManagement(session -> session
+							.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+					);
+			return httpSecurity.build();
+		}
+
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
+	}
+	
+################################################################# 8.Database Authentication (EmbarkX) #################################################################
+
+	@Service
+	public class CustomUserDetailsService implements UserDetailsService {
+		private final UserRepository userRepository;
+
+		public CustomUserDetailsService(UserRepository userRepository) {
+			this.userRepository = userRepository;
+		}
+
+		@Override
+		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+			UserEntity userEntity = userRepository.findByUsername(username);
+			if (userEntity == null) {
+				throw new UsernameNotFoundException("User not found");
+			}
+			return User.builder()
+					.username(userEntity.getUsername())
+					.password(userEntity.getPassword())
+					.roles(userEntity.getRole())
+					.build();
+		}
+	}
+	
+################################################################# 9.JWT Authentication (EmbarkX) #####################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+

@@ -7,11 +7,10 @@
 7.Spring Security JDBC Authentication  				()					[21-OCT-2019]  (Done)
 8.Spring Security JPA Authentication    			()					[]
 9.JSON Web Token 									()					[]																																							 													
-10.Spring security architecture						(Sergey Tech)		[15-AUG-2024]  ()
-11.Spring Boot Azure AD 	 						(JavaInUse medium)	[15-AUG-2024]  ()
-12.
+10.Spring Boot Azure AD 	 						(JavaInUse Medium)	[15-AUG-2024]  ()
 
-********************************************************* 1.Introduction :  ****************************************************************************
+
+######################################################### 1.Introduction :  ############################################################################
 
 Whenever we want to secure a Web Application we have to put lot of efforts to implement with multiple layers of Security.
 We even anticipate that some of them might get hacked.
@@ -49,7 +48,7 @@ Intra application authorization like OAuth
 MicroService security using Tokens,JWT
 Method level security
 
-********************************************************* 2.Five Spring Security Concepts : *********************************************************
+######################################################### 2.Five Spring Security Concepts : #########################################################
 
 1.Authentication
 2.Authorization
@@ -107,7 +106,7 @@ Roles :
 Role is nothing but Group of authorities that are usually assigned together.
 Roles are more fine grained permissions than Granted Authority.
 
-********************************************************* 3.Adding Spring Security To Spring Boot Project :  *********************************************
+######################################################### 3.Adding Spring Security to Spring Boot Project :  #############################################
 
 By adding Spring Security dependency to the Classpath,Spring Security will start working and it stops accessing the Application.
 Spring Security internally uses filters for each and every request.
@@ -127,7 +126,7 @@ Spring Security by default does some of the things :
 Whenever we add the Spring security in the classpath by default it creates a default user called user and password in the console by default.
 We can also customize the default user and password by declaring it in the properties file.
 
-********************************************************* 4.Spring Security Authentication :  *********************************************************
+######################################################### 4.Spring Security Authentication :  #########################################################
 
 Here we will be creating In Memory Authentication for the Spring Boot Application.
 Spring Security Authentication should be done based on bunch of Users we have.In real time we get the users from Database or LDAP etc.
@@ -174,7 +173,7 @@ Always deal with hashed Passwords.Spring Security enforces the Password Encoding
 Here we need to create a bean with PasswordEncoder.NoOpPasswordEncoder is considered as a String by default.
 If we want to configure bunch Of Users we use and().
 
-********************************************************* 4.Spring Security Authorization :  *********************************************************
+######################################################### 4.Spring Security Authorization :  #########################################################
 
 Starting point to perform Spring Security Authorization is a basic Spring Boot Application with Spring Security added and it has In Memory Authentication.
 Here Authentication can be In Memory or Database or OAuth Users and so on.
@@ -206,7 +205,7 @@ We use AntMatchers for the Paths.
 Spring Security has LogOut page by using logout.
 To allow any kind of Users we use permitAll.
 
-********************************************************* 7.Spring Security JDBC Authentication  :  *****************************************************
+######################################################### 7.Spring Security JDBC Authentication  :  #####################################################
 
 Here we are using In Memory Database ie H2 for Authentication.
 Here we can also use JDBC API that interacts with Database and validates the Authentication Process.
@@ -262,12 +261,12 @@ If there are different Schema we need to add these Methods to the Data source.
 These are the default return types that Spring Security expects and we can also override the above Queries.
 If we want to connect to the external Database Then add the dependency in pom.xml and remove H2 dependency.
 
-********************************************************* 8.Spring Security JPA Authentication   : *********************************************************
+######################################################### 8.Spring Security JPA Authentication   : #########################################################
 
 Add @EnableJpaRepositories to the Spring Boot Application.
 
 
-*********************************************************        END             ***************************************************************************
+#########################################################        END             ###########################################################################
 
 
 
