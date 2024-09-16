@@ -1,7 +1,10 @@
-1.IAM Roles and Policies                               				[22-MAR-2021]  (Done)
-2.IAM user Roles with EC2 CLI                         				[22-MAR-2021]  ()
-3.AWS IAM and Its Features 			(Prabhu Rajendran)		   		[22-APR-2021]  ()
-4.AWS IAM Deep Dive 				(Abhishek Veeramalla)			[01-SEP-2024]  (Done)
+1.IAM Roles and Policies                               													[22-MAR-2021]  (Done)
+2.IAM user Roles with EC2 CLI                         													[22-MAR-2021]  ()
+3.AWS IAM and Its Features 									(Prabhu Rajendran)		   					[22-APR-2021]  ()
+4.AWS IAM Deep Dive 										(Abhishek Veeramalla)						[01-SEP-2024]  (Read)
+5.AWS IAM Roles                     						(spacelift)									[01-SEP-2024]  ()
+6.AWS IAM Roles Usecases            						(Nazreen Mohamad)                           [12-SEP-2024]  (Done)
+7.Difference Between IAM Roles and Policies in AWS			(Punyakeerthi BL)                           [12-SEP-2024]  (Done)
 
 #####################################################################  1.IAM Roles and Policies   ##############################################
 
@@ -63,6 +66,7 @@ Role is an identity with permission policies that determines what I can do and c
 Role doesn't have any credential associated with it.
 User can assume a Role temporarily and can take different permissions for a specific task.
 Role can also be assigned to a Federated User who can sign in using third party provider instead of AWS.
+
 We can create Roles and assign them to AWS Resources.
 Groups can be assigned to the users where as Roles can be assigned to the services.
 
@@ -171,3 +175,44 @@ It can be applied to both IAM User and IAM Role.
 
 ##################################################### 4.AWS IAM Deep Dive (Abhishek Veeramalla) #####################################################
 
+
+
+
+#####################################################  6.AWS IAM Roles Usecases (Nazreen Mohamad) ###################################################
+
+IAM Roles and policies are the fundemental building blocks in AWS for managing access and permissions.
+IAM Roles are an AWS Identity with the permission policies that determines what the identity can do and cannot do.
+Roles does not have long term credentials associated.
+When we assume a Role it provides the temporary security credentials.
+
+IAM Policies defines the permissions when attached to an Identity or resource.
+Policies defines who can perform which action on what resources.
+
+Consider the scenario of an EC2 instance wants to read the data from the S2 Bucket.
+Here we can directly attach a policy to an EC2 instance stating that
+
+	"Allow this EC2 instance to read from this specific S3 bucket".
+	
+Problem with the above approach is that if the number of EC2 instances increases, managing individual policies becomes cumbersome.
+To resolve this we create a Role with the policy that allows to read the data from S3.
+This Role can be assumed by an EC2 instance.
+
+Roles and Policies are not mutually exclusive and they are designed to work together.
+Policies are the basis for defining permissions where as Roles offers a secure way to grant those permissions to entities like EC2 or Lambda Function.
+ 
+##################################################### 7.Difference Between IAM Roles and Policies in AWS (Punyakeerthi BL) #############################
+
+Advantages :
+------------
+By using Temporary credentials, the risk of unauthorized access is reduced.
+Roles eliminate the need to manage long-term credentials for users and applications.
+Roles can be granularly controlled using permissions policies.
+Roles can be used to grant access to resources in different AWS accounts.
+
+How IAM Roles Work :
+--------------------
+An IAM administrator creates a role and attaches necessary permissions policies.
+The administrator defines who or what can assume the role using a trust policy.
+Requests an Entity (user, application, or service) to assume the role.
+AWS generates temporary security credentials (access key ID, secret access key, and security token) for the Entity.
+The Entity uses the Temporary credentials to access AWS resources based on the role’s permissions.

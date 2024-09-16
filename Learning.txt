@@ -1650,29 +1650,34 @@ AWS CLI ()
 Kubernetes Basics till Monitoring ()
 Helm Basics()
 
-ECR ()
-AWS CLI ()
 AWS Application Load Balancer ()
+AWS S3  ()
+AWS CLI ()
+AWS Launch Template ()
+ECR ()
 
 Spring Security ()
-JWT ()
+JWT (Done)
 OAuth2 ()
+SAML ()
+OpenId Connect ()
 Forge Authentication ()
 
 ----------------------------------------- October 2024  ----------------------------------------------
 
-Kubernetes Cluster Setup ()
-
+AWS Route53 ()
 AWS IAM ()
-AWS S3  ()
-EKS  ()
+AWS CloudWatch ()
+
+Use EFS or EBS to provide persistent storage for Kubernetes Pods ()
 
 ----------------------------------------- November 2024  ---------------------------------------------
 
-AWS Route53 ()
-AWS RDS ()
-
+EKS  ()
+Kubernetes Cluster Setup ()
 Kubernetes Advanced ()
+
+AWS RDS ()
 
 ----------------------------------------- December 2024  ---------------------------------------------
 

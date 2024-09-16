@@ -4,22 +4,23 @@
 4.Helm introduction 								(ChatGPT)     		    [06-SEP-2024]  (Done)
 5.Kubernetes Applications without Helm				(ChatGPT)     		    [06-SEP-2024]  (Done)
 6.Kubernetes Applications with Helm					(ChatGPT)     		    [06-SEP-2024]  (Done)
+7.Install Helm in Minikube                          (DevOps Made Easy)		[12-SEP-2024]  (Done)
 
 
 ################################################### 1.What is Helm in Kubernetes (Thetips4you)  ###################################################
 
 Helm is a package manager for Kubernetes which simplifies the deployment and management of applications. 
 If we want to deploy an application in Kubernetes, we can package it as a Helm chart and then install it in a Kubernetes cluster. 
-Helm helps in streamline the installation, upgrade, and rollback of Kubernetes applications by using a packaging format called Charts.
+Helm helps in streamlining the installation, upgrade and rollback of Kubernetes applications by using a packaging format called Charts.
 Chart is nothing but a bundle of pre-configured Kubernetes resources. 
 A chart defines all the components of the application, including deployments, services, config maps and more.
 Helm makes easy to manage complex Kubernetes applications in a standardized and reusable way.
 
-Consider the scenario where we deploy single Application in Kubernetes.
+Consider the scenario where we want to deploy single Application in Kubernetes.
 To deploy an Application we need multipe configuration files.
 Deployment manifest file,Secrets,ConfigMaps,Service manifest file etc.
 
-We have the different configuration files for different Applications and package them into Chart called Helm Charts.
+We have the different configuration files for different Applications and package them into chart called Helm Charts.
 Now all the Configuration files are present in one Helm Chart and once we run the Helm Chart it will create the Application.
 Next if we want to update the configuration,install the new version of the configuration and run the Helm Chart.
 
@@ -274,6 +275,20 @@ This is particularly useful for complex applications in environments like the on
   ├── Chart.yaml            		  # Chart metadata (name, version, description)
   ├── requirements.yaml     		  # Define dependencies (e.g., MySQL, Redis)
 
+
+###################################################### 7.Install Helm in Minikube (DevOps Made Easy) #######################################################
+
+https://github.com/helm/helm/releases
+
+Download for Windows  --> helm-v3.16.0-windows-amd64
+Extract it and Edit the System Variables to set the path for Helm.
+
+	F:\windows-amd64
+	
+Then run the command to verify Helm has installed or not.
+
+	helm version
+	
 
 
 

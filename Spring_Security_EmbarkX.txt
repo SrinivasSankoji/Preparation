@@ -6,7 +6,7 @@
 6.Role Based Authentication                     (EmbarkX)		[11-SEP-2024]  ()
 7.Enabling H2 Database                          (EmbarkX)		[11-SEP-2024]  (Done)
 8.Database Authentication                       (EmbarkX)		[11-SEP-2024]  (Done)
-9.JWT Authentication                            (EmbarkX)		[11-SEP-2024]  ()
+9.JWT Authentication                            (EmbarkX)		[12-SEP-2024]  (Done)
 
 
 ################################################################# 1.Fundementals of Spring Secuirty #################################################################
@@ -240,6 +240,20 @@ Also create the Entity for User.
 	
 ################################################################# 9.JWT Authentication (EmbarkX) #####################################################################
 
+In the existing user based Authentication we don't have expire time.
+Username and password authentication system can be encoded with the help of tools.
+Also we don't have token based Authentication system in this approach.
+To resolve the above issues we got for JWT.
+Based on the user credentials we generate the Token and for the subsequent requests Token will be passed for Authentication and Authorization.
+Tokens are sent using HTTP Authorization Header.
+
+To implement the JWT with Spring Security we need the below files.
+1.SecurityConfiguration
+2.AuthTokenFilter
+3.AuthEntryPointJWT
+4.JWTUtils
+
+########################################################################## End ########################################################################################
 
 
 

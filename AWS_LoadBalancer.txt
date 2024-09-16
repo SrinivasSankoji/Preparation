@@ -5,7 +5,7 @@
 5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 6.AWS ALB with Path based Routing 							(AWS Training Center)		[01-JUN-2021]  ()
 7.Production level Load Balancing 							(Crishantha Nanayakkara)    [22-JUN-2021]  ()
-8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  (Read)
+8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  ()
 
 ########################################## 1.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ##########################################
 
@@ -23,18 +23,20 @@
 
 1.What is Load Balancer :
 -------------------------
-Load Balancer plays an important role in building great Internet Applications.
-Load Balancer accepts incoming request from Client and based on some criteria it redirects the request to the appropriate server.
-Load Balancer can be of physical hardware or virtual software.
+Load Balancer accepts incoming request from Client and based on defined criteria (such as request type, client IP, or other factors), 
+distributes the traffic across multiple target instances (e.g., EC2 instances, containers, or Lambda functions)
+Load Balancers can be implemented as either physical hardware or virtual software.
 Load Balancer provides the benefits of redundancy and scalability.
 
 Redundancy :
-As long as there is only one Application Server,
-Load Balancer accepts the incoming request from the client and redirects the request to the Application Server.
+A Load Balancer improves the availability by distributing requests across multiple application servers. 
+Even if one server fails, the Load Balancer can route traffic to healthy servers, ensuring continuous service. 
+It removes the single point of failure that would exist if only one application server were handling all traffic.
 
 Scalability :
-By running 2 Servers behind the Load Balancer we can now handle 2X requests from the client.
-Load Balancer provides a way to add more and more Servers if the incoming network traffic increases.
+By running two or more application servers behind the Load Balancer, the infrastructure can handle more incoming traffic. 
+The Load Balancer dynamically distributes traffic based on server availability and capacity.
+Load Balancer allows us to scale horizontally by adding more servers as traffic demands increase.
 
 Load Balancer must have two Availability zones.
 Load Balancer cannot be cross region and can be created only one per region.
@@ -45,23 +47,29 @@ regard to its underlying infrastructure and technology.
 
 1.At the Application Layer browser constructs the HTTP request which is a small text document.
 HTTP request describes what resource the browser wants to fetch from the Web Server.
+
 2.In order to make sure the communication between web browser and web server is secure,web request is encrypted using SSL/TLS.
 This Layer is called Presentation Layer or Translation Layer.
+
 3.To send the encrypted data to the Web server there should be a communication between web browser and web server.
 This can be done by providing a session between them.
+
 4.Transport Layer is also called as "Traffic Control" of the networks.
 Protcolos include in this Layer are TCP and UDP.
 whenever we are communicating with any website Transport Layer will decide how much data can be sent at once etc.
 Transport Layer takes care of Data Segmentation and reassembly as well as flow and error control.
 Here Encrypted Payload is split into TCP packets.
 Each packet is a piece of HTTP payload and the metadata which includes source IP and destination IP.
+
 5.Network Layer is the "post office" of networks.
 Role of Network Layer is to move the packets from source to destination.
 This is the layer that the Router Operates.
 Since the Router operates at the network level we can say that IP Address is at Network Level.
+
 6.Once the destination is identified by the Network Layer,Data Link Layer takes care of controlling the data between network elements.
 Data Link Layer ensures that data transfer is error free over the physical Layer.
 Functionalities implemented in this Layer includes physical addressing,Framing,Error and Floe Control.
+
 7.Physical Layer is the lowest Layer of the OSI Model and also considered as "Hardware Layer".
 Physical Layer is responsible for transfer of bits 0 and 1 "on the wire".
 
@@ -147,8 +155,8 @@ If the User is accessing the Application and If we want to know the IP Address o
 
 9.Health Checks of LLB :
 ------------------------
-Health Check directly communicates with instances to know its states and reports back as InService or OutOfService.
-ELB does not terminate the unhealthy instance and only redirects the traffic to the healthy instance.
+Health check directly communicates with the instances to know its state and reports back as InService or OutOfService.
+ELB does not terminate the unhealthy instance and only redirects the traffic to the Healthy instance.
 For ALB and NLB Health Checks are found on the Target Groups.
 
 10.Request Routing :
@@ -174,3 +182,30 @@ Query String
 
 ################################################# 8.AWS Application Load Balancer (Rahul wagh) ######################################################################
 
+#!/bin/bash
+# Update the package list and install Apache2
+apt update -y
+apt install -y apache2
+
+# Start Apache2 service
+systemctl start apache2
+
+# Enable Apache2 to start on boot
+systemctl enable apache2
+
+# Retrieve instance's public IP and hostname
+INSTANCE_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+INSTANCE_HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/hostname)
+
+# Create a simple HTML page displaying the instance's IP address and hostname
+echo "<html>
+  <head><title>Apache2 on EC2</title></head>
+  <body>
+    <h1>Welcome to EC2!</h1>
+    <p><strong>Public IP:</strong> $INSTANCE_IP</p>
+    <p><strong>Hostname:</strong> $INSTANCE_HOSTNAME</p>
+  </body>
+</html>" > /var/www/html/index.html
+
+# Restart Apache2 service to load the new web page
+systemctl restart apache2

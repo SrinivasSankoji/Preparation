@@ -7,7 +7,8 @@
 
 *****************************************************  1.Transaction Management (oracle docs) *******************************************************************
 
-Transaction can be considered as one or more statements that are executed as a single unit.either all the statements are executed or none of the statements are executed.
+Transaction can be considered as one or more statements that are executed as a single unit.
+Either all the statements are executed or none of the statements are executed.
 When a Connection is created by default it is auto commit enabled mode.
 This means each individual statement is treated as a Transaction and is automatically committed right after it is executed.
 The way to allow one or more statements to be grouped into a Transaction is to disable the auto commit mode.
@@ -22,7 +23,7 @@ Accessing an updated value that has not been committed is considered as Dirty Re
 It is possible for that value to be rolled back to its previous value.
 
 If the Transcation isolation level is set to TRANSACTION_READ_COMMITTED then DBMS does not allow dirty reads to occur.
-ie it does not allow the value to be accessed untill it has been committed.
+i.e. it does not allow the value to be accessed untill it has been committed.
 
 rolllback() terminates the transaction and returns any values that were modified to their previos values.
 
