@@ -2,9 +2,9 @@
 2.AWS Route53 			(Crishantha Nanayakkara)			[06-OCT-2021]  ()
 3.AWS Route53 			(Prashant Lakhera)					[06-OCT-2021]  ()
 4.AWS Route53 			(Vishal Padghan)					[06-OCT-2021]  ()
-5.AWS Route53			(Vishal Padghan)					[06-OCT-2021]  ()
+5.AWS Route53			(Pythoholic)						[06-OCT-2021]  ()
 
-***************************************************  1.AWS Route 53 (Gaurav Gupta)	***************************************************
+###################################################  1.AWS Route 53 (Gaurav Gupta)	###################################################
 
 DNS(Domain Name System) can be used to convert Domain Name like http://medium.com into an IPAddress such as http://10.100.1.0.
 DNS is a collection of rules and records which helps clients in resolving domain names to IP addresses, enabling them to reach a server.
@@ -111,9 +111,95 @@ In case of Simple Routing Policy we have only one record with Multiple IPAddress
 Where as in case of Multi value Routing Policy we need to create multiple "A" record sets for each IPAddress that we define.
 With this approach we will be able to monitor each end point better than Simple Routing Policy by having health check attached to each Recordset.
 
-*************************************************** 2.AWS Route 53 (Crishantha Nanayakkara) ***************************************************
+################################################### 2.AWS Route 53 (Crishantha Nanayakkara) ###################################################
 
 
+###################################################  5.AWS Route53 (Pythoholic) ###############################################################
+
+What is Route 53 :
+------------------
+In today’s digital world, having a website or web application is essential for any business. 
+But have you ever wondered how the internet knows where to send you when you enter a website’s domain name? 
+It’s not magic; it’s a system that has been in place for decades. 
+This system is called DNS, or Domain Name System, and it is responsible for translating human-readable domain names into IP addresses that computers can understand. 
+Managing DNS can be complex and daunting task especially for businesses that want to ensure their website is always available to customers.
+
+That’s where a powerful and reliable service like Amazon Route 53 comes in. 
+Amazon Route 53 is a highly scalable and reliable DNS web service provided by AWS.
+Route 53 is an impressive and reliable domain name system web service offered by Amazon. 
+It’s highly scalable and available, making it a top choice for businesses of all sizes.
+
+Why is it called Route 53 :
+---------------------------
+Route 53 is named after the port number 53, which is used for DNS traffic. 
+Now, you might be wondering: What is DNS, and why is a service like Route 53 necessary?
+
+What is DNS (Domain Name System) :
+----------------------------------
+A typical internet user might not realize that when they enter a web URL in the browser, there’s a lot happening behind the scenes. 
+In simple terms, what’s happening is that the domain name is being mapped to a combination of numbers, known as IP addresses. 
+This process is necessary for computers to communicate with each other over the internet, and DNS plays a critical role in making it happen seamlessly.
+
+When a user types in a website like "google.com", they are essentially making a request to see the content hosted on that particular website. 
+This request is served by a web server, which checks with the DNS server and asks, "Where can I find the website for google.com?" 
+The DNS server then responds with the IP address where the website is hosted.
+
+In simpler terms, DNS translates domain names (like "bestbuy.com") into IP addresses (like "192.168.1.1") that computers use to connect to one another. 
+Route 53 provides a highly available and scalable DNS infrastructure, enabling developers to manage DNS traffic for their domain names. 
+It allows them to route end users to internet applications by translating domain names into IP addresses.
+
+Client Server Architecture :
+----------------------------
+In a client server architecture the client which is typically us makes requests to a server to get the details we want.
+Similarly when visiting a website like bestbuy.com we are essentially making a request to access that website.
+When we make a request to access a website the DNS server responds to us with the resolved IP address which allows us to connect to the actual server hosting the website.
+For example the resolved IP address for a website could be 192.168.122.22.
+
+Route53 is a DNS web service.
+Route53 provides a highly available and scalable DNS infrastructure that enables developers to manage DNS traffic for their domain names.
+Route53 allows the developers to Route end users to internet applications by translating domain names into IP addresses that computers use to connect to each other.
+Route53 is a powerful and scalable DNS service offered by Amazon web services and 
+DNS that we have here Maps domain names like example.com to IP addresses like 192.0.21.
+
+With Route 53 you can manage and Route traffic to resources such as web servers,Email servers and much more but
+we need to remember the three things that Route 53 is going to help you with.
+
+1.Domain Registration
+2.DNS Routing
+3.Health Check
+
+With AWS we can host a website and provide the users with the URL to connect to the website.
+Route53 helps in managing the internet traffic to our domain names ensuring users are directed to the appropriate resources.
+
+Consider the scenario where an End user is making a request to a web site.
+Here request goes to the DNS Resolver.
+Assume DNS Resolver as a directory where we resolve the queries on behalf of the end user.
+With AWS route 53 we return the IP address of the DNS records that are queried by the DNS resolvers.
+Resolving DNS queries means converting a user-friendly domain name into a computer friendly IP address.
+When a user enters a website domain name in their browser their devices DNS resolver sends a query to the DNS server to find the IP address associated with that domain name.
+It also helps check the health of the endpoint for high availability so that we know everything works fine.
+Route53 also provides a user-friendly interface for creating hosted zones,managing traffic policies and propagating DNS records to its Global Network of authoritative DNS servers.
+
+Route53 also helps in connecting to the endpoints or the endpoint instances where the website is actually hosted and for monitoring,logging and Analysis.
+we make use of cloud watch by setting alarms and notification mechanisms and all of this is provided to you by AWS
+
+What is a DNS Resolver :
+------------------------
+when a user enters a website's domain name in the web browser, DNS resolver on the device sends a query to a DNS server to look up the IP addresses associated with
+that domain or the IP address associated with that domain.
+This process allows us to connect easily to websites without the need to remember their IP addresses and 
+DNS resolvers makes the internet more user friendly.
+When you type the URL for Twitter that is www.witter.com on your browser.
+The first thing we need to check is where is www.twitter.com
+so this is done through a process called DNS lookup.
+Browser sends a request to the DNS server to look up the IP address associated with the domain name you entered.
+In this case it's twitter.com and the IP address is 157.233.2.0
+Once the browser knows the IP address of the website it establishes TCP connection with the server that hosts the website and then the server receives the request and processes it.
+It receives the requested content and sends it back to the browser as an HTTP response.
+This is what happens when you try to visit a website.
+
+What is Domain and Domain Registration :
+----------------------------------------
 
 
 
