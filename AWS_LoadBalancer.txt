@@ -5,7 +5,7 @@
 5.AWS Application Load Balancer 10 reasons 					(Florian Jakob)             [01-JUN-2021]  ()
 6.AWS ALB with Path based Routing 							(AWS Training Center)		[01-JUN-2021]  ()
 7.Production level Load Balancing 							(Crishantha Nanayakkara)    [22-JUN-2021]  ()
-8.AWS Application Load Balancer 							(Rahul wagh)                [22-AUG-2024]  ()
+8.AWS Application Load Balancer 							(Rahul wagh)                [18-SEP-2024]  (Done)
 
 ########################################## 1.AWS ALB and NLB with EC2 Container Service (Nathan Peck) ##########################################
 
@@ -209,3 +209,37 @@ echo "<html>
 
 # Restart Apache2 service to load the new web page
 systemctl restart apache2
+
+Create the VPC
+10.100.0.0/16
+
+Create the Internet Gateway and attacch it to VPC.
+Create the Public Subnet and select the Availability Zone.
+10.100.1.0/24
+
+Create the Route Table and provide the route for Internet.
+Also Edit the Route Table for Subnet Association.
+
+Create an EC2 instance within the Public Subnet along with User Data.
+Also add the Security Groups for SSH and Port 80.
+Check the EC2 instance is accessible outside.
+
+	http://13.234.37.118
+
+Create one more EC2 instance within the Public Subnet with different availability zone along with User Data.
+Also add the Security Groups for SSH and Port 80.
+Check the EC2 instance is accessible outside.
+
+	http://13.233.152.133/
+	
+Now create the Target Group to club the EC2 instances so that ELB can point to this particular Target Group.
+
+
+EC2 Dashboard --> Laod Balancing --> Target Group --> Add the EC2 instances.
+EC2 Dashboard --> Load Balancer --> Create the Load Balancer --> Select the Target Group.
+
+To test the Load Balancer is working or not Get the DNS Name and run it on the browser.
+
+
+
+

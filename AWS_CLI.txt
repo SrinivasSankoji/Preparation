@@ -1,6 +1,7 @@
-1.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  ()
-2.AWS CLI    	 				(Rahul wagh)                    	[28-AUG-2024]  ()
+1.AWS CLI Setup   	 			(Vishal Padghan)                    [22-APR-2021]  (Done)
+2.AWS CLI    	 				(Rahul wagh)                    	[21-SEP-2024]  (Done)
 3.AWS CLI   	 				(Abhishek)                    		[28-AUG-2021]  ()
+4.AWS CLI 						(Cloud Champ)						[28-AUG-2021]  ()
 
 ######################################################### 6.AWS CLI Setup (Vishal Padghan) #############################################
 
@@ -64,10 +65,27 @@ INF2zeJb4BEaLqH/lDLI+2Eec0qzGR9EyP0ZjQx1
 ap-south-1
 json
 
-
-4.How to use AWS CLI :
-----------------------
-
 #########################################################  2.AWS CLI (Rahul wagh) #########################################################
 
- 
+To verify the AWS configured details
+
+	aws sts get-caller-identity
+	
+It will show the output as
+
+	{
+		"UserId": "AIDATBRPP537QAJ4G7A4N",
+		"Account": "209479266047",
+		"Arn": "arn:aws:iam::209479266047:user/smart-school"
+	}
+	
+To create a Bucket in S3 using AWS CLI
+
+	aws s3api create-bucket --bucket smart-school-bucket --region ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
+	
+To delete the Bucket using AWS CLI
+
+	aws s3api delete-bucket --bucket smart-school-bucket --region ap-south-1
+
+######################################################### 4.AWS CLI (Cloud Champ) ###########################################################
+

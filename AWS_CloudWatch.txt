@@ -1,0 +1,49 @@
+1.AWS Cloud Watch Beginner’s Guide					(kabeer1choudary)							[22-SEP-2024]  (Done)
+2.AWS CloudWatch 									(Pythoholic)								[01-SEP-2024]  (Done)
+3.AWS CloudWatch 									(Abhishek Veeramalla)						[01-SEP-2024]  ()
+4.Cloudwatch for CPU Utilization					(Pythoholic)								[01-SEP-2024]  ()
+5.Monitor CPU Utilization using CloudWatch			(Monk in Cloud)								[01-SEP-2024]  ()
+6.Monitor Memory Utilization using CloudWatch		(Monk in Cloud)								[01-SEP-2024]  ()
+
+
+##############################################  1.AWS Cloud Watch Beginner’s Guide (kabeer1choudary) ###############################################
+
+AWS CloudWatch is a monitoring service by AWS that helps track and analyze the performance of AWS resources in real-time. 
+It offers insights to optimize applications and infrastructure by collecting and storing operational data like logs, metrics and events.
+
+Metrics :
+---------
+Cloudwatch Metrics represents time-ordered data points related to AWS resources.
+These Metrics can be CPU utilization, Memory usage, Disk I/O and more.
+These Metrics can be defined by a Name, Namespace and Dimensions.
+
+Logs :
+------
+Cloudwatch allows us to collect, monitor and analyze logs from various Applications and Services.
+We can also use custom filters and queries to extract meaningful information from Logs.
+
+Alarms :
+--------
+Cloudwatch Alarm helps us to set thresholds and Trigger actions based on metric data.
+For example create an Alarm to notify when a CPU utilization exceeds a certain threshold.
+
+Some of the usecases of AWS Cloudwatch are
+
+Monitoring EC2 instances 
+Analyzing Application logs
+Autoscaling with Cloudwatch Alarms etc.
+
+############################################# 2.AWS CloudWatch (Pythoholic) ##########################################################################
+
+AWS Cloudwatch is a service from AWS which collects the datapoints or Logs from either Applications or other AWS Services which helps in Monitoring the current state
+and allows us to create the action items to mitigate the issue.
+AWS Cloudwatch also allows us to analyze the data we have in order to avoid the issue in the future.
+
+The basic idea of using Cloudwatch is to send the logs to the resources that we are working with using Cloudwatch Agent.
+The resources may be Service Logs, Application Logs, Load Balancer Logs, Instance Logs etc.
+
+############################################# 5.Monitor CPU Utilization using CloudWatch (Monk in Cloud) ##############################################
+
+	
+
+

@@ -11,11 +11,14 @@
 11.S3 Tutorial								(Abhishek)				  		  [31-AUG-2021]  ()
 12.S3 Hands-On 								(Furqan Butt)				  	  [31-AUG-2021]  ()
 13.S3 Hands-On 								(Sahdev Grover)				  	  [31-AUG-2021]  ()
-14.AWS S3									(JasCloudTech)				  	  [31-AUG-2021]  ()
+14.AWS S3									(JasCloudTech)				  	  [24-SEP-2021]  (Done)
+15.AWS S3									(Rahul wagh)				  	  [31-AUG-2021]  ()
+14.AWS S3 Bucket Management					(JasCloudTech)				  	  [31-AUG-2021]  ()
 
 
 Rahul wagh
 Online Tutorial
+JasCloudTech
 
 ############################################### 1.S3 Introduction (Lewis Gavin)  ##########################################################
 
@@ -153,7 +156,7 @@ S3 has mechanism to shift away old data into long term storage for cost reductio
 
 Create Bucket :
 ---------------
-Create Bucket --> Bucket Name ie Should not contain Uppercase and Special Characters. 
+Create Bucket --> Bucket Name i.e. Should not contain Uppercase and Special Characters. 
 Select all the default Values.
 After creating the Bucket --> Upload the File.
 
@@ -187,6 +190,58 @@ Copy S3 Files between Buckets :
 
 
 ############################################################ 14.AWS S3 (JasCloudTech) #############################################################
+
+Features of S3 are :
+Durability
+Availability because it is replicated into 3 Availability Zones
+Scalability
+Reliable
+Faster
+Cost effective
+Secure because of Encryption. We can also provide custom Encryption.
+Easy Interface for Data Transfer
+Easy Integration with other services
+Eventual Read after update/delete consistency.
+
+Usecases for S3 :
+Data Archiving
+Data Lake for analytics purpose
+Hybrid Cloud storage
+
+Fundementals :
+Bucket is a Container which stores the objects uploaded to S3.
+Create a Bucket in region.But to optimize the Cost choose the near by region.
+We can create Folders in the Bucket but there is no Explorer.It is a logical arrangement of the Objects.
+Key
+URL which can be used to access the content of the S3 Bucket.
+We can also enable versioning.
+
+Objects :
+Objects are the fundemental entities which may be excel,word,video etc.
+S3 Bucket consists of Object data and Meta data.
+
+EndPoints :
+AWS offers a regional end point to reduce latency.
+Every Object has one key which is unique identifier.
+Combination of Key and versionId identifies each Object in S3.
+
+Practice :
+Create Bucket
+Versioning
+Permissions
+Access
+URL
+
+############################################################  15.AWS S3 (Rahul wagh) ############################################################ 
+
+	
+
+
+
+
+
+
+
 
 	
 
