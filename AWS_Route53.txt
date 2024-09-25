@@ -1,8 +1,6 @@
 1.AWS Route53  			(Gaurav Gupta)						[08-OCT-2021]  (Done)
-2.AWS Route53 			(Crishantha Nanayakkara)			[06-OCT-2021]  ()
-3.AWS Route53 			(Prashant Lakhera)					[06-OCT-2021]  ()
-4.AWS Route53 			(Vishal Padghan)					[06-OCT-2021]  ()
-5.AWS Route53			(Pythoholic)						[06-OCT-2021]  ()
+2.AWS Route53			(Pythoholic)						[25-SEP-2024]  ()
+3.AWS Route53 			(Rahul wagh)						[29-SEP-2024]  ()
 
 ###################################################  1.AWS Route 53 (Gaurav Gupta)	###################################################
 
@@ -200,8 +198,81 @@ This is what happens when you try to visit a website.
 
 What is Domain and Domain Registration :
 ----------------------------------------
+Domain Registration is a process of acquiring a unique name that identifies a website on the internet and here we have the website URL.
+Consider the example 
 
+	https://www.google.com/search?q=example
+	
+First one is protocol.
+Protocol is a set of instructions for two computers to talk to each other
+Protocol provides a set of rules for how data should be formatted the order in which the message should be sent and how to handle errors or problems.
+Commonly used protocol is https which stands for hypertext transfer protocol secure.
+We already know HTTP I guess so this is a secure version of HTTP that is https.
 
+Second one is domain itself which is our ww.google.com.
+If you want yours you can get it on Route 53 or you can visit hostinger or godaddy.com.
+Here www is called the Subdomain.
+Subdomain is like a subcategory or subsection of a larger domain which is google.com.
+
+Search here which is also called as page path.
+page path is like an address or location that helps identify a specific page on a website.
+Think of it like a book in a library.
+Main domain name is equivalent to the library and the page path is like the specific shelf or location within the library where a particular book can be found.
+This analogy can help you understand how a URL actually works.
+
+Next one is the query string.
+Query string is a way to add extra information to the end of the URL to help the website process request and provide specific information
+Suppose we are searching for a query and that query is basically your example.
+It will help the website to get that data for you.
+For example in this URL the query string is Q equals to example and it tells a website to perform a search for the term example.
+
+Domain Registration :
+To register a domain name for our website you need to go through a domain registrar.
+This is the company that manages the registration of domain names and helps you find an available domain name that suits your needs.
+When searching for an available domain name you can use a domain registrar's website like hostinger or GoDaddy.
+These websites provide a search bar where you can enter the domain name you want and check if it's available or not.
+Once you find an available domain name that you like you can actually proceed with the domain registration process.
+So if the domain name that you want is available then you can register it by following the instruction on the registrar's website.
+The registrar has a registry that keeps all the records so that it can inform the registrar that if the domain is available or not.
+
+One more important factor here which is called ICANN.
+ICANN is Internet cooperation for assigned names and numbers.
+It is a non-profit organization that plays a crucial role in managing the internet's domain name system.
+ICANN actually manage as the root zones of the DNS which includes the list of all top level domains or TLD's such as .com,.org and .net etc.
+
+Once everything is done you will need to provide some personal information and payment details and pay for the domain.
+Then we can make use of the domain that we have purchased.
+
+How does DNS Routing work :
+---------------------------
+What exactly happens when you type twitter.com browser.
+When we type a URL in your browser it goes through a DNS resolver which acts as a middleman between your computer and the other three DNS servers.
+The first touch point of the resolver is the root name server which helps find out what top level domain or TLD the domain uses like.com.org.net.
+Now here you can see TLD for twitter.com is.com so once we get that it passes it on to the.com TLD server.
+So after that the.com TLD name server contacts the Twitter Authoritative server which in turn converts the domain name into an IP address.
+That's what is sent back to our computer and we get content to our browser because the browser now understands that twitter.com is 157.233.2.0.
+
+Domain Chain :
+--------------
+Domain chain refers to the hierarchy of domain names in the domain name system.
+Everything that we work on starts at the root i.e. DOT.
+Below the root level domain are the top level domains or tlds.
+Such as.com, .org, .net, .edu, .gov and so on.
+Below the tlds are the second level domains or also called as slds such as google.com or netflix.com,rootserver.net.
+Finally there may be third level domains such as www.google.com or it could be blog.wordpress.com which are subdomains of the second level domains.
+SLD's represent a specific service or resource on that domain.
+
+let's simplify things even further.
+If we want to visit a website that is twitter.com.
+We hit the URL and your browser talks to the DNS to find out the IP address associated with that.
+If it has the IP in its cache translates it and sends it back to you.
+If not the Name Server makes use of something called Name Server Record which is a type of DNS resource that specifies the Authoritative name servers for a particular domain.
+Now we went one step further on reaching to the Authoritative name server.
+Here this record contains information about the Authoritative Name Server responsible for answering DNS queries for the domain including their domain names and IP addresses.
+So once you get back the information you send it to the browser again.
+
+DNS Rules and DNS Records :
+---------------------------
 
 
 
