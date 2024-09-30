@@ -54,20 +54,21 @@ Complete Service List
 
 1.Amazon EC2 / AWS Fargate: Worker Nodes
 2.Elastic Load Balancing (ALB/NLB): Traffic Distribution
-3.Amazon EFS/EBS: Persistent Storage
-4.AWS IAM: Access Management
-5.Amazon VPC: Networking
-6.Amazon Route 53: DNS Routing
-7.Amazon S3: Storage
-8.Amazon RDS: Database
-9.Amazon EKS: Kubernetes Cluster
-10.Amazon Cognito: Authentication
-11.AWS Secrets Manager: Manage Secrets
-12.AWS Certificate Manager: SSL Certificates
-13.AWS CodePipeline/CodeBuild: CI/CD
-14.Amazon CloudWatch: Monitoring
-15.AWS X-Ray: Tracing
-16.AWS GuardDuty: Security Monitoring
-17.AWS Auto Scaling: Auto Scaling of Resources
+3.AWS Auto Scaling: Auto Scaling of Resources
+4.Amazon EFS/EBS: Persistent Storage
+5.AWS IAM: Access Management
+6.Amazon VPC: Networking
+7.Amazon Route 53: DNS Routing
+8.Amazon S3: Storage
+9.Amazon RDS: Database
+10.Amazon EKS: Kubernetes Cluster
+
+11.Amazon Cognito: Authentication
+12.AWS Secrets Manager: Manage Secrets
+13.AWS Certificate Manager: SSL Certificates
+14.AWS CodePipeline/CodeBuild: CI/CD
+15.Amazon CloudWatch: Monitoring
+16.AWS X-Ray: Tracing
+17.AWS GuardDuty: Security Monitoring
 18.AWS Backup: Backup Solutions
 19.AWS Cost Explorer: Cost Management

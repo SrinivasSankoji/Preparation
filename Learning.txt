@@ -1666,25 +1666,29 @@ Forge Authentication ()
 ----------------------------------------- October 2024  ----------------------------------------------
 
 AWS Route53 ()
-AWS IAM ()
-AWS CloudWatch ()
-
-Use EFS or EBS to provide persistent storage for Kubernetes Pods ()
+AWS VPC Concepts ()
 
 ----------------------------------------- November 2024  ---------------------------------------------
 
-AWS RDS ()
-
-EKS  ()
-Kubernetes Cluster Setup ()
-Kubernetes Advanced ()
-
+AWS IAM ()
+AWS VPC Concepts ()
 
 ----------------------------------------- December 2024  ---------------------------------------------
 
-
-
+AWS S3 ()
+AWS VPC Concepts ()
 
 ----------------------------------------- January 2025  ----------------------------------------------
 
 Static Web Application Deployment in AWS ()
+
+
+----------------------------------------- Febraury 2025  ----------------------------------------------
+
+AWS RDS  ()
+AWS EKS  ()
+AWS CloudWatch ()
+
+Kubernetes Cluster Setup ()
+Kubernetes Advanced ()
+Use EFS or EBS to provide persistent storage for Kubernetes Pods ()
