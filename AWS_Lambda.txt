@@ -1,7 +1,11 @@
 1.AWS Lambda  							(Vishal Padghan)  					[31-AUG-2024]  (Done)
-2.AWS Lambda  							(Abhishek)  						[31-AUG-2024]  ()
-3.AWS Lambda  							(Rahul wagh)  						[31-AUG-2024]  ()
-4.AWS Lambda  							(Be a Better Dev)  					[31-AUG-2024]  ()
+2.What is serverless 					(Pythoholic)  						[31-AUG-2024]  ()
+3.AWS Lambda Serverless  				(Pythoholic)  						[31-AUG-2024]  ()
+4.Reserved & Provisioned Concurrency  	(Pythoholic)  						[31-AUG-2024]  ()
+5.AWS Lambda @Edge						(Pythoholic)  						[31-AUG-2024]  ()
+6.AWS Lambda  							(Abhishek)  						[31-AUG-2024]  ()
+7.AWS Lambda  							(Rahul wagh)  						[31-AUG-2024]  ()
+8.AWS Lambda  							(Be a Better Dev)  					[31-AUG-2024]  ()
 
 ############################################################# 1.AWS Lambda (Vishal Padghan) ####################################################
 
@@ -18,7 +22,9 @@ The code we put in Lambda and want to run is called Lambda Fucntion.
 As we know that Function will be executed only when it is triggered.
 Here Event source is the entity which triggers the Lambda function and the task will be executed.
 
-############################################################# 2.AWS Lambda (Abhishek) #############################################################
+############################################################# 2.What is serverless (Pythoholic) #################################################
+
+
 
 
 

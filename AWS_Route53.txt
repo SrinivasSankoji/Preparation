@@ -271,10 +271,121 @@ Now we went one step further on reaching to the Authoritative name server.
 Here this record contains information about the Authoritative Name Server responsible for answering DNS queries for the domain including their domain names and IP addresses.
 So once you get back the information you send it to the browser again.
 
-DNS Rules and DNS Records :
----------------------------
+DNS Records :
+-------------
+DNS record is a database record used to map URL to an IPAddress.
+DNS records are stored in the DNS Servers and helps users to connect their websites to the outside world.
+DNS records holds a specific details about a website i.e. IpAddress, where it send emails and what other names it has.
+
+There are many different type of DNS records each with a specific purpose.
+Some common type of DNS records include
+
+A record :
+Associates a domain name with IP address ipv4 address.
+
+AAA record:
+Associates a domain name with IPv6 address.
+
+MX record :
+Specifies the mail server responsible for accepting email messages on behalf of a domain name.
+When you send an email to domain name like flipkart.com.
+Our DNS Server needs to know which mail server to use to deliver the message and this information is provided by the MX record.
+
+Cname record :
+Maps one domain name to another domain name.
 
 
+Consider the scenario where we want to visit a website like flipkart.com.
+we type the URL into your web browser and hit enter.
+Our computer sends a request to the DNS server to resolve the domain name www.flipkart.com into a IP address.
+DNS server actually looks for the relevant DNS records for www.flipcart.com.
+If it finds an A record for flipkart.com that maps to the IPaddress 192.168.22.3.
+let's suppose it actually returns this IP address to your computer.
+Our computer then uses this IP address to connect to the web server hosting flipkart.com and the website is loaded into your browser.
+In this scenario the DNS record or the A record maps a domain name to a ipv4 address i.e. 192.168.22.0 
+DNS record played a critical role in translating the human readable domain name i.e. flipkart.com into the machine readable IP address.
+Without DNS record your computer would not be able to locate the website you wanted to visit.
+Because there is no entry and it's like a phone book it needs records.
+
+				User's Browser
+					  |
+					  | (1) Request www.example.com
+					  v
+				Operating System's DNS Resolver
+					  |
+					  | (2) Check local cache
+					  v
+				Recursive DNS Resolver
+					  |
+					  | (3) Query Root DNS Server
+					  v
+				Root DNS Server
+					  |
+					  | (4) Respond with .com TLD servers
+					  v
+				Recursive DNS Resolver
+					  |
+					  | (5) Query .com TLD Server
+					  v
+				.com TLD Server
+					  |
+					  | (6) Respond with Route 53 NS records
+					  v
+				Recursive DNS Resolver
+					  |
+					  | (7) Query Route 53 Authoritative DNS
+					  v
+				Route 53 Hosted Zone
+					  |
+					  | (8) Respond with A record (IP address)
+					  v
+				Recursive DNS Resolver
+					  |
+					  | (9) Cache and return IP to OS
+					  v
+				Operating System's DNS Resolver
+					  |
+					  | (10) Provide IP to Browser
+					  v
+				User's Browser
+					  |
+					  | (11) Connect to Web Server and load website
+					  v
+				Website Displayed to User
+
+
+If we want to see what's the A record use the below command.
+
+	nslookup -type=A google.com
+	
+
+DNS Rules :
+-----------
+DNS Rules typically refer to the configuration and management of DNS records and policies that determine how traffic is routed to the resources.
+These rules define how different types of DNS queries should be handled, where traffic should be directed, and how different AWS resources are linked to the domain. 
+These rules are created using DNS records and Route 53 provides additional functionalities such as advanced routing policies to manage traffic based on various criteria.
+
+Hosted Zones :
+--------------
+A Hosted Zone is a container that holds information about how you want to route traffic for a specific domain (like example.com) and its subdomains (like www.example.com).
+It is conceptually similar to a DNS zone file in a traditional DNS system.
+A hosted zone contains DNS records such as A, CNAME, MX, and others that define where to route the traffic for your domain or subdomain.
+
+There are two types of Hosted zones.
+
+1.Public Hosted zone
+Used to route internet traffic to your domain and its subdomains. This is visible to the internet.
+
+2.Private Hosted zone
+Used to route traffic within one or more Amazon VPCs. This is not visible to the internet and is used for internal routing within AWS.
+
+Routing Policies :
+------------------
+
+
+
+
+################################################### 3.AWS Route53 (Rahul wagh) ###################################################
 
 
 
