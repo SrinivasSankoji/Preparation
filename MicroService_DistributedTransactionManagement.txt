@@ -1,10 +1,11 @@
-1.Saga Design Pattern                     							(medium)        (Kishore Karnatakapu)     [28-SEP-2023]  ()
-2.Distributed Transactions in Spring Boot Microservices				(medium)        (anudeep billa)     	  [30-MAR-2024]  ()
-3.SAGA Pattern 														(Tech Primers)	
+1.Distributed Transactions in Spring Boot Microservices				(medium)        			   	  [30-MAR-2024]  ()
+2.Distributed Transactions											(TechDummies with Narendar)       [01-NOV-2024]  ()
+3.Orchestration vs Choreography										(Arpit Bhayani)
+4.Saga Design Pattern                     							(Kishore Karnatakapu)     		  [28-SEP-2023]  ()
+5.SAGA Pattern 														(Tech Primers)	
 
 
-
-################################ 2.Distributed Transactions in Spring Boot Microservices (medium) ####################################################
+################################ 1.Distributed Transactions in Spring Boot Microservices (medium) ####################################################
 
 https://medium.com/@billa.anudeep143/distributed-transactions-in-spring-boot-microservices-simplified-guide-ce1e3a9191c0
 https://medium.com/@knowledge.cafe/distributed-transaction-in-spring-boot-microservices-7962e048adfc
@@ -40,8 +41,6 @@ Two-Phase Commit — 2PC :
 ------------------------
 
 
-
-
 Saga Pattern :
 --------------
 Saga Pattern is a sequence of local Transactions where each Service performs its part of the process.
@@ -50,17 +49,132 @@ Saga Pattern can be implemented in two ways.
 
 Choreography :
 --------------
-Choreography means each Service will be executed independently.
-Once the Task is completed it invokes the next task in the sequence.
-In cas if the next task fails it invokes the compensating tasks of the previous Transaction.
+Choreography means each service will be executed independently.
+Once the task is completed it invokes the next task in the sequence.
+In cas if the next task fails it invokes the compensating tasks of the previous transactions.
 
 Orchestration :
 ---------------
-Orchestration means the Services are executed by another Parent Task.
-Parent Task plays the role of an Orchestrator.
-Parent Task calls each Task in sequence and based on their response Parent Task decides whether to call the next Task or the Compensating Task.
+Orchestration means the services are executed by another parent task.
+Parent task plays the role of an Orchestrator.
+Parent task calls each task in sequence and based on their response parent task decides whether to call the next task or the compensating task.
 
-################################################################ 3.SAGA Pattern (Tech Primers) ################################################################
+############################################## 2.Distributed Transactions (TechDummies with Narendar) ###################################################
+
+Consider the scenario where the user wants to place an Order.
+
+In case of Monolith Application, assume we have a single Database.
+The flow will be as follows.
+
+User reuests for an Order
+In the Service Layer we start the Transaction.
+To place the Order, Here two actions are reuired.
+Check the user has sufficient balance.If the user has sufficient balance,it updates the balance and request should be forwarded to place the Order.
+If the user doesnot have sufficient balance, Then it will throw an Exception and the Order will get cancelled.
+If the user has sufficient balance and there are no enough products in the invenotry, then update balance will get rollbacked and throws an Exception.
+Even if we have multiple Transactions, This particular transaction will get blocked untill it commits or throws an error.
+
+In case of Microserices Application, assume we have a multiple Databases.
+The flow will be as follows.
+
+In case of Microservices, when the user places an Order, Orchestrator service recieves the reuest and call two different Microservices.
+The services are Payment Microserice and Inventory Microservice.
+The services has their own Database.
+
+Orchestrator service will call the Payment service to check whether the user has sufficient amount to place an Order.
+If the the user has sufficient amount then it will deduct the amount and updates the balance.
+If the user has sufficient balance then Orchestrator service will call the Inentory service to check for the particular product in the inventory.
+If the product is available in inventory then Orchestrator service will place the order.
+
+Consider the scenario where the user has sufficient amount and product is not available in the inventory.
+Since we have multiple Microservices i.e. Transaction is isolated and we cannot rollback the previous Transaction.
+i.e. Amount is updated and no product in Inventory then Order will get cancelled but the amount is updated.
+These are some of the problems when the Transactions are distributed.
+
+If the Multiple Microservices are connected to a single Database then the approach to handle Transaction will be different.
+
+The above problems can be resolved by using
+1.Two phase commit
+2.Three Phase commit
+3.SAGA Orchestrator
+4.SAGA Choreography
+
+Two phase commit :
+------------------
+Here we have two phases to complete the Transaction.
+Prepare and Commit.
+Here we are adding one more Component named Coordinator Service which will take care of Two phase commit.
+Here Commit will happen in two steps.
+
+When the user places an Order, Coordinator service will create the Transaction Id.
+This TransactionId will be used as a reference in all the Micro services.
+
+Coordinator service will do the prepare phase i.e.
+Coordinator service will call the Payment service and Inventory service to check for the amount and product in the inventory.
+If the user has sufficient amount and product in the inventory, then it will block the particular row in both the Payment and Inventory Service.
+So that no can perform transaction on that particular row.
+Here Coordinator service waits for the response from Payment and Inventory service.
+Once Coordinator service gets the response from both Payment and Inventory service then it will go the next phase i.e. Commit phase.
+
+In the Commit phase,Coordinator service will call the Payment and Inventory service to commit based on the input given from the prepare phase.
+Then Coordinator service will get the response from both the Payment and Inventory service saying that balance is updated and product is deducted from inventory.
+Then the coordinator service will do the commit to complete the Transaction.
+
+Failure scenarios :
+-------------------
+When the Coordinator service calls the Payment and Inventory service to check for the amount and product in the inventory, 
+If there is no sufficient amount or product is not available in the inventory, then Coordinator service will throw an Exception in the prepare phase itself.
+
+If the prepare phase is success then Coordinator service calls the Payment and Inventory service to commit the data.
+But at the time of commiting if there are any issues, then Coordinator service will get the response as Not OK.
+Then Coordinator serice will roll back the entire Transaction saying that Order is not placed.
+
+Here isolation is provided because at the time of prepare phase itself both the rows in Payment and Inventory serice are locked.
+So no other concurrent reuest can modify the same row which is locked and have to wait for the Transaction to be completed.
+Here we also need a Timeout mechanism.
+Consider the prepare phase is ready and commit phase is taking time to complete the Transaction.
+Then in that case Coordinator service will wait for some time and after that it aborts the Transaction.
+
+Advantages :
+------------
+Two phase commit is strong consistent model of Distributed Transaction.
+
+Disadvantages :
+---------------
+1.Here the Coordinator is handling all of these Microservices.
+If there is a failure in Coordinator service then the Transaction will get roll back even though the user has sufficient amount and product is available in inventory.
+
+2.Also at the time of prepare phase we are locking the records in both Payment service and Inventory service.
+If the locks are on hold for some time then it will cause latency issues.
+
+3.What if the Node in which the Micro service is running is down.
+In this case Coordinator serice will make the reuest to Micro service without knowing the state of the Service.
+
+Also Two phase commit implementation is a tidious job.
+To resole the above problems there is an adanced version called Three Phase commit.
+
+Three phase commit :
+--------------------
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
 
 
 

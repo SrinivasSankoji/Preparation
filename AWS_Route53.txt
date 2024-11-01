@@ -74,22 +74,31 @@ There are total 6 types of Routing Policies
 
 1.Simple Routing Policy :
 -------------------------
-This is the default Routing Policy.
-In case of Simple Routing Policy we have only one record with Multiple IPAddresses.
-This Routing Policy randomly selects the Routing path and does not take the resources status into Account.
-Here all the IPAddress are randomly returned to the Client.
-This can be used across Regions.
-Create two Instances in two AWS Regions and add an "A" Record and add both EC2 Instance's Public IPAddress.
+This is the default routing policy in AWS Route 53.
+In case of Simple Routing Policy we have only one "A" record with multiple IPAddresses.
+This allows you to list all the IP addresses that we want to associate with our domain or subdomain.
+
+When a DNS query is received for our domain name, Route 53 responds with all the IP addresses specified in the "A" record.
+The order in which the IP addresses are returned may vary, meaning they might be returned in a random order.
+Client receives all the IP addresses and decides which one to use.
+Some clients may try the first IP address, others may attempt connections to each IP address in the list until successful.
+
+This routing policy does not take the status of the resources into account.
+Route 53 does not perform health checks with the Simple Routing Policy.
+If one of the resources is down, Route 53 will still include its IP address in the DNS response.
+We can use the Simple Routing Policy to route traffic to resources located in different AWS Regions.
+This means you can include IP addresses from EC2 instances in multiple Regions within the same "A" record.
 
 2.Weighted Routing Policy :
 ---------------------------
-Weighted Routing Policy allows us to split the traffic based on the weights assigned.
-We can associate Health Check with it.
-This approach is heavily used in Blue Green Deployment.
+Weighted Routing Policy allows us to distribute the traffic to the resources based on the weights assigned.
+We can associate health check with the weighted routing policy.
+This approach is heavily used in Blue-Green deployment.
+Weighted routing policy is particularly useful for load balancing, testing new application versions and gradually migrating traffic between resources.
 
 3.Latency Routing Policy :
 --------------------------
-This policy is used when we have resources in Multiple Regions and we want to route traffic to the resources that provides the best latency.
+Latency Routing Policy can be used when we have resources in multiple regions and we want to route traffic to the resources that provides the best latency.
 The response to the request is purely measured by latency and not by the distance to the region of the resource.
 
 4.Failover Routing Policy :
@@ -381,7 +390,45 @@ Used to route traffic within one or more Amazon VPCs. This is not visible to the
 
 Routing Policies :
 ------------------
+Routing policy is a set of rules that determines how traffic is routed between different end points such as servers or services.
+The different routing policies are 
 
+1.Simple Routing Policy
+2.Failover Routing Policy
+3.GeoLocation Routing Policy
+4.GeoProximity Routing Policy
+5.Latency Routing Policy
+6.IP Based Routing Policy
+7.Multivaue Answer Routing Policy
+8.Weighted Routing Policy
+
+
+1.Simple Routing Policy :
+-------------------------
+With Simple Routing Policy, we create a DNS record for our domain name and specify the IP address or DNS name of our resources. 
+When a DNS query is received for our domain name, Route 53 responds with the IP address or DNS name that we specified in the DNS record.
+If the IP address or DNS name changes, we simply update the DNS record to reflect the new value.
+
+Below is a list of information that you need to provide when creating a Simple Routing Policy:
+
+Record Name: This is the name of the domain or subdomain for which you want to create the DNS record.
+Example: pytholic.com or www.flipkart.com.
+
+Value: This is the IP address, DNS name, or other resource that you want to route the traffic to.
+Example: An IP address like 192.0.2.1 or a DNS name like example-123.us-west-2.elb.amazonaws.com.
+
+Record Type: This specifies the type of DNS record you want to create.
+For IPv4 addresses, the record type is A.
+For IPv6 addresses, the record type is AAAA.
+
+There is one more important concept called TTL in seconds.
+This stands for time to live and specifies how long DNS resolvers should cache the record before requesting a new one.
+The value that we have here is in seconds and can be set to any value but typically it ranges from a minute or a few minutes to a few hours.
+
+8.Weighted Routing Policy :
+---------------------------
+Weighted routing policy allows us to distribute the traffic to multiple resources based on weights assigned.
+Weighted routing policy is particularly useful for load balancing, testing new application versions and gradually migrating traffic between resources.
 
 
 
