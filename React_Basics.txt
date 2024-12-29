@@ -18,6 +18,7 @@
 18.Lists and Keys                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
 19.Index as Key Anti Pattern                                        (Code Evolution)   			[18-NOV-2023]  ()
 20.Styling and CSS Basics                                           (Code Evolution)   			[18-NOV-2023]  ()
+
 21.Basics of Form Handling                                          (Code Evolution)   			[19-NOV-2023]  (Done)
 22.Component Life Cycle Methods                                     (Code Evolution)   			[19-NOV-2023]  (Done)
 23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[21-NOV-2023]  (Done)
@@ -28,6 +29,7 @@
 28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
 29.Refs with Class Components                                       (Code Evolution)   			[25-NOV-2023]  (Done)
 30.Forwarding Refs                                                  (Code Evolution)   			[25-NOV-2023]  ()
+
 31.Portals                                                          (Code Evolution)   			[25-NOV-2023]  ()
 32.Error Boundary                                                   (Code Evolution)   			[25-NOV-2023]  ()
 33.Higher Order Components Part 1                                   (Code Evolution)   			[25-NOV-2023]  (Done)
@@ -35,6 +37,7 @@
 35.Higher Order Components Part 3                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 36.Render Props Part 1                                              (Code Evolution)   			[25-NOV-2023]  (Done)
 37.Render Props Part 2                                              (Code Evolution)   			[26-NOV-2023]  (Done)
+
 38.Context Part 1                                                   (Code Evolution)   			[25-NOV-2023]  (Done)
 39.Context Part 2                                                   (Code Evolution)   			[26-NOV-2023]  (Done)
 40.Context Part 3                                                   (Code Evolution)   			[26-NOV-2023]  (Done)
@@ -45,7 +48,7 @@
 ########################################################### 1.Introduction	####################################################
 
 1.React is a project created and maintained by Facebook.
-2.React is an open source JavaScript library which is responsible only for building rich user interface.
+2.React is an open source JavaScript library which is responsible for building rich user interface.
 3.React is not a JavaScript Framework.
 4.React does not focus on other aspects of the Application like Routing,HTTP request etc.
 
@@ -55,7 +58,7 @@ This breaks down the Application into smaller encapsulated components which can 
 6.React is declarative i.e. we tell React what we want and React will build the actual UI.
 React will make the developer life easy to create a Complex UI's by abstracting the difficulties.
 
-7.React will handle the Component updating and rendering efficiently whenever the data changes.
+7.React handles the component updates and rendering efficiently whenever there are any data changes.
 DOM updates is one of the most expensive operation which is handled gracefully in React.
 
 Prerequsites :
@@ -65,23 +68,21 @@ ES6 features like this,filter,map and reduce.
 let,const,Arrow functions,Template literals,Default Parameters,Object literals,Rest and Spread operators and destructing Assignment.
 
 The other parts of React are
-
 React Fundementals (Current Series)
 React HTTP
 Routing
-State Management with Redux
+State management with Redux
 Utilities
 
 ########################################################### 2.Hello world ###########################################################
 
-To create a React Application we will be using Create React App.
-Create React App is a CLI that allows us to quickly create and run React Application with no configuration.
-Simply run the command and entire React Application will be created.
+To create a React Application we will be using the command create-react-app.
+create-react-app is a CLI that allows us to quickly create the React Application with no configuration.
 
 	npx create-react-app hello-world
 	
 npx is an npm package runner which gets installed when we install node.
-That is the reason we directly create and run React without installing node modules.
+That is the reason we directly create and run the react application without installing any node modules.
 To run the React Application
 
 	npm start
@@ -90,7 +91,6 @@ Here the Application will start with the port number 3000.
 
 Alternate approach for creating React Application :
 ---------------------------------------------------
-
 In this approach we install the Create React App globally and then use the Package to generate the Projects.
 
 	npm install create-react-app -g // Creating React App globally
@@ -129,21 +129,19 @@ In index.js we specify the Root component i.e. App Component and DOM Element whi
 
 ########################################################### 4.Components #################################################################
 
-In React Component represnts the part of the user interface.
-The parent component is the App Component which contains all the components.
+In React, Component represnts the part of the user interface.
+The parent Component is the App Component which contains all the components.
 Components are reusable.
 
 A Component code is placed inside Javascript file.
 For example App Component is placed inside App.js.
-We can also have components placed with .jsx extension.
+We can also have components with .jsx extension.
 
 In React we have two types of Components.
-
 1.Functional Component (Stateless)
 2.Class Component      (Stateful)
 
-Functional Components are literally JavaScript Functions.
-They return the HTML which describes the UI.
+Functional components are literally JavaScript Functions which will return the HTML which describes the UI.
 
 Example :
 ---------
@@ -169,7 +167,7 @@ Example :
 
 	export default App;
 
-Class Components on the other hand are regular ES6 classes that extends Componnet Class from React Library.
+Class Components on the other hand are regular ES6 classes which extends Componnet Class from React Library.
 They must contain render() which intern returns HTML.
 
 Example :
@@ -203,8 +201,8 @@ Example :
 
 ########################################################### 5.Functional Components ######################################################
 
-Functional Components are nothing but JavaScript Functions which will optionally recieve Object of properties i.e. props 
-and will return an HTML which will describe the UI.
+Functional Components are nothing but JavaScript Functions which will optionally recieve an Object of properties i.e. props 
+and will return an HTML which describe the UI.
 Here HTML Component is nothing but JSX.
 
 Scenario 1 :
@@ -315,8 +313,7 @@ This is the reason Class Components are Stateful/Smart/Container Components.
 
 Note :
 ------
-In Functional/Class Component we are simply returning HTML.
-Here we are not returning regular HTML but we are returning JSX.
+In Functional/Class Component we are simply returning HTML.Here we are not returning regular HTML but we are returning JSX.
 
 ########################################################### 7.Hooks update ###############################################################
 
@@ -398,9 +395,9 @@ Props are Immutable and its value cannot be canged.
                          
 ########################################################### 10.State  ####################################################################                        
 
-Every React Component returns JSX which describes the UI.
-The way to influence what is rendered into the screen is by using props.
-The second way to influence what is rendered in the screen is by using state.
+Every Component in React i.e. either Fucntional or Class Component will return the JSX which describes the UI.
+The way to influence what needs to be rendered into the browser is by using props.
+The second way to influence what needs to be rendered in the browser is by using state.
 Both props and state holds the information which influences the UI.
 
 props :
@@ -963,7 +960,7 @@ Create new Component named Person.js which accepts the person as props.
 		)
 	}
 	
-In the List Componen call the Person Component.
+In the List Component call the Person Component.
 	
    const personList=persons.map(person =>  <Person Person person={person} />);
 	return (
@@ -987,7 +984,7 @@ Key prop is an id to render the List efficiently and is reserved.
 
 A Key is the special String attribute that we need to include when render the List of items.
 Keys give the elements a stable identity.
-Key helps in identifying React which element in the List is modified i.e. Added,Updated or Deleted.
+Key helps in identifying which element in the List is modified i.e. Added,Updated or Deleted.
 This way instead of updating the whole DOM Tree,React will update the specific DOM Tree wherever Key is updated.
 
             
