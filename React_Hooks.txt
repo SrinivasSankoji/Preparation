@@ -36,6 +36,9 @@
 33.useInput Custom Hook                                                 (Code Evolution)   			[01-DEC-2023]  ()
 
 
+provide examples to practice useState hook in React with beginer to advanced.After practising these examples i can be able to solve anything in React UseState.
+https://whataboutcoding.com/crud-in-react-js-using-axios-building-an-app-using-react-crud/
+
 ########################################################### 1.Introduction	 ###########################################################
 
 Hooks is a new feature added in React version 16.8 which allows us to use React features without having to write a Class.
@@ -52,7 +55,7 @@ With Hooks we don't work with Class any more and we don't face any of these prob
 Problem 2 :
 -----------
 While working with React there is no particular way to reuse stateful logic between Components.
-HOC and Render props addresses these problems but we have to restructure the Components which kinds of results in awkward looking Code.
+HOC and Render props addresses these problems but we have to restructure the Components which results in awkward looking Code.
 We end up in wrapping the Components with several other Components to share the functionality and makes the code hard to follow.
 There is a need to share the stateful logic in a better way.
 Hooks allows us to reuse the stateful logic without changing the Component hierarchy.
@@ -224,7 +227,7 @@ Updating the DOM,fetching the data from an End point,setting up subscriptions,ti
 Since the render() will be too early to perform side effects we use Component Lifecycle methods.
 
 Consider the scenario of updating the Document title to the current Counter value.
-For the initial render,Document title set to "Clicked 0 times".
+For the initial render,Document title is set to "Clicked 0 times".
 This code will be written inside ComponentDidMount() which will be executed only once in the Component Lifecycle.
 We then have a button to increment the count value.
 Along with the updated count value Document title needs to be updated.
@@ -645,7 +648,7 @@ There are 3 simple steps to consume the Context value.
 
 1.import useContext from React.
 2.import the necessary Context.
-3.Call the useContext() function by passing in the Context as its argument.
+3.Call the useContext() function by passing the Context as its argument.
 
 	export const UserContext=React.createContext();
 	export const ChannelContext=React.createContext();

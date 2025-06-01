@@ -308,7 +308,7 @@ creates an empty TreeSet object where the sorting order is specified by the Comp
 	
 null acceptance :
 For the Empty TreeSet null insertion is possible.
-But after inserting null If we are tryig to insert any other element we get NPE.
+But after inserting null If we are tryig to insert any other element we get NPE(NullPointerException).
 If the TreeSet already contains some elements and If we are trying to insert null we get NPE.
 
 If we are depending on natural sorting order compulsory objects should be homogenous and comparable otherwise we get RTE.

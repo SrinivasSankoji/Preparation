@@ -40,18 +40,20 @@ If the build is successful we can also integrate the Test cases as a post build 
 
 Continuous Integration :
 ------------------------
-Continuous Integration is a practice where developers continuously merge their code into a repository after which automated builds and tests are run.
+Continuous Integration is a practice where developers continuously commit their code into a repository after which automated builds and tests are run.
 But the Application is not automatically deployed on to the Test Servers in order to validate It.
+While CI ensures the code is always in a buildable and testable state, it does not necessarily include deploying the application to test environments.
 
 Continuous Delivery :
 ---------------------
 Continuous Delivery is a practice where application is continuously deployed on to the Test servers.
-We can say that applcation is ready to release for production any time.
+We can say that applcation is ready to release for production at any time.
+The main goal of Continuous Delivery is that the application is always production-ready, even if it's not yet deployed to production.
 
 Continuous Deployment :
 -----------------------
-In case of Continuous Deployment,we are deploying it an automated way.
-
+Continuous Deployment goes a step further than Continuous Delivery i.e. 
+By automatically deploying every change that passes all stages of the pipeline (build, test, staging) directly to production without manual approval.
 
 Download Jenkins :
 ------------------

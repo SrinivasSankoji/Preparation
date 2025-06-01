@@ -13,6 +13,7 @@
 13.Event Handling                                                   (Code Evolution)   			[12-NOV-2023]  (Done)
 14.Binding Event Handlers                                           (Code Evolution)   			[14-NOV-2023]  (Done)
 15.Methods as Props                                                 (Code Evolution)   			[14-NOV-2023]  (Done)
+
 16.Conditional Rendering                                            (Code Evolution)   			[18-NOV-2023]  (Done)
 17.List Rendering                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
 18.Lists and Keys                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
@@ -24,6 +25,7 @@
 23.Component Mounting Lifecycle Methods                             (Code Evolution)   			[21-NOV-2023]  (Done)
 24.Component Updating Lifecycle Methods                             (Code Evolution)   			[23-NOV-2023]  (Done)
 25.Fragments                                                        (Code Evolution)   			[23-NOV-2023]  (Done)
+
 26.Pure Components                                                  (Code Evolution)   			[23-NOV-2023]  (Done)
 27.Memo                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
 28.Refs                                                             (Code Evolution)   			[23-NOV-2023]  (Done)
@@ -56,7 +58,7 @@
 This breaks down the Application into smaller encapsulated components which can be reused.
 
 6.React is declarative i.e. we tell React what we want and React will build the actual UI.
-React will make the developer life easy to create a Complex UI's by abstracting the difficulties.
+This will make the developer life easy to create a Complex UI's by abstracting the difficulties.
 
 7.React handles the component updates and rendering efficiently whenever there are any data changes.
 DOM updates is one of the most expensive operation which is handled gracefully in React.
@@ -129,12 +131,10 @@ In index.js we specify the Root component i.e. App Component and DOM Element whi
 
 ########################################################### 4.Components #################################################################
 
-In React, Component represnts the part of the user interface.
+In React, Component represnts part of the user interface and are reusable.
 The parent Component is the App Component which contains all the components.
-Components are reusable.
 
-A Component code is placed inside Javascript file.
-For example App Component is placed inside App.js.
+A Component code is placed inside Javascript file.For example App Component is placed inside App.js.
 We can also have components with .jsx extension.
 
 In React we have two types of Components.
@@ -296,7 +296,7 @@ render() should return either HTML or null.
 	
 Difference between Functional Components and Class Components :
 ---------------------------------------------------------------
-Functional Componnets are JavaScript functions which optionally recieves props and returns the HTML.
+Functional Componnets are JavaScript functions which optionally recieves props as an input and returns the HTML which describes the UI.
 Use Functional Components as much as possible.
 Always prefer Functional Components.
 Absence of this keyword in Functional Component.
@@ -322,7 +322,7 @@ In Functional/Class Component we are simply returning HTML.Here we are not retur
 
 JavaScript Xml (JSX) is an extension to JavaScript language syntax.
 With React library we can write the XML like code for Elements and Components.
-Just like XML,JSX tags can have tag name,attributes and children.
+Just like XML,JSX can have tag name,attributes and children.
 
 JSX is not a necessity to write React Application.
 We can definitely write React Application without JSX.
@@ -407,7 +407,7 @@ props are Immutable because variables are passed down from Parent Component to c
 
 state :
 State is managed within the Component.
-State variables are declared in the function body.
+State variables are declared within the function body.
 State can be changed because Component has full control of it.
 
 Create the Component named Message.js.
@@ -527,7 +527,7 @@ React will group multiple setState() calls into single setState for better perfo
 
 ########################################################### 12.Destructuring Props and State  ############################################
 
-Destructuring is an ES6 feature that makes possible to unpack values from arrays or props from Objects into distinct variables.
+Destructuring is an ES6 feature that makes possible to unpack values from arrays or props into distinct variables.
 In React destructuring props and state improoves code reusability.
 Destructuring can be done by using {}.
 
@@ -564,7 +564,7 @@ The second way to destructure the props is by using function body.
 Any Web Application we create typically tends to have user interaction.
 When the user interacts with the Application events are fired. 
 Consider the scenario of button click.
-Create the component for Event Handler named FunctionClick.js.
+Create the component for Event Handler named FunctionClick.js
 
 	import React from "react";
 
@@ -580,15 +580,18 @@ Create the component for Event Handler named FunctionClick.js.
 Our goal is to capture the click event and perform some logic.
 React events are named using camel case.
 
-	   function clickHandler(){
-        console.log('Button clicked');
-	   }
-
-	   return (
-			<div>
-				<h1><button onClick={clickHandler}>Click</button></h1>
-			</div>
-	   )
+	   const ClickEvent = () => {
+			function clickHandler(){
+				console.log('Button clicked');
+			}
+			return (
+				<div>
+					<h1><button onClick={clickHandler}>Click</button></h1>
+				</div>
+			)
+		};
+		
+		export default ClickEvent;
 
 Note :
 ------
@@ -694,7 +697,7 @@ React document suggests to use approach 3 or 4.
 
 ########################################################### 15.Methods as Props  #########################################################
 
-In the earlier videos we have seen how to pass props as parameter from Parent Component to Child Component.
+We have seen how to pass props as parameter from Parent Component to Child Component.
 Here the requirement is the Child Component has to communicate with parent Component.
 Here also we use the props as a reference to the methods.
 	
@@ -997,8 +1000,8 @@ This way instead of updating the whole DOM Tree,React will update the specific D
 ########################################################### 21.Basics of Form Handling ###################################################
 
 Here we will see how to capture input from Form Elements like input,textarea and select and have the data available for Form submission.
-In regular HTML Form Elements like input,textarea etc are responsible on their own to handle the user input and update the respective values.
-Here we want to React to control the Form Elements.
+In regular HTML Form elements like input,textarea etc are responsible on their own to handle the user input and update the respective values.
+Here we want React to control the Form Elements.
 Such Form elements whose values are controlled by React is called Controlled Components.
 Consider the scenario 
 
@@ -1075,8 +1078,8 @@ To avoid this we have to call preventDefault().
 
 ########################################################### 22.Component Life Cycle Methods ##############################################
 
-When we create any React Component,Component goes through several stages in its Lifecycle.
-React provides built in methods that we can override at particular stages in the Lifecycle.
+Whenever we create any React Component,Each Component goes through several phase in its Lifecycle.
+React provides built in methods i.e. Lifecycle methods that we can override at particular phase in the Lifecycle.
 Lifecycle methods are available for Class Component and not for the Functional Component.
 We can classify the methods into 4 phases.
 
@@ -1102,7 +1105,7 @@ Error Handling methods are called whenever there is an Error during rendering,Li
 ########################################################### 23.Component Mounting Lifecycle Methods ######################################
 
 Mounting Lifecycle methods are called whenever an instance of the Component is being created and inserted into the DOM.
-We will be going through the order in which Mounting Lifecycle methods will be inoked.
+We will be going through the order in which Mounting Lifecycle methods will be invoked.
 
 1.Constructor :
 ---------------
@@ -1182,8 +1185,8 @@ To trigger the updating Lifecycle we nned to change either the state or props.
 
 ########################################################### 25.Fragments #################################################################
 
-Scenarion 1 :
--------------
+Scenario 1 :
+------------
 Fragments allows us to group list of Children nodes without adding extra nodes to the DOM.
 JSX will expect only one element for that we enclose all the statement in the <div>.
 Here the <div> will be added to the DOM Tree.
@@ -1208,7 +1211,7 @@ After adding React.Fragment we no longer have <div> in the DOM Tree.
 
 Scenarion 2 :
 -------------
-React Fragment can also be used in Table data where column data is define in another Component which contains multiple data.
+React Fragment can also be used in Table data where column data is defined in another Component which contains multiple data.
 If we define in <div> then <div> cannot be child tag of <td>.
 In this scenario we use React.Fragement.
 
@@ -1237,7 +1240,7 @@ The difference between Regular Component and Pure Component is Pure Component is
 
 Regular Componnet does not implement shouldComponentUpdate() and always returns true by default.
 
-Pure Component implements shouldComponentUpdate() with shallo props and state comparison.
+Pure Component implements shouldComponentUpdate() with shallow props and state comparison.
 Pure Component does a Shallow Comparison of Previous State/Previous Props with Current State/Current Props 
 and if it finds any difference then only it will re-render the Component.
 

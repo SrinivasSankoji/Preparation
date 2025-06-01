@@ -74,7 +74,7 @@ If several components have the same functionality then it is not recomended to d
 We need to define the common functionality in one class and specific functionality in the child class.
 This approach improoves the reusability of the code and reduces the development time.
 Entire Java API is implemented based on Simple inheritance.
-For all Errors and Exceptions,most common functionality is available in Throwable class.Hence Throwable class acts as a root class for Java Exception Hierarchy.
+For all Errors and Exceptions,most common functionality is available in Throwable class.Hence Throwable class acts as a Root class for Java Exception Hierarchy.
 Similarly for all Java classes most common functionality is available in  Object class.Hence Object class acts as a Root Class for all Java Classes.
 
 Example :
@@ -134,39 +134,48 @@ In Java class cannot extend more than one class at a time.
 
 Class A
 {
-	m1();
+	void m1() {
+        System.out.println("A's m1()");
+    }
 }
 
 
 Class B 
 {
-   m1();
+   void m1() {
+        System.out.println("B's m1()");
+    }
 }
 
 Class C extends A,B
 {
-	m1();  // Compile Time Error due to ambiguity problem which method it has to call.
+	C c = new C();
+	c.m1();  // Compile Time Error due to ambiguity problem which method it has to call.
 }
 
 But an Interface can extend more than one Interface at a time,Hence Java provides support for Multiple Inheritance through Interface.
 
 Interface A 
 {
-	m1();
+	void m1();
 }
 
 Interface B 
 {
-	m1();
+	void m1();
 }
 
-Interface C extends A,B
+Class C implements A,B
 {
+	public void m1() {
+        System.out.println("MyClass's implementation of m1()");
+    }
 }
 
 Because for Interface we need to provide Implementation.
 Here Implementation for A is in Seperate Class and B is in Another Class.
-To the Interface C Only one implementation is enough and single implementation acts for both interfaces.There is no chance of ambiguity.
+To the Interface C Only one implementation is enough as all methods in interfaces are abstract by default and single implementation acts for both interfaces.
+There is no chance of ambiguity.
 Eventhough multiple method declarations are present,there should be only one implementation i.e Implementation is unique.
 Hence there is no chance of ambiguity Problem in Interfaces.
 
@@ -209,6 +218,23 @@ Here University is a Container object where as Department is contained Object.
 Here Container objects and contained objects are Strongly associated with each other.Then this Association is nothing but Composition.
 Without existing Outer class object there is no chance of existing Inner class object.
 
+	class Department {
+    private String name;
+
+    public Department(String name) {
+        this.name = name;
+    }
+	}
+
+	class University {
+		private List<Department> departments;
+
+		public University(List<Department> departments) {
+			this.departments = departments;
+		}
+	}
+
+
 Aggregation :
 -------------
 Consider the scenario of department.
@@ -216,6 +242,22 @@ Many Professors works under one department.
 There may also be a scenario where the Department has no Professors in it.
 Here without existing container object(Department) there may be a chance of existing contained object(Professor).
 Container objects and contained objects are weakly associated with each other and is called Aggregation.
+
+	class Professor {
+    private String name;
+
+    public Professor(String name) {
+        this.name = name;
+    }
+	}
+
+	class Department {
+		private List<Professor> professors;
+
+		public Department(List<Professor> professors) {
+			this.professors = professors;
+		}
+	}
 
 Note :
 ------
@@ -228,7 +270,6 @@ In Aggregation,Container Object holds the references of Contained Objects i.e Co
 			
 In Java Method Signature consists of name of the Method and Argument Types.
 Return type is not a part of Method Signature.
-For each call performed by the Thread, One Entry will be stored inside the Stack Area.
 
 public class MethodSignatureDemo {
 
@@ -413,7 +454,7 @@ Method Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism
 Rules for Overriding :
 ----------------------
 Name of the Method and argument type must be same. i.e Method Signature must be same.
-In Overriding return type must be matched but this rule is applicable untill Java 1.4.
+In Overriding return type must be same but this rule is applicable untill Java 1.4.
 Form Java 1.5 onwards Covariant return types are allowed.
 According to Covariant Return Type,Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
 Covariant Return Type is applicable only for Object Types but not for primitive types.
@@ -688,7 +729,7 @@ Without using System.out.println() it is also possible to print some statement o
 
 ******************************************************************* 14.Initializer Block(geeksforgeeks)  ***************************************************
 
-The initializer block contains the code that is always executed whenever an instance is created.
+The initializer block contains the code which will be executed always whenever an instance is created.
 The initializer block will run every time when an object of the class is created.
 The initializer block is always executed before the constructor.
 
@@ -743,9 +784,6 @@ int[] i;
 
 If an array is not initialized then it refers to null.
 Once we create an array,every element by default initialized with default values irrespective of whether it is local or instance or static.
-Every variable in Java should be either primitive or reference type.
-Every Variable in Java Should be either instance or static or local.
-
 
 ******************************************************************* 17.Constructor  *******************************************************************
 
