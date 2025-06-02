@@ -7,14 +7,17 @@
 7.Getting Started With Jobs 											[25-JUN-2019] (Done)
 8.Jenkins Integrating With GIT											[25-JUN-2019] (Done)
 9.Add GitHub Credentials												[23-MAY-2020] (Done)
+
 10.CATLIGHT																[23-MAY-2020] ()	
 11.Automated Deployment 												[25-JUN-2019] (Done)
 12.Setting up Tomcat 													[23-MAY-2020] (Done)	
 13.Implementing Automated Deployment (Deploying War on Tomcat)			[23-MAY-2020] (Done)		
 14.Sending Email form Jenkins 											[23-MAY-2020] ()
+
 15.Pipeline in Jenkins                                                  [23-MAY-2020] (Done)
 16.Setting Up Delivery PipeLine in Jenkins                              [24-MAY-2020] (Done)
 17.Setting Up Build PipeLine in Jenkins                                 [24-MAY-2020] (Done)
+
 18.Blue Ocean 															[23-MAY-2020] ()
 19.Trigger Job With Email 												[23-MAY-2020] ()
 20.Build Monitor View 													[23-MAY-2020] ()	
@@ -61,8 +64,8 @@ Download the Jenkins from  https://jenkins.io/download/ --> Extract the Zip File
 It will be installed in C:/Program Files/Jenkins
 Then Copy the Jenkins.war File and place in any directory i.e D:\Software.
 To Start Jenkins --> Go to The location where Jenkins.war is present  --> run the Command  :
-java -jar jenkins.war --httpPort=3001
-Open the Jenkins in the Browser --> http://localhost:8500/ and enter the Password Generated i.e Generated in the Folder
+java -jar jenkins.war --httpPort=7070
+Open the Jenkins in the Browser --> http://localhost:7070/ and enter the Password Generated i.e Generated in the Folder
 C:\Users\Bhaumik Chary\.jenkins\secrets\initialAdminPassword --> 
 Enter it --> Select the option you Want --> Then continue as Admin.
 
@@ -134,11 +137,10 @@ and restart the Jenkins
 Method 2 :
 ----------
 manage Jenkins --> manage Plug ins --> 
-Then we have different options like 
-Updates,Available,Installed and Advance
+Then we have different options like Updates,Available,Installed and Advance
 Go to Available Section and search role and click on Download Now and Install after Restart.
 Then Restart the Jenkins.
-run the command java -jar jenkins.war -httpPort=9002
+run the command java -jar jenkins.war -httpPort=7070
 After Successful Installation it will be available in Installed Section.
 
 Method 3 :
@@ -199,13 +201,13 @@ Jenkins --> New Item --> Select Free Style Project --> Add details of the Item -
 After that 6 Tabs will be Opened.
 1.General  --> Add description to the Project
 2.Source Code  Management --> To get the code from any Repository
-3.Build Triggers --> Build Options  -->  
+3.Triggers --> Build Options  -->  
 				   Poll SCM For Git Repository
-				   Build Periodically (# # # # #) For Every Minute  (H/60 # # # # ) To run it Hourly
+				   Build Periodically (* * * * *) For Every Minute  (H/60 * * * * ) To run it Hourly
 				   Run the Job Remotely
 				   
-4.Build Environment --> 
-5.Build  --> Command Prompt to Use  (Here we used VER to check the version of Windows)
+4.Environment --> 
+5.Build Steps  --> Command Prompt to Use  (Here we used VER to check the version of Windows)
 6.Post Build Actions  --> After build which action it has to be taken.
 
 Now the new project has been added in the Jenkins Dashboard.
@@ -217,15 +219,17 @@ Copy the URL and paste it it on the browser i.e JENKINS_URL/job/Test1/build?toke
 Repleace Jenkins URL with HostName or localhost
 Then it will build the Job --> then see the build version in the project.
 
+114586dc88ebb01fe719f38c4b42ec5a3f
+
 JENKINS_URL/job/Remote%20Job/build?token=TOKEN_NAME or /buildWithParameters?token=TOKEN_NAME
 
-http://localhost:3001/job/Test2/build?token=1234
+http://localhost:7070/job/Test2/build?token=114586dc88ebb01fe719f38c4b42ec5a3f
 
-http://localhost:7070/job/Remote%20Job/build?token=SmartSchool
+http://localhost:7070/job/RemoteJob/build?token=114586dc88ebb01fe719f38c4b42ec5a3f
 
 3.Chain Job Execution :
 -----------------------
-Create 2 New Projects FirstJob and SecondJob i.e 
+Create 2 New Projects FirstJob and SecondJob i.e. 
 Create New Item --> Select Free Style Project --> Apply OK
 Requirement is When we run the Project FirstJob 1 It has to run SecondJob and after execution of SecondJob it has to execute ThirdJob.
 i.e In Test1 Project --> Configure --> Build Trigger Options 
@@ -257,7 +261,7 @@ Follow the Git Basic Steps to add the Project.
 
 Add Git Plug Ins to the Jenkins :
 ---------------------------------
-Manage Jenkins --> Manage Plug Ins --> Search Git Plug In --> Then install
+Manage Jenkins --> Manage Plug Ins --> Search Git Plug In --> Then install or use the installation location i.e. C:\Program Files\Git\bin\git.exe
 Once Git is installed,we will see the Git Option in Source Code Management.
 In The Source Code Management --> Select the GIT option --> Add Project form GitHub by passing GIT URL
 and In the Build Trigger --> select Poll SCM  
@@ -265,7 +269,7 @@ i.e whenever any Changes done in Git Repository it will build automatically in J
 
 we have to provide the cron Expression.
 
-# # # # #
+* * * * *
 
 Here It will check the Repositroy for every Minute.
 
