@@ -47,10 +47,6 @@ AWS is designed to be quite low level and is not designed for casual web site bu
 AWS is built for large enterprises to build their entire business.
 AWS is not only low level but there are many different services and lot of services that even substitute with each other.
 
-AWS is a platform that offers Reliable,Scalable,Flexible,Easy to use and cost effective cloud computing solutions.
-The Platform is developed with a combination of Infrastructure as a Service,Platform as a Service and Software as a Service.
-All these srevices are used as pay as you go pricing Model.
-
 WHERE TO START LEARNING AWS :
 -----------------------------
 While learning AWS we should focus on 3 Areas.
@@ -71,7 +67,8 @@ In EC2 we can launch Linux Machine,Windows Machine etc.
 EC2 is like having a Computer at the push of a button.
 
 In EC2 we can run different type of workloads.
-We can install wordpress to build a web site.We also can install database and store the data directly on EC2.
+We can install wordpress to build a web site.
+We also can install database and store the data directly on EC2.
 Imagine we can run everything on EC2.
 
 Note :
@@ -102,7 +99,7 @@ S3 :
 ----
 S3 allows us to store files in a flexible way.
 S3 can be used to host static websites,stores assets such as images and log files of an application.
-If we ever need simple persistence for files then S3 is the best answer.
+If we need a simple persistence for files then S3 is the best answer.
 
 If we want to use AWS RedShift i.e querying tool we need to put data in S3.
 If we want to get access logs in AWS account then data will be in S3.
@@ -150,8 +147,7 @@ It is a service that allows us to run functions in the cloud.It is a big cost sa
 
 ********************************************************************* 5.AWS Introduction (Online Tutorials) ***********************************************************
 
-Whenever we get a new project from any Organization we need to understand the requirement.
-How long will it take to develop the specific Application and requirements to implement the Application.
+Whenever we get a new project from any Organization we need to understand the requirement and how long will it take to develop the Application.
 
 					Application
 					Runtimes
@@ -159,17 +155,17 @@ How long will it take to develop the specific Application and requirements to im
 					Databases
 					Servers
 					Virtualization
-					Server Hardware
+					Server Hardware(CPU,RAM)
 					Storage Devices
-					Networking
+					Networking Devices
 
 Once the Application is finalized we need to get 
 
 How much Storage devices are required.
 How much Server Hardware is required.
-Networking devices required to connect the Server Hardware.
+Networking Devices required to connect the Server Hardware
 
-we need to connect all the three i.e Storage,Server and Network Devices.
+we need to connect all the three i.e Storage device,Server hardware and Network devices.
 Finally we need a Network Admin who will create a Virtualization Layer on top of these Hardwares.
 Virtualization helps in providing different kind of systems on the same server.
 Here we can have both Linux Machine as well as Windows Machine on the Same Server.
