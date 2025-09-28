@@ -29,12 +29,23 @@ Memory Leak
 PermGenSpace
 Constructors 
 Object Class 
+ExecutorsService
+JMS
+DeadLock
+ThreadDump
+Asymmetric Encryption
+Encryption vs Hashing
+Class Loaders  
 
 Java8 Concepts 
 Java8 Comparator 
 Java8 Stream API 
 Java8 Lambda Java Brains ()
 Java8 Functions
+
+***************************************** Hibernate  *******************************************
+
+
 
 ***************************************** Design Patterns  *************************************
 
@@ -162,6 +173,8 @@ Kafka
 
 
 ***************************************** Docker **********************************************
+
+Docker Commands
 
 
 ***************************************** Kubernetes ******************************************

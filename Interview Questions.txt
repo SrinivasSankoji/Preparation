@@ -1,14 +1,11 @@
-
-Java Practice Sites :
----------------------
+🔗 Practice Sites
 https://www.educative.io/edpresso
 https://www.codejava.net/
 https://codippa.com/
 https://javahungry.blogspot.com/
 https://www.softwaretestinghelp.com/
 
-Java8 Websites :
-----------------
+🔗 Java 8 Reference Websites
 concretepage
 journaldev
 howtodoinjava
@@ -18,213 +15,605 @@ beginnersbook
 boraji
 javapapers
 
-***************************************  Spring Boot    *****************************************
-													
-Profiles in Spring Boot												
-Live Reload in Spring Boot											
-Reactive and Non Reactive Web application							
-Spring Web Flux to Support Reactive Web application					
-Spring Boot Actuator Web API Documentation							
-CompletableFuture with Spring Data JPA								
-Spring Boot – Introduction																							
-Spring Boot – Starter parent										
-Spring Boot – Starter templates										
-Spring Boot – Multi-module project									
-Spring Boot – Annotations											
-Spring Boot – Auto configuration									
-Spring Boot – Logging												
-Spring Boot – DevTools												
-Spring Boot – WAR Packaging	
-Spring Boot – Hibernate
-Spring Boot – REST API
-Spring Boot – ResponseBodyEmitter
-Spring Boot – SseEmitter
-Spring Boot – POST with Headers										
-Spring Boot – Error Handling										
-Spring Boot – HATEOAS												
-Spring Boot – @Async      											[08-AUG-2019]  (Done)   					
-Spring Boot – Async Controller										
-Spring Boot – Caching
-Spring Boot – Retry
-Spring Boot – JUnit
-Spring Boot – BasicAuth												
-Spring Boot – MockMVC												
-Spring Boot – Mockito												
-Spring Boot – H2 Database											
-Spring Boot – Ehcache 3.x											
-Spring Boot – Performance Logs										
-Spring Boot – Test Async Controller									
-Spring Boot – TestRestTemplate										
-Spring Boot – RestTemplate GET
-Spring Boot – RestTemplate POST
-Spring Boot – RestTemplate timeout
-Spring Boot – RestTemplate BasicAuth
-Spring Boot - Exception handling
-			
-------------------------- GIT Interview Quetsions -----------------------------------------------
+🟦 Core Java
+Object class methods
+Difference between Interface vs Abstract Class
+Clone – shallow vs deep, which one used in project
+Why override hashCode() & equals()? Consequences if not
+String vs StringBuffer vs StringBuilder
+String Pool
+Why Strings are immutable? How to make a class immutable?
+Exception handling → Difference between Exception vs Error
+Checked vs Unchecked Exception
+Multiple catch blocks & exception hierarchy
+Try-with-resources
+Try-catch-finally combinations
+Return statements in try/catch/finally → execution order
+Method overloading & return types
+Method overriding & covariant returns
+Polymorphism → Compile-time vs Run-time
+Can we instantiate interface/abstract class? How?
+Collections (all classes & interfaces)
+ArrayList vs LinkedList (algorithms)
+Why Collections introduced in Java
+Array drawbacks & internal algorithms
+Classloader subsystem
+ClassNotFoundException vs NoClassDefFoundError
+HashMap internal working
+HashMap vs ConcurrentHashMap
+HashMap vs WeakHashMap vs IdentityHashMap
+Comparable vs Comparator (coding-level expected)
+Thread lifecycle methods
+Deadlock & solutions
+yield() vs sleep() vs join()
+wait(), notify(), notifyAll() (why in Object class, not Thread)
+synchronized method vs synchronized block
+intern() method
+Runnable vs Callable
+JVM architecture + memory model (heap, stack, metaspace)
+Serialization vs Externalization
+transient and volatile keywords
+HTTP methods (GET, POST, PUT, DELETE, PATCH)
+Idempotent operations
+Singleton – creation + breakage (Reflection, Cloning, Serialization)
+Custom Exception class
+SOLID Principles
+Pass by value vs pass by reference
+Immutable object (why getters needed)
+Marker Interfaces
+Internal vs External iteration
 
-1. What is Git & GitHub?
-2. Differences between SVN and GitHub? Differences between CVCS & DVCS?
-3. Branching strategy?
-4. Command to create/delete/rename a tag?
-5. Command to create/delete/rename a branch?
-6. Once git push is done, how to configure a Jenkins job as to run automatically.
-8. Diff between reset, revert, rebasae.
-9. Diff between soft, mixed, hard in reset. Default reset is mixed.
-10. Create a new branch/tag from particular commit-id?
-11. Rename the tag?
-12. Rename the branch?
-13. How to edit commit messages?
-14. gitk command (to check commit log).
-15. Git merge & Resolve merge conflicts. Command is "git add .".
-16. Git unstaged & staged areas?
-17. Move a repository from one organization to another organization.
-18. How to create an orphan branch.
-19. How/why to fork?
-20. What is pull request?
-21. How to protect a branch?
-22. Commit hooks?
-23. How to switch from one branch to another branch?
-24. Top 35 Git Commands With Examples (DZone)
-
-
--------------------------    Elastic Search   ---------------------------------------------------
-
-Query DSL(Conditions)
-Query DSL in SQL Format
-Query DSL in String Format
-Spring Data with Elastic Search
-
-Request Body Search Queries :
-Query
-From/Size
-Sort
-Source Filtering
-Fields
-Script Fields
-Doc Value Fields
-Post Filter
-Highlighting
-Re scoring
-Search Type
-Scroll
-Preference
-Explain
-Version
-Index_Boot
-min_Score
-Named Queries
-Inner Hits
-Filed Collapsing
-Search After
-
---------------------   Java 8 Features   ----------------------------------
-
-Default and Static Method in Interfaces
-Functional Interfaces
-For Each Method in Iterable Interface
-Java Stream API 
-Java Time API
-Collection API Improvements
-Concurrency API Improvements
-Java IO Improvements
-Optional Class
-Lambda Expression
-Stream Filter
-Collectors Class 
+🟩 Java 8 Features
+Java 8 features list – which used in project
+Lambda expressions – syntax, usage
+Functional Interfaces → before Java 8 vs after
+Consumer, Predicate, Function differences & usage
+Method References – types
+Streams API
+Intermediate vs Terminal operations
+map vs flatMap
+foreach vs stream.foreach
+reduce(), collect(), groupingBy, partitioningBy, toMap
+Optional class → usage & methods
+Date & Time API
 StringJoiner
-Arrays Parallel Sort
-Type Annotations
-Repeating Annotations
-Completable Future
-PipeLines and Streams
-Nashron Java script Engine
+Parallel sort in Arrays
+Concurrency API improvements → CompletableFuture, ForkJoin
+Anonymous class vs Lambda
+Enum in switch
+Type annotations, repeating annotations
+Nashorn JS engine (removed later)
 Concurrent Accumulators
-PermGen Space Removed
+Removal of PermGen → Metaspace
 TLS SNI
-ThreadPoolExecutor in Java
-Load Balancer in Java
-Java Anonymous Class Example (Java 8)
-Enum in Switch 
-String Joiner
-Method Reference
-Util Functions
+ThreadPoolExecutor, Load Balancer concepts
 
-***************************************** Telephonic Interview  Questions *****************************************
+🟨 Spring
+IOC – Dependency Injection (constructor vs setter)
+Bean scopes
+@Autowired → byName vs byType
+Bean lifecycle
+AOP concepts
+Transactions in Spring
+Spring MVC flow
+Parent annotations (@Controller, @Service, @Repository)
+BeanFactory vs ApplicationContext
+Which injection is best and why?
+
+🟧 Spring Boot
+Basics: Introduction, Starter parent, Starter templates, Auto-configuration
+Annotations: @SpringBootApplication, @EnableAutoConfiguration, @ComponentScan, Profiles, @Qualifier, @CrossOrigin, @RequestMapping variants, etc.
+Features: Logging, DevTools, WAR Packaging, Actuator, Security (BasicAuth, JWT, OAuth2), Caching (EhCache, @Cacheable), Retry, Async (@Async, Async Controllers)
+REST APIs: RestTemplate (GET, POST, timeout, BasicAuth), TestRestTemplate, Exception handling, Error handling, HATEOAS, ResponseBodyEmitter, SseEmitter
+Data: Spring Boot + Hibernate, Spring Data JPA, H2 Database
+Testing: JUnit, Mockito, MockMVC, @SpringBootTest, @DataJpaTest, @AutoConfigureMockMvc
+Profiles & Configuration: application.yml vs application.properties, disabling embedded Tomcat, connecting to external DB, config server
+Performance: Live Reload, Performance Logs
+
+🟥 Microservices
+Microservices basics – pros & cons
+Monolithic vs Microservices architecture
+Service discovery (Eureka)
+API Gateway (Zuul, Spring Cloud Gateway)
+Circuit Breaker (Hystrix, Resilience4J)
+CQRS pattern
+Saga pattern
+Config Server
+Blue-Green deployments
+Load balancing (Ribbon, LB concepts)
+Communication (RestTemplate, WebClient, Feign Client, Kafka)
+Distributed logging & monitoring
+Swagger for API docs
+CI/CD pipelines
+Fault tolerance
+
+🌐 Web Services
+REST vs SOAP basics
+REST annotations: @RestController vs @Controller, @RequestMapping, @RequestParam vs @PathParam
+Best practices for REST APIs
+Security (JWT, OAuth2, BasicAuth)
+
+🟪 Hibernate
+Basics of Hibernate, ORM concepts
+States of an Object (Transient, Persistent, Detached)
+Caching (1st level, 2nd level)
+get() vs load()
+save(), saveOrUpdate(), persist()
+Transaction Management
+Isolation levels, ACID properties
+Dirty Read, Phantom Read
+One-to-One, One-to-Many, Many-to-One, Many-to-Many mappings
+HQL & Named Queries
+
+🟩 Database (Oracle/SQL)
+Joins (inner, outer, left, right, self join)
+Indexing → types, performance impact
+Primary key vs Foreign key vs Unique key
+Queries for nth highest salary (2nd, 3rd, 4th)
+Optimization strategies
+SQL vs NoSQL differences
+Pagination handling in SQL/JPA
+Composite keys
+
+⚙️ Tools & DevOps
+Git (branching, tags, reset vs revert vs rebase, hooks, pull request, branch protection)
+Maven (lifecycle, package vs install)
+Log4j logging levels
+Docker commands
+Kubernetes commands
+Jenkins (CI/CD)
+SonarQube
+Cloud (AWS, PCF, OpenShift)
+Splunk / Kibana logs
+
+🏗️ Design Patterns
+Singleton (thread safe, breaking scenarios)
+Factory, Abstract Factory
+Builder pattern
+Decorator, Chain of Responsibility, Observer
+CQRS, Saga, Circuit Breaker (microservices)
+
+Telephonic Interview Questions (Grouped)
+Core Java & Concurrency
 Deadlock solution
-InstanceOf() use				(Done)
-Hashtable convert to ConcurrenHashMap ?
-HashMap object use as Key, how ?
-Concurrency ?
-Hibernate immutable how ?
-OutOfMemoryError resolve ?
-permgenspace ?
-How to Handle Handle Memory Leak ?
+instanceof() use (Done)
+HashMap object as key — how?
+Concurrency?
+Immutable object
+Java Pass-By-Value vs Pass-By-Reference
+Java Marker Interface
+Null & NullPointerException
+Clone (shallow vs deep)
+Internal vs External iteration
+Thread creation
+Thread communication
+Hashtable → ConcurrentHashMap?
+HashMap key override examples
+ArrayList sort (custom comparator)
+HashSet specifications
+JDK vs JRE
 
-EC2 Types
-EC2 Configuration
-Why do we use Subnet
-How to Create an EC2 instance ways.
+JVM, Memory & Performance
+JVM internals
+Java memory management
+OutOfMemoryError — how to resolve?
+PermGen space?
+Handle memory leaks?
+ArrayList internals
+HashMap internals (Done)
+ConcurrentHashMap internals
+Load factor in HashMap (Done)
 
-JVM Internal
-Object creation ways			(Done)
-Object Class Methods 			(Done)
-Serialization					(Done)
-ArrayList Internal
-HashMap Internal				(Done)
-Concurrency and Its Implementations
-Spring IOC Lifecycle			(Done)			
-Hibernate Methods
-Hibernate Caching
-Singleton ways and how to break Singleton   (Done)
-Immutable Object
-Java Pass By Value and Pass By Reference
-Java Marker Interface							
-Java null and NullPointerException
-Java Clone -Shallow Copy and Deep Copy
-Internal vs External Iteration in Java
-
-***************************************** Venu Interview Questions *****************************************
-
-Spring IOC								(Done)
-Java Memory Management
-Load Facor in HashMap                   (Done)
-ConcurrentHashMap Internal
-Difference between Controller and RestController Annotation
-Spring Boot Annotations
-Thread Creation
-Difference betwwen Crud Repository and JPA Repository
-Remove all the records except on record in SQL
-GET,PUT,POST,DELETE,PATCH
-Merge and Update in Hibernate
-save() and saveUpdate()
+Spring / Spring Boot / Hibernate
+Spring IoC lifecycle (Done)
+Difference: @Controller vs @RestController
+Spring Boot annotations
+CrudRepository vs JpaRepository
+Merge vs Update in Hibernate
+save() vs saveOrUpdate()
 persist()
-load() and get()
-Transaction Propogation
+load() vs get()
+Transaction propagation
 @EnableAutoConfiguration
 @ComponentScan
-Dependency Injection					(Done)
-Constructor and Setter Injection		(Done)
-OneToMany Mapping
-Immutable Object -- Getter Method Why
-JAX-RS Security for Restful API's.
-Comparable and Comparator in Java 8
-Thread Communication
-HashMap key override Examples
-ArrayList Sort using user defined Method
-HashSet Specifications
-JDK and JRE
+Dependency Injection (Done)
+Constructor vs Setter Injection (Done)
+One-to-Many mapping
+Immutable object — getter reason
+JAX-RS security for REST APIs
+Comparable vs Comparator (Java 8)
+Thread communication
+Spring Boot architecture
+@Profiles (dynamic)
+@Bean vs @Component
 
-Java8 Changes :
----------------
-Changes Enables Functional Programming
-Method References
-Stream API
+REST & HTTP
+GET, PUT, POST, DELETE, PATCH
+POST vs PUT (Done)
+Exception handling in Spring Boot
+Caching in REST APIs
+Pagination in JPA + performance
+RestTemplate basics
 
-***************************************** Interview  ***********************************************
+DevOps / Cloud (Telephonic)
+EC2 types
+EC2 configuration
+Why subnets?
+Ways to create EC2 instance
+Docker & Kubernetes basics
+Jenkins pipelines (CI/CD)
+Centralized logs (Splunk/Kibana)
 
-https://www.javainterviewpoint.com/
+Company-Specific Questions
+Venu
+Spring IoC (Done)
+Java memory management
+Load factor in HashMap (Done)
+ConcurrentHashMap internal
+Controller vs RestController
+Spring Boot annotations
+Thread creation
+CrudRepository vs JpaRepository
+Remove all records except one (SQL)
+HTTP verbs: GET/PUT/POST/DELETE/PATCH
+Merge vs Update (Hibernate)
+save() / saveUpdate()
+persist()
+load() vs get()
+Transaction propagation
+@EnableAutoConfiguration, @ComponentScan
+Dependency Injection (Done), Constructor vs Setter (Done)
+OneToMany mapping
+Immutable object — getter why
+JAX-RS security
+Comparable vs Comparator (Java 8)
+Thread communication
+HashMap key override examples
+ArrayList custom sort
+HashSet specs
+JDK vs JRE
 
+BluePal
+Joins
+Security addressed / PIN
+Blob storage
+Caching design pattern
+String interview questions
+Kubernetes architecture
+IoC
+Hibernate lazy vs eager loading
+MVC architecture
+“Microservices is taking too much time”
+CI/CD
+Event-driven architecture
 
+GlobalLogic
+Java versions
+static (Done)
+Constructor chaining (Done)
+Handling exceptions in project
+Try-with-resources
+Collections
+Fail-fast vs fail-safe (Done)
+Comparable vs Comparator
+Metaspace
+Java 8 stream components
+Predefined functional interfaces
+Saga design pattern
+Caching application
+Transactions in Spring Boot
+Two independent microservices
+External DB config changes
+NoSQL features
+DB sharding
+Deployment
+CI/CD in Jenkins
+git fetch vs git pull
+Central logs
+Kafka terms, ZooKeeper
+Fault tolerance
+Load balancer
+Test cases
 
+Tech Mahindra (set 1)
+Collections
+HashSet vs TreeSet
+HashMap iteration
+Polymorphism
+Exceptions
+Spring Boot features
+Microservices vs Monolith
+Spring Boot exception handling
+REST API advantages
+POST vs PUT (Done)
+Docker, Kubernetes, Jenkins
+Auto-configuration
+HTTP status codes
+Threads & lifecycle
+Interface vs Abstract class
+Java 8 features (Lambdas, Streams)
+String vs StringBuffer
+Circuit Breaker pattern
 
+Cognizant
+Microservices architecture & communication
+Auth in microservices
+Spring Boot annotations
+External Tomcat vs standalone
+@Controller vs @RestController
+Auto-configuration
+DataSource config
+Dependency injection
+Stereotype annotations
+Spring Security (Done)
+Actuator
+SOLID (Done)
+JDK vs JVM
+Path vs Classpath (Done)
+Multiple inheritance in Java (not supported)
+Overloading vs Overriding
+final keyword
+Static block (Done)
+Constructor chaining (Done)
+Immutable class
+Lambda expression
+
+Nisum Consulting
+Java 8 features / Streams
+Collectors.groupingBy
+Serialization
+Singleton
+Repeated word count (Done)
+Microservices implementation
+PathVariable vs RequestParam
+Secure microservices
+@Bean
+ORM vs JPA
+Multiple databases
+@Table vs @Entity
+SQL vs NoSQL
+Inter-service communication
+Messaging system
+Deployment & CI/CD
+
+Capgemini
+Java 8 features
+Intermediate vs terminal operations
+Microservices design patterns
+Failure handling in microservices
+ApplicationContext in Spring IoC
+MVC architecture
+Purpose of Model class
+ViewResolver
+CompletableFuture
+REST with @RequestBody example
+IoC types & differences (duplicate in later section)
+
+Ascendion
+Abstraction
+Interface standards
+Composition
+Predefined functional interfaces
+String immutability
+ClassNotFoundException vs NoClassDefFoundError (Done)
+HashMap internals
+Actuator
+App security management
+JWT
+Excluding embedded Tomcat
+@RestController vs @Controller (Done)
+@Component
+Singleton pattern
+SOLID (Done)
+@Bean & @Qualifier
+Handle exception without try-catch
+Try-with-resources
+Disadvantages of microservices
+PUT vs PATCH (Done)
+Hibernate object states
+Fail-fast vs fail-safe (Done)
+Shallow vs deep cloning
+Marker interface & purpose
+“Employee salary greater than one employee salary” (streams problem)
+
+Mphasis
+Java 8 features
+Optional class methods
+Exception handling in REST controller
+Kafka (core + with microservices)
+Actuator endpoints
+New Spring Boot profile
+New application type
+Run on Tomcat
+Maven lifecycle
+Package vs Install
+Fetch 1 crore rows with performance
+
+Bluevoir (Syllabus)
+HashMap & Collections
+Singleton pattern
+Chain of Responsibility
+Multithreading experience
+JVM crash logs
+Thread/Heap dumps & log files
+Sum as two primes
+Adjacent difference equal problem
+
+Genpact
+TreeSet with custom object
+Singleton breakage
+CopyOnWriteArrayList
+ConcurrentHashMap
+Employee object with TreeSet
+Dept-wise max salary (streams)
+Constructor interview questions
+groupingBy, partitioningBy, toMap
+
+Persistent
+@ResponseBody, ResponseEntity
+Marker interface
+Spring Boot internals
+Retry mechanism
+Exception status codes
+Why String is immutable
+@SpringBootApplication
+volatile
+“Serialization not to perform” (transient patterns)
+Reverse string w/o moving specials: a$bc%de
+Primary vs Unique key; Joins (2nd section)
+
+Accolite Digital
+AtomicInteger
+CyclicBarrier
+CQRS
+SOLID
+HashMap Java 8 internals
+Collision handling (Done)
+LinkedList vs Binary Tree
+Behavioral patterns
+Decorator
+Microservices architecture
+Transaction propagation levels
+G1 GC
+HashMap sort by values (Done)
+Custom Actuator
+
+LTTS
+Hibernate identity generators
+Start ID at 1000
+Transaction propagation levels
+Isolation levels
+JSON↔XML API communication
+JSON vs XML
+Microservice communication
+
+Altimetrik
+Convert stream to object
+Missing number
+Byte→Char questions
+Design patterns (+ Spring Boot)
+ResponseEntity / @ResponseBody / @RestController
+HashMap vs Hashtable
+String class
+Exception handling & hierarchy
+PUT vs GET vs POST
+String in HashMap vs String in Thread
+Iterate Map with for/while
+LinkedList — 4th from last
+Remove spaces without replace (use split("\s"))
+List→String (Collectors.joining)
+Deadlock, ThreadDump
+Thread-safe Singleton
+Calling REST frequently with same response — handle caching/idempotency
+@RequestMapping
+
+Wipro
+JWT
+Immutable class
+Hibernate connection via JPA Tx Manager
+Web server vs App server
+@Autowired, @Qualifier, @Validation
+Custom validation in Spring
+“1000 users same time same response” (caching/idempotent)
+JMS — which server supports
+HTTP status codes
+
+Cyient
+Feign Client
+Spring Cloud Config
+
+VyTech
+Hibernate
+byte, int, char
+sysout
+DateTimeFormatter
+Exceptions in Hibernate
+Object states
+Caching mechanism
+@Component vs @Bean
+Find even numbers
+Private constructor
+Immutable class
+Overriding with final/default
+
+CitiusTech
+RestTemplate vs Feign
+Interface scenarios
+Parent–child exception scenarios
+ArrayList vs LinkedList
+Self-join
+
+Tech Mahindra (set 2)
+AOP
+Factory pattern
+Spring Boot patterns
+Enum
+Parameterized constructor invocation
+Aspect vs AOP
+
+ValueLabs
+ExecutorService
+Same request multiple times → scenario handling
+JUnit test cases
+1st/2nd level cache scenario
+
+GSPANN
+wait(), sleep(), notify()
+Immutable class
+
+ITC Infotech
+Factory pattern
+Docker commands
+REST API returns XML & JSON
+Right-angle program
+ExecutorService
+
+IvyCompTech
+Overriding w.r.t. exceptions
+ArrayList & LinkedList in depth
+How Streams work internally
+Design patterns
+Encapsulation
+Parking lot use case
+foreach vs stream.foreach (Done)
+
+UST Global
+SQL basics
+Group by department
+Vowel count
+equals() & hashCode() (Done)
+Abstract Factory pattern
+
+Virtusa
+anyMatch()
+Nearest number
+Inner class
+
+Birlasoft
+SQL queries
+Java 8 Comparator (Done)
+
+CGI
+toMap()
+Inheritance & serialization
+
+HCL
+Pair sum equals X
+Squares by position
+Custom object as HashMap key
+LinkedList vs ArrayList
+Sort map by values
+
+Mindgate
+JVM internal architecture
+Memory management
+Detailed JVM breakdown
+Heap vs Stack
+Constructor chaining
+HashMap / ConcurrentHashMap internals
+Thread safety & synchronized
+“Has-a” relationship
+Spring bean lifecycle
+Asymmetric crypto in Java
+Symmetric vs Asymmetric; Encryption vs Hashing
+Classloaders

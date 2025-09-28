@@ -11,6 +11,7 @@
 11.Try with Multiple Catch Block                                        [17-DEC-2020]  (Done)
 12.Finally Block                                                        [17-DEC-2020]  (Done)
 13.return vs finally                                                    [17-DEC-2020]  (Done)
+
 14.finally,final and finalize                                           [17-DEC-2020]  (Done)
 15.Control flow in try catch finally                                    [21-DEC-2020]  (Done)
 16.Combination of try catch finally                                     [21-DEC-2020]  (Done)
@@ -31,25 +32,25 @@ Abnormal termination of the program is the result of an Exception.
 An unwanted or unexpected event that disturbs the normal flow of execution of the program is nothing but Exception.
 Main purpose of Exception Handling is graceful termination of the program.
 
-Scenario 1:
------------
-My program has to read the data from the remote file and at runtime remote file is not available.we get FileNotFoundException.
+Scenario 1 :
+------------
+My program has to read the data from the remote file and at runtime remote file is not available.Then we get FileNotFoundException.
 It is highly recomended to handle the Exception.
 We have to provide the local File to continue to rest of the program normally.
 
 Scenario 2 :
 ------------
-Opened the database connection and while reading the data from the database SQLException is raised.
-Here program terminates abnormally without closing the connection.
+Opened the database connection and while reading the data from the database, SQLException is raised.
+Here the program terminates abnormally without closing the connection.
 If 10 connections are opened and the program terminates without closing the connection then resources are wasted.
 Eventhough program terminates abnormally,close the DB connection and stop the program.
 
-Exception Handling does not mean repairing an Exception i.e we have to provide an alternative way to continue to the rest of the program normally.
+Exception Handling does not mean repairing an Exception i.e. we have to provide an alternative way to continue to the rest of the program normally.
 This way of providing alternative is nothing but Exception Handling.
 
 ******************************************************************** 2.RuntimeStack Mechanism   ********************************************************************
 
-Every Java program contains one Thread i.e.Main Thread.
+Every Java program contains one Thread i.e. Main Thread.
 For every Thread JVM will create a seperate Runtime Stack.
 For every Method call performed by the Thread one entry will be stored inside the corresponding Stack Area.
 Each Entry in the Stack is called Activation Record or Stack Frame.
@@ -125,7 +126,7 @@ If OutOfMemory occurs as a programmer we cannot do anything and the program will
 Each and every Exception occurs at Runtime.
 The Exceptions which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
 In our program sometimes there may be a chance of getting an Exception at Runtime.
-Compiler verifies whether we are handling that Exception or not.i.e writing catch block or not is the only requirement of the compiler.
+Compiler verifies whether we are handling that Exception or not.i.e. writing catch block or not is the only requirement of the compiler.
 Example :FileNotFoundException
 
 There are some Exceptions which are not checked by the compiler.These type of Exception are called UncheckedException.
@@ -202,12 +203,12 @@ Within the try block at any point of time there may be a chance of getting only 
 But we cannot expect exactly which Exception is going to raise.
 
 If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle that Exception.
-If we are writing try with multiple catch block,order of catch block is important .i.e form Child to Parent.
+If we are writing try with multiple catch block,order of catch block is important i.e. from Child to Parent.
  
 ******************************************************************** 12.Finally Block   *********************************************************************************
 
 It is never recomended to write clean up code within the try block because there is no gaurantee of exeucting each and every statement.
-It is not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
+It is also not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
 We required a place to maintain the clean up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
 such type of place is nothing but finally block.
 Main purpose of finally block is to maintain the clean up code which should be executed always.
@@ -288,6 +289,7 @@ whether it is Zero or Non Zero Programmer or program has no effect at all and go
 Output : Try
 
 ********************************************************************  14.finally,final and finalize   ********************************************************************
+
 final :
 -------
 It is a modifier applicable for variables,methods and classes.
@@ -302,8 +304,8 @@ Speciality of finally block is it will be executed always irrespective of whethe
 
 finalize() :
 ------------
-It is a method that will be executed by Garbage collector just before destroying the object to perform clean up activities.
-Once finalize() completes the execution Garbage collector destroys the object Automatically.
+It is a method that will be executed by Garbage collector to perform clean up activities just before destroying the object.
+Once finalize() completes the execution then Garbage collector destroys the object automatically.
 When compared to finalize() finally block is always recomended to perform claen up activities.
 
 ******************************************************************** 15.Control flow in try catch finally  ****************************************************************
@@ -538,8 +540,8 @@ sometimes to meet the programmer requirement we have to create our own Exception
 	
 public class TooYoungException extends RuntimeException
 
-Here If it is Checked Exception i.e extends Exception we get CTE because it has to be handled.
-It is highly recomended to define our own exception as unchecked i.e extends RTE and not Exception.
+Here If it is Checked Exception i.e. extends Exception we get CTE because it has to be handled.
+It is highly recomended to define our own exception as unchecked i.e. extends RTE and not Exception.
 
 Note :
 ------
@@ -603,7 +605,7 @@ If we are throwing any checked Exception compulsory we need to handle it either 
 
 throw keyword :
 ---------------
-throw keyword is used to throw an exception in java.
+throw keyword is used to throw an exception in java,preferred for Custom Exception.
 throw is used inside a method.
 throw is followed by an instance of an Exception
 throw can be used to throw only one exception at a time.
@@ -678,10 +680,10 @@ Whenever Exception is occured in try block and corresponding catch and finally b
  
 *************************************************************** 25.ClassNotFoundException (Scaler) ***************************************************************
 
-ClassNotFoundException is a checked Exception in Java that occurs when JVM tries to load the specific class from the class path but it cannot locate the class in the Classpath.
-ClassNotFoundException must be explicitly handled either by using try-catch or throws clause.
+ClassNotFoundException is a checked Exception in Java that occurs when JVM tries to load the class from the class path but it cannot locate that class in the Classpath.
+As it is a Checked Exception, it must be explicitly handled either by using try-catch or throws clause.
 Since we are loading the class using ClassLoader then ClassNotFoundException will always occur at runtime.
-Java Compiler has no way of identifying whether the Class is present at the Classpath at runtime.
+Java Compiler has no way of identifying whether the Class is present in the Classpath at runtime.
 
 	public class ClassNotFoundExceptionDemo {
     private static final String MYSQL_DRIVER_CLASS = "com.mysql.jdbc.Driver";
