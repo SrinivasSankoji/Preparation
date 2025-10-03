@@ -42,10 +42,10 @@
 ################################################## 1.Dependency Injection Design Pattern (DZone) ###############################################
 
 IOC is a principle which states that don't create the Objects manually instead describe how they should be created.
-Then Spring Container will instantiate the required classes.
+Then Spring Container will create an Object for the required classes.
 IOC is a principle which is implemented by using Dependency Injection Design Pattern.
 
-Dependecny Injection is a design pattern using which we can remove the hard coded dependencies and make our Application loosely coupled,extendable and maintainable.
+Dependecny Injection is a design pattern using which we can remove the hard coded dependencies and make our application loosely coupled,extendable and maintainable.
 Dependency Injection can be implemented by using
 1.Runtime Polymorphism
 2.Has a Relationship
@@ -151,20 +151,20 @@ Spring Framework provides two types of Containers.
 
 BeanFactory is the root Interface of Spring IOC Container.
 ApplicationContext is the Child Interface of BeanFactory that provides the features like Spring AOP,I18N etc.
-The Main difference between BeanFactory and ApplicationContext is that BeanFactory Container instantiates the bean whenever we call the getBean() whereas
-ApplicationContext Conatiner instantiates the bean whenever the Conatiner is started and it doesn't wait for the getBean() to be called.
+The Main difference between BeanFactory and ApplicationContext is that BeanFactory based Container instantiates the bean whenever we call the getBean() whereas
+ApplicationContext based Conatiner instantiates the bean whenever the Conatiner is started and it doesn't wait for the getBean() to be called.
 
 Spring Container Creation :
 ---------------------------
-Spring provides many ApplicationContext Interface implementations to create the Spring Container.
-
-FileSystemXmlApplicationContext
-ClasspathXmlApplicationContext
-AnnotationConfigApplicationContext
 
 To create a Spring Container using BeanFactory
 
 	BeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
+
+Spring provides many ApplicationContext Interface implementations to create the Spring Container.
+FileSystemXmlApplicationContext
+ClasspathXmlApplicationContext
+AnnotationConfigApplicationContext
 	
 To create a Spring Container using XML 
 
@@ -255,7 +255,7 @@ Done
 ################################################## 7.Guide to Dependency Injection in Spring ####################################################
 
 Dependency Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,maintainable and extendable.
-Using Dependency Injection we define the dependencies through Constructor arguments,arguments to a factory method or properties that are set on the Object Instance.
+Using Dependency Injection we can define the dependencies through Constructor arguments,arguments to a factory method or the properties that are set on the Object Instance.
 The Container then inject those dependencies when it creates the Bean.
 The process is fundementally inverse hence the name Inversion of Control.
 The Bean itself is controlling the instantiation or location of its dependencies on its own by using direct Construction of Classes or Service Locator Pattern.
@@ -342,7 +342,7 @@ To call the MessageService via Setter Injection make any one of the MessageServi
 	
 ################################################## 9.Spring Constructor Injection Example  ################################################### 
 
-Constructor Injection is accomplished by the Container calling a Constructor with the number of arguments each representing a dependency.
+Constructor Injection is accomplished by the Container calling a Constructor with the number of arguments where each argument represents as a dependency.
 This approach ensures that class is always instantiated with require dependencies.
 
 Create a Spring Configuration file i.e. ApplicationConfiguration which is annotated with @Configuration Annotation.
@@ -359,12 +359,15 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 
 	@Component
 	public class ConstructorBasedInjection {
+	
 		private MessageService messageService;
+		
 		@Autowired
 		public ConstructorBasedInjection(@Qualifier("TwitterService") MessageService messageService) {
 			super();
 			this.messageService = messageService;
 		}
+		
 		public void processMessage(String message) {
 			messageService.sendMessage(message);
 		}
@@ -383,7 +386,7 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 ################################################## 10.@DependsOn Annptation Example ############################################################
 
 @DependsOn annotation forces the Spring Container to instantiate one or more beans before the bean which is defined by using @DependsOn annotation.
-@DependsOn annotation may be used on any class directly or indirectly with annotated with @Component or methods annotated with @Bean.
+@DependsOn annotation may be used on any class directly or indirectly which is annotated with @Component or methods annotated with @Bean.
 
 	@Configuration
 	public class DependsOnConfiguration {
