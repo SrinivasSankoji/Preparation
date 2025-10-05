@@ -130,17 +130,17 @@ Before checking method visibility we have to check Class visibility.
 
 final is a modifer applicable for classes,methods and variables.
 
+final Class :
+-------------
+If a Class is declared as final then it is allowed to extend the functionality i.e. we cannot extend final classes.
+Every method present inside final Class is by default final whether we declare it or not.
+Main Advantage of final Class is Security i.e. no one is allowed to extend the functionality.
+Disadvantage of final Class is it misses the benefits of OOPS.
+
 final method :
 --------------
 Parent Class methods are by default available to Child Class.
 If the method is declared as final then we cannot override that method in the Child Class.
-
-final Class :
--------------
-If a Class is declared as final then no one is allowed to extend the functionality i.e we cannot extend the final classes.
-Every method present inside final Class is by default final whether we declare it or not.
-Main Advantage of final Class is Security i.e no one is allowed to extend the functionality.
-Disadvantage of final Class is it misses the benefits of OOPS.
 
 final instance variable :
 -------------------------
@@ -214,12 +214,6 @@ If we declare the formal parameters of the method as final we cannot perform rea
 
 Applicable only for Classes and Methods but not for variables.
 
-abstract method :
------------------
-If we don't know about implementation we can declare the Method as abstract.
-Abstract method has only declaration but not implementation.
-Advantage of abstract method is to provide the guidelines to the child class so that it has to provide implementation.
-
 abstract Class :
 ----------------
 For any Java Classes If we don't want to create an obejct then such type of Class should be declared with abstract modifier.
@@ -228,13 +222,18 @@ For abstract Classes instatiation is not possible.
 If a Class contains atleast one abstract method then corresponding Class should be declared as abstract.
 Because implementation is not completed and has to be provided by the Child Class.
 
+abstract method :
+-----------------
+If we don't know about implementation we can declare the Method as abstract.
+Abstract method has only declaration but not implementation.
+Advantage of abstract method is to provide the guidelines to the child class so that it has to provide implementation.
+
 Note :
 ------
 Eventhough Class does not contain any abstract method still the Class can be declared as abstract to avoid instantiation.
 Abstract class can contain zero or more abstract methods.
 
 Abstract Class which does not contain abstract methods are
-
 1.HttpServlet
 2.Adaptor Classes
 3.GenericServlet

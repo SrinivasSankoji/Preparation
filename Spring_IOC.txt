@@ -36,7 +36,7 @@
 29.@Lazy Annotation Example                                                 (JavaGuides)        [19-AUG-2021]  (Done)
 
 30.@Profile Annotation														(amitph)			[02-JAN-2022]  (Done)
-31.15 Spring Core Annotations                                               (JavaGuides)        [19-AUG-2021]  (Done)
+31.Spring Core Annotations                                               	(JavaGuides)        [19-AUG-2021]  (Done)
 32.5 Types of Autowiring in Spring											(DZone)
 
 ################################################## 1.Dependency Injection Design Pattern (DZone) ###############################################
@@ -414,11 +414,13 @@ Spring Framework supports following Bean Scopes.
 
 1.Singleton
 Default scope in Spring.
-Ensures a single instance of the Bean per Spring IoC container.
+When we define a Spring Bean with Singleton Scope,Spring Container creates exactly one instance of the Object.
 The same instance is returned for every request of that Bean.
+Here the instance is stored in the Cache and all the subsequent requests for that Bean will be returned from the Cache.
+Singleton Beans are not ThreadSafe.
 
 2.prototype
-A new instance of the Bean is created and returned every time it is requested from the container.
+A new instance of the Bean is created and returned every time when it is requested from the container.
 Suitable for stateful Beans where each user or operation requires a distinct instance.
 Unlike Singleton Beans, prototype Beans are not managed by the container once they are created. 
 This means that their lifecycle methods i.e. init and destroy are not called automatically.
@@ -443,10 +445,6 @@ Only applicable in the context of Web Aware Spring Application Context.
 
 Singleton Scope :
 -----------------
-When we define a bean with Singleton Scope,Spring Container creates exactly one instance of the Object.
-Here the Instance is stored in the Cache and all the subsequent requests for that bean will be returned from the Cache.
-Spring Singleton beans are not ThreadSafe.
-Default scope of Spring Bean is Singleton.
 
 To define the bean as Singleton in the XML
 
@@ -487,14 +485,16 @@ Done
                                      
 ################################################## 13.InitializingBean and DisposableBean Example  ############################################
 
-In Spring,Spring Bean Lifecycle is managed by the Spring Container.
+Spring Bean Lifecycle is managed by the Spring Container.
 To interact with Container Management of the Bean Lifecycle we can implement InitializingBean and DisposableBean interfaces.
 After the Container has performed the initialization of an instance i.e. all the properties have been set then Spring Container will call the afterPropertiesSet().
-Before the Container is going to delete the Bean then Spring Container call the destroy().
+Before the Container is going to delete the Bean then Spring Container will call the destroy().
 
 	@Component
 	public class DatabaseInitialization implements InitializingBean, DisposableBean {
+	
 		private List<User> listOfUsers = new ArrayList<>();
+		
 		@Override
 		public void afterPropertiesSet() throws Exception {
 			User user = new User(1, "User");
@@ -509,6 +509,7 @@ Before the Container is going to delete the Bean then Spring Container call the 
 				System.out.println(user3.toString());
 			}
 		}
+		
 		@Override
 		public void destroy() throws Exception {
 			listOfUsers.clear();
@@ -519,7 +520,7 @@ Before the Container is going to delete the Bean then Spring Container call the 
 
 Note:
 @PostConstruct and @PreDestroy annotations are considered as a best practice for receiving lifecycle callbacks.
-Using the above annotations means we are not coupled to spring specific interfaces.
+Using the above annotations means we are not tightly coupled with the spring specific interfaces.
              
 ################################################## 14.@Bean’s initMethod and destroyMethod Attributes Example  ###############################
 
@@ -604,7 +605,7 @@ Different Annotations provided by Spring are
 
 ################################################## 18.Spring @Autowired Annotation with Example ################################################# 
 
-We use @Autowired can be used for automatic Dependency Injection.
+@Autowired can be used for automatic Dependency Injection.
 This means Spring will automatically resolve and inject the required dependencies into the Bean.
 Whenever we are using @Autowired not required to explicitly mention about the Bean in the Configuration.
 We can use this annotation at Constructor Level,Setter Level and Field Level.
@@ -745,7 +746,7 @@ public static void main(String[] args) {
 ################################################## 20.@PostConstruct and @PreDestroy Example  ###################################################
 
 @PostConstruct Annotation can be used on a method that needs to be executed after the Spring Container has performed instantiation of an Object.
-@PreDestroy Annotation is used on a method that needs to be executed before the instance is being removed by the Container.
+@PreDestroy Annotation can be used on a method that needs to be executed before the instance is being removed by the Container.
 
 	@PostConstruct
 	public void init()
@@ -759,8 +760,8 @@ public static void main(String[] args) {
       
 ################################################## 21.@Qualifier Annotation Example ############################################################# 
 
-@Qualifier can be used to resolve ambigious problems.
-There may be scenarios where we have more than one bean of the same type and want to autowire only one of them.
+@Qualifier Annotation can be used to resolve ambigious problems.
+There may be scenarios where we have more than one Bean of the same type and want to autowire only one of them.
 This can be done by using @Qualifier along with @Autowired Annotation.
 
 ################################################## 22.Spring Java Based Configuration Basics ################################################### 
@@ -881,7 +882,7 @@ In Spring XML based Configuration we use <import> tag to load multiple Spring Co
    
 ################################################## 29.@Lazy Annotation Example  ################################################################ 
 
-Spring Container creates and initializes all the Singleton beans at the time of Application start up.
+Spring Container creates and initializes all the beans at the time of Application start up.
 We can prevent this pre initialization of Bean by using @Lazy Annotation.
 @Lazy Annotation can be used on any Class Annotated with @Component directly or indirectly or methods annotated with @Bean.
 

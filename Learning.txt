@@ -1753,24 +1753,62 @@ Lang Package (Done)
 
 ----------------------------------------- October 2025  ---------------------------------------------------
 
-Transaction Management ()
-SAGA Design Pattern ()
-Spring IOC Basics ()
+Java_AccessModifiers (Done)
+Java_Interfaces_SourceFile_Development () 
+Constructor ()
+Generics ()
+Enum ()
+Serialization and Externalization ()
+Collections ()
+MultiThreading ()
+
+Java8 Streams ()
+Java8_Lambda_JavaBrains ()
+Java8 Concepts ()
+Java8_Comparator ()
+Predefined Functional Interfaces ()
+Java 17 Features ()
+
+Spring IOC Basics (Done)
 Spring Core Annotations ()
 Spring Web Annotations ()
-Java8 Streams ()
-Java_Interfaces_SourceFile_Development () 
-Java_AccessModifiers ()
-Java8_Lambda_JavaBrains ()
-Java 17 Features ()
-Hibernate basics and advanceed ()
 Sprig Data JPA ()
-Design Patterns ()
+
+Transaction Management ()
+
+Hibernate basics and advanceed ()
+
 Docker Basics ()
 Docker Commands ()
-System Design Concepts ()
 Kubernetes Basics ()
+
 Kafka Basics ()
-Predefined Functional Interfaces ()
+
+Design Patterns ()
+SAGA Design Pattern ()
+System Design Concepts ()
+
+JVM architecture + memory model (heap, stack, metaspace)
+HTTP methods (GET, POST, PUT, DELETE, PATCH)
+Idempotent operations
+SOLID Principles
+Pass by value vs pass by reference
+Marker Interfaces
+Internal vs External iteration
+Consumer, Predicate, Function differences & usage
+Parallel sort in Arrays
+Concurrency API improvements → CompletableFuture, ForkJoin
+Anonymous class vs Lambda
+Enum in switch
+Type annotations, repeating annotations
+Nashorn JS engine (removed later)
+Concurrent Accumulators
+Removal of PermGen → Metaspace
+TLS SNI
+ThreadPoolExecutor, Load Balancer concepts
+Null & NullPointerException
+@Autowired → byName vs byType
 
 ROBGL/E/2025/36167
+
+----------------------------------------- November 2025  ---------------------------------------------------
