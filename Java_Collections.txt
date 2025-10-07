@@ -259,7 +259,7 @@ ListIterator is the child interface of Iterator.
 It is a bidirectional cursor.
 Based on requirement we can move the cursor either to the forward diretion or backward direction.
 While iterating the elements, we can perform modify and add operations in addition to read and remove operation.
-Most powerful cursor is ListIterator but it is applicable only to List interface Implemented classes.
+Most powerful cursor is ListIterator but it is applicable only to List interface implemented classes.
 
 *************************************************************  7.Set Interface Classes  ************************************************************
 
@@ -283,8 +283,7 @@ creates an empty HashSet object with default initial value 16 and fill ratio 0.7
 LinkedHashSet :
 ---------------
 Underlying Datastructure for LinkedHashSet is HashTable and LinkedList.
-Insertion order is preserved.
-For Implementing Caching Applications best suitable DataStructure is LinkedHashSet and LinkedHashMap where insertion order is preserved and duplicate objects are not allowed.
+Insertion order is preserved and duplicate objects are not allowed.
 
 SortedSet :
 -----------
@@ -357,7 +356,6 @@ Map is implemented by HashMap and Hashtable.
 SortedMap is implemented by TreeMap.
 Map.Entry describes access methods to the key value pairs.
 
-
 Classes that implement the Map interface are 
 HashMap,LinkedHashMap
 TreeMap
@@ -374,7 +372,7 @@ null value for the key is allowed only once.
 
 LinkedHashMap :
 ---------------
-Underlying DataStructure for LinkedHashMap is LinkedList and HashTable.
+Underlying DataStructure for LinkedHashMap is HashTable and LinkedList.
 LinkedHashMap will keep the order in which elements are inserted into it.
 
 WeakHashMap :

@@ -1755,11 +1755,12 @@ Lang Package (Done)
 
 Java_AccessModifiers (Done)
 Java_Interfaces_SourceFile_Development () 
-Constructor ()
+Constructor (Done)
 Generics ()
 Enum ()
 Serialization and Externalization ()
-Collections ()
+Collections (Done)
+HashMap Internal ()
 MultiThreading ()
 
 Java8 Streams ()
@@ -1772,11 +1773,11 @@ Java 17 Features ()
 Spring IOC Basics (Done)
 Spring Core Annotations ()
 Spring Web Annotations ()
-Sprig Data JPA ()
 
 Transaction Management ()
 
 Hibernate basics and advanceed ()
+Sprig Data JPA ()
 
 Docker Basics ()
 Docker Commands ()
@@ -1810,5 +1811,12 @@ Null & NullPointerException
 @Autowired → byName vs byType
 
 ROBGL/E/2025/36167
+
+Java Basic Concept ()
+Java New Concept/ Interview Question Practice ()
+Design Pattern Concept ()
+System Design Concept ()
+Any Video ()
+
 
 ----------------------------------------- November 2025  ---------------------------------------------------

@@ -21,7 +21,7 @@ If we perfrom initialization inside the instance block then all the objects will
 If we perfrom initialization seperately for each block then length of the code will be increased and is not reccomended.
 
 Whenver we are creating an object some peice of code needs to be executed to perform initialization.
-Peice of code is nothing but Constructor.
+This Peice of code is nothing but Constructor.
 Main objective of constructor is to perform initialization of an object.
 For every object creation first instance block and constructor will be executed.
 
@@ -150,7 +150,7 @@ If a Child class Constructor throws unchecked Exception then the Parent Class Co
 
 ******************************************************* 2.Copy Constructor in Java (scaler)  *********************************************
 
-Copy Constructor allows us to create an exact copy of an existing Object of the same class.
+Copy Constructor allows us to create an exact copy of an Object.
 Changes made to an existing Object does not affect the new copy.
 To create a Copy Constructor we need to pass the existing Object as an argument and initialize the value of the instance variables with the values obtained in the Object.
 Copy Construtor allows us to change the fields which are declared as final but the same cannot be done using clone().
@@ -214,7 +214,10 @@ Copy Constrcutor provides complete control over Object Creation.
 
 ******************************************************* 4.Constructor Chaining (geeksforgeeks) **************************************************
 
-Constructor chaining is the process of calling one Constrcutor from another Constrcutor with respect to current Object.
+Constructor chaining is the process of calling one Constrcutor from another Constrcutor.
+Constructor Chaining can be used whenever we want to perform multiple tasks in a Single Constructor.
+Create a seperate Constructor for each Task and make the chain which makes the program more readable.
+
 Constrcutor chaining can be done in two ways.
 1.Within the Same class Constructor chaining can be done by using this().
 
@@ -249,18 +252,13 @@ Constructor Chaining occurs through Inheritance.
 Sub Class Constructor task is to call Super Class Constructor First.
 This ensures the creation of Subclass Object start's with the initialization of data members of the Super class.
 
-Why Constructor Chaining :
---------------------------
-Constructor Chaining can be used whenever we want to perform multiple tasks in a Single Constructor.
-Create a seperate Constructor for each Task and make their chain which makes the program more readable.
-
 Instance Block :
 ----------------
 Whenever certain amount of code has to be executed with every constructor we can place that code inside Instance Block.
 
 ******************************************************* 5.Private Constructors and Singleton Class (scaler) *************************************
 
-Private Constructor in Java is a simple Constructor with private keyword.
+Constructor with private keyword.
 Private Constrcutor helps in creating the Singleton Classes.
 Singleton class is a Class which has to be instantiated only once.
 Private variables/methods/constructor can be accessed only within the class.
