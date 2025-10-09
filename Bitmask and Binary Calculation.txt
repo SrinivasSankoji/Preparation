@@ -1,0 +1,47 @@
+
+Decimal ↔ Binary ↔ Hexadecimal conversions
+Binary addition, subtraction, overflow
+Negative numbers (2’s complement representation)
+Understanding bit positions (LSB, MSB)
+Convert 45, 127, and -13 into 8-bit binary manually
+Convert 0xAF and 0b101101 into decimal
+Practice binary addition and subtraction on paper
+System.out.println(Integer.toBinaryString(45));
+System.out.println(Integer.toHexString(45));
+
+&, |, ^, ~, <<, >>, >>>
+Difference between signed and unsigned right shift
+Bit masking patterns: set, clear, toggle, check bits
+Compute manually:
+5 & 3, 5 | 3, 5 ^ 3, ~5, 5 << 1, 5 >> 1
+Check if a number is even using (n & 1) == 0.
+Toggle 3rd bit in n=8
+Implement a program with options to set, clear, toggle bits using input from user
+
+
+Powers of two in binary (1, 2, 4, 8, 16, 32, …)
+How (n - 1) creates bitmasks (16 = 0b10000, 15 = 0b01111)
+Why & (n-1) is equivalent to % n for powers of two
+Range limiting: x & (n-1) ⇒ result in [0, n-1]
+For n = 8, compute (hash & (n - 1)) for hash = 13, 27, 45.
+Compare with hash % 8. (Should be same)
+Practice binary representation of n and n-1.
+for (int i = 0; i < 20; i++){System.out.println(i + " -> " + (i & 7));}
+
+Understanding hash spreading: hash ^ (hash >>> 16)
+Calculating safe bucket index: (n - 1) & hash
+Why HashMap uses power-of-two table sizes
+Difference between % n vs. & (n-1)
+Collisions and why low bits matter
+Pick any hashCode() (e.g., 123456789 or -123456789).
+Manually compute:
+>>> 16
+XOR result
+Apply & (n-1) for n=16
+
+int n = 16;
+int h = 123456789;
+int spread = h ^ (h >>> 16);
+System.out.println(spread & (n - 1));
+
+

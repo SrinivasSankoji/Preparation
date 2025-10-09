@@ -7,7 +7,7 @@
 ***************************************************** 1.Introduction *****************************************************
 
 Kafka is a Messaging System.
-There are some sources which produce the data and publishing the data to the Messaging System.
+There are some sources which produce the data and publish the data to the Messaging System.
 There are some Systems which consumes the data.
 Sources which produces the data are called Producers.
 System which takes the data are called Brokers.
