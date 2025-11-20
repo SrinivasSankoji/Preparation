@@ -1,0 +1,52 @@
+1.RedisTemplate vs Jedis											()					[13-NOV-2025]  ()
+2.Sorted Set                                                        ()					[13-NOV-2025]  ()
+3.Caching Data in Spring Using Redis                                ()					[13-NOV-2025]  ()
+4.Implementing a Custom Key Generator                               ()					[13-NOV-2025]  ()
+5.RedisTemplate.opsForHash()                                        ()					[13-NOV-2025]  ()
+6.Spring boot + Redis - Generating a strange key                    ()					[13-NOV-2025]  ()
+7.RedisTemplate Example                                             ()					[13-NOV-2025]  ()
+8.RedisCache Example                                                ()					[13-NOV-2025]  ()
+9.RedisSerializer Example                                           ()					[13-NOV-2025]  ()
+10.Redis opsHash Value Example                                      ()					[13-NOV-2025]  ()
+11.SortedKeys Example                                               ()					[13-NOV-2025]  ()
+12.Spring Redis RedisTemplateConfiguration Configuration            ()					[13-NOV-2025]  ()
+13.Spring Redis StringRedisTemplate Configuration                   ()					[13-NOV-2025]  ()
+14.Set and Get Object using Redis ValueOperations                   ()					[13-NOV-2025]  ()
+15.StringRedisTemplate Example                                      ()					[13-NOV-2025]  ()
+16.Redis Hash Operations Example                                    ()					[13-NOV-2025]  ()
+17.Redis AtomicLong Example                                         ()					[13-NOV-2025]  ()
+18.Redis as Message Broker 											(Simple Learning)	[13-NOV-2025]  ()
+19.Redis as Cache													(Simple Learning)	[13-NOV-2025]  ()
+
+################################################ Installing Redis on Windows (Automation Step By Step) ################################################################
+
+https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100
+
+https://kasunprageethdissanayake.medium.com/installing-redis-x64-3-2-100-on-windows-and-running-redis-server-94db3a98ae3d
+
+UnZip the Zip File 
+
+In the folder we have redis-cli and redis-server executable files will be there.
+Run the command redis-server,it will Run on the Port 6379
+Run the command redis-cli, This is the Redis Client that interacts with Redis-Server
+To check whether it connects to the Redis-Server or not just run the command ping "Hello BHaumik"
+To exit the Redis Server run the command 
+	
+	ctrl+c
+
+F:\Redis> redis-server.exe redis.windows.conf
+
+F:\Redis> redis-cli
+
+
+
+
+
+
+
+
+
+
+
+
+

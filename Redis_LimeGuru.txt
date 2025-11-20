@@ -1,0 +1,41 @@
+1.Redis Overview										[13-NOV-2025]  (Done)
+2.Redis Data types                                      [15-NOV-2025]  ()
+3.Redis CLI Commands                                    [15-NOV-2025]  ()
+4.Redis Scans                                           [15-NOV-2025]  ()
+5.Redis as Pub Sub Server                               [17-NOV-2025]  ()
+6.Redis as Cache LRE & LFU                              [17-NOV-2025]  ()
+7.Redis Transactions                                    [17-NOV-2025]  ()
+8.Redis Client Side Caching                             [18-NOV-2025]  ()
+9.Redis Persistence                                     [18-NOV-2025]  ()
+10.Redis Config & ACL                                   [18-NOV-2025]  ()
+
+########################################################### 1.Redis Overview ################################################################
+
+Redis is a key-value store Database.
+Redis is distributed i.e. we can have multiple instances of Redis as part of its setup.
+Here the key-value will be inserted among mutiple instances.
+Redis is an In-Memory database i.e. each key-value pair will be stored insdie the memory of each instance.
+Because of In-Memory feature, Redis is highly efficient and the reads are very fast.
+Not required to read the data from the disk because of In-Memory.
+This is the reason Redis is used as a Caching Framework.
+As the Redis is the key-value store database, Within the value, it can store different types of data.
+Some of the data structures for the values are 
+
+Strings
+List
+Set
+SortedSet
+Hashes
+HyperLogs
+
+Redis also supports Streams as values which can be considered as Redis Streams.
+
+########################################################### 2.Redis Data types ################################################################
+
+
+
+
+
+
+
+

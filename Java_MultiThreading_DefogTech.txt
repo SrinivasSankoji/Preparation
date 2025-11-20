@@ -1,28 +1,41 @@
-1.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
-2.Java Memory Model									[15-JAN-2020]  (Happens Before Pending)
-3.ExecutorService Introduction						[20-JAN-2020]  (Done)
-3.ExecutorService Pool Types						[21-JAN-2020]  (Single ThreadExecutor Pending)
-3.ExecutorService LIfe Cycle						[21-JAN-2020]  (Done)
-3.ExecutorService Callable/Future					[27-JAN-2020]  (Done)
-4.Fork JoinPool										[27-JAN-2020]  (Done)
-5.Java Asynchronous Programming						[28-JAN-2020]  (Done)
-6.Completable Future								[28-JAN-2020]  (Done)
+1.Volatile vs Atomic Integer						[05-JAN-2020]  ()
+2.ThreadLocal										[05-JAN-2020]  ()
+3.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
+4.Java Memory Model									[15-JAN-2020]  (Happens Before Pending)
+5.ExecutorService Introduction						[20-JAN-2020]  (Done)
+6.ExecutorService Pool Types						[21-JAN-2020]  (Single ThreadExecutor Pending)
+7.ExecutorService LIfe Cycle						[21-JAN-2020]  (Done)
+8.ExecutorService Callable/Future					[27-JAN-2020]  (Done)
+9.Java Asynchronous Programming						[28-JAN-2020]  (Done)
+10.Lock Condition Class								[05-JAN-2020]  ()
+11.Completable Future								[28-JAN-2020]  (Done)
+12.Coroutines
+13.Reentrant Lock									[05-JAN-2020]  ()
+14.ReadWrite Lock									[05-JAN-2020]  ()
+15.Java Interrupts
+16.Semaphore in Java Concurrency					[05-JAN-2020]  ()
+17.Concurrenyc Interview Questions
+18.Concurrenyc Interview Questions
+19.Concurrenyc Interview Questions
+20.Fork JoinPool									[27-JAN-2020]  (Done)
+21.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
+22.Synchronous Queue								[05-JAN-2020]  ()
+23.Adder and Accumulator Classes					[05-JAN-2020]  ()
+24.Guava Library									[05-JAN-2020]  ()
+25.Detect and Resolve DeadLocks in Java
+26.Race Condition vs Data Races
+27.Singleton and Double Checked Locking
+28.Spin Locks
+29.Exchanger Class									[05-JAN-2020]  ()
 
-7.Lock Condition Class								[05-JAN-2020]  ()
-8.Reentrant Lock									[05-JAN-2020]  ()
-9.ReadWrite Lock									[05-JAN-2020]  ()
-10.Synchronous Queue								[05-JAN-2020]  ()
-11.ThreadLocal										[05-JAN-2020]  ()
-12.Volatile vs Atomic Integer						[05-JAN-2020]  ()
-13.Adder and Accumulator Classes					[05-JAN-2020]  ()
-14.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
-15.Semaphore in Java Concurrency					[05-JAN-2020]  ()
-16.Exchanger Class									[05-JAN-2020]  ()
-17.Guava Library									[05-JAN-2020]  ()
+
+******************************************** 1.Volatile vs Atomic Integer ************************************************************
 
 
-******************************************** 1.Concurrency vs Parallelism ************************************************************
+******************************************** 2.ThreadLocal ***************************************************************************
 
+
+******************************************** 3.Concurrency vs Parallelism ************************************************************
 
 Parallelism :
 -------------
@@ -137,7 +150,7 @@ Use Thread / Thread Pool to Parallelize these Components.
 Whenever a Shared Resource has to be updated across the Components or Multiple Threads needs to be Coordinate Use Concurrency Tools to Manage.
 
 
-******************************************** 2.Java Memory Model ************************************************************
+******************************************** 4.Java Memory Model ************************************************************
 
 Java Memory Model is a Specification which Guarantees the visibility of fields when we have re Ordering of instructions.
 Java Memory Model Enforces that all the JVM has to implement these set of Rules so that Program Runs in the Same Manner. 
@@ -230,7 +243,7 @@ so that the Remaining Threads will get The updated Value.
 
 
 
-******************************************** 3.ExecutorService ****************************************************************************************
+******************************************** 5.ExecutorService ****************************************************************************************
 
 Introduction :
 --------------
@@ -449,7 +462,7 @@ If The Task has Started in one or More Thread then cancel() has No Impact.
 We can also check the Current Status of the Task by using isCancelled() and isDone() of ExecutorService.
  
 
-******************************************** 4.Fork JoinPool ****************************************************************************************
+******************************************** 20.Fork JoinPool ****************************************************************************************
 
 Fork JoinPool is Similar to Executor Service but with Two Differences.
 ExecutorService Stores the Task in the Blocking Queue and these Tasks are executed by the Thread Pool which we Have defined while defining the Executor Service.
@@ -502,7 +515,7 @@ Use Cases of Fork Join Pool are
 4.Tree Traversal
 
 
-******************************************************** 5.Java Asynchronous Programming	*******************************************************
+******************************************************** 9.Java Asynchronous Programming	*******************************************************
 
 Most of the Computers today we have More than 1 Core Processor.
 Typically a Desktop Computer have 4 Cores and Server may Contain 16 Cores or 32 cores or More.
@@ -580,7 +593,7 @@ End to End Asynchronous / Non Blocking  Required
 
 To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming project Coming Soon i.e Java Fibers or Project Loom.
 
-******************************************************** 6.Completable Future *************************************************************
+******************************************************** 11.Completable Future *************************************************************
 
 Completable Future is used to Perform Possible Asynchronous Computation and Trigger its Dependent Computations which could also be Asynchronous.
 

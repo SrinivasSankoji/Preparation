@@ -2,24 +2,29 @@
 2.Default and Static Method in Interfaces   					(beginnersbook)     	[02-SEP-2021]  	(Done)
 3.Functional Interfaces and Lambda Expressions                  (beginnersbook)         [03-SEP-2021]	(Done)
 4.Java Stream API For Bulk Data Operations on Collections    	(beginnersbook)         [03-SEP-2021]	(Done)
+
 5.Java Time API                                                 ()                  	[02-SEP-2021]	()
 6.Collection API Improvements                                   ()              		[02-SEP-2021]   ()
 7.Concurrency API Improvements                                  ()              		[02-SEP-2021]   ()
 8.Java IO Improvements                                          ()              		[02-SEP-2021]   ()
+
 9.Miscellaneous Core API Improvements                           ()              		[02-SEP-2021]   ()
 10.Method References                           					(beginnersbook)         [08-SEP-2021]   (Done)
-11.spliterator                                                  ()                      [02-SEP-2021]   ()
+11.spliterator                                                  (ChatGPT)               [20-NOV-2025]   (Done)
 12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
+
 13.CopyOnWriteArrayList											(howtodoinjava)         [09-SEP-2021]   (Done)
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
 15.StringJoiner   												(beginnersbook)         [07-SEP-2021]	(Done)
 16.Comparators Java8                             				(javabrahman)           [07-SEP-2021]	(Done)
+
 17.Function package 											(javabrahman)           [08-SEP-2021]	(Done)
 18.Base64 Encode Decode                                         ()                      [02-SEP-2021]   ()
 19.Streams                                                 		(winterbe)           	[08-SEP-2021]   (Done)
 20.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
+
 21.PermGen														()						[03-DEC-2021]	()
-22.Atomic Integer												()
+22.Atomic Integer												(Geekific)
 23.Cyclic Barrier 												()
 24.HashMap Internal 											()
 25.G1 Garbage Collector 										()
@@ -28,30 +33,36 @@
 
 ********************************************  1.For Each Method in Iterable Interface **************************************************************
 
-Foreach loop :
---------------
-for-each loop is applicable only for Arrays and Collections and and we cannot modify the element.
-for-each loop does not support Lambda Operations.
-The operations can be applied on the variables outside the List that we are using for Iteration in the foreach loop.
+Enhanced for-each  :
+--------------------
+Enhanced for-each is applicable only for Arrays and Iterable and not for arbitary sources like Streams.
+The enhanced for-each is external iteration and we have complete control over the loop.
+We can reassigning the loop variable does not change the element in the collection,but you can mutate the objects contained inside.
+We cannot modify the collection structure via for-each.
+If we try to structurally modify the collection directly inside the for-each, we get ConcurrentModificationException.
+Enhanced for-each loop does not support Lambda Operations.
+The operations can be applied on the variables outside the List that we are using for Iteration in the for-each loop.
 "return" statement works within for-each loop i.e. function can return the value at any point of time.
 
 stream.foreach() :
 ------------------
 stream.forEach() can be used to access Arrays and Collections.
 In stream.forEach() lambda's are used and thus operations on the variables outside the loop are not allowed.
+operations on the variables outside the loop are allowed only if the variables are instance fields, static fields, or contained in mutable objects.
 "return" statement doesn't work within the stream.foreach().
- 
+We cannot use return in forEach to break the whole processing the same way you do in a for-each loop.
+
 ******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
 
 Before Java8,Interface can have only abstract Methods i.e. All the Methods in the interface are by default public and abstract.
 It is not possible to add any new functionality to the existing interface without forcing all the implementation classes to implement the interface.
-It is also not possible to create an interface with implementation.
+It is also not possible to create an interface with an implementation.
 From Java8 we have interfaces with default and static Methods.
 
 default method :
 ----------------
 By using default methods we can add new methods in the existing Interface in such a way that they are backward compatible.
-Backward Compatibility is adding a new feature without breaking the existing code.
+Backward Compatibility is nothing but adding a new feature without breaking the existing code.
 default methods are declared in the interfaces by using default keyword and can be overridden and accessible by the instances of the implementation classes.
    
    interface Printer
@@ -64,7 +75,7 @@ default methods are declared in the interfaces by using default keyword and can 
    
 static Method :
 ---------------
-static methods in interface are similar to default method except that we cannot override these methods in the implementation classes.since these methods are static.
+static methods in interface are similar to default method except that we cannot override these methods in the implementation classes,since these methods are static.
 To call the static Method we use the interface name.
    
    interface Scanner
@@ -85,11 +96,11 @@ To call the static Method we use the interface name.
    
 Java 8 – Abstract classes vs interfaces :
 -----------------------------------------
-With the introduction of default methods in the Interface,abstract classes are similar to interfaces in Java8.
+With the introduction of default methods in an Interface,Abstract classes are similar to interfaces in Java8.
 Eventhough it is true still we can have differences.
 Abstract classes can have Constructors where as Interfaces can't have Constructors.
 Main purpose of Interface is to provide full abstraction where as Abstract class purpose is to provide partial implementation.
-With the introduction of default methods in Interface,we can add additional fetaures to the interface without effecting the implementation Classes.
+With the introduction of default methods in an Interface,we can add additional fetaures to the interface without effecting the implementation Classes.
 
 Default Method and Multiple Inheritance :
 -----------------------------------------
@@ -104,8 +115,52 @@ Java8 designers thought of this conflict and have defined resolution rules for s
 
 Rule 1: Class takes higher precedence than interface.
 Any method inherited from class or super class will be invoked before any default Method from Interface.
+
+interface InterfaceX {
+    default void show() {
+        System.out.println("InterfaceX show()");
+    }
+}
+
+class Parent {
+    public void show() {
+        System.out.println("Parent show()");
+    }
+}
+
+class Child extends Parent implements InterfaceX {
+    // No override here
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show(); //Parent show()
+    }
+}
+
+
 Rule 2:
 Derived Interfaces or sub Innterfaces takes higher precedence than Interface with higher hierarchy.
+
+interface InterfaceP {
+    default void greet() {
+        System.out.println("Hello from InterfaceP");
+    }
+}
+
+interface InterfaceC extends InterfaceP {
+    @Override
+    default void greet() {
+        System.out.println("Hello from InterfaceC");
+    }
+}
+
+class Impl implements InterfaceC {
+    public static void main(String[] args) {
+        Impl obj = new Impl();
+        obj.greet();//Hello from InterfaceC
+    }
+}
+
+
 Rule 3:
 If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override and provide a method with same Method definition.
 We can invoke the specific implementation in Java8 using 
@@ -123,6 +178,8 @@ public interface InterfaceB {
 }
 
 public class ImplementationClass implements InterfaceA, InterfaceB {
+
+	/* Mandatory override to resolve ambiguity */
     @Override
     public void commonMethod() {
         System.out.println("ImplementationClass's commonMethod");
@@ -149,11 +206,13 @@ public class ImplementationClass implements InterfaceA, InterfaceB {
 ***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
 
 An Interface with single abstract method and can have any number of default and static Methods is called Functional Interface.
-We can use either predefined Functional Interface provided by Java or we can create on our own.
 Since the Functional interface has single abstract method It is also called as SAM interfaces.	
+We can use either predefined Functional Interface provided by Java or we can create on our own.
 @FunctionalInterface can be used to mark an interface as Functional Interface so that accidentally we cannot declare more than one abstract Methods.
 Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
-We can instantiate an Interface with Anonymous Inner Class but the code looks bulky.
+
+We have been using Functional interface prior to Java 8.
+They were created by using anonymous inner class such as Runnable,Comparator etc.
 
 	Runnable runnable=new Runnable()
 							  {
@@ -170,34 +229,18 @@ We can instantiate an Interface with Anonymous Inner Class but the code looks bu
 		 void displayMessage(String message);
 	}
 
-Since Functional Interfaces has only one method declaration,Lambda Expression can easily provide the Method Implementation.
+Functional Interface provides the possibility to use Lambda Expressions to instantiate them.
 If the body of the expression is one line then we can remove the curly Braces.
 
 	StringFunctionInterface stringFunctionInterface=(message) -> System.out.println(message);
 	stringFunctionInterface.displayMessage("Hello World");
 	
-We have been using Functional interface prior to Java 8.
-They were created by using anonymous inner class such as Runnable,Comparator etc.
-
-	 Runnable runnable=new Runnable()
-							  {
-								@override
-								public void run()
-								{
-								System.out.println("My Runnable")
-								}
-							  };
-
 Lambda Expressions are meant to create Anonymous Classes of Functional Interfaces easily.
 
 	Runnable runnable=() -> {
 							System.out.println("My Runnable");
 							}
 							
-To use Lambda Expressions in Java, we need to create our own functional interfaces or use the predefinded Functional Interfaces provided by Java.
-Mark the Predefined Functional Interface by using @FunctionalInterface Annotation.
-@FunctionalInterface is introduced in Java 8.
-	
 	@FunctionalInterface
 	public interface AddFunctionalInterface {
 
@@ -370,7 +413,7 @@ There are four types of Method References.
 	 void disply();
 	}
 
-1.Method Reference to an Instance Method of a Class.
+1.Method Reference to an instance method of a Class.
 
 	public class Example {
 
@@ -393,19 +436,140 @@ There are four types of Method References.
 }
 
 2.Method Reference to Static Method of a Class.
+
+	interface Calculator {
+    void calculate();
+}
+
+class MathUtil {
+    public static void square() {
+        System.out.println(5 * 5);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        // Lambda
+        Calculator lambda = () -> MathUtil.square();
+
+        // Method reference
+        Calculator ref = MathUtil::square;
+
+        lambda.calculate();
+        ref.calculate();
+    }
+}
+
+interface MathOperation {
+    int operate(int a, int b);
+}
+
+public class Demo {
+    public static int addition(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        // Lambda
+        MathOperation lambda = (x, y) -> Demo.addition(x, y);
+
+        // Method reference
+        MathOperation ref = Demo::addition;
+
+        System.out.println(ref.operate(10, 20)); // 30
+    }
+}
+
 3.Method Reference to the Constructors.
+
+interface MyInterface {
+    Example getInstance();
+}
+
+class Example {
+    Example() {
+        System.out.println("Example object created");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        // Lambda
+        MyInterface lambda = () -> new Example();
+
+        // Method reference
+        MyInterface ref = Example::new;
+
+        lambda.getInstance();
+        ref.getInstance();
+    }
+}
+
+interface MessageCreator {
+    Message create(String msg);
+}
+
+class Message {
+    Message(String msg) {
+        System.out.println(msg);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        // Lambda
+        MessageCreator lambda = (text) -> new Message(text);
+
+        // Method reference
+        MessageCreator ref = Message::new;
+
+        ref.create("Hello from constructor reference!");
+    }
+}
+
 4.Method Reference to an instance Method of an Arbitary Object of a particular Type.
 
+public class Test {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("John", "Mary", "Bob");
+
+        // Lambda
+        names.forEach(s -> System.out.println(s));
+
+        // Arbitrary instance method reference
+        names.forEach(System.out::println);
+    }
+}
+
+***************************************************** 11.spliterator (ChatGPT) ********************************************************************
+
+Split Iterator stands for Split and Iterator.
+It is a special iterator introduced in Java 8 to support parallel processing in streams.
+We can think of Split Iterator as the Itearator that will split into multiple parts so that parts can be processed in paralell.
+
+Why Spliterator was introduced :
+--------------------------------
+We had Iterator and ListIterator that only works sequentially.
+They did not support paralell processing or splitting of data.
+Paralell straems require a way to process the data paralelly, thus SplitIterator is added.
+
+	
+	public class BasicSpliterator {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("A", "B", "C", "D");
+        Spliterator<String> spliterator = list.spliterator();
+        spliterator.forEachRemaining(System.out::println);
+		}
+	}
 
 ***************************************************** 12.Optional Class (beginnersbook) ***********************************************************
 
 Optional Class is present in java.util package whch is introduced in Java 8.
 Optional Class is introduced to avoid NPE that we frequently encounter If we do not perform null check in our code.
-Using Optional Class we can easily check whether a variable has null value or not and by doing that we can avoid NPE.
 
 ofNullable() :
 --------------
-ofNullable() of the Optional class returns the non empty Optional If the given Object has the value otherwise returns an empty Optional.
+ofNullable() returns the non empty Optional If the given Object has the value otherwise returns an empty Optional.
 
 isPresent() :
 -------------
