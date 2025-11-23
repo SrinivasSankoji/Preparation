@@ -337,8 +337,28 @@ while performing serialization JVM ignores the transient variable and stores the
 
 volatile is a modifier applicable only for variables but not for classes and methods.
 If a single variable is accessed by multiple Threads then there may be chance of data inconsistency problems.
-If a variable is declared as volatile then for every thread JVM will create a seperate local copy.
-All the intermediate modifications performed by the thread will take place in local copy.
+When we use volatile, every read/write will go through Shared cache, not per-thread Local cache and also invalidates the other Core Cache.
+Now Thread2 has to read the value from the Shared Cache and will get the updated value.
+Volatile is genarally used to solve the visibility problem.
+
+boolean isDevice = true;
+
+		Core1                     Core2
+     ------------              --------------
+      L1 Cache                   L1 Cache
+    isDevice = true          isDevice = true
+	
+Thread1 writes isDevice = false;
+But the update stays in Core1 L1 cache, so Thread 2 still sees true.
+Thus Thread 2 loops forever.
+
+With volatile
+Thread 1 write:
+  - Write to Shared Cache (not L1 Cache)
+  - Invalidate Core2 cache line which contains the variable.
+
+Thread 2 read:
+  - Must read from Shared Cache, sees updated false
 
 Conclusion :
 ------------

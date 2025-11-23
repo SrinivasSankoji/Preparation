@@ -24,10 +24,10 @@
 20.Map in Java8													(beginnersbook)         [08-SEP-2021]	(Done)
 
 21.PermGen														()						[03-DEC-2021]	()
-22.Atomic Integer												(Geekific)
-23.Cyclic Barrier 												()
-24.HashMap Internal 											()
-25.G1 Garbage Collector 										()
+22.Atomic Integer												(Geekific)              [03-DEC-2021]	()
+23.Cyclic Barrier 												()                      [03-DEC-2021]	()
+24.HashMap Internal changes related to Java 8					()						[03-DEC-2021]	()
+25.G1 Garbage Collector 										()                      [03-DEC-2021]	()
 
 
 
@@ -544,8 +544,8 @@ public class Test {
 ***************************************************** 11.spliterator (ChatGPT) ********************************************************************
 
 Split Iterator stands for Split and Iterator.
+We can think of Split Iterator as the Itearator that will split into multiple parts so that those parts can be processed in paralell.
 It is a special iterator introduced in Java 8 to support parallel processing in streams.
-We can think of Split Iterator as the Itearator that will split into multiple parts so that parts can be processed in paralell.
 
 Why Spliterator was introduced :
 --------------------------------
@@ -625,13 +625,166 @@ To filter out the null values from the Stream we use Objects::nonNull as Method 
 
 CopyOnWriteArrayList is a Thread Safe variant of ArrayList in which all the modifications are done by creating a fresh copy of the underlying Array.
 CopyOnWriteArrayList implements List,Serializable,Cloneable and RandomAccess Interface.
-Using CopyOnWriteArrayList for updates is very costly because each modification creates a cloned copy of the underlying Array.
-The iterator we create is an immutable snapshot of the original List.
+Using CopyOnWriteArrayList for updates is very costly because each modification, it creates a cloned copy of the underlying Array.
+
+The iterator we create using CopyOnWriteArrayList is an immutable snapshot of the original List.
+i.e. When we call iterator() or use for-each, it takes a snapshot of the array at that moment.
 Each Thread accessing the List sees its own version of snapshot of backing Array created while initializing the iterator first.
-CopyOnWriteArrayList gets the snapshot of underlying Array it won't throw ConcurrentModificationException.
-Iterator on the CopyOnWriteArrayList does not allow mutation operations and throws UnSupportedOperationException.
- 
+
+As CopyOnWriteArrayList gets the snapshot of underlying Array, It won't throw any ConcurrentModificationException.
+Iterator’s remove() on the CopyOnWriteArrayList does not allow mutation operations and throws UnSupportedOperationException.
+
+ArrayList :
+-----------
+	List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+	Iterator<Integer> it = list.iterator();
+	list.add(4);  // structural modification
+	while (it.hasNext()) {
+		System.out.println(it.next()); // may throw ConcurrentModificationException
+	}
+	
+CopyOnWriteArrayList :
+----------------------
+	CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>(Arrays.asList(1, 2, 3));
+	Iterator<Integer> it = list.iterator(); // Here Iterator conatians immutabe snapshot of the original List
+	list.add(4); // creates a new internal array, but iterator still uses old snapshot
+	while (it.hasNext()) {
+		System.out.println(it.next()); // prints 1, 2, 3 only, no exception
+	}
+	it.remove(); // throws UnsupportedOperationException
+
+Internal Implementation :
+-------------------------
+Step 1: We prepare a list and an iterator snapshot.
+
+		CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>(new String[]{"A", "B", "C"});
+		// Create an iterator snapshot of the current array ["A", "B", "C"]
+		Iterator<String> itr = list.iterator();
+		
+At this moment,
+The internal array = ["A", "B", "C"]
+The iterator’s snapshot = ["A", "B", "C"]
+
+Step 2: Add an element to the list
+list.add("D");
+
+OLD array = ["A", "B", "C"]
+1. Create NEW array = ["A", "B", "C", null]
+2. Insert "D" → ["A", "B", "C", "D"]
+3. Replace internal reference to NEW array
+
+Internal array becomes → ["A", "B", "C", "D"]
+Iterator’s snapshot remains → ["A", "B", "C"]
+
+Step 3: Read from the iterator snapshot
+
+System.out.println("Iterator snapshot");
+while (itr.hasNext()) {
+    System.out.println(itr.next());
+}
+Output:
+Iterator snapshot
+A
+B
+C
+
+Step 4: Read the list after modification
+
+System.out.println("List content");
+for (String s : list) {
+    System.out.println(s);
+}
+
+Output:
+List content
+A
+B
+C
+D
+
 ***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
+
+Before Java 8 :
+---------------
+1.Collections.sort(List)
+2.Collections.sort(List, Comparator)
+3.Arrays.sort(T[] array)
+4.Implementing Comparable<T> (natural order)
+5.Implementing Comparator<T> (custom order), often with anonymous inner classes.
+
+Java 8 and later :
+-------------------
+
+All of the above plus
+
+1.list.sort(Comparator)
+2.stream.sorted() and stream.sorted(Comparator)
+3.Comparator.comparing(...)
+4.thenComparing(...)
+5.reversed()
+6.Method references and lambdas to make Comparators much cleaner
+7.Arrays.parallelSort(...) for parallel sorting of arrays
+
+
+Sorting Before Java 8 :
+#######################
+
+Natural ordering with Collections.sort :
+----------------------------------------
+
+	List<Integer> numbers = Arrays.asList(10, 3, -1, 7);
+	Collections.sort(numbers);  // uses natural order (Integer implements Comparable)
+	System.out.println(numbers); // [-1, 3, 7, 10]
+	
+Custom order with Comparator (anonymous class) :
+------------------------------------------------
+
+	List<String> names = Arrays.asList("John", "Alexander", "Bob");
+	Collections.sort(names, new Comparator<String>() {
+		@Override
+		public int compare(String s1, String s2) {
+			return Integer.compare(s1.length(), s2.length());
+		}
+	});
+	System.out.println(names); // [Bob, John, Alexander]
+	
+Arrays sorting :
+----------------
+
+	int[] arr = {5, 2, 9, 1};
+	Arrays.sort(arr);   // ascending order
+	System.out.println(Arrays.toString(arr)); // [1, 2, 5, 9]
+	
+Sorting After Java 8 :
+######################
+
+Using List.sort(Comparator) :
+-----------------------------
+
+	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
+	// Natural order (ascending)
+	list1.sort(Comparator.naturalOrder());
+	System.out.println(list1); // [-4, 0, 10, 18, 23]
+	list1.sort(Comparator.reverseOrder());
+	System.out.println(list1); // [23, 18, 10, 0, -4]
+
+Custom logic with lambdas :
+---------------------------
+
+	// Sort by absolute value
+	list1.sort((a, b) -> Integer.compare(Math.abs(a), Math.abs(b)));
+	System.out.println(list1); // e.g., [0, -4, 10, 18, 23]
+	
+Using Collections.sort with lambdas (still valid in Java 8) :
+-------------------------------------------------------------
+
+	List<String> names = Arrays.asList("John", "Alexander", "Bob");
+	// Sort by length
+	Collections.sort(names, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
+	System.out.println(names);
+	
+Using stream().sorted() :
+-------------------------
 
 	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
 	/**
@@ -639,12 +792,109 @@ Iterator on the CopyOnWriteArrayList does not allow mutation operations and thro
 	 */
 	list1.sort(Comparator.naturalOrder());
 	System.out.println(list1);
-	
 	/**
 	 * Sorting using stream.sorted
 	 */
-	List<Integer> list2=list1.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+	List<Integer> list2 = list1.stream()
+			.sorted(Collections.reverseOrder())
+			.collect(Collectors.toList());
 	System.out.println(list2);
+	List<Integer> sorted = list1.stream()
+                            .sorted()  // natural order
+                            .collect(Collectors.toList());
+							List<String> names = Arrays.asList("John", "Alexander", "Bob");
+	List<String> sortedByLength = names.stream()
+			.sorted((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+			.collect(Collectors.toList());
+
+	System.out.println(sortedByLength); // [Bob, John, Alexander]
+
+
+Using Comparator.comparing and thenComparing :
+----------------------------------------------
+
+	class Person {
+    private String name;
+    private int age;
+		// constructor, getters
+		public Person(String name, int age) {
+			this.name = name;
+			this.age = age;
+		}
+		public String getName() { return name; }
+		public int getAge() { return age; }
+
+		@Override
+		public String toString() {
+			return name + "(" + age + ")";
+		}
+	}
+	
+	List<Person> persons = Arrays.asList(
+        new Person("Alex", 30),
+        new Person("Bob", 25),
+        new Person("Chris", 25),
+        new Person("David", 35));
+	
+Before Java 8 
+
+	Collections.sort(persons, new Comparator<Person>() {
+		@Override
+		public int compare(Person p1, Person p2) {
+			return Integer.compare(p1.getAge(), p2.getAge());
+		}
+	});
+	
+Using Comparator.comparing
+
+	persons.sort(Comparator.comparing(Person::getAge));
+	System.out.println(persons); // [Bob(25), Chris(25), Alex(30), David(35)]
+	persons.sort(
+    Comparator.comparing(Person::getAge).thenComparing(Person::getName));
+	System.out.println(persons);// [Bob(25), Chris(25), Alex(30), David(35)]
+	
+	persons.sort(Comparator.comparing(Person::getAge).reversed());
+
+
+Arrays.sort :
+-------------
+
+	int[] arr = {5, 1, 4, 2};
+	Arrays.sort(arr);
+	System.out.println(Arrays.toString(arr)); // [1, 2, 4, 5]
+	
+Object arrays with custom comparator :
+--------------------------------------
+
+	String[] arr = {"John", "Alexander", "Bob"};
+	Arrays.sort(arr, (a, b) -> Integer.compare(a.length(), b.length()));
+	System.out.println(Arrays.toString(arr)); // [Bob, John, Alexander]
+
+Arrays.parallelSort :
+---------------------
+
+	int[] arr = {5, 1, 4, 2, 9, 7, 6, 3};
+	Arrays.parallelSort(arr);  // may be faster for large arrays
+	System.out.println(Arrays.toString(arr)); // [1, 2, 3, 4, 5, 6, 7, 9]
+
+Sorting Maps using Streams :
+----------------------------
+
+	Map<String, Integer> scores = new HashMap<>();
+	scores.put("Alex", 85);
+	scores.put("Bob", 75);
+	scores.put("Chris", 90);
+
+	LinkedHashMap<String, Integer> sortedByValue = scores.entrySet().stream()
+        .sorted(Map.Entry.comparingByValue())  // ascending by value
+        .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (e1, e2) -> e1,
+                LinkedHashMap::new   // maintain order
+        ));
+	System.out.println(sortedByValue); // {Bob=75, Alex=85, Chris=90}
+
 
 ***************************************************** 15.StringJoiner (beginnersbook) *************************************************************
 
@@ -662,7 +912,7 @@ We can also provide prefix and suffix to the given String.
 		joiner.add("Chary");
 		joiner.add("Sankoji");
 		System.out.println(joiner);
-	}
+		}
 	}
 
 ***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
@@ -738,9 +988,9 @@ We can also have Comparator.nullsFirst(String::compareTo) and Comparator.nullsLa
 	
 *****************************************************  17.Function package (javabrahman)  *******************************************************************
 
-For common use cases where Lambda Expression or a Method Reference is needed Functions are generally assigned as a target type.
-java.util.function package provides a set of reusable common functional interfaces and their corresponding Lambda Expressions
-which can be used by the programmer in the code instead of creating new functional interfaces.
+For common use cases where Lambda Expression or a Method Reference are needed, Functions are generally assigned as a target type.
+java.util.function package provides a set of reusable Functional interfaces which can be used by the programmer instead of creating new Functional interfaces.
+
 Consider the scenario where we need a function that accepts an argument and returns boolean.
 
 	public interface Predicate<T>
@@ -793,8 +1043,8 @@ Function Interface implementation is now inlined in the declaration of same vari
 
 Predicate :
 -----------
-Predicate Interface represents a function that takes a single value as parameter and returns either true or false.
-Predicate Interface definition would be
+Predicate represents a function that takes a single value as parameter and returns either true or false.
+Predicate definition would be
 
 	public interface Predicate<T>
 	{
@@ -835,7 +1085,7 @@ Done
 compute() of HashMap allows us to update the value with the specified key.
 compute() has two parameters
 1.key and 
-2.reMapping Function ie computes a new value for the specified key.
+2.reMapping Function i.e. computes a new value for the specified key.
 
 Note:
 reMapping function takes two arguments and is considered as BiFunction.

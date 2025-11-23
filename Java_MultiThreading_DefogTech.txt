@@ -1,4 +1,4 @@
-1.Volatile vs Atomic Integer						[05-JAN-2020]  ()
+1.Volatile vs Atomic Integer						[23-NOV-2025]  (Done)
 2.ThreadLocal										[05-JAN-2020]  ()
 3.Concurrency vs Parallelism						[08-JAN-2020]  (Done)
 4.Java Memory Model									[15-JAN-2020]  (Happens Before Pending)
@@ -9,28 +9,92 @@
 9.Java Asynchronous Programming						[28-JAN-2020]  (Done)
 10.Lock Condition Class								[05-JAN-2020]  ()
 11.Completable Future								[28-JAN-2020]  (Done)
-12.Coroutines
+
+12.Coroutines										[05-JAN-2020]  ()
 13.Reentrant Lock									[05-JAN-2020]  ()
 14.ReadWrite Lock									[05-JAN-2020]  ()
-15.Java Interrupts
+15.Java Interrupts									[05-JAN-2020]  ()
 16.Semaphore in Java Concurrency					[05-JAN-2020]  ()
-17.Concurrenyc Interview Questions
-18.Concurrenyc Interview Questions
-19.Concurrenyc Interview Questions
+17.Concurrency Interview Questions                  [05-JAN-2020]  ()
+18.Concurrency Interview Questions                  [05-JAN-2020]  ()
+19.Concurrency Interview Questions                  [05-JAN-2020]  ()
 20.Fork JoinPool									[27-JAN-2020]  (Done)
 21.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
 22.Synchronous Queue								[05-JAN-2020]  ()
 23.Adder and Accumulator Classes					[05-JAN-2020]  ()
 24.Guava Library									[05-JAN-2020]  ()
-25.Detect and Resolve DeadLocks in Java
-26.Race Condition vs Data Races
-27.Singleton and Double Checked Locking
-28.Spin Locks
+25.Detect and Resolve DeadLocks in Java				[05-JAN-2020]  ()
+26.Race Condition vs Data Races                     [05-JAN-2020]  ()
+27.Singleton and Double Checked Locking             [05-JAN-2020]  ()
+28.Spin Locks                                       [05-JAN-2020]  ()
 29.Exchanger Class									[05-JAN-2020]  ()
 
 
 ******************************************** 1.Volatile vs Atomic Integer ************************************************************
 
+Consider the scenario where we have one flag i.e.
+
+	boolean isDevice=true;
+	
+Also we have two threads i.e. Thread1 and Thread2 running in paralell.
+In Thread2 we have while condition which accepts the flag. If the flag is true it will execute n infinite loop.
+To ensure while loop not to execute in infinite loop, we make the flag as false in Thread1.
+We expect that changes done in Thread1 will impact in Thread2, but as per Java specification it won't impact the changes.
+To understand the reason how the CPU caches are structured.
+
+Consider the CPU with 2 cores where Thread1 sits on core1 and Thraed2 sits on core2.
+Each of these cores has local cache and there will be a shared cache.
+
+Initially the value of the flag is stored in their Local cache.
+When Thread1 updates the falg to false, Thread2 still not get the updated flag.
+This is the reason Thread2 will run in infinite loop.
+Here the update is not visibile to Thread2 and is the visibility problem.
+
+One solution to resolve the problem is by adding the volatile keyword.
+When we use volatile, every read/write to go through Shared cache, not per-thread Local cache and invalidates the other Core Cache.
+Now Thread2 has to read the value from the Shared Cache and will get the updated value.
+Volatile is genarally used to solve the visibility problem.
+
+Consider the same scenario using Integer value.
+
+	int value = 1;
+
+Thread1 tries to increment the value and also Thread2 tries to increment the value i.e. value++ i.e. value=value+1;
+When two threads are running paralelly, we will not get the changes done in Thread1 available to Thread2.
+Even if we apply the volatile also still it will not work.
+Here the problem is not a visibility problem and is synchronization problem.
+Here the operation is read the value,add 1 to it and write the value.
+Here the main reason is we have compound operation and we don't have one atomic operaton which will read and write the updated value.
+To resolve this problem we can also use synchronized keyword i.e. only one Thread is allowed to increment the value.
+
+The other solution to resolve this problem is to use AtomicInteger.
+In AtomicInteger, we have a single method that will do the compound operation.
+
+Volatile is used for flags.
+AtomicInteger is used for Counters.
+AtomicReference is used for Cache.
+
+AtomicInteger solves this by using CAS(Compare-And-Swap)
+AtomicInteger uses a hardware CPU instruction.
+This happens 100% atomically in hardware and not in Java code.
+
+	CAS(expectedValue, newValue) i.e. Only write the new value if the current value equals expectedValue.
+	
+AtomicInteger counter = new AtomicInteger(1);
+counter.incrementAndGet();
+
+Internally JVM performs:
+
+	do {
+		current = value;      // read
+		newValue = current+1; // calculate
+	} while (!CAS(current, newValue)); // try once, retry if failed
+	
+value : Shared integer stored inside AtomicInteger
+current : Local variable in the thread
+newValue : Desired updated value
+
+This is how AtomicInteger.incrementAndGet() and similar methods are safe in a multithreaded environment without using synchronized.
 
 ******************************************** 2.ThreadLocal ***************************************************************************
 
@@ -64,19 +128,19 @@ Here Two Threads are executing in parallel and one Method.
 	}
 
 Here Task One and Task Two runs on Two Different Threads and Task Three runs on the Main Thread.
-If we Run this Program on a Quad Core Processor i.e there are 4 Cores in a Processor,
-Then we can Run These Tasks in Parallel.
-In OS We have a Component Called Scheduler which is Responsible to Schedule these Threads on to these CPU Processor.
+If we Run this Program on a Quad Core Processor i.e there are 4 cores in a Processor,
+Then we can run these tasks in Parallel.
+In OS we have a component called Scheduler which is responsible to schedule these threads on to these CPU Processor.
 
 Task One  Runs on Core 1
 Task Two  Runs on Core 2
 Task Three  Runs on Core 3
 Task Four  Runs on Core 4
 
-Here All these Task will Run in Separate Cores in Parallel.
+Here all these tasks will run in separate cores in Parallel.
 Parallelism is about doing lot of things at once so that we can speed up Performance.
 
-We can also Change the Above Code by Using ExecutorService.
+We can also change the above code by using ExecutorService.
 Using ExecutorService Fixed Thread Pool.
 
 		ExecutorService executorService=Executors.newFixedThreadPool(4);
@@ -152,8 +216,8 @@ Whenever a Shared Resource has to be updated across the Components or Multiple T
 
 ******************************************** 4.Java Memory Model ************************************************************
 
-Java Memory Model is a Specification which Guarantees the visibility of fields when we have re Ordering of instructions.
-Java Memory Model Enforces that all the JVM has to implement these set of Rules so that Program Runs in the Same Manner. 
+Java Memory Model is a specification which guarantees the visibility of fields when we have re ordering of instructions.
+Java Memory Model enforces that all the JVM has to implement these set of rules so that program runs in the same manner. 
 
 1.Order of Execution
 2.Field Visibility

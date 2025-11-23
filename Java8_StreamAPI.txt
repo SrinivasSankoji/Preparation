@@ -186,7 +186,7 @@ List<Integer> nameLengths = names.stream()
     .toList();
 System.out.println(nameLengths);  //"Alice" -> 5, "Bob" -> 3, "Charlie" -> 7
 
-FlatMap can be used is used when each element of the stream produces multiple elements(a collection or stream) and want to flatten them into a single continuous stream.
+FlatMap is used when each element of the stream produces multiple elements(a collection or stream) and want to flatten them into a single continuous stream.
 
 1.Consider the scenario of conevrting List of List to List.
 
@@ -247,7 +247,7 @@ Here Identity Value type is not restricted to particular Object.
 
 ************************************************************ 6.Collectors.toMap(stackabuse) ************************************************************
 
-The toMap() is a static method in the Collectors class which will transforms all the elements of the into key value pairs and returns the Map. 
+The toMap() is a static method in the Collectors class which will transforms all the elements into key value pairs and returns the Map. 
 Here all the provided keys must be unique and repeating a key would result in IllegalStateException whenever a Collection operation is performed.
 
 The basic form of toMap() accepts two parameters.

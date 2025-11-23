@@ -1767,7 +1767,6 @@ Java8 Streams (Done)
 Java8_Lambda_JavaBrains ()
 Java8 Concepts ()
 Java8_Comparator ()
-Predefined Functional Interfaces ()
 Java 17 Features ()
 
 Spring IOC Basics (Done)
@@ -1808,18 +1807,15 @@ Nashorn JS engine (removed later)
 Concurrent Accumulators
 Removal of PermGen → Metaspace
 TLS SNI
-ThreadPoolExecutor, Load Balancer concepts
+ThreadPoolExecutor 
+Load Balancer concepts
 Null & NullPointerException
 @Autowired → byName vs byType
+Circular Dependency Injection solution
+word count
+Occuence of the word in descending order
 
 ROBGL/E/2025/36167
-
-Java Basic Concept ()
-Java New Concept/ Interview Question Practice ()
-Design Pattern Concept ()
-System Design Concept ()
-Any Video ()
-
 
 ----------------------------------------- November 2025  ---------------------------------------------------
 
@@ -1836,7 +1832,8 @@ Spring Web Annotations ()
 
 Java8_Lambda_JavaBrains ()
 Java8 Concepts ()
-Java8_Comparator ()
+Java8_Comparator (Done)
+Predefined Functional Interfaces (Done)
 Java 17 Features ()
 
 Spring Boot Basics ()
@@ -1849,5 +1846,22 @@ SAGA Design Pattern ()
 Hibernate basics and advanceed ()
 Sprig Data JPA ()
 Hibernate Caching with Scenarios ()
+Before Java8 and After Java8 are there any change in Memory Management ()
 
 Questions asked in Interview ()
+toMap Examples ()
+groupingBy Examples ()
+partioningBy Examples ()
+joining Examples ()
+endsWith() Examples ()
+
+Spring Security ()
+Spring AOP ()
+Spring Boot Actuator ()
+Profiles and its Dynamic nature ()
+
+
+
+
+
+
