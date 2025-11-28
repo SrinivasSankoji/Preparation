@@ -6,7 +6,9 @@
 6.ExecutorService Pool Types						[21-JAN-2020]  (Single ThreadExecutor Pending)
 7.ExecutorService LIfe Cycle						[21-JAN-2020]  (Done)
 8.ExecutorService Callable/Future					[27-JAN-2020]  (Done)
+
 9.Java Asynchronous Programming						[28-JAN-2020]  (Done)
+
 10.Lock Condition Class								[05-JAN-2020]  ()
 11.Completable Future								[28-JAN-2020]  (Done)
 
@@ -103,8 +105,7 @@ This is how AtomicInteger.incrementAndGet() and similar methods are safe in a mu
 
 Parallelism :
 -------------
-Let us Consider an Example
-Here Two Threads are executing in parallel and one Method.
+Let us consider an example.
 
 	public static void main(String[] args) 
 	{
@@ -127,43 +128,41 @@ Here Two Threads are executing in parallel and one Method.
 		hevayCalculations();				--> Task Three
 	}
 
-Here Task One and Task Two runs on Two Different Threads and Task Three runs on the Main Thread.
-If we Run this Program on a Quad Core Processor i.e there are 4 cores in a Processor,
-Then we can run these tasks in Parallel.
-In OS we have a component called Scheduler which is responsible to schedule these threads on to these CPU Processor.
+Here Task One and Task Two runs on two different threads and Task three runs on the Main thread.
+If we run this program on a Quad Core Processor i.e. there are 4 cores in a processor, these tasks will run in parallel.
+In OS we have a Component called Scheduler which is responsible to schedule these threads on to the CPU Processor.
 
-Task One  Runs on Core 1
-Task Two  Runs on Core 2
-Task Three  Runs on Core 3
-Task Four  Runs on Core 4
+Task One runs on Core 1
+Task Two runs on Core 2
+Task Three runs on Core 3
+Task Four runs on Core 4
 
 Here all these tasks will run in separate cores in Parallel.
-Parallelism is about doing lot of things at once so that we can speed up Performance.
+Parallelism is about doing lot of things at once so that we can speed up performance.
 
-We can also change the above code by using ExecutorService.
-Using ExecutorService Fixed Thread Pool.
+We can also change the above code by using ExecutorService Fixed Thread Pool.
 
 		ExecutorService executorService=Executors.newFixedThreadPool(4);
 		executorService.submit(()-> processTax());
 		executorService.submit(()-> processTax());
 		
-In Java To Enable Parallelism We Can Use Raw Threads(Implementing Runnable or Callable Interface) or We can use The Concept of Thread Pool.
-Even in Thread Pool It Can be 
+In Java to enable Parallelism we use raw threads(implementing Runnable or Callable Interface) or we can use the concept of Thread Pool.
+Even in Thread Pool it can be 
 
 1.ExecutorService
 2.ForkJoin Pool
-3.Custom Thread Pools (Used By Web Servers)
+3.Custom Thread Pools (Used by Web Servers)
 
-Here We Need to Ensure that the CPU has More than One Core So that We can run the Threads In Parallel.
+Here we need to ensure that the CPU has more than one Core so that we can run the threads in parallel.
 
 Concurrency :
 -------------
-Consider the Scenario for Booking a Ticket.
+Consider the scenario of booking a ticket.
 
 		new Thread(() -> {
 			if(ticketsAvailale>0)
 			{
-				bookTicket();				-->  Task Accessing Shared Variable
+				bookTicket();				-->  Task accessing Shared Variable
 				ticketsAvailale--;
 			}
 			
@@ -172,34 +171,34 @@ Consider the Scenario for Booking a Ticket.
 		new Thread(() -> {
 			if(ticketsAvailale>0)
 			{
-				bookTicket();			 	-->  Task Accessing Shared Variable
+				bookTicket();			 	-->  Task accessing Shared Variable
 				ticketsAvailale--;
 			}
 			
 		}).start();
 		
-		Thread.sleep(500);
+		Thread.sleep(200);
 		
-Here Each Tasks Shares the Common Resource i.e ticketsAvailale Variable.
-After Starting Two Threads Put The Main Thread in Sleep For Two Seconds.
-Let us Assume that we have a Single Core Processor in CPU and OS Scheduler is Responsible for assigning these Threads to the Processor.
-Since CPU has Single Core Processor,Scheduler has to do Time Sharing Between The Threads.
-Here The Scheduler Will Schedule the Thread 1 for Few Milli Seconds and Pick Thread 1 out and Keep Thread 2 For Few Mill Seconds.
-This Concept is Called Interleaving of Threads.
-How Much Time Scheduler Assigns to the Thread is Non Deterministic and Depends on Many Factors.
-Here it Might Possible That Thread 1 Accomplishes all the Task within Time.
-In Worst Scenario If The Thread has Not Accomplished the Task then there is Mismatch in Processing.
-This is also the Case with MultiCore Processor.
+Here each tasks shares the common resource i.e. ticketsAvailale variable.
+After starting two Threads put the Main Thread in Sleep for two seconds.
+Let us assume that we have a Single Core Processor in CPU and OS Scheduler is responsible for assigning these Threads to the processor.
+Since CPU has single Core Processor,Scheduler has to do time sharing between the threads.
+Here the Scheduler will Schedule the Thread1 for few Milli seconds and pick Thread1 out and keep Thread2 for few Mill seconds.
+This concept is called interleaving of Threads.
+How much time Scheduler assigns to the Thread is non-deterministic and depends on many factors.
+Here it might possible that Thread1 accomplishes all the tasks within time.
+In worst scenario if the Thread has not accomplished the Task then there is mismatch in processing.
+This is also the case with MultiCore processor.
 
-To resolve the Issue we use the Concept Called Lock.
-Thread One will Acquire the Lock,Completes the Task and Updates the Shared Variable and Release the Task.
-Here Multiple Threads are Coordinating Between Each Other Using a Single Lock.
-This Scenario is Called Concurrency.
+To resolve the issue we use the concept called Lock.
+Thread One will acquire the Lock,Completes the Task and updates the shared variable and release the task.
+Here Multiple Threads are coordinating between each other using a single lock.
+This scenario is called Concurrency.
 
-Concurrency is about Dealing lot of things Once.
-Concurrency is Applied When we Have a Shared Resource that has to be Accessed or Updated or Multiple Threads needs to Coordinate.
+Concurrency is about dealing lot of things once.
+Concurrency is applied when we have a shared resource that has to be accessed or updated or Multiple Threads needs to coordinate.
 
-In Java we Have Lot of Tools to Deal With Concurrency.
+In Java we have lot of tools to deal with Concurrency.
 
 1.Locks /Synchronized
 2.Atomic Classes
@@ -209,15 +208,14 @@ In Java we Have Lot of Tools to Deal With Concurrency.
 
 Concurrency  + Parallelism  :
 -----------------------------
-Split the Sequential flow into independent Components.
-Use Thread / Thread Pool to Parallelize these Components.
-Whenever a Shared Resource has to be updated across the Components or Multiple Threads needs to be Coordinate Use Concurrency Tools to Manage.
+Split the sequential flow into independent components. i.e. Use Threads / Thread Pool to parallelize these Components.
+Whenever a shared resource has to be updated across the Components or Multiple Threads needs to be coordinate use Concurrency tools to manage.
 
 
 ******************************************** 4.Java Memory Model ************************************************************
 
-Java Memory Model is a specification which guarantees the visibility of fields when we have re ordering of instructions.
-Java Memory Model enforces that all the JVM has to implement these set of rules so that program runs in the same manner. 
+Java Memory Model is a specification which guarantees the visibility of fields when we have re-ordering of instructions.
+Java Memory Model enforces that all the JVM's has to implement these set of rules so that program runs in the same manner. 
 
 1.Order of Execution
 2.Field Visibility
@@ -225,10 +223,11 @@ Java Memory Model enforces that all the JVM has to implement these set of rules 
 
 1.Out of Order Execution :
 --------------------------
-When we Write a Program and in General it is a Series of Statements.
-We Expect that It will Run in the Same order as we have Written.
-But is Completely Possible that the Compiler or JVM or CPU will Change the Order of Instructions to drive Some Performance out of it.
-This is Done in a Way that the Program Semantics Remains Same and Output will Not Change.
+When we write a program and in general it is a series of statements.
+We expect that it will run in the same order as we have written.
+But is completely possible that the JVM or CPU will change the Order of instructions to drive some performance out of it.
+This is done in such a way that the program semantics remains same and output will not change.
+Within the same thread, JMM guarantees that final result must remain the same.
 
 Consider the Scenario 
 
@@ -236,7 +235,7 @@ a=3;
 b=1;
 a=+1;
 
-Actual Conversion look Like 
+Actual conversion look Like 
 
 Load a
 Set to 3
@@ -250,8 +249,8 @@ Load a
 Set to 4
 Store a
 
-Here we are Loading a Twice and 
-one Performance Improvement could be incrementing the Value would be before setting the Value.
+Here we are Loading a twice and 
+one Performance improvement could be incrementing the value would be before setting the Value.
 
 Load a
 set to 3
@@ -262,19 +261,27 @@ Load b
 Set to 1
 Store b
 
+If multiple threads access shared variables, reorderings may produce incorrect results unless JMM rules enforce correct ordering like happens-before.
  
-2.Field Visibility :
---------------------
-Field Visibility is only applicable in terms of MultiThreaded Applications and also Called Concurrent Programming .
+2.Field Visibility (The Core Multithreading Problem) :
+------------------------------------------------------
+Due to multi-core CPU architecture, each thread may see different values of the same variable.
 
-A.If we have a Quad Core Processor Machine Generally that have 4 Cores and each core has Set of Registers.
-B.Registers are Nothing but a Memory Area which is very Small and is within the Core,
-  Stores the Value in the Register and it is Faster to retrieve the value from the Register.
-C.we Have L1 Cache for each Core i.e Nothing but Memory Area Set a Side For Each Core.
-D.We Have L2 Cache which could be Shared between Shared L1 Cache.
-E.We Have L3 Cache which could be Shared between Shared L2 Cache.
-F.We Have RAM which could be Shared across Cores.
+A.If we have a Quad Core Processor generally that have 4 Cores and each core has set of registers.
+B.Registers are nothing but a small memory area within the core,Stores the value in the register and it is faster to retrieve the value from the register.
+C.we have L1 Cache for each Core i.e. Memory area set a side for each Core.
+D.We have L2 Cache which could be shared between Shared L1 Cache.
+E.We have L3 Cache which could be Shared between Shared L2 Cache.
+F.We have RAM which could be Shared across Cores.
 
+
+			Core1      		Core2  		Core3        Core4
+		   registers	  registers	   registers    registers
+		    L1 Cache	   L1 Cache     L1 Cache     L1 Cache
+			          L2 Cache                   L2 Cache
+								   L3 Cache
+								      RAM
+			
 Consider the Example :
 
 			int x=0;
@@ -289,17 +296,16 @@ Consider the Example :
 				int reader=x;
 			}			
 
-Here Initially the Value is Stored in the Shared Cache.
-Consider Thread T1 Calls the WriterThread() and Thread T2 Calls the ReaderThread().
+Here initially the value is stored in the Shared Cache.
+Consider thread T1 calls the WriterThread() and thread T2 calls the ReaderThread().
 Thread T1 sits into the Core 1 and Thread T2 Sits into the Core 2.
-When the Thread T1  Executes the writerThread(), Value is incremented and updated in the Local Cache of Thread T1.
-Similarly When the Thread T2 executes the readerThread(),It Wont get the Updated Value because it is not Updated in the Shared Cache.
-It is Completely Possible that x=1 is Never Pushed into the Shared Cache.
-This issue is Called Field Visibility Issue.
+When the Thread T1 executes the writerThread(), value is incremented and updated in the Local Cache of Thread T1.
+Similarly when the Thread T2 executes the readerThread(),it won't get the updated value because it is not updated in the Shared Cache.
+It is completely possible that x=1 is never pushed into the Shared Cache.
+This issue is called Field Visibility issue.
 
-We Can Resolve the Issue by Using volatile Key Word.
-If the Variable is volatile,then JVM Ensures that Changes in the Local Cache will be flushed to the Shared Cache 
-so that the Remaining Threads will get The updated Value.
+We can resolve the issue by using volatile key word.
+If the variable is volatile,then JVM ensures that changes in the Local Cache will be flushed to the Shared Cache so that the remaining Threads will get the updated value.
 
 3.Happens Before :
 ------------------
@@ -311,9 +317,9 @@ so that the Remaining Threads will get The updated Value.
 
 Introduction :
 --------------
-In Java it is easy to run a piece of code or Method Asynchronously by using Threads.
-Consider we have a main() method which runs on Main Thread and we can run the Task on the separate Thread.
-To create a Task we need to implement Runnable Interface and override its run() and keep the Method that we want to execute Asynchronously.
+In Java it is easy to run a piece of code or method asynchronously by using Threads.
+Consider the main() which runs on Main Thread and we can run the task on the separate Thread.
+To create a Task we need to implement Runnable interface and override its run() and keep the method inside run() that we want to execute asynchronously.
 
 				public static void main(String[] args) 
 				{
@@ -330,12 +336,12 @@ To create a Task we need to implement Runnable Interface and override its run() 
 					}
 				}
 
-Here Main Thread will perform the operations from top to bottom and at certain point of time it will call start() Method and it will Create a Thread with name thread-0.
-thread-0 will do its own Operations and once the Operation is done thread will be killed automatically.
-Here Main Thread Continues its execution.
+Here Main Thread will perform the operations from top to bottom and at certain point of time it will call start() and it will create a Thread with name thread-0.
+thread-0 will do the operation on its own and once the operation is done thread will be killed automatically.
+Here Main Thread continues its execution.
 
-In the Above Example we are Creating Single Task.
-Consider the Scenario where we want to execute 10 Tasks and in this case we need to Create Thread Using For Loop.
+In the above example we are creating single task.
+Consider the Scenario where we want to execute 10 tasks and in this case we need to create Thread using for-loop.
 
 			for(int i=0;i<=10;i++)
 			{
@@ -344,37 +350,77 @@ Consider the Scenario where we want to execute 10 Tasks and in this case we need
 				System.out.println(Thread.currentThread().getName());
 			}
 
-Here each time it will create a New Thread with the new Instance of the Task and that will be executed independently.
-Here the flow starts from Main Thread and after certain point of time For Loop is getting executed.
-Here Each time new Thread is being created and will be executed asynchronously.
+Here each time it will create a new Thread with the new instance of the Task and that will be executed asynchronously.
+Here the flow starts from Main Thread and after certain point of time for-loop is getting executed.
+Here each time new Thread is being created and will be executed asynchronously.
 once the task is executed successfully thread will be killed automatically.
 
-Problem with this scenario is in Java One Thread is equal to One Operating System Thread.
-If we run the for loop 1000 Times it will create 1000 Threads and creating a Thread is an extensive Operation.
+Problem with this approach is, In Java one Thread is equal to one Operating System Thread.
+If we run the for-loop 1000 for times, it will create 1000 Threads and creating a Thread is an extensive operation.
 
-If we want fixed number of Threads to be created as Thread Pool and then submit the Task to the Thread Pool,
-Then we use ExecutorService.
+If we want fixed number of Threads to be created as Thread Pool and then submit the Task to the Thread Pool, Then we use ExecutorService.
 
 			ExecutorService executorService=Executors.newFixedThreadPool(10);
 			for(int i=0;i<=1000;i++)
-			{ss
+			{
 				executorService.execute(new Task());
 			}
 
 Here instead of creating new Threads every time,Here we are creating threads upfront and submitting the task to the threads which are created already.
-Thread Pool internally uses Blocking Queue and keeps storing all the Tasks which are submitted.
-Threads in the Thread Pool will perform two steps i.e fetch the next Task from the Queue and execute it.
-Since all the 10 Threads are executing simultaneously to get the Task from the Queue,Queue has to handle Concurrent modifications and should be Thread Safe.
+Thread Pool internally uses Queue and keeps storing all the tasks which are submitted.
+Threads in the Thread Pool will perform two steps i.e. fetch the next Task from the Queue and execute it.
+Since all the Threads are executing simultaneously to get the Task from the Queue,Queue has to handle Concurrent modifications and should be Thread Safe.
 To resolve this issue Queue in the Thread Pool is implemented using Blocking Queue.
+
+Producers: The Thread calling execute() i.e. usually our Main thread, web request threads etc.
+Consumers: The 10 worker Threads inside the pool.
+
+We need a solution where
+1.Store the tasks when all 10 threads are busy.
+2.Give tasks one-by-one to worker threads when they are free.
+3.Ensure all of this is thread-safe when many threads submit tasks and many threads execute tasks.
+
+This is where BlockingQueue comes in.
+A BlockingQueue<Runnable> is a thread-safe queue with two special properties.
+
+put(task) :
+If the queue is full, Producer waits (blocks) until space is available.
+
+take() :
+If the queue is empty, Consumer waits (blocks) until a new task is available.
+
+Here only one thread manipulates the internal queue structure at a time due to lock.
+Others wait efficiently using OS-level wait (park/unpark).OS deschedules it and CPU is free for other tasks.
+
+	ExecutorService pool = Executors.newFixedThreadPool(5);
+	public void handleRequest(Request req) {
+		pool.execute(() -> generateReport(req));
+	}
+
+Scenario :
+----------
+At 10:00:00, 20 users hit /generate-report at the same time.
+Our Application thread receiving these requests does.
+20 calls to pool.execute(...) i.e. 20 tasks in BlockingQueue.
+Internally 5 worker threads immediately take 5 tasks and start generateReport.
+Remaining 15 tasks stay in the Queue.
+Whenever a worker finishes a report,It calls take() again.
+Gets the next pending task from the queue.
+
+Scenario :
+----------
+If there are no tasks in the Queue, Then Worker Thred will move to WAITING state.
+This Thread doesn't need CPU and will be suspended.
+When new Task arrives, Queue signal the Thread, WAITING Thread wakes and moves to Runnable state, Picks the Tasks from the Queue and executes it.
 
 Ideal Pool Size :
 -----------------
-If we have created more number of Threads i.e 1000 ,These Threads will be executed based on Time Slicing.
-Solution depends on the type of Task we want to execute.
+If we have created more number of Threads i.e. 1000 , these Threads will be executed based on Time Slicing.
+Solution depends on the type of task we want to execute.
 
-If the Task is CPU Intensive Operation i.e If the Task is Taking time to Execute then the Ideal Pool Size will be the Same as CPU Core Size.
+If the task is CPU intensive operation i.e. If the task is taking time to execute then the ideal Pool Size will be the same as CPU core size.
 Here all the Threads will be executed in the CPU cores independently and none of the Threads are waiting for anything.
-Consider the Scenario where other applications are running on the CPU and mostly we wont get all the CPU Cores.
+Consider the Scenario where other applications are running on the CPU, mostly we wont get all the CPU Cores.
 
 			int processors=Runtime.getRuntime().availableProcessors();
 			ExecutorService execService=Executors.newFixedThreadPool(processors);
@@ -383,10 +429,10 @@ Consider the Scenario where other applications are running on the CPU and mostly
 				executorService.execute(new CPUProcessor());
 			}
 			
-If The Task is an I/O Operation i.e It May be a call to the database or call to an External Service then we need to create a Thread Pool with maximum Size.
-Because If any of the Thread is time Consuming and After Certain time No Threads will be available to pick up the Task from the Queue.
-Here Pool Size will be the Same as the Number of Tasks we are Submitting.
-Too Many Threads will increase the Memory Consumption  too.
+If the task is an I/O Operation i.e. It may be a call to the database or call to an external service then we need to create a Thread Pool with maximum Size.
+Because If any of the Thread is time consuming and after certain time No threads will be available to pick up the task from the Queue.
+Here Pool Size will be the same as the number of tasks we are submitting.
+Too many Threads will increase the Memory Consumption too.
  
 			ExecutorService execService=Executors.newFixedThreadPool(1000);
 			for(int i=0;i<=1000;i++)
@@ -396,11 +442,13 @@ Too Many Threads will increase the Memory Consumption  too.
 			
 Fixed Thread Pool :
 -------------------
-Here Fixed Number of Threads will be created upfront and keep submitting the Task to execute.
-All the Task we Submit are stored inside the particular Queue and the Queue is Blocking Queue to handle Concurrent operations
-All these Threads will fetch the next Task from the Queue one after the another.
+A fixed number of worker threads are created upfront when the thread pool is initialized. 
+Whenever we submit tasks, all the tasks are added to an internal work queue. 
+This queue is a thread-safe BlockingQueue that ensures safe task submission and retrieval in a concurrent environment.
+The worker threads repeatedly take tasks from the queue (blocking if the queue is empty), execute them, and then return to take the next task. 
+Multiple worker threads run in parallel — not one after another — until all submitted tasks are completed.
    
-			ExecutorService execService=Executors.newFixedThreadPool(10);
+			ExecutorService execService=Executors.newFixedThreadPool(10); // ThreadPool Initialization
 			for(int i=0;i<=1000;i++)
 			{
 				executorService.execute(new CPUProcessor());
@@ -408,11 +456,14 @@ All these Threads will fetch the next Task from the Queue one after the another.
 			
 Cached Thread Pool :
 --------------------
-Here we don't have Fixed Number of Thread Pool and we also don't have Queue that holds the task that we Submit.
-Here Queue is replaced by Synchronous Queue and has space for Only for Single Item.
-When we submit the Task,Task will be stored inside the Synchronous Queue and search for the Thread which is already created or which Thread is available.
-If No such Thread is available it will create a New Thread,add it to the Pool and newly added Thread will execute the Task.
-Cached Thread Pool has a mechanism that deletes the Thread once the Thread is idle for 60 Seconds.
+A Cached thread pool does not have a fixed number of threads and does not use a traditional queue to store the submitted tasks. 
+Instead, it uses a SynchronousQueue, which does not store tasks at all and it only hands them off directly from the producer thread to a worker thread.
+
+When a task is submitted, Cached thread pool tries to immediately transfer the task to an existing idle thread. 
+If an idle thread is available, it picks up the task immediately.  
+If no idle thread exists, the pool creates a new thread to execute the task.
+
+Threads that remain idle for 60 seconds are automatically terminated and removed from the pool, allowing the pool to shrink during periods of low load.
 
 			ExecutorService cachedPool=Executors.newCachedThreadPool();
 			for(int i=0;i<=1000;i++)
@@ -422,30 +473,23 @@ Cached Thread Pool has a mechanism that deletes the Thread once the Thread is id
  
 Scheduled Thread Pool :
 -----------------------
-1.scheduledPool.schedule() :
-----------------------------
-scheduledPool can be used for the Tasks to be executed after a certain delay.
+ScheduledThreadPool can be used for the schedule the tasks to be executed after a certain delay.
 
-ExecutorService scheduledPool=Executors.newscheduledThreadPool();
-scheduledPool.schedule();
+		ExecutorService scheduledPool=Executors.newscheduledThreadPool();
+		scheduledPool.schedule();
 		
-2.scheduledPool.scheduleAtFixedRate(10) :
------------------------------------------
-If we want to perform checks like Security Checks,Logging Checks for every 10 Seconds we use Scheduled Thread Pool.
-Here Tasks Keep on executing for every 10 Seconds.
+If we want to perform checks like Security Checks,Logging Checks for every 10 Seconds we use scheduleAtFixedRate().
+Here tasks Keep on executing for every 10 Seconds.
 
-ExecutorService scheduledPool=Executors.newscheduledThreadPool();
-scheduledPool.scheduleAtFixedRate(10);
+		ExecutorService scheduledPool=Executors.newscheduledThreadPool();
+		scheduledPool.scheduleAtFixedRate(10);
 
-Here It will store all the Tasks in the Queue and This Queue is a Delayed Queue.
-In Delayed Queue where Tasks Might not be in Sequence.
-The Tasks will be Distributed based on when the Task needs to be Executed i.e Time Interval.
+Here it will store all the tasks in the Queue and this Queue is a Delayed Queue.In Delayed Queue tasks might not be in sequence.
+The Tasks will be distributed based on when the task needs to be executed i.e. Time interval.
 
-3.scheduledPool.scheduleAtFixedDelay(10) :
------------------------------------------
-If we want to run the Task for every 10 Seconds after the Completion of Previous Task with Delay in Seconds we use scheduledPool.scheduleAtFixedDelay(10,15);
-Consider the Scenario where the Task itself takes 15 Seconds and we cannot say  that run the Task for every 10 Seconds.
-So Here in case of scheduleAtFixedDelay() it will Complete the Task that Takes 15 Seconds and after that it will delay for 10 Seconds and Schedule the next Instance of the Task.
+If we want to run the task for every 10 Seconds after the completion of previous task with delay in seconds we use scheduledPool.scheduleAtFixedDelay(10,15);
+Consider the scenario where the task itself takes 15 Seconds and we cannot say  that run the task for every 10 Seconds.
+So here in case of scheduleAtFixedDelay() it will complete the task that takes 15 Seconds and after that it will delay for 10 Seconds and schedule the next instance of the task.
 
 Single ThreadExecutor :
 -----------------------

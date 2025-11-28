@@ -1782,7 +1782,7 @@ Docker Basics ()
 Docker Commands ()
 Kubernetes Basics ()
 
-Kafka Basics (Done)
+Kafka Basics LimeGuru (Done)
 Kafka Consumer LimeGuru ()
 Kafka Learning Journal ()
 
@@ -1790,30 +1790,30 @@ Design Patterns ()
 SAGA Design Pattern ()
 System Design Concepts ()
 
-JVM architecture + memory model (heap, stack, metaspace)
-HTTP methods (GET, POST, PUT, DELETE, PATCH)
-Idempotent operations
-SOLID Principles
-Pass by value vs pass by reference
-Marker Interfaces
-Internal vs External iteration
-Consumer, Predicate, Function differences & usage
-Parallel sort in Arrays
-Concurrency API improvements → CompletableFuture, ForkJoin
-Anonymous class vs Lambda
-Enum in switch
-Type annotations, repeating annotations
-Nashorn JS engine (removed later)
-Concurrent Accumulators
-Removal of PermGen → Metaspace
-TLS SNI
-ThreadPoolExecutor 
-Load Balancer concepts
-Null & NullPointerException
-@Autowired → byName vs byType
-Circular Dependency Injection solution
-word count
-Occuence of the word in descending order
+JVM architecture + memory model (heap, stack, metaspace)  ()
+HTTP methods (GET, POST, PUT, DELETE, PATCH)  ()
+Idempotent operations ()
+SOLID Principles ()
+Pass by value vs pass by reference ()
+Marker Interfaces ()
+Internal vs External iteration ()
+Consumer, Predicate, Function differences & usage  ()
+Parallel sort in Arrays ()
+Concurrency API improvements → CompletableFuture, ForkJoin  ()
+Anonymous class vs Lambda  ()
+Enum in switch ()
+Type annotations, repeating annotations ()
+Nashorn JS engine (removed later)  ()
+Concurrent Accumulators ()
+Removal of PermGen → Metaspace  ()
+TLS SNI  ()
+ThreadPoolExecutor  () 
+Load Balancer concepts  ()
+Null & NullPointerException  ()
+@Autowired → byName vs byType  ()
+Circular Dependency Injection solution  ()
+word count ()
+Occuence of the word in descending order ()
 
 ROBGL/E/2025/36167
 
@@ -1823,7 +1823,7 @@ Java_Interfaces_SourceFile_Development ()
 Generics ()
 Enum ()
 Serialization and Externalization ()
-MultiThreading ()
+MultiThreading DefogTech ()
 
 Kafka Consumer LimeGuru ()
 Redis Data Types ()
@@ -1831,14 +1831,15 @@ Spring Core Annotations ()
 Spring Web Annotations ()
 
 Java8_Lambda_JavaBrains ()
-Java8 Concepts ()
+Java8 Concepts (Done)
 Java8_Comparator (Done)
 Predefined Functional Interfaces (Done)
 Java 17 Features ()
 
-Spring Boot Basics ()
+Spring Boot Basics Internal Working ()
+Spring Boot Auto Configuration (Done)
 
-Transaction Management ()
+Transaction Management (Done)
 SAGA Design Pattern ()
 
 ----------------------------------------- December 2025  ---------------------------------------------------
@@ -1859,6 +1860,14 @@ Spring Security ()
 Spring AOP ()
 Spring Boot Actuator ()
 Profiles and its Dynamic nature ()
+
+JVM Internal Architecture ()
+Jave Memory Model ()
+Java Memory Management ()
+Garbage Collector ()
+Heap Memory ()
+Metaspace ()
+
 
 
 

@@ -1,0 +1,36 @@
+1.Gzip compression in Nginx
+2.Paralell data Fetching using CountDownLatcher
+3.Don't use ParalellStream because of Fork Join Pool
+4.Cache A Side Pattern
+5.Gauva's Loading Cache
+6.Covering Index
+7.Avoid functions on indexed columns
+8.Follow the leftmost prefix principle
+9.Use covering indexes to avoid table lookups
+10.JVM Optimization
+11.Don't use map.clear() and ConcurrentLinkedQueue.size()
+12.Keyset Pagination
+13.Java Memory Leak Scenarios
+14.Transaction Propagation
+16.@Transctional Drawbacks
+18.JSON Deserialization
+19.Java ThreadPool
+20.Handle Missing Events
+21.Handling Multiple Threads in Spring Boot
+22.Row Level Locking
+23.Spring Data JPA Best Practices
+34.Change Log Levels at Runtime
+29.Operations That absolutely Should NOT Be Placed in Transactions
+25.Idempotency Payment Transaction
+26.Idempotent POST Requests
+27.API Fox for Testing
+28.Understanding How SpringBoot handles 1M requests/s using Virtual Threads
+35.Double Booking System Design
+30.10 ChatGPT Prompts
+31.Parking Lot System Design
+32.Ticketing System System Design
+33.Virtual Threads
+36.Heap Memory
+24.Auto Configuration in Spring
+17.Spring Retry
+15.SAGA Design Pattern

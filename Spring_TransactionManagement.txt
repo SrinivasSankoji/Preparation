@@ -7,10 +7,10 @@
 
 *****************************************************  1.Transaction Management (oracle docs) *******************************************************************
 
-Transaction can be considered as one or more statements that are executed as a single unit.
-Either all the statements are executed or none of the statements are executed.
+Transaction consists of one or more statements that has to be executed as a single unit.
+Either all the statements are successfully executed or none of the statements should take effect.
 When a Connection is created by default it is auto commit enabled mode.
-This means each individual statement is treated as a Transaction and is automatically committed right after it is executed.
+This means each individual statement is treated as a Transaction and is committed automatically after it is executed.
 The way to allow one or more statements to be grouped into a Transaction is to disable the auto commit mode.
 
 	connection.setAutoCommit(false);
@@ -19,23 +19,24 @@ After the auto commit mode is disabled No SQL statements are committed untill we
 
 Dirty Read :
 ------------
-Accessing an updated value that has not been committed is considered as Dirty Read.
-It is possible for that value to be rolled back to its previous value.
+A dirty read occurs when a transaction reads data that has been updated by another transaction but not yet committed.
+The other transaction may later roll back.
+This causes the first transaction contains incorrect or temporary data.
 
-If the Transcation isolation level is set to TRANSACTION_READ_COMMITTED then DBMS does not allow dirty reads to occur.
-i.e. it does not allow the value to be accessed untill it has been committed.
+If the Transcation isolation level is set to TRANSACTION_READ_COMMITTED then DBMS does not allow dirty reads.
+Data is only visible after it is committed.
 
-rolllback() terminates the transaction and returns any values that were modified to their previos values.
+rolllback() terminates the transaction and restores all modified data to its previous state.
 
 ***************************************************** 2.Spring Transaction Management (marcobehler) **************************************************************
 
-In order to understand what Spring Transaction Management does is we need to have rough understanding of what Database Transactions are and why to use them.
+In order to understand what Spring Transaction Management does, we need to have rough understanding of what Database Transactions are and why to use them.
 
 How plain JDBC Transaction Management works :
 ---------------------------------------------
 We need a connection to the Database to start the Transaction.In most of the Enterprise Applications we get the Connection from the Datasource.
-When a Connection is created by default it is auto commit enabled mode.This means each individual statement is treated as Transaction.
-We need to set the auto commit to false so that we are the master of the Transaction.
+When a Connection is created by default it is auto-commit enabled mode.This means each individual statement is treated as Transaction.
+We need to set the auto-commit to false so that we will control the Transaction.
 Plain JDBC Transaction Management code looks like this.
 
 			import java.sql.Connection;
@@ -52,7 +53,7 @@ Plain JDBC Transaction Management code looks like this.
 How Spring’s or Spring Boot’s Transaction Management works :
 ------------------------------------------------------------
 Transaction Management in Spring means how does Spring start,commit or rollback the JDBC Transactions.
-With plain JDBC we only have one way to manage the Transactions ie connection.setAutoCommit(false).
+With the plain JDBC we only have one way to manage the Transactions i.e. connection.setAutoCommit(false).
 With Spring we have many different and more convenient ways to achieve the same.
 We define Transaction Management in Spring programatically either by using TransactionTemplate or by using PlatformTransactionManager.
 
@@ -170,7 +171,7 @@ Due to any reason If any one of the above action fails then other actions should
 
 ********************************************** 5.Spring Boot Transaction Management Propogation (javainuse) **************************************************
 
-Any Application which involves a number of Services which makes call to another Services.
+Any Application consists of number of Services which makes call to another Services.
 Transaction Propagation indicates any Service may or may not participate in the Transaction and how it will behave 
 when calling Service has the Transaction created or not created.
 
@@ -235,13 +236,13 @@ In case of Propogation.MANDATORY calling Service should have a Transaction else 
 
 ********************************************** 6.Spring Boot Transaction Management Rollback ******************************************************************
 
-For an Application Transaction If any action fails then all other actions gets rolled back.
+For a Transaction If any statement fails then all other statements should get rolled back.
 In the previous example we tested the rollback by throwing an unchecked Exception.
-In practical it is checked Exception that gets thrown.
-These are business Exception's based on logic.
+
+In practical it is checked Exception that gets thrown and these are business Exception's based on logic.
 In case of checked Exception previously executed transactions do not get roll back automatically even If we use @Transactional Annotation.
 We need to inform the Application how to handle roll back in case of checked Exception.
-This can be achieved by using RollBackFor Annotation.
+This can be achieved by using rollbackFor Annotation.
 
 Create the custome Exception named InvalidInsuranceAmountException according to our Business Logic.
 
