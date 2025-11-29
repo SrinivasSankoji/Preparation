@@ -328,7 +328,7 @@ To create a Task we need to implement Runnable interface and override its run() 
 					System.out.println(Thread.currentThread().getName());
 				}
 				
-				static class Task implements Runnable
+				public class Task implements Runnable
 				{
 					public void run()
 					{
@@ -499,76 +499,92 @@ Executor Service Life Cycle Methods :
 -------------------------------------
 
 shutDown() :
-To shutDown the Thread Pool we use shutDown().
-shutDown() initializes the Executor Service to shutDown the Thread Pool.
-It Will Not shutDown the Thread Pool Immediately and wait for the Tasks to be executed which are stored inside the Blocking Queue.
-After Calling the shutDown() it will not accept any Task and throws RejectionExecutionException.
+shutDown initiates() the graceful shutdown. New tasks are rejected, but already submitted tasks which are either running or queued in the Thread Pool are allowed to complete.
+Example : Gracefully stop a service or batch job.
+
+		New task submission ❌ rejected immediately
+		Running tasks ✅ allowed to finish
+		Queued tasks ✅ allowed to execute
 
 isShutDown() :
-To Check whether the shutDown has initiated or Not we use isShutDown().
+isShutDown() returns true if shutdown has been initiated.
+
+		✅ true → shutdown process has started
+		❌ false → If the pool still accepting tasks
 
 isTerminated() :
-To Check whether the shutDown has Completed we use isTerminated().
-This will return true If all the Tasks are Completed which are stored inside the Blocking Queue.
+Returns true if all the tasks are finished execution, threads have stopped, and the executor is fully terminated.
+
+		✅ true ONLY if:
+		shutdown() has been called
+		AND
+		ALL tasks completed
+		AND
+		ALL threads stopped
+
 
 awaitTerminattion(10,milliseconds) :
-SomeTimes we don't want to wait till all the Tasks to get Completed.
-Terminate the Thread Pool until all the Tasks being Completed or wait until these Milli seconds.
-Once the Time is reached Terminate the Thread Pool.
+Blocks the calling thread until the executor terminates or the timeout occurs.
+This method does not trigger shutdown() and shutdown() must be called first.
 
 shutDownNow():
-will Complete all Tasks which are Running by these Threads and it will not initiate for the Task to get Execute.
-It will Return all those Task which are stored inside the Blocking Queue.
+Attempts immediate shutdown by interrupting running tasks and clearing the queue.
+It will return all those task which are stored inside the Blocking Queue.
 
 
 ExecutorService Callable/Future :
 ---------------------------------
-We Can Submit the Task by Using execute() of ExecutorsService where as we can define a Task by Using Runnable or Callable Interface.
-By Using Runnable Interface we can define and Submit The Task and it won't return any Result.
-To get the result submitted by the Task we use Callable Interface.
+We can submit the task by using execute() of ExecutorsService where as we can define the task by using Runnable or Callable Interface.
+By using Runnable interface we can define the task and submit the task to executor and it won't return any result.
+Runnable task does not throw any Checked Exception.
 
 		ExecutorService executorService=Executors.newFixedThreadPool(4);
 		executorService.execute(new Task());
+		
+			class Task implements Runnable 
+			{
+			@Override
+				public void run() {
 
-		class Task implements Runnable 
-		{
-		@Override
-		public void run() {
-
+			}
 		}
-	}
-
-execute() expects a Runnable Task where as submit() expects a Callable Task.
-submit() returns Future Object i.e Thread Pool provides a Place Holder for the Future Object and once the value is returned place holder is filled with the New Value.
-
-when we submit the task using submit() of ExecutorsService it will Immediately return the Future Object with Place Holder and we can perform remaining operations.
-Once Main Thread calls the Future Object then the Thread goes into Blocking State.
+Use Runnable only when only side-effects are needed. For example
+Logging
+Writing to DB
+Sending emails
+Updating caches
+Triggering workflows
+		
+To get the result submitted by the task we use Callable Interface.
+submit() returns Future Object.
+Main Thread submits Callable → Thread Pool returns Future immediately → Worker thread runs call() → Result stored internally inside Future → Main thread retrieves result later.
+Once Main Thread calls the get(),the Thread goes into Blocking State if the task is not completed.
 
 		ExecutorService executorService1=Executors.newFixedThreadPool(4);
-		executorService.submit(new CallableTask());
-		System.out.println(Thread.currentThread().getName());
+		Future<String> result = executorService.submit(new CallableTask());
+		// Main thread continues executing OTHER logic
+		System.out.println("Doing other work");
+		// Later
+		String value = result.get();  // blocks if result not ready
 		
 		
 		class CallableTask implements Callable<String>
 		{
-		@Override
-		public String call() throws Exception 
-		{
-			return "Srinivas Sankoji";
-		}
-		
+			@Override
+			public String call() throws Exception 
+			{
+				return "Srinivas Sankoji";
+			}
 		}
 
-One Way to Resolve the Blocking Operation of get() is use the TimeOut.
-get() provides a Overloaded version with Timeout as Parameter.
+One way to resolve the Blocking Operation of get() is to use the TimeOut.
+get() provides a overloaded version with Timeout as parameter.
 		
-		result.get(12,TimeUnit.MILLISECONDS);//Non Blocking Operation
- 
-we can Specifically cancel the Task by Using cancel() of ExecutorService.
-Thread Pool Immediately cancels the task before Thread Pool has Started Working on it.
-If The Task has Started in one or More Thread then cancel() has No Impact.
-We can also check the Current Status of the Task by using isCancelled() and isDone() of ExecutorService.
- 
+		result.get(12,TimeUnit.MILLISECONDS);// Blocks untill Result ready OR Timeout expires4
+		
+Note :
+------
+execute() accepts a Runnable task where as submit() accepts a Callable task.
 
 ******************************************** 20.Fork JoinPool ****************************************************************************************
 
@@ -703,7 +719,7 @@ To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming
 
 ******************************************************** 11.Completable Future *************************************************************
 
-Completable Future is used to Perform Possible Asynchronous Computation and Trigger its Dependent Computations which could also be Asynchronous.
+Completable Future is used to perform asynchronous operations and trigger its dependent operations which could also be asynchronous.
 
 In Java To Perform Non Blocking Operation is Always Easy i.e Create Runnable and run it in Separate Thread.
 Once Runnable calls the run() and after the Execution of run() Thread is Destroyed.

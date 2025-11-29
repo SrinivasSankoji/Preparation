@@ -12,25 +12,27 @@
 12.Keyset Pagination
 13.Java Memory Leak Scenarios
 14.Transaction Propagation
-16.@Transctional Drawbacks
-18.JSON Deserialization
-19.Java ThreadPool
-20.Handle Missing Events
-21.Handling Multiple Threads in Spring Boot
-22.Row Level Locking
-23.Spring Data JPA Best Practices
-34.Change Log Levels at Runtime
-29.Operations That absolutely Should NOT Be Placed in Transactions
-25.Idempotency Payment Transaction
-26.Idempotent POST Requests
-27.API Fox for Testing
-28.Understanding How SpringBoot handles 1M requests/s using Virtual Threads
-35.Double Booking System Design
-30.10 ChatGPT Prompts
-31.Parking Lot System Design
-32.Ticketing System System Design
-33.Virtual Threads
-36.Heap Memory
-24.Auto Configuration in Spring
-17.Spring Retry
-15.SAGA Design Pattern
+15.@Transctional Drawbacks
+16.JSON Deserialization
+17.Java ThreadPool
+18.Handle Missing Events
+19.Handling Multiple Threads in Spring Boot
+20.Row Level Locking
+21.Spring Data JPA Best Practices
+22.Change Log Levels at Runtime
+23.Operations That absolutely Should NOT Be Placed in Transactions
+24.Idempotency Payment Transaction
+25.Idempotent POST Requests
+26.API Fox for Testing
+27.Understanding How SpringBoot handles 1M requests/s using Virtual Threads
+28.Double Booking System Design
+29.10 ChatGPT Prompts
+30.Parking Lot System Design
+31.Ticketing System System Design
+32.Virtual Threads
+33.Heap Memory
+34.Auto Configuration in Spring
+35.Spring Retry
+36.SAGA Design Pattern
+37.Thread per request Model Tomcat
+38.

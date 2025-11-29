@@ -5134,14 +5134,23 @@ Spring Boot Auto Configuration (Done)
 
 28-NOV-2025 :
 -------------
-ExecutorService ()
-Spring Boot Internal Working ()
+ExecutorService (Done)
 
 29-NOV-2025 :
 -------------
-JVM Internal Working ()
+Spring Boot Internal Working (Done)
 
 30-NOV-2025 :
 -------------
-Java Heap Memory ()
+Completable Future ()
+Fork JoinPool ()
 
+****************************************************** December 2025  ******************************************************************
+
+01-DEC-2025 :
+-------------
+JVM Internal Working ()
+
+02-DEC-2025 :
+-------------
+Java Heap Memory ()

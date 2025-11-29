@@ -1,5 +1,5 @@
-1.Internal Working 				(Java Guides,Sandeep Kudterkar Tech Geek,Gain Java Knowledge,Code With Sunil | Code Smarter, not harder)             		[26-NOV-2025]	()
-2.Auto configuration			(Alexander Obregon)             												[26-NOV-2025]	(Done)			
+1.Internal Working 				(Java Guides,Sandeep Kudterkar Tech Geek,Code With Sunil)             		[29-NOV-2025]	(Done)
+2.Auto configuration			(Alexander Obregon)             											[26-NOV-2025]	(Done)			
 3.Profiles				
 4.Live Reload 													
 5.Starter parent								
@@ -20,14 +20,124 @@
 
 ###################################################################### 1.Internal Working ######################################################################
 
+		@SpringBootApplication
+		public class Application {
+			public static void main(String[] args) {
+				SpringApplication.run(Application.class, args);
+			}
+		}
 
+Every Spring Boot application starts from the SpringApplication.run() method.
+@SpringBootApplication is a meta-annotation and is equivalent to using these three annotations together.
+
+@ComponentScan
+@EnableAutoConfiguration
+@Configuration
+
+1.@ComponentScan :
+------------------
+@ComponentScan can be used to scan the packages for the Spring Components.
+The classes that are marked with any of the Annotations like @Component, @Service, @Repository, @Controller etc and registers them as a Spring Beans in the ApplicationContext.
+@ComponentScan without argument scans the current package and all of its sub-packages.
+
+2.@EnableAutoConfiguration :
+----------------------------
+Based on what is defined on the classpath and the configuration properties. Spring Boot automatically configure the beans which are required for an Application.
+
+3.@Configuration :
+------------------
+Marks this class as a source of bean definitions.
+It’s like a modern replacement for XML configuration.
+Methods inside this class which are annotated with @Bean will define as Bean in the Spring container.
+
+	@SpringBootApplication
+	public class Application {
+		@Bean
+		public ModelMapper modelMapper() {
+			return new ModelMapper();
+		}
+	}
+
+Here modelMapper() becomes a Bean in the application context.
+
+Note:
+----
+Spring must treat this Application class as a source of bean definitions,otherwise
+
+1.@Bean methods inside this class will not work.
+2.Spring Boot couldn’t use this class as a base configuration entry point.
+3.Auto-configuration importing would fail.
+
+Note:
+-----
+Both @ComponentScan and @EnableAutoConfiguration are processed together during the configuration phase.
+@ComponentScan and @EnableAutoConfiguration both contribute Bean definitions to the ApplicationContext before any beans are instantiated.
+Logically, @ComponentScan is registers user-defined Beans,While @EnableAutoConfiguration registers framework-provided Beans.
+And any user-defined Bean always overrides an auto-configured Bean when both exist.
+
+			SpringApplication.run()
+			  ↓
+			Parse Application class (Based on ClassPath Inspection)
+			  ↓
+			Process all annotations:
+			   - @Configuration
+			   - @ComponentScan
+			   - @EnableAutoConfiguration
+			  ↓
+			Register all BeanDefinitions
+			   (from scans and auto-config)
+			  ↓
+			Resolve conflicts
+			  ↓
+			Create Beans
+
+When SpringApplication.run(Application.class, args) is called, Spring Boot lifecycle will get started.
+It determines the application type and based on application type creates the ApplicationContext i.e. IOC Container.
+
+			Classpath Inspection
+				   |
+				   |
+			Servlet APIs found? --> YES ---> SERVLET
+				   |
+				   NO
+				   |
+			Reactive APIs found? --> YES ---> REACTIVE
+				   |
+				   NO
+				   |
+				 NONE
+				 
+Final structure will be 
+
+
+			main()
+			   ↓
+			SpringApplication.run()
+			   ↓
+			Deduce WebApplicationType
+			   ↓
+			Create ApplicationContext
+			   ↓
+			REGISTER Application.class as configuration source
+			   ↓
+			PARSE configuration annotations
+			   ↓
+			- @Configuration
+			- @ComponentScan
+			- @EnableAutoConfiguration
+			   ↓
+			SCAN components
+			   ↓
+			LOAD auto-configurations
+			   ↓
+			REGISTER bean definitions (not instances yet)
 
 
 ###################################################################### 2.Auto configuration ####################################################################
 
 Spring Boot’s auto-configuration is one of the standard feature allowing developers to build applications with minimal boilerplate code.
-Auto-configuration is a mechanism that automatically configures Ccomponents based on the libraries present on the classpath and certain predefined conditions.
-By doing so, it eliminates the need for developers to manually set up configurations for common use cases.
+Auto-configuration is a mechanism that automatically configures Components based on the libraries present on the classpath and certain predefined conditions.
+It eliminates the need for the developers to manually set up the configurations for common use cases.
 This is achieved through a combination of classpath scanning, metadata declarations, and conditional logic.
 The feature integrates deeply with Spring’s core framework, using annotations and runtime checks to decide what configurations to apply dynamically.
 Auto configuration aims to reduce boilerplate code.
