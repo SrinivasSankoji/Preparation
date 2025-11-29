@@ -1,0 +1,251 @@
+1.Introduction										[24-DEC-2020]  (Done)
+2.interface methods                                 [24-DEC-2020]  (Done)
+3.interface naming conflicts                        [24-DEC-2020]  (Done)
+4.Marker interface                                  [24-DEC-2020]  (Done)
+5.adaptor classes                                   [24-DEC-2020]  (Done)
+6.Java source file structure                        [24-DEC-2020]  (Done)
+7.import statement                                  [24-DEC-2020]  (Done)
+8.static import                                     [24-DEC-2020]  (Done)
+9.extended for loop                                 [24-DEC-2020]  (Done)
+10.Abstract Class and Methods(crunchify)			[09-DEC-2021]  ()
+
+#############################################################  1.introduction #######################################################################################
+
+Definition One :
+----------------
+Any service requirement specification is by default considred as an Interface.
+
+JDBC API acts as a requirement specification to develop Database driver.
+To develop our own Database driver we have to provide an implementation for JDBC API.
+
+Servlet API acts as a requirement specification to develop Web server.
+To develop our own Web server we have to provide an implementation for Servlet API.
+
+Definition Two :
+----------------
+Client come up with the set of services.
+From the Client point of view,Interface defines the set of services what the Client is expecting where as
+From the Service Provider point of view Interface defines the set of services what they are offering.
+Here Interface acts as a contract between Client and Service Provider.
+
+Definition Three :
+------------------
+every method present inside interface is by default public and abstract whether we declared it or not.
+Hence an Interface is considered as pure abstract Class.
+
+Whenever we are implementing an Interface,we have to provide implementation for each and every method otherwise declare the class as Abstract.
+Every method present inside interface is by default public and abstract whether we declare it or not.
+
+extends vs implements :
+-----------------------
+Class can extend only only one class at a time.
+Class can implement any number of interfaces simultaneously.
+interface can extend any number of interfaces simultaneously.
+Class can extend only one Class and implement any number of interfaces simultaneously.
+
+#############################################################  2.interface methods  ###############################################################################
+
+every method present inside interface is by default public and abstract.
+To make this method available to every implementation class we declare the method as public.
+Since Child class is responsible to provide the implementation we declare the method as abstract.
+
+An interface can contain variable.
+Main purpose of interface variables is to define the global level constant.
+every variable present inside interface is by default public static and final whether we are declaring it or not.
+variables present inside interface should perform initialization at the time of declaration only other wise we get CTE.
+
+#############################################################  3.interface naming conflicts  ####################################################################
+
+method naming conflicts :
+-------------------------
+If two interfaces contains a method with same signature and same return type then in the implementation class only one method implementation is enough.
+
+	public interface A {
+	public String draw();
+	}
+	
+	public interface B {
+	public String draw();
+	}
+	
+	public class C implements A,B {
+
+	public static void main(String[] args) {
+		C c=new C();
+		System.out.println(c.draw());//Hello
+	}
+
+	@Override
+	public String draw() {
+		return "Hello";
+	}
+	}
+	
+If two interfaces contains a method with same name but different argument types then we have to provide implementation for two methods.
+If two interfaces contains a method with same signature but different return types, then it is impossible to provide implementation in the same class.
+we have to provide different implementation class for the two interfaces.
+
+	public interface P {
+	public String read();
+	}
+	
+	public interface Q {
+	public void read();
+	}
+	
+	public class R implements P,Q{
+	public static void main(String[] args) {
+	}
+	@Override
+	public void read() { //CTE
+	}
+	}
+
+Note :
+------
+Java class can implement any number of interfaces simultaneously except interface contains a method with same signature but different return types.
+
+variable naming conflicts :
+---------------------------
+every variable present inside Interface is public static final.
+If Two interfaces contains a variable with same name then we may get the variable name conflicts.
+we can resolve this by using Interface Name.
+
+	public interface A {
+	public String draw();
+	
+	int x=23;// By default it is public static final
+	}
+	
+	public interface B {
+	public String draw();
+	
+	int x=15;// By default it is public static final
+	}
+	
+	public class C implements A,B {
+
+	public static void main(String[] args) {
+		C c=new C();
+		System.out.println(c.draw());// Hello
+		System.out.println(B.x); // 15
+	}
+
+	@Override
+	public String draw() {
+		return "Hello";
+	}
+}
+
+#############################################################  4.marker interface  ################################################################################
+
+An interface does not contain any method and by implementing that interface If our object gets some ability then it is said to be Marker interface.
+
+SingleThreadedModel interface
+RandomAccess interface
+Clonable interface
+Serializable interface
+
+Marker interface is also known as Marker or Tag or Ability interface.
+
+By implementing Serializable interface we can be able to send the object across the network and we can save the object to the file.
+By implementing Clonable interface our object can be able to produce exactly duplicate object.
+
+To send the object across the network 3 to 4 langauges are required and several line of coding is required.
+If someone is there to provide the ability to send the object across the network then implementation is not required.
+JVM is responsible to provide the ability.
+It is also possible to create marker interface but customization of JVM is required.
+
+#############################################################  5.adaptor classes  ##################################################################################
+
+Adaptor class is a simple Java class that implements an interface with an empty implementation.
+Creating an obejct for Adaptor class is not required and declared them as an abstract.
+
+Note :
+------
+GenericServlet,HttpServlet are Adaptor Classes in Servlet.
+
+interface vs abstract class :
+-----------------------------
+interface :
+-----------
+1.If we don't know about the implementation and we have a requirement specification then we go for Interface.
+2.every method present inside interface is by default public and abstract.
+3.we cannot declare interface method with other modifiers except public and abstract.
+4.every variable present interface is public,static and final.
+5.For interface variables we should perform initialization.
+6.Inside interface we cannot take instance and static blocks.
+7.Inside interface we cannot take constructor.
+
+abstract class :
+----------------
+1.If we know the implementation but not completely then we go for abstract class.
+2.There is no restriction for methods present inside abstract class.
+3.we can declare abstract methods with other modifiers.
+4.There is no restriction for variables present in abstract class.
+5.It is not required to perform initialization for abstract variables.
+6.Inside abstract class we can take both static and instance blocks.
+7.Inside abstract class we can take constructor.
+
+Note :
+------
+Abstract class constructor will be executed whenever we are creating child class object to perform initialization of child class object.
+
+#############################################################  6.Java source file structure  ####################################################################
+
+A Java program can contain any number of java classes but atmost one class can be declared as public.
+If there is a public class then name of the class and name of the program should be same other wise we get CTE.
+If there is no public class then we can give any name for the source file and is are no restriction.
+
+Note :
+------
+It is highly recomended to write only one class per source file and name of the program should be same as name of the source file.
+Advantage is it increases the readability and maintainability of the program.
+
+#############################################################  7.import statement  #############################################################################
+
+Whenever we are using import statement it is not required to use the fully qualified name of the class and we can use the Class or Interface name directly.
+While resolving classname compiler always consider the precedence in the following order 
+
+1.Explicit class import
+2.current working directory (same package)
+3.implicit class import
+
+Difference between include<stdio.h> and import statement :
+----------------------------------------------------------
+Whenever we are executing the above line i.e #include<stdio.h> all the header files i.e input and output Header files will be loaded at the time of begining i.e Static Loading.
+In case of import that particular .class files will be loaded  i.e Load on Demand.
+
+
+#############################################################  8.static import   ##############################################################################
+
+Whenever we are using static import it is not required to use the class name and we can access the static methods directly.
+
+	public class Test {
+	static String name="Bhaumik";
+	public static void main(String[] args) {
+		System.out.println(Test.name.length());
+	}
+	}
+	
+Test is the name of the Class.
+name is static variable of type String present in Test Class.
+length() is present in String Class.
+
+System.out.println() :
+----------------------
+System is a class present in java.lang package.
+out is a static variable of type printStream present in System class.
+println() is a method present in printStream class.
+
+#############################################################  9.extended for loop  ############################################################################
+
+Extended for loop also known as enhanced for loop or for-each loop is introduced in 1.5 version.
+It is applicable only for Arrays and Collections.
+By using extended For Loop we can retreive all the elements of Arrays and Collections and we cannot modify the elements.
+
+
+
+
+
+
