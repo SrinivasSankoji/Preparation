@@ -1,11 +1,215 @@
-1.Open API 3.0 												(Daily Code Buffer)				[23-JUN-2021]  ()
-2.Dockerize SpringBoot Application using Maven PlugIn       (Daily Code Buffer)   			[23-JUN-2021]  ()
-3.Docker Image without Dockerfile                           (Daily Code Buffer)				[23-JUN-2021]  ()
-4.SpringBoot Exit Codes                                     (Daily Code Buffer)				[23-JUN-2021]  ()
-5.Multiple Main Class in SpringBoot                         (Daily Code Buffer)				[23-JUN-2021]  ()
-6.JaCoCo with SpringBoot                                    (Daily Code Buffer)				[23-JUN-2021]  ()
-7.Running SpringBoot Application using Terminal             (Daily Code Buffer)				[23-JUN-2021]  (Done)
-8.Spring Initializer                                        (Daily Code Buffer)				[23-JUN-2021]  ()
+1.Internal Working 				(Java Guides,Sandeep Kudterkar Tech Geek,Code With Sunil)             		[29-NOV-2025]	(Done)
+2.Auto configuration			(Alexander Obregon)             											[26-NOV-2025]	(Done)			
+3.Profiles				
+4.Live Reload 													
+5.Starter parent								
+6.Starter templates								
+7.Multi-module project																				
+8.Logging										
+9.DevTools										
+10.WAR Packaging
+11.ResponseBodyEmitter
+12.SseEmitter							
+13.Error Handling								
+14.HATEOAS										
+15.@Async      						  			
+16.Async Controller								
+17.Caching
+18.@Retry																	
+19.Ehcache
+20.SpringBoot Exit Codes                                     (Daily Code Buffer)				[23-JUN-2021]  ()
+21.Multiple Main Class in SpringBoot                         (Daily Code Buffer)				[23-JUN-2021]  ()
+22.Running SpringBoot Application using Terminal             (Daily Code Buffer)				[23-JUN-2021]  (Done)
+23.Spring Initializer                                        (Daily Code Buffer)				[23-JUN-2021]  ()
+
+###################################################################### 1.Internal Working ######################################################################
+
+		@SpringBootApplication
+		public class Application {
+			public static void main(String[] args) {
+				SpringApplication.run(Application.class, args);
+			}
+		}
+
+Every Spring Boot application starts from the SpringApplication.run() method.
+@SpringBootApplication is a meta-annotation and is equivalent to using these three annotations together.
+
+@ComponentScan
+@EnableAutoConfiguration
+@Configuration
+
+1.@ComponentScan :
+------------------
+@ComponentScan can be used to scan the packages for the Spring Components.
+The classes that are marked with any of the Annotations like @Component, @Service, @Repository, @Controller etc and registers them as a Spring Beans in the ApplicationContext.
+@ComponentScan without argument scans the current package and all of its sub-packages.
+
+2.@EnableAutoConfiguration :
+----------------------------
+Based on what is defined on the classpath and the configuration properties. Spring Boot automatically configure the beans which are required for an Application.
+
+3.@Configuration :
+------------------
+Marks this class as a source of bean definitions.
+It’s like a modern replacement for XML configuration.
+Methods inside this class which are annotated with @Bean will define as Bean in the Spring container.
+
+	@SpringBootApplication
+	public class Application {
+		@Bean
+		public ModelMapper modelMapper() {
+			return new ModelMapper();
+		}
+	}
+
+Here modelMapper() becomes a Bean in the application context.
+
+Note:
+----
+Spring must treat this Application class as a source of bean definitions,otherwise
+
+1.@Bean methods inside this class will not work.
+2.Spring Boot couldn’t use this class as a base configuration entry point.
+3.Auto-configuration importing would fail.
+
+Note:
+-----
+Both @ComponentScan and @EnableAutoConfiguration are processed together during the configuration phase.
+@ComponentScan and @EnableAutoConfiguration both contribute Bean definitions to the ApplicationContext before any beans are instantiated.
+Logically, @ComponentScan is registers user-defined Beans,While @EnableAutoConfiguration registers framework-provided Beans.
+And any user-defined Bean always overrides an auto-configured Bean when both exist.
+
+			SpringApplication.run()
+			  ↓
+			Parse Application class (Based on ClassPath Inspection)
+			  ↓
+			Process all annotations:
+			   - @Configuration
+			   - @ComponentScan
+			   - @EnableAutoConfiguration
+			  ↓
+			Register all BeanDefinitions
+			   (from scans and auto-config)
+			  ↓
+			Resolve conflicts
+			  ↓
+			Create Beans
+
+When SpringApplication.run(Application.class, args) is called, Spring Boot lifecycle will get started.
+It determines the application type and based on application type creates the ApplicationContext i.e. IOC Container.
+
+			Classpath Inspection
+				   |
+				   |
+			Servlet APIs found? --> YES ---> SERVLET
+				   |
+				   NO
+				   |
+			Reactive APIs found? --> YES ---> REACTIVE
+				   |
+				   NO
+				   |
+				 NONE
+				 
+Final structure will be 
+
+
+			main()
+			   ↓
+			SpringApplication.run()
+			   ↓
+			Deduce WebApplicationType
+			   ↓
+			Create ApplicationContext
+			   ↓
+			REGISTER Application.class as configuration source
+			   ↓
+			PARSE configuration annotations
+			   ↓
+			- @Configuration
+			- @ComponentScan
+			- @EnableAutoConfiguration
+			   ↓
+			SCAN components
+			   ↓
+			LOAD auto-configurations
+			   ↓
+			REGISTER bean definitions (not instances yet)
+
+
+###################################################################### 2.Auto configuration ####################################################################
+
+Spring Boot’s auto-configuration is one of the standard feature allowing developers to build applications with minimal boilerplate code.
+Auto-configuration is a mechanism that automatically configures Components based on the libraries present on the classpath and certain predefined conditions.
+It eliminates the need for the developers to manually set up the configurations for common use cases.
+This is achieved through a combination of classpath scanning, metadata declarations, and conditional logic.
+The feature integrates deeply with Spring’s core framework, using annotations and runtime checks to decide what configurations to apply dynamically.
+Auto configuration aims to reduce boilerplate code.
+For example, if we include a web starter dependency, 
+Spring Boot automatically configures a web server, an MVC framework, and other supporting components without requiring explicit configuration in the application code.
+
+
+How Does Auto-Configuration Work :
+----------------------------------
+The process of auto-configuration can be broken down into several key steps that happen during the startup of a Spring Boot application.
+
+1.Classpath Scanning :
+----------------------
+When a Spring Boot application starts, it scans the classpath for available libraries and components. 
+This step is foundational to auto-configuration because the presence or absence of certain classes determines which configurations should be applied.
+
+If the spring-boot-starter-data-jpa dependency is on the classpath, Spring Boot identifies that it should configure a DataSource bean and a JPA-based repository infrastructure.
+Similarly, the presence of spring-boot-starter-web triggers configurations for an embedded web server, a DispatcherServlet and REST controllers.
+This detection is possible because Spring Boot checks for the presence of specific classes on the classpath using conditional annotations in the auto-configuration classes.
+
+Role of META-INF :
+------------------
+In Spring Boot versions prior to 2.7, the META-INF/spring.factories file was central to the auto-configuration process. 
+Located in the META-INF directory of JAR files, this file contained a list of all auto-configuration classes that Spring Boot should consider.
+
+	org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
+    org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration,\
+    org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+	
+However, starting from Spring Boot 2.7 and above, the mechanism has shifted to using the META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports file. 
+This change improves startup performance by streamlining the process of identifying auto-configuration classes, reducing the overhead of parsing spring.factories.
+
+	org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
+    org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+	
+When the application starts, Spring Boot reads these files and loads all the specified auto-configuration classes. 
+Each class contains logic to set up application components conditionally.
+
+Conditional Configuration with Annotations :
+--------------------------------------------
+Spring Boot uses conditional annotations to decide if specific configurations should be applied, depending on the runtime state of the application. 
+Some commonly used conditional annotations include
+
+@ConditionalOnClass: Checks if a specific class is present on the classpath.
+@ConditionalOnMissingBean: Registers a bean only if a similar bean has not already been defined in the application context.
+@ConditionalOnProperty: Applies a configuration if a specific property is set in the application's configuration files.
+
+	@AutoConfiguration
+	@ConditionalOnClass(javax.sql.DataSource.class)
+	@ConditionalOnProperty(prefix = "spring.datasource", name = "url")
+	public class DataSourceAutoConfiguration {
+
+		@Bean
+		@ConfigurationProperties(prefix = "spring.datasource")
+		public DataSource dataSource() {
+			return DataSourceBuilder.create().build();
+		}
+	}
+This configuration checks whether the javax.sql.DataSource class is available on the classpath, which happens when a database dependency is included in the project. 
+The presence of this class signals to Spring Boot that a data source can be configured.
+The @ConditionalOnProperty annotation activates the configuration only if the spring.datasource.url property exists in either application.properties or application.yml. 
+That check keeps the configuration aligned with the database connection settings defined for the application. 
+The @ConfigurationProperties annotation binds external configuration properties such as spring.datasource.url and spring.datasource.username to the DataSource bean, 
+allowing connection details to live outside the source code.
+
+These annotations work together so that Spring Boot automatically configures the DataSource bean whenever the right conditions are met.
 
 
 **************************************** 7.Running SpringBoot Application using Terminal ****************************************************
@@ -16,8 +220,4 @@ There are two options to run the Springboot Application from Command Line
 2.mvn -Dmaven.skip.test=true spring-boot:run
 
 
-**************************************** 8.Spring Initializer (Daily Code Buffer) ***********************************************************
-
-
-
-
+ 																				

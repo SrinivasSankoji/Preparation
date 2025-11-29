@@ -15,7 +15,8 @@ beginnersbook
 boraji
 javapapers
 
-🟦 Core Java
+Core Java :
+-----------
 Object class methods
 Difference between Interface vs Abstract Class
 Clone – shallow vs deep, which one used in project
@@ -63,7 +64,8 @@ Immutable object (why getters needed)
 Marker Interfaces
 Internal vs External iteration
 
-🟩 Java 8 Features
+Java 8 Features :
+-----------------
 Java 8 features list – which used in project
 Lambda expressions – syntax, usage
 Functional Interfaces → before Java 8 vs after
@@ -88,7 +90,8 @@ Removal of PermGen → Metaspace
 TLS SNI
 ThreadPoolExecutor, Load Balancer concepts
 
-🟨 Spring
+Spring :
+--------
 IOC – Dependency Injection (constructor vs setter)
 Bean scopes
 @Autowired → byName vs byType
@@ -100,7 +103,8 @@ Parent annotations (@Controller, @Service, @Repository)
 BeanFactory vs ApplicationContext
 Which injection is best and why?
 
-🟧 Spring Boot
+Spring Boot :
+-------------
 Basics: Introduction, Starter parent, Starter templates, Auto-configuration
 Annotations: @SpringBootApplication, @EnableAutoConfiguration, @ComponentScan, Profiles, @Qualifier, @CrossOrigin, @RequestMapping variants, etc.
 Features: Logging, DevTools, WAR Packaging, Actuator, Security (BasicAuth, JWT, OAuth2), Caching (EhCache, @Cacheable), Retry, Async (@Async, Async Controllers)
@@ -109,8 +113,9 @@ Data: Spring Boot + Hibernate, Spring Data JPA, H2 Database
 Testing: JUnit, Mockito, MockMVC, @SpringBootTest, @DataJpaTest, @AutoConfigureMockMvc
 Profiles & Configuration: application.yml vs application.properties, disabling embedded Tomcat, connecting to external DB, config server
 Performance: Live Reload, Performance Logs
-
-🟥 Microservices
+ 
+Microservices :
+---------------
 Microservices basics – pros & cons
 Monolithic vs Microservices architecture
 Service discovery (Eureka)
@@ -127,13 +132,15 @@ Swagger for API docs
 CI/CD pipelines
 Fault tolerance
 
-🌐 Web Services
+Web Services :
+--------------
 REST vs SOAP basics
 REST annotations: @RestController vs @Controller, @RequestMapping, @RequestParam vs @PathParam
 Best practices for REST APIs
 Security (JWT, OAuth2, BasicAuth)
 
-🟪 Hibernate
+Hibernate :
+-----------
 Basics of Hibernate, ORM concepts
 States of an Object (Transient, Persistent, Detached)
 Caching (1st level, 2nd level)
@@ -145,7 +152,8 @@ Dirty Read, Phantom Read
 One-to-One, One-to-Many, Many-to-One, Many-to-Many mappings
 HQL & Named Queries
 
-🟩 Database (Oracle/SQL)
+Database (Oracle/SQL) :
+-----------------------
 Joins (inner, outer, left, right, self join)
 Indexing → types, performance impact
 Primary key vs Foreign key vs Unique key
@@ -155,7 +163,8 @@ SQL vs NoSQL differences
 Pagination handling in SQL/JPA
 Composite keys
 
-⚙️ Tools & DevOps
+Tools & DevOps :
+----------------
 Git (branching, tags, reset vs revert vs rebase, hooks, pull request, branch protection)
 Maven (lifecycle, package vs install)
 Log4j logging levels
@@ -166,15 +175,16 @@ SonarQube
 Cloud (AWS, PCF, OpenShift)
 Splunk / Kibana logs
 
-🏗️ Design Patterns
+Design Patterns :
+-----------------
 Singleton (thread safe, breaking scenarios)
 Factory, Abstract Factory
 Builder pattern
 Decorator, Chain of Responsibility, Observer
 CQRS, Saga, Circuit Breaker (microservices)
 
-Telephonic Interview Questions (Grouped)
-Core Java & Concurrency
+Telephonic Interview Questions :
+--------------------------------
 Deadlock solution
 instanceof() use (Done)
 HashMap object as key — how?
@@ -244,7 +254,6 @@ Docker & Kubernetes basics
 Jenkins pipelines (CI/CD)
 Centralized logs (Splunk/Kibana)
 
-Company-Specific Questions
 Spring IoC (Done)
 Java memory management
 Load factor in HashMap (Done)
@@ -272,7 +281,8 @@ ArrayList custom sort
 HashSet specs
 JDK vs JRE
 
-BluePal
+BluePal :
+---------
 Joins
 Security addressed / PIN
 Blob storage
@@ -286,7 +296,8 @@ MVC architecture
 CI/CD
 Event-driven architecture
 
-GlobalLogic
+GlobalLogic :
+-------------
 Java versions
 static (Done)
 Constructor chaining (Done)
@@ -314,7 +325,8 @@ Fault tolerance
 Load balancer
 Test cases
 
-Tech Mahindra (set 1)
+Tech Mahindra :
+---------------
 Collections
 HashSet vs TreeSet
 HashMap iteration
@@ -333,8 +345,15 @@ Interface vs Abstract class
 Java 8 features (Lambdas, Streams)
 String vs StringBuffer
 Circuit Breaker pattern
+AOP
+Factory pattern
+Spring Boot patterns
+Enum
+Parameterized constructor invocation
+Aspect vs AOP
 
-Cognizant
+Cognizant :
+-----------
 Microservices architecture & communication
 Auth in microservices
 Spring Boot annotations
@@ -357,7 +376,8 @@ Constructor chaining (Done)
 Immutable class
 Lambda expression
 
-Nisum Consulting
+Nisum Consulting :
+------------------
 Java 8 features / Streams
 Collectors.groupingBy
 Serialization
@@ -375,7 +395,8 @@ Inter-service communication
 Messaging system
 Deployment & CI/CD
 
-Capgemini
+Capgemini :
+-----------
 Java 8 features
 Intermediate vs terminal operations
 Microservices design patterns
@@ -388,7 +409,8 @@ CompletableFuture
 REST with @RequestBody example
 IoC types & differences (duplicate in later section)
 
-Ascendion
+Ascendion :
+-----------
 Abstraction
 Interface standards
 Composition
@@ -415,7 +437,8 @@ Shallow vs deep cloning
 Marker interface & purpose
 “Employee salary greater than one employee salary” (streams problem)
 
-Mphasis
+Mphasis :
+---------
 Java 8 features
 Optional class methods
 Exception handling in REST controller
@@ -428,7 +451,8 @@ Maven lifecycle
 Package vs Install
 Fetch 1 crore rows with performance
 
-Bluevoir
+Bluevoir :
+----------
 HashMap & Collections
 Singleton pattern
 Chain of Responsibility
@@ -438,7 +462,8 @@ Thread/Heap dumps & log files
 Sum as two primes
 Adjacent difference equal problem
 
-Genpact
+Genpact :
+---------
 TreeSet with custom object
 Singleton breakage
 CopyOnWriteArrayList
@@ -448,7 +473,8 @@ Dept-wise max salary (streams)
 Constructor interview questions
 groupingBy, partitioningBy, toMap
 
-Persistent
+Persistent :
+------------
 @ResponseBody, ResponseEntity
 Marker interface
 Spring Boot internals
@@ -461,7 +487,8 @@ volatile
 Reverse string w/o moving specials: a$bc%de
 Primary vs Unique key; Joins (2nd section)
 
-Accolite Digital
+Accolite Digital :
+------------------
 AtomicInteger
 CyclicBarrier
 CQRS
@@ -477,7 +504,8 @@ G1 GC
 HashMap sort by values (Done)
 Custom Actuator
 
-LTTS
+LTTS :
+------
 Hibernate identity generators
 Start ID at 1000
 Transaction propagation levels
@@ -486,7 +514,8 @@ JSON↔XML API communication
 JSON vs XML
 Microservice communication
 
-Altimetrik
+Altimetrik :
+------------
 Convert stream to object
 Missing number
 Byte→Char questions
@@ -506,7 +535,8 @@ Thread-safe Singleton
 Calling REST frequently with same response — handle caching/idempotency
 @RequestMapping
 
-Wipro
+Wipro :
+-------
 JWT
 Immutable class
 Hibernate connection via JPA Tx Manager
@@ -517,11 +547,13 @@ Custom validation in Spring
 JMS — which server supports
 HTTP status codes
 
-Cyient
+Cyient :
+--------
 Feign Client
 Spring Cloud Config
 
-VyTech
+VyTech :
+--------
 Hibernate
 byte, int, char
 sysout
@@ -535,39 +567,36 @@ Private constructor
 Immutable class
 Overriding with final/default
 
-CitiusTech
+CitiusTech :
+------------
 RestTemplate vs Feign
 Interface scenarios
 Parent–child exception scenarios
 ArrayList vs LinkedList
 Self-join
 
-Tech Mahindra (set 2)
-AOP
-Factory pattern
-Spring Boot patterns
-Enum
-Parameterized constructor invocation
-Aspect vs AOP
-
-ValueLabs
+ValueLabs :
+-----------
 ExecutorService
 Same request multiple times → scenario handling
 JUnit test cases
 1st/2nd level cache scenario
 
-GSPANN
+GSPANN :
+--------
 wait(), sleep(), notify()
 Immutable class
 
-ITC Infotech
+ITC Infotech :
+--------------
 Factory pattern
 Docker commands
 REST API returns XML & JSON
 Right-angle program
 ExecutorService
 
-IvyCompTech
+IvyCompTech :
+-------------
 Overriding w.r.t. exceptions
 ArrayList & LinkedList in depth
 How Streams work internally
@@ -576,34 +605,40 @@ Encapsulation
 Parking lot use case
 foreach vs stream.foreach (Done)
 
-UST Global
+UST Global :
+------------
 SQL basics
 Group by department
 Vowel count
 equals() & hashCode() (Done)
 Abstract Factory pattern
 
-Virtusa
+Virtusa :
+---------
 anyMatch()
 Nearest number
 Inner class
 
-Birlasoft
+Birlasoft :
+-----------
 SQL queries
 Java 8 Comparator (Done)
 
-CGI
+CGI :
+-----
 toMap()
 Inheritance & serialization
 
-HCL
+HCL :
+-----
 Pair sum equals X
 Squares by position
 Custom object as HashMap key
 LinkedList vs ArrayList
 Sort map by values
 
-Mindgate
+Mindgate :
+----------
 JVM internal architecture
 Memory management
 Detailed JVM breakdown
