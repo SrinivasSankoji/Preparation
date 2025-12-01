@@ -1,0 +1,189 @@
+1.Hashing 													(Coding Simplified)   			[24-JUN-2024]  (Done)
+2.Hashing 													(Sudo Code)   					[24-JUN-2024]  (Done)
+3.Consistent Hashing 										(Sudo Code)   					[24-JUN-2024]  (Done)
+
+############################################################### 1.Hashing(Coding Simplified)  ###############################################################
+
+Hashing can be used to improove the performance of the System.
+
+Advantages :
+------------
+1.Hashing can be used in indexing the data.
+Consider the scenario of the Database where we have 1 Million Users.
+If we want to search for the particular name then it will search in 1 Million Data.
+Here the data is in random order and it will take O(n) time to search the data.
+If we want to perform the search faster then index the name column.
+
+Hashing is nothing but a way of assigning a unique value for an Object by applying some algorithms/functions on its properties.
+Hashing will have a hash function which accepts the key and generates the hash value and stores it into Hash Table.
+Whenever we search for any name It will get the hash value for the given name and based on hash value it will search for that particular value in the Hash Table.
+
+2.Cryptographic Application
+Hashing is one of the way to enable security during the process of message transmission.
+Consider the scenario where the passowrd has to be transmitted over the network.
+We can apply the MD5 hash function and transfer through it through the Netwrok call.
+
+3.Sharding the Keys :
+
+
+4.Duplicate records :
+
+
+Hashing :
+---------
+Hashing can be done by using Hash function and Hash Table.
+Consider the below values which are stored in List and now we want to place it through hash function.
+ 
+21
+56
+72
+39
+48
+96
+
+Consider the size of the Hash Table is 10.
+
+0  
+1  21
+2  72
+3
+4
+5
+6  56,96
+7
+8  48
+9  39
+
+Good Hash Function :
+--------------------
+1.A good has function should be easy to compute.
+2.A good Hash function should be evenly distributed i.e. from the above indexes in Hash table does not have values and 56,96 are stored at the same index.
+3.Less Collision i.e. From the above example 56,96 are stored at the same index which is nothing but Collision.
+
+The above scenarios needs to be taken care whenever we are applying the Hash function.
+
+Collision resolution techniques :
+---------------------------------
+There are different types of Collision resolution techniques to avoid Collision.
+
+1.Chaining
+2.Open Addressing
+3.RobinHood Hashing
+4.Cuckoo Hashing
+
+
+1.Chaining :
+------------
+We can have a seperate Chaining i.e. by using LinkedList whenever there is more than one item in the index Location.
+Here new item will be in the Front.
+By using this we can insert all the items but search and deletion will take time.
+First we will apply the Hash function and apply the Linear search in the Linked List.
+
+2.Open Addressing :
+-------------------
+In the Open Addressing Hashing there is no need to create a separate Chaining i.e. LinkedList to avoid the Collision.
+Here we are storing all the data in the same HashTable.
+This can be done by using in multiple ways.
+
+Linear Probing
+Quadratic Probing
+Double Hashing
+
+################################################################### 2.Hashing  ###################################################################
+
+Hashing is nothing but a way of assigning a unique value for an Object after applying algorith/function on its properties.
+Hashing will return a hashcode in the form of Integer.
+
+Consider the scenario of List of Strings with some names.
+For each name if we apply hash function it will generate a unique number.
+If we want to search for the particular name then we have to iterate over the List of names.
+If we implement the hash function for that then we directly go that index location based on hash value.
+Here we are acessing the value using index.
+
+Range of hash values will be from 0 to 2 power 32.
+We cannot keep that much array to store these names.
+Even if we store 1000 names in an Array then also Array is too large.
+If we are going to map the hash values with the index of an Array then also we end up with a large Array which will consume lot of space.
+
+
+The solution is after calculating the hash we will take the modulous.
+Consider the scenario of storing 4 names we wll take twice or thrice the size of an Array.
+Then we will take the mod on the hash values.
+
+Ankit  12
+Neha   42
+Ankur  34
+Ruchi  67
+
+Considering the Array size is 8.
+
+0
+1
+2  Neha Ankur
+3  Ruchi
+4  Ankit
+5
+6
+7
+
+Here after applying mod the hashcode of Neha and Ankur are the same.
+In this case we are storing the data in the form of List in that particular index.
+This approach allows us to store key value pairs and acessing key value pairs very efficiently.
+The scenario where multiple values are stored in the same index is nothing but collision.
+
+Hashing Use cases :
+-------------------
+Saving the data into key value pairs will help in Caching.
+For example Redis or MemCache which are key value storage.
+We can store lot of key value pairs in one single machine and if the size the key value pair increases then we can distribute it across multiple machines.
+
+Consider the scenario of storing the names in 4 different Servers.
+
+Ankit  16  S0
+Neha   25  S1
+Ankur  30  S2
+Ruchi  23  S3
+
+This is how data will be distributed across servers.
+If we want to search for Ankit then hash the Ankit by applying mod 4 (Server count) it will give where Ankit has stored.
+
+Disadvantages :
+---------------
+When the load increases or decreases we have to increase or decrease the Servers.
+Consider the scenario we have reduced 1 Server.
+In this case the data distributed across the servers will be redistributed.
+
+Ankit  16  S1
+Neha   25  S1
+Ankur  30  S0
+Ruchi  23  S2
+
+Basic condition of scalable system is that it can scale up or scale down the System as the requirement increase or decrease.
+We need to handle the scenario where If the no of Servers increse or decrease we have to minimize the data movement.
+This can be done by Consistent Hashing.
+
+############################################################### 3.Consistent Hashing  ###############################################################
+
+The problem with hashing is whenever we are adding or removing a new Server.
+In this case we need to remap the existing keys.
+We need to solve the problem of remapping the keys when the server is added or removed.
+This can be done by Consistent Hashing.
+
+Consider the scenario of Circular Queue.
+For each key perform the hashing and place the generated hash value in the Circular Queue.
+For the Servers also generate the hash value based on IpAddress or range and place it in the Circular Queue.
+Now both the keys and Servers are in the same range of Circular Queue.
+
+Here the concept is every value is mapped to certain angle and placed in the Queue.
+The Output range is decided based on the Circle.
+
+To map the keys to the Servers we can follow either Clockwise direction or Anti Clockwise direction.
+In case of Clockwise direction the key searches for closest server in the Circular Queue.
+In case of remapping i.e. If any of the Server has removed then key will be placed in the immideate Server.
+So that no of remappings will be reduced.
+By this approach 50% of remapping is reduced.
+Disadvantage is in the Circular Queue some of the Servers will get overloaded becuase of this approach.
+Servers will not evenly distributed.
+
+The other approach is to create the replica's of the Servers.
+In this case no of keys to be replaced is reduced.

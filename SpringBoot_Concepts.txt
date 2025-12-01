@@ -212,7 +212,7 @@ allowing connection details to live outside the source code.
 These annotations work together so that Spring Boot automatically configures the DataSource bean whenever the right conditions are met.
 
 
-**************************************** 7.Running SpringBoot Application using Terminal ****************************************************
+**************************************** 22.Running SpringBoot Application using Terminal ****************************************************
 
 There are two options to run the Springboot Application from Command Line
 

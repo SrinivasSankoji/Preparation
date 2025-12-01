@@ -1,4 +1,4 @@
-1.Hashing 													(Coding Simplified)   			[24-JUN-2024]  (Done)
+
 2.Three Tier Architecture									(Be A Better Dev)
 3.Client Server Model										(Be A Better Dev)
 4.Three Patterns To Scale Your Microservices    			(Coding Tech)
@@ -6,100 +6,18 @@
 6.Horizontal Scaling 										(Byte Programming)
 7.Most Used Architecture Patterns  							(Byte Programming)
 8.Rest API Caching Strategies 								(Byte Monk)
-9.Strategies to scale the Database 							(Byte Byte Go)                 
-
-
-############################################################### 1.Hashing(Coding Simplified)  ###############################################################
-
-Hashing can be used to improove the performance of the System.
-
-Advantages :
-------------
-1.Hashing can be used in indexing the data.
-Consider the scenario of the Database where we have 1 Million Users.
-If we want to search for the particular name then it will search in 1 Million Data.
-Here the data is in random order and it will take O(n) time to search the data.
-If we want to perform the search faster then index the name column.
-
-Hashing is nothing but a way of assigning a unique value for an Object by applying some algorithms/functions on its properties.
-Hashing will have a hash function which accepts the key and generates the hash value and stores it into Hash Table.
-Whenever we search for any name It will get the hash value for the given name and based on hash value it will search for that particular value in the Hash Table.
-
-2.Cryptographic Application
-Hashing is one of the way to enable security during the process of message transmission.
-Consider the scenario where the passowrd has to be transmitted over the network.
-We can apply the MD5 hash function and transfer through it through the Netwrok call.
-
-3.Sharding the Keys :
-
-
-4.Duplicate records :
-
-
-Hashing :
----------
-Hashing can be done by using Hash function and Hash Table.
-Consider the below values which are stored in List and now we want to place it through hash function.
- 
-21
-56
-72
-39
-48
-96
-
-Consider the size of the Hash Table is 10.
-
-0  
-1  21
-2  72
-3
-4
-5
-6  56,96
-7
-8  48
-9  39
-
-Good Hash Function :
---------------------
-1.A good has function should be easy to compute.
-2.A good Hash function should be evenly distributed i.e. from the above indexes in Hash table does not have values and 56,96 are stored at the same index.
-3.Less Collision i.e. From the above example 56,96 are stored at the same index which is nothing but Collision.
-
-The above scenarios needs to be taken care whenever we are applying the Hash function.
-
-Collision resolution techniques :
----------------------------------
-There are different types of Collision resolution techniques to avoid Collision.
-
-1.Chaining
-2.Open Addressing
-3.RobinHood Hashing
-4.Cuckoo Hashing
-
-
-1.Chaining :
-------------
-We can have a seperate Chaining i.e. by using LinkedList whenever there is more than one item in the index Location.
-Here new item will be in the Front.
-By using this we can insert all the items but search and deletion will take time.
-First we will apply the Hash function and apply the Linear search in the Linked List.
-
-2.Open Addressing :
--------------------
-In the Open Addressing Hashing there is no need to create a separate Chaining i.e. LinkedList to avoid the Collision.
-Here we are storing all the data in the same HashTable.
-This can be done by using in multiple ways.
-
-Linear Probing
-Quadratic Probing
-Double Hashing
+9.Strategies to scale the Database 							(Byte Byte Go)
+10.Caching Strategies 										(SoftwareDude)                 
 
 
 
 
 ############################################################### 2.Three Tier Architecture ###############################################################
+
+
+
+
+
 
 
 

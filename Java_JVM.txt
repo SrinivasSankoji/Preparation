@@ -1,0 +1,431 @@
+1.JVM  Architecture 					(DZone)						[29-NOV-2020]  (Done)
+2.Class Loader Subsystem				(Alexander Obregon)			[01-DEC-2025]  (Done)
+3.Runtime Data Area 					(DZone)						[30-NOV-2020]  ()
+4.Execution Engine 						(DZone)						[30-NOV-2020]  ()		
+5.Java Memory Management 				(DZone)						[30-NOV-2020]  ()
+6.Dynamic Class Loading					(DZone)						[30-NOV-2020]  (Done)
+7.Detailed Breakdown of the JVM			(DZone)						[18-NOV-2020]  ()
+8.Evolution Java Memory Architecture	(DZone)						[18-NOV-2020]  ()
+9.JVM Architecture						(Guru99)					[18-NOV-2020]  ()
+10.JVM Architecture						(howtodoinjava)				[23-JAN-2021]  ()
+11.JDK vs JRE vs JVM 					(guru99)					[23-JAN-2021]  ()
+
+
+Delegation Heirarchy
+Class Level Data
+Stack Frame / Stack Area
+Operand Stack
+Frame Data 
+
+############################################################  1.JVM  Architecture ########################################################################
+
+Java was developed with the concept of WORA i.e. write once and run anywhere.
+Compiler compiles the .java file and generates the .class file i.e. Byte Code which is platform independent.
+The same Byte Code can run on any Operating System which has JVM installed.
+No need to recompile for each platform.
+
+Bytecode is NOT machine code.
+Bytecode is platform independent instruction set to understood by the JVM.
+JVM converts Bytecode into machine-specific native instructions and executes them on the hardware.
+
+JVM does not directly convert all Bytecode into machine code line-by-line.
+Interpreter → Executes Bytecode line by line
+JIT Compiler → Converts frequently executed Bytecode blocks into native machine code for faster performance.
+
+This hybrid model provides both
+Portability (Interpreter)
+High performance (JIT Compiler)
+
+
+			        Java Source Code (.java)
+                          ↓
+                    javac Compiler
+                          ↓
+                Bytecode File (.class)
+                          ↓
+						 JVM  
+                          ↓
+              Class Loader Subsystem
+                          ↓
+            Load → Verify → Prepare → Resolve → Initialize
+                          ↓
+               Runtime Data Area (Memory Setup)
+						  ↓
+           Method Area | Heap | Stack | PC | Native Stack
+                          ↓
+                  Execution Engine
+                          ↓
+                Interpreter (line by line)
+                          ↓
+             Hot code detected → JIT Compiler
+                          ↓
+                   Native Machine Code
+                          ↓ (Now the program runs at near C/C++ native speed)
+				Stored in Code Cache (RAM)
+						  ↓
+                         CPU
+                          ↓
+                         OS
+                          ↓
+                    Program Executes
+					
+As a Java Developer if we know the Architecture of JVM,it helps us to write the code more efficiently.
+
+What is JVM :
+-------------
+JVM is is a software-based virtual machine that :
+1.Provides the runtime environment for executing Java programs.
+2.Loads, verifies, links, and executes Java Bytecode.
+3.Converts Bytecode into platform-specific machine code.
+4.Manages Memory,Threads,Garbage Collection,Security
+
+Component										Description
+JVM										Engine that runs Java Bytecode
+JRE (Java Runtime Environment)			JVM + core runtime libraries
+JDK (Java Development Kit)				JRE + Developer tools (javac, javadoc, debugger, etc.)
+
+In most programming languages Source Code → Compiler → Machine Code → CPU.
+Machine code is specific to the OS & CPU and must be recompiled per platform.
+
+In Java
+Source Code → Java Compiler → Bytecode → JVM → Machine Code → CPU.
+Bytecode works on Windows JVM,Linux JVM,MacOS JVM.
+Platform independence achieved because JVM is platform-specific, but Bytecode is not.
+
+JVM is divided into 3 main sub Systems.
+
+1.Class Loader Subsystem
+2.Runtime Data Area
+3.Execution Engine
+
+############################################################ 2.Class Loader Subsystem #####################################################################
+
+Class loaders in Java handle the process of dynamically bringing Java classes into the Java Virtual Machine (JVM) as needed.
+This system makes Java different from many other programming languages, where programs are compiled directly into machine code and executed by the operating system.
+Java programs are first compiled into bytecode.
+The Class Loader loads the required .class files into JVM memory only when they are needed (dynamic loading).
+Loaded classes Verified for safety,Prepared (static memory allocated) and Initialized (static code executed).
+Execution Engine runs the bytecode using the Interpreter and the JIT Compiler, converting it into native machine code that runs on the CPU.
+
+Other than loading the.class files into memory, Class loaders define the namespace for every class they load.
+A class in Java is uniquely identified not only by its fully-qualified class name, but by the combination of
+
+	(Class Name + Defining Class Loader)
+	
+Because each Class Loader maintains its own namespace, the same class name can exist multiple times in a JVM, as long as each copy is loaded by a different Class Loader.
+This mechanism allows for the same class name to be used in different parts of the program without causing conflicts, as long as they are loaded by different class loaders.
+
+Note :
+------
+Same class such as com.mysql.cj.jdbc.Driver can be loaded multiple times in the same JVM provided that different Class Loaders load it.
+Each loaded copy belongs to a separate namespace and is treated as a distinct class.
+This enables Java servers and frameworks to support version isolation, plugins, and hot deployments, but requires caution to avoid casting issues and memory leaks.
+
+Class Loading Process :
+-----------------------
+1.Loading :
+------------
+Class Loader loads the .class files(bytecode) from the file system or other sources.
+Class Loader then converts this bytecode into a binary stream of data representing the class in the memory.
+
+Class Loader operate in a parent-child structure to load classes in a controlled and efficient manner.
+
+A.Bootstrap Class Loader :
+--------------------------
+Responsible for loading essential Java classes such as those in java.lang.# and java.util.#
+Highest priority is given to the Bootstrap Class Loader.
+
+Java 8 and earlier loads core Java classes from JAVA_HOME/jre/lib.
+Java 9 and later loads core Java classes from the modular runtime image, typically in JAVA_HOME/lib/modules or JAVA_HOME/jmods.
+
+B.Extension Class Loader or Platform Class Loader :
+---------------------------------------------------
+Responsible for loading the Classes which are inside ext folder i.e. JAVA_HOME/jre/lib/ext.
+
+C.Application Class Loader :
+----------------------------
+Responsible for loading the classes at application-level classes specified in the class path i.e.
+Classes specified in the CLASSPATH environment variable.
+Classes set using the -classpath command-line option.
+Classes packaged inside JAR files with a MANIFEST.MF that specifies a classpath.
+
+Delegation Principle :
+----------------------
+Java’s Class Loader system follows the delegation model.
+When a Class Loader load's the class, it first passes the request to its parent class loader.
+This process continues up the chain until it reaches the Bootstrap Class Loader. 
+If the parent class loader finds the class, it returns it to the child. If not, the child class loader steps in and tries to load it on its own.
+This setup helps avoid loading the same class multiple times and keeps things consistent across the JVM.
+Since classes loaded by a parent class loader are available to all its child loaders.
+
+2.Linking :
+------------
+After loading the class, Class Loader performs the Linking process.
+
+🔹 Verify (Bytecode Verification)
+The Bytecode Verifier checks that the .class file is safe to run.
+✅ Bytecode format is correct
+✅ Instructions are valid
+✅ Stack usage is safe
+✅ No illegal memory access
+✅ No type mismatch
+✅ No forged pointers
+
+	public class Test {
+		public static void main(String[] args) {
+			int a = "hello";   // Invalid bytecode after tampering
+		}
+	}
+
+VerifyError is thrown only at runtime by the JVM when already-compiled bytecode is invalid or corrupted.
+JVM aborts the execution and rejects the class before running it.
+
+✅ Note :
+---------
+we cannot produce a VerifyError using legal Java source code alone — because the compiler guarantees safe bytecode.
+VerifyError usually happens only if:
+.class file is manually edited
+Bytecode tools (ASM, ByteBuddy) generate invalid instructions
+Class files are corrupted during transmission
+
+✅ SOLUTION BY JVM
+JVM refuses to load corrupted or invalid bytecode.
+Program stops before reaching execution.
+Ensures JVM remains stable and secure.
+
+🔹 Prepare (Static Memory Allocation) :
+Memory is allocated for static variables and set to default values.
+
+🔹 Resolve :
+In Java bytecode references to methods, fields and classes are stored symbolically.	
+During Resolve phase JVM converts these symbolic references into direct memory pointers i.e. actual addresses in the Method Area.
+
+	public class App {
+		public static void main(String[] args) {
+			Database.connect();
+		}
+	}
+	
+Byte code has symbolic connect i.e. Database.connect()
+During Resolve:
+✅ JVM locates class Database
+✅ Locates its method connect()
+✅ Replaces symbolic reference with direct pointer to the method in memory
+
+
+3.Initialization :
+-------------------
+This is the final phase of Class Loading.
+Here all the static variables will be assigned with original values and static block will be executed.
+
+###############################################################  3.Runtime Data Area ####################################################################################
+
+
+A) Method Area :
+----------------
+All the Class level data including static variables are stored here.
+There is only one Method area per JVM and is a shared resource.
+
+B)Heap Area :
+-------------
+All the Objects and their corresponding instance variables are stored here.
+There is only one Heap area per JVM and is a shared resource.
+
+Since the Method Area and Heap Area shares memory for Multiple Threads,data stored here is not Thread Safe.
+
+C)Stack Area :
+--------------
+All the Local Variables will be created in the stack Area.Stack Area is Thread safe since it is not a shared Resource.
+For Every Thread seperate runtime stack will be created.
+For every Method Call performed by the Thread,One entry will be stored in the Stack which is called Stack Frame.
+Stack Frame is divided into 3 sub entities.
+
+1.Local Variable Array :
+Related to Method how many local variables are involved,corresponding values will be stored here.
+2.Operand Stack :
+If any Intermediate Operation is required to perform,Operand stack acts as runtime workspace to perform the operation. 
+3.Frame Data :
+All Symbols corresponding to the methods are stored here.
+
+In case of any Exception,catch block information will be maintained in the frame data.
+
+D)PC Registers :
+----------------
+Each Thread will have seperate PC Registers to hold the address of the current executing instruction. 
+Once the instrcution is executed the PC Register will be updated with the next instruction.
+
+E)Native Method Stacks :
+------------------------
+Native Method stack holds native method infromation.
+For every Thread Seperate Native method stack will be created.
+
+############################################################### 4.Execution Engine ####################################################################################
+
+Byte Code which is assigned to the Runtime Data Area will be executed by the Execution Engine.
+Execution Engine reads the Byte Code and executes it piece by piece.
+
+A)Interpreter :
+---------------
+Interpreter interprets the byte code faster but executes slowly.
+Disadvantage of Interpreter is that when one method is called multiple times,every time a new interpretation is required.
+
+B)JIT Compiler :
+----------------
+JIT Compiler neutralizes the disadvantage of Interpreter.
+With the help of Interpreter,Execution Engine interprets the byte Code.
+When the Execution Engine finds repeated code,it uses JIT Compiler which compiles the entire Byte Code and converts it into native code.
+This native code will be used directly for the repeated method calls,which improoves the performance of the system.
+
+Intermediate Code Generator : Generates Intermediate code.
+Code Optimizer 				: Responsible for optimizing the Intermediate code which is generated above.
+Target Code Generator 		: Responsible for generating Machine code or Native code.
+Profiler 					: A Special componenet responsible for finding Hotspots i.e whether the method is called multiple times or not.
+
+C)Garbage Collector :
+---------------------
+Garbage Collector collects and removes unreferenced Objects.
+Garbage Collector can be triggered by calling Syste.gc() but the execution is not gauranteed.
+
+D)Java Native Interface will be interacting with Native Method Libraries and provides the Native Libraries required for the Execution Engine.
+
+############################################################  5.Java Memory Management (DZone)   ############################################################# 
+
+Java has Automatic Memory Management and Nice Garbage Collector that works in the background to clean up the unused Objects and free up some Memory.
+As a Java Programmer we do not need to bother with the problems like destroying Objects as they are not used any more.
+However if the process is automatic in java It does not Gaurantee anything.
+By not knowing how the Garbage Collector and Java Memory Management is designed,we could have Objects that are not Eligible for Garbage Collector,
+even if it is no Longer Used.
+
+By knowing how Memory actually works in java,as it gives the advantage of writing high performance and Optimized Applications that will never ever crash with an OutOfMemoryError.
+Generally Memory is divided into two parts i.e Stack and Heap.Heap has huge amount of Memory compared to Stack.
+
+Stack :
+-------
+Stack Memory is responsible for holding reference to heap objects and also for storing primitive types which holds the value itself
+rather than reference to an object from the heap.
+In addition variables on the stack have certain visibility also called as Scope.Only objects from the active scope are used.
+Consider the scenario where we don't have global variables and only Local variables are present.
+If the Compiler executes a method body,it can access only variables from the stack that are within the method body.
+It cannot access other local variables as there are out of scope.
+Once the method completes and returns,Top of the stack pops out and the active scope changes.
+
+Stack Memory in Java is allocated per Thread.
+Each time a Thread is created and started,it has its own stack Memory and cannot access another Thread's Stack Memory.
+
+Heap :
+------
+Actual Object is stored inside the Heap Memory which is referenced by the vraiables from the stack.
+Consider the scenario of creating a new Object.
+
+	StringBuilder builder = new StringBuilder();
+	
+"new" keyword is responsible for ensuring that there is enough space on the Heap,creating an object of the type StringBuilder and assigned to the reference variable "builder" 
+which goes to the stack.
+For each Running JVM process there exists only one Heap Memory regardless of how many threads are running.
+Heap Memory itself is divided into few  parts which facilitates the process of Garbage Collection.
+Maximum stack and Heap sizes are not pre defined and depends on the running Machine.
+
+
+Reference Types :
+-----------------
+In Java programming Language,we have different type of references that points from Stack memory to the Heap Memory.
+Types of reference is that the Objects on the Heap they refer to are eligible for Garbage Collector.
+
+Strong Reference :
+------------------
+Object on the Heap is not Garbage Collected when there is a Strong reference pointing to it.
+It is strongly reachable through a chain of strong references.
+
+Weak reference :
+----------------
+Weak reference to an object from the Heap is most likely not to survive after the next garbage collection process.
+Best scenarion for Weak reference is Caching Mechanism.
+If we want to retreive some data and want to store in memory as well.
+Here the same data will be requested again.
+If we put the weak reference and garbage collector runs then it destroys the object on the Heap.
+
+Soft Reference :
+----------------
+Soft references are used for more memory sensitive scenarios.
+These are going to be Garbage collected only when the application is running low on memory.
+As long as there is no critical free up space,the Garbage Collector will not touch softly reusable objects.
+Java Gaurantees that all the soft referenced objects are cleaned up before it throws an OutOfMemoryError.
+
+Phantom Reference :
+-------------------
+Phantom reference are used to schedule post-mortem clean up actions.
+Since we know for sure that Objects are no longer Live.
+Phantom references are considered preferably as Finalizers.
+
+How Strings are Referenced :
+----------------------------
+Strings are Immutable that means each time we do something with string,another object is created actually on the Heap.
+For String Java manages a String Pool Memory.This means that Java Stores and reuse Strings whenever possible.
+This is mostly true for String literals.
+
+	String local_prefix="297";
+	String prefix="297";
+	
+	if(""=="")
+	{
+		sysout("Strings are Equal");
+	}
+	else
+	{
+	sysout("Strings are Different");
+	}
+
+We can force the JVM to add the String to the SCP i.e String Content Pool we use intern().
+
+Garbage Collection Process :
+----------------------------
+Depending on the type of reference that a variable from the stack holds to an object from the Heap,
+At certain point in time,that object becomes eligible for Garbage Collector.
+
+
+
+
+
+
+
+
+Garbage Collector Types :
+-------------------------
+
+
+
+
+Tips and Tricks For Java Memory Management :
+--------------------------------------------
+	
+
+############################################################  6.Dynamic Class Loading (DZone) ###############################################################
+
+Class.forName is used to load the class dynamically where we does not know the class name before hand.
+Once the Class is loaded we will use newInstance() to create the object dyanmically.
+
+############################################################ 11.JDK vs JRE vs JVM (guru99)  ##################################################################
+
+JDK is a software Development Kit,JRE is a software bundle that allows us Java Program to run where as JVM is an environment for executing Byte Code.
+
+JDK :
+-----
+JDK contains tools required to write Java Programs and JRE to execute them.Tools like Debugger,Compiler etc.
+It includes Compiler,Application Launcher and AppletViewer etc.
+Compiler converts the code written in Java into Byte Code.
+Java Application Launcher opens JRE which loads the necessary Classes ane executes the Main Method.
+
+JRE :
+-----
+JRE contains class libraries,JVM and other supporting files etc.
+If we want to run any Java Program then JRE must be installed in our system.
+
+JVM :
+-----
+JVM provides platform independent way of executing Java Source Code.
+
+
+
+
+
+

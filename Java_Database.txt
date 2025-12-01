@@ -1,0 +1,72 @@
+1.ACID Properties											(TheCodeAlchemist)   			  [01-DEC-2025]  (Done)
+2.Pesimistic Locking
+3.Optimistic Locking
+4.Serializable
+5.Versions
+6.Database Indexing                      					(Concept and Coding) 			  [17-JUN-2024]  ()
+7.Database Indexing for Dumb Developers						(Laith Academy) 			  	  [17-JUN-2024]  ()
+8.Normalization 											(Decomplexify)					  [17-JUN-2024]  ()
+9.Store Passwords in Database
+10.SQL Execution Order
+11.Write a Head Log
+
+############################################################### 1.ACID Properties ######################################################################
+
+Database stores, retrieves and manages the data that makes everything work.
+But what happens when some thing goes wrong i.e. sudden crash, network error or multiple users trying to update the same information simultaneously.
+How does the database prevent chaos and keep your data safe and correct.
+That’s where a crucial set of principles known as ACID properties comes in.
+
+ACID principles are the fundamental rules that guarantee reliability and integrity in many database systems.
+ACID stands for Atomicity,Consistency,Isolation and Durability.
+These properties ensure that even when things go wrong, our data remains accurate, trustworthy, and consistent.
+
+Database transaction is a sequence of operations performed as a single, logical unit of work.
+For example, transferring money from one bank account to another involves at least two operations.
+Debiting money from one account and crediting it to another. 
+For the transfer to be valid, both these operations must succeed. 
+If one fails, the entire transaction must fail as if it never happened. 
+ACID properties are specifically designed to govern how these transactions behave.
+
+1.Atomicity — All or Nothing
+----------------------------
+Atomicity indicates that a Database transaction must be treated as a single, indivisible unit of work.
+Think of it as an atomic operation and it cannot be broken down into smaller parts from an external perspective.
+A transaction either completes fully, with all its operations successful, or it fails entirely, leaving the database unchanged.
+There’s no middle ground.
+
+Example: Consider the scenario of sending money. 
+If your account gets debited, but the system crashes before other's account gets credited.
+Atomicity ensures the debit from your account is rolled back so that no money vanishes into thin air.
+
+2.Consistency — Staying Valid
+-----------------------------
+Consistency ensures that every transaction moves the database from one valid state to another valid state.
+To ensure the Consistency, Database must always follow all rules.
+1.Constraints (Primary Key, Foreign Key, UNIQUE, NOT NULL, CHECK)
+2.Business rules
+3.Triggers
+4.Data type rules
+
+If a transaction violates any rule,The database rejects it and rolls it back so that the database is never left in an invalid state.
+
+Consistency prevents negative balances.
+Consistency protected : No orphan orders can exist 
+Consistency ensured : Duplicate data prevented
+
+3.Isolation — Working Separately
+--------------------------------
+When multiple transactions occur concurrently, Isolation ensures they don’t interfere with each other’s intermediate, possibly incomplete, states. 
+Each transaction feels like it’s running alone on the database.
+
+Example:Consider the scenario of Booking System.
+Isolation ensures that the system processes one request completely, preventing others from double-booking.
+
+4 Durability — Changes That Stick
+---------------------------------
+Once a transaction has been successfully completed, the changes made to the database are permanent.
+The changes will survive any subsequent system crash, power outage or other failures.
+
+Example: Consider the scenario of an online purchase and your order is confirmed. 
+Moments later, the server crashes. 
+Thanks to Durability, when the system comes back online, order information will still be there.
