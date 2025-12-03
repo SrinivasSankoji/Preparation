@@ -1,14 +1,15 @@
 1.JVM  Architecture 					(DZone)						[29-NOV-2020]  (Done)
 2.Class Loader Subsystem				(Alexander Obregon)			[01-DEC-2025]  (Done)
-3.Runtime Data Area 					(DZone)						[30-NOV-2020]  ()
-4.Execution Engine 						(DZone)						[30-NOV-2020]  ()		
-5.Java Memory Management 				(DZone)						[30-NOV-2020]  ()
-6.Dynamic Class Loading					(DZone)						[30-NOV-2020]  (Done)
-7.Detailed Breakdown of the JVM			(DZone)						[18-NOV-2020]  ()
-8.Evolution Java Memory Architecture	(DZone)						[18-NOV-2020]  ()
-9.JVM Architecture						(Guru99)					[18-NOV-2020]  ()
-10.JVM Architecture						(howtodoinjava)				[23-JAN-2021]  ()
-11.JDK vs JRE vs JVM 					(guru99)					[23-JAN-2021]  ()
+3.Stack Area 							(digitalocean)				[03-DEC-2025]  (Done)
+4.Heap Memory 							(digitalocean)				[03-DEC-2025]  (Done)
+5.Method Area 							()							[03-DEC-2025]  (Done)
+6.Execution Engine 						()							[30-NOV-2020]  ()
+7.PC Registers 							()							[30-NOV-2020]  ()
+8.Native Method Stack 					(Kalyani Dagde)				[30-NOV-2020]  ()
+9.Garbage Collection 					(Subhasis Roy)				[30-NOV-2020]  ()
+10.Reference Types 						(Constantin Marian)			[30-NOV-2020]  ()		
+11.Dynamic Class Loading				(DZone)						[30-NOV-2020]  (Done)
+12.JDK vs JRE vs JVM 					(guru99)					[23-JAN-2021]  ()
 
 
 Delegation Heirarchy
@@ -218,48 +219,190 @@ During Resolve:
 This is the final phase of Class Loading.
 Here all the static variables will be assigned with original values and static block will be executed.
 
-###############################################################  3.Runtime Data Area ####################################################################################
+###############################################################  3.Stack Area ####################################################################################
+
+Stack Area (Java Stack) stores the method execution data for each Thread i.e Stack Frame.
+For every method call performed by the Thread, the JVM creates a separate Stack Frame and pushes it onto the Thread’s Stack Area.
+Each Thread has its own runtime Stack Frame, making Stack memory thread-safe.
+All method-local variables (both primitive values and object references) are stored in the stack.
+When the method returns (normally or due to an exception), the frame is popped from the stack.
+
+Each stack frame consists of:
+1.Local Variable Array (Local Variable Table)
+2.Operand Stack
+3.Frame Data (also called Frame Metadata)
+		
+When the method completes or an exception occurs, the entire stack frame is removed immediately.
 
 
-A) Method Area :
-----------------
-All the Class level data including static variables are stored here.
-There is only one Method area per JVM and is a shared resource.
+				Stack Frame
+		---------------------------------
+		|  Frame Data (Method Info)     |
+		---------------------------------
+		|  Operand Stack                |
+		---------------------------------
+		|  Local Variable Array         |
+		---------------------------------
 
-B)Heap Area :
--------------
-All the Objects and their corresponding instance variables are stored here.
-There is only one Heap area per JVM and is a shared resource.
-
-Since the Method Area and Heap Area shares memory for Multiple Threads,data stored here is not Thread Safe.
-
-C)Stack Area :
---------------
-All the Local Variables will be created in the stack Area.Stack Area is Thread safe since it is not a shared Resource.
-For Every Thread seperate runtime stack will be created.
-For every Method Call performed by the Thread,One entry will be stored in the Stack which is called Stack Frame.
-Stack Frame is divided into 3 sub entities.
 
 1.Local Variable Array :
-Related to Method how many local variables are involved,corresponding values will be stored here.
-2.Operand Stack :
-If any Intermediate Operation is required to perform,Operand stack acts as runtime workspace to perform the operation. 
-3.Frame Data :
-All Symbols corresponding to the methods are stored here.
-
-In case of any Exception,catch block information will be maintained in the frame data.
-
-D)PC Registers :
-----------------
-Each Thread will have seperate PC Registers to hold the address of the current executing instruction. 
-Once the instrcution is executed the PC Register will be updated with the next instruction.
-
-E)Native Method Stacks :
 ------------------------
-Native Method stack holds native method infromation.
-For every Thread Seperate Native method stack will be created.
+Local Variable Array stores method parameters, primitive local variables, and references to Heap objects.
 
-############################################################### 4.Execution Engine ####################################################################################
+	void calc(int x) {
+		int y = 10;
+		String msg = "Hi";
+	}
+	
+	| Slot | Value                                     |
+	| ---- | ----------------------------------------- |
+	| 0    | `this` reference (for non-static methods) |
+	| 1    | `x`                                       |
+	| 2    | `y`                                       |
+	| 3    | `msg` (reference to Heap)                 |
+	
+Note :
+------	
+The array size is fixed at compile time based on method needs.
+Local Variable Array stores values directly for primitives and addresses/references for objects.
+Slot reuse is possible when variables go out of scope.
+
+2.Operand Stack :
+-----------------
+Operand Stack is used as a working area to evaluate expresions and method execution.
+Operand Stack is not used to store variables permanently.
+
+	void calculate() {
+		int a = 10;
+		int b = 20;
+		int c = a + b;
+	}
+	
+LOAD a        // push a to operand stack
+LOAD b        // push b to operand stack
+ADD           // pop both values, add them
+STORE c       // store result into local variable "c",Value 30 is removed from operand stack
+
+Operand Stack: EMPTY
+Local Variable Array
+
+a = 10
+b = 20
+c = 30 ✅
+
+3.Frame Data :
+--------------
+Frame Data stores method-related data, including
+1.Constant pool reference of the currently running class
+2.Method metadata
+3.Exception handling data
+4.Return address
+5.Symbolic information used during linking & execution
+
+
+############################################################ 4.Heap Memory (digitalocean) ########################################################
+
+Understanding the JMM(Java Memory Model) is essential for anyone who is working with Java concurrency.
+It specifies the behavior of the java.util.concurrent package, low-level synchronization primitives, and lock-free algorithms.
+By knowing this Developers can ensure that shared data remains consistent and applications behave reliably under load.
+
+Java Virtual Machine(JVM) divides its memory area into several logical runtime data areas, each serving a specific role during program execution.
+This structured memory model ensures the isolation between different types of data, supports multithreading, and enables features like automatic garbage collection.
+At runtime, the JVM creates a set of runtime data areas. These include
+
+Heap Memory
+Stack Memory
+Method Area (Implemented as Metaspace in Java 8+)
+Program Counter (PC) Register
+Native Method Stack
+
+Heap Memory :
+-------------
+Heap memory is the primary area for dynamic memory allocation. 
+All class instances, arrays, and objects created during program execution are stored in the Heap Memory.
+Unlike stack memory, which is isolated to individual threads, Heap is a shared memory accessible by all threads in the JVM.
+This shared access allows objects to be passed between threads and persist beyond the execution of any single method.
+
+Heap memory is automatically managed by the garbage collector, which reclaims memory occupied by objects that are no longer in use.
+To optimize this process and reduce application pause times, JVM divides the heap into two regions.
+
+1.Young Generation
+2.Old Generation
+
+This is known as Generational Heap Model and is based on the principle that most objects in Java applications are short-lived and those that survive are likely to live much longer.
+
+1.Young Generation :
+--------------------
+The Young Generation is where all newly created objects begin their lifecycle. 
+It is optimized for fast allocation and frequent garbage collection.
+Because the majority of objects are short-lived, this region is collected often using Minor Garbage Collections (Minor GCs), which are typically fast and efficient.
+
+Method-local objects
+Temporary DTOs
+REST request/response objects
+Loop variables
+Buffers (StringBuilder, byte[], etc.)
+
+Young Generation is divided into three spaces.
+
+Eden Space :
+------------ 
+This is the starting point for new object allocations. 
+As soon as an object is created, JVM attempts to place it in Eden. 
+When Eden fills up, Minor GC is triggered.
+
+Survivor Spaces :
+----------------- 
+The two survivor spaces, commonly referred to as S0 and S1, act as staging areas for objects that survive a garbage collection.
+After each Minor GC, reachable objects from Eden are moved into one of the survivor spaces. 
+Objects that continue to survive are moved between the two survivor spaces across collection cycles.
+
+As objects survive more GC cycles, their age increases. 
+Once an object’s age exceeds a threshold, it is promoted to the Old Generation. 
+Promotion is also forced when the survivor spaces do not have enough room to hold surviving objects.
+
+These parameters are particularly useful for applications with high allocation rates, such as REST APIs, streaming pipelines, or real-time event processing systems.
+
+		NEW OBJECT
+			|
+			▼
+		EDEN SPACE
+			|
+		Eden full
+			|
+			▼
+		MINOR GC
+			|
+			├─ unreachable → removed ❌
+			|
+			└─ reachable
+				   |
+				   ▼
+		Survivor S0 ↔ Survivor S1 (age++)
+				   |
+		Age ≥ threshold OR space full
+				   |
+				   ▼
+		OLD GENERATION
+		
+2.Old Generation :
+------------------
+The Old Generation, also known as the Tenured Generation, is designed to hold long-lived objects, those that have survived multiple Minor GCs.
+While Young Generation handles the frequent allocation and disposal of short-lived data,Old Generation holds the objects that are in use for extended periods are eventually stored.
+
+Examples include
+Persistent application-level caches
+Large object graphs such as sessions or user data
+Static or shared data structures that are retained across requests
+
+Because the Old Generation contains objects that are more likely to still be in use, it is collected less frequently than the Young Generation.
+Garbage collection in this region is referred to as a Major GC, and when both generations are collected together, the process is known as a Full GC.
+
+Note :
+------
+A Full GC collects the entire Heap (Young and Old), and depending on the garbage collector and memory pressure, It may also include Metaspace, though this is not guaranteed.
+
+############################################################### 6.Execution Engine ####################################################################################
 
 Byte Code which is assigned to the Runtime Data Area will be executed by the Execution Engine.
 Execution Engine reads the Byte Code and executes it piece by piece.
@@ -288,43 +431,16 @@ Garbage Collector can be triggered by calling Syste.gc() but the execution is no
 
 D)Java Native Interface will be interacting with Native Method Libraries and provides the Native Libraries required for the Execution Engine.
 
-############################################################  5.Java Memory Management (DZone)   ############################################################# 
+########################################################## 10.Reference Types(Constantin Marian) ############################################################# 
 
-Java has Automatic Memory Management and Nice Garbage Collector that works in the background to clean up the unused Objects and free up some Memory.
-As a Java Programmer we do not need to bother with the problems like destroying Objects as they are not used any more.
-However if the process is automatic in java It does not Gaurantee anything.
-By not knowing how the Garbage Collector and Java Memory Management is designed,we could have Objects that are not Eligible for Garbage Collector,
-even if it is no Longer Used.
+Java has Automatic memory management and Garbage Collector that works in the background to clean up the unused Objects and free up some memory.
+As a Java programmer we need not worry about destroying the Objects as they are not used any more.
+However the process is Automatic in Java and it does not gaurantee the clean up of unused Objects. 
+we could have the Objects that are not eligible for Garbage Collector and no longer used.
 
-By knowing how Memory actually works in java,as it gives the advantage of writing high performance and Optimized Applications that will never ever crash with an OutOfMemoryError.
-Generally Memory is divided into two parts i.e Stack and Heap.Heap has huge amount of Memory compared to Stack.
-
-Stack :
--------
-Stack Memory is responsible for holding reference to heap objects and also for storing primitive types which holds the value itself
-rather than reference to an object from the heap.
-In addition variables on the stack have certain visibility also called as Scope.Only objects from the active scope are used.
-Consider the scenario where we don't have global variables and only Local variables are present.
-If the Compiler executes a method body,it can access only variables from the stack that are within the method body.
-It cannot access other local variables as there are out of scope.
-Once the method completes and returns,Top of the stack pops out and the active scope changes.
-
-Stack Memory in Java is allocated per Thread.
-Each time a Thread is created and started,it has its own stack Memory and cannot access another Thread's Stack Memory.
-
-Heap :
-------
-Actual Object is stored inside the Heap Memory which is referenced by the vraiables from the stack.
-Consider the scenario of creating a new Object.
-
-	StringBuilder builder = new StringBuilder();
-	
-"new" keyword is responsible for ensuring that there is enough space on the Heap,creating an object of the type StringBuilder and assigned to the reference variable "builder" 
-which goes to the stack.
-For each Running JVM process there exists only one Heap Memory regardless of how many threads are running.
-Heap Memory itself is divided into few  parts which facilitates the process of Garbage Collection.
-Maximum stack and Heap sizes are not pre defined and depends on the running Machine.
-
+If we know how JMM actually works in Java, it gives the advantage of writing high performance code that will never-ever crash with an OutOfMemoryError.
+Generally memory is divided into two parts i.e. Stack and Heap.
+Heap has huge amount of memory compared to Stack.
 
 Reference Types :
 -----------------
@@ -397,14 +513,16 @@ Garbage Collector Types :
 
 Tips and Tricks For Java Memory Management :
 --------------------------------------------
-	
 
-############################################################  6.Dynamic Class Loading (DZone) ###############################################################
+
+
+ 
+############################################################  11.Dynamic Class Loading (DZone) ###############################################################
 
 Class.forName is used to load the class dynamically where we does not know the class name before hand.
 Once the Class is loaded we will use newInstance() to create the object dyanmically.
 
-############################################################ 11.JDK vs JRE vs JVM (guru99)  ##################################################################
+############################################################ 12.JDK vs JRE vs JVM (guru99)  ##################################################################
 
 JDK is a software Development Kit,JRE is a software bundle that allows us Java Program to run where as JVM is an environment for executing Byte Code.
 
