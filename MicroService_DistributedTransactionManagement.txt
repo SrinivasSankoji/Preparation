@@ -1,8 +1,9 @@
 1.Distributed Transactions in Spring Boot Microservices				(medium)        			   	  [30-MAR-2024]  ()
 2.Distributed Transactions											(TechDummies with Narendar)       [01-NOV-2024]  ()
 3.Orchestration vs Choreography										(Arpit Bhayani)
-4.Saga Design Pattern                     							(Kishore Karnatakapu)     		  [28-SEP-2023]  ()
-5.SAGA Pattern 														(Tech Primers)	
+4.Saga Design Pattern                     							(Kishore Karnatakapu,Tokyo)       [28-SEP-2023]  ()
+5.SAGA Pattern 														(Tech Primers)
+6.Transactional Outbox Pattern										(Cem Dırman,Tokyo)	
 
 
 ################################ 1.Distributed Transactions in Spring Boot Microservices (medium) ####################################################
@@ -10,32 +11,11 @@
 https://medium.com/@billa.anudeep143/distributed-transactions-in-spring-boot-microservices-simplified-guide-ce1e3a9191c0
 https://medium.com/@knowledge.cafe/distributed-transaction-in-spring-boot-microservices-7962e048adfc
 
-A Transaction in a software system is nothing but a group of operations that are executed as a single unit.
-This concept is cruicial for maintaining data integrity and consistency particular in database operations.
-
-Atomocity :
------------
-Atomocity ensures that all the Operations within a Transaction are treated as a single unit.
-Either all the transactions has to be executed successfully or roll back in case of failure.
-
-Consistency :
--------------
-Consistency ensures that the Transaction can bring the system from one valid state to another valid state, maintaining database rules and constraints.
-
-Isolation :
------------
-Transactions are oftened executed concurrently.
-Isolation ensures that concurrent transactions do not interfer with each other.
-
-Durability :
-------------
-Once the Transaction is committed it remains so and even in case of system failures.
-This ensures that results of the Transaction are permanently recorded.
-
-Distributed Transaction Management in MicroServices refer to transactions that involve multiple micro services each handling the part of the Transaction.
-Here coordination is required to ensure the Transaction's Atomicity, Consistency, Isolation and Durability.
-Spring boot provides several features to manage distributed transactions in micro services architecture.
-We can use either Two phase commit or Saga pattern to manage distributed transactions.
+A Transaction is nothing but a group of operations that are executed as a single unit.
+Distributed Transaction Management in MicroServices refer to the transactions that involve multiple micro services each handling the part of the Transaction.
+Here coordination is required to ensure Transaction's Atomicity, Consistency, Isolation and Durability.
+Spring boot provides several features to manage distributed transactions in Micro service architecture.
+We can use either Two phase commit or SAGA pattern to manage distributed transactions.
 
 Two-Phase Commit — 2PC :
 ------------------------
@@ -43,15 +23,172 @@ Two-Phase Commit — 2PC :
 
 Saga Pattern :
 --------------
-Saga Pattern is a sequence of local Transactions where each Service performs its part of the process.
-If any step fails compensating Transactions are executed to undo the previous steps ensuring data consistency without the need for two-phase commit.
+Each business Transaction which spanned across multiple Microservices are split into Microservice specific local Transactions and they are executed in a sequence to complete the business workflow.
 Saga Pattern can be implemented in two ways.
 
 Choreography :
 --------------
-Choreography means each service will be executed independently.
+Each service will be executed independently and Services communicate via events.
+There is no central coordinator.
 Once the task is completed it invokes the next task in the sequence.
-In cas if the next task fails it invokes the compensating tasks of the previous transactions.
+In case if the next task fails it invokes the compensating tasks of the previous transactions.
+
+Success Flow :
+--------------
+
+		Client  ->  OrderService  ->  Kafka(order-events) -> PaymentService
+              |                                      |
+              v                                      v
+           OrderCreated ------------------------> PaymentCompleted
+                                                    |
+                                                    v
+                                      Kafka(payment-events) -> InventoryService
+                                                                   |
+                                                                   v
+                                                             InventoryReserved
+                                                                   |
+                                                                   v
+                                                   Kafka(inventory-events) -> ShippingService
+                                                                                |
+                                                                                v
+                                                                           ShipmentCreated
+                                                                                |
+                                                                                v
+                                                               Kafka(shipping-events) -> OrderService
+                                                                                           |
+                                                                                           v
+                                                                                  Order COMPLETED
+																				  
+																				  
+
+OrderCreated -> PaymentCompleted -> InventoryRejected -> PaymentRefunded -> Order CANCELLED
+
+Failure Flow One :
+------------------
+Client places order.
+OrderService creates PENDING order and emits OrderCreated.
+PaymentService tries to charge but fails.
+PaymentService emits PaymentFailed.
+OrderService listens to PaymentFailed and cancels the order.
+No inventory reservation or shipping ever happens.
+
+
+	+--------+         +--------------+         +---------------+
+	| Client |         | OrderService |         | PaymentService|
+	+--------+         +--------------+         +---------------+
+		|                      |                          |
+		| 1. POST /orders      |                          |
+		|--------------------->|                          |
+		|                      |                          |
+		|                      | 2. Create Order (PENDING)|
+		|                      |    in local DB (TX)      |
+		|                      |--------------------------|
+		|                      |                          |
+		|                      | 3. Publish OrderCreated  |
+		|                      |------------------------->|  (Kafka: order-events)
+		|                      |                          |
+		|                      |                          | 4. Receive OrderCreated
+		|                      |                          |    (begin local TX)
+		|                      |                          |
+		|                      |                          | 5. Try to charge payment
+		|                      |                          |    -> FAIL (e.g. insufficient funds)
+		|                      |                          |
+		|                      |                          | 6. Save Payment with status=FAILED
+		|                      |                          |    Commit TX
+		|                      |                          |
+		|                      |                          | 7. Publish PaymentFailed
+		|                      |<-------------------------|  (Kafka: payment-events)
+		|                      |                          |
+		|                      | 8. Receive PaymentFailed |
+		|                      |    (begin local TX)      |
+		|                      |                          |
+		|                      | 9. Update Order status   |
+		|                      |    PENDING -> CANCELLED  |
+		|                      |    Commit TX             |
+		|                      |                          |
+		|                      | 10. (Optionally emit     |
+		|                      |     OrderCancelled event)|
+		|                      |                          |
+		v                      v                          v
+	 Saga ends       Order is CANCELLED           Payment is FAILED
+	 
+Failure Flow Two :
+------------------
+Client places order.
+OrderService creates PENDING order and emits OrderCreated.
+PaymentService successfully charges and emits PaymentCompleted.
+InventoryService tries to reserve stock BUT fails (out of stock).
+InventoryService emits InventoryRejected.
+PaymentService listens to InventoryRejected, refunds the payment, and emits PaymentRefunded.
+OrderService listens to PaymentRefunded and cancels the order.
+No shipment is created.
+
+	+--------+         +--------------+          +---------------+          +-----------------+
+	| Client |         | OrderService |          | PaymentService|          | InventoryService|
+	+--------+         +--------------+          +---------------+          +-----------------+
+		|                      |                           |                           |
+		| 1. POST /orders      |                           |                           |
+		|--------------------->|                           |                           |
+		|                      |                           |                           |
+		|                      | 2. Create Order (PENDING) |                           |
+		|                      |    in local DB (TX)       |                           |
+		|                      |---------------------------|                           |
+		|                      |                           |                           |
+		|                      | 3. Publish OrderCreated   |                           |
+		|                      |-------------------------->|  (Kafka: order-events)    |
+		|                      |                           |                           |
+		|                      |                           | 4. Receive OrderCreated   |
+		|                      |                           |    (begin local TX)       |
+		|                      |                           |                           |
+		|                      |                           | 5. Charge payment SUCCESS |
+		|                      |                           |    Save Payment=COMPLETED |
+		|                      |                           |    Commit TX              |
+		|                      |                           |                           |
+		|                      |                           | 6. Publish PaymentCompleted
+		|                      |<--------------------------|  (Kafka: payment-events)  |
+		|                      |                           |                           |
+		|                      | 7. ---                    |                           |
+		|                      |      OrderService may     |                           |
+		|                      |      just wait; next step |
+		|                      |      is driven by events  |                           |
+		|                      |                           |                           |
+		|                      |                           | 7. PaymentCompleted ----->|
+		|                      |                           |    (Kafka: payment-events)|
+		|                      |                           |                           |
+		|                      |                           |                           | 8. Receive PaymentCompleted
+		|                      |                           |                           |    (begin local TX)
+		|                      |                           |                           |
+		|                      |                           |                           | 9. Try to reserve inventory
+		|                      |                           |                           |    -> FAIL (out of stock)
+		|                      |                           |                           |
+		|                      |                           |                           | 10. Save Reservation=REJECTED
+		|                      |                           |                           |     Commit TX
+		|                      |                           |                           |
+		|                      |                           |                           | 11. Publish InventoryRejected
+		|                      |<------------------------------------------------------| (Kafka: inventory-events)
+		|                      |                           |                           |
+		|                      |                           | 12. Receive InventoryRejected
+		|                      |                           |     (begin local TX)
+		|                      |                           |                           |
+		|                      |                           | 13. Refund payment        |
+		|                      |                           |     Save Payment=REFUNDED |
+		|                      |                           |     Commit TX             |
+		|                      |                           |                           |
+		|                      |                           | 14. Publish PaymentRefunded
+		|                      |<--------------------------|  (Kafka: payment-events)  |
+		|                      |                           |                           |
+		|                      | 15. Receive PaymentRefunded                           |
+		|                      |     (begin local TX)                                   |
+		|                      |                                                       |
+		|                      | 16. Update Order status                               |
+		|                      |     PENDING -> CANCELLED                              |
+		|                      |     Commit TX                                         |
+		|                      |                                                       |
+		|                      | 17. (Optionally emit OrderCancelled)                  |
+		|                      |                                                       |
+		v                      v                           v                           v
+ Saga ends       Order = CANCELLED          Payment = REFUNDED           Inventory = REJECTED
+
 
 Orchestration :
 ---------------

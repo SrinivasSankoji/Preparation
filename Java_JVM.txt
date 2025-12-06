@@ -23,20 +23,11 @@ Frame Data
 Java was developed with the concept of WORA i.e. write once and run anywhere.
 Compiler compiles the .java file and generates the .class file i.e. Byte Code which is platform independent.
 The same Byte Code can run on any Operating System which has JVM installed.
-No need to recompile for each platform.
-
-Bytecode is NOT machine code.
-Bytecode is platform independent instruction set to understood by the JVM.
 JVM converts Bytecode into machine-specific native instructions and executes them on the hardware.
 
-JVM does not directly convert all Bytecode into machine code line-by-line.
+JVM does not directly convert the Bytecode into machine code line-by-line.
 Interpreter → Executes Bytecode line by line
 JIT Compiler → Converts frequently executed Bytecode blocks into native machine code for faster performance.
-
-This hybrid model provides both
-Portability (Interpreter)
-High performance (JIT Compiler)
-
 
 			        Java Source Code (.java)
                           ↓
@@ -75,9 +66,9 @@ As a Java Developer if we know the Architecture of JVM,it helps us to write the 
 What is JVM :
 -------------
 JVM is is a software-based virtual machine that :
-1.Provides the runtime environment for executing Java programs.
-2.Loads, verifies, links, and executes Java Bytecode.
-3.Converts Bytecode into platform-specific machine code.
+1.Loads, verifies, links, and executes Java Bytecode.
+2.Converts Bytecode into platform-specific machine code.
+3.Provides the runtime environment for executing Java programs.
 4.Manages Memory,Threads,Garbage Collection,Security
 
 Component										Description
@@ -101,20 +92,21 @@ JVM is divided into 3 main sub Systems.
 
 ############################################################ 2.Class Loader Subsystem #####################################################################
 
-Class loaders in Java handle the process of dynamically bringing Java classes into the Java Virtual Machine (JVM) as needed.
-This system makes Java different from many other programming languages, where programs are compiled directly into machine code and executed by the operating system.
-Java programs are first compiled into bytecode.
-The Class Loader loads the required .class files into JVM memory only when they are needed (dynamic loading).
-Loaded classes Verified for safety,Prepared (static memory allocated) and Initialized (static code executed).
-Execution Engine runs the bytecode using the Interpreter and the JIT Compiler, converting it into native machine code that runs on the CPU.
+1.Loading :
+------------
+Class Loader loads the required .class files into JVM memory only when they are needed (Dynamic loading).
+Loaded classes are verified for safety and then prepared and initialized.
+Execution engine runs the Bytecode using the Interpreter and the JIT Compiler, converting into native machine code that runs on the CPU.
+Class Loader operates in a parent-child structure to load classes in a controlled and efficient manner.
 
+Note :
+------
 Other than loading the.class files into memory, Class loaders define the namespace for every class they load.
 A class in Java is uniquely identified not only by its fully-qualified class name, but by the combination of
 
 	(Class Name + Defining Class Loader)
 	
-Because each Class Loader maintains its own namespace, the same class name can exist multiple times in a JVM, as long as each copy is loaded by a different Class Loader.
-This mechanism allows for the same class name to be used in different parts of the program without causing conflicts, as long as they are loaded by different class loaders.
+This mechanism allows for the same class to be used in different parts of the program without causing conflicts, as long as they are loaded by different class loaders.
 
 Note :
 ------
@@ -122,18 +114,9 @@ Same class such as com.mysql.cj.jdbc.Driver can be loaded multiple times in the 
 Each loaded copy belongs to a separate namespace and is treated as a distinct class.
 This enables Java servers and frameworks to support version isolation, plugins, and hot deployments, but requires caution to avoid casting issues and memory leaks.
 
-Class Loading Process :
------------------------
-1.Loading :
-------------
-Class Loader loads the .class files(bytecode) from the file system or other sources.
-Class Loader then converts this bytecode into a binary stream of data representing the class in the memory.
-
-Class Loader operate in a parent-child structure to load classes in a controlled and efficient manner.
-
 A.Bootstrap Class Loader :
 --------------------------
-Responsible for loading essential Java classes such as those in java.lang.# and java.util.#
+Responsible for loading essential Java classes such as those in java.lang.* and java.util.*
 Highest priority is given to the Bootstrap Class Loader.
 
 Java 8 and earlier loads core Java classes from JAVA_HOME/jre/lib.
@@ -155,9 +138,8 @@ Delegation Principle :
 Java’s Class Loader system follows the delegation model.
 When a Class Loader load's the class, it first passes the request to its parent class loader.
 This process continues up the chain until it reaches the Bootstrap Class Loader. 
-If the parent class loader finds the class, it returns it to the child. If not, the child class loader steps in and tries to load it on its own.
-This setup helps avoid loading the same class multiple times and keeps things consistent across the JVM.
-Since classes loaded by a parent class loader are available to all its child loaders.
+If the parent Class Loader finds the class, it returns it to the child. If not, child Class Loader steps in and tries to load it on its own.
+This process helps to avoid loading the same class multiple times and keeps things consistent across the JVM.
 
 2.Linking :
 ------------
@@ -185,9 +167,9 @@ JVM aborts the execution and rejects the class before running it.
 ---------
 we cannot produce a VerifyError using legal Java source code alone — because the compiler guarantees safe bytecode.
 VerifyError usually happens only if:
-.class file is manually edited
-Bytecode tools (ASM, ByteBuddy) generate invalid instructions
-Class files are corrupted during transmission
+.class file is manually edited.
+Bytecode tools (ASM, ByteBuddy) generate invalid instructions.
+Class files are corrupted during transmission.
 
 ✅ SOLUTION BY JVM
 JVM refuses to load corrupted or invalid bytecode.

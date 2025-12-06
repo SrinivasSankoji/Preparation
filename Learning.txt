@@ -1855,11 +1855,14 @@ Java_Development ()
 Generics ()
 Enum ()
 Serialization and Externalization ()
-MultiThreading DefogTech  Practice ()
+MultiThreading DefogTech Practice (Done)
 MultiThreading DefogTech ()
 Java8_Lambda_JavaBrains ()
 Java 17 Features ()
-Before Java8 and After Java8 are there any change in Memory Management ()
+Before Java8 and after Java8 are there any changes in Memory Management (Done)
+Singleton
+
+HashMap Internal practice (Done)
 
 toMap Examples ()
 groupingBy Examples ()
@@ -1874,20 +1877,67 @@ Spring Web Annotations ()
 Spring Security ()
 Spring AOP ()
 Spring Boot Actuator ()
+Rest Template vs Feign Client ()
 
 Hibernate basics and advanceed ()
 Sprig Data JPA ()
 Hibernate Caching with Scenarios ()
 
-SAGA Design Pattern ()
+SAGA Choreography Design Pattern ()
+SAGA Orchestrator Design Pattern ()
+Transctional Outbox Pattern ()
 ACID Properties (Done)
-CAP Thery ()
+CAP Theorem ()
 Redis Data Types ()
 
 Profiles and its Dynamic nature ()
 Questions asked in Interview ()
 
+GIT Basics ()
+Docker Basics ()
+Docker Commands ()
+Kubernetes Basics ()
+Kubernetes Commands()
+
+Pesimistic Locking (Done)
+Optimistic Locking (Done)
+
+Double Booking (Animesh Gaitonde)
+Booking System (Reyanshicodes)
+Double-Click - Idempotency (Arvind Kumar)
+
+
 ----------------------------------------- January 2025  ---------------------------------------------------
+
+Optional class handles NPE ()
+Runnable vs Callable ()
+Concept of Functional Interface ()
+Diamond Problem ()
+Volatile  ()
+Joins in SQL ()
+RestTemplate vs FeignClient ()
+JWT ()
+Circuit Breaker ()
+Fault Tolerance, Logging, Monitoring ()
+URl Shortening ()
+REST API to handle 10,000 concurrent requests ()
+Data consistency across microservices ()
+
+Agile methodology (Scrum, sprints, retrospectives) ()
+Handling production issues and incidents ()
+Working in cross-functional teams ()
+Estimation, communication, and ownership ()
+
+Describe a time you fixed a critical bug in production ()
+How do you resolve technical disagreements in your team? ()
+What steps do you follow to ensure sprint delivery? ()
+Share an example of when you had to deliver under tight deadlines. ()
+How do you communicate delays or blockers to stakeholders? ()
+
+Allow users to scan QR codes and contact vehicle owners without exposing personal numbers. ()
+Create endpoints for QR registration, vehicle mapping, and contact initiation. ()
+Handle backend with Spring Boot, frontend using ReactJS. ()
+Store owner info securely and maintain service logs. ()
 
 
 

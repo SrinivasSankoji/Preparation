@@ -624,21 +624,22 @@ To filter out the null values from the Stream we use Objects::nonNull as Method 
 ***************************************************** 13.CopyOnWriteArrayList *********************************************************************
 
 CopyOnWriteArrayList is a Thread Safe variant of ArrayList in which all the modifications are done by creating a fresh copy of the underlying Array.
+If we add new element to the CopyOnWriteArrayList, it will create the underlying array and then inserts the new element to the underlying and swaps the reference.
+Here the od Array becomes eligible for Garbage Collector.
 CopyOnWriteArrayList implements List,Serializable,Cloneable and RandomAccess Interface.
-Using CopyOnWriteArrayList for updates is very costly because each modification, it creates a cloned copy of the underlying Array.
+Using CopyOnWriteArrayList for updates is very costly because for each modification it creates a cloned copy of the underlying Array.
 
-The iterator we create using CopyOnWriteArrayList is an immutable snapshot of the original List.
-i.e. When we call iterator() or use for-each, it takes a snapshot of the array at that moment.
-Each Thread accessing the List sees its own version of snapshot of backing Array created while initializing the iterator first.
+Whenever we call iterator() or for-each, it takes a snapshot of the array at that moment.
+Each Thread accessing the List sees its own version of backing Array.
 
 As CopyOnWriteArrayList gets the snapshot of underlying Array, It won't throw any ConcurrentModificationException.
-Iterator’s remove() on the CopyOnWriteArrayList does not allow mutation operations and throws UnSupportedOperationException.
+CopyOnWriteArrayList does not allow mutation operations and throws UnSupportedOperationException.
 
 ArrayList :
 -----------
 	List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
 	Iterator<Integer> it = list.iterator();
-	list.add(4);  // structural modification
+	list.add(4);  // structural modification to the existing List
 	while (it.hasNext()) {
 		System.out.println(it.next()); // may throw ConcurrentModificationException
 	}
@@ -647,7 +648,7 @@ CopyOnWriteArrayList :
 ----------------------
 	CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>(Arrays.asList(1, 2, 3));
 	Iterator<Integer> it = list.iterator(); // Here Iterator conatians immutabe snapshot of the original List
-	list.add(4); // creates a new internal array, but iterator still uses old snapshot
+	list.add(4); // creates a new internal array with the new element and reference points to the new List, but iterator still uses old snapshot
 	while (it.hasNext()) {
 		System.out.println(it.next()); // prints 1, 2, 3 only, no exception
 	}
@@ -701,6 +702,16 @@ A
 B
 C
 D
+
+Use ArrayList when
+1.List is local to a single request.
+
+Use CopyOnWriteArrayList when
+Shared list, very frequent reads, very rare writes, small size.
+
+Note :
+------
+Shared list/map with frequent updates, then use ConcurrentHashMap, queues.
 
 ***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
 

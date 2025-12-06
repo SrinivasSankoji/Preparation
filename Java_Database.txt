@@ -1,14 +1,13 @@
 1.ACID Properties											(TheCodeAlchemist)   			  [01-DEC-2025]  (Done)
-2.Pesimistic Locking
-3.Optimistic Locking
+2.Optimistic Locking										(Umesh Kumar Yadav)   			  [04-DEC-2025]  (Done)
+3.Pesimistic Locking										(Umesh Kumar Yadav)   			  [04-DEC-2025]  (Done)
 4.Serializable
-5.Versions
-6.Database Indexing                      					(Concept and Coding) 			  [17-JUN-2024]  ()
-7.Database Indexing for Dumb Developers						(Laith Academy) 			  	  [17-JUN-2024]  ()
-8.Normalization 											(Decomplexify)					  [17-JUN-2024]  ()
-9.Store Passwords in Database
-10.SQL Execution Order
-11.Write a Head Log
+5.Database Indexing                      					(Concept and Coding) 			  [17-JUN-2024]  ()
+6.Database Indexing for Dumb Developers						(Laith Academy) 			  	  [17-JUN-2024]  ()
+7.Normalization 											(Decomplexify)					  [17-JUN-2024]  ()
+8.Store Passwords in Database
+9.SQL Execution Order
+10.Write a Head Log
 
 ############################################################### 1.ACID Properties ######################################################################
 
@@ -70,3 +69,173 @@ The changes will survive any subsequent system crash, power outage or other fail
 Example: Consider the scenario of an online purchase and your order is confirmed. 
 Moments later, the server crashes. 
 Thanks to Durability, when the system comes back online, order information will still be there.
+
+################################################################# 2.Optimistic Locking ######################################################################
+
+Concurrency Control :
+---------------------
+Concurrency control is the critical aspect when multiple users or process access the shared data simultaneously.
+The two common strategies for managing concurrency are optimistic locking and pessimistic locking.
+Concurrency control ensures that multiple transactions can execute simultaneously without leading to inconsistent or corrupted data.
+
+Optimistic Locking :
+--------------------
+Optimistic locking assumes that conflicts are rare. 
+Instead of locking the data, it allows multiple transactions to proceed concurrently and checks for conflicts only when saving changes. 
+If a conflict is detected (e.g., someone else modified the data), the transaction fails, and the application handles the conflict.
+
+Optimistic locking uses a version field in the database to track changes. 
+When an entity is updated, the version is checked to ensure it hasn’t changed since the entity was read.
+If the versions don’t match, an OptimisticLockException is thrown.
+
+Use Optimistic Locking when
+✅ High concurrency scenarios where conflicts are rare.
+✅ Read-heavy applications (e.g., e-commerce product views).
+✅ When you want to avoid the overhead of database locks.
+
+Implementation :
+----------------
+
+	@Entity
+	public class Product {
+		@Id
+		private Long id;
+		private String name;
+		private int stock;
+		@Version
+		private Long version; // Tracks changes
+		// Getters and setters
+	}
+	
+The @Version annotation tells JPA to use this field for optimistic locking.
+
+	public interface ProductRepository extends JpaRepository<Product, Long> {
+	}
+	
+	@Service
+	public class ProductService {
+	
+		private final ProductRepository productRepository;
+		
+		public ProductService(ProductRepository productRepository) {
+			this.productRepository = productRepository;
+		}
+		
+		@Transactional
+		public void updateStock(Long productId, int newStock) {
+			Product product = productRepository.findById(productId)
+					.orElseThrow(() -> new RuntimeException("Product not found"));
+			product.setStock(newStock);
+			productRepository.save(product); // JPA checks version automatically
+		}
+	}
+
+If two users try to update the same product simultaneously:
+User A reads the product (version = 1, stock = 10).
+User B reads the same product (version = 1, stock = 10).
+User A updates the stock to 8 and saves (version increments to 2).
+User B tries to update the stock to 7 but fails because the version is now 2, throwing an OptimisticLockException.
+
+Handling the Exception :
+------------------------
+	
+	@Transactional
+	public void updateStockWithRetry(Long productId, int newStock) {
+		int maxRetries = 3;
+		for (int attempt = 1; attempt <= maxRetries; attempt++) {
+			try {
+				Product product = productRepository.findById(productId)
+						.orElseThrow(() -> new RuntimeException("Product not found"));
+				product.setStock(newStock);
+				productRepository.save(product);
+				return;
+			} catch (OptimisticLockException e) {
+				if (attempt == maxRetries) {
+					throw new RuntimeException("Failed to update stock after " + maxRetries + " attempts", e);
+				}
+				// Retry after a short delay
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ie) {
+					Thread.currentThread().interrupt();
+				}
+			}
+		}
+	}
+
+This code retries the operation up to three times if an OptimisticLockException occurs.
+
+✅ Pros:
+High scalability for read-heavy applications.
+No database locks, reducing contention.
+Simple to implement with JPA.
+❌ Cons:
+Requires conflict resolution logic (e.g., retries).
+Not suitable for high-conflict scenarios.
+
+################################################################# 2.Pesimistic Locking ######################################################################
+
+Pessimistic locking assumes conflicts are likely.
+Pessimistic locking locks the data at the database level to prevent other transactions from modifying it until the current transaction is complete.
+It’s like reserving a meeting room — only one person can use it at a time. 
+
+When a transaction reads an entity with pessimistic locking, it acquires a lock (e.g., SELECT ... FOR UPDATE).
+Other transactions trying to access the same data are blocked until the lock is released.
+
+When to Use Pessimistic Locking :
+✅ High-conflict scenarios (e.g., booking a unique resource like a concert ticket).
+✅ Write-heavy operations where data integrity is critical.
+✅ When you want to avoid retries and ensure exclusive access.
+
+
+	public interface ProductRepository extends JpaRepository<Product, Long> {
+		@Lock(LockModeType.PESSIMISTIC_WRITE)
+		@Query("SELECT p FROM Product p WHERE p.id = :id")
+		Product findByIdWithPessimisticLock(Long id);
+	}
+	
+The @Lock(LockModeType.PESSIMISTIC_WRITE) ensures the entity is locked for writing.
+
+	@Service
+	public class ProductService {
+		private final ProductRepository productRepository;
+
+		public ProductService(ProductRepository productRepository) {
+			this.productRepository = productRepository;
+		}
+
+		@Transactional
+		public void updateStockWithPessimisticLock(Long productId, int newStock) {
+			Product product = productRepository.findByIdWithPessimisticLock(productId);
+			if (product == null) {
+				throw new RuntimeException("Product not found");
+			}
+			product.setStock(newStock);
+			productRepository.save(product); // Lock is held until transaction commits
+		}
+	}
+	
+User A calls updateStockWithPessimisticLock, locking the product row in the database.
+User B tries to access the same product but is blocked until User A’s transaction commits or rolls back.
+Once User A’s transaction is complete, User B can proceed.
+
+Types of Pessimistic Locks
+PESSIMISTIC_READ: Allows other transactions to read but not write.
+PESSIMISTIC_WRITE: Prevents other transactions from reading or writing (exclusive lock).
+PESSIMISTIC_FORCE_INCREMENT: Forces an increment of the version field (used with optimistic locking).
+
+✅ Pros:
+Ensures data integrity in high-conflict scenarios.
+No need for retry logic.
+Ideal for critical operations like financial transactions.
+
+❌ Cons:
+Can lead to deadlocks If not managed properly.
+Reduced scalability due to database locks.
+Increased latency for blocked transactions.
+
+Quick Tips for Choosing :
+-------------------------
+Use optimistic locking for applications with many reads and few writes, like blogs or product catalogs.
+Use pessimistic locking for operations where conflicts are common, like booking systems or inventory management.
+Combine both in complex apps: optimistic locking for general operations and pessimistic locking for critical updates.

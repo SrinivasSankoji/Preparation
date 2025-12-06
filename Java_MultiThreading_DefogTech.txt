@@ -39,7 +39,7 @@ Consider the scenario where we have one flag i.e.
 	boolean isDevice=true;
 	
 Also we have two threads i.e. Thread1 and Thread2 running in paralell.
-In Thread2 we have while condition which accepts the flag. If the flag is true it will execute n infinite loop.
+In Thread2 we have while condition which accepts the flag. If the flag is true it will execute in infinite loop.
 To ensure while loop not to execute in infinite loop, we make the flag as false in Thread1.
 We expect that changes done in Thread1 will impact in Thread2, but as per Java specification it won't impact the changes.
 To understand the reason how the CPU caches are structured.
@@ -57,9 +57,51 @@ When we use volatile, every read/write to go through Shared cache, not per-threa
 Now Thread2 has to read the value from the Shared Cache and will get the updated value.
 Volatile is genarally used to solve the visibility problem.
 
+✅ Volatile – Visibility flags
+Best when:
+Only one thread writes
+Many threads read
+No compound updates
+
+	volatile boolean running = true;
+
+Atomic operation :
+------------------
 Consider the same scenario using Integer value.
 
 	int value = 1;
+	
+	// Thread 1
+	value++;   // value = value + 1
+
+	// Thread 2
+	value++;   // value = value + 1
+	
+Here value++ is not Atomic and is a compound operation consisting of three steps.
+1. READ  value from memory
+2. ADD   1 to the local copy
+3. WRITE updated value back to memory
+
+	Initial value = 1
+
+	T1 reads 1
+	T2 reads 1
+
+	T1 adds -> 2
+	T2 adds -> 2
+
+	T1 writes 2
+	T2 writes 2   (overwrites T1's result)
+
+✅ Final value = 2
+❌ Correct result should be 3
+This is called a Race Condition
+
+	volatile int value = 1;
+	
+Both threads can see each other’s updates if volatile is used.
+The error still happens because the update itself is not Atomic.
+The outcome is still incorrect.
 
 Thread1 tries to increment the value and also Thread2 tries to increment the value i.e. value++ i.e. value=value+1;
 When two threads are running paralelly, we will not get the changes done in Thread1 available to Thread2.
@@ -69,13 +111,15 @@ Here the operation is read the value,add 1 to it and write the value.
 Here the main reason is we have compound operation and we don't have one atomic operaton which will read and write the updated value.
 To resolve this problem we can also use synchronized keyword i.e. only one Thread is allowed to increment the value.
 
-The other solution to resolve this problem is to use AtomicInteger.
-In AtomicInteger, we have a single method that will do the compound operation.
+The other solution to resolve this problem is using AtomicInteger.
+AtomicInteger uses hardware CAS operations internally so that the whole read-modify-write cycle is executed atomically without locks.
 
 Volatile is used for flags.
 AtomicInteger is used for Counters.
 AtomicReference is used for Cache.
 
+CAS(Compare-And-Swap) :
+-----------------------
 AtomicInteger solves this by using CAS(Compare-And-Swap)
 AtomicInteger uses a hardware CPU instruction.
 This happens 100% atomically in hardware and not in Java code.
@@ -88,11 +132,11 @@ counter.incrementAndGet();
 Internally JVM performs:
 
 	do {
-		current = value;      // read
-		newValue = current+1; // calculate
+		current = value;      // Read
+		newValue = current+1; // Modify
 	} while (!CAS(current, newValue)); // try once, retry if failed
 	
-value : Shared integer stored inside AtomicInteger
+value : Shared AtomicInteger i.e. initial State
 current : Local variable in the thread
 newValue : Desired updated value
 
@@ -535,7 +579,7 @@ It will return all those task which are stored inside the Blocking Queue.
 ExecutorService Callable/Future :
 ---------------------------------
 We can submit the task by using execute() of ExecutorsService where as we can define the task by using Runnable or Callable Interface.
-By using Runnable interface we can define the task and submit the task to executor and it won't return any result.
+When we execute the task using executor it won't return any result.
 Runnable task does not throw any Checked Exception.
 
 		ExecutorService executorService=Executors.newFixedThreadPool(4);
@@ -548,6 +592,7 @@ Runnable task does not throw any Checked Exception.
 
 			}
 		}
+		
 Use Runnable only when only side-effects are needed. For example
 Logging
 Writing to DB
@@ -558,11 +603,11 @@ Triggering workflows
 To get the result submitted by the task we use Callable Interface.
 submit() returns Future Object.
 Main Thread submits Callable → Thread Pool returns Future immediately → Worker thread runs call() → Result stored internally inside Future → Main thread retrieves result later.
-Once Main Thread calls the get(),the Thread goes into Blocking State if the task is not completed.
+Once Main Thread calls the get(),then Thread goes into Blocking State if the task is not completed.
 
 		ExecutorService executorService1=Executors.newFixedThreadPool(4);
 		Future<String> result = executorService.submit(new CallableTask());
-		// Main thread continues executing OTHER logic
+		// Main thread continues executing other logic
 		System.out.println("Doing other work");
 		// Later
 		String value = result.get();  // blocks if result not ready

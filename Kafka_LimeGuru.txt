@@ -1,6 +1,6 @@
-1.Introduction              (27-DEC-2019) (DONE)
-2.Topics and Partitions		(02-JAN-2020) (DONE)
-3.Producer					(05-JAN-2020) (DONE)
+1.Introduction              (27-DEC-2019) (Done)
+2.Topics and Partitions		(02-JAN-2020) (Done)
+3.Producer					(05-JAN-2020) (Done)
 4.Consumer					(07-JAN-2020) ()
 
 
@@ -71,12 +71,12 @@ Topic :
 -------
 Producer will publish the messages to the Kafka Broker and Consumer will consume the messages form Kafka Broker.
 There should be some unique mechanism to identify the dataset which is nothing but Topic.
-Every Producer will publish the messages to the Single or Multiple Topics.
-Similarly Consumer System will consume the messages from Single or Multiple Topics.
+Producer will publish the messages to the Single or Multiple Topics.
+Similarly Consumer will consume the messages from Single or Multiple Topics.
 
 Partitions :
 ------------
-Kafka is a distributed Messaging System.
+Kafka is a Distributed Messaging System.
 The messages are stored in a distributed manner and distribution can be achieved by using Partitions.
 Whenever we create a Topic we need to create a partitions for that Topic as per requirement.
 
@@ -87,8 +87,7 @@ Partition 3 sits in Broker3
 
 Whenever we create a Kafka Cluster it internally contains Kafka Servers.
 Here each Kafka Server is nothing but Kafka Broker and each Broker contains different Partitions.
-Kafka internally looks for the availability for the creation of Partition based on Physical Storage,
-and also it will make sure the distribution is highly achievable.
+Kafka internally looks for the availability for the creation of Partition based on Physical Storage,and also it will make sure the distribution is highly achievable.
 Here each Partition sits in the different Broker for highly availability.
 
 Whenever multiple messages are coming to the Topic and how the data is stored internally inside the each Partition of the Topic.
@@ -104,8 +103,8 @@ Producer will just publish the Messages to the Topic and Kafka internally distri
 
 Message Storing in Partition :
 ------------------------------
-Kafka internally creates a Log File in the Physical Storage in each Partition.
-All the messages which are coming for a Particular Topic will be committed in the particular Log File of the Partition.
+Kafka internally creates a Log File in the Physical Storage of each Partition.
+All the messages which are coming for a Particular Topic will be committed in the particular Log File of each Partition.
 Kafka manages the sequence of the messages in the Log File for the particular Partition using Off Set.
 Off Set is a Unique identifier for the particular message.
 Offset helps in identifying the messages read by Consumer Program.
@@ -153,7 +152,7 @@ ACK 1 :
 Whenever any message is published to the Kafka Topic,message goes to the Leader Partition.
 Leader Partition writes the message to its Log file and acknowledges the Producer Application that the message has been reached to the Leader Partition.
 Leader Partition then asynchronously replicate the messages to the Follower Partition based on Replication Factor.
-Since the acknowledgment happens before Follower Partition replication, 
+Since the acknowledgment happens before the Follower Partition replication, 
 If the leader fails immediately after sending the ACK, that message might be lost.
 Here Messages are not placed at the Follower Partition.
 

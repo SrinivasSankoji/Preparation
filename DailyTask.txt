@@ -5160,19 +5160,61 @@ Heap Area and Stack Area ()
 
 03-DEC-2025 :
 -------------
-Class Loaders Practice ()
+Class Loaders Practice (Done)
 Heap Area and Stack Area (Done)
+Kafka LimeGuru Revise (Done)
 
 04-DEC-2025 :
 -------------
-Method Area ()
-PC Registers ()
+Executors Service revise (Done)
+CopyonWriteArrayList revise (Done)
+Pesimistic Locking (Done)
+Optimistic Locking (Done)
+Linkage (Done)
+Transctional Outbox Pattern ()
 
 05-DEC-2025 :
 -------------
-Native Method Stack ()
-Execution Engine ()
+Method Area ()
+PC Registers ()
+Kafka Consumer LimeGuru ()
+HashMap Internal (Done)
+Volatile vs Atomic (Done)
+Runnable vs Future (Done)
+Thread Local ()
 
 06-DEC-2025 & 07-DEC-2025 :
 ---------------------------
+ConcurrentHashMap Internal (Done)
+CAS Algorithm (Done)
+SAGA Choreography ()
+
+Method Area ()
+PC Registers ()
+Kafka Consumer LimeGuru ()
+
+Native Method Stack ()
+Execution Engine ()
 Garbage COllector ()
+
+08-DEC-2025 :
+-------------
+Java_Interfaces_SourceFile () 
+Java_Development () 
+
+HashMap Demo
+ExecutorsService Demo
+Linkage Demo
+CopyonArrayList Demo
+Pesimistic Locking Demo
+Optimistic Locking Demo
+Java Memory Management Demo
+Polymorphism Demo
+OOPS revise
+
+
+09-DEC-2025 :
+-------------
+Generics ()
+Enum ()
+Serialization and Externalization ()

@@ -282,9 +282,7 @@ We can compare two HashMap's with duplicates or without duplicates.
 
 ######################################## 11.Initial capacity vs Load Factor (javaconceptoftheday) ############################################
 
-HashMap is dataStructure that can be used to store key value pair as an Entry object in a an Array.
-Each entry inside an Array is called Bucket Location.
-Initial capacity is the capacity of the HashMap at the time of creation i.e. 16.
+Initial capacity is the capacity of the HashMap at the time of creation.
 Default initial capacity is 16 and default Load Factor is 0.75f.
 Capacity is doubled each time when it reaches the Threshold.
 Threshold of a Hashmap is 
@@ -329,7 +327,7 @@ Every constructor of HashSet class internally creates one HashMap object.
 	
 How HashSet Works Internally  :
 -------------------------------
-Whenever we insert an element in the HashSet using add() method It actually creates an entry in the backing HashMap object 
+Whenever we insert an element in the HashSet using add() method it actually creates an entry in the backing HashMap object 
 with the element we specified as it's key and constant called PRESENT as it's value.
 "PRESENT" in HashSet is defined as 
 
@@ -355,12 +353,79 @@ remove() works in the same manner.
 3.HashMap allows null key only once with multiple nul values where as HashTable does not allow null keys and null values.
 
 	Map<String, Integer> hm = new HashMap<>();
-	hm.put(null, 1);        // OK (one null key)
-	hm.put("a", null);      // OK (null values allowed)
+	hm.put(null, 1);        // OK (one null key) //index = hash(key) & (n - 1); --> 0
+	hm.put("a", null);      // OK (null values allowed) // Adding another null key replaces the value of the existing null key
+	
+	Map<String, String> map = new HashMap<>();
+	map.put(null, "First");
+	map.put(null, "Second");
+	System.out.println(map); //{null=Second}
+	
+HashMap allow multiple null values as Keys must be unique, but values can be duplicates including null.
 
 	Map<String, Integer> ht = new Hashtable<>();
 	// ht.put(null, 1);     // NullPointerException
 	// ht.put("a", null);   // NullPointerException
+	
+Hashtable was designed in early Java days for multithreaded environments and
+Every method is synchronized
+Null handling introduces race-condition ambiguity
+
+	Hashtable.get(key) returns null.
+	
+Two possibilities:
+Key does NOT exist
+Key exists but mapped value is null
+In multithreaded synchronized code, this ambiguity is dangerous and costly to resolve.
+
+Online Session Cache :
+----------------------
+If the session is null means user is never loggedIn or Session Creation is in progress in case of HashMap.
+If the session is null means user is never loggedIn incase of HashTable.
+
+Thread-1 (Login request) :
+
+	sessionCache.put("U1001", null);   // creating new session.This line is for understanding.
+	// heavy DB + OTP checks...
+	sessionCache.put("U1001", new Session());
+
+Thread-2 (Validate session API call)
+While thread-1 is still processing
+
+	Session s = sessionCache.get("U1001");
+	if (s == null) {
+		redirectToLogin();
+	}
+	
+Here Session s = null in Thread-2.
+But cannot distinguish between:
+✅ "User never logged in" → redirect is correct
+❌ "User IS logging in right now" → redirect is WRONG
+
+Inventory System :
+------------------
+
+	Map<String, Integer> inventory = new Hashtable<>();
+
+Possible values:
+5 → 5 units available
+0 → Out of stock
+null → ❌ Invalid — not allowed
+
+Thread-1:
+
+	inventory.put("ITEM1", null); // updating stock
+	
+Thread-2:
+
+	Integer stock = inventory.get("ITEM1");
+	if (stock == null){
+		placeBulkOrder();
+	}
+
+null could mean,Item doesn't exist and Stock updating in progress.
+It is a Wrong purchasing decisions
+
 
 4.HashMap returns an iterator which can be used to traverse over the elements of the HashMap where as
 HashTable returns Iterator as well as Enumeration which can be used to traverse over the elements of the HashTable.
@@ -430,28 +495,70 @@ Done
 
 ######################################### 15.ConcurrentHashMap Internal(DZone Arun Pandey)	###########################################################
 
-ConcurrentHashMap is a thread-safe version of HashMap that allows concurrent read and write operations without explicitly using a synchronized block.
+ConcurrentHashMap is a thread-safe version of HashMap that
+✅ Allows multiple threads to read and write concurrently using Bucket Level locking and CAS (Compare and Swap).
+✅ Avoids using a single global lock (like Hashtable or Collections.synchronizedMap)
+✅ Provides high performance & scalability in multi-threaded systems
 
 Segment Locking :
 -----------------
 Each part of the Map is called Segment and Segment is only getting locked while adding or updating the Map.
 ConcurrentHashMap has a default capacity of 16 i.e. 16 Threads are allowed to work on the ConcurrentHashMap at at time.
+ConcurrentHashMap with 16 Segments
 
-Lock Striping + Compare And Swap :
-----------------------------------
+	[ Segment0 ][ Segment1 ][ Segment2 ] ... [ Segment15 ]
+	
+Each segment had its own lock
+A thread writing to Segment-3 would lock only that segment.
+Other threads could write to other segments concurrently.
+
+✅ Up to 16 concurrent writers (one per segment)
+❌ Writes to same segment → contention
+
+❌ Performance Issues
+Uneven load → one segment is overloaded, others became idle
+Fixed concurrency level
+Limited scaling on modern CPUs
+
+As a result Segment design was removed in Java 8.
+
+
+Bucket Locking + Compare And Swap :
+-----------------------------------
 Segment structure was removed for efficiency.
+
 Now it uses
-1.Node Arrays similar to HashMap
-2.Fine grained Locking per Bucket
-3.Compare and Swap for Updates
+1. Node[] table (same as HashMap)
+2. Fine-grained locking per BUCKET
+3. CAS (Compare-And-Swap) for inserts
+4. Lock only when absolutely needed
 
 Here Multiple Threads can update different Buckets concurrently.
 Only Threads that target the same Bucket index will compete for that small lock.
 
+	Node[] table (like HashMap)
+	Index 0 → Bucket 0 → Node → Node → Node
+	Index 1 → Bucket 1 → Node
+	Index 2 → Bucket 2 → TreeBin (Red-Black Tree)
+
+Flow :
+------
+	1. Compute bucket index
+	2. Thread inserts into empty bucket → CAS succeeds → NO LOCK needed ✅
+	3. If collision occurs, Lock bucket → Add node → Unlock
+	4. Release lock
+	
+Resizing :
+----------
+When table grows :
+Multiple threads cooperate in rehashing
+Threads copy buckets in parallel using CAS.
+✅ Resize remains non-blocking & scalable
+
 ######################################### 16.ConcurrentHashMap Internal	(javahungry)###################################################################
 
 ConcurrentHashMap does not allow null value and null key because If map.get(key) returns null we can't detect whether the key explicitly maps to null or key is not mapped.
-In a non Concurrent Map we can check this via map.contains(Key) but in a ConcurrentMap Map might have changed between the Calls.
+In a non Concurrent Map we can check this via map.contains(Key) but in ConcurrentMap it might have changed between the Calls.
 
 ######################################### 17.HashTable vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) #############################################
 
@@ -473,11 +580,11 @@ Otherwise it will handle the collision by using different collision strategies.
 ########################################################## 21.Internal Working of HashMap & Java-8 Enhancement (WebEncyclop Tutorials) ################
 
 Consider the scenario where we have multiple keys which are generating the same hashcode.
-In this case all the keys will be stored in the form of LinkedList.
-As part of Java 8 improovement if the elements in the LinkedList reaches the Treeify threshold then the LinkedList will be converted to Binary Tree.
+In this case all the Entry objects will be stored in the form of LinkedList.
+As part of Java 8 improvement if the elements in the LinkedList reaches the Treeify threshold then the LinkedList will be converted to Binary Tree.
 In case of Binary Search Tree or Red Balck Tree JVM will internally uses comparTo() to compare the Objects.
-In case of LinkedList to searcj for the particular key it has to iterate all the elements in the LinkedList.
-Since the keys are stored based on sorting order, to search for the particular key It will take less no of iterations.
+In case of LinkedList to search for the particular key it has to iterate all the elements in the LinkedList.
+Since the keys are stored based on sorting order, to search for the particular key it will take less no of iterations.
 
 
 ########################################################## 22.What is CAS (Compare and swap) #############################################################
@@ -499,18 +606,30 @@ Imagine two threads updating a shared integer value :
 Both threads read the same value (5) initially.
 
 ➤ Thread 1 :
-Reads current value: 5
+Reads current value: 5 (in-memory)
 Calculates new value: 6
 Executes compareAndSet(5, 6)
-✅ CAS succeeds because current = expected = 5
+✅ CAS succeeds because current(Current value) = expected(in-Memory) = 5
 Value becomes 6
 
 ➤ Thread 2 :
-Reads old value: 5
+Reads old value: 5 (in-memory)
 Tries compareAndSet(5, 6)
 ❌ Fails because current value is now 6 (modified by Thread 1)
 CAS doesn’t block; it just returns false
 Thread 2 can retry if needed (common in lock-free algorithms)
+
+	CAS(address, expectedValue, newValue):
+    if (*address == expectedValue) {
+        *address = newValue
+        return true   // success
+    } else {
+        return false  // someone else changed it
+    }
+
+Here address is the current value.
+expectedValue is in-memory value
+ 
 
 
 
