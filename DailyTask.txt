@@ -5187,20 +5187,23 @@ Thread Local ()
 ---------------------------
 ConcurrentHashMap Internal (Done)
 CAS Algorithm (Done)
-SAGA Choreography ()
-
-Method Area ()
-PC Registers ()
+SAGA Choreography (Done)
+Method Area (Done)
 Kafka Consumer LimeGuru ()
 
-Native Method Stack ()
+Heap Memory Practice ()
+Stack Area Practice (Done)
+Method Area Practice ()
+
+OOPS Revise ()
 Execution Engine ()
-Garbage COllector ()
 
 08-DEC-2025 :
 -------------
+Spring IOC Practice ()
 Java_Interfaces_SourceFile () 
 Java_Development () 
+PC Registers ()
 
 HashMap Demo
 ExecutorsService Demo
@@ -5218,3 +5221,8 @@ OOPS revise
 Generics ()
 Enum ()
 Serialization and Externalization ()
+Native Method Stack ()
+
+10-DEC-2025 :
+-------------
+Garbage COllector ()

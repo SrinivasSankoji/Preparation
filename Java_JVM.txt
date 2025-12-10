@@ -1,15 +1,15 @@
-1.JVM  Architecture 					(DZone)						[29-NOV-2020]  (Done)
-2.Class Loader Subsystem				(Alexander Obregon)			[01-DEC-2025]  (Done)
-3.Stack Area 							(digitalocean)				[03-DEC-2025]  (Done)
-4.Heap Memory 							(digitalocean)				[03-DEC-2025]  (Done)
-5.Method Area 							()							[03-DEC-2025]  (Done)
-6.Execution Engine 						()							[30-NOV-2020]  ()
-7.PC Registers 							()							[30-NOV-2020]  ()
-8.Native Method Stack 					(Kalyani Dagde)				[30-NOV-2020]  ()
-9.Garbage Collection 					(Subhasis Roy)				[30-NOV-2020]  ()
-10.Reference Types 						(Constantin Marian)			[30-NOV-2020]  ()		
-11.Dynamic Class Loading				(DZone)						[30-NOV-2020]  (Done)
-12.JDK vs JRE vs JVM 					(guru99)					[23-JAN-2021]  ()
+1.JVM  Architecture 					(DZone)							[29-NOV-2020]  (Done)
+2.Class Loader Subsystem				(Alexander Obregon)				[01-DEC-2025]  (Done)
+3.Stack Area 							(digitalocean)					[03-DEC-2025]  (Done)
+4.Heap Memory 							(digitalocean)					[03-DEC-2025]  (Done)
+5.Method Area 							(digitalocean,FullStackTips)	[06-DEC-2025]  ()
+6.PC Registers 							()								[30-NOV-2020]  ()
+7.Execution Engine 						()								[30-NOV-2020]  ()
+8.Native Method Stack 					(Kalyani Dagde)					[30-NOV-2020]  ()
+9.Garbage Collection 					(Subhasis Roy)					[30-NOV-2020]  ()
+10.Reference Types 						(Constantin Marian)				[30-NOV-2020]  ()		
+11.Dynamic Class Loading				(DZone)							[30-NOV-2020]  (Done)
+12.JDK vs JRE vs JVM 					(guru99)						[23-JAN-2021]  ()
 
 
 Delegation Heirarchy
@@ -203,19 +203,14 @@ Here all the static variables will be assigned with original values and static b
 
 ###############################################################  3.Stack Area ####################################################################################
 
-Stack Area (Java Stack) stores the method execution data for each Thread i.e Stack Frame.
-For every method call performed by the Thread, the JVM creates a separate Stack Frame and pushes it onto the Thread’s Stack Area.
-Each Thread has its own runtime Stack Frame, making Stack memory thread-safe.
-All method-local variables (both primitive values and object references) are stored in the stack.
-When the method returns (normally or due to an exception), the frame is popped from the stack.
+For every method call performed by the Thread, JVM creates a separate Stack Frame and pushes it into the Stack Area.
+Each Thread has its own runtime Stack Frame, making Stack Area thread-safe.
+When the method completes the execution or an Exception occurs, the entire Stack frame is removed immediately.
 
 Each stack frame consists of:
 1.Local Variable Array (Local Variable Table)
 2.Operand Stack
 3.Frame Data (also called Frame Metadata)
-		
-When the method completes or an exception occurs, the entire stack frame is removed immediately.
-
 
 				Stack Frame
 		---------------------------------
@@ -229,7 +224,7 @@ When the method completes or an exception occurs, the entire stack frame is remo
 
 1.Local Variable Array :
 ------------------------
-Local Variable Array stores method parameters, primitive local variables, and references to Heap objects.
+Local Variable Array stores method parameters, method local variables and references to Heap objects.
 
 	void calc(int x) {
 		int y = 10;
@@ -245,13 +240,12 @@ Local Variable Array stores method parameters, primitive local variables, and re
 	
 Note :
 ------	
-The array size is fixed at compile time based on method needs.
+The array size is fixed at compile time and based on method needs.
 Local Variable Array stores values directly for primitives and addresses/references for objects.
-Slot reuse is possible when variables go out of scope.
 
 2.Operand Stack :
 -----------------
-Operand Stack is used as a working area to evaluate expresions and method execution.
+Operand Stack is used as a working area to evaluate the expresions and method execution.
 Operand Stack is not used to store variables permanently.
 
 	void calculate() {
@@ -384,7 +378,202 @@ Note :
 ------
 A Full GC collects the entire Heap (Young and Old), and depending on the garbage collector and memory pressure, It may also include Metaspace, though this is not guaranteed.
 
-############################################################### 6.Execution Engine ####################################################################################
+############################################################### 5.Method Area #########################################################################################
+
+Method area is another memory area used by JVM to store class level meta-data which is required to run the Java Program.
+Method area will be created at the start of the Application, exists one per JVM and shared among all the Threads.
+Although it is conceptually distinct from the Heap, its actual implementation has evolved over different versions of the JVM.
+Most notably with the transition from Permanent Generation (PermGen) to Metaspace in Java 8.
+	
+Method Area stores
+1.Class Metadata
+2. Runtime Constant Pool
+3. Static Variables (Class Variables)
+4. Method Bytecode
+5.Field and method information
+6.Constructor code
+7.Type information used for method resolution and dispatching
+
+	        METHOD AREA (PermGen / Metaspace)
+   ┌─────────────────────────────────────────────────┐
+   │                CLASS METADATA                   │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │ Class Identity Info                         │ │
+   │ │  • Fully Qualified Name                     │ │
+   │ │  • Superclass reference                     │ │
+   │ │  • Implemented interfaces                   │ │
+   │ │  • Access flags (public, final, abstract…)  │ │
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │ 5. FIELD INFORMATION                        │ │
+   │ │  • Field names                              │ │
+   │ │  • Types (int, String, Object…)             │ │
+   │ │  • Modifiers (static, final, private…)      │ │
+   │ │  • Annotations                              │ │ 
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │ 5. METHOD INFORMATION                       │ │
+   │ │  • Method names                             │ │
+   │ │  • Return types                             │ │
+   │ │  • Parameter types                          │ │
+   │ │  • Modifiers                                │ │
+   │ │  • Annotations                              │ │ 
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │ 6. CONSTRUCTOR CODE                         │ │
+   │ │  • Bytecode for constructors (<init>)       │ │
+   │ │  • Static initializers (<clinit>)           │ │
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │ 7. TYPE INFORMATION / DISPATCH INFO         │ │
+   │ │  • Virtual method tables (vtable/itable)    │ │
+   │ │  • Interface method maps                    │ │
+   │ │  • Method resolution tables                 │ │
+   │ │  • Polymorphism dispatch structures         │ │
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │   RUNTIME CONSTANT POOL                     │ │
+   │ │   • Literals                                │ │
+   │ │   • Class refs                              │ │
+   │ │   • Method refs                             │ │
+   │ │   • Field refs                              │ │
+   │ └─────────────────────────────────────────────┘ │
+   │                                                 │
+   │ ┌─────────────────────────────────────────────┐ │
+   │ │   STATIC VARIABLES                          │ │
+   │ └─────────────────────────────────────────────┘ │
+   └─────────────────────────────────────────────────┘
+
+
+All of this information is essential for enabling runtime features such as dynamic method invocation, polymorphism, and class reflection.
+Because this data does not change after the class is loaded (with few exceptions, such as dynamic class redefinition).
+It is considered immutable for the duration of the class’s life cycle.
+
+Class Metadata :
+----------------
+Every loaded class has an internal structure created in the Method Area.
+
+	class Student {
+	   String name;
+	   static int count;
+	   void study(){}
+	}
+
+| Component                  | What it holds                      |
+| -------------------------- | ---------------------------------- |
+| **Class name**             | `Student`                          |
+| **Package name**           | `com.example.Student`              |
+| **Superclass info**        | `java.lang.Object`                 |
+| **Interfaces implemented** | e.g. `Runnable`                    |
+| **Access flags**           | `public`, `abstract`, etc          |
+| **Field metadata**         | Field names, types, modifiers      |
+| **Method metadata**        | Method names, return types, params |
+| **Annotations**            | `@Service`, `@Entity`, etc         |
+| **Bytecode**               | Method instructions                |
+
+Runtime Constant Pool :
+-----------------------
+Each class has a Runtime Constant Pool, stored in the Method Area.
+It contains
+✅ String literals
+✅ Class names
+✅ Method references
+✅ Field references
+✅ Numeric constants
+
+	String s = "HELLO";
+	
+"HELLO" is kept in the Constant Pool.
+All references to "HELLO" reuse the same entry.
+
+Static Variables (Class Variables) :
+------------------------------------
+Static fields live in the Method Area and not the Heap.
+All instances access the same static variable copy
+
+	class Counter {
+		static int count = 0;
+	}
+	
+Method Area → count = 0
+Heap → Counter object instance
+
+Method Bytecode :
+-----------------
+Every method's Bytecode instructions are stored here.
+
+	void add(){
+	   int x = 10;
+	}
+
+The actual JVM instructions for add() are stored in Method Area
+Execution runs on Stack frames, but bytecode remains in Method Area.
+
+Since the Method Area is shared across all threads, Multiple threads may read class metadata safely.
+JVM uses internal synchronization to ensure
+A class loads only once.
+Fields/method info isn't corrupted.
+
+Without Method Area
+❌ JVM cannot load classes
+❌ Bytecode cannot be executed
+❌ Static fields have no storage
+❌ Constant pools don’t exist
+❌ Reflection fails
+
+Method Area is the backbone of runtime type information (RTTI) in Java.
+
+PermGen: The Original implementation (Before Java 8) :
+------------------------------------------------------
+In JVM versions prior to Java 8, Method area was physically implemented in a fixed-size memory region called the Permanent Generation (PermGen).
+PermGen resided in the Heap and had to be explicitly sized using JVM flags like
+
+	-XX:PermSize=128m
+	-XX:MaxPermSize=256m
+	
+The fixed nature of PermGen introduced several challenges.
+Class metadata could exceed PermGen space, leading to java.lang.OutOfMemoryError: PermGen space especially in applications that dynamically load many classes.
+It could not grow beyond its configured maximum, regardless of available system memory.
+
+Metaspace: Modern implementation (Java 8 and Later) :
+-----------------------------------------------------
+With the release of Java 8, the JVM replaced PermGen with a new memory region called Metaspace.
+Unlike PermGen, Metaspace is not part of the Java Heap.
+It is allocated from native memory, which allows it to grow dynamically as needed.
+
+This change brought several improvements:
+Developers no longer need to worry about sizing PermGen manually.
+The risk of OutOfMemoryError: PermGen space is greatly reduced.
+Class metadata is handled more flexibly and efficiently.
+
+However, while Metaspace can grow automatically, it is still constrained by available system memory.
+If too many classes are loaded (or not properly unloaded), Metaspace can still overflow, leading to a an error.
+
+	-XX:MetaspaceSize=128m
+	-XX:MaxMetaspaceSize=512m
+	
+MetaspaceSize defines the initial size, which affects when the first GC of class metadata will be triggered.
+MaxMetaspaceSize limits how large Metaspace can grow. If omitted, Metaspace will grow until it exhausts native memory.
+
+Applications that dynamically load and unload classes — such as servlet containers (Tomcat, Jetty), OSGi platforms, or scripting engines — should monitor Metaspace usage closely.
+
+Class Unloading and Garbage Collection :
+----------------------------------------
+Metaspace memory is eligible for collection when classes are unloaded, but this only happens if
+
+1.The class loader that loaded the class is no longer reachable.
+2.The garbage collector is invoked and identifies the class loader as unreachable.
+3.The JVM supports class unloading (some collectors may restrict this).
+
+Uncollected class loaders can lead to Metaspace leaks, especially in environments where classes are reloaded frequently (e.g., Hot deployment in Development servers). 
+To mitigate this, JVM options like -XX:+ClassUnloading (enabled by default in modern JVMs) can help enable or improve class unloading behavior.
+
+############################################################### 7.Execution Engine ####################################################################################
 
 Byte Code which is assigned to the Runtime Data Area will be executed by the Execution Engine.
 Execution Engine reads the Byte Code and executes it piece by piece.
