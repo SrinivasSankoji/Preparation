@@ -14,9 +14,9 @@
 Redis is a key-value store Database.
 Redis is distributed i.e. we can have multiple instances of Redis as part of its setup.
 Here the key-value will be inserted among mutiple instances.
-Redis is an In-Memory database i.e. each key-value pair will be stored insdie the memory of each instance.
-Because of In-Memory feature, Redis is highly efficient and the reads are very fast.
-Not required to read the data from the disk because of In-Memory.
+Redis is an in-Memory database i.e. each key-value pair will be stored insdie the memory of each instance.
+Because of in-Memory feature, Redis is highly efficient and the reads are very fast.
+Not required to read the data from the disk because of in-Memory.
 This is the reason Redis is used as a Caching Framework.
 As the Redis is the key-value store database, Within the value, it can store different types of data.
 Some of the data structures for the values are 

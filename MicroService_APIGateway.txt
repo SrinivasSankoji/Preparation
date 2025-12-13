@@ -10,7 +10,6 @@
 10.Spring Cloud Gateway								(Medium)
 
 
-
 ############################################################### 1.API Gateway Ways ###############################################################
 
 Kong:
@@ -294,7 +293,7 @@ Implementation: Use routing rules and virtual services.
 
 The crux of MicroService architecture is that create an independent service which has to be scaled and deployed independently.
 In a complex Enterprise Application we have more than 50 to 100 Micro Services.
-Lets imagine a System where we have to implement a UI which is a kind of Dashboard which calls 50 to 100 Micro Services to fetch the information and shows to the UI.
+Consider the scenario where we have to implement an UI which is a kind of Dashboard which calls 50 to 100 Micro Services to fetch the information and shows to the UI.
 From a UI Developer perspective he has to call these 50 to 100 Micro Services and he has to maintain all the details of Micro Services like URL, Port and End Point.
 More over the common aspects of a Web Program are CORS, Authentication, Authorization, Security, Monitoring etc.
 Here each Micro Service has to develop all these aspects on its own and same code has to be replicated in all the Micro Services.

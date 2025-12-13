@@ -1810,8 +1810,8 @@ TLS SNI  ()
 ThreadPoolExecutor  () 
 Load Balancer concepts  ()
 Null & NullPointerException  ()
-@Autowired → byName vs byType  ()
-Circular Dependency Injection solution  ()
+@Autowired → byName vs byType  (Done)
+Circular Dependency Injection solution  (Done)
 word count ()
 Occuence of the word in descending order ()
 
@@ -1872,6 +1872,7 @@ endsWith() Examples ()
 
 Kafka Consumer LimeGuru ()
 
+Spring IOC Basics Practice (Done)
 Spring Core Annotations ()
 Spring Web Annotations ()
 Spring Security ()

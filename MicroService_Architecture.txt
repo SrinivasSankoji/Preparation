@@ -215,6 +215,24 @@ Domain Driven Design
 Event Driven Architecture
 Database Per Service,Shared Database
 
+Clients (web/mobile/3rd-party)
+Edge: DNS, CDN, WAF, global routing
+API Management / Gateway / Ingress
+Identity & Access (IdP, RBAC, scopes, tokens)
+BFF layer (optional)
+Service discovery / routing / (optional) service mesh
+Business microservices (domain-driven, bounded contexts)
+Workflow / Saga orchestrator where needed
+Database per service + data integration (CDC, CQRS)
+Caches (Redis / in-memory)
+Message broker & event streams
+Search, analytics, and reporting layer
+Observability stack (logs, metrics, traces, alerting)
+Security (network, secrets, encryption, audit)
+Reliability (backups, DR, scaling, incident mgmt)
+Testing & release safety (CI/CD, feature flags, contract tests)
+Governance & documentation (standards, ADRs, diagrams)
+
 
 
  

@@ -5,28 +5,28 @@
 4.Spring IOC Container Java Config Example									(JavaGuides)		[16-AUG-2021]  (Done)
 5.Spring IOC Container XML Config Example                                   (JavaGuides)        [16-AUG-2021]  (Done)
 6.Spring BeanFactory Interface Example                                      (JavaGuides)        [16-AUG-2021]  (Done)
-
 7.Guide to Dependency Injection in Spring                                   (JavaGuides)        [17-AUG-2021]  (Done)
+
 8.Spring Setter Injection  Example                                          (JavaGuides)        [17-AUG-2021]  (Done)
 9.Spring Constructor Injection  Example                                     (JavaGuides)        [17-AUG-2021]  (Done)
 10.@DependsOn Annotation Example                                            (JavaGuides)        [17-AUG-2021]  (Done)
 
 11.Guide to Spring Bean Scopes                                              (JavaGuides)        [17-AUG-2021]  (Done)
 12.Singleton and Prototype Scopes                                           (JavaGuides)        [17-AUG-2021]  (Done)
-
 13.InitializingBean and DisposableBean Example                              (JavaGuides)        [17-AUG-2021]  (Done)
 14.initMethod and destroyMethod Attributes Example                 			(JavaGuides)        [17-AUG-2021]  (Done)
 15.@Scope annotation with Prototype Scope Example                           (JavaGuides)        [17-AUG-2021]  (Done)
 16.@Scope annotation with Singleton Scope Example                           (JavaGuides)        [17-AUG-2021]  (Done)
 
 17.Spring Annotation Based Container Configuration                          (JavaGuides)        [18-AUG-2021]  (Done)
-18.Spring @Autowired Annotation with Example                                (JavaGuides)        [18-AUG-2021]  (Done)
+18.@Autowired Annotation with Example                                		(JavaGuides)        [18-AUG-2021]  (Done)
 19.@Primary Annotation Example                                              (JavaGuides)        [18-AUG-2021]  (Done)
 20.@PostConstruct and @PreDestroy Example                                   (JavaGuides)        [18-AUG-2021]  (Done)
 21.@Qualifier Annotation Example                                            (JavaGuides)        [18-AUG-2021]  (Done)
 
 22.Spring Java Based Configuration Basics                                   (JavaGuides)        [19-AUG-2021]  (Done)
 23.Spring Java Based Configuration Example                                  (JavaGuides)        [19-AUG-2021]  (Done)
+
 24.@Bean Annotation with Example                                     		(JavaGuides)        [19-AUG-2021]  (Done)
 25.@Configuration Annotation with Example                            		(JavaGuides)        [19-AUG-2021]  (Done)
 
@@ -37,18 +37,20 @@
 
 30.@Profile Annotation														(amitph)			[02-JAN-2022]  (Done)
 31.Spring Core Annotations                                               	(JavaGuides)        [19-AUG-2021]  (Done)
-32.5 Types of Autowiring in Spring											(DZone)
+32.5 Types of Autowiring in Spring											(DZone)				[13-DEC-2025]  ()
+33.By Type vs By Name 														(Chat GPT)			[13-DEC-2025]  (Done)
+34.Circular dependency issues with by Type                                  (Chat GPT)			[13-DEC-2025]  (Done)
 
 ################################################## 1.Dependency Injection Design Pattern (DZone) ###############################################
 
 IOC is a principle which states that don't create the Objects manually instead describe how they should be created.
 Then Spring Container will create an Object for the required classes.
 IOC is a principle which is implemented by using Dependency Injection Design Pattern.
-
 Dependecny Injection is a design pattern using which we can remove the hard coded dependencies and make our application loosely coupled,extendable and maintainable.
-Dependency Injection can be implemented by using
-1.Runtime Polymorphism
-2.Has a Relationship
+
+Dependency Injection relies on two OOP features
+1.Runtime Polymorphism : we reference an interface type but inject any implementation
+2.Has a Relationship : A service has a dependency object
 
 Dependency Injection can be done in two ways
 1.Setter Injection
@@ -139,7 +141,7 @@ Component only needs to choose a way to accept the resources and Spring Containe
 
 Spring Container is responsible for instantiating the Spring beans.
 Spring Container gets its instructions on what Objects to instantiate by reading the Configuration metadata.
-Configuration Metadata informs the Spring Container to instantiate,configure and assemble the Spring Beans in our Application.
+
 There are three ways we can supply Configuration Metadata to Spring Container.
 1.XML based Configuration
 2.Annotation based Configuration
@@ -162,6 +164,7 @@ To create a Spring Container using BeanFactory
 	BeanFactory factory=new XMLBeanFactory(new ClassPathResource("applicationContext.xml"));
 
 Spring provides many ApplicationContext Interface implementations to create the Spring Container.
+
 FileSystemXmlApplicationContext
 ClasspathXmlApplicationContext
 AnnotationConfigApplicationContext
@@ -254,11 +257,56 @@ Done
  
 ################################################## 7.Guide to Dependency Injection in Spring ####################################################
 
-Dependency Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled,maintainable and extendable.
-Using Dependency Injection we can define the dependencies through Constructor arguments,arguments to a factory method or the properties that are set on the Object Instance.
-The Container then inject those dependencies when it creates the Bean.
-The process is fundementally inverse hence the name Inversion of Control.
-The Bean itself is controlling the instantiation or location of its dependencies on its own by using direct Construction of Classes or Service Locator Pattern.
+Dependency Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled, maintainable and extendable.
+In Dependency Injection dependencies are supplied externally via Constructor arguments,arguments to a factory method or properties by the IOC Container at the creation time.
+The Bean does not instantiate or locate its dependencies. 
+Container creates the dependencies and injects them into the Bean, which is why the process is called Inversion of Control.
+
+
+	@Component
+	public class SpringQuizMaster implements QuizMaster {}
+
+	@Service
+	public class QuizMasterService {
+
+		private final QuizMaster quizMaster;
+
+		@Autowired
+		public QuizMasterService(QuizMaster quizMaster) {
+			this.quizMaster = quizMaster;
+		}
+	}
+	
+Spring scans packages and :
+Registers Bean Definition #1 → SpringQuizMaster
+Registers Bean Definition #2 → QuizMasterService
+
+A BeanDefinition is an internal metadata structure describing
+Bean class
+Scope (singleton, prototype, etc.)
+Constructor info
+Dependencies
+Lifecycle methods
+Spring doesn’t create objects yet.
+It only prepares metadata.
+
+Instantiate Beans Using Reflection :
+------------------------------------
+Spring now decides which beans must be created first.
+Suppose constructor injection:
+
+	public QuizMasterService(QuizMaster quizMaster)
+
+Spring sees QuizMasterService needs QuizMaster before it can be created.
+So Spring must first create a bean of type QuizMaster.
+Spring uses Java Reflection.
+
+	Constructor<?> constructor = SpringQuizMaster.class.getDeclaredConstructor();
+	Object instance = constructor.newInstance();
+	
+This is how container creates the dependency.
+We never write new SpringQuizMaster().
+The IoC container does it using reflection.
 
 Advantages of Dependency Injection :
 ------------------------------------
@@ -300,7 +348,7 @@ Setter Injection is accomplished by the Container calling setter methods on our 
 		}
 	}
 	
-To call the MessageService via Setter Injection make any one of the MessageService Implemented class as @Primary or use @Qualifier Annotation along with @Autowired Annotation
+To call the MessageService via Setter Injection make any one of the MessageService implemented class as @Primary or use @Qualifier Annotation along with @Autowired Annotation
 
 		@Service("TwitterService")
 		@Primary
@@ -413,17 +461,50 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 Spring Framework supports following Bean Scopes.
 
 1.Singleton
-Default scope in Spring.
-When we define a Spring Bean with Singleton Scope,Spring Container creates exactly one instance of the Object.
-The same instance is returned for every request of that Bean.
-Here the instance is stored in the Cache and all the subsequent requests for that Bean will be returned from the Cache.
+Singleton-scoped Spring Bean means
+Spring Container creates one instance of the Bean per Spring IoC container.
+Spring Container keeps this instance inside its Singleton Cache (an internal map)
+Same instance is returned for every request of that Bean.
 Singleton Beans are not ThreadSafe.
+
+Spring Singleton ≠ Java Singleton Pattern
+Java Singleton - one instance per JVM
+Spring Singleton - one instance per ApplicationContext
+You can have multiple Spring Singletons If we create multiple contexts.
+
+	@Service
+	public class EmailService {
+		public void sendMail() { 
+		}
+	}
+	
+	@Autowired
+	EmailService emailService1;
+
+	@Autowired
+	EmailService emailService2;
+
+emailService1 == emailService2// TRUE
+Spring creates only one object.
+
+Why Spring Makes Singleton the Default :
+----------------------------------------
+Most services are stateless
+Repeated object creation is costly
+Singleton scope improves performance
+Reduces memory footprint
+Encourages sharing of infrastructure objects
+Follows typical Enterprise application design (service layer is stateless)
 
 2.prototype
 A new instance of the Bean is created and returned every time when it is requested from the container.
-Suitable for stateful Beans where each user or operation requires a distinct instance.
-Unlike Singleton Beans, prototype Beans are not managed by the container once they are created. 
-This means that their lifecycle methods i.e. init and destroy are not called automatically.
+Suitable for stateful Beans where each operation requires a distinct instance.
+
+Container does not cache the instance.
+Every call to getBean() returns a fresh, independent object.
+Spring only performs dependency injection and initialization.
+No destruction callbacks (@PreDestroy is NOT executed).
+Lifecycle past initialization is the developer’s responsibility.
 
 3.request
 A new instance of the Bean is created for each HTTP request.
@@ -450,7 +531,7 @@ To define the bean as Singleton in the XML
 
 	<bean id="" name="" scope="singleton"></bean>
 	
-To define the bean as Singleton at Bean Level :
+To define the bean as Singleton at Bean Level
 
 	@Configuration
 	public class AccountService
@@ -463,7 +544,7 @@ To define the bean as Singleton at Bean Level :
 		}
 	}
 	
-To define the Bean as Singleton at Class Level :
+To define the Bean as Singleton at Class Level
 
 When we define a bean with prototype scope,Spring Container creates a new instance every time when the request is made for that bean.
 Use the Prototype scope for stateful beans and Singleton scope for stateless beans.
@@ -541,24 +622,24 @@ We use @Scope annotation to define the scope of a Component Class or Bean defini
 When a Spring bean is scoped as Prototype,Spring Container creates a new instance every time when a request is made for that Bean.
 we define the scope of a bean as Prototype using @Scope("prototype") or @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 
-@Service
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class UserService {
+	@Service
+	@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public class UserService {
 
-	private String name;
-}
-
-@Configuration
-@ComponentScan("com.ioc.javaguides.singleton.model")
-public class SingletonConfiguration {
-
-	@Bean
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-	public UserService userService()
-	{
-		return new UserService();	
+		private String name;
 	}
-}
+
+	@Configuration
+	@ComponentScan("com.ioc.javaguides.singleton.model")
+	public class SingletonConfiguration {
+
+		@Bean
+		@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+		public UserService userService()
+		{
+			return new UserService();	
+		}
+	}
            
 ################################################## 16.@Scope annotation with Singleton Scope Example ##########################################
 
@@ -566,23 +647,23 @@ When a Spring bean is scoped as Singleton,Spring Container exactly creates one i
 By Default Spring Container instantiates and initializes all the beans as Singleton.
 we define the scope of a bean as Singleton by using @Scope("singleton") or @Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
 
-@Service
-@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class UserService {
+	@Service
+	@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)
+	public class UserService {
 
-	private String name;
-}
-
-@Configuration
-public class SingletonConfiguration {
-
-	@Bean
-	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-	public UserService userService()
-	{
-		return new UserService();	
+		private String name;
 	}
-}
+
+	@Configuration
+	public class SingletonConfiguration {
+
+		@Bean
+		@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+		public UserService userService()
+		{
+			return new UserService();	
+		}
+	}
 
 ################################################## 17.Spring Annotation Based Container Configuration  ########################################## 
 
@@ -605,143 +686,205 @@ Different Annotations provided by Spring are
 
 ################################################## 18.Spring @Autowired Annotation with Example ################################################# 
 
-@Autowired can be used for automatic Dependency Injection.
-This means Spring will automatically resolve and inject the required dependencies into the Bean.
-Whenever we are using @Autowired not required to explicitly mention about the Bean in the Configuration.
+@Autowired can be used for automatic Dependency Injection i.e. Spring Container will resolve the dependencies automatically and inject the appropriate Bean here.
+Here Spring Container examines the injection point and chooses a matching Bean By Type.
+
+Injection priority:
+By Type
+If multiple beans exist: By Qualifier
+If still ambiguous: By Name
+If still ambiguous: error unless required=false
+
+How @Autowired Works Internally :
+---------------------------------
+When the Application starts, Spring Container scans all Bean classes (@Component, @Service, @Repository, @Controller).
+Spring Container builds BeanDefinition objects i.e. Internal metadata about each Bean.
+During Bean creation phase, Spring calls AutowiredAnnotationBeanPostProcessor.
+AutowiredAnnotationBeanPostProcessor inspects fields, constructors or methods annotated with @Autowired.
+Then determines the dependency type,searches in the BeanFactory for the matching Bean,injects the dependency using reflection(even private fields).
+
+Why use @Autowired :
+--------------------
+Zero configuration — no XML
+No manual Bean creation
+Faster development
+Clean, readable code
+Reduces boilerplate
+
+Whenever we are using @Autowired then it is not required to explicitly mention about the Bean in the Configuration.
 We can use this annotation at Constructor Level,Setter Level and Field Level.
 
 Constructor Injection :
 -----------------------
 
-@RestController
-public class CustomerController
-{
-	private CustomerService;
-	
-	@Autowired
-	public CustomerController(CustomerService customerService)
+	@RestController
+	public class CustomerController
 	{
-		this.customerService=customerService;
+		private CustomerService;
+		
+		@Autowired // Not required only if there is a single Constructor. Required for Multiple Constructors to resolve ambiguity.
+		public CustomerController(CustomerService customerService)
+		{
+			this.customerService=customerService;
+		}
 	}
-}
+	
+Advantages :
+------------
+The safest
+The most recommended
+The most explicit
+The most testable
+Avoids circular dependencies
+Avoids partial initialization
+
+When a Bean has only one constructor, AutowiredAnnotationBeanPostProcessor and ConstructorResolver detects
+Only one constructor exists
+Constructor has dependencies
+Therefore,treat this constructor as if it were annotated with @Autowired.
 
 Setter Injection :
 ------------------
-@RestController
-public class CustomerController
-{
-	private CustomerService customerService;
-	
-	@Autowired
-	public void setCustomerService(CustomerService customerService)
-	{
-		this.customerService=customerService;
-	}
-}
+Setter injection works by Spring detecting a setter method and annotated with @Autowired.
+Spring then identifies the method,resolves the dependency and calls the setter with the dependency.
 
-Filed Injection :
+	@RestController
+	public class CustomerController
+	{
+		private CustomerService customerService;
+		
+		@Autowired
+		public void setCustomerService(CustomerService customerService)
+		{
+			this.customerService=customerService;
+		}
+	}
+	
+Note :
+------
+If you remove @Autowired, Spring treats it as an ordinary method and not an injection point.
+Then customerService will be null.
+
+
+Field Injection :
 -----------------
-@RestController
-public class CustomerController
-{
-	@Autowired
-	private CustomerService customerService;
-}
+	@RestController
+	public class CustomerController
+	{
+		@Autowired
+		private CustomerService customerService;
+	}
+	
+Spring injects the dependency directly into the field, without a constructor or setter.
+Here the field can be
+1.private
+2.final (not recommended)
+3.no setter
+4.no constructor parameter
+
+Spring starts and scans all component classes.
+BeanDefinition metadata is created.
+Spring instantiates the bean using the default constructor.
+AutowiredAnnotationBeanPostProcessor inspects @Autowired fields.
+Spring resolves the dependency from the BeanFactory.
+Spring injects the dependency directly into the field using reflection.
+Spring calls @PostConstruct, completing initialization.
 
 Arbitary Methods :
 ------------------
 We can also apply @Autowired annotation to the method with arbitary names.
-@RestController
-public class CustomerController
-{
-	private CustomerService customerService;
-	
-	@Autowired
-	public void prepare(CustomerService customerService)
+
+	@RestController
+	public class CustomerController
 	{
-		this.customerService=customerService;
+		private CustomerService customerService;
+		
+		@Autowired
+		public void prepare(CustomerService customerService)
+		{
+			this.customerService=customerService;
+		}
 	}
-}
 
 Array Type :
 ------------
-We can also apply @Autowired annotation to the method or annotation that expects an Array type.
+We can also apply @Autowired annotation to the method that has a return type of an Array.
 	
 	@Autowired
 	private Movie[] customerService;
 	
 Typed Collections :
 -------------------
-We can also apply @Autowired annotation to the method or annotation that has a return type of Collection.
+We can also apply @Autowired annotation to the method that has a return type of Collection.
 	
 	@Autowired
 	private List<Movie> movieService;
 	
-Note:
+Note :
+------
 When we use @Autowired annotation by default dependency injection is mandatory.
 We can make this as non mandatory by using required attribute.
 
-@RestController
-publci class CustmerController
-{
-	private CustomerService customerService;
-	
-	@Autowired(required=false)
-	public void setCustomerService(CustomerService customerService)
-	{
-	this.customerService=customerService;
-	}
-}	
+	@RestController
+	publci class CustmerController {
+
+		private CustomerService customerService;
+		
+		@Autowired(required=false)
+		public void setCustomerService(CustomerService customerService){
+			this.customerService=customerService;
+		}
+	}	
              
 ################################################## 19.@Primary Annotation Example  ############################################################## 
 
-@Primary Annotation can be used to give a higher preference to a bean when there are multiple beans of the same type.
+@Primary Annotation can be used to give a higher preference to a Bean when there are multiple beans of the same type.
 When we have multile Beans of the same type we use @Qualifier("beanName") along with @Autowired Annotation.
 But @Qualifier won't be applicable during the Configuration time.
 To resolve this issue we use @Primary Annotation.
 @Primary Annotation can be applied on any Class diretly or indirectly annotated with @Component or methods annotated with @Bean.
 
-public interface MessageService {
+		public interface MessageService {
 
-	public void sendMessage(String message);
-}
+			public void sendMessage(String message);
+		}
 
-@Service("EmailService")
-public class EmailService implements MessageService{
+		@Service("EmailService")
+		public class EmailService implements MessageService{
 
-	@Override
-	public void sendMessage(String message) {
-		System.out.println("Email "+message);
-	}
-}
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Email "+message);
+			}
+		}
 
-@Service("SMSService")
-@Primary
-public class SMSService implements MessageService{
+		@Service("SMSService")
+		@Primary
+		public class SMSService implements MessageService{
 
-	@Override
-	public void sendMessage(String message) {
-		System.out.println("SMS "+message);
-	}
-}
-@Service("TwitterService")
-public class TwitterService implements MessageService{
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("SMS "+message);
+			}
+		}
+		@Service("TwitterService")
+		public class TwitterService implements MessageService{
 
-	@Override
-	public void sendMessage(String message) {
-		System.out.println("Twitter "+message);
-	}
-} 
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Twitter "+message);
+			}
+		} 
 
-public static void main(String[] args) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				ApplicationConfiguration.class);
-		//ConstructorBasedInjection bean=context.getBean(ConstructorBasedInjection.class);
-		//SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
-		MessageService bean=context.getBean(MessageService.class); // @Primary Annotation Example
-		bean.sendMessage("Setter Based Injection Example");
-		context.close();
-}
+		public static void main(String[] args) {
+				AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+						ApplicationConfiguration.class);
+				//ConstructorBasedInjection bean=context.getBean(ConstructorBasedInjection.class);
+				//SetterBasedInjection bean=context.getBean(SetterBasedInjection.class);
+				MessageService bean=context.getBean(MessageService.class); // @Primary Annotation Example
+				bean.sendMessage("Setter Based Injection Example");
+				context.close();
+		}
 	
 ################################################## 20.@PostConstruct and @PreDestroy Example  ###################################################
 
@@ -764,81 +907,196 @@ public static void main(String[] args) {
 There may be scenarios where we have more than one Bean of the same type and want to autowire only one of them.
 This can be done by using @Qualifier along with @Autowired Annotation.
 
-################################################## 22.Spring Java Based Configuration Basics ################################################### 
+@Qualifier works internally :
+-----------------------------
 
-If we want to explicitly declare a Bean rather than Spring doing it automatically we use @Bean Annotation.
+	@Autowired
+	@Qualifier("stripePaymentService")
+	private PaymentService paymentService;
+	
+	[Application Start]
+      |
+      |
+	[Component Scan]
+	(@Component/@Service/@Repository/@Controller)
+		  |
+		  |
+	[BeanDefinition Creation]
+	(For each Bean class)
+		  |
+		  |
+	[Bean Instantiation]
+	(new StripePaymentService(), new PaypalPaymentService(), etc.)
+		  |
+		  |
+	[AutowiredAnnotationBeanPostProcessor]
+	   scans beans for injection points (@Autowired)
+		  |
+		  |
+	[DependencyDescriptor Created]
+	   - Type  : PaymentService
+	   - Qualifier: "stripePaymentService"
+		  |
+		  |
+	[BeanFactory.resolveDependency()]
+	(DefaultListableBeanFactory)
+		  |
+		  |
+	[Find Candidate Beans by Type]
+	   - All beans of type PaymentService
+		  |
+		  |
+	[QualifierAnnotationAutowireCandidateResolver]
+	   - Filters candidates based on @Qualifier
+		  |
+		  |
+	[Pick Matching Bean]
+	   - "stripePaymentService"
+		  |
+		  |
+	[Inject Into Field via Reflection]
+	   - paymentService field set
+		  |
+		  |
+	[@PostConstruct Called]
+		  |
+		  |
+	[Bean Fully Ready]
+               
+################################################## 24.@Bean Annotation with Example  ########################################################### 
+
+If we want to explicitly define and control the creation of a Bean rather than Spring doing it automatically we use @Bean Annotation.
 @Bean is a method level Annotation and is a direct analog of XML element </bean>.
-Method Annotated with @Bean produces a Bean that has to be managed by the Spring Container.
+Method annotated with @Bean produces a Bean that has to be managed by the Spring Container.
 It decouples the declaration of the Bean from the Class Definition.
 @Bean Annotation cannot be declared at Class Level.
 Most of the the times we use @Bean with @Configuration Classes.
 Annotating a Class with @Configuration indicates that its primary purpose is a source of Bean definitions.
 @Bean Annotation supports some of the attributes such as initMethod,destroyMethod,autowiring and name.
-By default it will use the name of the Method as the Bean Id/Name.
+By default it will use the name of the method as the Bean Id/Name.
+We can create beans for classes that we don’t own.
 
-We can create Spring Container by instantiating AnnotationConfigApplicationContext by passing Configuration Class.
-This allows the complete XML free usage of the Spring Container.
-We can also create Spring Container by instantiating AnnotationConfigApplicationContext with no argument Constructor.
-Then configure the Configuration classes by using register().
-This is particulary useful when programatically building an AnnotationConfigApplicationContext.
+Use Case 1: Creating a bean for a 3rd-party library that has no @Component :
+----------------------------------------------------------------------------
 
-@ComponentScan annotation enables auto component scanning in Java based Configuration. 
+	@Configuration
+	public class AppConfig {
 
-################################################## 23.Spring Java Based Configuration Example ##################################################
+		@Bean
+		public ObjectMapper objectMapper() {
+			return new ObjectMapper();
+		}
+	}
+	
+Spring cannot scan third-party libraries (they don’t have @Component).
+So you must explicitly declare them as a bean using @Bean.
 
-@Import annotation can be used to load the bean definitions from another Configuration class.
+Use Case 2: When object construction requires custom logic :
+------------------------------------------------------------
 
-@Configuration
-@Import(ImportConfiguration.class)
-public class QualifierConfiguration {
-
-	@Bean(name = "emailService")
-	public MessageService emailService() {
-		return new EmailService();
+	@Bean
+	public DataSource dataSource() {
+		HikariDataSource ds = new HikariDataSource();
+		ds.setUrl(env.getProperty("db.url"));
+		ds.setUsername(env.getProperty("db.user"));
+		return ds;
 	}
 
-	@Bean(name = "smsService")
-	public MessageService smsService() {
-		return new SMSService();
+Auto-scanning cannot handle this custom logic.
+
+Use Case 3: When multiple beans of same type must be registered :
+-----------------------------------------------------------------
+
+	@Bean("emailService")
+	public MessageService emailService() { 
+		return new EmailService(); 
 	}
-}
 
-@Configuration
-public class ImportConfiguration {
-
-	@Bean(name = "twitterService")
-	public MessageService twitterService() {
-		return new TwitterService();
+	@Bean("smsService")
+	public MessageService smsService() { 
+		return new SmsService(); 
 	}
-}
-               
-################################################## 24.@Bean Annotation with Example  ########################################################### 
 
-If we want to explicitlitly declare a Bean rather than Spring doing it automatically we use @Bean Annotation.
-@Bean is a method level Annotation and is a direct analog of XML element </bean>.
-@Bean Annotation supports some of the attributes such as init-method,destroy-method,autowiring and name.
-Most of the the times we use @Bean with @Configuration Classes.
+Using @Component would generate only a single bean.
 
-By default Bean name will be same as the Method name and we can change the Bean name by using name attribute.
-We can also have the scope for the Bean definition and default scope is Singleton.
+Use Case 4: When bean initialization/destroy methods are needed :
+-----------------------------------------------------------------
+
+	@Bean(initMethod = "init", destroyMethod = "cleanup")
+	public CacheManager cacheManager() {
+		return new CacheManager();
+	}
 
 Note :
 ------
 Single Bean can have multiple names i.e. also called as Bean Aliasing.
 We use the name attribute of the Bean for Bean aliasing.
 
+Note :
+------
+We can create Spring Container by instantiating AnnotationConfigApplicationContext by passing Configuration Class.
+This allows the complete XML free usage of the Spring Container.
+We can also create Spring Container by instantiating AnnotationConfigApplicationContext with no argument Constructor.
+Then configure the Configuration classes by using register().
+This is particulary useful when programatically building an AnnotationConfigApplicationContext.
+
 ################################################## 25.@Configuration Annotation with Example ###################################################
 
-@Configuration Annotation indicates that a class has a @Bean definition methods.
-So that Spring Container process the Classes and generate Spring beans to be used in the Application.
+Annotating a Class with @Configuration indicates that its primary purpose is a source of Bean definitions.
+When Spring processes a @Configuration class,Spring Container enhances the class using CGLIB proxy.
+For every @Bean method,Spring creates the BeanDefinition and registers it in the BeanFactory.
+When the Bean is requested,Spring calls the @Bean method on the CGLIB proxy and not your original class which ensures Singleton scope (method is never executed twice for the same Bean)
+Dependencies inside @Bean parameters are auto-injected.
 
-@ComponentScan can be used to automatically pick up all the Spring Components and all the Configuration Classes.
-@Import Annotation can be used to load the Configuration Class into another Configuration Class.
-If we have XML based Configuration then we can use @ImportResource Annotation to load XML Configuration Files.
+	@Bean
+	public OrderService orderService(PaymentService p) {
+		return new OrderService(p);
+	}
+	
+Spring automatically injects PaymentService.
+
+	                APPLICATION START
+                          |
+                          |
+                SpringApplication.run()
+                          |
+                          |
+         -----------------BOOTSTRAP-----------------
+                          |
+                          |
+         Scan for @Configuration classes
+                          |
+                          |
+         ConfigurationClassPostProcessor processes classes
+                          |
+                          |
+         For each @Configuration class:
+             - Create BeanDefinition
+             - Enhance via CGLIB proxy
+                          |
+                          |
+         For each @Bean method:
+             - Create BeanDefinition for that bean!
+                          |
+                          |
+         BeanFactory registers all bean definitions
+                          |
+                          |
+                 Bean Creation Phase Begins
+                          |
+                          |
+         When @Bean bean is requested:
+             - Call @Bean method on CGLIB proxy
+             - Ensure singleton scope
+             - Inject method parameters if any
+             - Execute initMethod if defined
+                          |
+                          |
+                      Bean Ready
 
 ################################################## 26.@PropertySource Annotation with Example ##################################################
 
-We can externalize the Configuration to a properties file using @PropertySource Annotation.
+We can externalize the Configuration to a properties file by using @PropertySource Annotation.
 We can read the Properties file and display the values using Environment and @Value Annotation.
 
 spring.datasource.name=Oracle
@@ -869,8 +1127,32 @@ To ignore the not found properties file we use ignoreResourceNotFound=true ie
 
 ################################################## 27.@Import Annotation with Example  #########################################################
 
-@Import Annotation can be used to load the bean definitions from another Configuration class.
+@Import Annotation can be used to load the bean definitions from one Configuration to another Configuration class.
 @Import Annotation can be declared at Class level or at Metadata level.
+
+	@Configuration
+	@Import(ImportConfiguration.class)
+	public class QualifierConfiguration {
+
+		@Bean(name = "emailService")
+		public MessageService emailService() {
+			return new EmailService();
+		}
+
+		@Bean(name = "smsService")
+		public MessageService smsService() {
+			return new SMSService();
+		}
+	}
+
+	@Configuration
+	public class ImportConfiguration {
+
+		@Bean(name = "twitterService")
+		public MessageService twitterService() {
+			return new TwitterService();
+		}
+	}
     
 ################################################## 28.@ImportResource Annotation Example ####################################################### 
 
@@ -989,8 +1271,95 @@ If we are using @Autowired Annotation on our setter Method we need not use @Requ
 @Value Annotation can be used to assign default values to the variables and method arguments.
 @Value Annotation can also be used to read Spring Environment variables as well as System variables.
 
+################################################## 33.By Type vs By Name  #####################################################################
 
-	 
+by Type Injection :
+-------------------
+Spring resolves and injects a dependency based on the class/interface type.
+
+	@Autowired
+	private CustomerService customerService;
+	
+Here Spring finds a bean whose type is CustomerService and injects it.
+
+by Name Injection :
+-------------------
+Spring resolves and injects a dependency based on the bean name.
+
+	@Resource(name="onlineCustomerService")
+	private CustomerService customerService;
+	
+Here Spring finds a bean whose bean name is "onlineCustomerService" and injects it.
+
+Default Spring Auto-wiring Order :
+----------------------------------
+1.By Type
+2.@Primary (if multiple beans exist)
+3.@Qualifier (highest priority at injection point)
+4.By Name
+5.Error if still ambiguous
+
+######################################################## 34.Circular dependency issues with by Type ##################################################
+
+A circular dependency occurs when two or more beans depend on each other, forming a dependency loop.
+Example:
+A needs B
+B needs A
+
+When Spring uses by Type injection (@Autowired), this commonly triggers circular dependency errors.
+
+
+	@Autowired
+	private ServiceB serviceB;
+	
+Spring injects dependency after instantiation (setter/field injection):
+Instantiate Bean A (empty constructor)
+Instantiate Bean B (empty constructor)
+Inject B into A
+Inject A into B
+
+Note :
+------
+Setter/Field injection can break circular dependencies because 
+1.Objects are created First and 
+2.Dependencies are injected Later.
+
+
+Solution 1: Redesign — Break Circular Dependency :
+--------------------------------------------------
+Introduce a third service.
+	
+	UserService → NotificationFacade → NotificationService
+
+This is the best architectural fix.
+
+Solution 2: Use Constructor Injection + Move Logic Out :
+--------------------------------------------------------
+Constructor injection forces you to break circular dependency.
+This is why constructor injection is preferred.
+
+Solution 3: Use @Lazy Injection :
+---------------------------------
+
+	@Autowired
+	@Lazy
+	private ServiceB serviceB;
+	
+This delays creation of ServiceB until needed.
+
+Solution 4: Use Setter Injection Instead of Constructor Injection :
+-------------------------------------------------------------------
+Setter injection allows Spring to Create objects first and Inject dependencies later.
+
+	@Service
+	public class ServiceA {
+		private ServiceB serviceB;
+
+		@Autowired
+		public void setServiceB(ServiceB serviceB) { this.serviceB = serviceB; }
+	}
+
+
 
 	 
 
