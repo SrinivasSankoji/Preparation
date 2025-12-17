@@ -213,15 +213,13 @@ The consumer Consumer1 will consume the data from all the partitions.
 
 Now created one more consumer i.e. Consumer2 within the same consumer group CG.
 Now both the consumers i.e. Consumer1 and Consumer2 wll start reading the data from the same topic.
-Here Kafka will rebalance the subscription among all the consumers available in the consumer group.
+Here Kafka will rebalance the subscription to all the consumers available in the consumer group.
 Means Kafka will assign 2 partitions to Consumer1 and 2 partitions to Consumer2.
-
-Maximum no of Consumer's in the Consumer Group can be same or less than no of partitions.
-
+Maximum no of Consumer's in the Consumer Group can be same or less than no of partitions in the topic.
 
 2.Commmits :
 ------------
-There are tw kind of commits
+There are two kind of commits
 Auto Commit
 Manual Commit
 
@@ -229,7 +227,7 @@ Auto Commit :
 -------------
 Consider the scenario where we have a topic named Topic1 and the consumer named Consumer1 which is consuming the messagea from Topic1.
 Each message in the Kafka Topic has an offSet number.
-Whenever any Consumer reads the message from Kafka Topi, then consumer marks this as read.
+Whenever any Consumer reads the message from Kafka Topic, then consumer marks this as read.
 This can be achieved by using two properties.
 
 	enable.auto.commit=true
@@ -262,11 +260,9 @@ Consumer2
 Consumer3
 Consumer4
 
-We have the property called 
-
 	heartbeat.interval.ms=1000
 	
-While reading the messages from the Partion, these Consumers will send the hear beats to Kafka Partition or Broker.
+While reading the messages from the Partion, these Consumers will send the heart beats to Kafka Partition or Broker.
 This will inform the Partition that the consumer is stil active and reading the messages from partitions.
 If there is no heart beat from the consumer, Partition or Broker assumes that there is an issue in Consumer.
 Then Kafka will re-balance the consumer's in the consumer group.
@@ -274,8 +270,7 @@ Then Kafka will re-balance the consumer's in the consumer group.
 4.session timeout :
 -------------------
 Consumer will send the heart beat to the Broker.
-Consider the scenario where the consumer has not sent the heart beat.
-When the session will get timeout for that particular consumer i.e. When the Broker will get to know that there is an issue in consumer.
+Consider the scenario where the consumer has not sent the heart beat i.e. When the Broker will get to know that there is an issue in consumer.
 This is based on session time out property.
 
 	session.timeout.ms=1000

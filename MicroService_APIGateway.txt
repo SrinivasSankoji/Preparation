@@ -1,603 +1,149 @@
-1.API Gateway Ways
-2.API Gateway Features
-3.Zuul API Gateway                 					(Dzone)    			[31-JUL-2020]  (Done)
-4.Spring Netfilx ZUUL API Gateway 					(levelup)  			[31-JUL-2020]  (Done)
-5.Spring Netflix ZUUL API Gateway Example			(Devglan)  			[31-JUL-2020]  (Done)
-6.Spring Netflix ZUUL API Gateway Example			(HowtoDoInJava)  	[31-JUL-2020]  (Done)
-7.Spring Cloud Gateway Concepts 					(Devglan)			[31-JUL-2020]  (Done)
-8.Spring Cloud Gateway Example 						(Tech Primers)      [31-JUL-2020]  (Done)
-9.Spring Cloud API Gateway 							(javainuse)         [31-JUL-2020]  (Done)
-10.Spring Cloud Gateway								(Medium)
+1.API Gateway 										(Dineshchandgr,DefogTech)		[11-DEC-2025]  (Done)
 
 
-############################################################### 1.API Gateway Ways ###############################################################
 
-Kong:
-Technology: Built on top of Nginx, written in Lua.
-Features: High performance, extensible with plugins, supports both REST and gRPC.
-Use Case: Suitable for both small and large-scale deployments.
+Before Gateway – focus on:
+DNS, load balancing, global routing
+CDN, edge caching
+WAF, edge rate limiting
+OAuth2/OIDC flows, IdP, token issuance
+Client app patterns & BFF concept
 
-NGINX:
-Technology: High-performance HTTP server and reverse proxy.
-Features: Customizable via NGINX Plus, can act as a load balancer and reverse proxy.
-Use Case: Good for simple to moderately complex routing needs.
+At Gateway – focus on:
+API Facade, API Management
+Path/host routing
+Auth offloading (token validation)
+Rate limiting, quotas, CORS, transformation
+Basic resilience (timeouts, retries, simple CB/bulkhead)
 
-HAProxy:
-Technology: Reliable and high-performance TCP/HTTP load balancer.
-Features: Simple configuration, supports ACLs for complex routing, SSL termination.
-Use Case: Often used for its performance and simplicity in routing and load balancing.
+After Gateway – focus on:
+Service discovery, K8s Services, service mesh
+BFF / Aggregator / Composite services
+DDD, hexagonal architecture in microservices
+Circuit breaker, bulkhead, retry, timeout (code-level)
+Sagas (orchestration/choreography), compensating transactions
+DB-per-service, outbox, CQRS, event sourcing
+Anti-corruption layer for legacy
+Messaging & event-driven patterns
+Observability: correlation IDs, distributed tracing
 
-Traefik:
-Technology: Modern reverse proxy and load balancer, written in Go.
-Features: Auto-discovery of services, dynamic configuration, supports multiple backends like Docker, Kubernetes.
-Use Case: Ideal for dynamic and containerized environments.
+################################################################# 1.API Gateway ##################################################################################
 
-AWS API Gateway:
-Technology: Managed service provided by AWS.
-Features: Integrated with AWS services, supports REST and WebSocket APIs, offers caching, throttling, and monitoring.
-Use Case: Best suited for applications hosted on AWS.
+The crux of Microservices Architecture is to build independent, loosely-coupled services that can be developed, deployed and scaled independently.
+In an Enterprise systems where 50–100 plus microservices exists.
+Directly exposing every service to the front-end creates excessive coupling, operational complexity, and security risk.
+From a UI perspective, calling dozens of microservices individually means forces the client to manage service URLs, ports, endpoints, versions and retries.
+Resulting this in a fragile client code and high maintenance overhead.
 
-Apigee:
-Technology: Enterprise API management platform by Google Cloud.
-Features: Full lifecycle API management, analytics, security, monetization.
-Use Case: Suitable for enterprises requiring advanced API management capabilities.
-
-Istio:
-Technology: Service mesh that includes an ingress gateway.
-Features: Advanced traffic management, security, and observability.
-Use Case: Best for Kubernetes-based microservices architectures needing fine-grained control over service communication.
-
-###############################################################  2.API Gateway Features ###############################################################
-
-Implementing an API Gateway in microservices architecture can be approached in several ways, each with its own set of tools and methodologies. 
-Here are the primary ways to implement an API Gateway:
-
-1.Reverse Proxy-Based API Gateway :
------------------------------------
-Nginx
-HAProxy
-
-2.Dedicated API Gateway Solutions :
------------------------------------
-Kong
-Tyk
-Gravitee.io
-
-3.Service Mesh with API Gateway Features :
-------------------------------------------
-Istio
-Linkerd
-
-4.Custom API Gateway Implementation :
--------------------------------------	
-Express.js
-Zuul API Gateway (Legacy)
-Spring Cloud Gateway
-
-5.Cloud-Native or Managed API Gateway Services :
-------------------------------------------------
-AWS API Gateway
-Azure API Management
-Google Cloud Endpoints
-
-API Gateway Patterns :
-----------------------
-Backend for Frontend (BFF)
-Aggregator Pattern
-Proxy Pattern
+Additionally, each microservice would need to independently implement cross-cutting concerns,leading to duplicated code, inconsistent policies, and complex maintenance. 
+Such as 
+CORS
+authentication 
+authorization
+security
+monitoring 
+logging 
 
 
-API Gateway Solutions :
------------------------
+To solve this, modern architectures introduce a single entry point — API Gateway.
+The API Gateway is a server that handles many functionalities in a single place for the clients to interact.
+
+The gateway centralizes all common concerns and handles 
+routing 
+security enforcement
+rate limiting
+resilience patterns (circuit breaker / bulkhead)
+request aggregation and 
+observability.
+
+Clients communicate only with the API Gateway, while the API Gateway orchestrates the calls to internal microservices.
+This keeps UI concerns simple, backend services focused on business logic, and the whole platform more secure, observable, and maintainable.
+It also works as a reverse proxy between your client applications and the back-end microservices architecture
+
+Across all microservices, the same technical concerns occur repeatedly.
+Routing
+Authentication
+Authorization
+CORS
+Rate Limiting
+Circuit Breaker
+Bulkheading
+Request Aggregation
+Load Balancing
+SSL/TLS termination
+Monitoring Hooks
+Observability
+Monitoring
+Request validation
+Security
+Logging
 Caching
-Managing access quotas
-API Health Monitoring
-API versioning
-Chaos Monkey Testing
-A/B Testing
 
+Single entry point for clients
+Routing to services
+Rate limiting, throttling
+Circuit breaker / bulkhead / timeout / retry (can be here or inside services)
+Request/response transformation, header manipulation
 
-Zuul API Gateway :
-------------------
-Caching: Not natively supported.
+Consider the scenario of ecommerce Application.
+For that we have created a Web Application which has the URL's.
 
-Implementation: Use an external caching solution like Redis or integrate Zuul with a cacheable HTTP client.
-Managing Access Quotas: Not natively supported.
+/home
+/products
+/my-cart/get
+/my-cart/add
 
-Implementation: Use a rate-limiting filter or an external service like Redis with rate-limiting logic.
-API Health Monitoring: Not natively supported.
+/home will give the static HTML and JS files to see the Home page.
+/products which will give the list of all the products in the form of JSON.
+/my-cart/get and /my-cart/add If the user is logged-in, then user can make the request for getting the cart and adding items to the cart.
 
-Implementation: Use Spring Boot Actuator with custom endpoints or integrate with monitoring tools like Prometheus and Grafana.
-API Versioning: Not natively supported.
+We have Clients which come from multiple device types, either Mobile or Desktop and they will make the request to the URL's.
+If the request is for /home and /products, even if the user is not logged-in, we want to send the data back to the user.
+If the user requests for any of the operation related to shopping cart, user should be logged-in i.e. user should be authenticated.
 
-Implementation: Use routing filters to route different versions to different services.
-Chaos Monkey Testing: Not natively supported.
+For some cases user should be autorized to add the items or delete the items. In this case authorization is required.
+To make the web application secure, we want to have HTTPS in our Application.
+For that we need to add the SSL certificates to the Application.
 
-Implementation: Use Chaos Monkey for Spring Boot or a similar tool to introduce failures.
-A/B Testing: Not natively supported.
+Now in the Web Application, we have Auhentication, Authorization and Security along with the business logic.
+Separte these concepts in another Component which is nothing but Gateway Component.
+API Gateway acts as an entry point for API's.
+Client makes the request to the API Gateway,API Gateway will ensure request are HTTPS using SSL Certificates, ensure user is Authenticated and Authorized,
+then request will be forwarded to Web Application.
 
-Implementation: Use routing filters to direct traffic to different service versions based on certain conditions.
-
-Spring Cloud Gateway :
-----------------------
-Caching: Not natively supported.
-
-Implementation: Use an external caching solution like Redis or HTTP caching headers.
-Managing Access Quotas: Supported.
-
-Implementation: Use built-in rate-limiting filters.
-API Health Monitoring: Partially supported through Spring Boot Actuator.
-
-Implementation: Integrate with monitoring tools like Prometheus, Grafana, or ELK stack.
-API Versioning: Supported.
-
-Implementation: Use routing predicates to route requests to different versions of services.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Use Chaos Monkey for Spring Boot or a similar tool.
-A/B Testing: Supported through routing predicates.
-
-Implementation: Use routing predicates to split traffic based on headers, parameters, or cookies.
-
-
-Kong :
-------
-Caching: Supported via plugins.
-
-Implementation: Use the Response Transformer plugin.
-Managing Access Quotas: Supported via plugins.
-
-Implementation: Use the Rate Limiting plugin.
-API Health Monitoring: Supported via plugins.
-
-Implementation: Use the Health Checks and Prometheus plugins.
-API Versioning: Supported.
-
-Implementation: Route traffic based on URL patterns or headers.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Integrate with external chaos engineering tools.
-A/B Testing: Supported via plugins.
-
-Implementation: Use the A/B Testing plugin or custom routing logic.
-
-
-NGINX :
--------
-Caching: Supported.
-
-Implementation: Use the proxy_cache directive.
-Managing Access Quotas: Supported.
-
-Implementation: Use the limit_req module.
-API Health Monitoring: Partially supported.
-
-Implementation: Use external monitoring tools and custom scripts.
-API Versioning: Supported.
-
-Implementation: Use location blocks to route different versions.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Integrate with external chaos engineering tools.
-A/B Testing: Supported.
-
-Implementation: Use split_client or custom routing logic.
-
-HAProxy :
+Routing :
 ---------
-Caching: Not natively supported.
+If there is any URL starts with /home it should navigate to Home Micro service.
+Similarly any url starts with /products, then it should navigate to Product Micro service.
+API Gateway decides based on the path, it routes the request to different services.
+If the request is from Mobile, forward the request to Mobie Service.
 
-Implementation: Use an external caching proxy.
-Managing Access Quotas: Supported.
-
-Implementation: Use stick-tables for rate limiting.
-API Health Monitoring: Supported.
-
-Implementation: Use built-in health checks and external monitoring tools.
-API Versioning: Supported.
-
-Implementation: Use ACLs to route different versions.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Integrate with external chaos engineering tools.
-A/B Testing: Supported.
-
-Implementation: Use ACLs and routing logic.
-
-
-Traefik :
+Adaptor :
 ---------
-Caching: Not natively supported.
+Adaptor can be used to reduce the number of network calls to the Web Application.
 
-Implementation: Use an external caching solution like Redis or Varnish.
-Managing Access Quotas: Supported via middleware.
-
-Implementation: Use the rate limit middleware.
-API Health Monitoring: Supported.
-
-Implementation: Use Traefik’s health check and monitoring tools.
-API Versioning: Supported.
-
-Implementation: Use routing rules based on URL or headers.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Integrate with external chaos engineering tools.
-A/B Testing: Supported.
-
-Implementation: Use routing rules and middleware.
-
-AWS API Gateway :
------------------
-Caching: Supported.
-
-Implementation: Use built-in caching with configurable TTL.
-Managing Access Quotas: Supported.
-
-Implementation: Use built-in usage plans and API keys.
-API Health Monitoring: Supported.
-
-Implementation: Use CloudWatch for monitoring.
-API Versioning: Supported.
-
-Implementation: Use stages and versioning capabilities.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Use AWS Fault Injection Simulator.
-A/B Testing: Supported.
-
-Implementation: Use stage variables and deployment stages.
-
-Apigee :
---------
-Caching: Supported.
-
-Implementation: Use built-in caching policies.
-Managing Access Quotas: Supported.
-
-Implementation: Use built-in quota and rate-limiting policies.
-API Health Monitoring: Supported.
-
-Implementation: Use Apigee Analytics and monitoring tools.
-API Versioning: Supported.
-
-Implementation: Use API proxies and versioning policies.
-Chaos Monkey Testing: Not natively supported.
-
-Implementation: Integrate with external chaos engineering tools.
-A/B Testing: Supported.
-
-Implementation: Use conditional policies and flows.
-
-Istio :
--------
-Caching: Not natively supported.
-
-Implementation: Use external caching solutions or Envoy cache filters.
-Managing Access Quotas: Supported.
-
-Implementation: Use Istio’s rate-limiting features.
-API Health Monitoring: Supported.
-
-Implementation: Use Prometheus, Grafana, and Jaeger.
-API Versioning: Supported.
-
-Implementation: Use routing rules and virtual services.
-Chaos Monkey Testing: Supported.
-
-Implementation: Use Istio’s fault injection capabilities.
-A/B Testing: Supported.
-
-Implementation: Use routing rules and virtual services.
-
-*******************************************************  3.Zuul API Gateway (Dzone) *******************************************************
-
-The crux of MicroService architecture is that create an independent service which has to be scaled and deployed independently.
-In a complex Enterprise Application we have more than 50 to 100 Micro Services.
-Consider the scenario where we have to implement an UI which is a kind of Dashboard which calls 50 to 100 Micro Services to fetch the information and shows to the UI.
-From a UI Developer perspective he has to call these 50 to 100 Micro Services and he has to maintain all the details of Micro Services like URL, Port and End Point.
-More over the common aspects of a Web Program are CORS, Authentication, Authorization, Security, Monitoring etc.
-Here each Micro Service has to develop all these aspects on its own and same code has to be replicated in all the Micro Services.
-To make it robust code has to be changed in such a way that we have only one Entry Point.
-All the common aspects of the code is written and client communicates with that service.
-Here the concept of ZUUL comes into the picture.
-
-ZUUL acts as an API Gateway.
-It receives all the request that are coming from the UI and then delegates the request to the internal Micro Service.
-So we have to create a brand new Service which is Zuul enabled and this service sits on top of all Micro Services.
-It acts as an edge service or client facing service and it should be exposed to the Client UI.
-Client calls this service as a proxy for an internal Micro Service and this service delegates the request to the appropriate service.
-We can also implement routing rules and filter implementation.
-We can also perform Load Testing to the ZUUL service as it is independently scalable and deployable.
-
-Spring Netflix Zuul :
-*********************
-ZuuL Proxy can be used to route to different Micro Services.
-When we have multiple Micro Services running,Zuul Proxy does the intelligent routing based on requested resource.
-We can also apply Filters to the requests and perform some operations before the execution of actual request.
-
-API Gateway means Single Point of Entry for all the Requests.
-We have Single Interface exposed on behalf of all the Micro Services running.
-API Gateway at run time will identify the correct service to be invoked.To achieve this routing we will have Netflix ZUUL Proxy.
-ZUUL is an edge service that provides Dynamic Routing,Monitoring,Resiliency,Security and so on.
-
-Zuul Filter Implementation :
-****************************
-Some Times it is required to intercept the request and response that is passed through the Gateway.
-Doing So we can add some validations or modify headers of request response.
-For this Zuul provides Filters and this Filter implementation has full control of how to proceed with request and response.
-We have 4 types of Filters :
-
-1.PreFilter is executed before the request is routed to the actual Request.
-2.RouteFilter is to redirect the request.
-3.PostFilter is executed after the request is routed.
-4.ErrorFilter is executed when any error is occurred during routing.
-
-********************************************************* 4 .Spring Netfilx ZUUL API Gateway (levelup) ********************************************************
-
-Gateway acts as a middleware between the UI and MicroService.
-
-The two Advantages of Gateway approach are
-
-1.UI does not need to be aware of the Network Location of the individual Micro Service and needs to know only the Network Location of the Gateway MicroService.
-Gateway will route the incoming request to the relevant Backend Services.
-2.Cross Cutting Concerns such as Authentication,Security,Monitoring,CORS etc will be handled by the Gateway.
-Whenever Change is required in any of these aspects,that change can be made in single place to affect all the Micro Services.
-
-ZUUL is an API Gateway or an Edge Server developed by Netflix and is capable of performing the below Tasks.
-
-1.Authentication and Security
-Identifying Authentication requirements for each resource and rejecting request that do not satisfy them.
-
-2.Insights and Monitoring
-Tracking Meaningful data and statistics at the edge in order to give us an accurate view of production.
-
-3.Dynamic Routing
-Dynamically routing request to different Backend Services as needed.
-
-4.Stress Testing
-Gradually increasing the traffic to a Cluster in order to Gauge Performance
-
-5.Load Shedding 
-Allocating Capacity for each type of Request and dropping request that go over the Limit.
-
-6.Static Response Handling
-Building some responses directly at the Edge Server instead of forwarding them to an Internal Cluster/Backend Service.
-
-Integration with Eureka :
--------------------------
-ZUUL works hand in hand with Service discovery tools like Eureka.
-ZUUL does not maintain hard coded network locations (HostName and Port Number) of back end Micro Services.
-Instead ZUUL intercats with Service Registry and dynamically obtains the target Network Locations.
-
-Following are the important properties which Enable ZUUL to perform the request routing.
-
-	zuul.routes.courseservice.path=/course-service/**
-	zuul.routes.courseservice.serviceId=course-service
-	
-If the request comes to the URL with the path /course-service/** that request will be redirected to the service registered with service id  course-service.
-While redirecting ZUUL will by default strip the /course-service/ portion of the URL.
-
-********************************************************* 5.Spring Netflix ZUUL API Gateway Example (Devglan) ************************************************
-
-By default Zuul routes request by Service Name which is resolved by Discovery Server.
-If the request is like http://localhost:8092/first-service/getRequestHeader then Zuul discovers the Service Name with first-service and 
-routes the request to it for url mapping first.
-
-Basically Zuul Strips the prefix and route it to the corresponding service.
-
-********************************************************* 6.Spring Netflix ZUUL API Gateway Example (HowtoDoInJava) ************************************************
-
-http://localhost:8091/student-service/getStudentDetails/Bhaumik
-
-
-#########################################################  7.Spring Cloud Gateway Concepts (Devglan) #########################################################
-
-https://www.devglan.com/spring-cloud/spring-cloud-gateway
-https://www.devglan.com/spring-cloud/spring-cloud-gateway-example
-
-0.Introduction
-1.Blocking vs Non-Blocking Gateway
-2.Spring Cloud Gateway Architecture
-3.Handler Mapping
-4.Web Handler Filters
-5.Post Filters
-
-0.Introduction :
+Static Content :
 ----------------
-API Gateway provides a Single Point of Entry for all the Micro Services which are running downStream.
-There are many Gateway solutions available sch as ZUUL,Linkered,Nginix,Spring Cloud Gateway etc.
-Spring Cloud Gateway - A Reactive Gateway built upon project Reactor,Spring WebFlux and Spring Boot 2.0.
+We can have the Component within the API Gateway to hold the static Components.
 
-1.Blocking vs Non-Blocking Gateway :
-------------------------------------
-Blocking Gateway such as Zuul requires request per thread to handle the requests that are coming from API Gateway.
-Hence lot of resources required to handle these requests.
-Any extra request simply sit in the Queue and will wait until a working thread to complete its execution.
-Where as in case of Non Blocking, Main Thread will always will be available to serve the request 
-and other multiple Threads will process those request asynchronously in the background.
-Once the request is completely processed then the response is returned.
-Hence the Non Blocking Gateway requires less no of resources to serve the same amount of requests compared to Blocking Gateway.
-Spring Cloud Gateway is a non Blocking Reactive Gateway similar to Zuul2 but Spring Cloud does not provide any out of box integration with Zuul2.
-
-2.Spring Cloud Gateway Architecture  :
---------------------------------------
-Once a request reaches to the Gateway,first thing the Gateway does is it matches the request with each of the available routes based on the predicate defined.
-Once the request has been matched,request moves to the Web Handler and the filters will be applied to the request.
-There are many out of box Filters provided by the Gateway itself to modify the request header as well as the body.
-PreFilters are applied specifically to a route where as Global Filters can be applied to all the route Requests.
-Global Filters can be applied to perform Authentication and Authorization of all the requests at one place.
-Once the response is generated by the downStream service, Post Filter can be used to modify the response.
-Such as to apply the checksum in the Response Header to all the responses to ensure response is not tampered due to middle man attack.
-
-Reverse Proxy :
----------------
-Reverse Proxy is something that it is making requests on behalf of something else.
-It acts more like simple routing.
-It can add basic security and monitoring but cannot do some of the advanced things like mediation and orchestration.
-Nginix is one of the well known reverse Proxy Server.
-
-API Gateway :
--------------
-API Gateway is enhanced reverse proxy with more advanced capabilities like mediation and orchestration.
-Some of the API Gateway's are Netflix Zuul,Amazon API Gateway,Apigee,Spring Cloud Gateway.
-
-Spring Cloud Gateway :
-----------------------
-Spring Cloud Gateway is an API Gateway implemented by Spring Team on top of Spring Cloud Reactive Eco System.
-It provides a simple and effective way to route incoming requests to the appropriate destination using Gateway Handler Mapping.
-Spring Cloud uses Netty Server to provide Non Blocking Asynchronous Request Processing.
-
-Spring Cloud Gateway consists of 3 main building blocks.
-
-Route :
+Cache :
 -------
-Routes are the basic building block of an API Gateway.It is defined by an ID,destination URI,collection of Predicates and collection of Filters etc.
-Based on predicates,Gateway Routes to a particular request.
-Spring Cloud Gateway provides many built in Routes,Predicate Factories such as Path,Host,Date/Time,Method,Header etc.
+API Gateay can also have a Cache to send the repeated response.
+Instead of calling the API multiple times, get the data from Cache.
 
-Predicate :
------------
-Nothing but condition to match.Based on condition it will route to the particular service.
-
-Filter :
---------
-These are the instances of Spring Framework Web Filter.
-This is the place where we can modify the request or response.
-
-Spring Cloud Gateway vs Zuul :
-------------------------------
-ZuuL 1.x is not Reactive and it is Blocking.
-If we want to improve the performance of MicroServices we can use Spring Boot 2 with Reactor.
-We can use Zuul 2.0 which does have Reactive Non Blocking support with Netty.
-Spring Eco System does not have in built support like Zuul 1.x.
-If we want to get the features of Authentication and other security features we use Spring Cloud Gateway.
-
-We can do route configuration in Spring Cloud Gateway using two approaches :
-1.Programatically using Spring Route Locator
-  The problem with this approach is that when we update the route we need to redeploy the whole application.
-2.Using application.properties 
-
-3.Handler Mapping (Route) :
----------------------------
-This is the first component where all the requests hit.
-Handler Mapping looks into each route that is defined and tries to match with each Predicate defined inside the route.
-After the Match,Handler Mapping routes the request to the particular route.
-
-Predicates :
-------------
-Path Predicate
-Host Route Predicate
-Date/Time Route Predicate
-Method Route Predicate
-Header Route Predicate
-Query Parameter Route Predicate
-Cookies Route Predicate
-
-4.Web Handler Filters :
------------------------
-We have Pre Filters,Post Filters and Global Filters.
-There are many filters provided by Gateway out of box.
-It also provides the flexibility to define our custom Filters that can be either applied to a specific route or to all the request coming to the Gateway.
-
-PreFilters :
-------------
-AddRequestHeader WebFilter
-ReWritePath WebFilter
-RateLimiting WebFilter
-Hystrix WebFilter
-Modify Request Body Filter
-
-GlobalFilters :
+Load Balancer :
 ---------------
-Netty Router
-Web Sockets
-Load Balancer
-Metrics
+Based on the Load Balancer Algorithm, forward the request to other service.
 
-Post Filter :
--------------
-Add Response Header Filter
-Remove Response Header Filter
-
-		http://localhost:8096/api/v1/first/getRequestHeaderOld
-		
-		http://localhost:8096/api/v1/second/getRequestHeader
-
-#########################################################  8.Spring Cloud Gateway Example (Tech Primers) ######################################################
-
-http://httpbin.org/get   Dummy Rest Service
-https://spring.io/guides/gs/gateway/   Gateway Configuration
-actuator/hystrix.stream  To Check Enable Hystrix Stream
-Hystrix DashBoard :  /hystrix
-
-Routing information we add in the Gateway Configuration File.
-We can also add Routing Information using yml Configuration File.
-Use the example in the Spring Cloud Guide and copy in the Configuration File.
-
-URL For Jokes Service :
-https://rapidapi.com/LemmoTresto/api/joke3
-
-Here we are hard coding the URL of the Services instead of that we can use Service Discovery to identify the services along with the Gateway.
-Now the two Services i.e Countries Service and Jokes Service are working fine now.
-Now we need to enable Hystrix Service.
-For that we need to add the Actuator dependency and run with the End Point actuator/hystrix.stream
-
- i.e http://localhost:9031/actuator/hystrix.stream
- 
-For this to work we need to add the below property in application.properties 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: hystrix.stream
-		
-		
-How long can i wait before time out i.e.
-
-If we enable Hystrix on particular service i.e. Countries Service and if the Countries Service takes more than 5 seconds then it should fail.
-By default Hystrix takes one second and it fails here.
-Here we need to mention it in the Properties File.
-
-Now start the Hystrix DashBoard Service and run with the URL  http://localhost:9032/hystrix
-
-To the DashBoard we need to give the URL of the Stream which connects to any Hystrix Stream.
-We can have a central Hystrix DashBoard that Plug in different Gateway services which we have in our project.
-Now add the URL of the Service with stream i.e. http://localhost:9031/actuator/hystrix.stream to the Hystrix DashBoard and monitor it.
-Now to work this add the Hystrix Configuration to the Gateway using Filters.
-Then hit the Countries Service and refresh the DashBoard.
-We can also have fall back mechanism in the Gateway configuration.
+Protocol Adaptor :
+------------------
+API Gateway takes the responsibility of converting the new protocol to old protocol.
 
 
-######################################################### 9.Spring Cloud API Gateway (javainuse) ######################################################
-
-What is an API Gateway and why do we need it :
-----------------------------------------------
 
 
-Spring Cloud Gateway Architecture :
------------------------------------
-Spring Cloud Gateway has the following building blocks.
 
-1.Route
-2.Predicate 
-3.Filter
 
-Route is the basic building block of API Gateway and it consists of ID,destination URI and Collection of predicates and Filters.
-Predicate is similar to Java 8 and it can be used to match the http requests such as Headers,URL or Cookies parameters.
-Filters can be used to modify the request or response as per the requirement.
-When the Client makes a request to the Gateway, Gateway HandlerMapping checks whether the request matches to a route or not.
-This can be done by using Predicates.If it matches the predicates then it forwards the request to the Filter.
 
-Implementing Spring Cloud Gateway :
------------------------------------
-Routes can be created in either of the two following ways
-1.Java based Configuration
-2.Property based Configuration
 
-	http://localhost:8096/consumer/message
-	
-	http://localhost:8096/emloyee/message
-	
-################################################## 10.Spring Cloud Gateway (Medium)  #############################################################
 
-https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
