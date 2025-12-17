@@ -1,7 +1,7 @@
 1.Introduction              (27-DEC-2019) (Done)
 2.Topics and Partitions		(02-JAN-2020) (Done)
 3.Producer					(05-JAN-2020) (Done)
-4.Consumer					(07-JAN-2020) ()
+4.Consumer					(17-DEC-2025) (Done)
 
 
 ***************************************************** 1.Introduction *****************************************************
@@ -196,6 +196,112 @@ Where as In Asynchronous Communication,Request will be sent in background and it
 
 ********************************************************* 4.Consumer ***********************************************
 
+1.Consumer group :
+----------------
+Whenever we are creating any Consumer Application, We need to start the consumer's so that it can read the data from Kafka Partition's.
+Whenever we are starting the Consumer, we need to assign it to a Consumer Group.
+In one Consumer group, there can be multiple consumers and multiple consumer's belonging to the same group can subscribe to the same topic.
+Consder the scenario where we have 4 Kafka partitions
+
+Partition 1
+Partition 2
+Partition 3
+Partition 4
+
+There is only one consumer i.e. Consumer1 which belongs to consumer group CG.
+The consumer Consumer1 will consume the data from all the partitions.
+
+Now created one more consumer i.e. Consumer2 within the same consumer group CG.
+Now both the consumers i.e. Consumer1 and Consumer2 wll start reading the data from the same topic.
+Here Kafka will rebalance the subscription among all the consumers available in the consumer group.
+Means Kafka will assign 2 partitions to Consumer1 and 2 partitions to Consumer2.
+
+Maximum no of Consumer's in the Consumer Group can be same or less than no of partitions.
 
 
+2.Commmits :
+------------
+There are tw kind of commits
+Auto Commit
+Manual Commit
+
+Auto Commit :
+-------------
+Consider the scenario where we have a topic named Topic1 and the consumer named Consumer1 which is consuming the messagea from Topic1.
+Each message in the Kafka Topic has an offSet number.
+Whenever any Consumer reads the message from Kafka Topi, then consumer marks this as read.
+This can be achieved by using two properties.
+
+	enable.auto.commit=true
+	auto.commit.interval.ms=3000
+	
+For every 3 seconds it will commit the offset number.
+
+Manual Commit :
+---------------
+Consider the scenario where the Toipc has sent the message and there is an issue in the Consumer.
+In this case message is lost.
+To overcome this scenario we use manual commit.
+In this scenario, only after processing the message, will mark it as read and commit the offset numbers.
+
+	enable.auto.commit=false
+
+It will ensure that no messages are lost within the Topic and Consumer.
+
+3.Heartbeat Interval :
+----------------------
+Consider the scenario where we have four partitions in the topic and 4 consumer groups.
+
+Partition 1
+Partition 2
+Partition 3
+Partition 4
+
+Consumer1
+Consumer2
+Consumer3
+Consumer4
+
+We have the property called 
+
+	heartbeat.interval.ms=1000
+	
+While reading the messages from the Partion, these Consumers will send the hear beats to Kafka Partition or Broker.
+This will inform the Partition that the consumer is stil active and reading the messages from partitions.
+If there is no heart beat from the consumer, Partition or Broker assumes that there is an issue in Consumer.
+Then Kafka will re-balance the consumer's in the consumer group.
+
+4.session timeout :
+-------------------
+Consumer will send the heart beat to the Broker.
+Consider the scenario where the consumer has not sent the heart beat.
+When the session will get timeout for that particular consumer i.e. When the Broker will get to know that there is an issue in consumer.
+This is based on session time out property.
+
+	session.timeout.ms=1000
+	
+4.Auto offset reset :
+---------------------
+Auot offset reset is a strategy which we need to include in the consumer to inform from where it wants to read the messages from kafka topic.
+
+Consider the scenario where the producer has pushed the messages to the kafka topic.
+Here the message count is 1001 to 1010 in the particular partition of that topic.
+Now the Consumer group has 4 consumers which are ready to read the messages from the partition.
+From where the consumer has to start reading the messages is decided by using auto offset reset property.
+
+		auto.offset.reset=early
+		auto.offset.reset=latest
+		auto.offset.reset=none
+		
+earliest :
+----------
+Consumer will read all the messages including existing messages.
+
+latest :
+--------
+Consumer will read the messages which are getting pushed to the partition after the consumer has created.
+
+none :
+------
+Consumer will read the messages from the latest committed offset number which was committed by consumer.
 

@@ -1,13 +1,12 @@
 1.Redis Overview										[13-NOV-2025]  (Done)
-2.Redis Data types                                      [15-NOV-2025]  ()
-3.Redis CLI Commands                                    [15-NOV-2025]  ()
-4.Redis Scans                                           [15-NOV-2025]  ()
-5.Redis as Pub Sub Server                               [17-NOV-2025]  ()
-6.Redis as Cache LRE & LFU                              [17-NOV-2025]  ()
-7.Redis Transactions                                    [17-NOV-2025]  ()
-8.Redis Client Side Caching                             [18-NOV-2025]  ()
-9.Redis Persistence                                     [18-NOV-2025]  ()
-10.Redis Config & ACL                                   [18-NOV-2025]  ()
+2.Redis Data types and CLI Commands                     [14-DEC-2025]  (Done)
+3.Redis Scans                                           [15-NOV-2025]  ()
+4.Redis as Pub Sub Server                               [17-NOV-2025]  ()
+5.Redis as Cache LRE & LFU                              [17-NOV-2025]  ()
+6.Redis Transactions                                    [17-NOV-2025]  ()
+7.Redis Client Side Caching                             [18-NOV-2025]  ()
+8.Redis Persistence                                     [18-NOV-2025]  ()
+9.Redis Config & ACL                                    [18-NOV-2025]  ()
 
 ########################################################### 1.Redis Overview ################################################################
 
@@ -26,16 +25,169 @@ List
 Set
 SortedSet
 Hashes
-HyperLogs
+Hyperlogs
 
 Redis also supports Streams as values which can be considered as Redis Streams.
 
 ########################################################### 2.Redis Data types ################################################################
 
+String Data types :
+-------------------
 
+To store the key value pair, we use the command
+	
+	set USER SRINIVAS
+	
+To get the value
 
+	get USER
+	
+To store the Integer value 
 
+	set counter 10
+	
+To increment the counter
 
+	incr counter
+	
+T decrement the counter
 
+	decr counter
+
+If we want to increase the counter by some other number
+
+	incrby counter 5
+	
+If we want to decrease the counter by some other number
+
+	decrby counter 5
+	
+Common commands for al Data types :
+-----------------------------------
+To check whether the particular key exists in the Redis store or not.
+If the key exists return the value 1 else 0
+
+	exists counter
+	
+To delete the particular key from the Redis store
+
+	del USER
+	
+If we want to make the key to be expired after the time duration.
+If the key is present
+
+	expire counter 10
+	
+To get the TTL for the particualr key.
+If the TTL is present then returns the time in mili seconds else returns -1
+
+	ttl counter
+	
+Lists :
+-------
+List is nothing but ordered collections of items.
+To create the List in Redis
+
+	rpush list srinivas
+
+Here it will internally create an array at push the item to the right of the List.
+
+	lpush list sankoji
+
+Here it will append the item to the left of the List.
+To retrieve the elements from the List
+
+	lrange employee 0 -1
+	
+We can use the List in the same way as Stack.
+We can pop the first element or last eement from the List
+
+	lpop employee
+	rpop employee
+
+After popping the elements, those elements will be removed from the List.
+To check the length of the List
+
+	llen employee
+	
+Automatc creation or deletion of List :
+Wheneverwe are pushing any element to the List, It wil check the element exists or not.
+If it is the first element, then Redis creates the List automatically.
+Similary, If we remove the last element of the List, the List wil be deeted automatically.
+
+Hashes :
+--------
+Hashes is kind of Map.
+Here for the particular key we are storing the values.
+
+	hset employee:36 name srinivas
+	hset employee:36 address uppal
+	
+To retreive the key value pair
+
+	hget employee:36 name
+	hget employee:36 address
+	
+To get the complete map details
+
+	hgetall employee:36
+	
+We also have the command to the multiple values
+
+	hmset employee:36 name sankoji address rampally
+	
+Set :
+-----
+Set stores the unique collection of un-ordered items i.e. there is no gaurantee of order.
+Consider the scenario where the elements are a,b,a,c and a then set contains a,band c.
+
+	sadd alphabets a
+	sadd alphabets b
+	sadd alphabets a
+	
+To get the elements of the Set
+
+	smembers alphabets
+	
+To check for the particular element in the Set
+
+	sismember alphabets b
+
+SortedSet :
+-----------
+SortedSet stores the unique collection of ordered items.
+To add the eement into the SortedSet we need to add the score along with the element.
+Based on the score Redis will decide on which position the element has to be placed.
+
+	zadd numbers 1000 one
+	zadd numbers 1000 two
+	
+To get the elementsof the SortedSet
+
+	zrange numbers 0 -1
+
+To get all the elements of the SortedSet along with the scores
+
+	zrange numbers 0 -1 withscores
+	
+Hyperlog Logs :
+---------------
+This is a special kind of data type which is applicable in certain scenarios.
+Consider the scenario where we want to get the uinque elements in the collection.
+
+	{a,b,c,d,a,a,b,b,c}
+	
+Here the unique element is 4 i.e. a,b,c,d
+This is also known as cardinality of Set.
+
+	pfadd loggedInUser Srinivas chary sankoji
+	pfadd loggedInUser Bhaumik chary sankoji
+	pfadd loggedInUser Aadvik chary sankoji
+	
+To get the unique counter
+
+	pfcount loggedInUser // 5
+
+######################################################################## 3.Redis Scans ###########################################################
 
 
