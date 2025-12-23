@@ -2,6 +2,352 @@
 2.Error Handling in Kafka Producer							(Knowledge Amplifier)	      [17-DEC-2025]  ()
 3.Producer Retries & Idempotent Producer in Kafka   		(Knowledge Amplifier)	      [17-DEC-2025]  ()
 4.Kafka Consumer Lag Analysis	                    		(Knowledge Amplifier)	      [17-DEC-2025]  ()
-5.How to choose the No. of Partitions for a Kafka Topic
-6.Out of Order Consumer Offset Commit in Kafka
-7.Kafka don't allow consumers Same Group same partition
+5.How to choose the No. of Partitions for a Kafka Topic		(Knowledge Amplifier)	      [17-DEC-2025]  ()
+6.Out of Order Consumer Offset Commit in Kafka				(Knowledge Amplifier)	      [17-DEC-2025]  ()
+7.Kafka don't allow consumers Same Group same partition		(Knowledge Amplifier)	      [17-DEC-2025]  ()
+8.Kafka Consumers Deep Dive									(Anil Goyal)	      		  [19-DEC-2025]  (Done)
+
+########################################################### 8.Kafka Consumers Deep Dive	##########################################################################
+
+Consumer Group :
+----------------
+Consumer is a Kafka client that pulls records from Kafka brokers,reads from one or more partitions and processes messages sequentially per partition.
+Consumer Group is a logical group of consumers identified by group.id.
+Kafka guarantees that each partition in the topic is consumed by exactly one consumer within the same group.
+Multiple consumer groups can read the same topic independently.
+Kafka scales consumption using partitions and not by consumers.
+
+Order is guaranteed per partition and not across partitions.
+If number of partitions less than number of consumers, then some consumers are idle.
+If number of partitions are greater than number of consumers then some consumers read multiple partitions.
+
+			Scenario				Result
+	Consumers = Partitions		Perfect parallelism
+	Consumers < Partitions		Consumers read multiple partitions
+	Consumers > Partitions		Some consumers remain idle
+	Multiple consumer groups	Each group reads independently
+	
+1. Consumer starts with group.id = group-A
+2. Consumer contacts Kafka Broker
+3. Broker forwards request to Group Coordinator
+4. Coordinator assigns partitions
+5. Consumer starts polling records
+6. Consumer processes records
+7. Consumer commits offsets
+
+Message Offset or Log Offset :
+------------------------------
+Every record written to a partition in Kafka is assigned a unique offset, which is a sequential, monotonically increasing 64-bit integer.
+Offsets start at 0 for the first message and increase by 1 for every new record appended.
+Offsets are immutable i.e. once assigned to a record, they never change even if you re-read or replay.
+This offset is owned by Kafka’s log itself, not by consumers.
+
+	Partition-0:
+	Offset → 0 | 1 | 2 | 3 | 4
+
+Consumer Offset (Committed Offset) :
+------------------------------------
+Kafka consumers track how far they have read in each partition. 
+That tracking value i.e.the last Log Offset that was successfully processed + 1 is the Consumer offset. 
+It is stored in an internal Kafka topic called __cosumer_offsets.
+When we say “committing an offset”, we are writing this consumer offset to that internal topic.
+This is a topic like any other topc and it has partitions and replication.
+Because it is compacted, only the latest committed offset per (group, topic, partition) is retained permanently.
+
+Let’s say partition 0 has message offsets 0,1,2,3,4.
+Consumer group group-A has a consumer instance C1 reading this partition.
+Now C1 process message at message offset 0 and then commit consumer offset 1.
+I have successfully processed everything before offset 1.
+The committed offset = next record to read (not the last processed record).
+
+	Partition-0 messages:
+	Offsets: 0,1,2,3,4
+
+	Consumer processes message offset 0
+	Consumer commits offset 1
+
+Offsets are tracked per topic, partition and per consumer group [group.id, topic, partition].
+Each consumer group maintains its own committed offset for each topic and its partition.
+
+Auto-Commit :
+-------------
+When we call consumer.poll() then assume poll returns messages with offsets 10, 11, 12, 13, 14.
+Consumer fetches messages from the broker (using fetch.min.bytes, max.poll.records, etc.).
+The consumer’s internal position (in memory) moves forward to the next offset to fetch.
+In this case, from 10–14 fetched, next offset = 15. Now we start processing records in our loop.
+When the below properties are provided
+
+		auto.commit.interval.ms=5000 
+		enable.auto.commit=true
+
+Kafka commits the consumer’s in-memory position to 15,regardless of whether our application has finished processing those records.
+Here Commit is time-based and not processing-based
+
+	poll() → fetch records [10,11,12,13,14]
+				↓
+	Consumer updates its INTERNAL POSITION in memory → 15
+				↓
+	Application starts processing records
+				↓
+	Auto-commit timer fires (auto.commit.interval.ms)
+				↓
+	Kafka commits offset = 15 to __consumer_offsets
+
+Scenario 1: Crash After commit, Before processing
+-------------------------------------------------
+
+	Committed offset = 15
+	Processed records = NONE
+	
+	✔ Kafka resumes from offset 15
+	❌ Records 10–14 are LOST
+	➡ At-Most-Once
+	
+Now If the consumer crashes after committing but before processing, those messages (10–14) are lost forever.
+Because Kafka believes they’re already processed. This is why auto-commit leads to at-most-once semantics in such cases.
+
+Scenario 2: Crash After processing, Before commit :
+---------------------------------------------------
+
+	Processed records = 10–14
+	Committed offset = still 10
+	
+	✔ Kafka resumes from offset 10
+	❌ Records 10–14 reprocessed
+	➡ At-Least-Once
+
+If consumer crash after processing but before committing then duplicate processing of records happen.
+This is why auto-commit leads to at-least once semantics as well.
+
+Note :
+------
+Auto-commit can result in either at-most-once or at-least-once behavior and we have no control.
+❌ Not recommended for:
+Financial transactions
+Order processing
+DB writes
+Any state-changing operation
+
+Manual Commit :
+---------------
+when enable.auto.commit=false.
+
+consumer.commitSync() :
+-----------------------
+Synchronous and blocks until broker acknowledges.
+Good for strong guarantees.
+
+	poll() → fetch records
+			↓
+	Process record(s)
+			↓
+	Persist results (DB / Cache / External System)
+			↓
+	Commit offset explicitly
+
+Code Example :
+	
+	for (ConsumerRecord<String, String> record : records) {
+		process(record); // business logic
+	}
+	consumer.commitSync(); // commit After success
+
+Pros :
+------
+✔ Full control
+✔ Predictable semantics
+✔ Production-safe
+
+Cons :
+------
+✔ Blocks until broker ACK
+✔ Strong guarantees
+✔ Simpler error handling
+❌ Slightly slower
+
+Usage :
+-------
+Data integrity matters
+DB writes / financial data
+
+consumer.commitAsync() :
+------------------------
+non-blocking
+Faster but needs error handling for failures.
+
+	consumer.commitAsync((offsets, ex) -> {
+		if (ex != null) {
+			log.error("Commit failed", ex);
+		}
+	});
+
+Pros :
+------
+✔ Non-blocking
+✔ Higher throughput
+❌ Must handle failures manually
+
+Usecase :
+---------
+Use commitAsync during normal flow
+Use commitSync during shutdown
+
+Common patterns :
+-----------------
+We typically commit the offset after successfully process the record(s) i.e. after processing a single record, a batch, or any logical checkpoint.
+
+Pattern					Throughput				Safety				  Use Case
+Commit per message		  Low					 High				Critical workflows
+Commit per batch		  Medium	             Medium	            Most services
+Commit per checkpoint	  High	                 Medium	            Streaming / analytics
+
+Batch Commit Example :
+----------------------
+
+	processBatch(records);
+	consumer.commitSync(
+		Map.of(new TopicPartition(topic, partition),
+			   new OffsetAndMetadata(lastOffset + 1))
+	);
+
+Consumer Fetch Configuration :
+------------------------------
+Below configurations at consumer side are important to control Kafka consumer fetches data from brokers:
+
+	max.poll.records = 500
+
+Upper bound on records returned per poll
+Too high → long processing → rebalance risk
+Too low → underutilization
+✔ Tune based on processing time
+
+	max.poll.interval.ms = 300000
+	poll() → process → poll() within interval
+
+Maximum delay allowed between two consecutive calls to poll() before Kafka considers the consumer dead and triggers a rebalance.
+❌ If exceeded:
+Consumer considered DEAD
+Rebalance triggered
+Partitions reassigned
+✔ Increase if processing is heavy
+✔ Or reduce max.poll.records
+
+   fetch.min.bytes = 1
+
+The minimum amount of data (in bytes) that the broker should send in a fetch response. 
+Broker will wait until it has at least fetch.min.bytes of data for the consumer before sending it or until fetch.max.wait.ms expires (default 500 ms).
+Broker waits until it has at least this much data
+Improves batching
+Increases latency
+✔ Good for high-throughput systems
+
+	fetch.max.bytes = 50MB
+
+Maximum amount of data (in bytes) that the broker will return per partition per fetch request.
+Caps memory usage per fetch
+Protects consumers from OOM
+
+	fetch.max.wait.ms = 500
+	
+The maximum amount of time (in milliseconds) that the broker will wait before sending data to the consumer even if fetch.min.bytes has not yet been satisfied.
+Upper bound wait time on broker
+Trade-off: latency vs batching
+
+At-most-once :
+--------------
+offsets are committed before processing and messages may be lost if processing fails.
+	
+	Commit → Process
+	
+✔ No duplicates
+❌ Possible data loss
+✔ Rarely used
+
+At-least-once ((Default & Recomended) :
+--------------------------------------- 
+offsets are committed after processing and if a crash occurs before commit, records may be processed again.
+
+	Process → Commit
+
+✔ No data loss
+❌ Possible duplicates
+✔ Most Kafka systems
+
+Exactly-once :
+-------------- 
+✔ Producer Transactions
+✔ Transactional consumer
+✔ Kafka Streams
+✔ Outbox Pattern (DB → Kafka)
+
+Exactly-once is not free.
+Higher complexity & latency
+
+Kafka consumer liveness :
+-------------------------
+Kafka uses two mechanisms to detect failed consumers and trigger rebalances.
+
+Heartbeats :
+------------
+Heartbeats are used to tell the coordinator that I’m alive.
+
+	heartbeat.interval.ms=
+	
+How often the client sends heartbeat requests and session.timeout.ms.
+If coordinator sees no heartbeats within this window then it marks the member dead and triggers a rebalance.
+
+Poll liveness :
+---------------
+	
+		max.poll.interval.ms
+		
+Maximum time the consumer client allows between consecutive poll() calls before the client considers itself non-responsive and triggers a group rejoin/leave. 
+If our processing of a batch takes longer than max.poll.interval.ms, the consumer will be kicked out of the group (rebalance), and partitions will be reassigned. 
+Either keep max.poll.records small so each poll processes quickly or use multi-threaded handing but ensure heartbeats are maintained.
+
+Group Coordinator :
+-------------------
+
+
+Group Leader :
+--------------
+
+Consumer Rebalancing and Partition Assignment :
+-----------------------------------------------
+
+Who Coordinates the Rebalance :
+-------------------------------
+
+Handling Rebalance Events in Code :
+-----------------------------------
+
+Poison message :
+----------------
+A message that cannot be processed successfully by the consumer. For example
+Invalid JSON / schema mismatch
+Missing required fields
+Domain rule violation (negative quantity, unknown assetId)
+Downstream contract break (required header missing)
+Non-retryable 4xx from an external API. For example invalid customerId.
+Risk here is if we keep retrying the same record forever, a single poison message can block the partition, causing backlog and operational incidents.
+
+Idempotent write :
+------------------
+A consumer-side processing approach where reprocessing the same message does not change the final outcome beyond the first successful processing.
+With at-least-once duplicates happen i.e. crash after processing but before commit,rebalance mid-batch,transient errors	.
+Idempotency converts duplicates from data corruption into no-op.
+
+DLT (Dead Letter Topic) :
+-------------------------
+A Kafka topic where we publish events that could not be processed after retries along with error metadata.
+It keeps the main pipeline moving while preserving the failed message for investigation and re-drive.
+
+Production implementation :
+---------------------------
+enable.auto.commit=false
+Poll fast, dispatch to bounded workers
+If queue is full → pause() partitions (still poll for heartbeats)
+Commit offsets after successful processing (batch or checkpoint)
+Idempotent writes + DLT for poison messages
+Monitor: consumer lag, rebalance rate, processing latency, commit failures
+
