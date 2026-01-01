@@ -140,7 +140,7 @@ Spring Container is based on Inversion of Control Principle and is implemented b
 Component only needs to choose a way to accept the resources and Spring Container will deliver the resources to the Components.
 
 Spring Container is responsible for instantiating the Spring beans.
-Spring Container gets its instructions on what Objects to instantiate by reading the Configuration metadata.
+Spring Container gets its instructions on which Objects need to instantiate by reading the Configuration metadata.
 
 There are three ways we can supply Configuration Metadata to Spring Container.
 1.XML based Configuration
@@ -259,7 +259,7 @@ Done
 
 Dependency Injection is a design pattern using which we remove the hard coded dependencies and make our Application loosely coupled, maintainable and extendable.
 In Dependency Injection dependencies are supplied externally via Constructor arguments,arguments to a factory method or properties by the IOC Container at the creation time.
-The Bean does not instantiate or locate its dependencies. 
+The Bean does not instantiate on its own or locate its dependencies. 
 Container creates the dependencies and injects them into the Bean, which is why the process is called Inversion of Control.
 
 
@@ -281,16 +281,16 @@ Spring scans packages and :
 Registers Bean Definition #1 → SpringQuizMaster
 Registers Bean Definition #2 → QuizMasterService
 
-A BeanDefinition is an internal metadata structure describing
+A BeanDefinition is an internal metadata describing
 Bean class
 Scope (singleton, prototype, etc.)
 Constructor info
 Dependencies
 Lifecycle methods
-Spring doesn’t create objects yet.
-It only prepares metadata.
 
-Instantiate Beans Using Reflection :
+Here Spring doesn’t create objects yet and it only prepares metadata.
+
+Instantiate Beans using Reflection :
 ------------------------------------
 Spring now decides which beans must be created first.
 Suppose constructor injection:
@@ -393,14 +393,6 @@ To call the MessageService via Setter Injection make any one of the MessageServi
 Constructor Injection is accomplished by the Container calling a Constructor with the number of arguments where each argument represents as a dependency.
 This approach ensures that class is always instantiated with require dependencies.
 
-Create a Spring Configuration file i.e. ApplicationConfiguration which is annotated with @Configuration Annotation.
-This is equivalent to XML Configuration without beans Definition.
-
-	@Configuration
-	@ComponentScan(basePackages = {"com.ioc.javaguides.service"})
-	public class DependencyInjectionConfiguration {
-	}
-
 Create the MessageService interface and provide more than two implementations for it.
 If there are multiple implementations for MessageService interface and to avoid ambiguity we use @Qualifier Annotation.
 To avoid decoupling always use interfaces or Abstract Classes as an instance variable and Constructor arguments.
@@ -461,7 +453,6 @@ To avoid decoupling always use interfaces or Abstract Classes as an instance var
 Spring Framework supports following Bean Scopes.
 
 1.Singleton
-Singleton-scoped Spring Bean means
 Spring Container creates one instance of the Bean per Spring IoC container.
 Spring Container keeps this instance inside its Singleton Cache (an internal map)
 Same instance is returned for every request of that Bean.
@@ -741,7 +732,7 @@ Avoids partial initialization
 When a Bean has only one constructor, AutowiredAnnotationBeanPostProcessor and ConstructorResolver detects
 Only one constructor exists
 Constructor has dependencies
-Therefore,treat this constructor as if it were annotated with @Autowired.
+Therefore,treat this constructor as if it is annotated with @Autowired.
 
 Setter Injection :
 ------------------
@@ -1228,6 +1219,7 @@ Using @Profile on @Bean Methods :
 		DataSource dataSource;
 		return dataSource;
 	}
+
 Assigning a Spring Profile To a Bean :
 --------------------------------------
 We can also assign Profile to the Spring Bean.
