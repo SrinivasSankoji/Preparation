@@ -7,13 +7,33 @@
 
 *********************************************** 1.Introduction(SCJP) **************************************************************	
 
-Serialization is the process of converting the state of an Object into ByteStream i.e. File supported form or Network supported form 
-So that it can be persisted into disk/file or sent over the network to any other running Java Virtual Machine.
-Byte Stream created is platfrom independent i.e. Object Serialized in one platfrom can be deserialized on a different Platform.
-By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
+Java objects exist only in memory and are JVM-specific.
+Java objects cannot be sent directly over the network or saved permanently.
+Serialization bridges this gap.
 
-The process of creating an Object from ByteStream is called Deserialization.
+Serialization is the process of converting the state of a java object into a byte stream so that 
+1.It can be stored (File, Disk, DB, Cache)
+2.Transferred (Network, Message Queue, API call)
+3.Reconstructed later (even in another JVM / machine)
+
+byte stream created is platfrom independent i.e.
+Serialized on Windows
+Deserialized on Linux / macOS
+Works because Java serialization follows a standard binary format.
+
+The process of creating an object from byte stream is called Deserialization.
+
+By using FileOutputStream and ObjectOutputStream we can achieve Serialization.
 By using FileInputStream and ObjectInputStream we can achieve DeSerialization.
+
+
+| Purpose                | Class              |
+| ---------------------- | ------------------ |
+| Write bytes to file    | FileOutputStream   |
+| Convert object → bytes | ObjectOutputStream |
+| Read bytes from file   | FileInputStream    |
+| Convert bytes → object | ObjectInputStream  |
+
 
 An Object is said to be Serializable If the corresponding Class implements Serializable Interface.
 Serializable Interface is present in java.io package and it does not contain any methods or Fields.
@@ -22,7 +42,7 @@ If we are trying to perform Serialization on a non Serializable Object we will g
 
 Transient keyword :
 -------------------
-Transient modifier is applicable only for variables but not for methods and Classes.
+Transient is a modifier applicable only for variables but not for methods and Classes.
 At the time of Serialization If we don't want to serialize the value of a particular variable to meet security constraints,we declare those variables as transient.
 While performing Serialization JVM ignores the original values of the transient variables and saves the default values to the file.
 Hence transient means not to serialize.
@@ -175,12 +195,26 @@ After Serialization
 
 *********************************************** 6.SerialVersionUID in Java(techvidvan) *************************************************
 
-SerialVersionUID :
-------------------
-Serialization process at runtime associates an Id with each Serializable class which is also known as SerialVersionUID.
-SerialVersionUID can be used to verify the sender and reciever of the Serialized Object.
-We can also declare our own SerialVersionUID and assign a value.It must be of static type along with private and final.
+During serialization, JVM associates a version identifier with every Serializable class.
+This identifier is called serialVersionUID.
+It is used during deserialization to ensure that the class used to deserialize the object is compatible with the class that originally serialized it.
+In simple words it verifies sender class version and receiver class version.
 
+JVM auto-generates one based on :
+Class name
+Fields
+Methods
+Access modifiers
+Interfaces
+Even a small change (like adding a method) changes the generated UID.
+
+Results in :
+java.io.InvalidClassException
+local class incompatible:
+stream classdesc serialVersionUID = 123456
+local class serialVersionUID = 789012
+
+We can also declare our own SerialVersionUID and assign a value.It must be of static type along with private and final.
 static : without craeting Object it has to be accessed.
-final : we cannot perform reassignment for that variable
+final : we cannot perform reassignment for that variable.
 private : It is local to the Class and not publicly available.

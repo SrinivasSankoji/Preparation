@@ -63,7 +63,7 @@ Cache is defined as a Hardware or Software Component which stores the data which
 The data which is not changed frequently can be stored in the Cache to improove the performance of the System.
 
 Consider the scenario where the Client is requesting the images from the Server.
-Server has to fetch the images from Disc/Database and sent it as a response to the Client.
+Server has to fetch the images from Disc/Database and send it as a response to the Client.
 If multiple Clients are requesting for the same image,fetching the the images from Disc/Database is an expensive operation.
 
 To avoid this we have two solutions.
@@ -72,52 +72,51 @@ To avoid this we have two solutions.
 
 Consider the other scenario of fetching the data from the Database.
 If the same request is repeated then fetching the data from Database is redundant.
-This can be avoided by keeping the request and response in the Cache.
+This can be avoided by keeping the response in the Cache.
 Next time when the Request comes it will check in the Cache whether the requested data is present or not.
 If it is present (Cache Hit) it will fetch the data from the Cache otherwise it is Cache Miss. Then it will fetch the data from the Database.
 
-Cache Invalidation :
---------------------
+Cache Invalidation Methods :
+----------------------------
 The data which is kept in the Cache is going to change at some point of time.
-If the data got changed then the data in the Cache has to be invalidated or removed from the Cache.
+If the data got changed then the data in the Cache has to be updated or removed from the Cache.
 This is called Cache invalidation.
-
-Consider the case of users in the Security Expert System.
+Invalidating the cache is essential to ensure that the data stored in the cache is accurate and up-to-date.
 There are multiple ways to invalidate the Cache.
 
 1.Cache Expiry Time :
+---------------------
 Cache Expiry Time can be done by using TTL (Time to Live).
-In this case against each entry we will mention the expiry time.
-Disadvantage is if we keep the low TTL then evry time it will hit the Database and get the data from Database and keep it in Cache.
-In this scenario we are not utilizing the Cache feature.
-If we keep the TTL high then we will not get the updated data.
+Against each entry we will mention the expiry time.
+If we keep the low TTL then evry time it will hit the Database and get the data from Database and keep it in Cache.
+If we keep the high TTL then we will not get the updated data.
 The above scenario will be resolved based on the business requirement.
 
-2.There are some other methods which can also invalidate the Cache other than Cache Expiry Time.
-Whenever the Cient requests for the new data then Cache Miss will happen and Application will fetch the data from Database. 
-Application then removes the data from the Cache and places the new data.
-Application can also update the data in the Cache instead of replacing it with the new data.
+2.Write-through cache :
+-----------------------
+At the time of updating the data, remove/update the data in the Cache.
+Whenever the Cient requests for the data, Cache Miss will happen and Application will fetch the data from Database. 
+Application can also update the data in the Cache instead of removing the data.
 In this case Cache Miss will not happen.
 
 Cache Eviction :
 ----------------
-Consider the scenario where even after applying expiry time there are many keys in the Cache.
-Every Cache solution has a limit to store the keys in the Cache.
+Consider the scenario even after applying the expiry time there are too many keys in the Cache.
+Every Cache has a limit to store the keys in the Cache.
 Consider the scenario where the Cache limit is 1000 and already there are 1000 keys in the Cache.
-If a new key has to be placed in the Cache then any of the existing key in the Cache has to removed.
+If a new key has to be placed in the Cache then any of the existing key has to removed.
 This is called Cache Eviction.
 There are multiple ways through which Cache Eviction is implemented.
 
-1.First In First Out 	(FIFO)
-2.Least Recently Used 	- Time based 	 (LRU)
-3.Least Frequently Used - Occupncy based (LFU)
+1.First In First Out
+2.Least Recently Used (Time based)
+3.Least Frequently Used (Occupncy based)
+4.Random Replacement
 
 Different type of Cache providers implement different Cache eviction strategies depending on the usecase.
 
-Caching strategies :
---------------------
-There are different Caching strategies to implement the Caching.
-
+Caching Invalidation strategies :
+---------------------------------
 1.Cache aside
 2.Read Through
 3.Write Through

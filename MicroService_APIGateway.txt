@@ -1,7 +1,5 @@
 1.API Gateway 										(Dineshchandgr,DefogTech)		[11-DEC-2025]  (Done)
 
-
-
 Before Gateway – focus on:
 DNS, load balancing, global routing
 CDN, edge caching
@@ -31,12 +29,11 @@ Observability: correlation IDs, distributed tracing
 
 The crux of Microservices Architecture is to build independent, loosely-coupled services that can be developed, deployed and scaled independently.
 In an Enterprise systems where 50–100 plus microservices exists.
-Directly exposing every service to the front-end creates excessive coupling, operational complexity, and security risk.
-From a UI perspective, calling dozens of microservices individually means forces the client to manage service URLs, ports, endpoints, versions and retries.
+Directly exposing every service to the front-end creates excessive coupling, operational complexity and security risk.
+From a UI perspective, calling dozens of Microservices individually means forcing the client to manage service URLs, ports, endpoints, versions and retries.
 Resulting this in a fragile client code and high maintenance overhead.
 
-Additionally, each microservice would need to independently implement cross-cutting concerns,leading to duplicated code, inconsistent policies, and complex maintenance. 
-Such as 
+Additionally, each microservice would need to independently implement cross-cutting concerns,leading to duplicated code, inconsistent policies, and complex maintenance.  
 CORS
 authentication 
 authorization
@@ -45,22 +42,22 @@ monitoring
 logging 
 
 
-To solve this, modern architectures introduce a single entry point — API Gateway.
+To solve this, modern architectures introduce a single entry point i.e. API Gateway.
 The API Gateway is a server that handles many functionalities in a single place for the clients to interact.
 
-The gateway centralizes all common concerns and handles 
+The Gateway centralizes all the common concerns and handles 
 routing 
 security enforcement
 rate limiting
 resilience patterns (circuit breaker / bulkhead)
-request aggregation and 
-observability.
+request aggregation and observability.
 
 Clients communicate only with the API Gateway, while the API Gateway orchestrates the calls to internal microservices.
 This keeps UI concerns simple, backend services focused on business logic, and the whole platform more secure, observable, and maintainable.
 It also works as a reverse proxy between your client applications and the back-end microservices architecture
 
 Across all microservices, the same technical concerns occur repeatedly.
+
 Routing
 Authentication
 Authorization

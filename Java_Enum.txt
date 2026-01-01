@@ -10,12 +10,89 @@
 
 ****************************************** 1.What is enum in Java( howtodoinjava) **************************************************************
 
-Java enum also called as Java Enumeration Type whose field consists of fixed set of Constants.
-Main purpose of enum is to enforce compile time type safety.
-enum is a reserved keyword in Java ie we cannot define a variable name with enum in Java.
+Java enum (Enumeration) is a special kind of class that can be used to define a fixed, predefined set of constants.
+Main purpose of enum is to provide type safety, readability and maintainability compared to traditional constants.
+enum is a reserved keyword in Java i.e. we cannot define a variable name with enum in Java.
 We should use enum when we know all the possible values of a variable at compile time or design time.
-Though we can add more values in future as and when we identify them.
-enum is a special type of class that always extends java.lang.Enum.
+Though we can add more values in the future as and when identified.
+
+Internally, an enum is a special kind of class that
+extends java.lang.Enum
+has a fixed number of instances
+is instantiated only once per constant
+
+Before enum :
+-------------
+public static final int SUCCESS = 1;
+public static final int FAILURE = 2;
+
+❌ Problems :
+No type safety
+Invalid values allowed
+Hard to read & maintain
+
+Type safety means a variable should accept only valid values of its intended domain.
+Without enum, Java cannot restrict values properly.
+
+	public static final int ACTIVE = 1;
+	public static final int INACTIVE = 2;
+
+	setStatus(5);   // ❌ Compiles fine, but INVALID
+	setStatus(-1);  // ❌ Compiles fine, but INVALID
+	
+	enum Status {
+		ACTIVE, INACTIVE
+	}
+
+	public void setStatus(Status status) {
+	}
+	
+	setStatus(Status.ACTIVE); // ✅ OK
+	setStatus(5);             // ❌ Compile-time error
+
+✅ Problem Solved at Compile Time
+
+Why Enum Is Type Safe because
+Enum is a separate data type
+Compiler restricts allowed values
+Invalid values won’t compile
+
+Using primitives or Strings allows values outside the domain.
+
+	public void setRole(String role) {
+		if (role.equals("ADMIN")) {
+			// admin logic
+		}
+	}
+	
+	setRole("admin");   // ❌ case mismatch
+	setRole("Admin");  // ❌ typo
+	setRole("ROOT");   // ❌ invalid role
+	
+All compile successfully and Errors occur only at runtime.
+
+	enum Role {
+    ADMIN, USER, GUEST
+	}
+
+	public void setRole(Role role) {
+	}
+	
+	setRole(Role.ADMIN);  // ✅ valid
+	setRole("ADMIN");    // ❌ compile-time error
+	
+Why Enum Prevents Invalid Values
+Enum instances are predefined
+No new values can be created
+No spelling or casing issues
+
+With enum :
+-----------
+
+	enum Status {
+		SUCCESS, FAILURE
+	}
+
 
 enum Declaration :
 ------------------
@@ -24,6 +101,30 @@ enum Declaration :
 	{
 		SOUTH,NORTH,EAST,WEST
 	}
+	
+✅ Solves:
+Compile-time safety
+Clear domain modeling
+No invalid values
+
+Use Cases :
+-----------
+Direction (NORTH, SOUTH, EAST, WEST)
+Order status (CREATED, SHIPPED, DELIVERED)
+HTTP status (SUCCESS, ERROR)
+Device state (ACTIVE, INACTIVE, FAULTY)
+Role management (ADMIN, USER, GUEST)
+
+Pros :
+✔ Compile-time type safety
+✔ Easy to read and maintain
+✔ Singleton by default
+✔ Supports switch, collections, methods
+
+Cons :
+❌ Cannot extend other classes
+❌ Values are fixed (not dynamic)
+❌ Slight memory overhead vs primitives
 
 Here each enum is an instance of enum type itself.
 JVM internally adds ordinal and value methods to the class which we can call while working with enum.
@@ -31,7 +132,7 @@ JVM internally adds ordinal and value methods to the class which we can call whi
 Note :
 ------
 ordinal() returns the order of an enum instance.
-enum instance starts with index "0".
+enum instance starts with index 0.
 values() returns all the enums in an enum array.
 To convert String into enum we use valueOf().
 By default enum's are Constants and in Java Constants are defined in Upper Case.
@@ -39,21 +140,33 @@ By default enum's are Constants and in Java Constants are defined in Upper Case.
 ****************************************** 2.enum constructors	(howtodoinjava) ****************************************************************
 
 By default enum doesn't require Constructor because enum values are always defined at the time of declaration.
-We can define Constructors in enum to initialize the state of enum types.
+Enum constructors are used when each enum constant needs additional data or metadata.
 
-	public enum DirectionConstructor {
-	SOUTH(45), NORTH(0), EAST(90), WEST(70);
-	
-	private DirectionConstructor(final int angle) {
-		this.angle = angle;
-	}
-	
-	private int angle;
+	enum HttpStatus {
+		SUCCESS(200),
+		BAD_REQUEST(400),
+		NOT_FOUND(404),
+		INTERNAL_ERROR(500);
 
-	public int getAngle() {
-		return angle;
+		private int code;
+
+		HttpStatus(int code) {
+			this.code = code;
+		}
+
+		public int getCode() {
+			return code;
+		}
 	}
+
+	
+	public class TestEnum {
+		public static void main(String[] args) {
+			HttpStatus status = HttpStatus.NOT_FOUND;
+			System.out.println(status.getCode()); // 404
+		}
 	}
+
 
 ****************************************** 3.enum methods (howtodoinjava) **********************************************************************
 
@@ -85,7 +198,7 @@ We can compare enums with equals() and == operator.
 
 ****************************************** 6.Enum collections(howtodoinjava) *******************************************************************
 
-Two classes have been added to java.util package in support of enums ie EnumSet and EnumMap.
+Two classes have been added in java.util package in support of enums ie EnumSet and EnumMap.
 
 EnumSet :
 ---------

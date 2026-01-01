@@ -20,7 +20,7 @@ Define the AlwaysSampler in the Configuration.
 	
 If we call the Rest API directly then both Trace Id and Sapn Id will be the same.
 
-**********************************  2.Tracing in Distributed Systems with Spring Cloud Sleuth     (reflectoring Techie)  ****************************************************
+********************************** 2.Tracing in Distributed Systems with Spring Cloud Sleuth (reflectoring Techie)  ****************************************************
 
 If any error occurs in the upstream service,upstream service will probably log the error.
 Since the downstream service recieves the error response,it will also log the error.

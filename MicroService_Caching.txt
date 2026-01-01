@@ -1,0 +1,173 @@
+1.Mastering the Art of Caching for System Design							(Arslan Ahmad)		   [26-DEC-2025]  (Done)
+2.Distributed Caching														(ScalaBrix)		  	   [25-DEC-2025]  ()
+3.Common Caching Misunderstandings                                          (Arslan Ahmad)		   [25-DEC-2025]  ()
+4.Caching Strategies                                                        (Harun Keles0glu)	   [25-DEC-2025]  ()
+5.Caching Concepts for System Design                                        (Soma)		  	  	   [25-DEC-2025]  ()
+6.Type of Caching Strategies                                                (Soma)		  	  	   [25-DEC-2025]  ()
+7.Design Distributed Caching                                                (Harsh Shukla)		   [25-DEC-2025]  ()
+
+################################################# 1.Mastering the Art of Caching for System Design (Arslan Ahmad) ###############################################################
+
+Types of Caching :
+******************
+
+Caching can be implemented in various ways, depending on the specific use case and the type of data being cached. 
+Here are some of the most common types of caching.
+1.In-memory caching
+2.Disk caching
+3.Database caching
+4.CDN caching
+5.DNS caching
+
+1.In-memory caching :
+---------------------
+In-memory caching stores data in the main memory of the computer which is faster to access than disk storage.
+In-memory caching is useful for frequently accessed data that can fit into the available memory.
+This type of caching is commonly used for caching API responses, session data, and web page fragments.
+To implement in-memory caching, various techniques including using a cache library like Memcached or Redis, or implementing custom caching logic within the application code.
+
+2.Disk caching :
+----------------
+Disk caching stores data on the local storage (SSD/HDD) of the machine where the application runs.
+It sits between memory cache and remote systems (DB, APIs, file servers)
+Disk caching is slower than main memory but faster than retrieving data from a remote source.
+
+	In-Memory Cache → Disk Cache → Network DB / API
+	
+Disk caching is useful for data that is too large to fit in memory or for data that needs to persist between application restarts.
+This type of caching is commonly used for caching database queries and file system data.
+Typical implementation includes EHCache etc.
+
+How Disk Caching Works :
+------------------------
+Data is written to files on disk
+Retrieved using file I/O (faster than network, slower than RAM)
+Survives application restarts
+Usually node-local (not shared across services)
+
+Consider the scenario of Thermal Monitoring Service
+1.Reads large calibration files (50–100MB)
+2.Loads once from DB and stores on disk
+3.Subsequent requests read from Disk cache
+
+3.Database caching :
+--------------------
+Database caching stores the frequently accessed data inside or alongside the database reducing the disk reads and query execution cost.
+Database caching is shared, centralized and and data-aware.
+Database caching can be implemented using a variety of techniques including database query caching,result set caching and Buffer Cache.
+
+✅Query Cache
+Caches full SQL query results
+Same query then return cached result
+SELECT * FROM device WHERE id=123
+
+✅Result Set Cache
+Stores rows/pages in memory
+Avoids disk I/O
+
+✅Buffer Cache
+Database internally caches data blocks
+Managed by DB engine
+
+								+-------------------+
+			Client ---> LB ---> | routes requests   |
+								+---+-----------+---+
+									|        	|
+									v        	v
+						+----------------+  +----------------+
+						| Service A      |  | Service B      |
+						| L2 Cache (A)   |  | L2 Cache (B)   |
+						+-------+--------+  +------+---------+
+								|                  |
+								| (miss/hit local) | (miss/hit local)
+								v                  v
+								+------------------+
+								|      Database    |
+								+------------------+
+								
+Hibernate L2 is not automatically distributed.
+It is node-specific unless we configure a distributed cache provider that supports clustering (e.g., Redis, Infinispan, Hazelcast).
+
+Local L2 provider (Ehcache,Caffeine) :
+--------------------------------------
+Node/JVM specific
+Each instance has its own cache
+No sharing across pods/VMs
+
+Distributed L2 provider (Redis/Infinispan cluster, Hazelcast cluster) :
+-----------------------------------------------------------------------
+Shared cache across instances
+Instances read/write to the same cache backend
+Must handle invalidation and consistency strategy
+
+4.CDN caching :
+---------------
+CDN caching stores data on a distributed network of servers, reducing the latency of accessing data from remote locations.
+This type of caching is useful for data that is accessed from multiple locations around the world, such as images, videos, and other static assets.
+CDN caching is commonly used for content delivery networks and large-scale web applications.
+
+
+Cache Replacement/Eviction policies :
+*************************************
+There are multiple ways through which Cache Eviction is implemented.
+
+1.First In First Out
+2.Least Recently Used (Time based)
+3.Least Frequently Used (Occupancy based)
+4.Random Replacement
+
+First In First Out (FIFO) :
+---------------------------
+FIFO is a cache replacement policy that removes the oldest item from the cache when it becomes full.
+This policy assumes that the oldest items in the cache are the least likely to be accessed again in the future.
+
+Least Recently Used (LRU) :
+---------------------------
+LRU is a cache replacement policy that removes the least recently used item from the cache when it becomes full.
+This policy assumes that items that have been accessed more recently are more likely to be accessed again in the future.
+LRU is Time based.
+
+	| Step | Operation | Cache State (MRU → LRU)  |
+	| ---- | --------- | -----------------------  |
+	| 1    | Access D1 | D1                       |
+	| 2    | Access D2 | D2, D1                   |
+	| 3    | Access D3 | D3, D2, D1               |
+	| 4    | Access D2 | D2, D3, D1               |
+	| 5    | Access D4 | ❌ Evict D1 → D4, D2, D3 |
+
+
+Least Frequently Used (LFU) :
+-----------------------------
+LFU is a cache replacement policy that removes the least frequently used item from the cache when it becomes full.
+This policy assumes that items that have been accessed more frequently are more likely to be accessed again in the future.
+LFU is Occupancy based and Redis by default uses LFU.
+
+	| Step | Operation | Frequency | Cache             |
+	| ---- | --------- | --------- | ----------------  |
+	| 1    | Access D1 | D1=1      | D1                |
+	| 2    | Access D2 | D2=1      | D1, D2            |
+	| 3    | Access D3 | D3=1      | D1, D2, D3        |
+	| 4    | Access D1 | D1=2      | D1, D2, D3        |
+	| 5    | Access D1 | D1=3      | D1, D2, D3        |
+	| 6    | Access D4 | D4=1      | ❌ Evict D2 or D3 |
+
+
+Random Replacement :
+--------------------
+Random replacement is a cache replacement policy that removes a random item from the cache when it becomes full.
+This policy doesn’t make any assumptions about the likelihood of future access and can be useful when the access pattern is unpredictable.
+
+Cache Invalidation Strategies :
+*******************************
+The data which is kept in the Cache is going to change at some point of time.
+If the data got changed then the data in the Cache has to be updated or removed from the Cache.
+This is called Cache invalidation.
+Invalidating the cache is essential to ensure that the data stored in the cache is accurate and up-to-date.
+There are multiple strategies to invalidate the Cache.
+1.Write Through
+2.Write Around
+3.Write Back
+4.Write-behind cache
+
+
+

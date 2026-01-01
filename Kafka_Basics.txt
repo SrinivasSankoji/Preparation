@@ -11,8 +11,8 @@
 
 Consumer Group :
 ----------------
-Consumer is a Kafka client that pulls records from Kafka brokers,reads from one or more partitions and processes messages sequentially per partition.
 Consumer Group is a logical group of consumers identified by group.id.
+Consumer is a Kafka client that pulls records from Kafka brokers,reads from one or more partitions and processes messages sequentially per partition.
 Kafka guarantees that each partition in the topic is consumed by exactly one consumer within the same group.
 Multiple consumer groups can read the same topic independently.
 Kafka scales consumption using partitions and not by consumers.
