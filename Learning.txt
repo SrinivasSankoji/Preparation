@@ -1908,7 +1908,7 @@ Double Booking (Animesh Gaitonde)
 Booking System (Reyanshicodes)
 Double-Click - Idempotency (Arvind Kumar)
 
------------------------------------------ January 2025  ---------------------------------------------------
+----------------------------------------- January 2026  ---------------------------------------------------
 
 Lang Package Revise ()
 Java_AccessModifiers Revise ()
@@ -1950,12 +1950,15 @@ Concurrency API improvements → CompletableFuture, ForkJoin  ()
 Anonymous class vs Lambda  ()
 
 Spring IOC Basics Revise (Done)
-Spring Core Annotations Revise ()
+Spring Core Annotations Revise (Done)
 Spring Web Annotations Revise ()
 @Autowired → byName vs byType Revise ()
 Circular Dependency Injection solution  Revise (Done)
 Sprng Bean Life Cycle ()
 Prototype Scope ()
+@Value
+@Repository
+@EnableAutoConfiguration 
 
 Spring Boot Internal Working ()
 Spring Boot Auto Configuration ()
@@ -1965,11 +1968,12 @@ Sprig Data JPA ()
 Hibernate Caching with Scenarios ()
 Joins in SQL ()
 
-Kafka Basics LimeGuru ()
+Kafka Basics LimeGuru (Done)
+Kafka Consumer ()
 
 Transaction Management Revise ()
 
-Idempotent operations ()
+Idempotent operations (Done)
 SOLID Principles ()
 Circuit Breaker ()
 URl Shortening ()
@@ -1979,6 +1983,7 @@ ACID Properties ()
 CAP Theorem ()
 Transctional Outbox Pattern ()
 RestTemplate vs FeignClient ()
+SQL vs NoSQL ()
 
 Spring Security ()
 JWT ()
@@ -2011,9 +2016,3 @@ Allow users to scan QR codes and contact vehicle owners without exposing persona
 Create endpoints for QR registration, vehicle mapping, and contact initiation. ()
 Handle backend with Spring Boot, frontend using ReactJS. ()
 Store owner info securely and maintain service logs. ()
-
-
-
-
-
-

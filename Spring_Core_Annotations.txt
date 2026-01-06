@@ -30,9 +30,16 @@ Spring Stereotype Annotations :
 **************************************   Spring Core Annotations  *****************************************************
 @Bean :
 -------
-@Bean is a Method Level Annotation and is a direct analog of </bean> in XML.
-@Bean Annotation is applied on a method to specify that it returns a bean to be managed by Spring Container.
-Method annotated with @Bean can be used on any class directly or indirectly annotated with @Component.
+If we want to explicitly define and control the creation of a Bean rather than Spring doing it automatically we use @Bean Annotation.
+@Bean is a method level Annotation and is a direct analog of XML element </bean>.
+Method annotated with @Bean produces a Bean that has to be managed by the Spring Container.
+It decouples the declaration of the Bean from the Class Definition.
+@Bean Annotation cannot be declared at Class Level.
+Most of the the times we use @Bean with @Configuration Classes.
+Annotating a Class with @Configuration indicates that its primary purpose is a source of Bean definitions.
+@Bean Annotation supports some of the attributes such as initMethod,destroyMethod,autowiring and name.
+By default it will use the name of the method as the Bean Id/Name.
+We can create beans for classes that we don’t own.
 Method annotated with @Bean can be used any where in the Application by using @Autowired Annotation.
 
 @value :
@@ -165,8 +172,8 @@ The Classes Annotated with @Component,@Controller,@Service,@Repository,@Configur
 
 @DependsOn :
 ------------
-By using @DependsOn Annotation we can force Spring Container to initialize one or more Beans before the bean which is Annotated with @DependOn
-@DependsOn Annotation may be used on any Class directly or indirectly annotated with @Component or Methods Annotated with @Bean.
+@DependsOn annotation forces the Spring Container to instantiate one or more beans before the bean which is defined by using @DependsOn annotation.
+@DependsOn annotation may be used on any class directly or indirectly which is annotated with @Component or methods annotated with @Bean.
 
 	@Bean
 	@DependsOn(value = { "secondBean","thirdBean"})
@@ -186,7 +193,7 @@ By using @DependsOn Annotation we can force Spring Container to initialize one o
 
 @Lazy :
 -------
-Spring Container creates and initializes all the beans at the time of Application start up.
+Spring Container creates and initializes all the Beans at the time of Application start up.
 We can prevent this preInitialization of Singleton Bean by using @Lazy Annotation.
 @Lazy Annotation may be used on any Class directly or indirectly annotated with @Component or on Methods which are Annotated with @Bean.
 
@@ -250,17 +257,16 @@ Spring profiles helps in seggregating Application Configuration and make them av
 
 @Import :
 ---------
-By using @Import Annotation we can import one or more @Configuration Classes.
-Here the @Beans are loaded from one configuration class to another Configuration class i.e 
-To load the Bean definitions from one Configuration Class to another Configuration Class we use @Import Annotation.
+@Import Annotation can be used to load the bean definitions from one Configuration to another Configuration class.
+@Import Annotation can be declared at Class level or at Metadata level.
 
 @ImportResource :
 -----------------
-@ImportResource Annotation can be used to load the beans which are defined inside application-context.xml into ApplicationContext.
+@ImportResource Annotation can be used to load the Beans which are defined inside application-context.xml into ApplicationContext.
 
 @PropertySource :
 -----------------
-@PropertySource annotation provides a convenient and declarative mechanism for adding Properties File to the Spring Environment.
+@PropertySource annotation provides a convenient and declarative mechanism for adding Properties file to the Spring Environment.
 It has to be used in Conjunction with @Configuration Class.
 By default Spring identifies the application.properties.
 If we want Spring to identify the user defined Properties File we use @PropertySource annotation that accepts the location of the Properties File.

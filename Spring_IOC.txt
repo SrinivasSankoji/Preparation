@@ -1087,7 +1087,10 @@ Spring automatically injects PaymentService.
 
 ################################################## 26.@PropertySource Annotation with Example ##################################################
 
-We can externalize the Configuration to a properties file by using @PropertySource Annotation.
+@PropertySource annotation provides a convenient and declarative mechanism for adding Properties file to the Spring Environment.
+It has to be used in Conjunction with @Configuration Class.
+By default Spring identifies the application.properties.
+If we want Spring to identify the user defined Properties File we use @PropertySource annotation that accepts the location of the Properties File.
 We can read the Properties file and display the values using Environment and @Value Annotation.
 
 spring.datasource.name=Oracle

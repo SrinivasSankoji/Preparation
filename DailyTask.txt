@@ -5321,11 +5321,46 @@ Hibernate Advanced ()
 -------------
 Enum (Done)
 Spring IOC Revise (Done)
+Spring Core Annotations (Done)
+Spring Web Annotations ()
 
 02-JAN-2026 :
 -------------
-Spring Core Annotations ()
-Spring Web Annotations ()
+
 
 03-JAN-2026 & 04-JAN-2026 :
+---------------------------
+Idempotency (Done)
+
+05-JAN-2026 :
+-------------
+Idempotency API Implementation (Done)
+Kafka LimeGuru Revise (Done)
+
+06-JAN-2026 :
+-------------
+ThreadLocal ()
+Lock Condition Class (Done)
+Reentrant Lock (Done)
+ReadWrite Lock (Done)
+
+07-JAN-2026 :
+-------------
+Stampade Lock ()
+Semaphore in Java Concurrency ()
+Condition ()
+CountDownLatch ()
+Coroutines ()
+Java Interrupts ()
+
+08-JAN-2026 :
+-------------
+Detect and Resolve DeadLocks in Java ()
+Race Condition vs Data Races ()        
+Singleton and Double Checked Locking ()
+
+09-JAN-2026 :
+-------------
+
+10-JAN-2026 & 11-JAN-2026 :
 ---------------------------

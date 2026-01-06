@@ -13,8 +13,8 @@
 11.Completable Future								[28-JAN-2020]  (Done)
 
 12.Coroutines										[05-JAN-2020]  ()
-13.Reentrant Lock									[05-JAN-2020]  ()
-14.ReadWrite Lock									[05-JAN-2020]  ()
+13.Reentrant Lock									[06-JAN-2025]  (Done)
+14.ReadWrite Lock									[06-JAN-2025]  (Done)
 15.Java Interrupts									[05-JAN-2020]  ()
 16.Semaphore in Java Concurrency					[05-JAN-2020]  ()
 17.Concurrency Interview Questions                  [05-JAN-2020]  ()
@@ -22,17 +22,20 @@
 19.Concurrency Interview Questions                  [05-JAN-2020]  ()
 20.Fork JoinPool									[27-JAN-2020]  (Done)
 21.Phaser vs CountDownLatch vs Cyclic Barrier		[05-JAN-2020]  ()
+
 22.Synchronous Queue								[05-JAN-2020]  ()
 23.Adder and Accumulator Classes					[05-JAN-2020]  ()
 24.Guava Library									[05-JAN-2020]  ()
+
 25.Detect and Resolve DeadLocks in Java				[05-JAN-2020]  ()
 26.Race Condition vs Data Races                     [05-JAN-2020]  ()
 27.Singleton and Double Checked Locking             [05-JAN-2020]  ()
+
 28.Spin Locks                                       [05-JAN-2020]  ()
 29.Exchanger Class									[05-JAN-2020]  ()
 
 
-******************************************** 1.Volatile vs Atomic Integer ************************************************************
+############################################ 1.Volatile vs Atomic Integer ############################################################
 
 Consider the scenario where we have one flag i.e.
 
@@ -142,10 +145,10 @@ newValue : Desired updated value
 
 This is how AtomicInteger.incrementAndGet() and similar methods are safe in a multithreaded environment without using synchronized.
 
-******************************************** 2.ThreadLocal ***************************************************************************
+############################################ 2.ThreadLocal ###########################################################################
 
 
-******************************************** 3.Concurrency vs Parallelism ************************************************************
+############################################ 3.Concurrency vs Parallelism ############################################################
 
 Parallelism :
 -------------
@@ -256,7 +259,7 @@ Split the sequential flow into independent components. i.e. Use Threads / Thread
 Whenever a shared resource has to be updated across the Components or Multiple Threads needs to be coordinate use Concurrency tools to manage.
 
 
-******************************************** 4.Java Memory Model ************************************************************
+############################################ 4.Java Memory Model ############################################################
 
 Java Memory Model is a specification which guarantees the visibility of fields when we have re-ordering of instructions.
 Java Memory Model enforces that all the JVM's has to implement these set of rules so that program runs in the same manner. 
@@ -355,9 +358,7 @@ If the variable is volatile,then JVM ensures that changes in the Local Cache wil
 ------------------
 
 
-
-
-******************************************** 5.ExecutorService ****************************************************************************************
+############################################ 5.ExecutorService ########################################################################################
 
 Introduction :
 --------------
@@ -631,60 +632,8 @@ Note :
 ------
 execute() accepts a Runnable task where as submit() accepts a Callable task.
 
-******************************************** 20.Fork JoinPool ****************************************************************************************
 
-Fork JoinPool is Similar to Executor Service but with Two Differences.
-ExecutorService Stores the Task in the Blocking Queue and these Tasks are executed by the Thread Pool which we Have defined while defining the Executor Service.
-These Thread Takes the task from the Blocking Queue and executes it until all the tasks are Completed in the Blocking Queue.
-
-1.Fork Join Pool Deals with Task and produces its own Task.
-Fork Join Pool Optimize the Problem of Task by Producing Sub Tasks for the Task.
-
-Let us Consider a Task and that is Big Task.
-Break down the Task into 3 Sub Tasks and each of them Computed or solved Independently.
-Here all the Sub Tasks run in Parallel at once considering we have CPU which has More than one Core.
-All the Results are aggregated to provide the Final Result.
-
-Consider the Example of Fibonacci Example.
-Fibonacci Number is a Sequence where every Number in the Sequence is a Multiple of Last Two Numbers.
-
-2.Per Thread Queuing  
-In case of Fork Join Pool Each Thread has its own Queue and this type of Queue is called Double Ended Queue.
-Consider a Thread is executing a Particular Task and when we do Fork i.e split the Task into Multiple Sub Tasks and all those Sub Tasks are Not Stored in the 
-Common Queue and they are Stored in its own Double Ended Queue Locally.
-Now for the Thread which is Executing the Main Task,It is Easier to pick the Task which is Stored inside the Double Ended Queue.
-
-Now Every Thread which is executed in the Fork Join Pool has its own Doubled Ended Queue to Store all the Sub Tasks that it Creates.
-We don't have to Worry about getting the Tasks from the External Queue.
-It Keeps Picking the Tasks from the Local Queue and keep executing them.
-Since we are Touching our own Queue and we don't have to worry about Synchronization.
-Since Threads are Always Busy there won't be any switch between context of Threads.
-
-3.Work Stealing
-Consider Two Threads Thread1 and Thread2
-Thread1 Produces lot More Sub Tasks than Thread2
-At Certain Point of Time Thread2 has No Tasks to Execute i.e its own Dqueue is Empty.
-In this Case Thread2 Picks the Task form Thread1 using the Other End of the Queue i.e
-Thread 1 Picks the Task from Front where as Thread 2 Picks the Task from Back.
-
-
-To Execute The Fork Join Pool in an Effective Way
-1.Avoid Synchronization
-2.Do Not Use Any Shared Variables
-3.Do Not Perform any Blocking Operations
-4.Pure Functions
-5.Isolated Functions
-
-Fork Join Pool has the Same Methods that has Future Interface.
-Use Cases of Fork Join Pool are 
-
-1.Sorting
-2.Matrix Multiplication
-3.Best Move Finder for a Game
-4.Tree Traversal
-
-
-******************************************************** 9.Java Asynchronous Programming	*******************************************************
+######################################################## 9.Java Asynchronous Programming #######################################################
 
 Most of the Computers today we have More than 1 Core Processor.
 Typically a Desktop Computer have 4 Cores and Server may Contain 16 Cores or 32 cores or More.
@@ -714,7 +663,7 @@ and Place the Data Related to Thread 3 in the Local Cache.
 Here Core 1 will Start executing the Thread 3.
 
 Again If there is Context Switch,Flush the Old Thread Data and add The New Thread Data.
-This Scenario is Called ###########Data Locality#########.
+This Scenario is Called Data Locality.
 
 If there are lot of Threads,OS or JVM has to manage the Scheduling of Threads which itself takes lot of Time.
 The Issue of Having too Many Threads is even More Heighten when  we are Dealing with I/O Operations.
@@ -762,7 +711,16 @@ End to End Asynchronous / Non Blocking  Required
 
 To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming project Coming Soon i.e Java Fibers or Project Loom.
 
-******************************************************** 11.Completable Future *************************************************************
+
+######################################################## 13.Reentrant Lock #################################################################
+
+Refer in Java_MultiThreading_Medium
+
+######################################################## 14.ReadWrite Lock #################################################################
+
+Refer in Java_MultiThreading_Medium
+
+######################################################## 11.Completable Future #############################################################
 
 Completable Future is used to perform asynchronous operations and trigger its dependent operations which could also be asynchronous.
 
@@ -815,7 +773,60 @@ If we don't use any Executor Service Internally it Uses Fork Join Pool to run al
 If any of the Operation is Failed exceptionally will be called as a Catch Block.
 For Complex Use cases Completable Future is Not Recommended and Prefer RX Java which is Stable and Much More Readable.
 
-*********************************************************************************************************************************************************
+
+############################################ 20.Fork JoinPool ########################################################################################
+
+Fork JoinPool is Similar to Executor Service but with Two Differences.
+ExecutorService Stores the Task in the Blocking Queue and these Tasks are executed by the Thread Pool which we Have defined while defining the Executor Service.
+These Thread Takes the task from the Blocking Queue and executes it until all the tasks are Completed in the Blocking Queue.
+
+1.Fork Join Pool Deals with Task and produces its own Task.
+Fork Join Pool Optimize the Problem of Task by Producing Sub Tasks for the Task.
+
+Let us Consider a Task and that is Big Task.
+Break down the Task into 3 Sub Tasks and each of them Computed or solved Independently.
+Here all the Sub Tasks run in Parallel at once considering we have CPU which has More than one Core.
+All the Results are aggregated to provide the Final Result.
+
+Consider the Example of Fibonacci Example.
+Fibonacci Number is a Sequence where every Number in the Sequence is a Multiple of Last Two Numbers.
+
+2.Per Thread Queuing  
+In case of Fork Join Pool Each Thread has its own Queue and this type of Queue is called Double Ended Queue.
+Consider a Thread is executing a Particular Task and when we do Fork i.e split the Task into Multiple Sub Tasks and all those Sub Tasks are Not Stored in the 
+Common Queue and they are Stored in its own Double Ended Queue Locally.
+Now for the Thread which is Executing the Main Task,It is Easier to pick the Task which is Stored inside the Double Ended Queue.
+
+Now Every Thread which is executed in the Fork Join Pool has its own Doubled Ended Queue to Store all the Sub Tasks that it Creates.
+We don't have to Worry about getting the Tasks from the External Queue.
+It Keeps Picking the Tasks from the Local Queue and keep executing them.
+Since we are Touching our own Queue and we don't have to worry about Synchronization.
+Since Threads are Always Busy there won't be any switch between context of Threads.
+
+3.Work Stealing
+Consider Two Threads Thread1 and Thread2
+Thread1 Produces lot More Sub Tasks than Thread2
+At Certain Point of Time Thread2 has No Tasks to Execute i.e its own Dqueue is Empty.
+In this Case Thread2 Picks the Task form Thread1 using the Other End of the Queue i.e
+Thread 1 Picks the Task from Front where as Thread 2 Picks the Task from Back.
+
+
+To Execute The Fork Join Pool in an Effective Way
+1.Avoid Synchronization
+2.Do Not Use Any Shared Variables
+3.Do Not Perform any Blocking Operations
+4.Pure Functions
+5.Isolated Functions
+
+Fork Join Pool has the Same Methods that has Future Interface.
+Use Cases of Fork Join Pool are 
+
+1.Sorting
+2.Matrix Multiplication
+3.Best Move Finder for a Game
+4.Tree Traversal
+
+#########################################################################################################################################################
 
 
 

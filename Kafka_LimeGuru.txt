@@ -140,12 +140,10 @@ ACK ALL or -1
 
 ACK 0 :
 -------
-Whenever any Producer Application is publishing the messages to the Topic(Kafka Cluster),
-Here Producer Application won't check whether the messages are successfully written to the Topic or Not.
-It is Completely dependent on stability of the Kafka Cluster.
-Here Producer Application won't accept the Acknowledgment from the Kafka Server.
-This kind of Acknowledgment is used when there is a need of low latency and is very fast.
-Here many of messages might be loss.
+Whenever any Producer Application is publishing the messages to the Topic,Producer Application won't check whether the messages are successfully written to the Topic or Not.
+Also Producer Application won't accept the acknowledgment from the Kafka Server.
+This kind of mechanism is used when there is a need of low latency and very fast.
+Here many of messages might loss.
 
 ACK 1 :
 -------
@@ -225,7 +223,7 @@ Manual Commit
 
 Auto Commit :
 -------------
-Consider the scenario where we have a topic named Topic1 and the consumer named Consumer1 which is consuming the messagea from Topic1.
+Consider the scenario where we have a topic named Topic1 and the consumer named Consumer1 which is consuming the message from Topic1.
 Each message in the Kafka Topic has an offSet number.
 Whenever any Consumer reads the message from Kafka Topic, then consumer marks this as read.
 This can be achieved by using two properties.
@@ -237,7 +235,7 @@ For every 3 seconds it will commit the offset number.
 
 Manual Commit :
 ---------------
-Consider the scenario where the Toipc has sent the message and there is an issue in the Consumer.
+Consider the scenario where the Producer has sent the message and there is an issue in the Consumer.
 In this case message is lost.
 To overcome this scenario we use manual commit.
 In this scenario, only after processing the message, will mark it as read and commit the offset numbers.
@@ -248,7 +246,7 @@ It will ensure that no messages are lost within the Topic and Consumer.
 
 3.Heartbeat Interval :
 ----------------------
-Consider the scenario where we have four partitions in the topic and 4 consumer groups.
+Consider the scenario where we have four partitions in the topic and 4 consumers in the consumer groups.
 
 Partition 1
 Partition 2

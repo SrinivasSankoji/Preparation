@@ -1,0 +1,360 @@
+1.Locking Mechanism in Java									(Hiten Pratap Singh)		   [06-JAN-2026]  ()
+2.Locks In Java												(Avinashsoni)		   		   [06-JAN-2026]  ()
+3.Why Lock and Condition in the Concurrency Package			(ByteCook)		   		   	   [06-JAN-2026]  ()
+4.
+
+
+########################################################### 1.Locking Mechanism in Java	(Hiten Pratap Singh) #################################################
+
+Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an Object or a Class,
+preventing other threads from accessing the locked object or class until the lock is released.
+The different types of locks in Java are
+
+1.Object Locks
+2.Class Locks
+3.Reentrant Locks
+4.Read-Write Locks
+5.Stamped Locks
+6.Semaphores
+7.CountDownLatch
+
+1.Object Locks :
+----------------
+An Object lock ensures that only one thread at a time can access critical code of an object.
+To acquire a lock on an Object, we use the synchronized keyword when declaring a method or use the synchronized block.
+When a thread acquires an object’s lock then Other threads must wait until the lock is released.
+This prevents data inconsistency and race conditions.
+
+Synchronized method :
+---------------------
+
+	class MyClass {
+		public synchronized void method1() {
+        // critical section
+		}
+	}
+	
+The above code is equivalent to 
+
+	class MyClass {
+		public void method1() {
+			synchronized (this) {
+				// critical section
+			}
+		}
+	}
+
+Here Lock is acquired on the current object and Only one thread can execute method1() at a time.
+
+Synchronized block :
+--------------------
+
+	class MyClass {
+		public void method2() {
+			synchronized (this) {
+				// critical section
+			}
+		}
+	}
+	
+Here Lock is acquired only for the block but not the entire method which has more control and flexibility.
+
+Use Case :
+----------
+When multiple threads are updating shared object data without locking data becomes inconsistent and updates may be lost.
+
+Example:
+Bank account balance
+Inventory count
+Device temperature state
+Cache updates
+
+2.Class Locks :
+---------------
+Class lock ensures that only one thread at a time can access static methods and static blocks of a class.
+To acquire a lock on an Class, we use the synchronized keyword when declaring a static method or use the static synchronized block.
+When a thread acquires an Class lock then Other threads must wait until the lock is released.
+
+Synchronized Static Method :
+----------------------------
+
+	class MyClass {
+		public static synchronized void method1() {
+			// critical section
+		}
+	}
+	
+which is equivalent to
+
+	class MyClass {
+		public static void method1() {
+			synchronized (MyClass.class) {
+			// critical section
+		}
+	}
+
+Synchronized Block on Class :
+-----------------------------
+
+	class MyClass {
+		public static void method2() {
+			synchronized (MyClass.class) {
+				// critical section
+			}
+		}
+	}
+	
+3.Reentrant Locks :
+-------------------
+ReentrantLock allows the thread to acquire the lock and release the lock multiple times without getting blocked.
+while a regular lock can only be acquired and released once.
+
+ReentrantLock have the additional capabilities to control the lock including
+1.Interruptibility: Stop Waiting for a Lock using the method lockInterruptibly()
+2.Timeout while waiting for lock (tryLock(timeout, unit))
+3.Non-blocking lock attempt (tryLock())
+4.Fairness option (new ReentrantLock(true))
+5.Multiple Conditions (newCondition())
+
+lockInterruptibly() :
+---------------------
+Problem with synchronized is if a thread is trying to enter a synchronized block/method and the lock is held by another thread then the Thread will be blocked.
+We cannot interrupt the Thread.
+If the lock holder is slow/hung then waiting threads pile up.
+This leads to Thread starvation in the server thread pool which increases the latency and leads to potential outage.
+Solution is to use the ReentrantLock lockInterruptibly().
+
+lockInterruptibly() allows a thread to wait for the lock.
+But if someone calls thread.interrupt() then it will stop waiting and throw InterruptedException.
+This allows us to fail fast / cancel the request cleanly.
+
+Usecase :
+---------
+A web request is cancelled by client.
+A job is cancelled by scheduler.
+Service is shutting down and wants workers to stop waiting.
+
+	public class InterruptionLockExample {
+
+    private static final ReentrantLock lock = new ReentrantLock();
+
+    public static void main(String[] args) throws InterruptedException {
+        // Thread 1: Holds the lock for a long time
+        Thread t1 = new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println("Thread-1 acquired the lock.");
+                try {
+                    Thread.sleep(5000); // simulate long work
+                } catch (InterruptedException e) {
+                    // ignored for simplicity
+                }
+            } finally {
+                lock.unlock();
+                System.out.println("Thread-1 released the lock.");
+            }
+        });
+
+        // Thread 2: Tries to acquire the lock interruptibly
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println("Thread-2 trying to acquire lock...");
+                lock.lockInterruptibly(); // IMPORTANT LINE
+                try {
+                    System.out.println("Thread-2 acquired the lock.");
+                } finally {
+                    lock.unlock();
+                }
+            } catch (InterruptedException e) {
+                System.out.println("Thread-2 was interrupted while waiting for the lock.");
+            }
+        });
+        t1.start();
+        Thread.sleep(100); // ensure t1 gets lock first
+        t2.start();
+        // Interrupt thread-2 while it is waiting for the lock
+        Thread.sleep(2000);
+        System.out.println("Main thread interrupting Thread-2...");
+        t2.interrupt();
+        t1.join();
+        t2.join();
+        System.out.println("Program finished.");
+    }
+}
+
+Flow :
+------
+Thread-1 acquires the lock and holds it for 5 seconds.
+Thread-2 tries to acquire the same lock using lockInterruptibly().
+Since the lock is already held, Thread-2 waits.
+The main thread interrupts Thread-2.
+lockInterruptibly() immediately throws InterruptedException.
+Thread-2 exits without acquiring the lock.
+
+tryLock(timeout, unit) :
+------------------------
+With synchronized we cannot make the thread to wait for 200ms for lock else fallback.
+A blocked thread can wait indefinitely.
+This can be resolved by using tryLock with timeout.
+
+	public class TryLockTimeoutDemo {
+    private static final ReentrantLock lock = new ReentrantLock();
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println("Thread-1 acquired lock. Holding for 5 seconds...");
+                sleepSilently(5);
+                System.out.println("Thread-1 done. Releasing lock.");
+            } finally {
+                lock.unlock();
+            }
+        }, "Thread-1");
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println("Thread-2 trying to acquire lock with 2s timeout...");
+                // IMPORTANT LINE: wait up to 2 seconds to acquire the lock
+                boolean acquired = lock.tryLock(2, TimeUnit.SECONDS);
+                if (acquired) {
+                    try {
+                        System.out.println("Thread-2 acquired lock within timeout. Processing...");
+                        sleepSilently(1);
+                    } finally {
+                        lock.unlock();
+                        System.out.println("Thread-2 released lock.");
+                    }
+                } else {
+                    // Fallback path: lock not acquired within timeout
+                    System.out.println("Thread-2 timed out! Could not acquire lock within 2 seconds.");
+                }
+
+            } catch (InterruptedException e) {
+                System.out.println("Thread-2 interrupted while waiting for lock.");
+                Thread.currentThread().interrupt();
+            }
+        }, "Thread-2");
+        t1.start();
+        // Small delay so Thread-1 almost certainly grabs the lock first
+        Thread.sleep(100);
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("Program finished.");
+    }
+
+		private static void sleepSilently(int seconds) {
+			try {
+				Thread.sleep(seconds * 1000L);
+			} catch (InterruptedException ignored) {
+				Thread.currentThread().interrupt();
+			}
+		}
+	}
+
+tryLock() :
+-----------
+tryLock() means try to take the lock right now.
+If it is available take it and continue.
+If it is not available then do not wait and return false immediately.
+Finally it prevents threads from getting stuck waiting.
+
+Use Case :
+----------
+Consider the scenario of Cache Refresh.
+Imagine a method that refreshes a cache.
+Many requests arrive at the same time:
+
+Without tryLock() :
+-------------------
+Every request may block and wait for the refresh lock.
+Thread pool gets exhausted.
+API latency increases.
+
+With tryLock() :
+----------------
+Only one thread performs the refresh.
+Others immediately skip refresh and continue with fallback.
+serve stale cache.
+return refresh already in progress or just continue using existing data.
+
+This is called a single-flight / only one refresher at a time pattern.
+
+	public class TryLockDemo {
+    private static final ReentrantLock lock = new ReentrantLock();
+
+		public static void main(String[] args) throws Exception {
+
+			Thread t1 = new Thread(() -> refreshCache("Thread-1", 5000), "Thread-1");
+			Thread t2 = new Thread(() -> refreshCache("Thread-2", 2000), "Thread-2");
+			Thread t3 = new Thread(() -> refreshCache("Thread-3", 2000), "Thread-3");
+
+			// Start Thread-1 first so it surely holds the lock
+			t1.start();
+			Thread.sleep(100);
+
+			// These threads will try to acquire lock while Thread-1 is holding it
+			t2.start();
+			t3.start();
+
+			// After Thread-1 releases the lock, simulate a later request
+			Thread.sleep(5500);
+			Thread t4 = new Thread(() -> refreshCache("Thread-4", 1000), "Thread-4");
+			t4.start();
+
+			t1.join();
+			t2.join();
+			t3.join();
+			t4.join();
+
+			System.out.println("Program finished.");
+		}
+
+		private static void refreshCache(String threadName, long workMs) {
+			System.out.println(threadName + " -> Trying tryLock()");
+			// Important line : tryLock() does not wait
+			if (lock.tryLock()) {
+				try {
+					System.out.println(threadName + " -> Lock acquired. Refreshing cache...");
+					Thread.sleep(workMs); // simulate long refresh work
+					System.out.println(threadName + " -> Refresh complete.");
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					System.out.println(threadName + " -> Interrupted during work.");
+				} finally {
+					lock.unlock();
+					System.out.println(threadName + " -> Lock released.");
+				}
+			} else {
+				// fallback path
+				System.out.println(threadName + " -> Lock busy. Skipping refresh (fallback path).");
+			}
+		}
+	}
+
+4.Read-Write Locks :
+--------------------
+Read-write locks allow multiple threads to read the shared resource simultaneously, but only one thread can write to it at a time.
+Also No reads are allowed while a write is in progress.
+This can greatly improve the performance of a multi-threaded application when the shared resource is read more frequently than it is written.
+
+Why not to use synchronized or ReentrantLock :
+----------------------------------------------
+With normal locks, every read blocks other reads.
+This wastes concurrency and hurts performance.
+Read-write locks improve throughput by allowing parallel reads.
+
+Usecase :
+---------
+Consider Library Reading Room.
+Many people can read books at the same time.
+Only one librarian can update/replace a book.
+While a book is being replaced,No one is allowed to read it.
+That is exactly how a Read-Write Lock works.
+
+5.Stamped Locks :
+-----------------
+
+
+
+
+

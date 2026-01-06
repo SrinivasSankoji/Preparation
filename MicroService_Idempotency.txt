@@ -1,0 +1,267 @@
+1.Idempotency in System Design  									(Lukas Niessen)		   [03-JAN-2026]  (Done)
+2.Exactly Once Semantics using the Idempotent Consumer Pattern		(Zeinab Dashti)		   [03-JAN-2026]  ()
+3.Exactly-Once Processing using Kafka Transactions 					(Zeinab Dashti)        [05-JAN-2026]  (Done)
+
+################################################# 1.Idempotency in System Design (Lukas Niessen) ###############################################################
+
+An operation is siad to be Idempotent if executing it once or multiple times results in the same final system state, even if the operation is retried due to failures.
+Idempotency is about state and side effects and not about return values.
+
+	state_after(op(state)) == state_after(op(op(state)))
+	
+If the system retries the operation due to failure, will the final business state remain correct.
+If the answer is YES then it is Idempotent
+If the answer is NO then it is Not Idempotent
+
+Consider the scenario of ON and OFF button.
+Pressing them is an Idempotent operation.
+If you press on once, the machine is ON.
+If you then press it again, and again and again, nothing changes.
+The machine stays ON.
+Same for the off button.
+
+	| Action   | State Before | State After |
+	| -------- | ------------ | ----------- |
+	| ON       | OFF          | ON          |
+	| ON again | ON           | ON          |
+	| ON again | ON           | ON          |
+
+✔ Pressing ON repeatedly does not change state
+✔ Therefore idempotent
+
+❌ A Toggle button is NOT idempotent
+(ON → OFF → ON → OFF)
+
+Idempotent is not about the return value.
+This is a common misunderstanding.
+If we call this multiple times, the returned value might differ.
+But it’s still Idempotent because Idempotency is about the effect produced on the state or effect and not about the response status code received by the client.
+
+Below are the use cases of Idempotency.
+1.Stripe payment procesing
+2.Elevator System Design
+3.Twitter Likes
+
+Idempotent vs Pure :
+--------------------
+A function or operation is Pure if, given the same input, it always produces the same output and if it has no side effects.
+An Idempotent function doesn’t need to be pure.
+
+	| Aspect                   | Pure Function   | Idempotent Operation  |
+	| ------------------------ | --------------- | --------------------- |
+	| Same input → same output | ✔ Yes          | ❌ Not required       |
+	| Side effects             | ❌ None         | ✔ Allowed            |
+	| DB writes                | ❌ No           | ✔ Yes                |
+	| External calls           | ❌ No           | ✔ Yes                |
+	| Retry-safe               | ❌ Not relevant | ✔ Yes                |
+	
+	// Pure
+	int add(int a, int b) {
+		return a + b;
+	}
+
+	// Idempotent but not Pure
+	void markOrderCompleted(orderId) {
+		UPDATE orders SET status='COMPLETED' WHERE id=orderId;
+	}
+
+Idempotence in System Design :
+------------------------------
+1.Message Processing
+2.APIs
+3.Databases
+4.Distributed Systems
+
+1.Message Processing :
+----------------------
+Conider we are using event-driven design in our system.
+ServiceA is the producer which publish the messages to the Queue and ServiceB is the consumer which consumes the messages from the Queue.
+ServiceB processes the messages and stores it into the Database.
+
+Suppose ServiceB calculates some complex formula for each message and writes the result to our DB.
+Here the data is very important and should not get lost.
+If Service B crashes during the calculation, or there is a network partition between ServiceB and the DB, or something else happens.
+Then the message is lost forever.
+
+One solution is Retry.
+Instead of removing the message immediately from the Queue, we wait for ServiceB to be finished, which includes writing to the DB and then remove the message.
+
+But this introduces a new problem i.e.the same message is read twice.
+ServiceB performs the calculation and writes to the DB but then something happens.
+So before the message is removed from the Queue serviceB has crashed.
+Here ServiceB restarts and once it’s up again and running, it will continue consuming messages.
+It starts with exactly that last message.
+So that message gets consumed twice.
+
+System design is always about trade-offs.
+Either we might lose messages or we might consume the message more than once.
+
+Problem :
+---------
+At-least-once delivery i.e. Message can be consumed more than once
+❌ Non-Idempotent Consumer
+
+	process(msg) {
+		INSERT INTO results VALUES (msg.id, calculatedValue);
+	}
+	
+Result :
+--------
+Duplicate rows
+Corrupted data
+
+✅ Idempotent Consumer :
+If we design the operation of ServiceB to be Idempotent then nothing happens.
+The ServiceB will consume the message second time, but it doesn’t matter because the operation is Idempotent.
+So the outcome is still the same.
+
+	process(msg) {
+		if (!exists(msg.id)) {
+			INSERT INTO results VALUES (msg.id, calculatedValue);
+		}
+	}
+	
+	INSERT INTO results(id, value)
+	VALUES (?, ?)
+	ON CONFLICT (id) DO NOTHING;
+
+Result :
+--------
+✔ Retry safe
+✔ Exactly-once effect
+✔ At-least-once delivery
+
+Pitfalls :
+----------
+There are several things to be careful with here.
+One thing that can happen is an infinite loop,If we have poison messages.
+For example invalid format which makes the ServiceB crash.
+It will stay on the Queue and ServiceB restarts just to consume the same poison message again.
+To avoid this we need to make use of Dead-Letter queue.
+
+Poison Message Problem :
+------------------------
+Invalid format
+Always crashes consumer
+Infinite retry loop
+
+Solution :
+----------
+Retry limit
+Dead-Letter Queue (DLQ)
+Monitoring + alerting
+✔ Idempotency ≠ poison handling
+✔ DLQ is mandatory in production
+
+2.APIs :
+--------
+If we are building REST APIs, we are already dealing with Idempotency whether we realize it or not.
+The HTTP protocol actually defines which methods should be Idempotent.
+
+GET :
+-----
+GET requests don’t change anything on the server.
+So they’re naturally Idempotent.
+Call them 100 times, same result every time.
+We can refresh a webpage as many times as we want without worrying.
+
+PUT :
+-----
+PUT requests will completely replace a resource.
+If we PUT the same data twice, we get the same outcome.
+Think of it like overwriting a file and doing it twice doesn’t change anything.
+
+	PUT /users/123
+	Body: { "status": "ACTIVE" }
+	
+	| Call | HTTP Status | Response Body   | Final DB State |
+	| ---- | ----------- | --------------- | -------------- |
+	| 1st  | 200 OK      | updatedAt=10:00 | status=ACTIVE  |
+	| 2nd  | 200 OK      | updatedAt=10:01 | status=ACTIVE  |
+
+✔ Even though the response is changed, it is still Idempotent because the business state is identical.
+
+DELETE :
+--------
+DELETE requests should delete a resource.
+Delete something that’s already gone and it’s still gone.
+
+POST :
+------
+POST requests are usually not Idempotent by design.
+Each POST typically creates something.
+But we can make them Idempotent with Idempotency keys.
+
+Here’s how it works: 
+We send a unique ID with the request (often in a header), and the server remembers.
+I already processed this ID, so I’ll just return the same result instead of doing the work again.
+
+2.Databases :
+-------------
+UPSERT operations (INSERT or UPDATE if exists) are naturally idempotent.
+Run an upsert 10 times with the same data, and we get the same result every time.
+The record either gets created once or updated to the same values multiple times.
+
+3.Distributed Systems :
+-----------------------
+In distributed systems, things fail constantly.
+We retry operations all the time.
+But retries work safely only if the operations are Idempotent.
+Consider the scenario of Order Processing system.
+
+1.Web App sends HTTP POST requests with order data.
+2.API Gateway handles routing, authentication, and rate limiting.
+3.Order Service validates the order and publishes it to the queue.
+4.Amazon SQS holds the order messages.
+5.Order Processor Service consumes messages and writes to the database.
+6.Orders DB stores all our order data.
+7.Dead-Letter Queue catches any poison messages.
+8.Notification Service sends confirmations to customers.
+
+The key here is that the Order Processor Service needs to be Idempotent.
+
+Unique constraint + atomic insert :
+-----------------------------------
+Record the idempotency key in a table with a UNIQUE constraint.
+Then attempt an insert that succeeds for only one consumer.
+
+	CREATE TABLE processed_messages (
+	  message_id text PRIMARY KEY,
+	  processed_at timestamptz NOT NULL DEFAULT now()
+	);
+
+	-- In the consumer transaction
+	INSERT INTO processed_messages(message_id)
+	VALUES (:messageId)
+	ON CONFLICT DO NOTHING;
+	
+If INSERT affected 1 row then proceed with the process.
+If it affected 0 rows means another instance already claimed it.
+
+UPSERT :
+--------
+If the Order Creation itself can be expressed as an UPSERT keyed by order_id, then the operation becomes naturally Idempotent.
+
+Row Lovel Locking :
+-------------------
+If we have a status row per message/order then we can lock it.
+
+Serializable isolation :
+------------------------
+Run the transaction at SERIALIZABLE isolation so one transaction will be forced to retry if a serialization anomaly occurs.
+
+Distributed lock with Redis :
+-----------------------------
+Lock the message_id using something like Redis SET key value NX PX and release after processing.
+
+
+########################################### 2.Exactly Once Semantics using the Idempotent Consumer Pattern(Zeinab Dashti) #################################################
+
+
+
+########################################### 3.Exactly-Once Processing using Kafka Transactions (Zeinab Dashti) ############################################################
+
+Implemented below micro services in MicroService\Idempotent
+
+order-producer
+order -consumer
