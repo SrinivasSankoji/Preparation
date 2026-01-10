@@ -1,6 +1,9 @@
 1.ACID Properties											(TheCodeAlchemist)   			  [01-DEC-2025]  (Done)
 2.Optimistic Locking										(Umesh Kumar Yadav)   			  [04-DEC-2025]  (Done)
 3.Pesimistic Locking										(Umesh Kumar Yadav)   			  [04-DEC-2025]  (Done)
+4.Timeout									                (ChatGPT)   			  		  [09-JAN-2026]  (Done)
+5.Handle Deadlock                                           (ChatGPT)   			          [09-JAN-2026]  (Done)
+6.@Retryable												()								  [09-JAN-2026]  ()
 
 ############################################################### 1.ACID Properties ######################################################################
 
@@ -22,7 +25,7 @@ ACID properties are specifically designed to govern how these transactions behav
 
 1.Atomicity — All or Nothing
 ----------------------------
-Atomicity indicates that a Database transaction must be treated as a single, indivisible unit of work.
+Atomicity indicates that a Database transaction must be treated as a single, individual unit of work.
 Think of it as an atomic operation and it cannot be broken down into smaller parts from an external perspective.
 A transaction either completes fully, with all its operations successful, or it fails entirely, leaving the database unchanged.
 There’s no middle ground.
@@ -67,9 +70,9 @@ Thanks to Durability, when the system comes back online, order information will 
 
 Concurrency Control :
 ---------------------
-Concurrency control is the critical aspect when multiple users or process access the shared data simultaneously.
+Concurrency control is the critical aspect when multiple users or process try to access the shared data simultaneously
+and ensures that multiple transactions can execute simultaneously without leading to inconsistent or corrupted data.
 The two common strategies for managing concurrency are optimistic locking and pessimistic locking.
-Concurrency control ensures that multiple transactions can execute simultaneously without leading to inconsistent or corrupted data.
 
 Optimistic Locking :
 --------------------
@@ -123,7 +126,7 @@ The @Version annotation tells JPA to use this field for optimistic locking.
 		}
 	}
 
-If two users try to update the same product simultaneously:
+If two users try to update the same product simultaneously
 User A reads the product (version = 1, stock = 10).
 User B reads the same product (version = 1, stock = 10).
 User A updates the stock to 8 and saves (version increments to 2).
@@ -232,3 +235,111 @@ Quick Tips for Choosing :
 Use optimistic locking for applications with many reads and few writes, like blogs or product catalogs.
 Use pessimistic locking for operations where conflicts are common, like booking systems or inventory management.
 Combine both in complex apps: optimistic locking for general operations and pessimistic locking for critical updates.
+
+
+	| Aspect            | Optimistic Locking | Pessimistic Locking |
+	| ----------------- | ------------------ | ------------------- |
+	| Conflict handling | Detect & fail      | Prevent & block     |
+	| DB locks          | ❌ No               | ✅ Yes             |
+	| Throughput        | High               | Lower               |
+	| Latency           | Low                | Can increase        |
+	| Retry logic       | Required           | Not required        |
+	| Deadlock risk     | None               | Possible            |
+	| Best for          | Read-heavy         | Write-heavy         |
+	| Example           | Wallet updates     | Ticket booking      |
+
+####################################################################### 4.Timeout #####################################################################
+
+Scenario :
+---------- 
+Account row is locked by Transaction A (e.g., long processing).
+Transaction B tries SELECT … FOR UPDATE.
+Without timeout: Transaction B may block for a long time (bad for APIs).
+With timeout: Transaction B fails fast (e.g., within 2 seconds) and you return a clean response like 409 Conflict / 423 Locked.
+
+This is essential for
+Ticket booking (high contention)
+Inventory reservation
+Wallet debit / stock decrement
+Any high-conflict write path
+
+There are two way we can implement this.
+
+Option A :
+----------
+
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+		@Query("SELECT a FROM Account a WHERE a.id = :id")
+		@QueryHints({
+			// timeout in milliseconds
+			@QueryHint(name = "jakarta.persistence.lock.timeout", value = "2000")
+		})
+    Optional<Account> findByIdForUpdateWithTimeout(@Param("id") Long id);
+	
+Value is in milliseconds.
+On some databases/dialects it maps cleanly.
+On PostgreSQL, behavior may depend on Hibernate dialect/version and driver; it may still block longer in certain setups. If you need certainty, use Option B.
+
+Option B :
+----------
+
+	@Service
+	public class AccountService {
+
+    private final AccountRepository repository;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    public AccountService(AccountRepository repository) {
+        this.repository = repository;
+    }
+
+    @Transactional
+    public AccountResponse updateBalancePessimisticWithPgTimeout(
+            Long id,
+            BigDecimal newBalance,
+            long sleepMs,
+            String lockTimeout // e.g. "2s" or "2000ms") {
+        try {
+            // Applies ONLY for this transaction (best practice).
+            em.createNativeQuery("SET LOCAL lock_timeout = :t")
+              .setParameter("t", lockTimeout)
+              .executeUpdate();
+
+            Account account = repository.findByIdForUpdate(id) // your normal PESSIMISTIC_WRITE method
+                    .orElseThrow(() -> new RuntimeException("Account not found"));
+
+            sleep(sleepMs);
+
+            account.setBalance(newBalance);
+            return toResponse(account);
+
+        } catch (Exception e) {
+            // PostgreSQL will typically throw a lock timeout SQL exception.
+            // Hibernate translates it; safest is to map by message/class in one place.
+            if (isLockTimeout(e)) {
+                throw new AccountLockedException("Account is busy. Retry later.", e);
+            }
+            throw e;
+        }
+    }
+
+    private boolean isLockTimeout(Throwable e) {
+        // PostgreSQL: "canceling statement due to lock timeout"
+        Throwable cur = e;
+        while (cur != null) {
+            String msg = cur.getMessage();
+            if (msg != null && msg.toLowerCase().contains("lock timeout")) return true;
+            cur = cur.getCause();
+        }
+        return false;
+    }
+
+############################################################### 5.Handle Deadlock ###############################################################################
+
+A Deadlock occurs when two transactions hold locks that the other needs, creating a circular wait.
+Databases resolve this by aborting one transaction.
+The primary way to avoid deadlocks is to acquire locks in a consistent order and keep transactions short.
+Lock timeouts and retries help reduce impact but do not eliminate deadlocks.
+Prefer Optimistic Locking whereever possible.

@@ -261,7 +261,11 @@ Lock the message_id using something like Redis SET key value NX PX and release a
 
 ########################################### 3.Exactly-Once Processing using Kafka Transactions (Zeinab Dashti) ############################################################
 
-Implemented below micro services in MicroService\Idempotent
+Implemented below micro services
 
 order-producer
 order -consumer
+
+Refer Kafka_Transactions
+
+

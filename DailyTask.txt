@@ -5353,14 +5353,26 @@ CountDownLatch ()
 Coroutines ()
 Java Interrupts ()
 
+Licencing/ New Features ()
+SQL vs NoSQL ()
+
 08-JAN-2026 :
 -------------
 Detect and Resolve DeadLocks in Java ()
 Race Condition vs Data Races ()        
 Singleton and Double Checked Locking ()
 
+Producer Batching (Done)
+Consumer Batching (Done)
+Outbox Pattern (Done)
+
 09-JAN-2026 :
 -------------
+Pesimistic Locking (Done)
+Optimistic Locking (Done)
+Producer Idempotent (Done)
+@RetryableTopic in Kafka with Spring Boot ()
 
 10-JAN-2026 & 11-JAN-2026 :
 ---------------------------
+Rate Limiter ()

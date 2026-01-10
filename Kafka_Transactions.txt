@@ -1,1 +1,297 @@
-1.
+1.Kafka Transaction code walk through			(ChatGPT)		   [07-JAN-2026]  (Done)
+2.Producer Batching								(ChatGPT)		   [08-JAN-2026]  (Done)
+3.Consumer Batching								(ChatGPT)		   [08-JAN-2026]  (Done)
+4.Outbox publisher Batching						(ChatGPT)		   [08-JAN-2026]  (Done)
+5.Outbox Implementation 						(ChatGPT)		   [08-JAN-2026]  (Done)
+6.Producer Idempotent 							(ChatGPT)		   [09-JAN-2026]  (Done)
+7.@RetryableTopic in Kafka with Spring Boot 	(ChatGPT)		   [09-JAN-2026]  ()
+
+########################################################### 1.Kafka Transaction code walk through  ###########################################################
+
+What Kafka does internally on producer send :
+---------------------------------------------
+The producer batches records and sends to the leader of the partition for order-requests.
+We should add 
+
+  props.put(ProducerConfig.ACKS_CONFIG, "all");
+  props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+  props.put(ProducerConfig.RETRIES_CONFIG, Integer.MAX_VALUE);
+
+optionally we can also add
+
+	delivery.timeout.ms, request.timeout.ms
+	
+Reason :
+--------
+If broker/network has transient issues, we don’t want silent message loss.
+Idempotent producer protects against duplicates caused by retries at the producer level.
+
+Kafka transaction (KafkaTransactionManager) :
+---------------------------------------------
+Kafka transaction exists because producer factory has setTransactionIdPrefix(...) and 
+we attach kafkaTransactionManager to the listener container via setKafkaAwareTransactionManager(...).
+
+The sequence is atomic inside Kafka.
+1.consume record.
+2.produce order-processed record(s).
+3.commit consumer offsets (sendOffsetsToTransaction).
+4.commit the Kafka transaction.
+
+If anything fails before commit
+1.produced records are aborted (not visible to read_committed consumers).
+2.offsets are not committed.
+3.record will be redelivered later.
+
+This gives exactly-once semantics within Kafka (consume + produce + offset).
+
+isolation.level: read_committed :
+---------------------------------
+If a producer wrote messages in a Kafka transaction and later aborted, those messages still exist in the log, but are marked aborted.
+With read_committed, consumers do not see aborted transactional records.
+
+Note :
+------
+If order-requests is produced non-transactionally (Here order-producer is non-transactional), read_committed vs read_uncommitted makes no practical difference.
+
+Kafka transaction does NOT include your DB transaction :
+--------------------------------------------------------
+Kafka transaction manager cannot atomically commit DB + Kafka offset in one single distributed transaction.
+
+The true guarantee is
+At-least-once delivery from Kafka
+DB provides idempotency so repeated deliveries don’t create duplicates
+This is the standard and correct pattern i.e. exactly-once effect.
+
+Attempt 1 :
+-----------
+Consumer receives M (offset not committed yet)
+DB insert succeeds (row for E1 committed)
+Before Kafka transaction commits offsets, the app crashes
+Kafka transaction aborts → offsets not committed
+
+Attempt 2 :
+-----------
+Consumer receives M again (same payload, same E1)
+DB insert tries again → ON CONFLICT DO NOTHING → inserted=0
+Consumer skips producing processed event (because inserted=false)
+Kafka tx commits offsets
+Now M won’t be delivered again
+
+✅ No duplicate DB row
+✅ No duplicate processed event (because you gate on inserted==true)
+
+Retry behavior and DLT behavior :
+---------------------------------
+FixedBackOff(5000, 3) → 3 retries with 5 seconds between them
+IllegalArgumentException, deserialization exceptions → non-retryable → immediate DLT
+
+Example: Temporary DB connection issue causing RuntimeException.
+Attempt 1 fails
+Retry 1 after 5s
+Retry 2 after 5s
+Retry 3 after 5s
+If still failing → publish to DLT → commit offset → move on.
+
+✅ bounded retries
+✅ no crash loop
+
+Poison message / validation error (non-retryable) :
+
+Example: quantity <= 0 throws IllegalArgumentException.
+No retries
+Immediately publish to DLT
+Commit offset
+Continue
+
+✅ no crash loop
+
+
+Note :
+------
+If the consumer commits the DB, but crashes before producing order-processed, system must still eventually publish exactly one order-processed event (not 0, not duplicates).
+Current approach cannot guarantee because we publish order-processed only when inserted == true, and on redelivery it will be false i.e. inserted == false.
+So the publish can be skipped forever.
+The standard correct solution is the Transactional Outbox pattern.
+
+True distributed exactly-once commit across Kafka and Postgres in one atomic transaction.
+(Not supported without XA/2PC, which is not recommended in Kafka architectures)
+
+################################################################ 2.Producer Batching #############################################################################
+
+Producer Batching is nothing but How many records the producer groups together before sending to broker.
+We configure them in different places and they serve different purposes.
+
+Kafka provides sensible defaults and Spring Kafka does not require us to specify them explicitly.
+Kafka automatically adds
+
+	batch.size = 16384 bytes
+	linger.ms = 0
+	
+Here messages are batched and They are sent immediately unless the batch fills quickly.
+
+When producer batching actually happens :
+-----------------------------------------
+Kafka batches per partition and not per topic.
+
+   template.send("order-requests", "O-1", event);
+   template.send("order-requests", "O-1", event);
+   template.send("order-requests", "O-2", event);
+   
+Messages with key O-1 go to the same partition and can be batched.
+Messages with key O-2 may go to different partition and separate batch.
+
+So batching effectiveness depends on throughput,key distribution and linger.ms.
+
+	| Property           | Default   | Meaning                                 |
+	| ------------------ | --------- | --------------------------------------- |
+	| `batch.size`       | **16 KB** | Max bytes per batch *per partition*     |
+	| `linger.ms`        | **0 ms**  | How long producer waits to fill a batch |
+	| `buffer.memory`    | 32 MB     | Total memory for all batches            |
+	| `compression.type` | none      | Affects batching efficiency             |
+
+Recommended for production :
+----------------------------
+props.put(ProducerConfig.BATCH_SIZE_CONFIG, 32768);   // 32 KB
+props.put(ProducerConfig.LINGER_MS_CONFIG, 5);        // wait up to 5 ms
+props.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "lz4");
+
+#################################################################### 3.Consumer Batching ######################################################################
+
+Consumer batching is completely different from producer batching.
+Consumer batching means how many records poll() returns and is controlled by
+
+	spring.kafka.consumer.max-poll-records=100
+		
+If we did not configure it then Kafka uses the default
+
+	max.poll.records = 500
+
+One poll() can return up to 500 records and Spring Kafka then delivers them one by one to the @KafkaListener.
+We don't see batch size in Listener because Spring Kafka polls records in batches and invokes listener once per record.
+So batching happens internally and not at method signature level.
+
+True batch consumption :
+------------------------
+If we want to receive a batch explicitly
+
+	@KafkaListener(topics = "order-requests", batch = true)
+	public void onMessage(List<OrderRequestEventDTO> events) {
+	   for (OrderRequestEventDTO e : events) {
+	   }
+	}
+	
+
+But this complicates transactions and retries, especially with
+idempotent DB writes
+DLT
+outbox
+
+#################################################################### 4.Outbox publisher Batching ####################################################################
+
+We do explicitly batch in the outbox publisher.
+
+	SELECT ... LIMIT :limit FOR UPDATE SKIP LOCKED
+
+This is DB-level batching and not Kafka batching.
+
+	outbox:
+	  publish:
+		batch-size: 50
+
+Here DB rows are fetched in batches.
+Kafka producer then applies its own internal batching again.
+This is correct and intentional.
+
+#################################################################### 5.Outbox Implementation  ######################################################################
+
+
+			 ┌───────────────────────────┐
+			 │         Producer          │
+			 │ POST /orders/publish      │
+			 │ -> Kafka: order-requests  │
+			 └─────────────┬─────────────┘
+						   │
+						   ▼
+				┌───────────────────────┐
+				│ Kafka topic           │
+				│ order-requests        │
+				└──────────┬───────────-┘
+						   │ (poll)
+						   ▼
+	┌──────────────────────────────────────────────────────────────────-┐
+	│ Consumer (order-consumer)                                         │
+	│ 1) Receive message (eventId=E1)                                   │
+	│ 2) BEGIN DB TX                                                    │
+	│    - INSERT orders (PK=E1) ON CONFLICT DO NOTHING                 │
+	│    - INSERT outbox  (PK=E1) ON CONFLICT DO NOTHING                │
+	│ 3) COMMIT DB TX                                                   │
+	│ 4) Commit Kafka offset (or ack)                                   │
+	└──────────────────────────────────────────────────────────────────-┘
+							│
+							│ (separately / scheduled)
+							▼
+	┌─────────────────────────────────────────────────────────────────-─┐
+	│ Outbox Publisher                                                  │
+	│ 1) BEGIN DB TX                                                    │
+	│ 2) SELECT NEW outbox rows FOR UPDATE SKIP LOCKED                  │
+	│ 3) COMMIT DB TX (lock held per row until end of tx)               │
+	│ 4) Publish to Kafka: order-processed (idempotent producer)        │
+	│ 5) BEGIN DB TX                                                    │
+	│ 6) Mark outbox row SENT (published_at, status)                    │
+	│ 7) COMMIT DB TX                                                   │
+	└─────────────────────────────────────────────────────────────────-─┘
+							│
+							▼
+				┌───────────────────────┐
+				│ Kafka topic           │
+				│ order-processed       │
+				└───────────────────────┘
+
+	@Query (value = """
+            SELECT * FROM outbox_events
+            WHERE status = 'NEW'
+            ORDER BY created_at
+            LIMIT :limit
+            FOR UPDATE SKIP LOCKED
+            """, nativeQuery = true)
+    List<OutboxEventEntity> lockNextBatch(@Param ("limit") int limit);
+	
+Filter: status = 'NEW'
+Order: ORDER BY created_at
+Limit: take first limit rows
+Lock those selected rows: FOR UPDATE
+But skip rows already locked: SKIP LOCKED
+
+If row is NOT locked → lock it for this transaction and include it in results.
+If row IS locked by another transaction → skip it and move to next row.
+This is what allows multiple outbox publisher instances to run concurrently without blocking each other.
+
+The locked rows remain locked until we
+COMMIT the transaction → locks released
+ROLLBACK the transaction → locks released
+
+This prevents duplicate processing across multiple publisher threads/instances because only one can lock a given row at a time.
+
+#################################################################### 6.Producer Idempotent ####################################################################
+
+There are two types of Producer Idempotent.
+1.Kafka-level Idempotent producer i.e. broker de-duplication
+2.Business/API Idempotence i.e. Application Level
+
+1.Kafka-level idempotent producer :
+-----------------------------------
+This is the Kafka feature controlled by 
+
+	enable.idempotence=true
+	
+If the producer retries due to network errors/timeouts, Kafka will not store duplicate records caused by retries i.e.
+within the same producer session / PID & sequence per partition.
+
+It does not prevent duplicates if your application calls send() twice.
+Kafka Idempotent producer solves transport retry duplicates and not business duplicates.
+
+2.Business/API Idempotence :
+----------------------------
+If the client calls /orders/publish API multiple times with the same intent, we should not create multiple business events.
+
+
