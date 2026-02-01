@@ -1,0 +1,432 @@
+1.SQL vs NO-SQL Databases										(Dineshchandgr)		  [31-JAN-2026]  (Done)
+2.SQL vs No SQL Database Comparison								(Allie Hsu)			  [31-JAN-2026]  (Done)
+3.SQL vs NoSQL in System Design									(DevLogic)		      [01-FEB-2026]  (Done)
+4.SQL vs NoSQL — and Boom										(Ade Mawan)		      [01-FEB-2026]  ()
+5.SQL vs. NoSQL: Choosing the Right Database					(Arslan Ahmad)		  [01-FEB-2026]  ()
+6.SQL vs. NoSQL: When to Use Each for Data Storage				(Maximilian Oliver)	  [01-FEB-2026]  ()
+7.SQL vs. NoSQL: Choosing the Right Database					(Let's code)		  [01-FEB-2026]  ()
+
+################################################################### 1.SQL vs NO-SQL Databases  ####################################################################
+
+SQL databases have been used for decades and they are also called Relational databases.
+Relational databases stores the data in a structured tabular format so that they can be easily identified and retrieved.
+It is called relational database because there can be a relationship between the two tables through mapping fields.
+
+SQL stands for Structured Query Language, used by relational database management systems.
+SQL is a declarative language and the SQL commands can be divided into 5 categories based on their functionalities.
+
+1.Data Definition Language(DDL)
+2.Data Control Language (DCL)
+3.Data Manipulation Language (DML)
+4.Transaction Control Language (TCL)
+5.Data Query language (DQL)
+
+ACID Properties :
+-----------------
+Relational Databases follow the ACID Properties  as follows.
+
+Atomocity : Entitre Transaction takes place at once or doesn't happen at all.
+Consistency : Database must be consistent before and after the Transaction.
+Isolation : Multiple Transactions occur independently without interference.
+Durability : Changes of successful transaction occurs even if the system failure occurs.
+
+NoSQL stands for Not only SQL Database and any database which is non-relational falls under NoSQL database.
+These databases are non-tabular and stores the data in a way different than relational databases.
+The data models are flexible.
+The NoSQL databases came into existence mainly due to processing Big Data, IoT, etc.
+Most of the NO-SQL Databases do not follow ACID principles but they follow BASE in order to gain other benefits like scalable and resiliency.
+
+BASE Properties :
+-----------------
+NoSQL database relies on a model known as the BASE model i.e. Basically Available, Soft state, Eventual consistency.
+
+Basically Available : The Database is always available and guarantees the availability of the data. There will be a response to any request.
+Soft state : The system state could change over time.
+Eventual consistency : The system will eventually become consistent once the data is synchronized across the distributed cluster.
+
+Types of No-SQL Databases :
+---------------------------
+1.Key-Value Database
+2.Document-Based Database
+3.Column-Based Database
+4.Graph-based Database
+
+1.Key-Value Database :
+----------------------
+Data in this type of Database is stored in key-value pairs to handle heavy loads of data. 
+They use a simple hash table data structure to store the data for faster storage and retrievals. 
+The use cases for this type of Database are for storing Shopping Carts, Caching etc.
+Examples of Key-Value Databases are Redis, Memcached, AWS DynamoDB, Riak, etc
+
+2.Document-Based Database :
+---------------------------
+Document-Oriented NoSQL Databases stores and retrieves data as a key-value pair but the value part is stored as a document.
+The document can be stored in JSON or XML formats.
+The value is understood by the database and can be queried.
+These databases can be used especially when we don’t know the schema up front and it is flexible to add the columns later.
+The document-based database is mainly used for CMS systems, blogging platforms, real-time analytics & e-commerce applications.
+Examples of Document Based databases are MongoDB, CouchBase, RavenDB etc.
+
+3.Column-Based Database :
+-------------------------
+Column-Based databases work on columns i.e. store the data by column families instead of rows and is based on BigTable paper by Google.
+Every column is treated individually and all values of a single column are stored contiguously on disk, which makes scans, aggregations, and analytics extremely fast.
+Column-Based databases deliver high performance on aggregation queries like SUM, COUNT, AVG, and MIN as the data is computed and stored in columns.
+These databases are very useful for data analytics, big data, data warehouses, business intelligence, CRM etc.
+Examples of Column-Based Databases are Casandra, CosmoDB, Bigtable and HBase.
+
+Row-oriented (RDBMS) :
+----------------------
+
+	Row1 → [id | name | city | amount]
+	Row2 → [id | name | city | amount]
+	
+Column-based :
+--------------
+
+	id     → [1, 2, 3, 4]
+	name   → [A, B, C, D]
+	city   → [Hyd, Blr, Del, Hyd]
+	amount → [100, 200, 150, 300]
+	
+Here If a query needs only amount, the Database reads just that column and not entire rows.
+
+Column-Based Databases Are Fast for Analytics because
+1.Column pruning – read only required columns
+2.Sequential I/O – contiguous storage improves disk & cache efficiency
+3.Compression – same-type data compresses better
+4.Parallel aggregation – columns can be processed independently
+This is why operations like SUM(amount),COUNT(*),AVG(temperature) are extremely efficient.
+
+Data Model :
+------------
+A typical wide-column table looks like
+
+	Row Key → Column Family → Columns (dynamic)
+	
+RowKey: device_101
+  metrics:
+    temp_10:00 → 72
+    temp_10:05 → 73
+    temp_10:10 → 74
+  metadata:
+    location → Plant-A
+    type     → Boiler
+
+✔ Columns can be added dynamically.
+✔ Different rows can have different columns.
+
+4.Graph-based Database :
+------------------------
+The Graph database stores the entities as well the relations amongst those entities as graphs with nodes and edges.
+
+
+
+When to use SQL vs NoSQL Database :
+-----------------------------------
+If the data is structured, then we can go for a relational database and if the data schema is not clear or confirmed, then NoSQL is a good choice.
+NoSQL Databases work well for articles, videos, social media content, Big data etc.
+NoSQL Databases are not a replacement for SQL Database.
+If the functionality is different then both can exist in the same application.
+
+################################################################### 2.SQL vs No SQL Database Comparison	###################################################################
+
+When to use SQL vs NoSQL Database :
+-----------------------------------
+
+1.The application and its data might have rapid growth, more and more different features, data types etc.
+2.Not concerned about data consistency and 100 percent data integrity.
+3.Constraints and validations logic are not required to be implemented in the database.
+4.Databases with no clear schema definitions or data requirements are constantly evolving.
+5.NoSQL could achieve the goal that changing the structure or schema will not impact development cycles or create any downtime for the application.
+6.NoSQL is normally used to store temporary data like shopping carts, session data or the case with mobile apps, real-time analytics etc.
+
+################################################################### 3.SQL vs NoSQL in System Design #######################################################################
+
+1.What does my data want :
+--------------------------
+Data has shape.
+Data has intention.
+Data has a natural rhythm.
+
+2.Core Difference :
+-------------------
+SQL is structure first and it needs order, relationships, constraints and clarity.
+NoSQL is flexibility first and it needs freedom, distribution, scale and speed of change.
+
+3.Diagram to finally Understand :
+---------------------------------
+
+			   +-------------------+
+               |      Your App     |
+               +-------------------+
+                         |
+           +-------------+-------------+
+           |                           |
+	+--------------------+       +----------------------+
+	| SQL Architecture   |       | NoSQL Architecture   |
+	+--------------------+       +----------------------+
+	| tables             |       | collections          |
+	| rows               |       | documents            |
+	| joins              |       | key value pairs      |
+	| acid               |       | eventual consistency |
+	+--------------------+       +----------------------+
+	
+4.When the Data Demands Discipline :
+------------------------------------
+SQL is the database we choose when we cannot tolerate mistakes.
+
+Money.
+Inventory.
+Orders.
+Bookings.
+Relationships that should never break.
+
+	SELECT user_id, email
+	FROM users
+	WHERE status = 'active'
+	ORDER BY created_at DESC;
+	
+Simple.
+Predictable.
+Reliable.
+
+Problem is Slow reads on a table with millions of rows.
+Solution is to Create a composite index.
+
+	CREATE INDEX idx_status_created
+	ON users (status, created_at);
+	
+	| Metric       | Before      | After |
+	| ------------ | ----------- | ----- |
+	| Query time   | 180 ms      | 12 ms |
+	| Rows scanned | 1.2 million | 3,000 |
+	
+SQL rewards structure. The more precisely we shape it, the faster it becomes.
+
+5.When the data refuses to sit still :
+---------------------------------------
+NoSQL is the database we choose when the world moves too fast for schemas.
+
+Feeds.
+Messages.
+Events.
+Logs.
+Anything with unpredictable shape or explosive scale.
+
+	{
+	  "user_id": 42,
+	  "posts": [
+		{ "id": 1, "text": "hi", "likes": 20 },
+		{ "id": 2, "text": "welcome", "likes": 50 }
+	  ]
+	}
+	
+Everything our application needs and all in one place.
+No joins.
+No migrations.
+No locking.
+
+Problem is High write latency during traffic surges.
+Solution is to enable sharding based on user_id.
+
+	sh.shardCollection("app.posts", { user_id: "hashed" })
+	
+	| Metric        | Before             | After               |
+	| ------------- | ------------------ | ------------------- |
+	| Write latency | 45 ms              | 6 ms                |
+	| Throughput    | 20k writes per sec | 120k writes per sec |
+	
+NoSQL rewards distribution. The more we scale it sideways, the stronger it becomes.
+
+NoSQL Strengths :
+-----------------
+1.Horizontal scaling.
+2.Flexible schemas.
+3.High write throughput.
+4.Perfect for distributed systems.
+5.Easy to store dynamic user data.
+
+6.Usecase :
+-----------
+Consider the scenario of Social Media Application where we have
+Millions of users
+Users create posts
+Each post gets likes, comments, shares
+Traffic can suddenly spike i.e. viral posts
+
+	{
+	  "user_id": 42,
+	  "posts": [
+		{ "id": 1, "text": "hi", "likes": 20 },
+		{ "id": 2, "text": "welcome", "likes": 50 }
+	  ]
+	}
+	
+We store this in a NoSQL document database such as MongoDB or Apache Cassandra.
+
+1.Horizontal scaling :
+----------------------
+Horizontal Scaling means instead of buying one bigger server, NoSQL allows you to add more servers.
+Scale OUT and not Scale UP.
+
+Initially → 1 server handles 50K users.
+App becomes popular → 5M users.
+NoSQL automatically distributes users across nodes.
+
+Example :
+---------
+Server 1 → users 1–1M
+Server 2 → users 1M–2M
+Server 3 → users 2M–3M
+
+✔ No downtime
+✔ No major code changes
+✔ Works naturally with cloud & Kubernetes
+
+RDBMS Struggles here because
+❌Vertical scaling is expensive
+❌Single-node bottlenecks
+❌Sharding is complex & manual
+
+2.Flexible Schemas :
+--------------------
+Flexible Schemas means we don’t need a fixed structure before storing data.
+Users can have different fields.
+
+	{
+	  "user_id": 42,
+	  "posts": [
+		{ "id": 1, "text": "hi", "likes": 20 }
+	  ]
+	}
+	
+	{
+	  "user_id": 43,
+	  "posts": [
+		{
+		  "id": 3,
+		  "text": "hello",
+		  "likes": 100,
+		  "location": "Hyderabad",
+		  "images": ["img1.jpg"]
+		}
+	  ]
+	}
+	
+✔ No ALTER TABLE
+✔ Old data still works
+✔ New features ship faster
+
+Perfect for:
+User profiles
+Posts
+Comments
+Preferences
+Metadata-heavy data
+
+3.High Write Throughput  :
+-------------------------
+High Write Throughput means NoSQL can handle millions of writes per second.
+
+Viral post gets 100K likes in 1 minute
+Every like is a write operation
+
+NoSQL :
+-------
+Writes are distributed.
+No row locks.
+No joins.
+Append-friendly storage.
+
+✔ Likes are saved instantly
+✔ No request blocking
+✔ System remains responsive
+
+RDBMS :
+-------
+Locks rows
+Enforces strict transactions.
+Slows down under heavy writes.
+
+NoSQL :
+-------
+Optimized for write-heavy workloads.
+Eventual consistency is acceptable for likes/views.
+
+4.Perfect for Distributed Systems :
+-----------------------------------
+Perfect for Distributed Systems means NoSQL is designed assuming failures will happen.
+
+App runs across :
+-----------------
+Multiple pods
+Multiple regions
+Multiple availability zones
+
+	Server A goes down ❌
+	Server B & C continue serving data ✅
+	
+✔ Built-in replication
+✔ Automatic failover
+✔ No single point of failure
+
+This fits for Microservices because
+Each microservice owns its data.
+No cross-service joins.
+Data duplication is acceptable.
+Scales independently.
+
+5.Easy to Store Dynamic User Data :
+-----------------------------------
+Easy to Store Dynamic User Data means User data is nested, evolving and unpredictable.
+
+Each user document stores
+Profile
+Posts
+Likes
+Preferences
+Notifications
+
+	{
+	  "user_id": 42,
+	  "profile": {
+		"name": "Srinivas",
+		"theme": "dark"
+	  },
+	  "posts": [
+		{ "id": 1, "text": "hi", "likes": 20 },
+		{ "id": 2, "text": "welcome", "likes": 50 }
+	  ]
+	}
+	
+✔ One read = entire user timeline
+✔ No joins
+✔ Faster API responses
+
+This is powerful because
+API returns data in JSON
+DB stores data in JSON
+Minimal transformation
+Clean microservice boundaries
+
+################################################################### 4.SQL vs NoSQL — and Boom #######################################################################
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  	

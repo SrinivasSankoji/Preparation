@@ -1,17 +1,14 @@
 1.Mastering the Art of Caching for System Design							(Arslan Ahmad)		   [26-DEC-2025]  (Done)
 2.Distributed Caching														(ScalaBrix)		  	   [25-DEC-2025]  ()
 3.Common Caching Misunderstandings                                          (Arslan Ahmad)		   [25-DEC-2025]  ()
-4.Caching Strategies                                                        (Harun Keles0glu)	   [25-DEC-2025]  ()
+4.Demystifying Caching Strategies                                           (Harun Keles0glu)	   [25-DEC-2025]  ()
 5.Caching Concepts for System Design                                        (Soma)		  	  	   [25-DEC-2025]  ()
 6.Type of Caching Strategies                                                (Soma)		  	  	   [25-DEC-2025]  ()
 7.Design Distributed Caching                                                (Harsh Shukla)		   [25-DEC-2025]  ()
 
 ################################################# 1.Mastering the Art of Caching for System Design (Arslan Ahmad) ###############################################################
 
-Types of Caching :
-******************
-
-Caching can be implemented in various ways, depending on the specific use case and the type of data being cached. 
+Caching can be implemented in various ways depending on the specific use case and the type of data being cached. 
 Here are some of the most common types of caching.
 1.In-memory caching
 2.Disk caching

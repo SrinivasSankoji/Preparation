@@ -1,9 +1,10 @@
-1.Locking Mechanism in Java									(Hiten Pratap Singh)		   [06-JAN-2026]  ()
+1.Locking Mechanism in Java									(Hiten Pratap Singh)		   [18-JAN-2026]  (Done)
 2.Locks In Java												(Avinashsoni)		   		   [06-JAN-2026]  ()
 3.Why Lock and Condition in the Concurrency Package			(ByteCook)		   		   	   [06-JAN-2026]  ()
-4.
-
-
+4.Race Conditions vs Data Race								(Kedar Erande)		   		   [06-JAN-2026]  ()
+5.Cyclic Barrier											(Ionut Anghel,Ionut Anghel)	   [06-JAN-2026]  ()
+5.Phaser													()		   		   			   [06-JAN-2026]  ()
+	
 ########################################################### 1.Locking Mechanism in Java	(Hiten Pratap Singh) #################################################
 
 Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an Object or a Class,
@@ -14,12 +15,13 @@ The different types of locks in Java are
 2.Class Locks
 3.Reentrant Locks
 4.Read-Write Locks
-5.Stamped Locks
-6.Semaphores
-7.CountDownLatch
+5.Semaphores
+6.CountDownLatch
+7.Stamped Locks
 
 1.Object Locks :
-----------------
+****************
+
 An Object lock ensures that only one thread at a time can access critical code of an object.
 To acquire a lock on an Object, we use the synchronized keyword when declaring a method or use the synchronized block.
 When a thread acquires an object’s lock then Other threads must wait until the lock is released.
@@ -70,7 +72,8 @@ Device temperature state
 Cache updates
 
 2.Class Locks :
----------------
+***************
+
 Class lock ensures that only one thread at a time can access static methods and static blocks of a class.
 To acquire a lock on an Class, we use the synchronized keyword when declaring a static method or use the static synchronized block.
 When a thread acquires an Class lock then Other threads must wait until the lock is released.
@@ -105,7 +108,8 @@ Synchronized Block on Class :
 	}
 	
 3.Reentrant Locks :
--------------------
+*******************
+
 ReentrantLock allows the thread to acquire the lock and release the lock multiple times without getting blocked.
 while a regular lock can only be acquired and released once.
 
@@ -332,10 +336,18 @@ This is called a single-flight / only one refresher at a time pattern.
 	}
 
 4.Read-Write Locks :
---------------------
-Read-write locks allow multiple threads to read the shared resource simultaneously, but only one thread can write to it at a time.
-Also No reads are allowed while a write is in progress.
-This can greatly improve the performance of a multi-threaded application when the shared resource is read more frequently than it is written.
+********************
+
+ReadWriteLock uses two types of locks i.e. a read lock and a write lock.
+This distinction allows multiple threads to read the shared resource simultaneously but only one thread can write to it at a time.
+Also no reads are allowed while a write is in progress.
+This can greatly improve the performance of a multi-threaded application when reading operations are much more frequent than writing operations.
+
+The ReadWriteLock interface maintains a pair of associated locks i.e. one for read-only operations and one for write operations.
+ReadWriteLock is based on the concepts of shared and exclusive locks to manage read and write access.
+
+A shared lock allows multiple threads to read a resource simultaneously ensuring high concurrency when only read operations are performed.
+An exclusive lock permits only one thread to write to the resource ensuring data consistency during write operations.
 
 Why not to use synchronized or ReentrantLock :
 ----------------------------------------------
@@ -343,18 +355,249 @@ With normal locks, every read blocks other reads.
 This wastes concurrency and hurts performance.
 Read-write locks improve throughput by allowing parallel reads.
 
-Usecase :
----------
 Consider Library Reading Room.
 Many people can read books at the same time.
 Only one librarian can update/replace a book.
 While a book is being replaced,No one is allowed to read it.
 That is exactly how a Read-Write Lock works.
 
-5.Stamped Locks :
------------------
+Usecase :
+---------
+Caching Systems
+Thread Safe Collections
+
+	import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+	/**
+	 * Complete runnable demo: multiple READERS + single WRITER using ReadWriteLock.
+	 *
+	 * What you will observe:
+	 * - Many reader threads read the balance concurrently (read lock is shared).
+	 * - One writer thread updates the balance (write lock is exclusive).
+	 * - While writer holds the write lock, readers temporarily stop (no reads during write).
+	 *
+	 * Run:
+	 *   javac ReadWriteLockAccountDemo.java
+	 *   java ReadWriteLockAccountDemo
+	 */
+	public class ReadWriteLockAccountDemo {
+
+    // Shared resource
+    static class ReadWriteLockAccount {
+        private double balance;
+        private final ReadWriteLock rwLock = new ReentrantReadWriteLock();
+
+        public ReadWriteLockAccount(double initialBalance) {
+            this.balance = initialBalance;
+        }
+
+        // READ operation: multiple threads allowed concurrently
+        public double getBalance() {
+            rwLock.readLock().lock();
+            try {
+                // Simulate some read work
+                sleep(80);
+                return balance;
+            } finally {
+                rwLock.readLock().unlock();
+            }
+        }
+
+        // WRITE operation: only one thread allowed; blocks readers and other writers
+        public void deposit(double amount) {
+            rwLock.writeLock().lock();
+            try {
+                // Simulate slow write (like updating in-memory state after DB/Redis call)
+                sleep(700);
+                balance += amount;
+            } finally {
+                rwLock.writeLock().unlock();
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        ReadWriteLockAccount account = new ReadWriteLockAccount(1000.0);
+
+        // ---- Start multiple readers ----
+        int readersCount = 5;
+        List<Thread> readers = new ArrayList<>();
+        for (int i = 1; i <= readersCount; i++) {
+            Thread reader = new Thread(() -> runReader(account), "Reader-" + i);
+            readers.add(reader);
+            reader.start();
+        }
+
+        // ---- Start single writer ----
+        Thread writer = new Thread(() -> runWriter(account), "Writer");
+        writer.start();
+
+        // Let simulation run for ~8 seconds
+        Thread.sleep(8000);
+
+        // Stop all threads gracefully (simple demo stop mechanism)
+        running = false;
+
+        // Wait for threads to end
+        for (Thread r : readers) r.join();
+        writer.join();
+
+        System.out.println("\nFinal balance = " + account.getBalance());
+        System.out.println("Program finished.");
+    }
+
+    // Simple shared flag for demo stop
+    private static volatile boolean running = true;
+
+    private static void runReader(ReadWriteLockAccount account) {
+        while (running) {
+            double bal = account.getBalance();
+            System.out.println(Thread.currentThread().getName() + " read balance = " + bal);
+            sleep(ThreadLocalRandom.current().nextInt(120, 250));
+        }
+    }
+
+    private static void runWriter(ReadWriteLockAccount account) {
+        int i = 1;
+        while (running) {
+            double amount = 100.0;
+            System.out.println("\n" + Thread.currentThread().getName()
+                    + " wants to WRITE (deposit " + amount + ") [update #" + i + "]");
+
+            account.deposit(amount);
+
+            System.out.println(Thread.currentThread().getName()
+                    + " finished WRITE (deposit " + amount + ") [update #" + i + "]\n");
+
+            i++;
+            sleep(1500); // writer writes occasionally (rare writes, frequent reads)
+        }
+    }
+
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+        }
+    }
+	}
 
 
+5.Semaphores :
+**************
+
+Semaphores are a more advanced form of locks that can be used to control the access to a shared resource.
+Semaphores maintain a set of permits which threads can acquire and release.
+The number of permits determines the number of threads that can access the shared resource simultaneously.
+This is useful in scenarios where there are limited resources available, such as a pool of connections or a cache.
+
+Key Concepts of Semaphore Locks are
+Permits
+Blocking and Non-Blocking Operations
+Fairness
+
+Permits :
+---------
+A semaphore is initialized with a certain number of permits.
+Each permit allows a thread to access the shared resource.
+When a thread acquires a permit, the number of available permits decreases.
+When it releases a permit, the number of available permits increases.
+
+Blocking and Non-Blocking Operations :
+--------------------------------------
+If no permits are available, a thread trying to acquire a permit can either block until a permit becomes available or return immediately if it uses a non-blocking acquire method.
+
+Fairness :
+----------
+Semaphores can be configured to ensure fairness, meaning that permits are granted in the order they were requested (FIFO).
+This prevents thread starvation and ensures equitable access to the shared resource.
+
+Drawbacks of Semaphore Locks :
+------------------------------
+Complexity: Using semaphores can add complexity to the code, especially when dealing with permit acquisition and release.
+Deadlocks: Incorrectly handling permits can lead to deadlocks if permits are not released properly or if the logic for acquiring permits is flawed.
+Overhead: Semaphores introduce some overhead due to permit management and thread synchronization.
+
+6.CountDownLatch :
+******************
+
+CountDownLatch is a utility class from java.util.concurrent package that allows one or more threads to wait until a countdown reaches zero.
+It operates like a countdown timer.
+The CountDownLatch is initialized with a specific count representing the number of operations or threads it is waiting for.
+As each operation or thread completes its task, the CountDownLatch count is decremented using the countDown() method.
+Once the count reaches zero, all waiting threads are released and allowed to proceed.
+
+await() :
+---------
+await() method is the primary mechanism by which threads pause the execution until the latch count hits zero.
+When a thread calls await() it enters a waiting state.
+
+Latch Count Greater Than Zero :
+-------------------------------
+If the latch count is greater than zero, the thread calling await() is blocked.
+It will remain in this state until another thread or process decrements the count using the countDown() method.
+
+Latch Count Equals Zero :
+-------------------------
+When the latch count reaches zero, all threads waiting on await() are released, allowing them to resume execution.
+The latch does not prevent further operations after the count has reached zero—it simply transitions from a waiting to a non-blocking state.
+
+Interrupted Threads :
+---------------------
+If a thread waiting on await() is interrupted then an InterruptedException is thrown.
+This requires the calling thread to handle the exception typically by cleaning up or re-interrupting itself.
+
+
+	CountDownLatch latch = new CountDownLatch(3); 
+	latch.countDown();
+	latch.await();
+
+Once the count reaches zero, all threads blocked on await() are allowed to proceed.
+
+	public class LatchExample {
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(2);
+        Thread worker1 = new Thread(() -> {
+            try {
+                Thread.sleep(1000); // Simulate task
+                System.out.println("Worker 1 finished.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                latch.countDown(); // Task complete, decrement count
+            }
+        });
+
+        Thread worker2 = new Thread(() -> {
+            try {
+                Thread.sleep(2000); // Simulate task
+                System.out.println("Worker 2 finished.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                latch.countDown(); // Task complete, decrement count
+            }
+        });
+
+        worker1.start();
+        worker2.start();
+
+        System.out.println("Waiting for workers to finish...");
+        latch.await(); // Wait until latch count is zero
+        System.out.println("All workers finished. Proceeding with main task.");
+		}
+	}
+
+7.Stamped Locks :
+*****************
+
+
+###################################################################### 5.Cyclic Barrier  #######################################################################
 
 
 

@@ -1,0 +1,819 @@
+1.Rate Limiting in Microservices									(Anand)				 		[10-JAN-2026]  (Done)
+2.Configure Rate Limiter											(ChatGPT)				 	[12-JAN-2026]  (Done)
+3.Latency percentiles												(ChatGPT)				 	[12-JAN-2026]  (Done)
+4.Service Capacity													(ChatGPT)				 	[12-JAN-2026]  (Done)
+5.Designing a High-Scale Rate Limiter								(Rishabh Singh)		 		[10-JAN-2026]  ()
+6.Rate Limiter Design												(Arvind Kumar)		 		[10-JAN-2026]  ()
+7.Distributed Rate Limiter system									(Letters from pallavi)		[10-JAN-2026]  ()
+8.Token Bucket Algorithm											(ChatGPT)					[13-JAN-2026]  (Done)
+9.Leaky Bucket Algorithm											(ChatGPT)					[17-JAN-2026]  (Done)
+10.Fixed window counter												(ChatGPT)					[17-JAN-2026]  (Done)
+11.Sliding window log												(ChatGPT)					[17-JAN-2026]  (Done)
+12.Sliding window counter											(ChatGPT)					[17-JAN-2026]  ()
+
+
+############################################################### 1.Rate Limiting in Microservices ###############################################################
+
+In the world of microservices hundreds of services communicate with each other.
+Rate limiting has become a critical component for maintaining system stability and fairness.
+Rate limiting is the practice of controlling the number of requests for a client or service can make to an API, within a specified time window.
+Considr the scenario of Bouncer at a popular nightclub.
+Only allowing a certain number of people in at a time to prevent overcrowding and maintain a pleasant experience for everyone inside.
+
+Rate Limiting Matters because
+1.Preventing System Overload
+2.Ensuring Fair Resource Distribution
+3.Protecting Against DDoS Attacks
+4.Cost Control
+5.Managing Third-Party API Quotas
+
+1.Preventing System Overload :
+------------------------------
+Microservices are designed to handle specific workloads but they are not infinite resources.
+Without rate limiting, single misbehaving client or sudden traffic spike can overwhelm the services leading to cascading failures across the entire architecture.
+Rate limiting acts as a circuit breaker by protecting the infrastructure.
+Rate limiting prevents system overload in microservices by rejecting excess requests early.
+Before they consume threads, database connections or downstream capacity thereby avoiding cascading failures across services.
+
+2.Ensuring Fair Resource Distribution :
+---------------------------------------
+In a multi-tenant environment, we want to ensure that one user or service doesn’t monopolize resources at the expense of others.
+Rate limiting enforces fairness by allocating resources proportionally ensuring that every client gets their fair share of access to our services.
+
+3.Protecting Against DDoS Attacks :
+-----------------------------------
+Distributed Denial of Service attacks can cripple the infrastructure by flooding it with requests.
+Rate limiting serves as our first line of defense automatically throttling suspicious traffic patterns before they can cause damage.
+
+4.Cost Control :
+----------------
+Many cloud services charge based on usage.
+Without proper rate limiting, runaway processes or bugs can lead to unexpected spikes in API calls, resulting in astronomical bills.
+Rate limiting helps keep our cloud costs predictable and under control.
+
+5.Managing Third-Party API Quotas :
+-----------------------------------
+Our microservices likely depend on external APIs that have their own rate limits.
+By implementing rate limiting at our end, we can prevent hitting these external limits and ensure smoother integration with third-party services.
+
+Common Rate Limit Algorithms are
+1.Token Bucket Algorithm
+2.Leaky Bucket Algorithm
+3.Fixed Window Counter
+4.Sliding Window Log
+5.Sliding Window Counter
+
+Implementation Strategies are
+1.API Gateway Level
+2.Application Level using Redis + Bucket4j or Redis-backed Rate Limiter (Token Bucket) or Spring Boot Filter
+
+Choosing the Right Storage Backend for Rate Limiter :
+-----------------------------------------------------
+Redis is the go-to choice for distributed rate limiting. It’s fast, supports atomic operations, and can be shared across multiple service instances.
+For single-instance applications or less critical rate limiting, in-memory storage is the simplest option but doesn’t work in distributed environments.
+While possible, using a traditional database for rate limiting is generally too slow and can become a bottleneck itself.
+
+Best Practices :
+----------------
+1.Use Multiple Rate Limit Tiers
+Implement different rate limits for different user types and different endpoints based on their resource consumption.
+
+2.Provide Clear Error Messages
+When rejecting requests, return meaningful HTTP 429 responses with headers indicating when the client can retry.
+
+	response.setHeader("X-RateLimit-Limit", "100");
+	response.setHeader("X-RateLimit-Remaining", "0");
+	response.setHeader("Retry-After", "900");
+	
+3.Implement Graceful Degradation
+Instead of hard rejections, consider queuing requests or serving cached responses when limits are reached.
+
+4.Monitor and Alert
+Track rate limit hits and patterns.
+Frequent rate limiting might indicate legitimate increased demand or the need to adjust your limits.
+
+5.Consider Geographic Distribution
+If we are using a distributed rate limiter, be aware of potential consistency issues across regions and adjust your strategy accordingly.
+
+6.Rate Limit at Multiple Layers
+Implement rate limiting at the edge (CDN/WAF), API gateway, and individual service levels for comprehensive protection.
+
+Common Pitfalls to Avoid :
+--------------------------
+1.Not Accounting for Distributed Systems
+In a distributed environment each service instance maintaining its own rate limit counters can lead to the actual limit being multiplied by the number of instances.
+Use centralized storage like Redis.
+
+2.Overly Aggressive Limits
+Setting limits too low frustrates legitimate users.
+Monitor actual usage patterns and set limits with reasonable headroom.
+
+3.Forgetting About Internal Traffic
+Don’t forget to exempt or configure different limits for internal service-to-service communication, health checks, and monitoring systems.
+
+4.Ignoring Retry Logic
+Clients should implement exponential backoff when hitting rate limits.
+Without proper retry logic, we might see thundering herd problems when limits reset.
+
+Consider an e-commerce platform with multiple microservices
+Product Catalog Service: 1000 requests/minute per user (read-heavy)
+Order Service: 10 orders/minute per user (write-heavy, expensive operations)
+Payment Service: 5 attempts/minute per user (critical, must protect)
+Search Service: 100 requests/minute per user (resource-intensive)
+
+Each service implements rate limiting appropriate to its criticality and resource requirements with monitoring in place to adjust these limits based on actual usage patterns.
+
+
+																Business context
+																----------------
+																
+We have an e-commerce platform running on microservices
+API Gateway
+Auth Service (JWT validation, user context)
+Order Service (creates order)
+Inventory Service (reserves stock)
+Pricing/Promotion Service (applies discounts)
+Payment Service (initiates payment intent)
+Notification Service (sends SMS/email)
+Shared dependencies:
+PostgreSQL (orders, inventory)
+Redis (caching, sessions, promo cache)
+Kafka (events)
+Trigger event (realistic)
+
+A flash sale starts at 12:00. 
+A partner affiliate app has a bug and starts calling POST /checkout in a tight loop for the same user/session (no backoff, no idempotency key).
+Traffic jumps from 500 RPS to 20,000 RPS within a minute.
+
+Flow without Rate Limiting :
+----------------------------
+Client → API Gateway → forwards all requests (no throttling).
+Gateway calls Auth Service for token validation (or validates locally and calls user profile).
+Gateway routes to Order Service /checkout.
+Order Service performs 
+Validate cart
+Call Pricing Service (discounts)
+Call Inventory Service (reserve stock)
+Write order to Postgres
+Call Payment Service
+Publish events to Kafka
+
+Where overload begins :
+Order Service CPU spikes due to request volume.
+Thread pools saturate (Tomcat/Netty worker threads).
+Connection pools saturate (HikariCP to Postgres).
+Inventory Service starts timing out because it also gets hammered (fan-out amplification: each checkout triggers multiple downstream calls).
+Pricing Service cache misses increase, Redis gets hot, latency increases.
+Cascading failure chain (typical)
+Order Service calls Inventory Service → timeouts.
+Timeout leads to retries (often default retry policies or client libraries).
+Retries multiply traffic: 20k RPS becomes effectively 40k–60k attempts.
+Postgres sees too many concurrent connections / long-running transactions → slower queries → more timeouts.
+Once latency rises, queueing increases → more thread blocking → services become unresponsive.
+
+Eventually
+Gateway returns 5xx
+Order creation becomes inconsistent
+Other unrelated endpoints also slow down because shared resources are saturated
+
+Bottom line: One bad client + sudden spike can trigger a platform-wide outage.
+
+Flow with Rate limiting (end-to-end) :
+
+API Gateway rate limiting Layer 1 :
+-----------------------------------
+Policy :
+Key: tenantId or apiKey (for partner apps) + optionally userId
+Limit example:
+Partner API key: 200 RPS, burst 400
+Public users: 20 RPS per user, burst 40
+/checkout specifically: 5 RPS per user, burst 10 (because it is expensive)
+
+Flow :
+------
+Client → API Gateway
+Gateway extracts identity :
+	apiKey (partner)
+	userId from JWT
+Gateway checks rate limiter (Redis token bucket or gateway-native limiter)
+If allowed → forward to Order Service
+If exceeded → return:
+	HTTP 429 Too Many Requests
+	Retry-After: 1 (or appropriate)
+	error body: {"code":"RATE_LIMITED","message":"Too many checkout attempts. Retry after 1s."}
+Effect
+	Instead of 20,000 RPS hitting Order Service, only 200 RPS enters for that partner.
+	The “bad traffic” is rejected before it consumes your internal capacity.
+	
+This alone often prevents the outage.
+
+Service-level Layer 2 :
+-----------------------
+Even with gateway limits internal bursts can happen.
+Order Service applies dependency-level rate limiting / bulkheads.
+
+Calls to Inventory Service capped at safe throughput, e.g. 300 RPS
+Calls to Pricing Service capped, e.g. 500 RPS
+Payment initiation capped, e.g. 200 RPS
+
+Database protection via concurrency caps Layer 3 :
+--------------------------------------------------
+Rate limiting controls request count, but DB overload is often caused by concurrency.
+
+Order Service also enforces
+Max concurrent DB writes (semaphore / bulkhead)
+Bounded queue for DB operations
+
+Rate Limiter acts like Circuit breaker :
+----------------------------------------
+A Circuit breaker pattern stops calls to a failing dependency after repeated failures.
+Rate limiting is similar in outcome but it triggers on volume instead of failure rates.
+
+It opens the circuit for excess requests by returning 429 immediately.
+That prevents resources (threads, DB connections, CPU) from being consumed.
+That prevents the cascading failures.
+
+Important in real deployments :
+-------------------------------
+429 is a success path during overload and Clients must be coded to handle it (backoff + jitter).
+Limit expensive endpoints separately i.e. /checkout must not share limits with /products.
+Global vs per-pod i.e. If we have 10 gateway pods and we want a true global limit, use a shared store (Redis) or a gateway feature that supports global enforcement.
+Don’t rely only on edge i.e. Internal limits protect against fan-out and internal storms.
+
+###############################################################  2.Configure Rate Limiter  ########################################################################
+
+Rate limits are almost never guessed once and hardcoded.
+
+They are typically the result of
+1.An enforcement mechanism i.e. An algorithm where enforced
+2.A capacity/SLO-driven sizing process
+3.Business policy (tiers, fairness, abuse controls)
+4.Continuous tuning (based on real traffic + incidents)
+
+There are standard algorithms and the most common are
+Token Bucket
+Sliding Window
+Leaky Bucket
+Queue-based shaping
+
+These algorithms decide how to enforce limits and they do not decide what the limit values should be.
+That comes from capacity and business requirements.
+
+Step 1 :
+--------
+Identify what you are protecting. For example
+
+Order Service CPU/thread pools
+Postgres write capacity + connection pool
+Inventory Service (often DB-backed)
+Payment provider quotas / latency
+
+Step 2 :
+--------
+Measure capacity i.e. A simple and widely used sizing formula is
+
+	Max sustainable RPS = Total concurrency / p95 latency
+	
+Order Service has 10 pods
+Each pod safely handles 40 concurrent checkouts (thread pool, DB pool, downstream timeouts considered)
+p95 checkout latency = 800 ms (0.8s)
+Total concurrency = 10 × 40 = 400
+Sustainable RPS ≈ 400 / 0.8 = 500 RPS for the whole cluster
+
+Now we can do the same for key dependencies	
+Inventory DB capacity
+Postgres write throughput
+Payment downstream limits
+
+The lowest sustainable value becomes your true system ceiling.
+
+Step 3 :
+--------
+Apply a safety margin i.e. we do not set rate limits at the absolute ceiling. we reserve headroom for
+
+deployments, node failures, GC pauses
+burst traffic from legitimate users
+background jobs / internal calls
+
+Typically set limits to 50–80% of measured ceiling.
+So If checkout ceiling is 500 RPS, we might cap external checkout traffic at 300–400 RPS globally.
+
+Engineering requirements :
+--------------------------
+Protect DB connections: Hikari pool size sets hard constraints.
+Protect expensive endpoints: /checkout stricter than /products.
+Protect downstream services: inventory/payment quotas.
+Maintain SLOs: keep p95 latency under target.
+
+Business requirements :
+-----------------------
+Tiering: Free/Pro/Enterprise plans.
+Fairness: one tenant cannot starve others.
+Partner contracts: guaranteed capacity for a partner API key.
+Abuse prevention: login/OTP endpoints very strict.
+
+################################################################## 3.Latency percentiles ###################################################################
+
+Latency percentile is nothing but Out of 100 requests how fast are most requests actually served.
+Consider the scenario of an API End Point i.e. POST /checkout
+We measure response time for 100 requests and we sort them from fastest to slowest.
+
+p50 (Median) :
+--------------
+This is a typical user.
+50% of requests are faster than this.
+50% are slower
+This is the normal experience.
+
+An average user usually see.
+
+p95 (Slow) :
+------------
+This is still acceptable.
+95% of requests are faster than this.
+Only 5% are slower.
+This is what almost all users experience.
+Most users are still happy.
+
+p99 (Worst-case) :
+------------------
+This is the broken case.
+99% of requests are faster than this.
+Only 1% are slower.
+Represents edge cases under load
+Here the System starting to struggle.
+
+	| Percentile | Meaning              |
+	| ---------- | -------------------- |
+	| p50        | Normal traffic       |
+	| p95        | Heavy traffic        |
+	| p99        | Traffic jam starting |
+	
+	| Request number | Response time        |
+	| -------------- | -------------------- |
+	| 1–50           | ~200 ms              |
+	| 51–95          | ~600 ms              |
+	| 96–99          | ~1.5 sec             |
+	| 100            | 5 sec (timeout risk) |
+
+Now
+p50 = 200 ms
+p95 = 600 ms
+p99 = 1.5 sec
+
+Rate limiting is not designed around p50 and is designed around p95 and p99.
+Because p50 hides overload where as p95/p99 reveal capacity stress
+Key rule is Rate limits are chosen so that p95 and p99 stay within SLO.
+
+######################################################################## 4.Service Capacity ##################################################################
+
+The main question here is How many checkout requests can my system safely handle without breaking.
+
+Step 1 :
+--------
+Consider the scenario of order-service which has 10 pods.
+We are running 10 instances of the order-service typically in Kubernetes.
+Traffic is load-balanced across these pods.
+
+Each pod Has limited CPU
+Each pod Has limited memory
+Each pod Has limited threads
+Each pod Has limited DB connections
+So total capacity = capacity per pod × number of pods.
+
+Step 2 :
+--------
+Each pod safely handles 40 concurrent checkouts i.e. It does not mean 40 requests per second.
+It means at any moment in time, the pod can have up to 40 checkout requests in progress without causing
+Thread starvation
+DB connection exhaustion
+Excessive GC
+Latency explosion
+
+If the 41st request enters then
+It must wait
+Or it blocks threads
+Or DB pool queues
+Latency increases sharply
+
+Where does 40 come from in real life :
+--------------------------------------
+From load testing and production observation based on:
+Thread pool size (e.g., 50)
+DB pool size (e.g., 20 connections)
+CPU usage
+p95 latency behavior
+
+This number is empirical and not theoretical.
+
+Step 3 :
+--------
+Total concurrency of Order Service will be
+
+	10 pods × 40 concurrent requests = 400 concurrent checkouts
+	
+This is not how many users we have and this is how many active checkouts can be processed at the same time.
+
+Step 4 :
+--------
+Database can tolerate latency up to p95 ≤ 800 ms.
+At p95, 95 out of 100 checkout requests must complete within 800 ms.
+
+Database matters most because
+Checkout is write-heavy.
+DB is the slowest shared dependency.
+DB overload causes cascading failures.
+
+Why p95 and not p50 becuase p50 hides overload where as p95 shows when queues start forming.
+When DB p95 rises : 
+Threads wait longer
+Connection pools fill
+Retry storms begin
+
+So this is the health threshold.
+
+Step 5 :
+--------
+p99 must stay ≤ 2 seconds and it represents :
+Worst 1% of users
+Retries
+Cache misses
+Lock contention
+GC pauses
+Network jitter
+
+If p99 goes beyond 2 seconds then
+User experience feels broken
+Timeouts start
+Clients retry
+Traffic multiplies
+System enters a death spiral
+
+So p99 is the early warning signal.
+
+Step 6 :
+--------
+Converting concurrency and p95 into RPS.
+
+	Max Sustainable RPS ≈ Total Concurrency / p95 latency (in seconds)
+	
+Total concurrency = 400
+p95 latency = 800 ms = 0.8 seconds
+
+	400 / 0.8 = 500 requests per second
+
+This means if we push more than ~500 RPS 
+Requests start queuing
+p95 increases
+p99 explodes
+Retries amplify traffic
+Cascading failure risk increases
+
+So 500 RPS is the theoretical ceiling and not the target.
+Also we do not set rate limits at 500 RPS because production is not perfect.
+So we apply a safety margin.Typical safety margin is 60%–80% of theoretical max and most teams use ~70%.
+
+	500 × 0.7 = 350 RPS
+
+Step 7 :
+--------
+Now we translate this into actual rate limits.
+Global checkout capacity is 350 RPS and it gets split into
+
+Partner API keys
+Per-user limits
+Per-tenant limits
+
+Example :
+Partner API: 200 RPS
+Public users combined: 150 RPS
+Per-user /checkout: 5 RPS
+
+This ensures :
+p95 stays ≤ 800 ms
+p99 stays ≤ 2 sec
+
+Finally System remains stable even during spikes.
+
+Without rate limiting :
+-----------------------
+Traffic exceeds 350 RPS
+Concurrency exceeds 400
+Threads block
+DB pools saturate
+Latency increases
+Retries multiply
+Cascading failure begins
+
+With rate limiting :
+--------------------
+Excess requests rejected early (429)
+Concurrency stays ≤ 400
+DB stays healthy
+p95 and p99 stay within limits
+
+Concurrency is what kills systems and not RPS.
+Rate limiting keeps concurrency below the breaking point by controlling RPS.
+
+
+######################################################################## 8.Token Bucket Algorithm ########################################################################
+
+A Token bucket is a container that contains the tokens with a pre-defined capacity and Tokens are added to the bucket at a fixed rate.
+Each request consumes the token from the bucket.
+If a token is available then request is allowed.
+If no token is available then request is rejected (HTTP 429).
+Tokens are refilled at a steady rate until the bucket reaches its maximum capacity.
+
+Token bucket has two parameters.
+Refill rate :	How many tokens are added per second
+Bucket size :	Max tokens allowed (burst capacity) i.e. How many requests are allowed to enter the system instantly.
+
+Consider the scenario :
+
+	Refill rate = 5 tokens/sec
+	Bucket size = 10 tokens
+
+At the initial state
+
+	Bucket capacity = 10 tokens
+	Current tokens = 10
+	
+Consider the case of Normal traffic
+Requests arrive at 3 per second
+5 tokens added/sec
+3 tokens used/sec
+Bucket never empties
+✅ All requests succeed
+
+Consider the case of Sudden spike (burst)
+Requests arrive at 10 at once
+10 tokens available
+All 10 requests allowed
+✅ Bucket now empty
+
+Consider the case of continued high traffic
+More requests arrive immediately
+No tokens available
+Requests are rejected
+❌ HTTP 429 until tokens refill
+
+Pros :
+------
+Allows short bursts (good UX)
+Simple to implement
+Works well in distributed systems (Redis)
+
+This is why most API gateways use it.
+
+Note :
+------
+Bucket size should be ≤ safe concurrency per instance.
+
+######################################################################## 9.Leaky Bucket Algorithm ########################################################################
+
+Leaky Bucket Algorithm is similar to Token bucket algorithm but here requests are pulled from the queue and processed at a fixed rate.
+A first-in-first-out (FIFO) queue is used.
+When a request arrives, the system checks if the queue is full, if not then the request is added to the queue else, the request is dropped.
+
+Consider the scenario of a Bucket with a small hole at the bottom.
+Water (requests) flows into the bucket
+Water leaks out at a fixed and constant rate.
+If water comes in faster than it leaks then the bucket fills up.
+If the bucket becomes full then extra water is spilled (requests dropped or rejected)
+
+Here Incoming traffic may be bursty but outgoing traffic is smooth and constant
+That is the core idea of Leaky Bucket.
+
+	| Algorithm    | Controls                              |
+	| ------------ | ------------------------------------- |
+	| Token Bucket | How fast requests are allowed **in**  |
+	| Leaky Bucket | How fast requests are allowed **out** |
+	
+Token Bucket allows bursts
+Leaky Bucket smooths bursts
+
+A Leaky Bucket has a bucket size but it represents queue capacity i.e. how many requests can wait.
+This is not preloaded tokens like Token Bucket.
+At startup, the bucket is empty.
+
+Configuration :
+---------------
+Leak rate = 5 requests/second
+Bucket size = 10 requests
+
+Initial state :
+---------------
+Bucket: empty
+Leak rate: 5 req/sec
+
+Normal traffic :
+----------------
+3 requests/sec 
+3 requests enters into the bucket
+5 leak out (but only 3 available)
+Bucket stays empty
+
+✅ All requests processed immediately
+✅ No delay
+
+Sudden burst :
+--------------
+10 requests/sec at once
+Bucket holds: 10 requests
+Leak out: 5/sec
+Second 1 → 5 processed and 5 waiting
+Second 2 → remaining 5 processed
+Some requests wait
+
+✅ But system load stays constant
+
+Too much traffic :
+------------------
+20 requests/sec instantly
+Only 10 fit
+Remaining 10 are rejected
+
+❌ Excess requests dropped / rejected
+✅ System protected
+
+Problem :
+---------
+Kafka topic receives bursty traffic and Consumer receives
+1,000 messages suddenly
+Database can only handle 100 writes/sec
+If all messages are processed immediately then
+DB connections exhaust
+p95 latency explodes
+Retries cause overload
+
+Apply Leaky Bucket with the Configuration
+Leak rate = 100 messages/sec
+Bucket size = 500 messages
+
+	Kafka Consumer
+	   |
+	   | burst of messages
+	   v
+	Leaky Bucket Queue
+	   |
+	   | 100 msgs/sec
+	   v
+	Database Writes
+	
+Messages are queued
+DB receives a steady flow
+No spikes
+No overload
+
+
+######################################################################## 10.Fixed window counter ########################################################################
+
+This algorithm divides the timeline into fix-sized time windows and assign a counter for each window. 
+Each window has a counter which starts at zero and each request increments the counter by 1.
+Once the counter reaches the pre-defined threshold then new requests are dropped until a new time window starts.
+When the window ends then the counter resets to 0.
+
+For example the time unit above is 1 minute and the system allows just 3 requests per minute.
+If more than 3 requests are received then extra requests are dropped.
+
+Pros :
+------
+1.Memory efficient and easy to understand.
+2.Resetting the counter at the end of a unit time window fits certain use cases.
+
+Cons :
+------
+One major problem with this algorithm is that there can be burst of traffic at the edges of time windows which may allow more request in a particular time frame.
+For example the system allows a maximum of 3 requests / minute, and the counter resets to the round minute.
+There are 3 requests between [2:00:00–2:00:59), and 3 more between [2:01:00–2:01:59).
+Total of 6 requests are processed in the one-minute period between [2:00:29–2:01:29), which is twice the maximum allowed.
+
+Use Fixed Window when
+Limits are security-related
+Bursts are not allowed anyway
+Simplicity is more important than smoothness
+
+Examples :
+----------
+Login attempts
+OTP requests
+Password reset
+Admin APIs
+
+Avoid Fixed Window when
+APIs are user-facing
+Bursts are normal
+Latency consistency matters
+
+######################################################################## 11.Sliding window log ########################################################################
+
+Sliding window log algorithm stores the timestamp for every successful request and these form the log of the timestamp.
+Generally redis sorted sets are used for this.
+When a new request arrives, system calculates the current time window, removes all outdated timestamps from the log (those older than the start of the current window)
+Then we decide whether this request should be processed depending on log size.
+If the log size (count of requests in the last window) is equal to or less than the allowed limit, the request is accepted, and its new timestamp is added.
+Otherwise, the request is rejected.
+
+This algorithm fixes the edge case spike problem of the fixed window counter by being much more accurate.
+It’s more accurate than fixed windows but requires more memory to store timestamps.
+
+Configuration :
+---------------
+
+	| Parameter   | Meaning                       |
+	| ----------- | ----------------------------- |
+	| Window size | Time range (e.g., 60 seconds) |
+	| Limit       | Max requests in that window   |
+	
+Example :
+---------
+Window = 60 seconds
+Limit = 5 requests
+
+i.e. Max 5 requests in the last 60 seconds.
+
+🕒 t = 12:00:00
+Log = []
+
+Request 1 at 12:00:05
+Log = [05] → count = 1 → ✅ allowed
+
+Request 2 at 12:00:10
+Log = [05, 10] → count = 2 → ✅ allowed
+
+Request 3 at 12:00:20
+Log = [05, 10, 20] → count = 3 → ✅ allowed
+
+Request 4 at 12:00:40
+Log = [05, 10, 20, 40] → count = 4 → ✅ allowed
+
+Request 5 at 12:00:50
+Log = [05, 10, 20, 40, 50] → count = 5 → ✅ allowed
+
+Request 6 at 12:00:55
+Log still has 5 timestamps within last 60 sec → ❌ rejected (429)
+
+Request 7 at 12:01:06
+Now remove old timestamps:
+12:00:05 is older than 60 sec
+
+Remove it
+Log = [10, 20, 40, 50] → count = 4 → ✅ allowed
+
+Payment API Usecase :
+---------------------
+Payment attempts must be controlled
+Bursts are dangerous
+Fixed window causes unfair spikes
+
+User retries rapidly → blocked
+User waits → allowed again smoothly
+This is fair and predictable.
+
+Advantages :
+------------
+✅ No boundary problem
+✅ Very fair
+✅ Accurate rate limiting
+✅ Smooth request flow
+
+Disadvantages :
+---------------
+❌ High memory usage (stores timestamps)
+❌ Slower at very high scale
+❌ Requires cleanup of old entries
+❌ Harder to scale in distributed systems
+
+Because of this, Gateways often use
+Sliding Window Counter
+Token Bucket (approximation)
+
+######################################################################## 12.Sliding window counter ########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
