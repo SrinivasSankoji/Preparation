@@ -175,15 +175,48 @@ https://salithachathuranga94.medium.com/decorator-design-pattern-in-java-1b0931e
 
 Decorator Design pattern is a structural design pattern that allows us to add a new functionality to an existing Object without changing its structure.
 Decorator Design pattern allows us to do runtime modifications of an Object.
-The traditional way of adding new functionality to an existing Object is by using inheritance i.e. at compile time.
-Decorator Design Pattern uses Composition which makes it more flexible to add new functionality at runtime.
-Because of this flexibility Decorator Design Pattern is one of the darling pattern for many Java Developers.
+Decorator Design Pattern works by wrapping an object inside another object which has the same interface.
 
+The traditional way of adding new functionality to an existing Object without changing its structure is by using inheritance i.e. at compile time.
+Decorator Design Pattern uses Composition which makes it more flexible to add new functionality at runtime.
+
+Usecase :
+---------
+Consider the scenario of Pizza order with additional features.
+1.Cheese
+2.Olives
+3.Onion
+4.Pepperoni
+5.Extra Sauce
+
+❌ Without Decorator : 
+----------------------
+If we want every combination of these features prebuilt then number of classes required is
+2 power 5 = 32 different classes because 
+
+For each feature the pizza can either have it or not → 2 choices per feature
+2 × 2 × 2 × 2 × 2 = 32 combinations
+
+	| Features                | Class Needed     |
+	| ----------------------- | ---------------- |
+	| Cheese                  | Yes              |
+	| Olives                  | Yes              |
+	| Cheese + Olives         | Yes              |
+	| Cheese + Onion          | Yes              |
+	| Cheese + Olives + Onion | Yes              |
+	| … up to 5 features      | Yes → 32 classes |
+
+This quickly becomes unmanageable.
+
+✅ With Decorator :
+-------------------
+1 Base component.
+5 Decorator classes i.e.one for each feature.
+Now we can mix and match any combination at runtime.
 
 ########################################### 5.Facade (Abdulaziz Pulatjonov & Prabhu Kumar) ##############################################
 
 https://blog.devops.dev/structural-design-patterns-in-java-facade-design-pattern-a6d2797ed8de
-
 
 Facade Design Pattern is one of the subtype of structural design pattern.
 Facade Design Pattern provides a unified interface to a set of interfaces in the Complex sub system.
