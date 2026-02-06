@@ -1,27 +1,23 @@
 1.Circuit Breaker									(aneesh kumar)		  		 [24-DEC-2025]  (Done)
-2.Resilience4j										(Umesh Kumar Yadav)		     [24-DEC-2025]  ()	
-3.Circuit Breaker									(Umesh Kumar Yadav)		     [24-DEC-2025]  ()	
-4.Circuit Breaker									(PraveenCodes)		         [24-DEC-2025]  ()	
-5.Circuit Breaker									(The Latency Gambler)		 [24-DEC-2025]  ()
-
-
+2.Circuit Breaker									(Umesh Kumar Yadav)		     [05-FEB-2025]  (Done)	
+3.Circuit Breaker									(PraveenCodes)		         [05-FEB-2025]  (Done)	
+4.Circuit Breaker									(The Latency Gambler)		 [24-DEC-2025]  ()
 
 ############################################################### 1.Circuit Breaker (aneesh kumar) ###############################################################
 
 In Microservices, one service often depends on another service.
-For example Order Service calling a Payment Service.
-But what happens if the Payment Service is down or slow.
-Without circuit breaker Order Service keeps sending requests, piling up failures, slowing down threads, and making the whole system unstable.
-With circuit breaker Order Service detects failure, opens the circuit and stops calling the Payment Service for a while.
+For example Order Service calling a Payment Service.But what happens if the Payment Service is down or slow.
+Without CircuitBreaker Order Service keeps sending requests, piling up failures, slowing down threads, and making the whole system unstable.
+With CircuitBreaker, Once Order Service detects the failure, opens the circuit and stops calling the Payment Service for a while.
 Instead it returns a fallback response.
 
-Circuit Breaker prevents the microservice from repeatedly calling a failing downstream service.
-This ensures that no additional calls are made to the failing service once the Circuit Breaker is open and return an exception immediately.
+CircuitBreaker prevents the microservice from repeatedly calling a failing downstream service.
+This ensures that no additional calls are made to the failing service once the CircuitBreaker is open and return an exception immediately.
 This also monitors the system for failures and once things are normal the Circuit is closed to perform normal functionality.
-Most popular third party libraries to implement Circuit Breaker Pattern are Polly, Hystrix and Resilience4j.
+Most popular third party libraries to implement CircuitBreaker pattern are Polly, Hystrix and Resilience4j.
 
-Circuit Breaker States :
-------------------------
+CircuitBreaker States :
+-----------------------
 Closed : Everything works fine and requests go through.
 Open : Too many failures then stop sending requests.
 Half-Open : Test with the limited requests.
@@ -59,3 +55,36 @@ slidingWindowSize: 5 means looks at the last 5 calls.
 failureRateThreshold: 50 means if 50% of calls fail then the breaker opens.
 waitDurationInOpenState: 10s means Circuit breaker stays open for 10 seconds before trying again.
 permittedNumberOfCallsInHalfOpenState: 3 means test phase where few calls are allowed to see if the service has recovered.
+
+############################################################### 2.Circuit Breaker (Umesh Kumar Yadav) ###############################################################
+
+CircuitBreaker prevents the microservice from repeatedly calling a failing downstream service.
+1.Prevents Cascading Failures
+2.Improves Resilience
+3.Reduces Latency
+4.Enables Self-Healing
+
+############################################################### 3.Circuit Breaker (PraveenCodes) ####################################################################
+
+CircuitBreaker can also be implemented at ServiceMesh Level by using
+1.Istio DestinationRule
+2.Envoy Proxy
+3.Linkerd retry & timeout policies
+This means CircuitBreaker run outside the code i.e. at the Networking Layer.
+
+We also have Cloud managed Circuit Breakers. AWS, Azure and GCP now offers
+1.API Gateway CircuitBreaker
+2.Load balancer CircuitBreaker
+3.Lambda-based resilient fallback
+4.Managed retry/exponential backoff policies
+
+Now we have multi-layer protection
+1.Application-level ( Resilience4j)
+2.Service mesh-level (Istio/Envoy)
+3.API Gateway-level
+4.Cloud infrastructure-level
+
+
+
+
+	

@@ -1,9 +1,8 @@
 1.Resilience Introduction 											(Java Brains)		  [04-JUL-2024]  (Done)		
 2.Design Patterns to Ensure Service Resiliency						(Java Brains)		  [04-JUL-2024]  (Done)
-3.Circuit Breaker Pattern											(Defog Tech)          [04-JUL-2024]  ()
-4.Bulk Head Pattern													(Defog Tech)          [04-JUL-2024]  (Done)
-5.Timeout Pattern													(TechPrimers)         [04-JUL-2024]  ()
-6.Retry Pattern 													(JavaTechie)          [04-JUL-2024]  ()
+3.Bulk Head Pattern													(Defog Tech)          [04-JUL-2024]  (Done)
+4.Timeout Pattern													(TechPrimers)         [04-JUL-2024]  ()
+5.Retry Pattern 													(JavaTechie)          [04-JUL-2024]  ()
 
 ############################################################### 1.Introduction ###############################################################
 
@@ -51,7 +50,6 @@ Some of the key strategies and patterns used to enhance Resilience in MicroServi
 2.Redundancy
 
 Ways to implement Resilience in Microservices
-
 1.Circuit Breaker Pattern
 2.Retry Pattern
 3.Bulkhead Pattern
@@ -76,15 +74,8 @@ Load Balancer might point to a different healthy server on retry and at that tim
 
 3.Timeout Design Pattern :
 --------------------------
-Time Out Design pattern ensures that we should not wait for the Service response for an indefinite amount of time and throw an Exception instead of waiting too Long.
-Once the Timeout period is met Thread is freed up. 
-
-############################################################### 3.Circuit Breaker Pattern (Defog Tech) #########################################################
-
-Circuit Breaker prevents the microservice from repeatedly calling a failing downstream service.
-This ensures that no additional calls are made to the failing service once the Circuit Breaker is open and return an exception immediately.
-This also monitors the system for failures and once things are normal the Circuit is closed to perform normal functionality.
-Most popular third party libraries to implement Circuit Breaker Pattern are Polly, Hystrix and Resilience4j.
+Timeout Design pattern ensures that request should not wait for the Service response for an indefinite amount of time and throw an Exception instead of waiting too long.
+Once the Timeout period is met, Thread is freed up. 
 
 ############################################################### 4.Bulk Head Pattern (Defog Tech) ###############################################################
 

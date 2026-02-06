@@ -1,0 +1,56 @@
+1.Fail-Safe with Resilience4j Timeout Handling				(Hui)		  		 		[05-FEB-2025]  (Done)
+2.TimeLimiter												(Nithidol Vacharotayan)		[06-FEB-2025]  (Done)	
+3.Timeout Pattern											(vinsguru)		         	[05-FEB-2025]  ()	
+4.Timeout Strategies in Microservices						(Syed Zaid Ali)		 		[05-FEB-2025]  ()
+
+########################################################### 1.Fail-Safe with Resilience4j Timeout Handling (Hui) ##########################################################
+
+Timeout is one of the key mechanisms for ensuring system stability and reliability especially when external dependencies and service calls are involved.
+Properly configured Timeout mechanisms can significantly enhance system robustness and prevent a single component’s failure from bringing down the entire system.
+
+TimeLimiter module is designed to decorate asynchronous executions.specifically
+1.CompletionStage
+2.CompletableFuture
+3.Futures executed via ExecutorService
+
+This is because TimeLimiter works by
+Starting a timer
+Waiting for async completion
+Triggering TimeoutException If the result isn’t available within the configured duration.
+
+	@TimeLimiter(name = "shippingRateApi")
+	public CompletableFuture<Response> method() { ... }
+	
+Spring’s Resilience4j AOP expects the method to return CompletableFuture or CompletionStage
+Because the aspect needs a future handle to
+Apply timeout
+Cancel execution
+Trigger fallback
+
+If we return synchronous type there is no async boundary to enforce a timeout.
+
+Most of the common Application Scenarios are
+1.External API Calls
+2.Database Queries
+3.Remote Service Calls
+4.Batch Processing Tasks
+5.Real-Time Data Processing
+6.User Request Control
+
+Advantages :
+------------
+1.Avoids long waits for responses from external services that could block the main thread.
+2.Ensures that the application can continue providing other functionalities even if certain external services are unavailable.
+3.Prevent excessive requests from consuming too many system resources, which could degrade overall performance.
+
+########################################################### 2.TimeLimiter (Nithidol Vacharotayan) ########################################################################
+
+Resilience4j has the TimeLimiter module which helps in preventing the system slowdown by setting time limits on method executions.
+If a method takes longer than the configured time limit, system will throw a TimeoutExceptionhandler preventing excessive delays from cascading through the system.
+
+Advantages :
+------------
+1.Prevents slow responses: TimeLimiter ensures that requests are completed within the expected time or fail fast allowing the system to recover.
+2.Avoids resource exhaustion: Slow API response can lead to resource exhaustion if multiple threads wait indefinitely.
+3.Enhances system stability: We can avoid failures propagating across dependent services by limiting response times.
+

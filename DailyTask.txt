@@ -5432,9 +5432,24 @@ SQL vs NoSQL ()
 
 03-FEB-2026 :
 -------------
-Decorator Design Pattern ()
+Decorator Design Pattern (Done)
 
 04-FEB-2026 :
 -------------
-Micro services Resilience ()
+
+05-FEB-2026 :
+-------------
+Micro services Circuit Breaker (Done)
+Micro services TimeLimiter (Done)
+
+06-FEB-2026 :
+-------------
+Micro services TimeLimiter Usecase (Done)
+Micro services Retry (Done)
+Micro services Retryable ()
+Micro services RateLimiter ()
+
+07-FEB-2026 & 08-FEB-2026 :
+---------------------------
+SAGA ()
 

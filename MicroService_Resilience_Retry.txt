@@ -1,0 +1,126 @@
+1.Deep Dive Into the Retry Pattern								(Smita Kothari)		  		 		[06-FEB-2025]  (Done)
+2.Understanding @Retryable vs Resilience4j @Retry				(Reetesh Kumar)		  		 		[06-FEB-2025]  ()
+3.Building Resilient Microservices with Retry Pattern			(Rahul Kumar)		  		 		[06-FEB-2025]  ()
+4.Why Retries Create More Bugs Than They Fix					(CodeTalks,Karuna)		  		 	[06-FEB-2025]  ()
+
+########################################################### 1.Deep Dive Into the Retry Pattern (Smita Kothari) ###########################################################
+
+Retry mechanism helps systems automatically recover from transient failures like network glitches, momentary unavailability or service throttling
+by trying the operation again after a short delay.
+
+The Retry pattern is a fault-handling mechanism where a failed operation is retried automatically based on a defined strategy.
+1.Number of retry attempts
+2.Delay between retries (fixed, exponential, random)
+3.Conditions for retry (specific exceptions)
+
+Usage :
+-------
+1.API temporarily overloaded
+2.Database momentarily locked
+3.Service just rebooted
+4.DNS resolution failed briefly
+
+Instead of failing the entire operation, Retry may succeed on the second or third attempt.
+
+Retry only when it is likely to succeed on the next attempt like
+1.Network blips which cause SocketTimeoutException, ConnectException, UnknownHostException (sometimes), IOException
+2.HTTP status codes with 429 / 503 / 502 / 504
+3.Optimistic locking / DeadlockLoserDataAccessException (DB deadlocks)
+
+Whenever we are using Retry, make sure the operations are Idempotent.
+Retries without Idempotent are data corruption with good intentions.
+
+Retry alone is dangerous :
+--------------------------
+If downstream is down then retries multiply traffic.
+Leads to retry storms.
+Consumes threads.
+Amplifies outages.
+
+Circuit Breaker alone is insufficient :
+---------------------------------------
+It doesn’t recover transient failures.
+Users may see unnecessary errors.
+
+		| Failure type     | Retry      | Circuit Breaker  |
+		| ---------------- | ---------- | ---------------  |
+		| Temporary glitch | ✅ recover | ❌ not needed    |
+		| Sustained outage | ❌ harmful | ✅ protects      |
+		| Slow degradation | ⚠️ limited | ✅ isolates      |
+		
+High-level flow diagram :
+-------------------------
+		                ┌────────────────────────┐
+		Client Request ─►  Circuit Breaker Check │
+						└──────────┬─────────────┘
+                           │
+               CB OPEN? ───┴── Yes ──► Fail Fast / Fallback
+                           │ No
+                           ▼
+                    ┌───────────────┐
+                    │   Retry Loop  │
+                    └──────┬────────┘
+                           │
+                 Attempt 1 ▼
+                    Downstream
+                           │
+                Success? ──┴── Yes ──► Return Response
+                           │ No
+                           ▼
+                 Wait (Backoff)
+                           │
+                 Attempt 2 …
+                           │
+                 Attempt N …
+                           │
+                All Failed? ─ Yes ─► Fallback
+                           │
+                           ▼
+                    Record Failure
+                           │
+                 Update CB Metrics
+
+				 
+Exponential Backoff :
+---------------------
+Exponential backoff is a retry delay strategy where the wait time between retries increases exponentially after each failure, Instead of retrying immediately or at a fixed interval.
+Exponential backoff is a foundational resilience technique used in
+Microservices
+Distributed systems
+Cloud SDKs
+Message brokers
+API clients
+
+If the retries happen instantly
+Retry storms
+Thundering herd effect
+Downstream overload
+Cascading failures
+Thread exhaustion
+
+Exponential backoff solves this by spacing retries progressively.
+BaseDelay = 200ms
+Multiplier = 2
+
+	| Attempt | Delay  |
+	| ------- | ------ |
+	| 1       | 200ms  |
+	| 2       | 400ms  |
+	| 3       | 800ms  |
+	| 4       | 1600ms |
+	| 5       | 3200ms |
+	
+| Call |----200ms----| Call |----400ms----| Call |----800ms----| Call |
+
+Here Retry pressure decreases over time.
+
+
+################################################# 2.Understanding @Retryable vs Resilience4j @Retry (Reetesh Kumar) #####################################################
+
+
+
+
+		
+
+
+
