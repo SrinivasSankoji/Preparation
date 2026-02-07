@@ -1,21 +1,17 @@
-1.Distributed Transactions in Spring Boot Microservices				(medium)        			   	  [30-MAR-2024]  ()
+1.Distributed Transactions in Spring Boot Microservices				(anudeep billa,Amit Himani)       [30-MAR-2024]  ()
 2.Distributed Transactions											(TechDummies with Narendar)       [01-NOV-2024]  ()
-3.Orchestration vs Choreography										(Arpit Bhayani)
+3.Orchestration vs Choreography										(Arpit Bhayani)					  [30-MAR-2024]  ()
 4.Saga Design Pattern                     							(Kishore Karnatakapu,Tokyo)       [28-SEP-2023]  ()
-5.SAGA Pattern 														(Tech Primers)
-6.Transactional Outbox Pattern										(Cem Dırman,Tokyo)	
-
+5.SAGA Pattern 														(Tech Primers)					  [30-MAR-2024]  ()
+6.Transactional Outbox Pattern										(Cem Dırman,Tokyo)				  [30-MAR-2024]  ()	
 
 ################################ 1.Distributed Transactions in Spring Boot Microservices (medium) ####################################################
-
-https://medium.com/@billa.anudeep143/distributed-transactions-in-spring-boot-microservices-simplified-guide-ce1e3a9191c0
-https://medium.com/@knowledge.cafe/distributed-transaction-in-spring-boot-microservices-7962e048adfc
 
 A Transaction is nothing but a group of operations that are executed as a single unit.
 Distributed Transaction Management in MicroServices refer to the transactions that involve multiple micro services each handling the part of the Transaction.
 Here coordination is required to ensure Transaction's Atomicity, Consistency, Isolation and Durability.
-Spring boot provides several features to manage distributed transactions in Micro service architecture.
-We can use either Two phase commit or SAGA pattern to manage distributed transactions.
+Spring boot provides several ways to manage distributed transactions in Micro service architecture.
+We can use either Two phase commit or Three Phase Commit or SAGA pattern to manage distributed transactions.
 
 Two-Phase Commit — 2PC :
 ------------------------
@@ -23,7 +19,7 @@ Two-Phase Commit — 2PC :
 
 Saga Pattern :
 --------------
-Each business Transaction which spanned across multiple Microservices are split into Microservice specific local Transactions and they are executed in a sequence to complete the business workflow.
+Each Transaction which is spanned across Microservices are split into Microservice specific local Transactions and are executed in a sequence to complete the workflow.
 Saga Pattern can be implemented in two ways.
 
 Choreography :

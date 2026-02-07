@@ -1,7 +1,7 @@
 1.Deep Dive Into the Retry Pattern								(Smita Kothari)		  		 		[06-FEB-2025]  (Done)
-2.Understanding @Retryable vs Resilience4j @Retry				(Reetesh Kumar)		  		 		[06-FEB-2025]  ()
+2.Understanding @Retryable vs Resilience4j @Retry				(Reetesh Kumar)		  		 		[07-FEB-2025]  (Done)
 3.Building Resilient Microservices with Retry Pattern			(Rahul Kumar)		  		 		[06-FEB-2025]  ()
-4.Why Retries Create More Bugs Than They Fix					(CodeTalks,Karuna)		  		 	[06-FEB-2025]  ()
+4.Why Retries create more bugs than they fix					(CodeTalks,Karuna)		  		 	[07-FEB-2025]  (Done)
 
 ########################################################### 1.Deep Dive Into the Retry Pattern (Smita Kothari) ###########################################################
 
@@ -116,6 +116,133 @@ Here Retry pressure decreases over time.
 
 
 ################################################# 2.Understanding @Retryable vs Resilience4j @Retry (Reetesh Kumar) #####################################################
+
+Spring Retry: @Retryable (+ @Recover) :
+---------------------------------------
+Spring Retry is a simple, spring native retry mechanism via annotations and AOP proxies.
+We declare retry policy and backoff on a method using @Retryable attributes.
+
+@EnableRetry : Enables the Retry proxy.
+@Retryable : Retries on configured exceptions.
+@Recover : Final fallback method after Retry exhaustion.
+
+	Client
+	  |
+	  v
+	Controller -> Service method (@Retryable)
+	  |
+	  v
+	Attempt #1 -> Downstream call
+	  |  success -> return
+	  v
+	Exception? (retryable) --yes--> Backoff wait --> Attempt #2 --> ...
+	  |
+	  no (non-retryable) -> throw immediately (no retry)
+	  |
+	Retries exhausted
+	  v
+	@Recover method invoked -> return fallback
+	
+Consider the below ShippingRate example.
+
+	@EnableRetry
+	@SpringBootApplication
+	public class App { 
+		public static void main(String[] args){ 
+		SpringApplication.run(App.class,args);
+		} 
+	}
+	
+	@Service
+	public class ShippingRateSpringRetryService {
+
+	private final ShippingProviderClientBlocking client;
+
+	  public ShippingRateSpringRetryService(ShippingProviderClientBlocking client) {
+		this.client = client;
+	  }
+
+	  @Retryable(
+		  retryFor = { RetryableDownstreamException.class },
+		  noRetryFor = { NonRetryableDownstreamException.class },
+		  maxAttempts = 3,
+		  backoff = @Backoff(delay = 200, multiplier = 2) // 200ms, 400ms
+	  )
+	  public ShippingRateResponse getRate(ShippingRateRequest req, int scenario) {
+		return client.fetchRate(req, scenario);
+	  }
+
+	  @Recover
+	  public ShippingRateResponse recover(RetryableDownstreamException ex,
+										  ShippingRateRequest req,
+										  int scenario) {
+		return ShippingRateResponse.fallback(req.orderId(),
+			"Fallback after Spring Retry exhausted: " + ex.getMessage());
+	  }
+	}
+
+Resilience4j: @Retry + @CircuitBreaker :
+----------------------------------------
+Resilience4j is a resilience library for distributed systems.
+Resilience4j provides retry, circuit breaker, rate limiter, bulkheads, time limiter, plus metrics/actuator integration in Spring Boot.
+
+Retry alone can amplify outages.
+Retry along with Circuit Breaker prevents retry storms by blocking calls when the downstream is clearly unhealthy.
+
+@Retry : attempts re-execution on configured exceptions
+@CircuitBreaker : trips OPEN when failure rate/slow calls exceed thresholds, then fails fast
+fallbackMethod : unified fallback when retry exhausts or circuit is open
+
+Built-in instance configuration via application.yml.
+
+	Client
+	  |
+	  v
+	Controller -> Service method
+	  |
+	  v
+	CircuitBreaker check:
+	  OPEN? ----yes----> fallback (fail-fast, no retry)
+	   |
+	   no
+	   v
+	Retry loop:
+	  Attempt #1 -> downstream
+		success -> return
+		failure (retryable) -> backoff/jitter -> attempt #2 -> ...
+	  Retries exhausted -> fallback
+	  |
+	  v
+	CB records success/failure and may change state (CLOSED/HALF-OPEN/OPEN)
+	
+| Aspect           | Spring Retry @Retryable           | Resilience4j @Retry                                   |
+| ---------------- | --------------------------------- | ------------------------------------------------------|
+| Primary goal     | Simple retry                      | Resilience suite (retry + CB + bulkheads + metrics)   |
+| Fallback         | @Recover                          | fallbackMethod                                        |                      
+| Circuit breaker  | Not built-in (needs separate lib) | First-class module                                    |
+| Metrics/Actuator | Not as integrated by default      | Strong support via Spring Boot + actuator/metrics     |
+| Best fit         | Monolith or simple retry need     | Microservices / distributed resilience				   |
+
+
+################################################# 4.Why Retries Create More Bugs Than They Fix (CodeTalks,Karuna) #################################################
+
+Retries don’t fix failures and it repeat the failures.
+Retry has the duplicate side effect problem.
+Retrying makes outages worse.
+Retries hide the root cause.
+Retries break ordering guarantees.
+
+Make the operations Idempotent. Without idempotency retries are dangerous.
+Fail Fast and don’t Retry blindly.
+Use Circuit Breakers along with Retry.
+
+
+
+
+
+
+
+
 
 
 

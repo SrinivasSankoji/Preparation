@@ -1969,7 +1969,7 @@ Hibernate Caching with Scenarios ()
 Joins in SQL ()
 
 Kafka Basics LimeGuru Revise (Done)
-Kafka Consumer ()
+Kafka Consumer (Done)
 
 Transaction Management Revise ()
 
@@ -1977,7 +1977,7 @@ API Gateway ()
 Rate Limiter (Done)
 Load Balancer ()
 Caching (Done)
-Circuit Breaker ()
+Circuit Breaker (Done)
 Bulk Head ()
 Consistent Hashing ()
 URL Shortening ()
@@ -1990,7 +1990,7 @@ CAP Theorem ()
 Transctional Outbox Pattern (Done)
 RestTemplate vs FeignClient ()
 SOLID Principles ()
-SQL vs NoSQL ()
+SQL vs NoSQL (Done)
 
 Spring Security ()
 JWT ()
@@ -2019,14 +2019,14 @@ What steps do you follow to ensure sprint delivery? ()
 Share an example of when you had to deliver under tight deadlines ()
 How do you communicate delays or blockers to stakeholders? ()
 
-Allow users to scan QR codes and contact vehicle owners without exposing personal numbers. ()
-Create endpoints for QR registration, vehicle mapping, and contact initiation. ()
+Allow users to scan QR codes and contact vehicle owners without exposing personal numbers ()
+Create endpoints for QR registration, vehicle mapping, and contact initiation ()
 Handle backend with Spring Boot, frontend using ReactJS ()
 Store owner info securely and maintain service logs ()
 
 ----------------------------------------- Febraury 2026  ---------------------------------------------------
 
-MultiThreading Advanced Revision ()
+MultiThreading Basics and Advanced Revision ()
 MicroServices Resilience ()
 SAGA ()
 
