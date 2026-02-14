@@ -711,15 +711,6 @@ End to End Asynchronous / Non Blocking  Required
 
 To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming project Coming Soon i.e Java Fibers or Project Loom.
 
-
-######################################################## 13.Reentrant Lock #################################################################
-
-Refer in Java_MultiThreading_Medium
-
-######################################################## 14.ReadWrite Lock #################################################################
-
-Refer in Java_MultiThreading_Medium
-
 ######################################################## 11.Completable Future #############################################################
 
 Completable Future is used to perform asynchronous operations and trigger its dependent operations which could also be asynchronous.
@@ -773,6 +764,13 @@ If we don't use any Executor Service Internally it Uses Fork Join Pool to run al
 If any of the Operation is Failed exceptionally will be called as a Catch Block.
 For Complex Use cases Completable Future is Not Recommended and Prefer RX Java which is Stable and Much More Readable.
 
+######################################################## 13.Reentrant Lock #################################################################
+
+Refer in Java_MultiThreading_Medium
+
+######################################################## 14.ReadWrite Lock #################################################################
+
+Refer in Java_MultiThreading_Medium
 
 ############################################ 20.Fork JoinPool ########################################################################################
 

@@ -1,0 +1,98 @@
+1.Master Abstraction In Java									(Swatee Chand,Piyu Jain)     [13-FEB-2026]  (Done)
+2.Understanding Abstractions in Java							(Minseo Kim)       			 [13-FEB-2026]  ()
+3.Data Abstraction in Java										(Syed Hamed Raza)       	 [13-FEB-2026]  ()
+4.Demystifying Abstraction in Java								(Shivam Tyagi)       		 [13-FEB-2026]  ()
+5.What is abstraction in Java									(Ateev Duggal)       		 [13-FEB-2026]  ()
+6.Complete Abstraction in Java									(Hajar Ait Abdielmomin)      [13-FEB-2026]  ()
+
+######################################################## 1.Master Abstraction In Java (Swatee Chand,Piyu Jain) ###############################################################
+
+Abstraction can be used to represent complex systems in a simpler and more manageable way.
+Abstraction is the process of identifying the essential features of an object and ignoring all the irrelevant details.
+Abstraction allows us to focus on what an object does rather than how it does.
+Abstraction allows us to create reusable, modular and extensible software.
+
+Hiding the internal implementation and highlighting the set of services i.e. required information is called as Abstraction.
+Here all the Operations are performed internally by highlighting the set of services.
+
+We can achieve abstraction in two ways.
+1.Abstract Class
+2.Interface
+
+Both Interfaces and Abstract classes defines a set of methods without implementing them.
+This allows for greater flexibility in the implementation of the methods and enables code reuse.
+
+1.Abstract Class :
+------------------
+The main purpose of an Abstract class is to provide a Template or Blueprint for its subclasses to follow.
+Abstract class contains one or more abstract methods which are declared without a body and marked with the abstract keyword.
+Abstrcat class contains abstract as well as concrete methods.
+Abstract methods must be implemented by the subclass.
+If we declare the class as an abstract then we cannot create an object of the Abstract class.
+
+	abstract class Animal {
+	   private String name;
+	   
+	   public Animal(String name) {
+		  this.name = name;
+	   }
+	   
+	   public String getName() {
+		  return name;
+	   }
+	   
+	   public abstract void makeSound();
+	}
+
+We can achieve 0 to 100 % abstraction using Abstract class.
+
+2.Interface :
+-------------
+An Interface is similar to an Abstract class but it differs in its purpose.
+An Interface provides a contract for its implementations to follow.
+
+An interface in java contains abstract methods, static constants, default and static methods.
+Every method present inside interface is by default public and abstract.
+Interface does not contain constructor.
+
+Interface provides the Abstraction by separating the implementation making it easier to modify and maintain code.
+This allows us to focus on the behavior of the system rather than its internal workings.
+Along with Abstraction, Interface helps us to achieve mutiple inheritance in java.
+
+You can achieve 100% Abstraction using interfaces.
+
+Best Practices :
+----------------
+1.Keep the Abstraction level high
+The main goal of Abstraction is to simplify the code and make it easier to maintain.
+It is important to keep the Abstraction level high and avoid adding unnecessary details or complexities.
+
+2.Use interfaces
+Interface provide a clear contract for the behavior of a class.
+When designing an Abstraction, consider using Interfaces to define the behavior that the Abstraction should provide.
+
+3.Encapsulate implementation details
+Abstraction is all about hiding the implementation details.
+This can be achieved by encapsulating the implementation details within the Abstraction, and exposing only the necessary behavior to the user.
+
+4.Design for extensibility
+When designing Abstractions, consider how it will be extended in the future.
+Create an Abstraction that can be easily extended without breaking existing code.
+
+Abstraction matters most when change is frequent or complexity is high.
+1.Multiple implementations are possible.
+2.External dependencies can change.
+3.Testing is hard because logic is mixed with infrastructure.
+
+
+
+
+
+
+
+
+
+
+
+
+

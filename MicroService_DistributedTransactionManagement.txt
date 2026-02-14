@@ -10,7 +10,7 @@
 A Transaction is nothing but a group of operations that are executed as a single unit.
 Distributed Transaction Management in MicroServices refer to the transactions that involve multiple micro services each handling the part of the Transaction.
 Here coordination is required to ensure Transaction's Atomicity, Consistency, Isolation and Durability.
-Spring boot provides several ways to manage distributed transactions in Micro service architecture.
+There are several ways to manage distributed transactions in Micro service architecture.
 We can use either Two phase commit or Three Phase Commit or SAGA pattern to manage distributed transactions.
 
 Two-Phase Commit — 2PC :
@@ -27,7 +27,7 @@ Choreography :
 Each service will be executed independently and Services communicate via events.
 There is no central coordinator.
 Once the task is completed it invokes the next task in the sequence.
-In case if the next task fails it invokes the compensating tasks of the previous transactions.
+In case if the task fails it invokes the compensating tasks of the previous transactions.
 
 Success Flow :
 --------------
