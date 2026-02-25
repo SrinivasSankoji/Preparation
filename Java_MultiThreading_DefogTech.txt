@@ -715,18 +715,18 @@ To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming
 
 Completable Future is used to perform asynchronous operations and trigger its dependent operations which could also be asynchronous.
 
-In Java To Perform Non Blocking Operation is Always Easy i.e Create Runnable and run it in Separate Thread.
-Once Runnable calls the run() and after the Execution of run() Thread is Destroyed.
-If The Task is Expecting the Return Value,then We Use the Callable Interface.We Typically do this by Using ExecutorService.
-Here the Task return the Future Object and when we Call get() on the Future Object then Main Thread goes into Blocking State.
-Here the Problem gets More Difficult when we have Multiple Tasks.
-Consider the Scenario where we have submitted 4 Tasks to the ExecutorService.
+In Java to perform non-blocking operations is always easy i.e. Create Runnable task and run it in separate thread.
+Once runnable calls the run() and after the execution of run() thread is destroyed.
+If the task is expecting the return value,then we use the Callable interface. we typically do this by using ExecutorService.
+Here the task return the Future object and when we call get() on the Future object then Main thread goes into Blocking State.
+Here the problem gets more difficult when we have multiple tasks.
+Consider the Scenario where we have submitted 4 tasks to the ExecutorService.
 Immediately It will return a Future Value with the Place Holders.
-Task 3 and Task 4 are Executed Successfully and Task 1 and Task 2 are Still Waiting for the Response because 
-Thread Pool does not Guarantee that order of Execution of Tasks.
+Task 3 and Task 4 are executed successfully and Task 1 and Task 2 are still waiting for the response because 
+Thread Pool does not guarantee that order of execution of tasks.
 If we call future.get() and we don't have value for the Task 1 the Main Thread goes into Waiting State.
 Here the Problem is even though many Task were Completed and we are Using For Loop to get the Future Object
-and For Loop Starts its Iteration with First Element.
+and for-loop starts its iteration with first element.
 Since we don't have value for Task 1 then Main Thread goes into Waiting State.
 
 Consider the Use case :

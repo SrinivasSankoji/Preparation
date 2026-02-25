@@ -296,7 +296,7 @@ In a Class two Methods with same signature are not allowed.Atleast argument type
 
 ############################################################# 8.Overloading   ##############################################################################
 
-Two Methods are said to be overloaded methods If both the methods have the same name and different argument types i.e
+Two Methods are said to be overloaded methods If both the methods have the same name and different argument types i.e.
 Atleast order of arguments must be different is also applicable.
 
 In C 
@@ -306,8 +306,7 @@ In C
 	
 both returns the absolute value and returns 10.2
 
-	abs(10l) gives compile time error and we need to define one more method i.e
-	labs(10);
+	abs(10l) //gives compile time error and we need to define one more method i.e. labs(10);
 	
 Here C does not support overloading and increases the complexity of the program.
 But Java supports overlaoding and reduces the complexity of the program.
@@ -316,7 +315,7 @@ Note :
 ------
 In overloading Method resolution is always taken care by compiler based on reference type.
 Compiler decides which method has to be executed based on reference type.
-Here overloading is called static polymorphism or compile time polymorphism or Early Binding.
+Hence overloading is called Static polymorphism or compile time polymorphism or Early Binding.
 
 public class OverloadingDemo {
 
@@ -452,10 +451,10 @@ Method Overriding is also called as Dynamic Polymorphism or Runtime Polymorphism
 
 Rules for Overriding :
 ----------------------
-Name of the Method and argument type must be same. i.e Method Signature must be same.
+Name of the Method and argument type must be same. i.e. Method Signature must be same.
 In Overriding return type must be same but this rule is applicable untill Java 1.4.
 Form Java 1.5 onwards Covariant return types are allowed.
-According to Covariant Return Type,Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
+According to Covariant Return Type, Child class method return type need not be same as Parent Class Method return Type but its subtype is also allowed.
 Covariant Return Type is applicable only for Object Types but not for primitive types.
 
 Scenario : Parent Class method is declared as private 
@@ -552,8 +551,8 @@ In case of method hiding,method resolution is taken care by compiler based on re
 
 Overriding w.r.t Vararg Methods :
 ---------------------------------
-We can Override vararg method with another vararg method then it is said to be overriding otherwise it is said to be overloading.
-If we are Overriding vararg method with normal method then it is said to be overloading.
+We can override vararg method with another vararg method then it is said to be overriding otherwise it is said to be overloading.
+If we are overriding vararg method with normal method then it is said to be overloading.
 
 public class Parent{
 public void m1(int x)

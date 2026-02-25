@@ -11,10 +11,10 @@
 11.Try with Multiple Catch Block                                        [17-DEC-2020]  (Done)
 12.Finally Block                                                        [17-DEC-2020]  (Done)
 13.return vs finally                                                    [17-DEC-2020]  (Done)
-
 14.finally,final and finalize                                           [17-DEC-2020]  (Done)
 15.Control flow in try catch finally                                    [21-DEC-2020]  (Done)
 16.Combination of try catch finally                                     [21-DEC-2020]  (Done)
+
 17.throw keyword                                                        [21-DEC-2020]  (Done)
 18.throws keyword                                                       [21-DEC-2020]  (Done)
 19.Various CompileTime Errors                                           [21-DEC-2020]  (Done)
@@ -60,7 +60,7 @@ Just before terminating the program,empty stack will be destroyed by the JVM.
 
 ******************************************************************** 3.Default Exception Handling in Java  *********************************************************
 
-If anywhere an Exception is raised inside a Method,the Method in which an Exception is raised is responsible to create an Exception object including
+If anywhere an Exception is raised inside a Method, the Method in which an Exception is raised is responsible to create an Exception object including
 
 Name of the Exception
 Description of the Exception
@@ -86,8 +86,8 @@ Output :
 Hello
 Exception in thread "main" java.lang.ArithmeticException: / by zero
 
-After creating an Exception object by the Method,This Method hand overs the Exception object to the JVM.
-JVM will check in which method the problem raises,This Method has Exception Handling code or not.
+After creating an Exception object by the method, This method hand overs the Exception object to the JVM.
+JVM will check in which method the problem raises, that method has Exception Handling code or not.
 If Not JVM terminates the program abnormally and removes the method from the Satck.
 JVM handovers the responsibility of Exception Handling to the Default ExceptionHandler which is a part of JVM.
 
@@ -125,9 +125,9 @@ If OutOfMemory occurs as a programmer we cannot do anything and the program will
 
 Each and every Exception occurs at Runtime.
 The Exceptions which are checked by the compiler for the smooth execution of the program at Runtime is called CheckedException.
-In our program sometimes there may be a chance of getting an Exception at Runtime.
-Compiler verifies whether we are handling that Exception or not.i.e. writing catch block or not is the only requirement of the compiler.
-Example :FileNotFoundException
+In our program there may be a chance of getting an Exception at Runtime.
+Compiler verifies whether we are handling that Exception or not i.e. writing catch block or not is the only requirement of the compiler.
+Example : FileNotFoundException
 
 There are some Exceptions which are not checked by the compiler.These type of Exception are called UncheckedException.
 Example :
@@ -138,7 +138,7 @@ RuntimeException and its Child Classes and Error and its Child Classes are Unche
 
 Note :
 ------
-Whether the Exception is Checked or Unchecked compulsory it should occur at Runtime only.There is no chance of Exception occurig at Compile Time.
+Whether the Exception is Checked or Unchecked compulsory it should occur at Runtime only. There is no chance of Exception occurig at Compile Time.
 
 ******************************************************************** 7.Partially Checked Exception  ********************************************************************
 
@@ -180,10 +180,10 @@ Statement 3
 	
 ******************************************************************** 9.Control flow in try catch block  ******************************************************************
 
-1.Within the try block If any where an Exception is raised,rest of the try block won't be executed even though we handled the exception.
+1.Within the try block If any where an Exception is raised, rest of the try block won't be executed even though we handled the exception.
 Hence within the try block we have to take only risky code and lenth of the risky code should be as less as possible.
 2.There may be a chance of getting an Exception in catch and finally block also in addition to try block.
-3.If any satetment which is not part of try block raising an exception,then it is always abnormal termination of the program.
+3.If any satetment which is not part of try block raising an exception, then it is always abnormal termination of the program.
 
 ******************************************************************** 10.Methods to Print Exception  **********************************************************************
 
@@ -202,12 +202,12 @@ Try with Multiple Catch block is recomended to use.
 Within the try block at any point of time there may be a chance of getting only one Exception at a time.
 But we cannot expect exactly which Exception is going to raise.
 
-If within the try block NullPointer Exception raises,JVM verifies in the catch block is there any object to handle that Exception.
-If we are writing try with multiple catch block,order of catch block is important i.e. from Child to Parent.
+If within the try block NullPointer Exception raises, JVM verifies in the catch block is there any object to handle that Exception.
+If we are writing try with multiple catch block, order of catch block is important i.e. from Child to Parent.
  
 ******************************************************************** 12.Finally Block   *********************************************************************************
 
-It is never recomended to write clean up code within the try block because there is no gaurantee of exeucting each and every statement.
+It is never recomended to write the clean up code within the try block because there is no gaurantee of exeucting each and every statement.
 It is also not recomended to write the clean up the code within the catch block because there is no gaurantee of execution.
 We required a place to maintain the clean up code which should be executed always irrespective of whether the exception is raised or not or exception is handled or not.
 such type of place is nothing but finally block.
@@ -236,7 +236,7 @@ Finally
 ********************************************************************  13.return vs finally  *****************************************************************************
 
 finally block dominates the return statement also.
-If there is any return statement present inside try or catch block,finally block will be executed then return statement will be executed.
+If there is any return statement present inside try or catch block, finally block will be executed then return statement will be executed.
 
 	public class FinallyDemoTwo {
 	public static void main(String[] args) {
@@ -349,7 +349,7 @@ At any point of time DefaultExceptionHandler can handle only one Exception at a 
 
 Exception object is thrown by the program or method and handovers the exception object to the JVM.
 The method in which an Exception is raised is responsible to create an Exception object and handovers the Exception object to the JVM.
-JVM verifies is there any try catch block defined inside the method or not otherwise handovers the Exception object to the Default Exception Handler.
+JVM verifies is there any try catch block defined inside this method or not otherwise handovers the Exception object to the Default Exception Handler.
 
 	public class ThrowDemoOne {
 	public static void main(String[] args) {
@@ -376,40 +376,31 @@ usually we use throw keyword for Customized Exceptions and not for pre defined E
 
 	public class ThrowDemoFour {
 	static ArithmeticException exception=new ArithmeticException();
-	public static void main(String[] args) {
-		throw exception;
+		public static void main(String[] args) {
+			throw exception; // Runtime Exception
+		}
 	}
-	}
-	
-Here we get RuntimeException.
 
-	public class ThrowDemoFive {
+	public class ThrowDemoThree {
 	static ArithmeticException exception;
-	public static void main(String[] args) {
-		throw exception;
+		public static void main(String[] args) {
+			throw exception;  // Null Pointer Exception beacuse exception refers to null.
+		}
 	}
-	}
-	
-Here we get NullPointerException because exception refers to null.
 
 	public class ThrowDemoOne {
-	public static void main(String[] args) {
-		System.out.println(10/0);
-		System.out.println("Hai");
-	}
+		public static void main(String[] args) {
+			System.out.println(10/0); // Runtime Exception saying / by zero
+			System.out.println("Hai");
+		}
 	}
 	
-Here we get RuntimeException.
-
 	public class ThrowDemoSix {
-	public static void main(String[] args) {
-		throw new ArithmeticException("Divided by Zero");
-		//System.out.println("Hai");  CTE 
+		public static void main(String[] args) {
+			throw new ArithmeticException("Divided by Zero");
+			System.out.println("Hai");  // CTE saying Unreachable Code
+		}
 	}
-	}
-
-Here we get Compile Time Error saying unreachable code.
-
 
 Note : 
 ------
@@ -417,38 +408,38 @@ we can use throw keyword only for throwable types and not for normal java object
 
 	public class ThrowableDemoSeven {
 	public static void main(String[] args) {
-		throw new ThrowableDemoSeven();
-	}
+			throw new ThrowableDemoSeven(); //CTE Saying Required type: Throwable Provided: ThrowableDemoSeven
+		}
 	}
 	
-Here we get Compile Time Error and can be resolved by adding
+This can be resolved by extending RuntimeException
 
 	public class ThrowableDemoSeven extends RuntimeException
 	
 ********************************************************************  18.throws keyword  ************************************************************************
 
-In our program If there is any chance of raising checked Exception,compulsory we should handle that checked Exception.
+In our program If there is any chance of raising checked Exception, compulsory we should handle that checked Exception.
 Other wise we will get Compile Time Error saying unreported Exception must be caught or declared to be thrown.
 
 	public class ThrowsDemoOne {
-	public static void main(String[] args) {
-		PrintWriter writer=new PrintWriter("abc.txt"); // CTE saying Unhandled exception type FileNotFoundException
-		writer.println("Hello");
-	}
+		public static void main(String[] args) {
+			PrintWriter writer=new PrintWriter("abc.txt"); //CTE saying Unhandled exception type FileNotFoundException
+			writer.println("Hello");
+		}
 	}
 
 	public class ThrowsDemoTwo {
-	public static void main(String[] args) {
-		Thread.sleep(1000);
-	}
+		public static void main(String[] args) {
+			Thread.sleep(1000);
+		}
 	}
 
 Here Thread enters into the sleeping state and other Thread may have the chance of Interrupting the Thread.
-We get CTE saying Unhandled exception type FileNotFoundException.
+We get CTE saying Unhandled exception type InterruptedException.
 
 We can handle Compile Time Errors either by using Try Catch block or by using throws keyword.
-Responsibility of throws keyword is to delegate the responsibility of handling the exception to the caller method and 
-caller method is responsible to hand over the Exception object to the JVM.
+Responsibility of throws keyword is to delegate the responsibility of handling the exception to the caller method.
+Caller method is responsible to hand over the Exception object to the JVM.
 
 Note :
 ------
@@ -495,21 +486,18 @@ Here we get RTE because Error is an unchecked Exception.
 
 Note :
 ------
-Within the try block if there is no chance of raising an Exception,catch block won't be executed and we get CTE.
+Within the try block if there is no chance of raising an Exception, catch block won't be executed and we get CTE.
 This rule is applicable only for fully checked Exception.
 
 	public class ThrowsDemoFive {
 	public static void main(String[] args) {
-		try {
-			System.out.println("Hello");
-		}
-		catch (InterruptedException e) {
+			try {
+				System.out.println("Hello");
+			}
+			catch (InterruptedException e) { // CTE Exception 'java.lang.InterruptedException' is never thrown in the corresponding try block
+			}
 		}
 	}
-	}
-
-Output :
-Hello
 	
 Exception Handling keyword summary :
 ------------------------------------
@@ -576,14 +564,14 @@ If we are opening the resources in the try block then it should be closed in the
 Here we need to write finally block and length of the code will be increased and reduces readability.
 Upto 1.6 version it is highly recomended to write finally block to close all the resources which are opened as a part of try block.
 To overcome this we use try with resources.
-Main advantage of try with resources is that Resources which are opened as a part of try block will be closed automatically once the control reaches to the end of thr try block
+Main advantage of try with resources is that Resources which are opened as a part of try block will be closed automatically once the control reaches to the end of the try block
 either normally or abnormally.
 Here we are not required to close explicitly.
 
 Note :
 ------
 1.We can take any number of resources and should be comma seperated.
-2.Resources whatever we are taking should be Autoclosable Resources i.e corresponding Class should implement AutoClosable interface.
+2.Resources whatever we are taking should be Autoclosable Resources i.e. corresponding Class should implement AutoClosable interface.
 3.Resource reference variable should be declared as final so that we cannot perform reassignment for that variable.
 4.untill 1.6 try should be associated with either catch or finally but from 1.7 we can only have try with Autoclosable interface.
 
@@ -596,7 +584,7 @@ We can resolve this problem by using Multicatch block.
 
 Note :
 ------
-In Multicatch block there should not be any relationship between Exception Types i.e parent to child or child to parent or same type otherwise we get CTE.
+In Multicatch block there should not be any relationship between Exception Types i.e. parent to child or child to parent or same type otherwise we get CTE.
 
 *************************************************************** 24.Interview Questions  ****************************************************************************
 
@@ -680,7 +668,7 @@ Whenever Exception is occured in try block and corresponding catch and finally b
  
 *************************************************************** 25.ClassNotFoundException (Scaler) ***************************************************************
 
-ClassNotFoundException is a checked Exception in Java that occurs when JVM tries to load the class from the class path but it cannot locate that class in the Classpath.
+ClassNotFoundException is a checked Exception in Java that occurs when JVM tries to load the class from the classpath but it cannot locate that class in the Classpath.
 As it is a Checked Exception, it must be explicitly handled either by using try-catch or throws clause.
 Since we are loading the class using ClassLoader then ClassNotFoundException will always occur at runtime.
 Java Compiler has no way of identifying whether the Class is present in the Classpath at runtime.

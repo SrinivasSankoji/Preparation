@@ -55,7 +55,7 @@ An interface in java contains abstract methods, static constants, default and st
 Every method present inside interface is by default public and abstract.
 Interface does not contain constructor.
 
-Interface provides the Abstraction by separating the implementation making it easier to modify and maintain code.
+Interface provides the Abstraction by separating the implementation, making it easier to modify and maintain code.
 This allows us to focus on the behavior of the system rather than its internal workings.
 Along with Abstraction, Interface helps us to achieve mutiple inheritance in java.
 
