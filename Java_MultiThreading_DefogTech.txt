@@ -713,7 +713,10 @@ To Achieve Light Weight Threads and Synchronous Programming there is an Upcoming
 
 ######################################################## 11.Completable Future #############################################################
 
-Completable Future is used to perform asynchronous operations and trigger its dependent operations which could also be asynchronous.
+CompletableFuture allows us to write asynchronous and non-blocking code.
+CompletableFuture provides a way to handle the long-running tasks without blocking the main thread.
+While the task is running, the main thread can continue doing other work and it will be notified once the task is completed.
+We can chain multiple tasks, handle exceptions gracefully and even combine results from several asynchronous operations.
 
 In Java to perform non-blocking operations is always easy i.e. Create Runnable task and run it in separate thread.
 Once runnable calls the run() and after the execution of run() thread is destroyed.
@@ -730,7 +733,6 @@ and for-loop starts its iteration with first element.
 Since we don't have value for Task 1 then Main Thread goes into Waiting State.
 
 Consider the Use case :
-
 Fetching Order
 Enriching Order
 Payment

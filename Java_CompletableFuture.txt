@@ -1,0 +1,45 @@
+1.CompletableFuture   												(Code With Sunil)     [26-FEB-2026]  ()
+
+
+######################################################################## 1.CompletableFuture  ########################################################
+
+CompletableFuture allows us to write asynchronous and non-blocking code.
+CompletableFuture provides a way to handle the long-running tasks without blocking the main thread.
+While the task is running, the main thread can continue doing other work and it will be notified once the task is completed.
+We can chain multiple tasks, handle exceptions gracefully and even combine results from several asynchronous operations.
+
+CompletableFuture is especially useful when
+1.Multiple tasks need to run asynchronously and combined later.
+2.Long-running tasks can be executed in parallel without blocking the main thread.
+3.Working with I/O operations such as database queries, file handling or API calls.
+
+CompletableFuture provides methods to
+1.Chain multiple tasks.
+2.Combine results from different tasks
+3.Handle the errors gracefully
+
+Advantages :
+------------
+Non-blocking :  Tasks can run in the background without blocking the main thread.
+Flexible : Can be combined with many techniques to build complex workflows.
+Easy concurrency : Makes it easier to write concurrent code without worrying about low-level thread management.
+
+Disadvantages :
+---------------
+Complexity : Code can become hard to understand in large applications.
+Debugging issues : Harder to trace and fix bugs compared to normal synchronous code.
+Overhead : If not used properly, it may cause extra overhead and reduce performance.
+
+There are different ways to create a CompletableFuture in Java.
+1.Using supplyAsync()
+2.Using runAsync()
+3.Using completedFuture()
+
+Common Methods in CompletableFuture are
+1.thenApply()
+2.thenAccept()
+3.thenCompose()
+4.thenCombine()
+
+Exception Handling in CompletableFuture :
+-----------------------------------------
