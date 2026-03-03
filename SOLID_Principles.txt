@@ -1,9 +1,10 @@
-1.SOLID Principles												(javabrahman)		 			[20-SEP-2021]   (Done)
-2.SOLID Design Principle Java								    (Java Techie)        			[01-OCT-2023]   (Done)
-3.SOLID Design Principle Java									(educative)          			[01-OCT-2023]   ()
-4.SOLID Design Principle Java 									(Salitha Chathuranga)			[14-OCT-2023]   ()
+1.SOLID Principles												(javabrahman)		 							[20-SEP-2021]   (Done)
+2.SOLID Design Principle Java								    (Java Techie)        							[01-OCT-2023]   (Done)
+3.Liskov’s Substitution Principle								(Sivaram Rasathurai,Fernando Salas)				[03-MAR-2026]   (Done)
+4.Interface Segregation Principle								(Fernando Salas)								[03-MAR-2026]   ()
+5.Applying SOLID Principles										(Ujjawal Rohra,Ali Zeynalli,Anand)				[03-MAR-2026]   ()
 
-***************************************************** 1.SOLID Principles (javabrahman) *****************************************************
+###################################################  1.SOLID Principles (javabrahman) ############################################################# 
 
 1.Single Responsibility Principle
 2.Open Closed Principle
@@ -39,7 +40,7 @@ We should not force the client to use the methods that they don't require.
 Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
 High level modules should not depend on low level modules but both depends on Abstraction.
 
-***************************************************** 2.SOLID Design Principle Java (Java Techie) *****************************************************
+###################################################  2.SOLID Design Principle Java (Java Techie) ################################################### 
 
 SOLID Principles is an Object oriented approach that can be applied to software structure design.
 These five principles have changed the world of Object Oriented Programming and also changed the way of writing the Software.
@@ -144,7 +145,144 @@ Dependency Inversion Principle states that we must use abstraction instead of co
 High level modules should not depend on low level modules but both depends on Abstraction.
 
 
-################################################### 4.SOLID Design Principle Java  (Salitha Chathuranga) ###################################################
+################################################### 3.Liskov’s Substitution Principle (Sivaram Rasathurai,Fernando Salas) ##############################################
+
+Liskov’s substitution principle states that objects of a derived class should be able to replace objects of the base class without affecting the correctness of the program.
+If a client works with a base type, it must not care about the concrete subtype and behavior must remain valid in all the cases.
+Liskovs substitution principle help us to apply polymorphism without worrying too much.
+
+Liskov’s substitution principle enforces clear and consistent abstractions in our code.
+When we know that any subclass can be used in place of the base class, we can rely on the interface and behaviour provided by the base class.
+This makes the code more understandable and predictable.
+
+Drawbacks of Liskov’s Substitution Principle :
+----------------------------------------------
+1.LSP might encourage us to include methods in the subclasses that we don’t immediately need.
+2.When trying to create a common interface for multiple subclasses, we might end up including methods that are only relevant to certain subclasses.
+This can violate the Interface Segregation Principle which encourages smaller and focused interfaces.
+
+The Wrong Way :
+---------------
+
+	public class FileNotification extends Notification {
+		  @Override
+		  public void send() {
+			throw new UnsupportedOperationException("File notifications not supported");
+		  }
+	}
+	
+If someone expects every Notification to have a working send() method then this breaks that promise.
+
+	public interface Notification {
+	  void send();
+	}
+
+	public class EmailNotification implements Notification {
+	  public void send() {
+		// send via email
+	  }
+	}
+	public class SMSNotification implements Notification {
+	  public void send() {
+		// send via SMS
+	  }
+	}
+	
+❌ Before: LSP Violation (Rectangle / Square)
+
+	public class Rectangle {
+
+		protected int width;
+		protected int height;
+
+		public void setWidth(int width) {
+			this.width = width;
+		}
+
+		public void setHeight(int height) {
+			this.height = height;
+		}
+
+		public int area() {
+			return width * height;
+		}
+	}
+
+
+	public class Square extends Rectangle {
+
+		@Override
+		public void setWidth(int width) {
+			this.width = width;
+			this.height = width;
+		}
+
+		@Override
+		public void setHeight(int height) {
+			this.width = height;
+			this.height = height;
+		}
+	}
+
+
+	public class Client {
+
+		public static void main(String[] args) {
+			Rectangle rectangle = new Square();
+			rectangle.setWidth(5);
+			rectangle.setHeight(10);
+			System.out.println(rectangle.area());
+		}
+	}
+	
+✅ After: Correct Design (Abstraction + Composition)
+
+	public interface Shape {
+		int area();
+	}
+	
+	public class Rectangle implements Shape {
+
+		private final int width;
+		private final int height;
+
+		public Rectangle(int width, int height) {
+			this.width = width;
+			this.height = height;
+		}
+
+		@Override
+		public int area() {
+			return width * height;
+		}
+	}
+	
+	public class Square implements Shape {
+
+		private final int side;
+
+		public Square(int side) {
+			this.side = side;
+		}
+
+		@Override
+		public int area() {
+			return side * side;
+		}
+	}
+	
+	public class Client {
+
+		public static void main(String[] args) {
+			Shape rectangle = new Rectangle(5, 10);
+			Shape square = new Square(5);
+
+			System.out.println(rectangle.area());
+			System.out.println(square.area());
+		}
+	}
+	
+###################################################  4.Interface Segregation Principle (Fernando Salas)	###################################################
 
 
 
