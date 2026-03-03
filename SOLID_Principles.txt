@@ -1,8 +1,8 @@
 1.SOLID Principles												(javabrahman)		 							[20-SEP-2021]   (Done)
 2.SOLID Design Principle Java								    (Java Techie)        							[01-OCT-2023]   (Done)
 3.Liskov’s Substitution Principle								(Sivaram Rasathurai,Fernando Salas)				[03-MAR-2026]   (Done)
-4.Interface Segregation Principle								(Fernando Salas)								[03-MAR-2026]   ()
-5.Applying SOLID Principles										(Ujjawal Rohra,Ali Zeynalli,Anand)				[03-MAR-2026]   ()
+4.Interface Segregation Principle								(Fernando Salas)								[03-MAR-2026]   (Done)
+5.Dependency Inversion Principle								(Fernando Salas)								[03-MAR-2026]   (Done)
 
 ###################################################  1.SOLID Principles (javabrahman) ############################################################# 
 
@@ -37,8 +37,8 @@ We should not force the client to use the methods that they don't require.
 
 5.Dependency Inversion Principle :
 ----------------------------------
-Dependency Inversion Principle states that we must use abstraction instead of concrete Implementations.
-High level modules should not depend on low level modules but both depends on Abstraction.
+High level modules should not depend on low level modules but both should depend on Abstraction.
+Dependency Inversion Principle states that we must use abstraction instead of concrete implementations.
 
 ###################################################  2.SOLID Design Principle Java (Java Techie) ################################################### 
 
@@ -282,7 +282,98 @@ If someone expects every Notification to have a working send() method then this 
 		}
 	}
 	
-###################################################  4.Interface Segregation Principle (Fernando Salas)	###################################################
+################################################### 4.Interface Segregation Principle (Fernando Salas) ####################################################
+
+Interface Segregation principle states that larger interface can be split into smaller ones.
+Because implementation classes use only the methods that are required.
+We should not force the client to use the methods that they don't require.
+
+################################################### 5.Dependency Inversion Principle (Fernando Salas) #####################################################
+
+High level modules should not depend on low level modules but both should depend on Abstraction.
+Dependency Inversion Principle states that we must use abstraction instead of concrete implementations.
+This is naturally supported by Spring Boot through dependency injection.
+
+The Wrong Way :
+---------------
+
+	@Service
+	public class OrderService {
+	  private final MySQLOrderRepository repository = new MySQLOrderRepository();
+	}
+	
+Here service directly depends on a concrete class which makes hard to swap implementation.
+
+The Right Way :
+---------------
+Correct way is to depend on abstraction.
+
+	@Service
+	public class OrderService {
+	  private final OrderRepository orderRepository;
+
+	  public OrderService(OrderRepository orderRepository) {
+		this.orderRepository = orderRepository;
+	  }
+	}
+	
+Now we can replace OrderRepository with any implementation.
+
+❌ Before: No DIP (Direct Dependency) 
+
+	public class EmailService {
+		public void sendEmail(String message) {
+			System.out.println("Sending email: " + message);
+		}
+	}
+
+	public class OrderService {
+
+		private EmailService emailService = new EmailService();
+
+		public void placeOrder() {
+			System.out.println("Order placed");
+			emailService.sendEmail("Order confirmed");
+		}
+
+		public static void main(String[] args) {
+			OrderService service = new OrderService();
+			service.placeOrder();
+		}
+	}
+	
+✅ After: Applying DIP (Abstraction + Injection)
+
+	public interface NotificationService {
+		void send(String message);
+	}
+
+	public class EmailService implements NotificationService {
+		public void send(String message) {
+			System.out.println("Sending email: " + message);
+		}
+	}
+
+	public class OrderService {
+
+		private final NotificationService notificationService;
+
+		public OrderService(NotificationService notificationService) {
+			this.notificationService = notificationService;
+		}
+
+		public void placeOrder() {
+			System.out.println("Order placed");
+			notificationService.send("Order confirmed");
+		}
+
+		public static void main(String[] args) {
+			NotificationService emailService = new EmailService();
+			OrderService service = new OrderService(emailService);
+			service.placeOrder();
+		}
+	}
+	
 
 
 
