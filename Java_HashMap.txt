@@ -41,7 +41,7 @@ How Hashmap calculates the index of a Bucket :
 ----------------------------------------------
 HashMap maintains an Array to store its key value pairs.
 Each Entry stored inside an Array is called Bucket Location.
-Whenever we store or retrieve any key value pair,HashMap calculates the index of the Bucket Location.
+Whenever we store or retrieve any key value pair, HashMap calculates the index of the Bucket Location.
 Key object is used to calculate the index of the Bucket Location.
 Hash value is calculated using hash(key) i.e. private method of HashMap.
 
@@ -63,7 +63,7 @@ What put()does :
 ----------------
 First It checks for the key object.
 If the key is null then then value is stored in Array[0] because hashCode for null is always 0.
-When we try to insert other element,hashValue is calculated by calling hashCode() on the key object.
+When we try to insert other element, hashValue is calculated by calling hashCode() on the key object.
 Now the generated hashValue is used to identify the Bucket Location and stores the Entry object into an Array.
 
 How Collisions are resolved :
@@ -74,7 +74,7 @@ This attribute always points to the next object in the chain.
 This is the exactly the behavior of LinkedList.
 
 Entry objects are stored in the form of LinkedList.
-When an Entry object needs to be stored in a particuar Index,HashMap checks whether there is already Entry present in the index.
+When an Entry object needs to be stored in a particuar Index, HashMap checks whether there is already Entry present in the index.
 If no Entry is present in the index then Entry object is stored in that index.
 
 If there is an Entry object sitting on that calculated index then its next attribute is checked.
@@ -161,13 +161,13 @@ Two different objects can have the same hashcode and the answer is LinkedList.
 Entry class has an attribute "next".
 This always points to the next object in the chain.
 
-whenever an Entry object needs to be stored in a particular index,First it checks If the object is already present or not.
+whenever an Entry object needs to be stored in a particular index, First it checks If the object is already present or not.
 If the object is not present then the Entry object will be stored in that index.
 If the object is present in that calculated index,its next attribute is checked.
 if the next attribute is null then the Entry object will become the next node in the LinkedList.
-If the next variable is not null,procedure is followed until the next variable is null.
+If the next variable is not null, procedure is followed until the next variable is null.
 
-If we try to insert the Entry object with the same key value,after determinig the index position for that Entry object,
+If we try to insert the Entry object with the same key value, after determinig the index position for that Entry object,
 while iterating over LinkedList HashMap will call the equals() on the key object.
 If both the key objects are same then value object will be replaced with the new value.
  
@@ -302,10 +302,10 @@ Always choose the initial capacity and Load Factor such that they minimize the n
 ###################################################################  12.HashSet Internal (javaconceptoftheday)  #########################################################
 
 HashSet internally uses HashMap to store its objects.
-Whenever we create a HashSet object,one HashMap object associated with it is also created.
-HashMap object is used to store the elements we enter in the HashSet.
+Whenever we create a HashSet, HashMap associated with it is also created.
+HashMap is used to store the elements we enter in the HashSet.
 The elements we stored inside the HashSet are stored as Keys and the value associated with those keys will be a Constant.
-Every constructor of HashSet class internally creates one HashMap object.
+Every constructor of HashSet class internally creates one HashMap.
 
 	private transient HashMap<E,Object> map;
 	
@@ -348,9 +348,9 @@ remove() works in the same manner.
 	
 ######################################### 13.HashMap vs HashTable(javaconceptoftheday) ################################################################
 
-1.HashMap is not ThreadSafe where as HashTable is Threadsafe.We can make the HashMap as ThreadSafe by using Collections.synchronizedMap().
+1.HashMap is not ThreadSafe where as HashTable is Threadsafe. We can make the HashMap as ThreadSafe by using Collections.synchronizedMap().
 2.HashMap and HashTable both implements Map Interface but HashMap extends AbstractMap Class where as HashTable extends Dictionary Class.
-3.HashMap allows null key only once with multiple nul values where as HashTable does not allow null keys and null values.
+3.HashMap allows null key only once with multiple null values where as HashTable does not allow null keys and null values.
 
 	Map<String, Integer> hm = new HashMap<>();
 	hm.put(null, 1);        // OK (one null key) //index = hash(key) & (n - 1); --> 0
@@ -367,9 +367,8 @@ HashMap allow multiple null values as Keys must be unique, but values can be dup
 	// ht.put(null, 1);     // NullPointerException
 	// ht.put("a", null);   // NullPointerException
 	
-Hashtable was designed in early Java days for multithreaded environments and
-Every method is synchronized
-Null handling introduces race-condition ambiguity
+Hashtable was designed in early Java days for multithreaded environments and every method present inside HashTable is synchronized.
+Null handling introduces race-condition ambiguity.
 
 	Hashtable.get(key) returns null.
 	
@@ -400,7 +399,7 @@ While thread-1 is still processing
 Here Session s = null in Thread-2.
 But cannot distinguish between:
 ✅ "User never logged in" → redirect is correct
-❌ "User IS logging in right now" → redirect is WRONG
+❌ "User is logging in right now" → redirect is WRONG
 
 Inventory System :
 ------------------
@@ -435,7 +434,8 @@ fail-safe and does not throw any Exception.
 	public class DemoHashMapFailFast {
     public static void main(String[] args) {
         Map<Integer,String> m = new HashMap<>();
-        m.put(1,"one"); m.put(2,"two");
+        m.put(1,"one");
+		m.put(2,"two");
         Iterator<Map.Entry<Integer,String>> it = m.entrySet().iterator();
         // Structural change after iterator is created
         m.put(3,"three");
@@ -447,7 +447,8 @@ fail-safe and does not throw any Exception.
 	public class DemoHashtableFailFastIterator {
     public static void main(String[] args) {
         Hashtable<Integer,String> ht = new Hashtable<>();
-        ht.put(1,"one"); ht.put(2,"two");
+        ht.put(1,"one");
+		ht.put(2,"two");
         Iterator<Map.Entry<Integer,String>> it = ht.entrySet().iterator();
         // Structural change after iterator is created
         ht.put(3,"three");
@@ -459,7 +460,8 @@ fail-safe and does not throw any Exception.
 	public class DemoHashtableEnumeration {
     public static void main(String[] args) {
         Hashtable<Integer,String> ht = new Hashtable<>();
-        ht.put(1,"one"); ht.put(2,"two");
+        ht.put(1,"one"); 
+		ht.put(2,"two");
         Enumeration<Integer> e = ht.keys(); // snapshot-like traversal
         // Modify after Enumeration was obtained
         ht.put(3,"three");
@@ -473,7 +475,8 @@ fail-safe and does not throw any Exception.
 	public class DemoConcurrentHashMapWeaklyConsistent {
     public static void main(String[] args) {
         ConcurrentHashMap<Integer,String> chm = new ConcurrentHashMap<>();
-        chm.put(1,"one"); chm.put(2,"two");
+        chm.put(1,"one");
+		chm.put(2,"two");
         Iterator<Map.Entry<Integer,String>> it = chm.entrySet().iterator();
         // Concurrent update after iterator creation
         chm.put(3,"three");
@@ -562,8 +565,8 @@ In a non Concurrent Map we can check this via map.contains(Key) but in Concurren
 
 ######################################### 17.HashTable vs ConcurrentHashMap (Medium Chinmay Venkata Sabbam) #############################################
 
-Eventhough both HashTable and ConcurrentHashMap are ThreadSafe,HashTable has the poor performance in Multi Threaded Environment.
-In case of HashTable If one Thread is performing any kind of Operation,the Other Thread has to wait until the completion of the Thread.
+Eventhough both HashTable and ConcurrentHashMap are ThreadSafe, HashTable has the poor performance in Multi Threaded Environment.
+In case of HashTable If one Thread is performing any kind of Operation, the other Thread has to wait until the completion of the Thread,
 as the HashTable acquires the lock on complete Object.
 To overcome this issue in the HashTable Java introduces ConcurrentHashMap.
 

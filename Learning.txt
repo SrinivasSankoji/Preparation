@@ -2026,7 +2026,7 @@ Store owner info securely and maintain service logs ()
 
 ----------------------------------------- Febraury 2026  ---------------------------------------------------
 
-MultiThreading Basics and Advanced Revision ()
+MultiThreading Basics and Advanced Revision (Done)
 MicroServices Resilience ()
 SAGA ()
 Spring Boot Revise ()
@@ -2040,13 +2040,10 @@ Jave Memory Model Revise ()
 Garbage Collector Revise ()
 Heap Memory Revise ()
 Metaspace Revise ()
+Kafka LimeGuru Revise (Done)
 
 Parking lot System Design ()
 Spring Boot Basics ()
-Spring Security ()
-JWT ()
-Hibernate Basics and Advanced ()
-Spring Data JPA ()
 Garbage Collector ()
 Actuator ()
 Git Basics ()
@@ -2054,13 +2051,24 @@ Git Commands ()
 
 ----------------------------------------- March 2026  ---------------------------------------------------
 
+Collections Revise ()
+Comparable and Comparator ()
+Collections Programs ()
+String Revise ()
+String Programs ()
+Leetcode basic Programs ()
+
 Hibernate basics and advanceed ()
 Sprig Data JPA ()
 Hibernate Caching with Scenarios ()
 Joins in SQL ()
 
-Spring Security ()
+Spring Security EmbarkX ()
+Spring Security Java Brains ()
+Spring Security SergeyTech ()
 JWT ()
 
-Kafka LimeGuru Revise ()
 Kafka Idempotent Revise ()
+Kafka Partitions ()
+SOLID Prnciples ()
+ACID vs BASE ()

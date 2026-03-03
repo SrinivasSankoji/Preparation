@@ -249,12 +249,12 @@ Each time an element is added or removed from the Collection counter gets increm
 While iterating modCount is compared with its initial value and if there is any difference then it throws an Exception.
 Fail-fast iterators immideately throws ConcurrentModificationException if there is a structural modification of the Collection.
 Structural modification means adding or removing any element from the Collection while a Thread is iterating over that Collection.
-Iterator on ArrayList,HashMap are examples of fail-fast Iterator.
+Iterator on ArrayList,HashMap are fail-fast Iterator.
 
 Fail-safe iterator does not throw any Exception if the Collection is structurally modified while iterating over it.
 Because they operate on the clone of the Collection and not on the Original Collection.
 This is the reason they are called as Fail-safe iterators.
-Iterator on CopyOnWriteArrayList,ConcurrentHashMap class are examples of Fail-safe iterator.
+Iterator on CopyOnWriteArrayList,ConcurrentHashMap are Fail-safe iterator.
 
 The disadvantage of Fail-safe iterator are
 It does not gauranteed to return the updated data from the Collection as it is working on the clone instead of actual Collection.

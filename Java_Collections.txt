@@ -11,14 +11,14 @@
 
 ***************************************************************   1.Limitation of Arrays	*****************************************************
 
-An Array is a data structure that can be used to store collection of elements of the same type.
+An Array is a data structure that can be used to store elements of the same type.
 Each element in an Array is identified by an index which starts from 0 to n-1 where n is size of an Array.
 
   int[] numbers;
   String[] names;
 
 Main Limitation of Arrays are 
-1.Arrays are fixed in size.once we create an Array there is no chance of increasing or decreasing its size based on our requirement.
+1.Arrays are fixed in size. Once we create an Array there is no chance of increasing or decreasing its size based on our requirement.
 2.Arrays can hold only Homogenous elements.
 
 		Student[] student=new Student[10];
@@ -33,7 +33,7 @@ We can resolve the above problem by using Object Array but at the time of retrie
 		object[2]="Bhaumik";
 		
 By using Object Array we can add hetergogenous elements.
-3.For Arrays there is no underlying Data Structure i.e For each and every requirement we have to write the code explicitly. 
+3.For Arrays there is no underlying Data Structure i.e. For each and every requirement we have to write the code explicitly. 
 There is no default readymade support like sorting,searching etc.
 4.We cannot represent the Array elements in sorting order by default.
 5.we cannot prevent duplicate elements in Arrays.
@@ -219,7 +219,7 @@ When ever Vector reaches its maximum capacity,new Vector object will be created 
 	
 Stack :
 -------
-Stack is the child class of Vector and contains only one Constructor.
+Stack is the child class of Vector and it contains only one Constructor.
 
 	Stack stack=new Stack();
 	
