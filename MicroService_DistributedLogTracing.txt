@@ -1,13 +1,15 @@
 1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)     				[31-JUL-2020]  (Done)
 2.Tracing in Distributed Systems with Spring Cloud Sleuth					(reflectoring)					[13-AUG-2020]  (Done)
 3.MicroServices | Distributed Logging & Tracing								(Byte Programming)				[17-JUL-2020]  ()
-4.																			(Green Learner)					[13-AUG-2020]  ()
-5.Logs Monitoring in Microservices using ELK								(Medium)						[13-AUG-2020]  ()
-6.Centralized logging with the ELK											(callistaenterprise)			[13-AUG-2020]  ()
+4.Logs Monitoring in Microservices using ELK								(Medium)						[13-AUG-2020]  ()
+5.Centralized logging with the ELK											(callistaenterprise)			[13-AUG-2020]  ()
+6.Why Trace ID and Span ID Matter											(Adet)							[07-MAR-2026]  (Done)
+7.Understanding MDC															(Arvind Kumar)					[07-MAR-2026]  (Done)
+8.Correlation ID															(Anil Goyal)					[07-MAR-2026]  ()
+9.Distributed Tracing Pattern												(Manikumar Thati)				[07-MAR-2026]  ()
 
 
-
-**********************************  1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin     (Java Techie)  **********************************************
+################################## 1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin (Java Techie)  ##############################################
 
 We need to add the Configuration to push the tracing details to the Zipkin Server.
 Define the AlwaysSampler in the Configuration.
@@ -20,7 +22,7 @@ Define the AlwaysSampler in the Configuration.
 	
 If we call the Rest API directly then both Trace Id and Sapn Id will be the same.
 
-********************************** 2.Tracing in Distributed Systems with Spring Cloud Sleuth (reflectoring Techie)  ****************************************************
+################################## 2.Tracing in Distributed Systems with Spring Cloud Sleuth (reflectoring Techie)  ####################################################
 
 If any error occurs in the upstream service,upstream service will probably log the error.
 Since the downstream service recieves the error response,it will also log the error.
@@ -116,10 +118,227 @@ The parameter includeFullMDC includes all the MDC Fields (including traceId) as 
 so that the Log Server can store and index them in a structured Manner.
 
  
-**********************************  5.Logs Monitoring in Microservices using ELK (Medium)  ********************************************************************
+##################################  4.Logs Monitoring in Microservices using ELK (Medium)  ####################################################################
 
 Log Management plays a very important role when we encounter an error in the Application.
 If we don't manage the logs,it will be difficult in an application especially in Microservices to find the error and Fix it.
+
+#################################################### 6.Why Trace ID and Span ID Matter (Adet) #################################################################
+
+When Microservices communicates each other, logs are scattered everywhere and we end up jumping from one log file to another hoping to find the root cause.
+Building or maintaining microservices with proper tracing is not optional and is mandatory.
+
+Trace ID :
+----------
+Trace ID is the unique identifier for the entire request journey.
+One request → one trace ID → shared across all services.
+
+Span ID :
+---------
+Span ID represents a specific unit of work within that trace.
+Each service may generate multiple spans as the request gets processed.
+
+With both in place, we can see the entire flow and understand exactly where it slowed down or failed.
+
+These are so important because when something breaks in production then
+1.We want to know which service caused the problem.
+2.We want to know how long each internal call took.
+3.We want to follow the request from Service A → Service B → Service C easily.
+
+The easiest way to add Trace ID and Span ID in Spring Boot is to use Micrometer Tracing with Brave.
+Spring Boot already provides built-in support, so enabling tracing is straightforward.
+
+	<dependencies>
+		  <dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-actuator</artifactId>
+		  </dependency>
+		  <dependency>
+		   <groupId>io.micrometer</groupId>
+		   <artifactId>micrometer-tracing-bridge-brave</artifactId>
+		  </dependency>
+	</dependencies>
+	
+	@RestController
+	@RequestMapping("/v1")
+	public class Controller {
+
+		private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+
+		private final Service service;
+
+		public Controller(Service service) {
+			this.service = service;
+		}
+
+		@PostMapping
+		public ResponseEntity<Void> save() {
+			LOGGER.info("controller for saving request triggered...");
+			service.save();
+			return ResponseEntity.ok().build();
+		}
+
+		@GetMapping
+		public String get() {
+			LOGGER.info("controller for get data request triggered...");
+			return service.get();
+		}
+	}
+
+	@Component
+	public class Service {
+
+		private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
+
+		private final Repository repository;
+
+		public Service(Repository repository) {
+			this.repository = repository;
+		}
+
+		public void save() {
+			LOGGER.info("inserting data...");
+			repository.insert();
+		}
+
+		public String get() {
+			LOGGER.info("getting data from db");
+			return repository.select();
+		}
+	}
+	
+	@Component
+	public class Repository {
+
+		private static final Logger LOGGER = LoggerFactory.getLogger(Repository.class);
+
+		public void insert() {
+			LOGGER.info("data successfully inserted");
+		}
+
+		public String select() {
+			LOGGER.info("get data from db done");
+			return "item";
+		}
+	}
+	
+Trace ID and Span ID may look like small technical details but they make a massive difference when we are dealing with microservices.
+
+#################################################### 7.Understanding MDC (Arvind Kumar) ####################################################
+
+In Microservices-based architecture, logging plays a crucial role in monitoring, debugging and troubleshooting applications.
+Multiple services handling various parts of a request, tracking a specific request’s flow becomes challenging.
+This is where MDC comes into picture by enabling structured and context-aware logging.
+
+Mapped Diagnostic Context (MDC) is a mechanism provided by SLF4J and Logback that allows developers to store contextual information in logs.
+It works by associating contextual data like user ID, request ID or session ID with the current thread, making it accessible to all log statements within that thread.
+MDC is commonly used in multi-threaded applications and distributed systems where tracking logs based on a request or user action is necessary.
+
+	public class MdcExample {
+		private static final Logger logger = LoggerFactory.getLogger(MdcExample.class);
+		public static void main(String[] args) {
+			MDC.put("userId", "12345");
+			logger.info("User action performed.");
+			MDC.clear();
+		}
+	}
+	
+	INFO [main] [userId=12345] - User action performed.
+	
+Request Tracing Across Multiple Services :
+------------------------------------------
+In microservices, an incoming request may travel through multiple services.
+MDC allows attaching a unique trace ID or correlation ID to each request, helping developers track its journey across logs.
+
+	@Component
+	public class MdcFilter extends OncePerRequestFilter {
+		@Override
+		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+				throws ServletException, IOException {
+			String traceId = UUID.randomUUID().toString();
+			MDC.put("traceId", traceId);
+			try {
+				filterChain.doFilter(request, response);
+			} finally {
+				MDC.clear();
+			}
+		}
+	}
+	
+Debugging and Log Enrichment :
+------------------------------
+MDC allows logs to be enriched with additional details like user ID, session ID and API name which will make debugging easier.
+
+	INFO [http-nio-8080-exec-2] [traceId=abc123 userId=5678] - User logged in.
+	
+Security and Compliance Logging :
+---------------------------------
+In regulated environments, logging user activity is crucial.
+MDC ensures logs capture necessary identifiers for audit purposes.
+
+Common Issues with MDC :
+------------------------
+1.MDC Context Leakage in Thread Pools
+2.MDC Not Propagating to Async Threads
+3.MDC and Reactive Programming
+
+1.MDC Context Leakage in Thread Pools :
+---------------------------------------
+Since thread pools reuse threads, MDC values set in one request may leak into another request if not properly cleared.
+✅ Solution: Always call MDC.clear() in finally blocks after processing each request.
+
+2.MDC Not Propagating to Async Threads :
+----------------------------------------
+MDC data does not automatically transfer to new threads created in @Async or CompletableFuture.
+✅ Solution: Manually propagate MDC using MDC.getCopyOfContextMap().
+
+	CompletableFuture.runAsync(() -> {
+		MDC.setContextMap(parentMdcContext);
+		logger.info("Processing async request");
+		MDC.clear();
+	});
+	
+3.MDC and Reactive Programming :
+--------------------------------
+Since WebFlux is non-blocking, MDC is not available across reactive contexts.
+✅ Solution: Use Reactor Context instead.
+
+	Mono<Void> logWithContext(Mono<Void> mono) {
+		return mono.contextWrite(ctx -> ctx.put("userId", "12345"))
+			.doOnSuccess(unused -> log.info("User action in reactive flow."));
+	}
+
+Alternatives to MDC :
+---------------------
+Some logging frameworks provide built-in context management that handles MDC-like behavior but avoids thread-local issues.
+For better observability, use OpenTelemetry or Zipkin to propagate trace IDs across microservices instead of relying solely on MDC.
+Instead of using MDC, pass contextual information explicitly.
+
+	logger.info("User {} performed action on order {}", userId, orderId);
+
+MDC Usage :
+-----------
+MDC is powerful for structured logging and tracing in monolithic and early-stage microservices applications.
+However, in modern cloud-native applications, prefer distributed tracing (OpenTelemetry, Jaeger, Zipkin) for better cross-service correlation.
+Always ensure MDC values are cleared properly to prevent leakage in thread pools.
+
+#################################################################### 8.Correlation ID (Anil Goyal) #####################################################################
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
