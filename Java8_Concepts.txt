@@ -999,21 +999,10 @@ We can also have Comparator.nullsFirst(String::compareTo) and Comparator.nullsLa
 	
 *****************************************************  17.Function package (javabrahman)  *******************************************************************
 
-For common use cases where Lambda Expression or a Method Reference are needed, Functions are generally assigned as a target type.
 java.util.function package provides a set of reusable Functional interfaces which can be used by the programmer instead of creating new Functional interfaces.
-
-Consider the scenario where we need a function that accepts an argument and returns boolean.
-
-	public interface Predicate<T>
-	{
-		boolean test(T t);
-	}
-	
-Then function descriptor would 	
-
-	(T) -> boolean
-	
-where T is the parameter and boolean is the return type.
+Functional Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
+When you write a lambda expression or a method reference in Java, we must assign it to some functional interface.
+That functional interface is called the target type.
 
 Function :
 ----------
@@ -1025,32 +1014,9 @@ Function Interface definition would be
 		public R apply(T parameter)
 	}
 	
-Function Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
-
 	Function<Integer, Integer> sum = (value -> value + value);
-
-	public class PredefinedFunctionDemo {
-	static Function<Integer, Integer> sum = (value -> value + value);
-	static Predicate<String> nullCheck = (value -> value != null && value != "");
-	static Consumer<String> display = (value -> System.out.println(value));
-	static Supplier<String> fetch = () -> "Get the Value from Supplier";
-
-	public static void main(String[] args) {
-		PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
-
-		// Calling Function Interface
-		System.out.println(demo.sum.apply(23));
-
-		// Calling Predicate Interface
-		System.out.println(demo.nullCheck.test(""));
-
-		// Calling Consumer Interface
-		demo.display.accept("Srinivas Sankoji");
-
-		// Calling Supplier Interface
-		System.out.println(demo.fetch.get());
-	}
-	}
+	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+	System.out.println(demo.sum.apply(23));
 
 Predicate :
 -----------
@@ -1064,6 +1030,11 @@ Predicate definition would be
 	
 	boolean result = PredicateInterfaceDemo.nullCheck.test("");
     System.out.println(result);
+	
+Note :
+------
+Predicate only checks the condition and always returns a boolean.
+Because the return type is always boolean, Java does not need a second type parameter.
 	
 Consumer :
 ----------
@@ -1081,7 +1052,32 @@ Supplier is a fucntion that does not take any argument and returns the result.
 	PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
 	System.out.println(demo.fetch.get());
 	
-	
+Example :
+---------
+
+	public class PredefinedFunctionDemo {
+		 Function<Integer, Integer> sum = (value -> value + value);
+		 Predicate<String> nullCheck = (value -> value != null && value != "");
+		 Consumer<String> display = (value -> System.out.println(value));
+		 Supplier<String> fetch = () -> "Get the Value from Supplier";
+
+		public static void main(String[] args) {
+			PredefinedFunctionDemo demo = new PredefinedFunctionDemo();
+
+			// Calling Function Interface
+			System.out.println(demo.sum.apply(23));
+
+			// Calling Predicate Interface
+			System.out.println(demo.nullCheck.test(""));
+
+			// Calling Consumer Interface
+			demo.display.accept("Srinivas Sankoji");
+
+			// Calling Supplier Interface
+			System.out.println(demo.fetch.get());
+		}
+	}
+		
 *****************************************************  18.Base64 Encode Decode  ******************************************************************
 
                                                                 

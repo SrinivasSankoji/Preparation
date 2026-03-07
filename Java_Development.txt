@@ -18,6 +18,7 @@
 18.Garbage Collector ()
 19.Heap Memory ()
 20.Metaspace ()
+21.Is Java Pass-By-Reference														   (Sivaram Rasathurai) [04-MAR-2026]  (Done)
 
 
 #############################################################  11.Classpath  ###################################################################################
@@ -272,3 +273,48 @@ Both newInstance() are Reflective ways to create an Object.
 	}
 
 ############################################### 19.Class Loaders #######################################################################
+
+
+
+############################################### 21.Is Java Pass-By-Reference (Sivaram Rasathurai) ###############################################
+
+In case of Pass-By-Value we pass a copy of a value to the method.
+If the method changes the value inside the method, the original value doesn’t change.
+
+	public class Main{
+		public static void main(String[] args) {
+			int a = 5;
+			modifyNumber(a);
+			System.out.println(a); // Output: 5
+		}
+
+		public static void modifyNumber(int x) {
+			x = 10; // Changes only the copy
+		}
+	}
+	
+In case of Pass-by-Reference, we pass a copy of a reference to the method.
+If the method changes the object’s property inside the method, it modifies the original object's property.
+
+	class Person {
+    String name;
+	}
+
+	public static void main(String[] args) {
+		Person p = new Person();
+		p.name = "Siva";
+		changeName(p);
+		System.out.println(p.name); // Output: Ram
+	}
+
+	public static void changeName(Person p) {
+		p.name = "Ram"; // Changes original object's property
+	}
+
+Here we are assuming pass-by-reference but it is Pass-By-Value.
+If we assign a new object, it doesn’t change the original because the reference itself is passed by value.
+
+	public static void changeReference(Person p) {
+		p = new Person(); // New object
+		p.name = "Raja"; // This change is not reflected original P 
+	}
