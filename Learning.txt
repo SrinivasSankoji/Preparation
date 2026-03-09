@@ -2084,15 +2084,17 @@ Template Method Design Pattern ()
 Parking lot System Design ()
 
 Immutable Object ()
-ConcurrentHashMap ()
-ExecutorService Revise ()
-CompletableFuture ()
+ConcurrentHashMap Bucket Locking ()
+ExecutorService Revise with cancel task ()
+CompletableFuture revise with examples ()
 ClassLoaders ()
 Map in Java8 ()
-Optional Class ()
-Method Reference ()
+Optional Class revise ()
+Method Reference recvise ()
+Functional Interfaces ()
 reduce ()
 peek ()
+Pass-By-Value revise ()
 
 
 

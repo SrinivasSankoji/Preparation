@@ -5,8 +5,9 @@
 5.Centralized logging with the ELK											(callistaenterprise)			[13-AUG-2020]  ()
 6.Why Trace ID and Span ID Matter											(Adet)							[07-MAR-2026]  (Done)
 7.Understanding MDC															(Arvind Kumar)					[07-MAR-2026]  (Done)
-8.Correlation ID															(Anil Goyal)					[07-MAR-2026]  ()
-9.Distributed Tracing Pattern												(Manikumar Thati)				[07-MAR-2026]  ()
+8.Correlation ID															(Anil Goyal)					[08-MAR-2026]  ()
+9.MDC Implementation														(ChatGPT)						[07-MAR-2026]  (Done)
+9.Open Telemetry Implementation												(ChatGPT)						[08-MAR-2026]  ()
 
 
 ################################## 1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin (Java Techie)  ##############################################
@@ -224,6 +225,30 @@ Spring Boot already provides built-in support, so enabling tracing is straightfo
 	
 Trace ID and Span ID may look like small technical details but they make a massive difference when we are dealing with microservices.
 
+Useful Technical Parameters :
+-----------------------------
+parentSpanId
+correlationId
+requestId
+sampled
+serviceName
+method
+path
+statusCode
+clientIp
+thread
+hostName
+
+Useful Business parameters :
+----------------------------
+tenantId
+customerId
+orderId
+userId
+channel
+partnerId
+sessionId
+
 #################################################### 7.Understanding MDC (Arvind Kumar) ####################################################
 
 In Microservices-based architecture, logging plays a crucial role in monitoring, debugging and troubleshooting applications.
@@ -323,6 +348,12 @@ However, in modern cloud-native applications, prefer distributed tracing (OpenTe
 Always ensure MDC values are cleared properly to prevent leakage in thread pools.
 
 #################################################################### 8.Correlation ID (Anil Goyal) #####################################################################
+
+
+
+#################################################################### 9.MDC Implementation (ChatGPT)	####################################################################
+
+https://github.com/SrinivasSankoji/Distributed-Logging-MDC
 
 	
 

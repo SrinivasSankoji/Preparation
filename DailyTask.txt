@@ -5581,7 +5581,8 @@ Kafka Consumer Revise ()
 
 07-MAR-2026 & 08-MAR-2026 :
 ---------------------------
-Distributed Tracing ()
+Distributed logging Using MDC (Done)
+Distributed logging Using Open Telemetry (Done)
 
 09-MAR-2026 :
 -------------
