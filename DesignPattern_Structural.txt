@@ -1,4 +1,4 @@
-1.Adapter												() 			  												[13-OCT-2023]  ()
+1.Adapter												(Satyendra Jaiswal,Palmurugan C) 			  				[09-MAR-2026]  (Done)
 2.Bridge                                                () 			  												[13-OCT-2023]  ()
 3.Composite                                             (Salitha Chathuranga & Abdulaziz Pulatjonov) 			  	[16-JAN-2024]  (Done)
 4.Decorator                                             (Salitha Chathuranga & java67) 								[14-OCT-2023]  (Done)
@@ -6,6 +6,215 @@
 6.Flyweight                                             (Rajeshvelmani & Abdulaziz Pulatjonov) 			  			[11-NOV-2023]  ()
 7.Proxy                                                 () 			  												[13-OCT-2023]  ()
 
+####################################### 1.Adapter (Satyendra Jaiswal,Palmurugan C) ###################################################################
+
+Adapter Design Pattern is a structural design pattern that allows two incompatible interfaces to work together.
+Adapter acts like a translator between two objects. 
+The client keeps using the interface it already understands while the Adapter converts that call into the format expected by the existing or third-party class.
+Adapter is used when we cannot change the Existing class.
+The Adapter Design Pattern is applicable in scenarios where
+1.We need to use an existing class whose interface is different from the interface expected by the client.
+
+	    Client
+		   |
+		   v
+		Target Interface
+		   |
+		   v
+		Adapter
+		   |
+		   v
+		Adaptee (Existing Class)
+
+Usage :
+-------
+1.We already have a class or third-party library, but its interface does not match what our application expects.
+2.We want to connect legacy code with new code.
+3.We want to avoid changing the client code again and again for each external system.
+
+Problem :
+---------
+Sometimes two classes are useful but they cannot directly work together because their method names, parameters or data formats are different.
+
+Example:
+One system sends XML.
+Other system accepts JSON.
+Both systems are fine but they are incompatible.
+
+Solution :
+----------
+Create an Adapter class.
+This adapter receives the request in the format expected by the client.
+Converts or translates it.
+Calls the actual existing service.
+Returns the result in a usable way.
+So the client talks to the Adapter and the Adapter talks to the real service.
+
+Participants in Adapter Pattern :
+---------------------------------
+1.Target 
+2.Adapter
+3.Adaptee
+
+1.Target :
+----------
+The interface that the client expects to use.
+In simple words Target is the standard format our application already understands.
+The client code is written against this interface.
+In the weather example LegacyWeatherService is the Target because the client or third-party module expects that interface.
+
+2.Adapter :
+-----------
+A class that implements the Target interface and internally uses the Adaptee.
+In simple words Adapter is the translator.
+Adapter accepts the client request in one format and converts it into another format that the adaptee understands.
+
+Main responsibility of Adapter class :
+1.Implements Target
+2.Holds reference of Adaptee.
+3.Converts request.
+4.Delegate calls to Adaptee.
+
+WeatherServiceAdapter is the Adapter.
+It allows code written for LegacyWeatherService work with ModernWeatherService.
+
+3.Adaptee :
+-----------
+Adaptee is the existing class whose interface is incompatible with the client.
+In simple words Adaptee is the actual class we want to use but we cannot use directly.
+
+Adaptee may be:
+1.Legacy code.
+2.Third-party SDK.
+3.External service client.
+4.Newly introduced service with different method signature.
+
+Without Adaptor Design Pattern :
+--------------------------------
+Client expects  
+
+	void getWeather(String city);
+	
+But new service provides
+
+	void fetchWeather(String city, double latitude, double longitude);
+
+Code without Adapter :
+----------------------
+
+	interface LegacyWeatherService {
+		void getWeather(String city);
+	}
+
+	class LegacyWeatherServiceImpl implements LegacyWeatherService {
+		@Override
+		public void getWeather(String city) {
+			System.out.println("Legacy Weather Service: Getting weather for " + city);
+		}
+	}
+
+	class ModernWeatherService {
+		public void fetchWeather(String city, double latitude, double longitude) {
+			System.out.println("Modern Weather Service: Getting weather for " +
+					city + " at latitude " + latitude + " and longitude " + longitude);
+		}
+	}
+
+	public class WeatherClientWithoutAdapter {
+		public static void main(String[] args) {
+			LegacyWeatherService legacy = new LegacyWeatherServiceImpl();
+			legacy.getWeather("New York");
+
+			// direct usage of modern service
+			ModernWeatherService modern = new ModernWeatherService();
+			modern.fetchWeather("San Francisco", 0.0, 0.0);
+
+			// third-party module cannot use legacy abstraction cleanly
+			ThirdPartyModule module = new ThirdPartyModule();
+			module.requestWeather("Los Angeles");
+		}
+	}
+	
+	class ThirdPartyModule {
+		public void requestWeather(String city) {
+			// third-party/client now directly depends on concrete logic
+			ModernWeatherService modernWeatherService = new ModernWeatherService();
+
+			// client itself is forced to know extra parameters
+			modernWeatherService.fetchWeather(city, 0.0, 0.0);
+		}
+	}
+	
+With Adapter Design Pattern :
+-----------------------------
+
+Target (expected by client) :
+-----------------------------
+
+	interface LegacyWeatherService {
+		void getWeather(String city);
+	}
+
+	class LegacyWeatherServiceImpl implements LegacyWeatherService {
+		@Override
+		public void getWeather(String city) {
+			System.out.println("Legacy Weather Service: Getting weather for " + city);
+		}
+	}
+
+Adaptee (Existing incompatible class) :
+---------------------------------------
+
+	class ModernWeatherService {
+		public void fetchWeather(String city, double latitude, double longitude) {
+			System.out.println("Modern Weather Service: Getting weather for " +
+					city + " at latitude " + latitude + " and longitude " + longitude);
+		}
+	}
+
+Adapter :
+---------
+
+	class ModernWeatherServiceAdapter implements LegacyWeatherService {
+
+		private final ModernWeatherService modernWeatherService;
+
+		public ModernWeatherServiceAdapter(ModernWeatherService modernWeatherService) {
+			this.modernWeatherService = modernWeatherService;
+		}
+
+		@Override
+		public void getWeather(String city) {
+			modernWeatherService.fetchWeather(city, 0.0, 0.0);
+		}
+	}
+
+	
+Client :
+--------
+	
+	class ThirdPartyModule {
+		public void requestWeather(LegacyWeatherService service, String city) {
+			service.getWeather(city);
+		}
+	}
+	
+Execution :
+-----------
+	
+	public class WeatherClientWithAdapter {
+		public static void main(String[] args) {
+			LegacyWeatherService legacy = new LegacyWeatherServiceImpl();
+			legacy.getWeather("New York");
+
+			ModernWeatherService modern = new ModernWeatherService();
+			LegacyWeatherService adapter = new ModernWeatherServiceAdapter(modern);
+			adapter.getWeather("San Francisco");
+
+			ThirdPartyModule module = new ThirdPartyModule();
+			module.requestWeather(adapter, "Los Angeles");
+		}
+	}
 
 ####################################### 3.Composite (Salitha Chathuranga & Abdulaziz Pulatjonov) ########################################
 
