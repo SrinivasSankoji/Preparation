@@ -2075,15 +2075,19 @@ SOLID Prnciples (Done)
 ACID vs BASE ()
 CAP Theorem ()
 
+System Design Approach ()
+
 Decorator Design Pattern ()
 Adaptor Design Pattern (Done)
 Strategy Design Pattern ()
 Observer Design Pattern ()
 Template Method Design Pattern ()
+Factory Design Pattern ()
 
 Parking lot System Design ()
 
 Immutable Object ()
+Record Class ()
 ConcurrentHashMap Bucket Locking ()
 ExecutorService Revise with cancel task ()
 CompletableFuture revise with examples ()
@@ -2096,6 +2100,6 @@ reduce ()
 peek ()
 Pass-By-Value revise ()
 ReadWrite Lock ()
-
+COllections Program List ()
 
 

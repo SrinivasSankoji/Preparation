@@ -12,18 +12,17 @@ Adapter Design Pattern is a structural design pattern that allows two incompatib
 Adapter acts like a translator between two objects. 
 The client keeps using the interface it already understands while the Adapter converts that call into the format expected by the existing or third-party class.
 Adapter is used when we cannot change the Existing class.
-The Adapter Design Pattern is applicable in scenarios where
-1.We need to use an existing class whose interface is different from the interface expected by the client.
+The Adapter Design Pattern is applicable in scenarios where we need to use an existing class whose interface is different from the interface expected by the client.
 
-	    Client
+		 Client
 		   |
-		   v
+		   |
 		Target Interface
 		   |
-		   v
+		   |
 		Adapter
 		   |
-		   v
+		   |
 		Adaptee (Existing Class)
 
 Usage :

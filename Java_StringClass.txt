@@ -1,12 +1,12 @@
-1.String Class                                                     [16-DEC-2020]  (Done)
-2.StringBuffer                                                     [16-DEC-2020]  (Done)
-3.StringBuilder                                                    [16-DEC-2020]  (Done)
-4.Method Chaining                                                  [16-DEC-2020]  (Done)
+1.String Class                              (SCJP)         		   [16-DEC-2020]  (Done)
+2.StringBuffer                              (SCJP)         		   [16-DEC-2020]  (Done)
+3.StringBuilder                             (SCJP)                 [16-DEC-2020]  (Done)
+4.Method Chaining                           (SCJP)                 [16-DEC-2020]  (Done)
 5.Why Strings are Immutable in Java 		(digitalocean)		   [29-SEP-2023]  (Done)
-6.Our Own Immutable Class 					(howtodoinjava)        [16-DEC-2023]  ()
-7.Immutable Class in Java					(scientecheasy)		   [29-SEP-2023]  (Done)
+6.Immutable Class in Java					(scientecheasy)		   [29-SEP-2023]  (Done)
+7.Private constructor in Immutable class	(ChatGPT)		   	   [10-MAR-2026]  (Done)
 
-******************************************************** 1.String Class *****************************************************************
+######################################################## 1.String Class #################################################################
 
 Once we create a String object we cannot perform any changes to the existing object.
 If we are trying with those changes a new object will be created and it does not have any reference and is eligible for Garbage Collector.
@@ -191,52 +191,8 @@ If there is no change in the content no new object will be created both in Heap 
 		System.out.println(s1==s2);//true
 		System.out.println(s3==s4);//false
 		
-Creation of our Own Immutable Class :
--------------------------------------
-Once we create a String object we cannot perform any changes in the existing object.If we are trying with those changes a new object will be created .
-If there is no change in the content existing object will be reused.This non changeable behavior is nothing but Immutability.
-
-Rules to create a Immutable Class :
------------------------------------
-1.Declare the Class as final so that it cannot be extended.
-2.Make all the variables as private and final so that direct access is not allowed and cannot perform reassignment for that variable.
-3.Declare the Constructor as public.
-4.Don't provide setter method for variables as t will change the state of the variable.
-5.Declare the Factory method and verify the object has created or not.
-6.use the new operator to create the Object.
-
-final class Immutable {
-	private final int i;
-	public Immutable(int i)
-	{
-		this.i=i;
-	}
-	public Immutable modify(int i)
-	{
-		if (this.i == i) {
-			return this;
-		} else {
-			return new Immutable(i);
-		}
-	}
-	public int getI() {
-		return i;
-	}
-}
-
-public class ImmutableTest {
-	public static void main(String[] args) {
-		Immutable i1=new Immutable(10);
-		Immutable i2=i1.modify(10);
-		Immutable i3=i2.modify(100);
-		System.out.println(i1==i2); //true
-		System.out.println(i2==i3); //false
-	}
-}
-
 final vs Immutability :
 -----------------------
-
 final StringBuffer sb=new StringBuffer("Durga");
 sb.append(" Software");
 System.out.println(sb);
@@ -245,11 +201,7 @@ sb=new StringBuffer("Naresh");  // CTE
 Once we create a StringBuffer object as final we can perform changes in the existing object but we cannot reassign the variable.
 final is applicable for reference variables where as immutability is applicable for objects.
 
-private constructor :
----------------------
-
-
-***************************************************************** 2.StringBuffer ********************************************************
+################################################################# 2.StringBuffer ########################################################
 
 If the content is fixed and won't change frequently we go for String.
 In String for every change a new object will be created.
@@ -259,32 +211,32 @@ All the methods in StringBuffer are synchronized.
 At a time only one Thread is allowed to operate on the object and performance of the system will go down.
 To resolve this problem we go for StringBuilder.
 
-*************************************************************** 3.StringBuilder *********************************************************
+############################################################### 3.StringBuilder #########################################################
 
 The only difference between StringBuffer and StringBuilder is all the methods present in StringBuilder are non synchronized.
 StringBuilder is introduced in Java 1.5.
 
-*************************************************************** 4.Method Chaining *******************************************************
+############################################################### 4.Method Chaining #######################################################
 
 For most of the methods in String,StringBuffer and StringBuilder return type is same.
 Hence after applying method call based on the return type we can apply another method call.
 
-*************************************************************** 5.Why Strings are Immutable in Java (digitalocean) **********************
+############################################################### 5.Why Strings are Immutable in Java (digitalocean) ######################
 
 1.Consider the scenario where we have created a String and the memory is allocated to that String in the Heap Area.
 If there is a change in the existing String,one more String is created in the Heap Area.
 This way lot of memory is occupied in the Heap Area.
 If String is immutable then multiple Strings with the same content can refer to the same String in the pool.
 
-2.If String is not Immutable then it would cause a severe Security threat to an Application.
-Consider the scenario where we want to connect to the Database.
-We provide the Database credentials like username,password,hostname and port details in the form of String.
-Any Hacker could the change the value of the Database details which causes Security issues to an Application.
-
-3.Since String is Immutable it can be safe for MultiThreading.
+2.Since String is Immutable it can be safe for MultiThreading.
 A Single String instance can be shared across multiple Threads.
 This avoids the usage of Synchronization for Thread Safety.
 Strings are implicitly Thread Safe.
+
+3.If String is not Immutable then it would cause a severe Security threat to an Application.
+Consider the scenario where we want to connect to the Database.
+We provide the Database credentials like username,password,hostname and port details in the form of String.
+Any Hacker could the change the value of the Database details which causes Security issues to an Application.
 
 4.String is used in Java Classloader.
 Since String is immutable,it provides the security that correct Class is getting loaded by the Classloader.
@@ -300,7 +252,12 @@ Since String is immutable it ensures that the content remains consistent through
 This makes the String great choice for the keys in the Map and its processing is faster than other HashMap key objects.
 
 
-*************************************************************** 7.Immutable Class in Java (scientecheasy) *******************************
+############################################################### 7.Immutable Class in Java (scientecheasy) ###############################
+
+Creation of our Own Immutable Class :
+-------------------------------------
+Once we create a String object we cannot perform any changes in the existing object.If we are trying with those changes a new object will be created .
+If there is no change in the content existing object will be reused.This non changeable behavior is nothing but Immutability.
 
 An Immutable Class in Java is a Class whose state of an Object cannot be changed or modified once it is created.
 Advantage is that it always remains the same and can be passed in different areas of the program without worrying about its changes.
@@ -308,13 +265,43 @@ Advantage is that it always remains the same and can be passed in different area
 All wrapper Classes in Java like Integer,Long,Short,Byte,Boolean,Float and Double are Immutable Classes.
 String,BigInteger,BigDecimal,CopyOnWriteArrayList and CopyonWriteArraySet are also Immutable Classes.
 
-Steps to create Immutable Class :
----------------------------------
+Rules to create a Immutable Class :
+-----------------------------------
+1.Declare the Class as final so that it cannot be extended.
+2.Make all the variables as private and final so that direct access is not allowed and cannot perform reassignment for that variable.
+3.Initialize fields only once through constructor.
+4.Don't provide setter method for variables as t will change the state of the variable.
+5.If a field refers to a mutable object, perform defensive copying in constructor and getter.
+6.Do not expose internal mutable state directly.
 
+		final class Immutable {
+			private final int i;
+			public Immutable(int i)
+			{
+				this.i=i;
+			}
+			public Immutable modify(int i)
+			{
+				if (this.i == i) {
+					return this;
+				} else {
+					return new Immutable(i);
+				}
+			}
+			public int getI() {
+				return i;
+			}
+		}
 
-
-Example :
----------
+		public class ImmutableTest {
+			public static void main(String[] args) {
+				Immutable i1=new Immutable(10);
+				Immutable i2=i1.modify(10);
+				Immutable i3=i2.modify(100);
+				System.out.println(i1==i2); //true
+				System.out.println(i2==i3); //false
+			}
+		}
 
 		@Getter
 		public final class Student {
@@ -347,6 +334,25 @@ There are no setter methods declared inside the class to change the value of the
 To Break the Immutable Behavior :
 ---------------------------------
 
+		public class School {
+			private String schoolName;
+
+			public School() {
+			}
+
+			public School(String schoolName) {
+				this.schoolName = schoolName;
+			}
+
+			public String getSchoolName() {
+				return schoolName;
+			}
+
+			public void setSchoolName(String schoolName) {
+				this.schoolName = schoolName;
+			}
+		}
+
 		@Getter
 		public final class Student {
 
@@ -360,19 +366,24 @@ To Break the Immutable Behavior :
 				this.rollNo = rollNo;
 				this.school = school;
 			}
+			
+			}
+			
+		public class ImmutableBreakTest {
+		
 			public static void main(String[] args) {
-				School school = new School();
-				school.setSchoolName("Suprabhat Model High School");
-				Student st = new Student("Bhaumik", 7, school);
-				String name = st.getName();
-				int rollNo = st.getRollNo();
-				System.out.println("Name: " +name);
-				System.out.println("Roll no: " +rollNo);
-				System.out.println("School name before modification: " +st.getSchool().getSchoolName());
-
-				// Now, we will attempt to change school name.
-				school.setSchoolName("DPS");
-				System.out.println("School name after modification: " +st.getSchool().getSchoolName());
+			School school = new School("Suprabhat Model High School");
+			Student st = new Student("Bhaumik", 7, school);
+			System.out.println("Before external modification:");
+			System.out.println("Student Name  : " + st.getName());
+			System.out.println("Roll No       : " + st.getRollNo());
+			System.out.println("School Name   : " + st.getSchool().getSchoolName());
+			school.setSchoolName("DPS");
+			System.out.println("\nAfter modifying original school object:");
+			System.out.println("School Name   : " + st.getSchool().getSchoolName());
+			st.getSchool().setSchoolName("Narayana School");
+			System.out.println("\nAfter modifying school object through getter:");
+			System.out.println("School Name   : " + st.getSchool().getSchoolName());
 			}
 		}
 		
@@ -381,28 +392,161 @@ Output :
 Name: Bhaumik
 Roll no: 7
 School name before modification: Suprabhat Model High School
-School name after modification: DPS
+School name after modification: DPS //Now the Student class is no more Immutable
 
-Now the Student class is no more Immutable.
-We have to modify the Student Immutable Class to make it immutable i.e. School Object initialization wll not update the same Object.
+To make the Student class Immutable there are two ways.
+1.To make School also immutable.
+2.Defensive copying may not be needed.
+	
+	public final class School {
+		private final String schoolName;
 
+		public School(String schoolName) {
+			this.schoolName = schoolName;
+		}
 
-	public Student(String name, int rollNo, School school) {
-        this.name = name;
-        this.rollNo = rollNo;
-        this.school = new School();
-        this.school.setSchoolName(school.getSchoolName());
-    }
+		public String getSchoolName() {
+			return schoolName;
+		}
+	}
+
+	public final class StudentImmutable {
+		private final String name;
+		private final int rollNo;
+		private final School school;
+
+		public StudentImmutable(String name, int rollNo, School school) {
+			this.name = name;
+			this.rollNo = rollNo;
+			this.school = new School(school.getSchoolName());
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getRollNo() {
+			return rollNo;
+		}
+
+		public School getSchool() {
+			return new School(school.getSchoolName());
+		}
+	}
+	
+	public class ImmutableResolvedTest {
+		public static void main(String[] args) {
+		School school = new School("Suprabhat Model High School");
+
+		StudentImmutable st = new StudentImmutable("Bhaumik", 7, school);
+
+		System.out.println("Before modification:");
+		System.out.println("Student Name  : " + st.getName());
+		System.out.println("Roll No       : " + st.getRollNo());
+		System.out.println("School Name   : " + st.getSchool().getSchoolName());
+
+		school.setSchoolName("DPS");
+
+		System.out.println("\nAfter modifying original school object:");
+		System.out.println("School Name inside StudentImmutable: " + st.getSchool().getSchoolName());
+
+		School returnedSchool = st.getSchool();
+		returnedSchool.setSchoolName("Narayana School");
+
+		System.out.println("\nAfter modifying getter returned object:");
+		System.out.println("Modified returned object school name: " + returnedSchool.getSchoolName());
+		System.out.println("Actual school name inside StudentImmutable: " + st.getSchool().getSchoolName());
+		}
+	}
 	
 Benefits of using Immutable Class :
 -----------------------------------
-Creating an Immutable Class is easy and understandable.
-Testing an Immutable Class is easy and Simple.
-Since we cannot modify the Object after Creation, an Immutable Class can be used in MultiThreading Environment safely.
-Immutable Object can also be used for Caching Purpose as the State of an Immutable Object cannot be changed.
-Immutable Objects are good for hash keys as their hashCode is cached at the time of creation and 
-does not need to be calculated again and again and also reused for better performance.
+1.Creating an Immutable Class is easy and understandable.
+2.Testing an Immutable Class is easy and Simple.
+3.Since we cannot modify the Object after Creation, an Immutable Class can be used in MultiThreading Environment safely.
+4.Immutable Object can also be used for Caching Purpose as the State of an Immutable Object cannot be changed.
+5.Immutable objects are good as hash keys because their state never changes after creation. Therefore, equals() and hashCode() remain consistent.
+6.In some classes such as String, the hash code can also be cached for performance.
 
+############################################################### 7.Private constructor in Immutable class (ChatGPT) ###############################################################
+
+The private constructor in an Immutable class is mainly used to control object creation and enforce immutability through static factory methods.
+It prevents external classes from creating objects directly using new operator.
+
+	public final class Student {
+
+		private final String name;
+		private final int rollNo;
+
+		private Student(String name, int rollNo) {
+			this.name = name;
+			this.rollNo = rollNo;
+		}
+
+		// static factory method
+		public static Student createStudent(String name, int rollNo) {
+			return new Student(name, rollNo);
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getRollNo() {
+			return rollNo;
+		}
+	}
+	
+	public class Test {
+		public static void main(String[] args) {
+			// Student s = new Student("John",1); ❌ not allowed
+			Student s = Student.createStudent("John",1); // ✔ allowed
+			System.out.println(s.getName());
+		}
+	}
+	
+Example with caching :
+----------------------
+
+	public final class Student {
+
+		private final String name;
+		private final int rollNo;
+
+		private static Map<Integer, Student> cache = new HashMap<>();
+
+		private Student(String name, int rollNo) {
+			this.name = name;
+			this.rollNo = rollNo;
+		}
+
+		public static Student createStudent(String name, int rollNo) {
+
+			if(cache.containsKey(rollNo)) {
+				return cache.get(rollNo);
+			}
+
+			Student student = new Student(name, rollNo);
+			cache.put(rollNo, student);
+			return student;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getRollNo() {
+			return rollNo;
+		}
+	}
+	
+	public class Test {
+		public static void main(String[] args) {
+			Student s1 = Student.createStudent("John", 1);
+			Student s2 = Student.createStudent("John", 1);
+			System.out.println(s1 == s2); // true
+		}
+	}
 
 
 
