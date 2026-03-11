@@ -1,20 +1,214 @@
-1.Creational Design Patterns by Examples									(Dario De Santis Medium) 			  [13-OCT-2023]  ()
-2.Factory																	(Kunal Nalawade & Neha Gupta)		  [06-NOV-2023]  ()
-3.Abstract Factory															()								  	  [14-OCT-2023]  ()
-4.Builder                                                                   (Concept&Coding)					  [05-JUL-2024]  ()
-5.Lazy Initialization                                                       ()								      [14-OCT-2023]  ()
-6.Object Pool                                                               ()								      [14-OCT-2023]  ()
-7.Prototype                                                                 ()								      [14-OCT-2023]  ()
-8.Singleton                                                                 ()								      [14-OCT-2023]  ()
+1.Creational Design Patterns by Examples									(Dario De Santis Medium) 			  			  [13-OCT-2023]  ()
+2.Factory																	(Kunal Nalawade,Dylan Smith,Koushik Das)		  [11-MAR-2026]  (Done)
+3.Abstract Factory															()								  	              [14-OCT-2023]  ()
+4.Builder                                                                   (Concept&Coding)					              [05-JUL-2024]  ()
+5.Lazy Initialization                                                       ()								                  [14-OCT-2023]  ()
+6.Object Pool                                                               ()								                  [14-OCT-2023]  ()
+7.Prototype                                                                 ()								                  [14-OCT-2023]  ()
+8.Singleton                                                                 ()								                  [14-OCT-2023]  ()
 
-################################################### 1.Creational Design Patterns by Examples (Dario De Santis Medium)  ###################################################
+################################################### 1.Creational Design Patterns by Examples (Dario De Santis Medium)  ###################################
 
 https://medium.com/javarevisited/creational-design-patterns-by-examples-67d90c489ba0
 
 
 
-################################################### 2.Factory ###################################################
+################################################### 2.Factory ############################################################################################
 
+Factory Design Pattern is a Creational design pattern which centralizes the object creation instead of creating them directly in client code.
+Instead of creating an using new() operator across the codebase, we delegate the creation logic to a Factory method.
+So the client asks for an object, but does not worry about how the object is created.
+
+Need of Factory method :
+------------------------
+Client code creates objects directly using new operator.
+
+	if (type.equals("Dog")) {
+		animal = new Dog();
+	} else if (type.equals("Cat")) {
+		animal = new Cat();
+	}
+
+Problems with this approach :
+-----------------------------
+1.client code becomes tightly coupled to concrete classes.
+2.Too many if-else or switch conditions.
+3.Object creation logic gets repeated in multiple places.
+4.Difficult to maintain when new types are added.
+5.Violates Open/Closed Principle in many cases because client code keeps changing.
+
+Factory solves this by moving object creation into one place.
+Factory hides object creation logic and returns the required object based on input.
+
+Example 1 :
+-----------
+
+Animal.java :
+-------------
+	abstract class Animal {
+	  abstract void move();
+	  abstract void eat();
+	}
+	
+Dog.java :
+----------
+	class Dog extends Animal {
+	  public void move() {
+		System.out.println("Dog moves");
+	  }
+
+	  public void eat() {
+		System.out.println("Dog eats");
+	  }
+	}
+
+Lion.java :
+-----------
+	class Lion extends Animal {
+	  public void move() {
+		System.out.println("Lion moves");
+	  }
+
+	  public void eat() {
+		System.out.println("Lion eats");
+	  }
+	}
+
+Tiger.java :
+------------
+	class Tiger extends Animal {
+	  public void move() {
+		System.out.println("Tiger moves");
+	  }
+
+	  public void eat() {
+		System.out.println("Tiger eats");
+	  }
+	}
+
+Cat.java :
+----------
+	class Cat extends Animal {
+	  public void move() {
+		System.out.println("Cat moves");
+	  }
+
+	  public void eat() {
+		System.out.println("Cat eats");
+	  }
+	}
+
+There is an user that has an Animal reference variable and wants to initialize it with the type of animal they want.
+
+	String type = userInput();
+	Animal animal;
+	  
+	if(type.equals("Dog"))
+		animal = new Dog();
+	else if(type.equals("Cat"))
+		animal = new Cat();
+	   else if(type.equals("Tiger"))
+		animal = new Tiger();
+	else if(type.equals("Lion"))
+		animal = new Lion();
+
+	animal.move();
+	animal.eat();
+
+The problem with this approach will be when the new animals are continuously getting added or the old ones might removed.
+We need to add more code to the same method that involves taking user input.
+This makes it harder to read and maintain the code.
+This can be resolved by using Factory Design Pattern.
+
+Simple Factory Method :
+-----------------------
+Instead of creating the objects on the client side, create a separate factory method which centralizes the Object creation and instantiation.
+For that, we create a different class AnimalHub that contains the factory method.
+
+	class AnimalFactory {
+	  public Animal getAnimal(String type) {
+        if (type == null || type.isBlank()) {
+            throw new IllegalArgumentException("Animal type cannot be null or blank");
+        }
+        if (type.equalsIgnoreCase("DOG")) {
+            return new Dog();
+        } else if (type.equalsIgnoreCase("CAT")) {
+            return new Cat();
+        } else if (type.equalsIgnoreCase("TIGER")) {
+            return new Tiger();
+        } else if (type.equalsIgnoreCase("LION")) {
+            return new Lion();
+        }
+        throw new IllegalArgumentException("Unknown animal type: " + type);
+    }
+	}
+	
+From the client side we call the factory method.
+
+	public class Client {
+		public static void main(String[] args) {
+			String type = "DOG";
+			AnimalFactory animalFactory = new AnimalFactory();
+			Animal animal = animalFactory.getAnimal(type);
+			animal.move();
+			animal.eat();
+		}
+	}
+	
+Registry Factory Method :
+-------------------------
+
+	public class AnimalFactory {
+		private static final Map<String, Supplier<Animal>> registry = new ConcurrentHashMap<>();
+		static {
+			registry.put("dog", Dog::new);
+			registry.put("cat", Cat::new);
+			registry.put("tiger", Tiger::new);
+			registry.put("lion", Lion::new);
+		}
+
+		public static Animal createAnimal(String type) {
+			if (type == null || type.isBlank()) {
+				throw new IllegalArgumentException("Animal type cannot be null or blank");
+			}
+			Supplier<Animal> supplier = registry.get(type.toLowerCase());
+			if (supplier == null) {
+				throw new IllegalArgumentException("Invalid animal type: " + type);
+			}
+			return supplier.get();
+		}
+		public static void register(String type, Supplier<Animal> supplier) {
+			if (type == null || type.isBlank()) {
+				throw new IllegalArgumentException("Type cannot be null or blank");
+			}
+			Objects.requireNonNull(supplier, "Supplier cannot be null");
+
+			registry.put(type.toLowerCase(), supplier);
+		}
+	}
+	
+From the client side we call the factory method.
+
+		public class AnimalClient {
+		public static void main(String[] args) {
+			Animal animal = AnimalFactory.createAnimal("dog");
+			animal.move();
+			animal.eat();
+		}
+	}
+	
+To add new Animal
+
+	AnimalFactory.register("elephant", Elephant::new);
+	Animal animal = AnimalFactory.createAnimal("elephant");
+	animal.move();
+	animal.eat();
+
+Limitations :
+-------------
+1.The registry itself must be maintained.
+2.If used in multithreaded dynamic registration scenarios then consider ConcurrentHashMap.
+3.If registration must be controlled then do not expose register() openly.
 
 ############################################################### 4.Builder (Concept&Coding) ###############################################################
 
