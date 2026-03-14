@@ -126,74 +126,80 @@ and child class specific methods we cannot call.
 4.Child class reference cannot be used to hold parent class object.
 
 
-Multiple Inheritance :
-----------------------
-Java does not support Multiple Inheritance through class because there may be a chance of ambiguity problem.
-In Java class cannot extend more than one class at a time.
+Multiple Inheritance with Classes :
+-----------------------------------
+Java does not support multiple inheritance using classes because it can lead to the Diamond (Ambiguity) Problem.
+That means a class cannot extend more than one class at the same time.
 
-Class A
-{
-	void m1() {
-        System.out.println("A's m1()");
-    }
-}
+	Class A
+	{
+		void m1() {
+			System.out.println("A's m1()");
+		}
+	}
 
+	Class B 
+	{
+	   void m1() {
+			System.out.println("B's m1()");
+		}
+	}
 
-Class B 
-{
-   void m1() {
-        System.out.println("B's m1()");
-    }
-}
+	Class C extends A,B
+	{
+		C c = new C();
+		c.m1();  // CTE : compiler would not know whether to call  i.e. A.m1()  OR  B.m1()
+	}
 
-Class C extends A,B
-{
-	C c = new C();
-	c.m1();  // Compile Time Error due to ambiguity problem which method it has to call.
-}
+This situation is called the ambiguity problem (also known as the Diamond Problem).
+Therefore Java designers removed multiple inheritance with classes.
 
-But an Interface can extend more than one Interface at a time,Hence Java provides support for Multiple Inheritance through Interface.
+Multiple Inheritance using Interfaces :
+---------------------------------------
+An Interface can extend more than one Interface at a time and a class can implement multiple interfaces.
+Java supports multiple inheritance using interfaces.
 
-Interface A 
-{
-	void m1();
-}
+	Interface A 
+	{
+		void m1();
+	}
 
-Interface B 
-{
-	void m1();
-}
+	Interface B 
+	{
+		void m1();
+	}
 
-Class C implements A,B
-{
-	public void m1() {
-        System.out.println("MyClass's implementation of m1()");
-    }
-}
+	Class C implements A,B
+	{
+		public void m1() {
+			System.out.println("MyClass's implementation of m1()");
+		}
+	}
 
-Because for Interface we need to provide Implementation.
-Here Implementation for A is in Seperate Class and B is in Another Class.
-To the Interface C Only one implementation is enough as all methods in interfaces are abstract by default and single implementation acts for both interfaces.
-There is no chance of ambiguity.
-Eventhough multiple method declarations are present,there should be only one implementation i.e Implementation is unique.
-Hence there is no chance of ambiguity Problem in Interfaces.
+Interfaces normally contain only method declarations and not implementations.
+Here both interfaces only declare the method and the implementing class provides one implementation that satisfies both interfaces.
+
+	interface A → declaration only
+	interface B → declaration only
+	
+So the class implementing them must provide the implementation.
+
+	class C → provides the single implementation
+	
+Therefore c.m1() calls the only implementation provided in class C and there is no ambiguity.
 
 Cyclic Interface :
 ------------------
 Cyclic Inheritance is not allowed in Java.
 
-Class A extends A
-{
+	Class A extends A {
+	}
 
-}
+	Class A extends B {
+	}
 
-Class A extends B
-{
-}
-
-Class B extends A
-{
-}
+	Class B extends A {
+	}
 
 ############################################################# 6.Has a Relationship  #############################################################
 
@@ -789,60 +795,7 @@ Refer Java_Constructor
 
 ################################################################### 18.Singleton Class  ##########################################################################
 
-For any Java Class If we are allowed to create an Object only once,then such class is said to be Singleton Object.
-
-Advantages :
-------------
-Instead of creating the multiple Objects of the same Class create an Object only once and reuse object for every request.
-so that performance and memory utilizations will be improved.
-
-If we want to get the runtime object
-
-	Runtime r=Runtime.getRuntime();
-	
-Using Runtime object we can communicate with JVM.
-Here getRuntime() verifies is there any object is present or not.
-If present reuses the Object otherwise creates the new Runtime object.
-
-Creation of our own Singleton Object :
---------------------------------------
-If we are allowed to create an object using constructor then we can create so many objects.
-Here we are voilating the Singleton nature.
-
-	Runtime r=Runtime.getRuntime();
-	
-Here entire Singleton nature is present inside getRuntime().
-
-Rules for creating Singleton :
-------------------------------
-1.Declare the private static reference variable of the same class.
-2.Declare the private constructor.
-3.Define the static method and verify the object has created or not.
-
-public class SingletonDemo {
-	private static SingletonDemo singleton = null;
-
-	private SingletonDemo() {
-		System.out.println("Private Constructor");
-	}
-	public static SingletonDemo getSingleton() {
-		if (singleton == null) {
-			singleton = new SingletonDemo();
-		}
-		return singleton;
-	}
-	public static void main(String[] args) {
-
-		SingletonDemo demo = singleton.getSingleton();
-		SingletonDemo demo1 = singleton.getSingleton();
-		System.out.println(demo == demo1);
-		System.out.println(demo.equals(demo1));
-	}
-}
-
-Note :
-------
-Without declaring parent class as final we can restrict child class creation by declaring Parent class Constructor as private.
+Refer Java_Singleton
 
 ##################################################################### 19.Typecasting  ######################################################################
 

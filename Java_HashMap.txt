@@ -87,6 +87,18 @@ HashMap calls the equals() on the key object for each Entry.
 All the Entry objects in the LinkedList will have the same hashCode but equals() will test for equality.
 If both key objects are equal then the value object will be replaced.
 
+Inconsistent hashCode :
+-----------------------
+1.If hashCode() returns different hashCode's for the same object then HashMap may fail to locate the key during get() or remove() operations.
+The key might be in one bucket during put() but looked up in a different bucket.
+
+2.If hashCode() returns the same value for different objects then all keys go to the same bucket.
+This will degrade the performance of HashMap from O(1) to O(n) like a Linkedlist.
+
+Inconsistent equals :
+---------------------
+If equals() does not align with hashCode() then HashMap will treat equal objects as distinct keys which leads to duplicate entries.
+
 ################################################ 2.HashMap - Internal  (howtodoinjava)  #############################################
 
 1. Entry class in HashMap :

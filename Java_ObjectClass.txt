@@ -7,7 +7,7 @@
 7.finalize()                                                        [15-DEC-2020]  (Done)
 8.wait(),notify() and notifyAll()                                   [15-DEC-2020]  (Done)
 
-************************************************************* 1.Object Class Introduction  ********************************************
+############################################################# 1.Object Class Introduction  ############################################
 
 In Java we have Several packages like util,sql,io,lang,awt,.net etc.
 Without using java.lang package we cannot write a single program.
@@ -47,7 +47,7 @@ Methods in Object Class :
 10.public final void notify();
 11.public final void notifyAll();
 
-***************************************************************** 2.toString() ***********************************************************************
+################################################################# 2.toString() #######################################################################
 
 public String toString() :
 
@@ -87,7 +87,7 @@ Note :
 In Collection classes,Wrapper classes and String class toString() is overridden for meaningful String representation of an Object.
 It is highly recomended to override toString() in user defined class also.
 
-************************************************************** 3.hashCode()  ***********************************************************************
+############################################################## 3.hashCode()  #######################################################################
 
 public native int hashCode() :
 
@@ -116,7 +116,7 @@ While overriding hashCode() for every object we have to generate a unique number
 	public int hashCode() {
 		int prime = 31;
 		int result = 1;
-		return prime * result + (password == null ? 0 : password.hashCode());
+		return prime # result + (password == null ? 0 : password.hashCode());
 	}
 
 If we generate the same hashcode for every object then search operation is disturbed.
@@ -139,7 +139,7 @@ Note :
 ------
 Whenever object class toString() is called it will internally call hashCode() but whenever we are overriding toString() it will not call hashCode().
 
-***************************************************************** 4.equals()  *****************************************************************
+################################################################# 4.equals()  #################################################################
 
 public booelan equals(Object obj) :
 
@@ -241,7 +241,7 @@ If the Objects are stored based on hashCode,while storing elements we should fol
 Two different objects must be stored in the same bucket i.e hashCode must be same.
 All objects present within the bukcet need not be same.
 
-**************************************************************** 5.clone()  ****************************************************************
+################################################################ 5.clone()  ################################################################
 
 Once we get the object and started performing some operations on the object and because of unwanted operation object got destroyed and it is not recoverable.
 To preserve original state as it is we make an object as Clonable.
@@ -332,9 +332,9 @@ In Deep Cloning,by using clone object reference If we perform any changes to the
 	private Department department;
 
 	//Shallow Cloning
-	/**protected Object clone() throws CloneNotSupportedException {
+	/##protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
-	}**/
+	}##/
 	
 	//Deep Cloning
 	protected Object clone() throws CloneNotSupportedException {
@@ -392,7 +392,7 @@ When we don't know whether we can call the clone() on a particular class or not 
 	Employee cloned=(Employee)original.clone();
 	}
 
-******************************************************************* 6.getClass()  ***************************************************************
+################################################################### 6.getClass()  ###############################################################
 
 public final Class getClass() :
 
@@ -404,14 +404,14 @@ To print the Database connection interface vendor implemented ClassName
 	connection.getClass().getName();
 	
 
-****************************************************************** 7.finalize()  ***************************************************************
+################################################################## 7.finalize()  ###############################################################
 
 protected void finalize() throws Throwable :
 
 Just before destroying an object Garbage Collector always calls finalize() to perform cleanup activities.
 Once finalize() completes the execution then Garbage collector destroys the object automatically.
 
-****************************************************************** 8.wait(),notify() and notifyAll()  ******************************************
+################################################################## 8.wait(),notify() and notifyAll()  ##########################################
 
 Two Threads can communicate with each other by using above methods.
 Inter Thread Communication can be acheived by using these Methods.

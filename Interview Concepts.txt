@@ -2,46 +2,55 @@
 ***************************************** Java Basics  *****************************************
 
 Java Memory Model and Management
+Class Loaders
 OOPS
+Abstraction
+Ploymorphism
+Java Access Modifiers
+Constructors
 Exception Handling
 Lang Package
 Interface and Modifiers
-Java Access Modifiers
 String Class
+Immutable
+Object Class
 Collections
-Generics
-Enum
-Serialization and Externalization
-MultiThreading
-Concurrency
 HashMap Internal 
 Conurrent HashMap Internal
 List Interface
 ArrayList Internal
 CopyOnWriteArrayList
-Singleton 
+Generics
+Enum
 Inner Class
-Immutable
 Object Creation Ways
+Singleton 
+Serialization and Externalization
+MultiThreading Basics
+MultiThreading Advanced
+ExecutorsService
+CompletableFuture
+Concurrency
 Deadlock
 OurOfMemory Error
 Memory Leak
 PermGenSpace
-Constructors 
-Object Class 
-ExecutorsService
-JMS
-DeadLock
 ThreadDump
+JMS
 Asymmetric Encryption
 Encryption vs Hashing
-Class Loaders  
-
+DataTypes
+Development
+Performance
 Java8 Concepts 
-Java8 Comparator 
+Java8 Comparator and Comparable 
 Java8 Stream API 
 Java8 Lambda Java Brains ()
 Java8 Functions
+Functional Interface
+Java 11 Features
+Java 17 Features
+Java 21 Features
 
 ***************************************** Hibernate  *******************************************
 

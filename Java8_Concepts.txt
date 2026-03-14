@@ -107,9 +107,9 @@ Default Method and Multiple Inheritance :
 When we have two interfaces which contains default() with the same signature then Multiple inheritance problem can occur.
 To resolve the issue override the default method in the Implementation class.
 
-Java 8 Multiple Inheritance Conflict Resolution Rules and Diamond Problem (javabrahman) :
------------------------------------------------------------------------------------------
-Java8 resolves the Multiple inheritance by overriding the default() in the Implementation Classes.
+Diamond Problem :
+-----------------
+Java8 resolves the Multiple inheritance by overriding the default() in the implementation Classes.
 Problem is what If the multiple inetrfaces have default methods with same signature then which default method is invoked by the implementation class.
 Java8 designers thought of this conflict and have defined resolution rules for such scenario's.
 
