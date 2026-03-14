@@ -1,0 +1,167 @@
+1.Given a list of integers, find the k most frequent elements											(Anil Goyal)         [14-MAR-2026]	(Done)
+2.Find the second most frequent element                                                                 (Anil Goyal)         [14-MAR-2026]	(Done)
+3.Merge two list into one using flatmap                                                                 (Anil Goyal)         [14-MAR-2026]	(Done)
+4.Find common elements from two lists using streams                                                     (Anil Goyal)         [14-MAR-2026]	(Done)
+5.Convert a list of strings to a map with string lengths as values                                      (Anil Goyal)         [14-MAR-2026]	(Done)
+6.Calculate the sum, product, min and max of all integers in a list                                     (Anil Goyal)         [14-MAR-2026]	(Done)
+7.Filter out non-prime numbers using streams                                                            (Anil Goyal)         [14-MAR-2026]	()
+8.Partition strings by length: short (<5), medium (5-10), long (>10)                                    (Anil Goyal)         [14-MAR-2026]	()
+9.Find repeating characters in a string                                                                 (Anil Goyal)         [14-MAR-2026]	()
+10. Find the first recurring element in a list                                                          (Anil Goyal)         [14-MAR-2026]	()
+11.Find longest common prefix of a list of strings                                                      (Anil Goyal)         [14-MAR-2026]	()
+12.Create a map of initials to concatenated names                                                       (Anil Goyal)         [14-MAR-2026]	()
+13.Find the longest word in a list of strings                                                           (Anil Goyal)         [14-MAR-2026]	()
+14.Find the shortest word in a list of strings                                                          (Anil Goyal)         [14-MAR-2026]	()
+15.Find the average length of strings in a list                                                         (Anil Goyal)         [14-MAR-2026]	()
+16.Find the sum of lengths of all strings in a list                                                     (Anil Goyal)         [14-MAR-2026]	()
+17.Find the count of strings that start with a specific letter                                          (Anil Goyal)         [14-MAR-2026]	()
+18.Find the distinct strings in a list                                                                  (Anil Goyal)         [14-MAR-2026]	()
+19.Find the second longest word in a list of strings                                                    (Anil Goyal)         [14-MAR-2026]	()
+20.Identify anagrams in a list of strings                                                               (Anil Goyal)         [14-MAR-2026]	()
+
+21.Remove consecutive duplicates from a list using streams                                              (Anil Goyal)         [14-MAR-2026]	()
+22.Group words by their length                                                                          (Anil Goyal)         [14-MAR-2026]	()
+23.Partition numbers into even and odd                                                                  (Anil Goyal)         [14-MAR-2026]	()
+24.Group by length and count words in each group                                                        (Anil Goyal)         [14-MAR-2026]	()
+25.Batch process a large stream in fixed-size chunks (e.g., 100 items each)                             (Anil Goyal)         [14-MAR-2026]	()
+26.Create a time-windowed stream from timestamped events                                                (Anil Goyal)         [14-MAR-2026]	()
+27.Partition Strings Based on Uppercase Start                                                           (Anil Goyal)         [14-MAR-2026]	()
+28.Partition Characters into Vowels & Consonants                                                        (Anil Goyal)         [14-MAR-2026]	()
+
+############################################ 1.Given a list of integers, find the k most frequent elements (Anil Goyal) ###################################
+
+	List<Integer> numbers = List.of(1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5);
+	int k = 2;
+	
+K most frequent elements means top most elements which are occured frequently.For example top 2 or top 5.
+
+	 public static void toMostFrequentElements(){
+        List<Integer> numbers = List.of(1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5);
+        int k = 2;
+        numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                /* {
+                  1=3,
+                  2=2,
+                  3=4,
+                  4=1,
+                  5=5
+                }*/
+                .entrySet().stream()
+                /* key = 1, value = 3
+                   key = 2, value = 2
+                   ...
+                */
+                .sorted((e1,e2) -> e2.getValue().compareTo(e1.getValue())) or .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                /*
+                5=5
+                3=4
+                1=3
+                2=2
+                4=1
+                */
+                .limit(k)
+                /*
+                5=5
+                3=4
+                */
+                .forEach(element -> System.out.println(element.getKey() +" appeared "+element.getValue()+ " times"));
+    }
+
+Output :
+--------
+5 appeared 5 times
+3 appeared 4 times
+
+############################################ 2.Find the second most frequent element (Anil Goyal) ##############################################################
+
+	public static void secondMostFrequentElement() {
+        List<Integer> numbers = List.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
+        numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .skip(1)
+                .findFirst()
+                .ifPresent(element -> System.out.println(element.getKey() + " appeared " + element.getValue() + " times"));
+    }
+	
+Output :
+--------
+3 appeared 3 times
+
+############################################ 3.Merge two list into one using flatmap (Anil Goyal) ##############################################################
+
+	public static void mergeTwoLists() {
+        List<Integer> list1 = List.of(1, 2, 3);
+        List<Integer> list2 = List.of(4, 5, 6);
+		
+        List<Integer> integerList = Stream.of(list1, list2)
+		.flatMap(List::stream) or .flatMap(Collection::stream)
+		.toList();
+        System.out.println(integerList);
+        Stream.of(list1, list2).flatMap(List::stream).toList().forEach(System.out::println);
+    }
+	
+Output :
+--------
+[1, 2, 3, 4, 5, 6]
+1
+2
+3
+4
+5
+6
+
+############################################ 4.Find common elements from two lists using streams (Anil Goyal) ###################################################
+
+	 public static void commonElementInTwoLists() {
+        List<Integer> list1 = List.of(1, 2, 3);
+        List<Integer> list2 = List.of(3, 4, 5);
+        list1.stream().filter(list2::contains).forEach(System.out::println);
+    }
+
+Output :
+--------
+3
+
+############################################ 5.Convert a list of strings to a map with string lengths as values (Anil Goyal) #####################################
+
+	List<String> strings = List.of("apple", "banana", "cherry");
+	
+	public static void listOfStringToMapWithValueAsStringLength() {
+        List<String> fruits = List.of("apple", "banana", "cherry", "apple");
+        fruits.stream().collect(Collectors.toMap(Function.identity(), String::length, (fruit1, fruit2) -> fruit2, LinkedHashMap::new))
+                .forEach((key, value) -> System.out.println(key + " " + value));
+    }
+	
+Output :
+--------
+apple 5
+banana 6
+cherry 6
+
+############################################ 6.Calculate the sum, product, min and max of all integers in a list (Anil Goyal) ####################################
+
+	List<Integer> nums = List.of(1, 2, 3, 4);
+	
+	 public static void reduceOperations() {
+        List<Integer> numbers = List.of(1, 2, 3, 4);
+        int result = numbers.stream().reduce(0, Integer::sum);
+        System.out.println("Sum of numbers : " + result);
+        List<String> words = List.of("Java", "Streams", "are", "powerful");
+        System.out.println("String join : " + words.stream().reduce("", String::concat));
+    }
+
+Output :
+--------	
+Sum of numbers : 10
+String join : JavaStreamsarepowerful
+	
+############################################ 7.Filter out non-prime numbers using streams (Anil Goyal) ############################################################
+
+
+
+############################################ 8.Partition strings by length: short (<5), medium (5-10), long (>10) (Anil Goyal) ####################################
+
+	List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+	
+	

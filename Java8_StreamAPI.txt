@@ -16,15 +16,29 @@
 
 ************************************************************ 1.Java 8 Stream  ************************************************************
 
+Java.util.stream has been introduced in Java 8 to perform operations like filter/map/reduce with Collection.
+Stream API allows sequential as well as parallel execution.
+Collection interface has been extended with stream() and paralellStream() default methods to get the stream for sequential and parallel execution.
+
+Stream does not store the Data.
+Stream is not a data structure and it never modifies the underlying data source.
+
 Streams are monads thus playing a big part in bringing Functional Programming to Java.
 Stream represents a sequence of elements and supports different kind of operations to perform computation on those elements.
 Stream operations are either Intermediate or Terminal.
+
+Stream has three Parts 
+1.Data Source 
+2.Zero or More Intermediate Operations and
+3.Zero or More Terminal Operations.
 
 Intermediate operation returns a stream so that we can chain multiple Intermediate operations.
 Important characteristic of Intermediate operation is Laziness.
 An Intermediate operation will only be executed whenever there is a Terminal operation.
 
+Terminal Operation means end of the Stream Life Cycle.
 Terminal operation returns either void or non stream result.
+
 Filter,Map and Sorted are Intermediate operations where as forEach is Terminal Operation.
 
 Most of the Stream operations accept some kind of Lambda Expression as a parameter i.e. Functional Interface specifying the exact behavior of the operation.
@@ -33,7 +47,6 @@ Non interfering means it does not modify the underlying datasource of the stream
 Stateless means it does not depend on any mutable variables.
 
 		List<String> myList=Arrays.asList("a1", "a2", "b1", "c2", "c1");
-		
 		// Creating a Stream from an Array
 		 myList.stream().filter(s -> s.startsWith("a"))
 		 .map(String::toUpperCase)
@@ -186,7 +199,9 @@ List<Integer> nameLengths = names.stream()
     .toList();
 System.out.println(nameLengths);  //"Alice" -> 5, "Bob" -> 3, "Charlie" -> 7
 
-FlatMap is used when each element of the stream produces multiple elements(a collection or stream) and want to flatten them into a single continuous stream.
+FlatMap is used when each element of the stream produces multiple elements i.e. List<List<String>> and want to flatten them into a single continuous stream.
+FlaMap helps us to flatten the dataStructure to simplify further Operations.
+FlatMap can also be used for Asynchronous Operations.
 
 1.Consider the scenario of conevrting List of List to List.
 
@@ -211,33 +226,76 @@ FlatMap is used when each element of the stream produces multiple elements(a col
 
 ************************************************************ 4.Reduce **************************************************************
 
-reduce() is used to combine all the elements of the Stream into a single result with the given operation.
-Because sometimes we don't want only transformation and want a single value out of the stream.
+Reduction operation is an operation that takes multiple elements from a stream and combines them into a single result.
+That single result can be
+1.Number like sum
+2.String
+3.Maximum/Minimum value
+4.Object
+5.Collection like accumulated result.
 
-Java 8 supports 3 different kind of reduce() methods.
+The reduce() method repeatedly applies a function on stream elements to produce a single value.
+
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+	int result = numbers.stream()
+			.reduce(0, (total, element) -> total + element);
+	System.out.println(result);
+	
+Flow :
+------
+Start with identity = 0
+0 + 1 = 1
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+10 + 5 = 15
+15 + 6 = 21
+Final result = 21
+
+Key concepts in reduce are 
+Identity
+Accumulator and 
+Combiner.
+
+Identity    : This is the initial value of the reduction operation and is the default value when the Stream is Empty.
+Accumulator : Accumulator is a function that takes the current partial result and the next stream element and returns the updated partial result.
+			  Accumulator is a Binary Operator i.e. a function with two inputs of same type and one output.
+
+			  (total, element) -> total + element
+			  
+total is the partial result.
+element is the next element in the stream.
 
 reduce(BinaryOperator accumulator) :
 ------------------------------------
 reduce() accepts a Binary Operator i.e. a function with two inputs of same type and one output.
 Returns Optional because the result may be empty.
 
-	Arrays.stream(intArray).reduce((x,y) -> x+y).ifPresent(System.out::println);
+	int[] intArray = {23, 43, 56, 97, 32};
+	Arrays.stream(intArray)
+        .reduce((x, y) -> x + y)
+        .ifPresent(System.out::println);
 
 reduce(T Identity, BinaryOperator<T> accumulator) :
 ---------------------------------------------------
 reduce() accepts both an Identity Value(Starting value or default value) and a Binary Operator.
 Here it won't return optional and returns the result because of default value.
 
-	int sum=0;
-	int[] intArray= {23,43,56,97,32};
-	sum=Arrays.stream(intArray).reduce(100,Integer::sum);
+	int[] intArray = {23, 43, 56, 97, 32};
+	int sum = Arrays.stream(intArray)
+        .reduce(100, Integer::sum);
 	System.out.println(sum);
 
 reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner) :
 ---------------------------------------------------------------------------------------
 reduce() accepts three parameters i.e Identity Operator,Binary Operator and Combiner Type Binary Operator,.
-Here Identity Value type is not restricted to particular Object.
+When a stream is executed in parallel,java runtime split the stream into multiple sub streams.
+In that case we need to use the function to combine the result of sub streams into a single one.
 
+	List<Employee> employees = Arrays.asList(
+    new Employee(1, "Srinivas", 22000.00),
+    new Employee(2, "Nandini", 27000.00));
+	System.out.println(employees.stream().reduce(0.0, (salary,element)->salary+element.getSalary() , Double::sum));
 
 ************************************************************ 5.collectingAndThen(stackabuse) *************************************************************
 

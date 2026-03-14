@@ -2093,10 +2093,9 @@ ExecutorService Revise with cancel task ()
 CompletableFuture revise with examples ()
 ClassLoaders ()
 Map in Java8 ()
-Optional Class revise ()
 Method Reference revise ()
 Functional Interfaces ()
-reduce ()
+reduce (Done)
 peek ()
 LinkedList vs ArrayList ()
 Pass-By-Value revise ()
@@ -2107,18 +2106,19 @@ Why override hashCode() & equals() and its Consequences (Done)
 Pass by value vs pass by reference ()
 Marker interface & purpose ()
 Null & NullPointerException ()
+Optional vs Null Object Pattern ()
 Clone - Shallow vs deep cloning ()
-Singleton Breakage ()
+Singleton Breakage (Done)
+Thread-safe Singleton (Done)
 Multiple inheritance in Java Diamond Problem (Done)
 instanceOf ()
 Method References – types
-Optional class → usage & methods
+Optional class → usage & methods (Done)
 
-Concurrent Accumulators
+Concurrent Accumulators ()
 Load factor in HashMap ()
 String in HashMap vs String in Thread
-LinkedList vs Binary Tree
-Thread-safe Singleton
+LinkedList vs Binary Tree ()
 Has-a relationship
 Purpose of Model class
 Web server vs App server
@@ -2206,14 +2206,14 @@ Iterate Map with for/while ()
 TreeSet with custom object ()
 Employee object with TreeSet ()
 
-Actuator endpointss ()
-Spring Boot profile ()
+Actuator endpoints ()
+Spring Boot profiles ()
 New application type ()
 Run on Tomcat ()
 Maven lifecycle () 
 Package vs Install ()
 Custom Actuator ()
-JSON↔XML API communication ()
+JSON to XML API communication ()
 JSON vs XML ()
 Asymmetric crypto in Java ()
 Symmetric vs Asymmetric ()

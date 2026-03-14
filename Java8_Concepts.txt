@@ -11,7 +11,7 @@
 
 10.Method References                           					(beginnersbook)         [08-SEP-2021]   (Done)
 11.spliterator                                                  (ChatGPT)               [20-NOV-2025]   (Done)
-12.Optional Class												(beginnersbook)         [08-SEP-2021]   (Done)
+12.Optional Class												(beginnersbook,ChatGPT) [08-SEP-2021]   (Done)
 
 13.CopyOnWriteArrayList											(howtodoinjava)         [09-SEP-2021]   (Done)
 14.Sort in Java 8   											(stackabuse)            [07-SEP-2021]	(Done)
@@ -31,7 +31,7 @@
 
 
 
-********************************************  1.For Each Method in Iterable Interface **************************************************************
+############################################  1.For Each Method in Iterable Interface ##############################################################
 
 Enhanced for-each  :
 --------------------
@@ -52,7 +52,7 @@ operations on the variables outside the loop are allowed only if the variables a
 "return" statement doesn't work within the stream.foreach().
 We cannot use return in forEach to break the whole processing the same way you do in a for-each loop.
 
-******************************************** 2. Default and Static Methods in Interface (beginnersbook) ********************************************
+############################################ 2. Default and Static Methods in Interface (beginnersbook) ############################################
 
 Before Java8,Interface can have only abstract Methods i.e. All the Methods in the interface are by default public and abstract.
 It is not possible to add any new functionality to the existing interface without forcing all the implementation classes to implement the interface.
@@ -67,10 +67,10 @@ default methods are declared in the interfaces by using default keyword and can 
    
    interface Printer
    {
-	default void print()
-	{
-		System.out.println("This is Interface Printer");
-	}
+		default void print()
+		{
+			System.out.println("This is Interface Printer");
+		}
    }
    
 static Method :
@@ -84,15 +84,13 @@ To call the static Method we use the interface name.
 	  {
 		System.out.println("This is Interface Scanner");
 	  }
-	  
    }
    
    public class StaticImpl implements StaticInterface{
-
-	public static void main(String[] args) {
-		StaticInterface.staticMethod(); // Calling Static Method
+		public static void main(String[] args) {
+			StaticInterface.staticMethod(); // Calling Static Method
+		}
 	}
-}
    
 Java 8 – Abstract classes vs interfaces :
 -----------------------------------------
@@ -113,97 +111,99 @@ Java8 resolves the Multiple inheritance by overriding the default() in the imple
 Problem is what If the multiple inetrfaces have default methods with same signature then which default method is invoked by the implementation class.
 Java8 designers thought of this conflict and have defined resolution rules for such scenario's.
 
-Rule 1: Class takes higher precedence than interface.
+Rule 1 :
+-------- 
+Class takes higher precedence than interface.
 Any method inherited from class or super class will be invoked before any default Method from Interface.
 
-interface InterfaceX {
-    default void show() {
-        System.out.println("InterfaceX show()");
-    }
-}
+	interface InterfaceX {
+		default void show() {
+			System.out.println("InterfaceX show()");
+		}
+	}
 
-class Parent {
-    public void show() {
-        System.out.println("Parent show()");
-    }
-}
+	class Parent {
+		public void show() {
+			System.out.println("Parent show()");
+		}
+	}
 
-class Child extends Parent implements InterfaceX {
-    // No override here
-    public static void main(String[] args) {
-        Child c = new Child();
-        c.show(); //Parent show()
-    }
-}
+	class Child extends Parent implements InterfaceX {
+		// No override here
+		public static void main(String[] args) {
+			Child c = new Child();
+			c.show(); //Parent show()
+		}
+	}
 
-
-Rule 2:
+Rule 2 :
+--------
 Derived Interfaces or sub Innterfaces takes higher precedence than Interface with higher hierarchy.
 
-interface InterfaceP {
-    default void greet() {
-        System.out.println("Hello from InterfaceP");
-    }
-}
+	interface InterfaceP {
+		default void greet() {
+			System.out.println("Hello from InterfaceP");
+		}
+	}
 
-interface InterfaceC extends InterfaceP {
-    @Override
-    default void greet() {
-        System.out.println("Hello from InterfaceC");
-    }
-}
+	interface InterfaceC extends InterfaceP {
+		@Override
+		default void greet() {
+			System.out.println("Hello from InterfaceC");
+		}
+	}
 
-class Impl implements InterfaceC {
-    public static void main(String[] args) {
-        Impl obj = new Impl();
-        obj.greet();//Hello from InterfaceC
-    }
-}
+	class Impl implements InterfaceC {
+		public static void main(String[] args) {
+			Impl obj = new Impl();
+			obj.greet();//Hello from InterfaceC
+		}
+	}
 
-
-Rule 3:
+Rule 3 :
+--------
 If Rule 1 and Rule 2 are not able to resolve the conflict then implementing Class has to specifically override and provide a method with same Method definition.
 We can invoke the specific implementation in Java8 using 
 
-public interface InterfaceA {
-    default void commonMethod() {
-        System.out.println("InterfaceA's commonMethod");
-    }
-}
+	public interface InterfaceA {
+		default void commonMethod() {
+			System.out.println("InterfaceA's commonMethod");
+		}
+	}
 
-public interface InterfaceB {
-    default void commonMethod() {
-        System.out.println("InterfaceB's commonMethod");
-    }
-}
+	public interface InterfaceB {
+		default void commonMethod() {
+			System.out.println("InterfaceB's commonMethod");
+		}
+	}
 
-public class ImplementationClass implements InterfaceA, InterfaceB {
+	public class ImplementationClass implements InterfaceA, InterfaceB {
 
-	/* Mandatory override to resolve ambiguity */
-    @Override
-    public void commonMethod() {
-        System.out.println("ImplementationClass's commonMethod");
-    }
+		/# Mandatory override to resolve ambiguity #/
+		@Override
+		public void commonMethod() {
+			System.out.println("ImplementationClass's commonMethod");
+		}
 
-    /* Explicitly specify which default method to use */
-    public void callInterfaceADefault() {
-        InterfaceA.super.commonMethod();
-    }
+		/# Explicitly specify which default method to use #/
+		public void callInterfaceADefault() {
+			InterfaceA.super.commonMethod();
+		}
 
-    /* Explicitly specify which default method to use */
-    public void callInterfaceBDefault() {
-        InterfaceB.super.commonMethod();
-    }
+		/# Explicitly specify which default method to use #/
+		public void callInterfaceBDefault() {
+			InterfaceB.super.commonMethod();
+		}
 
-    public static void main(String[] args) {
-        ImplementationClass obj = new ImplementationClass();
-        obj.commonMethod(); // Calls the overridden method in ImplementationClass
-        obj.callInterfaceADefault(); // Calls InterfaceA's default method
-        obj.callInterfaceBDefault(); // Calls InterfaceB's default method
-    }
-}
+		public static void main(String[] args) {
+			ImplementationClass obj = new ImplementationClass();
+			obj.commonMethod(); // Calls the overridden method in ImplementationClass
+			obj.callInterfaceADefault(); // Calls InterfaceA's default method
+			obj.callInterfaceBDefault(); // Calls InterfaceB's default method
+		}
+	}
 
-***************************************** 3.Functional Interface and Lambda Expressions (beginnersbook) ***********************************************
+######################################### 3.Functional Interface and Lambda Expressions (beginnersbook) ###############################################
 
 An Interface with single abstract method and can have any number of default and static Methods is called Functional Interface.
 Since the Functional interface has single abstract method It is also called as SAM interfaces.	
@@ -250,45 +250,7 @@ Lambda Expressions are meant to create Anonymous Classes of Functional Interface
 	AddFunctionalInterface addFunctionalInterface=(a,b) -> a+b;
 	System.out.println(addFunctionalInterface.add(23,15));
 	
-********************************** 4.Stream API for Bulk Data Operations on Collections (beginnersbook) *********************************************
-
-Java.util.stream has been introduced in Java 8 to perform operations like filter/map/reduce with Collection.
-Stream API allows sequential as well as parallel execution.
-Collection interface has been extended with stream() and paralellStream() default methods to get the stream for sequential and parallel execution.
-
-Stream does not store the Data.
-Stream is not a data structure and it never modifies the underlying data source.
-
-java.util.stream supports functional style of operations on the stream of elements like Map,Reduce and so on.
-Stream has three Parts 
-1.Data Source 
-2.Zero or More Intermediate Operations and
-3.Zero or More Terminal Operations.
-
-
-Intermediate operations get the elements one by one and process them.
-All Intermediate Operations are lazy and as a result no operations will be effective until the pipelIne start to work.
-Terminal Operation means end of the Stream Life Cycle.
-
-stream.forEach() is a terminal operation and it loops over the stream of elements by calling the supplied Function.
-After the operation is being performed,stream pipeline is considered to be consumed and no longer Used.
-
-Map produces a new stream after applying a function to each element of the other Stream.
-Here the new stream can be of different Type.
-
-collect() is one of the common way to get the stuff out from the stream once done with the processing.
-findFirst() is used to return the first Object from the Stream other wise it returns null.
-
-If we want to get an Array from the stream of elements we use toArray(Employee[]::new)
-
-FlatMap :
----------
-A Stream can hold complex data structures like List<List<String>>.
-FlaMap helps us to flatten the dataStructure to simplify further Operations.
-FlatMap can also be used for Asynchronous Operations.
-
-	.flatMap(employeeId -> getEmployeeDetails(employeeId))
-	.collect(Collectors.toList());
+################################## 4.Stream API for Bulk Data Operations on Collections (beginnersbook) #############################################
 
 forEach :
 ----------
@@ -330,80 +292,7 @@ Specialized Streams provide the additional Operations as compared to the Standar
 	
 The other specialized operations are sum(),range().
 
-Reduction Operations :
-----------------------
-Reduce Operation combines all the elements of the stream with the given function and returns Single Result.
-
-	T reduce(T identity,BinaryOperator<T> accumulator)
-	
-Key concepts in reduce() are Identity,Accumulator and Combiner.
-Identity : This is the initial value of the reduction operation and is the default value If the Stream is Empty.
-Accumulator : Function that takes two parameters i.e partial result of the reduction operation and the next element of the stream.
-
-	employeeList.stream()
-	.map(Employee::getSalary)
-	.reduce(0.0, Double::sum);
-	
-	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-		int result = numbers.stream()
-				.reduce(0,(total,element)->total+element);
-		System.out.println(result);
-		
-Here (total,element)->total+element is the accumulator since it takes the partial sum of the Integer value and next element of the stream.
-
-Combiner : When a stream is executed in parallel,java runtime split the stream into multiple sub streams.
-In that case we need to use the function to combine the result of sub streams into a single one.
-
-	List<Employee> employees = Arrays.asList(new Employee(1, "Srinivas", 22000.00), new Employee(2, "Nandini", 27000.00));
-	System.out.println(employees.stream()
-	.reduce(0.0, (salary,element)->salary+element.getSalary() , Double::sum));
- 
-
-Advanced collect :
-------------------
-
-partitioningBy :
-----------------
-We can partition a stream into two based on whether the elements satisfy the certain criteria or not.
-
-	List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
-	Map<Boolean,List<Integer>> resultMap=intList.stream().collect(Collectors.partitioningBy(i-> i%2 ==0));
-	resultMap.forEach((key,value)-> System.out.println(key +""+value));
-	 
-groupingBy :
-------------
-groupingBy offers advanced partitioning compared to partitioning.
-we can partition the stream into more than two groups.
-It takes the classification function as parameter and applied to each element of the stream.
-
-	   Map<Character, List<Employee>> groupByAlphabet = empList.stream().collect(
-       Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
-	  
-	   Map<Character, List<Integer>> idGroupedByAlphabet = empList.stream().collect(
-       Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
-       Collectors.mapping(Employee::getId, Collectors.toList())));
-		
-collectors.mapping :
---------------------
- List<String> employeeNames = employeeList
-        .stream()
-        .collect(Collectors.mapping(Employee::getName, Collectors.toList()));
-    System.out.println("List of employee names:" + employeeNames);
-	
-collectingAndThen :
--------------------
-
-Parallel Streams :
-------------------
-
-Infinite Streams :
-------------------
-
-File Operations :
------------------
-
-
-***************************************************** 10.Method References  (beginnersbook) ******************************************************
+##################################################### 10.Method References  (beginnersbook) ######################################################
 
 Method reference is an alternative way of writing Lambda Expression.
 The :: operator is used in Method reference to seperate the class or Object from the Method Name.
@@ -443,7 +332,7 @@ There are four types of Method References.
 
 class MathUtil {
     public static void square() {
-        System.out.println(5 * 5);
+        System.out.println(5 # 5);
     }
 }
 
@@ -541,7 +430,7 @@ public class Test {
     }
 }
 
-***************************************************** 11.spliterator (ChatGPT) ********************************************************************
+##################################################### 11.spliterator (ChatGPT) ####################################################################
 
 Split Iterator stands for Split and Iterator.
 We can think of Split Iterator as the Itearator that will split into multiple parts so that those parts can be processed in paralell.
@@ -562,66 +451,111 @@ Paralell straems require a way to process the data paralelly, thus SplitIterator
 		}
 	}
 
-***************************************************** 12.Optional Class (beginnersbook) ***********************************************************
+##################################################### 12.Optional Class (beginnersbook,ChatGPT) ###########################################################
 
 Optional Class is present in java.util package whch is introduced in Java 8.
-Optional Class is introduced to avoid NPE that we frequently encounter If we do not perform null check in our code.
+Optional Class forces developers to explicitly handle absence of values which will reduce the chance of NPE that we frequently encounter If we do not perform null check in our code.
+Optioal class improoves code readability.
+
+There are 3 ways we create Optional object.
+1.Optional.of()
+2.Optional.ofNullable()
+3.Optional.empty()
+
+Optional.of() :
+---------------
+Used when value must not be null. If null is passed then throws NullPointerException.
+
+	Optional<String> name = Optional.of("Java");
+	Optional.of(null); // throws NullPointerException
 
 ofNullable() :
 --------------
+	String name = null;
+	Optional<String> optionalName = Optional.ofNullable(name);
+	
 ofNullable() returns the non empty Optional If the given Object has the value otherwise returns an empty Optional.
+
+Optional.empty() :
+------------------
+Creates empty Optional.
+
+	Optional<String> empty = Optional.empty();
 
 isPresent() :
 -------------
-we can check whether the Optional value is empty or not by using isPresent().
+isPresent() checks if the value exists.
 
-		//declaring the String Array and not initializing the values.By default it will be null.
-		String[] result=new String[10];
-		//String subResult=result[9].substring(2, 5);
-		//System.out.println(subResult); // It will throw NPE as values are not initialized
-		
-		Optional<String> nullCheck=Optional.ofNullable(result[9]);
-		if(nullCheck.isPresent())
-		{
-			String subResult=result[9].substring(2, 5);
-			System.out.println(subResult);
-		}
-		else
-		{
-			System.out.println("Cannot be NUll");
-		}
+	//declaring the String Array and not initializing the values.By default it will be null.
+	String[] result = new String[10];
+	Optional<String> nullCheck = Optional.ofNullable(result[9]);
+	if (nullCheck.isPresent()) {
+		String subResult = nullCheck.get().substring(2, 5);
+		System.out.println(subResult);
+	} else {
+		System.out.println("Cannot be Null");
+	}
 
 ifPresent() :
 -------------
-There is another method in Optional Class which executes only If the given Optional Object is non empty.
+ifPresent() will be executed only If the value exists i.e. the given Optional Object must be non empty.
 
-		Optional<String> valueOne=Optional.ofNullable("This is Non Empty checked using IfPresent Method");
-		Optional<String> valuetwo=Optional.empty();
-		valueOne.ifPresent(System.out::println); //This is Non Empty checked using IfPresent Method
-		valuetwo.ifPresent(System.out::println); //No Output
+	Optional<String> valueOne=Optional.ofNullable("This is Non Empty checked using IfPresent Method");
+	Optional<String> valuetwo=Optional.empty();
+	valueOne.ifPresent(System.out::println); //This is Non Empty checked using IfPresent Method
+	valuetwo.ifPresent(System.out::println); //No Output
 		
 orElse() and orElseGet() :
 --------------------------
-orElse() and orElseGet() returns the value of the Optional Object If it is non empty.
-If the Object is empty then it returns the default value passed to this method as an argument.
+orElse() and orElseGet() returns the value of the Optional Object if it is non empty else returns the default value passed to this method as an argument.
+In case of orElse() default value is always created where as for orElseGet() default value is created only when needed.
 
-		//Creating Optional object from a String
-        Optional<String> GOT = Optional.of("Game of Thrones");        
-        //Optional.empty() creates an empty Optional object        
-        Optional<String> nothing = Optional.empty();
-        
-        System.out.println(GOT.orElse("Empty Value")); //Game of Thrones
-        System.out.println(nothing.orElse("Empty Value")); //Empty Value
-        
-        System.out.println(GOT.orElseGet(() -> "Empty Value"));  //Game of Thrones
-        System.out.println(nothing.orElseGet(() -> "Empty Value")); //Empty Value
+orElse()     → always creates object
+orElseGet()  → lazy execution
+
+	Optional<String> name = Optional.empty();
+	System.out.println(name.orElseGet(() -> "Generated Value")); //Generated Value
+	
+	Optional<String> name = Optional.empty();
+	System.out.println(name.orElseGet(() -> "Generated Value")); //Generated Value
+		
+orElseThrow() :
+---------------
+Throws exception if value absent.
+
+	Optional<String> name = Optional.empty();
+	String result = name.orElseThrow(() -> new RuntimeException("Value not present"));
 
 Note :
 ------
 We can also use Map and filter with the Optional Class.
+
+	Optional<String> name = Optional.of("java");
+	Optional<String> upper = name.map(String::toUpperCase);
+	System.out.println(upper.get()); //JAVA
+	
 To filter out the null values from the Stream we use Objects::nonNull as Method reference.
 
-***************************************************** 13.CopyOnWriteArrayList *********************************************************************
+	Optional<String> name = Optional.of("Java");
+	Optional<String> result = name.filter(n -> n.startsWith("J"));
+	System.out.println(result.isPresent()); //true
+	
+Best Practices with Optional :
+------------------------------
+✅ public Optional<User> findUserById(Long id);
+❌ public Optional<String> getName(); // for private field
+❌ public void process(Optional<String> input); // Smells like lazy design
+
+❌ Optional.ofNullable(user)
+        .map(User::getAddress)
+        .map(Address::getCity)
+        .ifPresent(city -> logger.info("City: {}", city));
+		
+✅ 	if (user != null && user.getAddress() != null) {
+		String city = user.getAddress().getCity();
+		logger.info("City: {}", city);
+
+##################################################### 13.CopyOnWriteArrayList #####################################################################
 
 CopyOnWriteArrayList is a Thread Safe variant of ArrayList in which all the modifications are done by creating a fresh copy of the underlying Array.
 If we add new element to the CopyOnWriteArrayList, it will create the underlying array and then inserts the new element to the underlying and swaps the reference.
@@ -713,7 +647,7 @@ Note :
 ------
 Shared list/map with frequent updates, then use ConcurrentHashMap, queues.
 
-***************************************************** 14.Sort in Java 8 (stackabuse) **************************************************************
+##################################################### 14.Sort in Java 8 (stackabuse) ##############################################################
 
 Before Java 8 :
 ---------------
@@ -798,14 +732,14 @@ Using stream().sorted() :
 -------------------------
 
 	List<Integer> list1 = Arrays.asList(10, 23, -4, 0, 18);
-	/**
-	 * Sorting using Comparator
-	 */
+	/##
+	 # Sorting using Comparator
+	 #/
 	list1.sort(Comparator.naturalOrder());
 	System.out.println(list1);
-	/**
-	 * Sorting using stream.sorted
-	 */
+	/##
+	 # Sorting using stream.sorted
+	 #/
 	List<Integer> list2 = list1.stream()
 			.sorted(Collections.reverseOrder())
 			.collect(Collectors.toList());
@@ -907,7 +841,7 @@ Sorting Maps using Streams :
 	System.out.println(sortedByValue); // {Bob=75, Alex=85, Chris=90}
 
 
-***************************************************** 15.StringJoiner (beginnersbook) *************************************************************
+##################################################### 15.StringJoiner (beginnersbook) #############################################################
 
 StringJoiner is a class introduced in Java8.
 StringJoiner can be used to join more than one String with the specified delimiter.
@@ -915,9 +849,9 @@ We can also provide prefix and suffix to the given String.
 
 	public class StringJoinerDemo {
 	public static void main(String[] args) {
-		/**
-		 * Joining with Comma Separated Values
-		 */
+		/##
+		 # Joining with Comma Separated Values
+		 #/
 		StringJoiner joiner = new StringJoiner(" ");
 		joiner.add("Srinivas");
 		joiner.add("Chary");
@@ -926,7 +860,7 @@ We can also provide prefix and suffix to the given String.
 		}
 	}
 
-***************************************************** 16.Comparators Java8 (javabrahman) **********************************************************
+##################################################### 16.Comparators Java8 (javabrahman) ##########################################################
 
 Comparator before Java8 has two methods ie compare() and equals().
 Java8 Comparator has now 19 Methods.
@@ -974,30 +908,30 @@ We can also have Comparator.nullsFirst(String::compareTo) and Comparator.nullsLa
 	
 	String[] strArray = { "aman", "suvam", null, "sahil", null };
 	
-	/**
-	 * nullsFirst for primitive Types
-	 */
+	/##
+	 # nullsFirst for primitive Types
+	 #/
 	Arrays.sort(strArray, Comparator.nullsFirst(Comparator.naturalOrder()));
 	Arrays.stream(strArray).forEach(System.out::println);
 	
-	/**
-	 * nullsFirst for Custom Object
-	 */
+	/##
+	 # nullsFirst for Custom Object
+	 #/
 	User u1 = new User("Aaman", 25);
 	User u2 = new User("Joyita", 22);
 	User u3 = new User("Suvam", 28);
 	User u4 = new User("mahafuj", 25);
 
-	System.out.println("******************");
+	System.out.println("##################");
 	List<User> list = Arrays.asList(u1, u2, u3, null, u4);
 	
 	list.sort(Comparator.nullsFirst(Comparator.comparing(User::getName)));
 	list.stream().forEach(System.out::println);
-	System.out.println("******************");
+	System.out.println("##################");
 	Collections.sort(list,Comparator.nullsLast(Comparator.comparing(User::getAge)));
 	list.stream().forEach(System.out::println);
 	
-*****************************************************  17.Function package (javabrahman)  *******************************************************************
+#####################################################  17.Function package (javabrahman)  ###################################################################
 
 java.util.function package provides a set of reusable Functional interfaces which can be used by the programmer instead of creating new Functional interfaces.
 Functional Interface implementation is now inlined in the declaration of same variable rather in seperate Class.
@@ -1078,14 +1012,14 @@ Example :
 		}
 	}
 		
-*****************************************************  18.Base64 Encode Decode  ******************************************************************
+#####################################################  18.Base64 Encode Decode  ##################################################################
 
                                                                 
-*****************************************************  19.Streams (winterbe)  ********************************************************************
+#####################################################  19.Streams (winterbe)  ####################################################################
 
 Done
 
-***************************************************** 20.Map in Java8 (beginnersbook) ************************************************************
+##################################################### 20.Map in Java8 (beginnersbook) ############################################################
 
 1.compute :
 -----------
@@ -1107,9 +1041,9 @@ If the remapping function results null then mapping for the specified key is rem
 		map.compute("Two", (key,value)-> value=value+" Chary");
 		System.out.println(map); //{One=Bhaumik Chary, Two=Aadvik Chary}
 		
-		/**
-		 * Compute to sum the Values
-		 */
+		/##
+		 # Compute to sum the Values
+		 #/
 		Map<String,Integer> map1=new HashMap<>();
 		map1.put("One", 23);
 		map1.put("One", 15);
@@ -1158,9 +1092,9 @@ If the key is not present,It simply outputs the key along with the corresponding
 If the key already holds some value remapping function merges both the old and new value for the given key.
 In case key is null,It always mapped to bucket 0 as hash is not calculated for null keys due to NPE.
 
-		/**
-		 * Merge to sum the Values
-		 */
+		/##
+		 # Merge to sum the Values
+		 #/
 		Map<String,Integer> map1=new HashMap<>();
 		map1.put("One", 22);
 		map1.put("Two", 27);
@@ -1177,5 +1111,5 @@ In case key is null,It always mapped to bucket 0 as hash is not calculated for n
 getOrDefault() of HashMap returns the specified default value If the mapping for the specified key is not found.
 
  
-***************************************************** 21.PermGen () *************************************************************************	 					
+##################################################### 21.PermGen () #########################################################################	 					
 
