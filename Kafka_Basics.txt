@@ -1,11 +1,11 @@
-1.Kafka Consumer Offsets 									(Tech With Aman)	          [17-DEC-2025]  ()
-2.Error Handling in Kafka Producer							(Knowledge Amplifier)	      [17-DEC-2025]  ()
-3.Producer Retries & Idempotent Producer in Kafka   		(Knowledge Amplifier)	      [17-DEC-2025]  ()
-4.Kafka Consumer Lag Analysis	                    		(Knowledge Amplifier)	      [17-DEC-2025]  ()
-5.How to choose the No. of Partitions for a Kafka Topic		(Knowledge Amplifier)	      [17-DEC-2025]  ()
-6.Out of Order Consumer Offset Commit in Kafka				(Knowledge Amplifier)	      [17-DEC-2025]  ()
-7.Kafka don't allow consumers Same Group same partition		(Knowledge Amplifier)	      [17-DEC-2025]  ()
-8.Kafka Consumers Deep Dive									(Anil Goyal)	      		  [19-DEC-2025]  (Done)
+1.Kafka Consumer Offsets 															(Tech With Aman)	          [17-DEC-2025]  ()
+2.Error Handling in Kafka Producer													(Knowledge Amplifier)	      [17-DEC-2025]  ()
+3.Producer Retries & Idempotent Producer in Kafka   								(Knowledge Amplifier)	      [17-DEC-2025]  ()
+4.Kafka Consumer Lag Analysis	                    								(Knowledge Amplifier)	      [17-DEC-2025]  ()
+5.How to choose the No. of Partitions for a Kafka Topic								(Knowledge Amplifier)	      [17-DEC-2025]  ()
+6.Out of Order Consumer Offset Commit in Kafka										(Knowledge Amplifier)	      [17-DEC-2025]  ()
+7.Kafka don't allow consumers Same Group same partition								(Knowledge Amplifier)	      [17-DEC-2025]  ()
+8.Kafka Consumers Deep Dive															(Anil Goyal)	      		  [19-DEC-2025]  (Done)
 
 ########################################################### 8.Kafka Consumers Deep Dive	##########################################################################
 
@@ -350,4 +350,9 @@ If queue is full → pause() partitions (still poll for heartbeats)
 Commit offsets after successful processing (batch or checkpoint)
 Idempotent writes + DLT for poison messages
 Monitor: consumer lag, rebalance rate, processing latency, commit failures
+
+
+#################################### 9.How many Partitions can a Topic have and is there a Cluster-Level limit (Arvind Kumar) ###############################################
+
+	
 

@@ -489,20 +489,20 @@ Primary vs Unique key; Joins (2nd section)
 
 Accolite Digital :
 ------------------
-AtomicInteger
-CyclicBarrier
-CQRS
-SOLID
+AtomicInteger ()
+CyclicBarrier ()
+CQRS ()
+SOLID Principles (Done)
 HashMap Java 8 internals
-Collision handling (Done)
+Collision Handling (Done)
 LinkedList vs Binary Tree
-Behavioral patterns
-Decorator
-Microservices architecture
-Transaction propagation levels
-G1 GC
+Behavioral patterns ()
+Decorator ()
+Microservices architecture ()
+Transaction propagation levels ()
+G1 GC ()
 HashMap sort by values (Done)
-Custom Actuator
+Custom Actuator ()
 
 LTTS :
 ------

@@ -1,0 +1,195 @@
+1.How many partitions should a topic have														 (ChatGPT)	          [15-MAR-2026]  (Done)
+2.Add a new Kafka broker does data automatically rebalance										 (ChatGPT)	          [15-MAR-2026]  (Done)
+3.Can two consumers in same group read the same partition										 (ChatGPT)	          [15-MAR-2026]  (Done)
+4.What happens if consumer crashes after processing but before commit							 (ChatGPT)	          [15-MAR-2026]  (Done)
+5.What are exactly-once semantics																 (ChatGPT)	          [15-MAR-2026]  (Done)
+6.How high can offsets go. Do they ever reset.                                                   (ChatGPT)	          [15-MAR-2026]  ()
+7.If we increase partition count in an existing topic, will there be event loss or other issues  (ChatGPT)	          [15-MAR-2026]  ()
+8.How does acks=all work when ISR shrinks                                                        (ChatGPT)	          [15-MAR-2026]  ()
+9.Why is partition.assignment.strategy a list                                                    (ChatGPT)	          [15-MAR-2026]  ()
+10.Rebalancing storms                                                                            (ChatGPT)	          [15-MAR-2026]  ()
+11.Consumer lag                                                                                  (ChatGPT)	          [15-MAR-2026]  ()
+12.Poison messages                                                                               (ChatGPT)	          [15-MAR-2026]  ()
+13.Exactly-once vs idempotency                                                                   (ChatGPT)	          [15-MAR-2026]  ()
+14.Kafka Backpressure                                                                            (ChatGPT)	          [15-MAR-2026]  ()
+
+########################################################### 1.How many partitions should a topic have ###########################################################
+
+Kafka distributes the messages across partitions.
+But we cannot create 10,000 partitions so that Kafka becomes very fast.
+Partitions give parallelism but they also add overhead.
+
+Each partition requires
+1.Log file
+2.leader election
+3.Replica synchronization
+4.Metadata in controller
+5.Network communication
+
+If there are too many partitions then cluster becomes slow.
+
+Scenario 1 :
+------------
+Topic: asset-readings
+Partitions: 4
+Consumers: 4
+
+Then 
+Consumer1 → Partition1
+Consumer2 → Partition2
+Consumer3 → Partition3
+Consumer4 → Partition4
+
+Here the Processing is parallel.
+
+Scenario 2 :
+------------
+Topic: asset-readings
+Partitions = 4
+Consumers = 10
+
+Here only 4 consumers will work and remaining 6 consumers are idle.
+The key rule is 
+
+	Max parallel consumers = number of partitions
+	
+Partitions solves scaling data processing.
+Without partitions 1 consumer processes everything.
+With partitions multiple consumers process in parallel.
+
+########################################################### 2.Add a new Kafka broker does data automatically rebalance (ChatGPT) ##################################
+
+Consider the scenario where we have a Cluster with 3 Brokers.
+If we add one more borker Broker4, Kafka will not move the data automatically.
+Kafka does not automatically rebalance the existing data.
+
+Cluster:
+Broker1
+Broker2
+Broker3
+
+Topic:
+asset-readings (6 partitions)
+Partition0 → Broker1
+Partition1 → Broker1
+Partition2 → Broker2
+Partition3 → Broker2
+Partition4 → Broker3
+Partition5 → Broker3
+
+If we add Broker4,Kafka will not move partitions automatically and all partitions remain where they are.
+Moving partitions means copy TB of data across brokers.
+That can overload the cluster.
+So Kafka leaves this decision to operators.
+
+Solution :
+----------
+Kafka provides partition reassignment tool.
+We manually run 
+
+	kafka-reassign-partitions.sh
+	
+Then partitions can move like
+
+	Partition4 → Broker4
+	Partition5 → Broker4
+	
+reassignment tool gives controlled cluster scaling.
+
+################################################# 3.Can two consumers in same group read the same partition (ChatGPT) ##############################################
+
+Rule :
+------
+1 partition → 1 consumer (in same group)
+
+Topic:
+asset-readings
+Partitions: 4
+
+Consumer group:
+asset-service-group
+
+Consumers:
+Consumer1
+Consumer2
+
+Kafka assigns:
+Consumer1 → Partition0,1
+Consumer2 → Partition2,3
+
+If two consumers read same partition
+duplicates
+ordering broken
+offset confusion
+
+Kafka prevents this.
+
+################################################# 4.What happens if consumer crashes after processing but before commit #############################################
+
+Messages in partition:
+offset 10
+offset 11
+offset 12
+
+Consumer reads:
+offset 10
+
+Then
+1️.save data to database
+2️.consumer crashes
+3️.offset not committed
+
+Kafka thinks offset 10 not processed.
+So when consumer restarts offset 10 is read again.
+The result is duplicate processing.
+
+Kafka prefers duplicate processing instead of data loss.This is called At least once processing.
+Solution is we must design idempotent processing.
+This solves the problem of message lost even if the system crashes.
+
+################################################# 5.What are exactly-once semantics (ChatGPT) #########################################################################
+
+Producer sends message:
+temperature=100
+
+When the Network fails,Producer retries.
+
+Kafka might store:
+temperature=100
+temperature=100
+
+Duplicate messages.
+Kafka introduced Idempotent producers.
+Kafka assigns sequence numbers.
+If producer retries the same message then Kafka ignores the duplicate.
+
+Note :
+------
+Exactly-once works inside Kafka pipelines.
+
+################################################# 6.How high can offsets go. Do they ever reset (ChatGPT) #############################################################
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,18 +5,18 @@
 5.Convert a list of strings to a map with string lengths as values                                      (Anil Goyal)         [14-MAR-2026]	(Done)
 6.Calculate the sum, product, min and max of all integers in a list                                     (Anil Goyal)         [14-MAR-2026]	(Done)
 7.Filter out non-prime numbers using streams                                                            (Anil Goyal)         [14-MAR-2026]	()
-8.Partition strings by length: short (<5), medium (5-10), long (>10)                                    (Anil Goyal)         [14-MAR-2026]	()
-9.Find repeating characters in a string                                                                 (Anil Goyal)         [14-MAR-2026]	()
-10. Find the first recurring element in a list                                                          (Anil Goyal)         [14-MAR-2026]	()
+8.Partition strings by length: short (<5), medium (5-10), long (>10)                                    (Anil Goyal)         [15-MAR-2026]	(Done)
+9.Find repeating characters in a string                                                                 (Anil Goyal)         [15-MAR-2026]	()
+10.Find the first recurring element in a list                                                          	(Anil Goyal)         [14-MAR-2026]	()
 11.Find longest common prefix of a list of strings                                                      (Anil Goyal)         [14-MAR-2026]	()
-12.Create a map of initials to concatenated names                                                       (Anil Goyal)         [14-MAR-2026]	()
-13.Find the longest word in a list of strings                                                           (Anil Goyal)         [14-MAR-2026]	()
-14.Find the shortest word in a list of strings                                                          (Anil Goyal)         [14-MAR-2026]	()
-15.Find the average length of strings in a list                                                         (Anil Goyal)         [14-MAR-2026]	()
-16.Find the sum of lengths of all strings in a list                                                     (Anil Goyal)         [14-MAR-2026]	()
-17.Find the count of strings that start with a specific letter                                          (Anil Goyal)         [14-MAR-2026]	()
-18.Find the distinct strings in a list                                                                  (Anil Goyal)         [14-MAR-2026]	()
-19.Find the second longest word in a list of strings                                                    (Anil Goyal)         [14-MAR-2026]	()
+12.Create a map of initials to concatenated names                                                       (Anil Goyal)         [15-MAR-2026]	(Done)
+13.Find the longest word in a list of strings                                                           (Anil Goyal)         [14-MAR-2026]	(Done)
+14.Find the shortest word in a list of strings                                                          (Anil Goyal)         [14-MAR-2026]	(Done)
+15.Find the average length of strings in a list                                                         (Anil Goyal)         [14-MAR-2026]	(Done)
+16.Find the sum of lengths of all strings in a list                                                     (Anil Goyal)         [14-MAR-2026]	(Done)
+17.Find the count of strings that start with a specific letter                                          (Anil Goyal)         [14-MAR-2026]	(Done)
+18.Find the distinct strings in a list                                                                  (Anil Goyal)         [14-MAR-2026]	(Done)
+19.Find the second longest word in a list of strings                                                    (Anil Goyal)         [14-MAR-2026]	(Done)
 20.Identify anagrams in a list of strings                                                               (Anil Goyal)         [14-MAR-2026]	()
 
 21.Remove consecutive duplicates from a list using streams                                              (Anil Goyal)         [14-MAR-2026]	()
@@ -27,6 +27,13 @@
 26.Create a time-windowed stream from timestamped events                                                (Anil Goyal)         [14-MAR-2026]	()
 27.Partition Strings Based on Uppercase Start                                                           (Anil Goyal)         [14-MAR-2026]	()
 28.Partition Characters into Vowels & Consonants                                                        (Anil Goyal)         [14-MAR-2026]	()
+
+29.Sort Strings by Number of Vowels
+30.Find Duplicate Numbers
+31.Partition Into Prime and Non-Prime
+32.Check If All Strings Start With a Capital Letter
+33.Check If ANY Number Is Prime
+34.
 
 ############################################ 1.Given a list of integers, find the k most frequent elements (Anil Goyal) ###################################
 
@@ -164,4 +171,160 @@ String join : JavaStreamsarepowerful
 
 	List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
 	
+	public static void partitionStringByLength() {
+        /*  Partition strings by length: short (<5), medium (5-10), long (>10) */
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        words.stream().collect(
+                Collectors.groupingBy(word -> {
+                    if (word.length() < 5) {
+                        return "Short";
+                    } else if (word.length() <= 10) {
+                        return "Medium";
+                    } else
+                        return "Long";
+                })
+        ).forEach((key, value) -> System.out.println(key + " " + value));
+    }
 	
+Output :
+--------
+Medium [apple, banana, cherry, grapefruit]
+Short [date, fig, kiwi]
+
+############################################ 9.Find repeating characters in a string (Anil Goyal) ##################################################################
+
+	 String input = "programming";
+	 
+	 public static void repeatedCharactersInString() {
+        String input = "programming";
+        List<Character> repeatedCharacters = input.chars().mapToObj(character -> (char) character)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .toList();
+        System.out.println(repeatedCharacters);
+    }
+
+Output :
+--------
+[r, g, m]
+
+    public static void repeatedCharactersCount() {
+        String input = "programming";
+        Map<Character, Long> repeatedCharacters = input.chars() // Returns an IntStream of ASCII values.
+                .mapToObj(character -> (char) character) // Converts ASCII int → Character
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        System.out.println(repeatedCharacters);
+    }
+	
+Output :
+--------
+{r=2, g=2, m=2}	
+
+	 /* For the word programming First Repeated character is r */
+    public static void findFirstRepeatedCharacter() {
+        String input = "programming";
+        input.chars().mapToObj(character -> (char) character)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .ifPresent(System.out::println);
+    }
+	
+Output :
+--------
+r
+	 
+############################################ 10. Find the first recurring element in a list (Anil Goyal) ###############################################################
+
+	List<Integer> nums1 = List.of(1, 2, 3, 4, 5, 3, 6, 7);
+	
+############################################ 12.Create a map of initials to concatenated names (Anil Goyal) ############################################################
+
+	 public static void mapOfInitialsToConcatenatedNames() {
+        List<String> names = List.of("Alice", "Anil", "Bob", "Charlie", "David", "Eve", "Frank");
+        names.stream().collect(Collectors.groupingBy(name -> name.charAt(0), Collectors.joining(",")))
+                .forEach((key, value) -> System.out.println(key + " = " + value));
+    }
+	
+Output :
+--------
+A = Alice,Anil
+B = Bob
+C = Charlie
+D = David
+E = Eve
+F = Frank
+
+############################################  13.Find the longest word in a list of strings (Anil Goyal) ################################################################
+
+	public static void longestWordInListOfStrings() {
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        words.stream().reduce((word1, word2) -> word1.length() >= word2.length() ? word1 : word2)
+                .ifPresent(System.out::println);
+    }
+	
+Output :
+--------
+grapefruit
+
+############################################ 14.Find the shortest word in a list of strings (Anil Goyal) #################################################################
+
+	   public static void shortestWordInListOfStrings() {
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        words.stream().reduce((word1, word2) -> word1.length() <= word2.length() ? word1 : word2)
+                .ifPresent(System.out::println); // grapefruit
+    }
+	
+Output :
+--------
+fig
+
+############################################ 15.Find the average length of strings in a list (Anil Goyal) #################################################################
+
+	 public static void averageLengthOfStringInaList() {
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        words.stream().mapToInt(String::length).average()
+                .ifPresent(System.out::println); // 5.428571428571429
+    }
+	
+############################################ 16.Find the sum of lengths of all strings in a list (Anil Goyal) #############################################################
+
+	 public static void sumOfLengthOfString() {
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        int sum = words.stream().mapToInt(String::length).sum();
+        System.out.println(sum); // 38
+    }
+	
+############################################ 17.Find the count of strings that start with a specific letter (Anil Goyal) ##################################################
+
+	 public static void countOfStringWithCharacter() {
+        List<String> words = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        long count = words.stream().filter(word -> word.startsWith("a")).count();
+        System.out.println(count); // 1
+    }
+
+############################################ 18.Find the distinct strings in a list (Anil Goyal)  #########################################################################
+	
+	public static void distinctString() {
+        List<String> fruits = List.of("apple", "banana", "apple", "cherry", "banana", "date");
+        System.out.println(fruits.stream().distinct().toList()); // [apple, banana, cherry, date]
+    }
+	
+############################################ 19.Find the second longest word in a list of strings (Anil Goyal) ############################################################
+
+	  public static void secondLongestWord() {
+        List<String> fruits = List.of("apple", "banana", "cherry", "date", "fig", "grapefruit", "kiwi");
+        fruits.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .map(Map.Entry::getKey)
+                .skip(1)
+                .findFirst()
+                .ifPresent(System.out::println);
+    } //banana
