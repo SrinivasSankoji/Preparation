@@ -2123,6 +2123,7 @@ Has-a relationship
 Purpose of Model class
 Web server vs App server
 
+Thread Safe Class ()
 Thread lifecycle methods  ()
 yield() vs sleep() vs join()
 wait(), notify(), notifyAll() (why in Object class, not Thread) ()

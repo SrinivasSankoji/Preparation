@@ -1,0 +1,126 @@
+1.Two Pointer
+2.Sliding Window
+3.HashMap
+4.Fast & Slow Pointer Pattern
+5.Binary Search
+6.DFS / Backtracking
+7.BFS
+8.Dynamic Programming
+
+	| Pattern             | Frequency |
+	| ------------------- | --------- |
+	| Two Pointer         | ⭐⭐⭐⭐      |
+	| Sliding Window      | ⭐⭐⭐⭐      |
+	| HashMap             | ⭐⭐⭐⭐      |
+	| Binary Search       | ⭐⭐⭐       |
+	| DFS / Backtracking  | ⭐⭐⭐       |
+	| BFS                 | ⭐⭐⭐       |
+	| Dynamic Programming | ⭐⭐⭐       |
+	| Fast Slow Pointer   | ⭐⭐        |
+
+
+1.Two Pointer :
+Two Sum II
+3Sum
+Container With Most Water
+Trapping Rain Water
+Remove Duplicates from Sorted Array
+Valid Palindrome
+
+2.Sliding Window
+Longest Substring Without Repeating Characters
+Maximum Sum Subarray of Size K
+Minimum Window Substring
+Permutation in String
+
+3.HashMap
+Two Sum
+Subarray Sum Equals K
+Longest Consecutive Sequence
+Group Anagrams
+Top K Frequent Elements
+
+4.Fast & Slow Pointer Pattern
+Linked List Cycle
+Find Middle of Linked List
+Happy Number
+Palindrome Linked List
+
+5.Binary Search
+Binary Search
+Search in Rotated Sorted Array
+Find Peak Element
+Median of Two Sorted Arrays
+
+6.DFS / Backtracking
+Permutations
+Subsets
+Combination Sum
+Word Search
+N Queens
+
+7.BFS
+Binary Tree Level Order Traversal
+Shortest Path in Grid
+Rotting Oranges
+Word Ladder
+
+8.Dynamic Programming
+Climbing Stairs
+Longest Increasing Subsequence
+Coin Change
+House Robber
+Edit Distance
+
+################################################################### Two Pointer #################################################################################################
+
+Two sum using HashMap :
+-----------------------
+For the current number, what number is needed to reach the target.
+That needed number is called complement.
+Did I already see this complement earlier.
+If Yes → pair found.
+If No → store current number in map and continue.
+
+		public static void twoSumUsingHashMap() {
+			int[] numbers = {7, 2, 11, 15};
+			int target = 13;
+			Map<Integer, Integer> map = new HashMap<>();
+			for (int i = 0; i < numbers.length; i++) {
+				int complement = target - numbers[i];
+				if (map.containsKey(complement)) {
+					System.out.println("Two numbers are " + complement + " and " + numbers[i]);
+					return;
+				} else {
+					map.put(numbers[i], i);
+				}
+			}
+		}
+
+Two sum using Two Pointer :
+---------------------------
+Two Pointer works only with sorted Array because ordering helps in deciding the pointer movement.
+
+	public static void twoSumUsingTwoPointer() {
+        int[] numbers = {2, 7, 11, 15};
+        int target = 13;
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left < right) {
+            int sum = numbers[left] + numbers[right];
+            if (sum == target) {
+                System.out.println("Two numbers are " + numbers[left] + " and " + numbers[right]);
+            }
+            if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+
+	
+
+
+
+

@@ -1,9 +1,9 @@
-1.Text Blocks												(javarevisited)		[14-MAY-2024]  (Done)
-2.Improved Switch Statement                                 (javarevisited)		[14-MAY-2024]  ()
-3.Record Type                                               (javarevisited)		[14-MAY-2024]  ()
-4.Sealed Classes                                            (javarevisited)		[14-MAY-2024]  ()
-5.Pattern matching with instance Of                         (javarevisited)		[14-MAY-2024]  (Done)
-6.Helpful NullPointerException                              (javarevisited)		[14-MAY-2024]  (Done)
+1.Text Blocks												(javarevisited)				[14-MAY-2024]  (Done)
+2.Improved Switch Statement                                 (javarevisited)				[14-MAY-2024]  ()
+3.Records                                               	(javarevisited,ChatGPT)		[16-MAR-2026]  (Done)
+4.Sealed Classes                                            (javarevisited)				[14-MAY-2024]  ()
+5.Pattern matching with instance Of                         (javarevisited)				[14-MAY-2024]  (Done)
+6.Helpful NullPointerException                              (javarevisited)				[14-MAY-2024]  (Done)
 
 
 ######################################################### 1.Text Blocks  ##############################################################################################
@@ -24,11 +24,104 @@ These are specially useful when writing the long SQL statements.
                      }
                      """;
 					 
+######################################################### 3.Records (javarevisited,ChatGPT) ###########################################################################
+
+Java records were introduced as a preview in Java 14 and became stable in Java 16/17.
+Records provide a concise way to create immutable data carrier classes.
+Records solve a very common problem i.e. writing boilerplate DTO / POJO classes.
+A record is a special type of class whose primary purpose is to store immutable data.
+
+Typical boilerplate in normal classes includes
+fields
+constructor
+getters
+equals()
+hashCode()
+toString()
+Records generate all of these automatically.
+
+	public class Employee {
+
+		private final int id;
+		private final String name;
+
+		public Employee(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+
+		public int getId() { return id; }
+
+		public String getName() { return name; }
+
+		@Override
+		public boolean equals(Object o) { ... }
+
+		@Override
+		public int hashCode() { ... }
+
+		@Override
+		public String toString() { ... }
+	}
+	
+	public record Employee(int id, String name) {}
+
+record implicitly extends java.lang.Record
+record is final
+fields are final
+
+The main constructor of a record is called the Canonical Constructor.
+
+	public record User(String name, int age) {
+		public User(String name, int age) {
+			this.name = name;
+			this.age = age;
+		}
+	}
+	
+We can add validation using a compact constructor.
+
+	public record User(String name, int age) {
+		public User {
+			if(age < 18) {
+				throw new IllegalArgumentException("Age must be >=18");
+			}
+		}
+	}
+	
+Records can contain normal methods.
+
+	public record Rectangle(double length, double width) {
+		public double area() {
+			return length * width;
+		}
+	}
+	
+Records can contain static fields and static methods.
+
+	public record Config(String key, String value) {
+		public static Config defaultConfig() {
+			return new Config("timeout","30");
+		}
+	}
+	
+Records are shallowly immutable means reference cannot change but object inside reference may change.
+
+	import java.util.List;
+	public record Order(int id, List<String> items) {}
+	
+To prevent mutation we use defensive copying.
+	
+	public record Order(int id, List<String> items) {
+		public Order {
+			items = List.copyOf(items);
+		}
+	}
+						 
 ######################################################### 5.Pattern matching with instance Of (javarevisited) #########################################################
 
-We usually use the instance of opertaor to to check whether an Object belongs to certain class or not.
-Then we need to explicitly cast the Object to that particular class if we want to explicitly perform some operation on it.
-
+We usually use the instance of opertaor to to check whether an Object belongs to particular class or not.
+If we want to perform some operation then we need to explicitly cast the Object to that particular class.
 
 	if(object instanceof Grape)
 	{
