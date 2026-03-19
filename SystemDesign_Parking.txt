@@ -1,0 +1,429 @@
+1.Clarify requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [19-MAR-2026]	()
+2.Define scope and assumptions
+
+
+
+
+############################################################## 1.Clarify requirements ############################################################################
+
+1.Functional requirement
+2.Non Functional requirement
+3.Constraints
+4.Out of scope
+
+1.Functional requirement :
+==========================
+Functional requirements answers what should the system do.
+Functional requirements are the Business features of the system.
+If this system is built and working then what are the exact operations it should support i.e. visible action that the User or Business expects.
+
+The possible Functional requirements are :
+1.The system should allow a vehicle to enter the parking lot.
+2.The system should identify the vehicle type such as bike, car, truck, or electric vehicle.
+3.The system should assign a suitable parking spot based on vehicle type.
+4.The system should generate a parking ticket at entry.
+5.The system should store entry time.
+6.The system should show available parking spots.
+7.The system should allow a vehicle to exit.
+8.The system should calculate the parking fee based on entry and exit time.
+9.The system should support payment.
+10.The system should free the parking spot after successful exit.
+11.The system should allow the admin to add or remove parking spots.
+12.The system should allow the admin to view occupancy status.
+
+Who are the Users.
+What User and Admin can do.
+What Business operations must happen.
+What Input does the system take.
+What Output does the system produce.
+
+The final statement would be "System should assign an available parking slot based on vehicle type".
+
+Note :
+------
+Functional requirement is the most first important step because jumping directly into architecture often leads to solving the wrong problem.
+
+2.Non Functional requirement :
+==============================
+Non Functional requirements answers “How well should the system work” where as Functional requirement says what the system does.
+Design changes based on Non Functional needs which directly influences the Architecture.
+
+Functional = feature
+Non Functional = quality of that feature
+
+Common Non Functional requirements :
+------------------------------------
+1.Performance
+2.Availability
+3.Reliability
+4.Scalability
+5.Security
+6.Consistency
+7.Maintainability
+8.Fault tolerance
+9.Observability
+
+1.Performance :
+---------------
+The system should respond fast for real use because vehicles cannot wait for 2 minutes at the gate.
+
+When the Vehicle enters the Parking Lot :
+Lookup for the parking spot based on Vehicle Type should be very fast.
+Ticket Generation should be very fast.
+Exit Fee calculation should bevery fast.
+
+2.Availability :
+----------------
+The system should remain up and accessible most of the time.
+
+The parking lot should not stop functioning because of one service crashed.
+If the system goes down, vehicles cannot enter or exit.
+
+3.Reliability :
+---------------
+System should produce correct behavior consistently.
+
+System should not assign the same spot to two cars.
+Same car should not get two active tickets accidentally.
+Payment should not be marked successful when it actually failed.
+
+4.Scalability :
+---------------
+System should continue working properly even when the data grows i.e. handle the load.
+
+Small apartment parking may have 50 spots.
+Airport parking may have 10,000 spots.
+One mall may have 3 gates and another may have 30 gates.
+
+5.Security :
+------------
+System should protect the data and should not allow the actions which leads to misuse.
+
+Only admin should change parking rates.
+Payment details should be protected.
+Unauthorized users should not manipulate spot status.
+
+6.Consistency :
+---------------
+Data should remain correct across the system.
+
+If parking spot becomes occupied :
+Database should be reflected as occupied.
+Display board should also show the parking spot status as occupied.
+Admin dashboard should show the correct count.
+One spot should not be shown as free and occupied at the same time in critical operations.
+
+7.Maintainability :
+-------------------
+System should be easy to update/modify and manage without breaking existing functionality.
+
+Later we may add EV slots.
+Later we may add reservation feature.
+Later we may add dynamic pricing.
+Later we may add multiple parking lots.
+
+8.Fault tolerance :
+-------------------
+System should handle failures gracefully.
+Fault tolerance means System should continue working fully or partially even when some of the services fails.
+
+What If network to one gate goes down.
+What If payment service is down.
+What If display board fails.
+
+3.Constraints :
+===============
+A constraint is something that restricts our design choices.
+Within the limitations or boundaries we shoud work.
+
+Constraint tells :
+1.what we cannot do.
+2.what environment we must support.
+3.what are the existing rules.
+
+Good system design is not about the most advanced design and It is about the most suitable design under the given constraints.
+
+Functional requirement says need payment where as Constraint says Payment must use existing bank gateway only.
+Functional requirement says need Parking Spot assignment where as Constraint says Each gate terminal has limited hardware and poor internet.
+
+A parking lot system may have constraints like :
+1.There are already fixed numbers of floors and spots.
+2.Existing gate hardware must be reused.
+3.Payment must integrate with a specific payment provider.
+4.System must support offline ticketing for short network outages.
+5.Budget is limited.
+6.Only one database is allowed initially.
+7.Real-time display boards are already installed and must be supported.
+8.Spot assignment must happen in under 2 seconds.
+9.One spot can hold only one active vehicle at a time.
+
+Types of Constraints :
+1.Business constraints
+2.Technical constraints
+3.Time constraints
+4.Cost constraints
+
+1.Business constraints :
+------------------------
+Rules from business :
+VIP spots cannot be assigned to normal vehicles.
+Truck parking allowed only on ground floor.
+Parking fee rules are fixed by management.
+
+2.Technical constraints :
+-------------------------
+Technology-related limitations :
+Gates communicate through local network only.
+Legacy scanners must be reused.
+Existing system uses PostgreSQL.
+Do we need to use existing Technology.
+No cloud deployment allowed.
+
+3.Time constraints :
+--------------------
+Project deadline limitations :
+Need MVP in 2 months.
+The first version should support only one parking lot location.
+
+4.Cost constraints :
+--------------------
+Cannot use expensive enterprise systems initially.
+Prefer monolith instead of microservices for first release.
+The initial budget is limited so a simple deployable solution is preferred.
+
+4.Out of scope :
+================
+Out of scope means what are we intentionally not building right now.
+This is extremely important because every system can keep growing forever.
+If we do not define what is excluded then the design becomes too large and confusing.
+
+
+
+
+
+############################################################## 2.Define scope and assumptions ############################################################################
+
+Step 2: Define scope and assumptions :
+--------------------------------------
+System design becomes manageable only after assumptions are frozen.
+
+For parking lot, Assumptions could be :
+Multi-level parking lot
+Vehicle types: bike, car, truck
+Entry and exit gates exist
+On entry, a ticket is generated
+On exit, fare is computed and payment is taken
+Real-time availability should be visible
+No advance reservation in version 1
+
+This prevents over-design and keeps the design interview or real project focused.
+
+Step 3: Estimate scale :
+------------------------
+Do rough back-of-the-envelope estimation.
+
+Estimate:
+Number of parking spots
+Entry/exit requests per second
+Availability queries per second
+Ticket writes
+Payment transactions
+Storage volume
+
+For parking lot:
+5,000 spots
+20 gates
+Peak entry traffic maybe 50–100 vehicles/minute
+Real-time display queries from kiosks/mobile apps
+Small write-heavy operational data, modest analytical data
+
+The parking-lot article explicitly recommends gathering requirements and estimating scale before detailed design and 
+one of the Kanishk posts highlights back-of-the-envelope thinking as a core interview move.
+
+Step 4: Identify core use cases / workflows :
+---------------------------------------------
+Now define the main flows.
+For parking lot:
+Vehicle enters
+Spot assigned
+Ticket issued
+Vehicle parked
+Vehicle exits
+Charge calculated
+Payment completed
+Spot released
+Occupancy updated
+
+This step helps you design around actual behavior instead of random components.
+
+Step 5: Identify domain objects / entities :
+--------------------------------------------
+This is the bridge between requirements and design.
+
+For parking lot, likely entities:
+ParkingLot
+Floor
+Gate
+ParkingSpot
+Vehicle
+Ticket
+Payment
+RateCard / PricingPolicy
+DisplayBoard
+Attendant / GateTerminal
+
+This is where parking-lot design becomes especially valuable, because it forces you to model the real domain cleanly.
+The referenced parking-lot deep dive specifically calls out designing core entities with the right abstractions.
+
+Step 6: Define APIs or system interfaces :
+------------------------------------------
+Ask: how do external actors interact with the system?
+
+For parking lot, sample APIs:
+POST /entry
+POST /allocate-spot
+POST /exit
+POST /payment
+GET /availability
+GET /ticket/{id}
+
+For internal systems:
+Gate terminal service
+Slot allocation service
+Billing service
+Payment service
+Notification/display service
+
+This step makes the design concrete and testable.
+
+Step 7: Design the high-level architecture :
+--------------------------------------------
+Now draw the boxes.
+
+For parking lot, a clean high-level architecture could be:
+Entry/Exit Gate Clients
+API Gateway / Backend Service
+Parking Management Service
+Spot Allocation Service
+Ticket Service
+Pricing/Billing Service
+Payment Service
+Availability Cache
+Primary Database
+Event Bus for occupancy updates, analytics, notifications
+
+At this point, explain responsibilities of each component, not just names.
+The referenced system design frameworks emphasize structured progression from requirements into architecture, rather than drawing components first.
+
+Step 8: Design the data model :
+-------------------------------
+Choose persistent data and transient data.
+
+Parking lot tables/collections:
+parking_lot
+floor
+spot
+vehicle
+ticket
+parking_session
+payment
+pricing_policy
+gate_event
+
+Key decisions:
+Spot state: AVAILABLE / RESERVED / OCCUPIED / OUT_OF_SERVICE
+Ticket state: ACTIVE / CLOSED / LOST
+Payment state: PENDING / SUCCESS / FAILED
+
+For parking lot, relational storage is often a good starting point because transactions and consistency matter for ticketing, payments, and occupancy state.
+The parking-lot deep dive highlights persistence as part of the production-ready evolution.
+
+Step 9: Handle concurrency and consistency :
+--------------------------------------------
+This is where many designs become real.
+
+For parking lot, major concurrency problems:
+Two gates assigning the same spot
+Vehicle exits while payment is still pending
+Display board showing stale availability
+Retry from gate terminal creating duplicate ticket
+
+Standard solutions:
+Row-level lock or optimistic locking on spot allocation
+Idempotency key for entry/exit/payment requests
+Transaction around ticket creation + spot reservation
+Event-driven update for display boards
+Cache invalidation on occupancy changes
+
+The parking-lot article explicitly highlights handling concurrency without breaking the system, which is a critical “real-world architect” layer.
+
+Step 10: Address non-functional requirements :
+----------------------------------------------
+Now evaluate the design against system qualities:
+Scalability
+Availability
+Consistency
+Reliability
+Performance
+Security
+Maintainability
+Observability
+Cost
+
+For parking lot:
+Low latency for gate operations
+High availability for entry/exit
+Strong consistency for spot assignment and payment
+Eventual consistency acceptable for dashboards/analytics
+Audit logs for security/compliance
+
+This is where you explain trade-offs instead of pretending everything can be perfect.
+
+Step 11: Find bottlenecks and improve :
+---------------------------------------
+Ask: where will this fail first?
+
+Parking lot bottlenecks:
+Central DB hotspot on spot updates
+Allocation service contention during peak time
+Slow payment processing blocking exit
+Real-time availability queries overloading DB
+
+Possible improvements:
+Keep live availability in Redis/cache
+Partition by parking lot / floor
+Use asynchronous events for dashboards
+Pre-compute available spot counts
+Separate operational DB from analytics pipeline
+
+This is usually the step where strong candidates differentiate themselves in interviews and strong engineers in real systems.
+
+Step 12: Discuss edge cases :
+-----------------------------
+Architect-level thinking appears here.
+
+Parking lot edge cases:
+Lost ticket
+Full parking lot
+Spot sensor says occupied but ticket missing
+Payment success but exit gate failure
+Duplicate vehicle entry attempt
+Offline gate terminal
+Emergency/manual override
+Premium/VIP/reserved slots
+EV charging slots
+Dynamic pricing
+
+A good design is not just the happy path.
+
+Step 13: State trade-offs and future evolution :
+------------------------------------------------
+Always end by explaining what you intentionally did not optimize.
+
+For example:
+Version 1 uses a single regional deployment for simplicity.
+Strong consistency for spot assignment, eventual consistency for reporting.
+RDBMS first, because transactional correctness matters more than ultra-scale.
+
+Reservation system, dynamic pricing, ML-based spot recommendation, and multi-city federation can be phase 2
+This signals mature design judgment.
