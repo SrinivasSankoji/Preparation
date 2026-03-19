@@ -19,14 +19,6 @@
 	| Fast Slow Pointer   | ⭐⭐        |
 
 
-1.Two Pointer :
-Two Sum II
-3Sum
-Container With Most Water
-Trapping Rain Water
-Remove Duplicates from Sorted Array
-Valid Palindrome
-
 2.Sliding Window
 Longest Substring Without Repeating Characters
 Maximum Sum Subarray of Size K
@@ -34,7 +26,7 @@ Minimum Window Substring
 Permutation in String
 
 3.HashMap
-Two Sum
+Two Sum (Using Complement Approach)
 Subarray Sum Equals K
 Longest Consecutive Sequence
 Group Anagrams
@@ -74,6 +66,15 @@ Edit Distance
 
 ################################################################### Two Pointer #################################################################################################
 
+Two sum using HashMap							  					  [17-MAR-2026]  (Done)
+Two Sum                          									  [17-MAR-2026]  (Done)
+Remove Duplicates from Sorted Array									  [19-MAR-2026]  (Done)
+Valid Palindrome													  [19-MAR-2026]  ()  
+Three Sum
+Container With Most Water
+Trapping Rain Water 
+
+
 Two sum using HashMap :
 -----------------------
 For the current number, what number is needed to reach the target.
@@ -100,6 +101,8 @@ If No → store current number in map and continue.
 Two sum using Two Pointer :
 ---------------------------
 Two Pointer works only with sorted Array because ordering helps in deciding the pointer movement.
+Left pointer starts with 0 and right starts with length-1.
+If the sum is less than target i.e. for example 2 < 13 then increment the left else decrement the right.
 
 	public static void twoSumUsingTwoPointer() {
         int[] numbers = {2, 7, 11, 15};
@@ -119,7 +122,31 @@ Two Pointer works only with sorted Array because ordering helps in deciding the 
         }
     }
 
+Remove Duplicates from Sorted Array :
+-------------------------------------
+Removing Duplicates from the Sorted Array works on the Slow Pointer which starts with the begining of the Array abd Fast Pointer which scans the entire Array.
+Slow marks the next unique element where as fast scans the complete array.
+If the slow pointer is not matching with fast pointer then it is unique element.
+Then increment the slow pointer so that slow holds the unique elements in an array.
+
+	Input:  [1,1,2,2,3]
+	Output: 1 2 3 
 	
+	public static void removeDuplicatesFromSortedArrayTwoPointer() {
+        int[] numbers = {1, 1, 2, 2, 3};
+        int slow = 0;
+        for (int fast = 1; fast < numbers.length; fast++) {
+            if (numbers[fast] != numbers[slow]) {
+                slow++;
+                numbers[slow] = numbers[fast];
+            }
+        }
+        slow = slow + 1;
+        for (int i = 0; i < slow; i++) {
+            System.out.print(numbers[i] + " ");
+        }
+    } 
+
 
 
 

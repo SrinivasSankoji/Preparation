@@ -5642,14 +5642,29 @@ Two Pointer (Done)
 
 17-MAR-2026 :
 -------------
+Kafka LimeGuru (Done)
+Kafka Basics (Done)
+Kafka Scenario's (Done)
+JVM Memory Model ()
 
+If number of partitions are greater than number of consumers then some consumers read multiple partitions ()
+Each consumer group maintains its own committed offset for each topic and its partition ()
+
+Each partition requires
+1.Log file
+2.leader election
+3.Replica synchronization
+4.Metadata in controller
+5.Network communication	
 
 18-MAR-2026 :
 -------------
-
+Kafka Idempotent Revise ()
+Spring IOC Revise ()
 
 19-MAR-2026 :
 -------------
+Parking Lot System Design ()
 
 
 
