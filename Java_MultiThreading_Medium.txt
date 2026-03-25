@@ -7,8 +7,8 @@
 	
 ########################################################### 1.Locking Mechanism in Java	(Hiten Pratap Singh) #################################################
 
-Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an Object or a Class,
-preventing other threads from accessing the locked object or class until the lock is released.
+Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an Object or a Class so that
+it prevents other threads from accessing the locked object or class until the lock is released.
 The different types of locks in Java are
 
 1.Object Locks
@@ -21,10 +21,9 @@ The different types of locks in Java are
 
 1.Object Locks :
 ****************
-
 An Object lock ensures that only one thread at a time can access critical code of an object.
-To acquire a lock on an Object, we use the synchronized keyword when declaring a method or use the synchronized block.
-When a thread acquires an object’s lock then Other threads must wait until the lock is released.
+To acquire a lock on an Object, we use either synchronized method or synchronized block.
+When a thread acquires lock on an Object lock then other threads must wait until the lock is released.
 This prevents data inconsistency and race conditions.
 
 Synchronized method :
@@ -73,10 +72,10 @@ Cache updates
 
 2.Class Locks :
 ***************
-
-Class lock ensures that only one thread at a time can access static methods and static blocks of a class.
-To acquire a lock on an Class, we use the synchronized keyword when declaring a static method or use the static synchronized block.
-When a thread acquires an Class lock then Other threads must wait until the lock is released.
+Class lock ensures that only one thread at a time can access static method and static blocks of a class.
+To acquire a lock on an Class, we use either synchronized method or synchronized block.
+When a thread acquires lock on a Class lock then other threads must wait until the lock is released.
+This prevents data inconsistency and race conditions.
 
 Synchronized Static Method :
 ----------------------------
@@ -109,7 +108,6 @@ Synchronized Block on Class :
 	
 3.Reentrant Locks :
 *******************
-
 ReentrantLock allows the thread to acquire the lock and release the lock multiple times without getting blocked.
 while a regular lock can only be acquired and released once.
 
@@ -122,10 +120,10 @@ ReentrantLock have the additional capabilities to control the lock including
 
 lockInterruptibly() :
 ---------------------
-Problem with synchronized is if a thread is trying to enter a synchronized block/method and the lock is held by another thread then the Thread will be blocked.
+Problem with synchronized keyword is If a thread is trying to enter a synchronized block/method and the lock is held by another thread then the Thread will be blocked.
 We cannot interrupt the Thread.
-If the lock holder is slow/hung then waiting threads pile up.
-This leads to Thread starvation in the server thread pool which increases the latency and leads to potential outage.
+If the lock holder is slow/hung then waiting threads will increase.
+This leads to Thread starvation which increases the latency and leads to potential outage.
 Solution is to use the ReentrantLock lockInterruptibly().
 
 lockInterruptibly() allows a thread to wait for the lock.
@@ -337,7 +335,6 @@ This is called a single-flight / only one refresher at a time pattern.
 
 4.Read-Write Locks :
 ********************
-
 ReadWriteLock uses two types of locks i.e. a read lock and a write lock.
 This distinction allows multiple threads to read the shared resource simultaneously but only one thread can write to it at a time.
 Also no reads are allowed while a write is in progress.

@@ -1,10 +1,18 @@
-1.Clarify requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [19-MAR-2026]	()
-2.Define scope and assumptions
+1.Clarify Requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
+2.Define Scope and Assumptions							(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
+3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+5.Identify Core Entities / Domain Model                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+6.Define APIs / External Contracts                      (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+7.Design High-Level Architecture                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+8.Design Database / Data Model                          (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+9.Handle Concurrency and Consistency                    (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+10.Address Non-Functional Requirements in the Design    (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+11.Identify Bottlenecks and Optimizations               (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+12.Cover Edge Cases and Failure Scenarios               (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+13.Discuss Trade-offs and Future Improvements           (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
 
-
-
-
-############################################################## 1.Clarify requirements ############################################################################
+############################################################## 1.Clarify Requirements ############################################################################
 
 1.Functional requirement
 2.Non Functional requirement
@@ -65,7 +73,7 @@ Common Non Functional requirements :
 
 1.Performance :
 ---------------
-The system should respond fast for real use because vehicles cannot wait for 2 minutes at the gate.
+The system should respond fast because vehicles cannot wait for 2 minutes at the gate.
 
 When the Vehicle enters the Parking Lot :
 Lookup for the parking spot based on Vehicle Type should be very fast.
@@ -115,33 +123,33 @@ One spot should not be shown as free and occupied at the same time in critical o
 
 7.Maintainability :
 -------------------
-System should be easy to update/modify and manage without breaking existing functionality.
+System should be easy to update without breaking the existing functionality.
 
-Later we may add EV slots.
-Later we may add reservation feature.
-Later we may add dynamic pricing.
 Later we may add multiple parking lots.
+Later we may add EV slots.
+Later we may add dynamic pricing.
+Later we may add reservation feature.
 
 8.Fault tolerance :
 -------------------
-System should handle failures gracefully.
+System should handle the failures gracefully.
 Fault tolerance means System should continue working fully or partially even when some of the services fails.
 
 What If network to one gate goes down.
 What If payment service is down.
-What If display board fails.
+What If the dashboard fails to display the data.
 
 3.Constraints :
 ===============
 A constraint is something that restricts our design choices.
 Within the limitations or boundaries we shoud work.
+Without constraints we may design an unrealistic solution.
+Good system design is not about the most advanced design and It is about the most suitable design under the given constraints.
 
 Constraint tells :
-1.what we cannot do.
+1.what are the existing rules.
 2.what environment we must support.
-3.what are the existing rules.
-
-Good system design is not about the most advanced design and It is about the most suitable design under the given constraints.
+3.what we cannot do.
 
 Functional requirement says need payment where as Constraint says Payment must use existing bank gateway only.
 Functional requirement says need Parking Spot assignment where as Constraint says Each gate terminal has limited hardware and poor internet.
@@ -197,29 +205,154 @@ Out of scope means what are we intentionally not building right now.
 This is extremely important because every system can keep growing forever.
 If we do not define what is excluded then the design becomes too large and confusing.
 
+Out of scope does not mean unimportant and It only means
+Not needed now.
+Not in current version.
+Not part of current design exercise.
+
+Architect always reduce ambiguity by saying "We will not cover in this version".
+
+Suppose someone says design a parking lot then we may start thinking about
+1.Multi-city centralized management is out of scope.
+2.Mobile application for customers is out of scope.
+3.Advance booking or Reservation of Parking spots is out of scope.
+4.Valet parking support is out of scope.
+5.AI camera-based vehicle number plate recognition is out of scope.
+6.Dynamic pricing based on demand is out of scope.
+7.Loyalty points and offers is out of scope.
+8.EV charging workflow is out of scope.
+9.Lost ticket workflow is out of scope.
+
+All these may be nice but we are intentionally not handling these now.
 
 
+############################################################## 2.Define Scope and Assumptions ############################################################################
 
+After Clarifying the requirements we usually have too many possibilities.
 
-############################################################## 2.Define scope and assumptions ############################################################################
+1.Multi-city centralized management.
+2.Mobile application.
+3.Advance booking or Reservation of Parking spots.
+4.Valet parking.
+5.AI camera-based vehicle number plate recognition.
+6.Dynamic pricing based on demand.
+7.Loyalty points and offers.
+8.EV charging workflow.
+9.Lost ticket workflow.
 
-Step 2: Define scope and assumptions :
---------------------------------------
+If we don’t limit the problem then our design becomes
+❌ Too big
+❌ Unclear
+❌ Unrealistic
+
+So Defining Scope and Assumptions is about reducing the ambiguity and fixing the problem with clear boundary.
+Scope is nothing but What are we building in this version and Assumptions are available defaults which will simplify the design.
+
+We never build everything at once and we always define MVP (Minimum Viable Product).
+Defining Scope and Assumptions is defining MVP.
+
+Parking Lot - Scope :
+---------------------
+1.Single parking lot system.
+2.Supports Multi floor.
+3.Multiple entry and exit gates.
+4.Vehicle types: Bike,Car and Truck.
+5.Automatic parking spot allocation.
+6.Ticket generation at entry.
+7.Fee calculation at exit.
+8.Payment handling.
+9.Spot release after exit.
+10.Display available spots.
+
+Parking Lot - Assumptions :
+---------------------------
+Without Assumptions we will keep asking questions forever and the Design will never start.
+With Assumptions we move forward with clarity.
 System design becomes manageable only after assumptions are frozen.
+This prevents over-design and keeps the design focused.
 
-For parking lot, Assumptions could be :
-Multi-level parking lot
-Vehicle types: bike, car, truck
-Entry and exit gates exist
-On entry, a ticket is generated
-On exit, fare is computed and payment is taken
-Real-time availability should be visible
-No advance reservation in version 1
+1.Parking Lot Structure
+Parking lot has multiple floors.
+Each floor has fixed number of spots.
+Each spot has a predefined type.
 
-This prevents over-design and keeps the design interview or real project focused.
+2.Spot Rules
+One spot = one vehicle.
+A spot can be AVAILABLE and OCCUPIED.
+No sharing of spots.
 
-Step 3: Estimate scale :
-------------------------
+3.Vehicle Rules
+Each vehicle has a type.
+Vehicle type determines allowed spots.
+
+4.Ticket Rules
+Each vehicle gets exactly one ticket at entry.
+A ticket remains active until exit.
+Ticket contains entry time,spot id and vehicle type.
+
+5.Payment Rules
+Payment happens only at exit.
+Payment must succeed before exit.
+Pricing is time-based (simple).
+
+6.Availability Rules
+System keeps count of available spots.
+Display board shows near real-time data.
+
+7.Concurrency Simplification
+Multiple gates can operate simultaneously.
+System must prevent double allocation.
+
+8.Deployment Scope
+Single location system.
+Not distributed across cities.
+No multi-region complexity.
+
+9.User Interaction Assumption
+Gate system handles entry/exit
+No mobile app in current version.
+
+#################################################################### 3.Estimate Scale ####################################################################################
+
+Scale is important in System Design because it affects
+1.Architecture.
+2.Database choice.
+3.Concurrency handling.
+4.Caching.
+5.Performance expectations.
+6.cost.
+
+So even If the system looks simple we still estimate scale.
+Estimate scale means we are trying to understand how big the system is expected to be.
+How many users or requests will come.
+How much data will be stored.
+How fast system should respond.
+How much growth system should handle.
+
+The design for a small apartment parking lot and a large airport parking system will not be the same.
+
+Small Parking Lot :
+-------------------
+100 spots.
+1 or 2 gates.
+Low traffic.
+Simple database enough.
+
+Large parking Lot :
+-------------------
+Many Floors.
+10,000 spots.
+20 entry/exit gates.
+High traffic.
+Real-time occupancy updates needed.
+Stronger concurrency control needed.
+
+Before designing architecture we must know the expected size.
+
+
+
+
+
 Do rough back-of-the-envelope estimation.
 
 Estimate:
@@ -240,8 +373,8 @@ Small write-heavy operational data, modest analytical data
 The parking-lot article explicitly recommends gathering requirements and estimating scale before detailed design and 
 one of the Kanishk posts highlights back-of-the-envelope thinking as a core interview move.
 
-Step 4: Identify core use cases / workflows :
----------------------------------------------
+#################################################################### 4.Identify core use cases and workflows ###########################################################
+
 Now define the main flows.
 For parking lot:
 Vehicle enters
@@ -256,7 +389,7 @@ Occupancy updated
 
 This step helps you design around actual behavior instead of random components.
 
-Step 5: Identify domain objects / entities :
+Step 5: Identify Core Entities / Domain Model :
 --------------------------------------------
 This is the bridge between requirements and design.
 
