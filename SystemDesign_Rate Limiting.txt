@@ -15,17 +15,17 @@
 ############################################################### 1.Rate Limiting in Microservices ###############################################################
 
 In the world of microservices hundreds of services communicate with each other.
-Rate limiting has become a critical component for maintaining system stability and fairness.
-Rate limiting is the practice of controlling the number of requests for a client or service can make to an API, within a specified time window.
+Rate limiting is the practice of controlling the number of requests for a client or service which calls an API within a specified time window.
+Rate limiting ensures the system stability.
 Considr the scenario of Bouncer at a popular nightclub.
 Only allowing a certain number of people in at a time to prevent overcrowding and maintain a pleasant experience for everyone inside.
 
-Rate Limiting Matters because
-1.Preventing System Overload
-2.Ensuring Fair Resource Distribution
-3.Protecting Against DDoS Attacks
-4.Cost Control
-5.Managing Third-Party API Quotas
+Rate Limiting matters because
+1.Preventing System Overload.
+2.Protecting against DDoS Attacks.
+3.Managing Third-Party API Quotas.
+4.Fair Resource Distribution.
+.Cost Control.
 
 1.Preventing System Overload :
 ------------------------------
@@ -65,7 +65,7 @@ Common Rate Limit Algorithms are
 
 Implementation Strategies are
 1.API Gateway Level
-2.Application Level using Redis + Bucket4j or Redis-backed Rate Limiter (Token Bucket) or Spring Boot Filter
+2.Application Level using Redis + Bucket4j or Redis-backed Rate Limiter (Token Bucket) or Spring Filter
 
 Choosing the Right Storage Backend for Rate Limiter :
 -----------------------------------------------------
@@ -75,17 +75,18 @@ While possible, using a traditional database for rate limiting is generally too 
 
 Best Practices :
 ----------------
-1.Use Multiple Rate Limit Tiers
-Implement different rate limits for different user types and different endpoints based on their resource consumption.
+1.Rate Limit at Multiple Tiers.
+Implement rate limits based on the resource consumption.
+For example based on User types, Endpoints etc.
 
-2.Provide Clear Error Messages
+2.Provide meaningful Error Messages.
 When rejecting requests, return meaningful HTTP 429 responses with headers indicating when the client can retry.
 
 	response.setHeader("X-RateLimit-Limit", "100");
 	response.setHeader("X-RateLimit-Remaining", "0");
 	response.setHeader("Retry-After", "900");
 	
-3.Implement Graceful Degradation
+3.Implement graceful degradation
 Instead of hard rejections, consider queuing requests or serving cached responses when limits are reached.
 
 4.Monitor and Alert
@@ -95,12 +96,12 @@ Frequent rate limiting might indicate legitimate increased demand or the need to
 5.Consider Geographic Distribution
 If we are using a distributed rate limiter, be aware of potential consistency issues across regions and adjust your strategy accordingly.
 
-6.Rate Limit at Multiple Layers
-Implement rate limiting at the edge (CDN/WAF), API gateway, and individual service levels for comprehensive protection.
+6.Rate Limit at Multiple Layers.
+Implement rate limiting at the edge (CDN/WAF), API gateway and individual service for comprehensive protection.
 
-Common Pitfalls to Avoid :
+Common pitfalls to avoid :
 --------------------------
-1.Not Accounting for Distributed Systems
+1.Not accounting for Distributed Systems
 In a distributed environment each service instance maintaining its own rate limit counters can lead to the actual limit being multiplied by the number of instances.
 Use centralized storage like Redis.
 

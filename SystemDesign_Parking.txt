@@ -1,16 +1,16 @@
 1.Clarify Requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
 2.Define Scope and Assumptions							(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
-3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-5.Identify Core Entities / Domain Model                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-6.Define APIs / External Contracts                      (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-7.Design High-Level Architecture                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-8.Design Database / Data Model                          (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-9.Handle Concurrency and Consistency                    (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-10.Address Non-Functional Requirements in the Design    (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-11.Identify Bottlenecks and Optimizations               (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-12.Cover Edge Cases and Failure Scenarios               (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
-13.Discuss Trade-offs and Future Improvements           (Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	()
+3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [26-MAR-2026]	()
+4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [26-MAR-2026]	()
+5.Identify Core Entities / Domain Model                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
+6.Define APIs / External Contracts                      (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
+7.Design High-Level Architecture                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
+8.Design Database / Data Model                          (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
+9.Handle Concurrency and Consistency                    (Arvind Kumar,The Latency Gambler,ChatGPT)     [28-MAR-2026]	()
+10.Address Non-Functional Requirements in the Design    (Arvind Kumar,The Latency Gambler,ChatGPT)     [28-MAR-2026]	()
+11.Identify Bottlenecks and Optimizations               (Arvind Kumar,The Latency Gambler,ChatGPT)     [28-MAR-2026]	()
+12.Cover Edge Cases and Failure Scenarios               (Arvind Kumar,The Latency Gambler,ChatGPT)     [28-MAR-2026]	()
+13.Discuss Trade-offs and Future Improvements           (Arvind Kumar,The Latency Gambler,ChatGPT)     [28-MAR-2026]	()
 
 ############################################################## 1.Clarify Requirements ############################################################################
 
@@ -322,14 +322,13 @@ Scale is important in System Design because it affects
 5.Performance expectations.
 6.cost.
 
+Before designing architecture we must know the expected size.
 So even If the system looks simple we still estimate scale.
-Estimate scale means we are trying to understand how big the system is expected to be.
+Estimate scale means we are trying to understand how load affects design.
 How many users or requests will come.
 How much data will be stored.
 How fast system should respond.
 How much growth system should handle.
-
-The design for a small apartment parking lot and a large airport parking system will not be the same.
 
 Small Parking Lot :
 -------------------
@@ -347,7 +346,26 @@ High traffic.
 Real-time occupancy updates needed.
 Stronger concurrency control needed.
 
-Before designing architecture we must know the expected size.
+The design for a small apartment parking lot and a large airport parking system will not be the same.
+
+Advantage :
+-----------
+1.Is a simple monolith enough.
+2.Is relational DB enough.
+3.Do we need caching.
+4.How much concurrency do we expect.
+
+We usually estimate
+1.Number of entities
+2.Request volume
+3.Storage
+4.Read vs Write pattern
+5.Peak traffic
+
+
+
+
+
 
 
 
