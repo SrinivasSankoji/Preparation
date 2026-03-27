@@ -20,7 +20,8 @@ Rate limiting ensures the system stability.
 Considr the scenario of Bouncer at a popular nightclub.
 Only allowing a certain number of people in at a time to prevent overcrowding and maintain a pleasant experience for everyone inside.
 
-Rate Limiting matters because
+Rate Limiting matters :
+=======================
 1.Preventing System Overload.
 2.Protecting against DDoS Attacks.
 3.Managing Third-Party API Quotas.
@@ -56,25 +57,8 @@ Rate limiting helps keep our cloud costs predictable and under control.
 Our microservices likely depend on external APIs that have their own rate limits.
 By implementing rate limiting at our end, we can prevent hitting these external limits and ensure smoother integration with third-party services.
 
-Common Rate Limit Algorithms are
-1.Token Bucket Algorithm
-2.Leaky Bucket Algorithm
-3.Fixed Window Counter
-4.Sliding Window Log
-5.Sliding Window Counter
-
-Implementation Strategies are
-1.API Gateway Level
-2.Application Level using Redis + Bucket4j or Redis-backed Rate Limiter (Token Bucket) or Spring Filter
-
-Choosing the Right Storage Backend for Rate Limiter :
------------------------------------------------------
-Redis is the go-to choice for distributed rate limiting. It’s fast, supports atomic operations, and can be shared across multiple service instances.
-For single-instance applications or less critical rate limiting, in-memory storage is the simplest option but doesn’t work in distributed environments.
-While possible, using a traditional database for rate limiting is generally too slow and can become a bottleneck itself.
-
 Best Practices :
-----------------
+================
 1.Rate Limit at Multiple Tiers.
 Implement rate limits based on the resource consumption.
 For example based on User types, Endpoints etc.
@@ -100,7 +84,7 @@ If we are using a distributed rate limiter, be aware of potential consistency is
 Implement rate limiting at the edge (CDN/WAF), API gateway and individual service for comprehensive protection.
 
 Common pitfalls to avoid :
---------------------------
+==========================
 1.Not accounting for Distributed Systems
 In a distributed environment each service instance maintaining its own rate limit counters can lead to the actual limit being multiplied by the number of instances.
 Use centralized storage like Redis.
@@ -122,13 +106,14 @@ Order Service: 10 orders/minute per user (write-heavy, expensive operations)
 Payment Service: 5 attempts/minute per user (critical, must protect)
 Search Service: 100 requests/minute per user (resource-intensive)
 
-Each service implements rate limiting appropriate to its criticality and resource requirements with monitoring in place to adjust these limits based on actual usage patterns.
+Note :
+------
+In a distributed environment each service implements its own rate limiting appropriate to its criticality and 
+resource requirements with monitoring in place to adjust these limits based on the actual usage patterns.
 
-
-																Business context
-																----------------
-																
-We have an e-commerce platform running on microservices
+Business context :
+==================																
+We have an e-commerce application running on microservices
 API Gateway
 Auth Service (JWT validation, user context)
 Order Service (creates order)
@@ -136,6 +121,7 @@ Inventory Service (reserves stock)
 Pricing/Promotion Service (applies discounts)
 Payment Service (initiates payment intent)
 Notification Service (sends SMS/email)
+
 Shared dependencies:
 PostgreSQL (orders, inventory)
 Redis (caching, sessions, promo cache)
@@ -173,18 +159,17 @@ Postgres sees too many concurrent connections / long-running transactions → sl
 Once latency rises, queueing increases → more thread blocking → services become unresponsive.
 
 Eventually
-Gateway returns 5xx
-Order creation becomes inconsistent
-Other unrelated endpoints also slow down because shared resources are saturated
+Gateway returns 5xx.
+Order creation becomes inconsistent.
+Other unrelated endpoints also slow down because shared resources are saturated.
 
 Bottom line: One bad client + sudden spike can trigger a platform-wide outage.
 
-Flow with Rate limiting (end-to-end) :
-
-API Gateway rate limiting Layer 1 :
------------------------------------
+Layer 1 : Rate limiting at API Gateway Level :
+----------------------------------------------
 Policy :
 Key: tenantId or apiKey (for partner apps) + optionally userId
+
 Limit example:
 Partner API key: 200 RPS, burst 400
 Public users: 20 RPS per user, burst 40
@@ -208,8 +193,8 @@ Effect
 	
 This alone often prevents the outage.
 
-Service-level Layer 2 :
------------------------
+Layer 2 - Rate limiting at Service Layer Level :
+------------------------------------------------
 Even with gateway limits internal bursts can happen.
 Order Service applies dependency-level rate limiting / bulkheads.
 
@@ -217,48 +202,60 @@ Calls to Inventory Service capped at safe throughput, e.g. 300 RPS
 Calls to Pricing Service capped, e.g. 500 RPS
 Payment initiation capped, e.g. 200 RPS
 
-Database protection via concurrency caps Layer 3 :
---------------------------------------------------
+Layer 3 - Database protection via concurrency caps :
+----------------------------------------------------
 Rate limiting controls request count, but DB overload is often caused by concurrency.
 
 Order Service also enforces
 Max concurrent DB writes (semaphore / bulkhead)
 Bounded queue for DB operations
 
-Rate Limiter acts like Circuit breaker :
-----------------------------------------
-A Circuit breaker pattern stops calls to a failing dependency after repeated failures.
-Rate limiting is similar in outcome but it triggers on volume instead of failure rates.
+Implementation Strategies :
+===========================
+1.API Gateway Level
+2.Application Level using Redis + Bucket4j or Redis-backed Rate Limiter (Token Bucket) or Spring Filter
 
-It opens the circuit for excess requests by returning 429 immediately.
-That prevents resources (threads, DB connections, CPU) from being consumed.
-That prevents the cascading failures.
+Choosing the Right Storage Backend for Rate Limiter :
+=====================================================
+Redis is the go-to choice for distributed rate limiting. It’s fast, supports atomic operations and can be shared across multiple service instances.
+For single-instance applications or less critical rate limiting, in-memory storage is the simplest option but doesn’t work in distributed environments.
+While possible, using a traditional database for rate limiting is generally too slow and can become a bottleneck itself.
 
 Important in real deployments :
--------------------------------
+===============================
 429 is a success path during overload and Clients must be coded to handle it (backoff + jitter).
 Limit expensive endpoints separately i.e. /checkout must not share limits with /products.
 Global vs per-pod i.e. If we have 10 gateway pods and we want a true global limit, use a shared store (Redis) or a gateway feature that supports global enforcement.
 Don’t rely only on edge i.e. Internal limits protect against fan-out and internal storms.
 
+Rate Limiter acts like Circuit breaker :
+========================================
+A Circuit breaker pattern stops calls to a failing dependency after repeated failures.
+Rate limiting is similar in outcome but it triggers on volume instead of failure rates.
+
+It opens the circuit for excess requests by returning 429 immediately.
+That prevents resources like Threads, DB connections and CPU from being consumed.
+That prevents the cascading failures.
+
+Common Rate Limit Algorithms are
+1.Token Bucket Algorithm
+2.Leaky Bucket Algorithm
+3.Fixed Window Counter
+4.Sliding Window Log
+5.Sliding Window Counter
+6.Queue-based shaping
+
+There are algorithms that decide how to enforce limits and they do not decide what the limit values should be.
+That comes from capacity and business requirements.
+
 ###############################################################  2.Configure Rate Limiter  ########################################################################
 
 Rate limits are almost never guessed once and hardcoded.
-
 They are typically the result of
 1.An enforcement mechanism i.e. An algorithm where enforced
 2.A capacity/SLO-driven sizing process
 3.Business policy (tiers, fairness, abuse controls)
 4.Continuous tuning (based on real traffic + incidents)
-
-There are standard algorithms and the most common are
-Token Bucket
-Sliding Window
-Leaky Bucket
-Queue-based shaping
-
-These algorithms decide how to enforce limits and they do not decide what the limit values should be.
-That comes from capacity and business requirements.
 
 Step 1 :
 --------
@@ -315,9 +312,9 @@ Abuse prevention: login/OTP endpoints very strict.
 
 ################################################################## 3.Latency percentiles ###################################################################
 
-Latency percentile is nothing but Out of 100 requests how fast are most requests actually served.
-Consider the scenario of an API End Point i.e. POST /checkout
+Latency percentile is nothing but out of 100 requests how fast most of the requests are actually served.
 We measure response time for 100 requests and we sort them from fastest to slowest.
+Consider the scenario of an API End Point i.e. POST /checkout
 
 p50 (Median) :
 --------------
@@ -341,7 +338,7 @@ p99 (Worst-case) :
 This is the broken case.
 99% of requests are faster than this.
 Only 1% are slower.
-Represents edge cases under load
+Represents edge cases under load.
 Here the System starting to struggle.
 
 	| Percentile | Meaning              |
@@ -368,12 +365,11 @@ Key rule is Rate limits are chosen so that p95 and p99 stay within SLO.
 
 ######################################################################## 4.Service Capacity ##################################################################
 
-The main question here is How many checkout requests can my system safely handle without breaking.
+The main question here is how many checkout requests can my system safely handle without breaking.
 
 Step 1 :
 --------
-Consider the scenario of order-service which has 10 pods.
-We are running 10 instances of the order-service typically in Kubernetes.
+Consider the scenario of order-service which has 10 pods i.e. we are running 10 instances of the order-service typically in Kubernetes.
 Traffic is load-balanced across these pods.
 
 Each pod Has limited CPU
@@ -385,7 +381,7 @@ So total capacity = capacity per pod × number of pods.
 Step 2 :
 --------
 Each pod safely handles 40 concurrent checkouts i.e. It does not mean 40 requests per second.
-It means at any moment in time, the pod can have up to 40 checkout requests in progress without causing
+At any moment in time, the pod can have up to 40 checkout requests in progress without causing
 Thread starvation
 DB connection exhaustion
 Excessive GC
@@ -399,7 +395,7 @@ Latency increases sharply
 
 Where does 40 come from in real life :
 --------------------------------------
-From load testing and production observation based on:
+From load testing and production observation based on
 Thread pool size (e.g., 50)
 DB pool size (e.g., 20 connections)
 CPU usage
@@ -515,7 +511,6 @@ p95 and p99 stay within limits
 
 Concurrency is what kills systems and not RPS.
 Rate limiting keeps concurrency below the breaking point by controlling RPS.
-
 
 ######################################################################## 8.Token Bucket Algorithm ########################################################################
 

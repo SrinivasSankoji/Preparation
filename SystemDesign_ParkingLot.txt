@@ -330,6 +330,8 @@ How much data will be stored.
 How fast system should respond.
 How much growth system should handle.
 
+The design for a small apartment parking lot and a Large airport parking system will not be the same.
+
 Small Parking Lot :
 -------------------
 100 spots.
@@ -346,8 +348,6 @@ High traffic.
 Real-time occupancy updates needed.
 Stronger concurrency control needed.
 
-The design for a small apartment parking lot and a large airport parking system will not be the same.
-
 Advantage :
 -----------
 1.Is a simple monolith enough.
@@ -355,12 +355,51 @@ Advantage :
 3.Do we need caching.
 4.How much concurrency do we expect.
 
-We usually estimate
-1.Number of entities
-2.Request volume
-3.Storage
-4.Read vs Write pattern
-5.Peak traffic
+Parking Lot Scale Estimation :
+------------------------------
+Consider the usecase of Large commercial Parking Lot.
+
+1 parking lot location
+5 floors
+1000 spots per floor i.e. 5000 spots
+10 entry gates
+10 exit gates
+
+1.Estimate number of vehicles :
+-------------------------------
+If there are 5000 spots which has the full capacity then maximum 5000 vehicles can be parked at a time.
+
+2.Estimate entry traffic :
+--------------------------
+How many vehicles may enter in peak time.
+Consider around 1200 vehicles enter in 1 hour.
+
+	1200 / 60 = 20 vehicles per minute
+	20 / 60 = around 0.33 vehicles per second
+	
+This still does not look huge.
+If the traffic is bursty then at one moment, multiple gates may receive requests together.
+Consider across all gates we may recieve
+
+	5 to 10 entry requests per second 
+	
+3.Estimate exit traffic :
+-------------------------
+Exit traffic may also spike.
+For Example Office closing time, Movie show ends and Mall closes.
+Exit flow also includes Fee calculation, Payment and Gate release.
+So exit flow may be heavier than entry flow.
+Consider around 1800 vehicles exit in 1 hour.
+
+	30 vehicles per minute
+	0.5 vehicles per second average
+	
+With burst
+
+	10 to 15 exit requests per second
+	
+4.Estimate availability queries :
+---------------------------------
 
 
 
@@ -371,25 +410,7 @@ We usually estimate
 
 
 
-Do rough back-of-the-envelope estimation.
 
-Estimate:
-Number of parking spots
-Entry/exit requests per second
-Availability queries per second
-Ticket writes
-Payment transactions
-Storage volume
-
-For parking lot:
-5,000 spots
-20 gates
-Peak entry traffic maybe 50–100 vehicles/minute
-Real-time display queries from kiosks/mobile apps
-Small write-heavy operational data, modest analytical data
-
-The parking-lot article explicitly recommends gathering requirements and estimating scale before detailed design and 
-one of the Kanishk posts highlights back-of-the-envelope thinking as a core interview move.
 
 #################################################################### 4.Identify core use cases and workflows ###########################################################
 
