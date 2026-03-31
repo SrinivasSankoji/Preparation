@@ -1,7 +1,7 @@
 1.Clarify Requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
 2.Define Scope and Assumptions							(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
 3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [29-MAR-2026]	(Done)
-4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [26-MAR-2026]	()
+4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [31-MAR-2026]	()
 5.Identify Core Entities / Domain Model                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
 6.Define APIs / External Contracts                      (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
 7.Design High-Level Architecture                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
@@ -522,7 +522,7 @@ General estimation for any System Design :
 4.Read vs write pattern or Concurrency scale.
 5.Peak traffic or Latency expectations.
 
-#################################################################### 4.Identify core use cases and workflows ###################################################################
+#################################################################### 4.Identify core use cases and workflows ###############################################################
 
 Use case is a complete business scenario.
 A workflow is the step-by-step sequence inside an use case.
@@ -565,7 +565,6 @@ Admin manages parking configuration
 
 1.Vehicle Entry :
 =================
-
 Goal :
 ------
 Allow a vehicle to enter the parking lot.
@@ -613,7 +612,6 @@ Gate fails to open.
 
 2.Spot Allocation :
 ===================
-
 Goal :
 ------
 Assign a suitable parking spot to the vehicle.
@@ -656,177 +654,398 @@ Cache says free and DB says occupied.
 
 3.Ticket Generation :
 =====================
+Primary actor :
+---------------
+Entry Gate Machine / Ticket Service.
+
+Goal :
+------
+Create a valid parking ticket.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+Because ticket is the identity of a parking session.
+
+Workflow :
+----------
+1.System receives entry request.
+2.Unique ticket ID is generated.
+3.Entry time is saved.
+4.Vehicle type and spot details are attached.
+5.Ticket status is marked active.
+6.Ticket is printed or displayed.
+
+Business rules :
+----------------
+
+Postconditions :
+----------------
+
+Data :
+------
+ticket_id
+vehicle_number
+vehicle_type
+entry_time
+spot_id
+status
+
+Failure scenario :
+------------------
+Ticket generated twice
+Ticket not stored but printed
+Ticket ID collision
+Print failure
+
+4.Vehicle Exit :
+================
+Primary actor :
+---------------
+Driver, Exit Gate Machine.
+
+Goal :
+------
+Allow a vehicle to leave parking lot correctly.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+Because parking session should end in a controlled and billable way.
+
+Workflow :
+----------
+1.Vehicle comes to exit gate.
+2.Driver provides ticket.
+3.System fetches active parking session.
+4.System validates ticket.
+5.System calculates duration.
+6.System calculates parking charge.
+7.Payment is requested.
+8.On successful payment, exit is approved.
+9.Gate opens.
+10.Spot is released.
+11.Ticket is closed.
+
+Business rules :
+----------------
+Exit should be based on valid active ticket.
+Closed ticket should not be reused.
+Spot should be freed only once.
+Ticket must move from ACTIVE to CLOSED.
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+Ticket not found.
+Ticket already closed.
+Wrong ticket used.
+Exit attempted without payment.
+Payment succeeds but gate does not open.
 
 
+5.Fee Calculation :
+===================
+Primary actor :
+---------------
+Billing/Rate Engine
 
-#################################################################### 5.Identify Core Entities / Domain Model ##################################################################
+Goal :
+------
+Calculate parking charges.
 
-This is the bridge between requirements and design.
+Preconditions :
+---------------
 
-For parking lot, likely entities:
-ParkingLot
-Floor
-Gate
-ParkingSpot
-Vehicle
-Ticket
+Why this Use case exists :
+--------------------------
+Without this, exit and payment cannot happen correctly.
+
+Workflow :
+----------
+1.System reads entry time from ticket.
+2.System gets current time at exit.
+3.Duration is calculated.
+4.Pricing rule is applied.
+5.Final amount is returned.
+
+Business rules :
+----------------
+Pricing may vary by vehicle type.
+Fee should be deterministic.
+Calculation should be reproducible for auditing.
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+Wrong duration calculation.
+Missing pricing rule.
+Timezone mismatch.
+Rounding error.
+
+6.Payment Processing :
+======================
+Primary actor :
+---------------
+Driver, Payment Gateway
+
+Goal :
+------
+Collect payment before exit.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+
+Workflow :
+----------
+1.System shows payable amount.
+2.Driver chooses payment mode.
+3.Payment request is sent.
+4.Gateway returns success or failure.
+5.On success:
+	payment record stored.
+	Ticket eligible for closure.
+6.On failure:
+	Retry or alternate payment mode.
+7.Payment modes
+cash
+card
+UPI
+wallet
+
+Business rules :
+----------------
+Exit allowed only after successful payment.
+Duplicate payment should be prevented.
+Payment record should be stored for audit.
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+Payment timeout.
+gateway unavailable.
+duplicate retry.
+payment success but response lost.
+This later leads to:
+Idempotency.
+Retries.
+Reconciliation.
+
+7.Spot Release :
+================
+Primary actor :
+---------------
+System
+
+Goal :
+------
+Make the parking spot available again after successful exit.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+If this does not happen then system will slowly think parking is full even when spaces are empty.
+
+Workflow :
+----------
+1.Vehicle exit is confirmed.
+2.Associated spot is identified.
+3.Spot status changes from OCCUPIED to AVAILABLE.
+4.Availability count is updated.
+5.Display boards/admin view refresh.
+
+Business rules :
+----------------
+Spot should be released only once.
+Spot release should happen after valid exit completion.
+Availability count should remain accurate.
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+payment done but spot not released.
+exit completed twice.
+stale cache still shows occupied.
+
+
+8.Availability Display :
+========================
+Primary actor :
+---------------
+Display Board, Admin UI and maybe future Mobile UI.
+
+Goal :
+------
+Show how many spots are available.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+
+
+Workflow :
+----------
+1.System tracks free spots.
+2.Counts are maintained by floor/type.
+3.Display board fetches current count.
+4.Driver/admin sees availability.
+
+
+Business rules :
+----------------
+Display can be near real-time andit does not always need strict transaction-level immediacy but it should not be badly wrong.
+
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+Board not refreshed.
+Cache stale.
+Count mismatch with actual ground reality.
+
+
+9.Admin Management :
+====================
+Primary actor :
+---------------
+Admin
+
+Goal :
+------
+Allow admin to configure and monitor system.
+
+Preconditions :
+---------------
+
+Why this Use case exists :
+--------------------------
+Even if customer-facing flows are main focus, admin use cases are important because real systems need operational control.
+
+Workflow :
+----------
+Add parking floor.
+Add/remove spots.
+Mark spot under maintenance.
+Configure rates.
+View occupancy report.
+View payment history.
+
+Business rules :
+----------------
+
+Postconditions :
+----------------
+
+Data :
+------
+
+Failure scenario :
+------------------
+
+Workflows matter before database and APIs :
+===========================================
+Which entities are needed.
+Which state transitions happen.
+Which validations happen.
+Where transactions are required.
+Where failures occur.
+Where concurrency problems occur.
+
+Mistakes to avoid :
+===================
+Mistake 1: Writing only feature names is not enough and explain the flow.
+Entry
+Exit
 Payment
-RateCard / PricingPolicy
-DisplayBoard
-Attendant / GateTerminal
 
-This is where parking-lot design becomes especially valuable, because it forces you to model the real domain cleanly.
-The referenced parking-lot deep dive specifically calls out designing core entities with the right abstractions.
+Mistake 2: Ignoring alternate paths.
+Real systems always have
+No space available.
+Invalid ticket.
+Payment failure.
+Duplicate request.
 
-#################################################################### 6.Define APIs or system interfaces ######################################################################
+Mistake 3: Mixing workflow with architecture.
+Here we are still not saying about the below architecture and is about the business flow.
+Redis
+Kafka
+microservices
+PostgreSQL
 
-Ask: how do external actors interact with the system?
+Mistake 4: Too much technical detail too early.
+Do not jump into implementation here and focus on
+Actors
+Steps
+Outcomes
+Failure cases
 
-For parking lot, sample APIs:
-POST /entry
-POST /allocate-spot
-POST /exit
-POST /payment
-GET /availability
-GET /ticket/{id}
+#################################################################### 5.Identify Core Entities / Domain Model ####################################################################
 
-For internal systems:
-Gate terminal service
-Slot allocation service
-Billing service
-Payment service
-Notification/display service
 
-This step makes the design concrete and testable.
 
-#################################################################### 7.Design the high-level architecture ####################################################################
+#################################################################### 6.Define APIs or system interfaces #########################################################################
 
-Now draw the boxes.
 
-For parking lot, a clean high-level architecture could be:
-Entry/Exit Gate Clients
-API Gateway / Backend Service
-Parking Management Service
-Spot Allocation Service
-Ticket Service
-Pricing/Billing Service
-Payment Service
-Availability Cache
-Primary Database
-Event Bus for occupancy updates, analytics, notifications
 
-At this point, explain responsibilities of each component, not just names.
-The referenced system design frameworks emphasize structured progression from requirements into architecture, rather than drawing components first.
+#################################################################### 7.Design the high-level architecture #######################################################################
 
-#################################################################### 8.Design the data model #################################################################################
 
-Choose persistent data and transient data.
 
-Parking lot tables/collections:
-parking_lot
-floor
-spot
-vehicle
-ticket
-parking_session
-payment
-pricing_policy
-gate_event
+#################################################################### 8.Design the data model ####################################################################################
 
-Key decisions:
-Spot state: AVAILABLE / RESERVED / OCCUPIED / OUT_OF_SERVICE
-Ticket state: ACTIVE / CLOSED / LOST
-Payment state: PENDING / SUCCESS / FAILED
 
-For parking lot, relational storage is often a good starting point because transactions and consistency matter for ticketing, payments, and occupancy state.
-The parking-lot deep dive highlights persistence as part of the production-ready evolution.
+#################################################################### 9.Handle concurrency and consistency #######################################################################
 
-#################################################################### 9.Handle concurrency and consistency ####################################################################
 
-This is where many designs become real.
 
-For parking lot, major concurrency problems:
-Two gates assigning the same spot
-Vehicle exits while payment is still pending
-Display board showing stale availability
-Retry from gate terminal creating duplicate ticket
+#################################################################### 10.Address non-functional requirements #####################################################################
 
-Standard solutions:
-Row-level lock or optimistic locking on spot allocation
-Idempotency key for entry/exit/payment requests
-Transaction around ticket creation + spot reservation
-Event-driven update for display boards
-Cache invalidation on occupancy changes
 
-The parking-lot article explicitly highlights handling concurrency without breaking the system, which is a critical “real-world architect” layer.
 
-#################################################################### 10.Address non-functional requirements #################################################################
+#################################################################### 11.Find bottlenecks and improve ############################################################################
 
-Now evaluate the design against system qualities:
-Scalability
-Availability
-Consistency
-Reliability
-Performance
-Security
-Maintainability
-Observability
-Cost
 
-For parking lot:
-Low latency for gate operations
-High availability for entry/exit
-Strong consistency for spot assignment and payment
-Eventual consistency acceptable for dashboards/analytics
-Audit logs for security/compliance
+#################################################################### 12.Discuss edge cases ######################################################################################
 
-This is where you explain trade-offs instead of pretending everything can be perfect.
 
-#################################################################### 11.Find bottlenecks and improve #######################################################################
+#################################################################### 13.State trade-offs and future evolution ###################################################################
 
-Ask: where will this fail first?
 
-Parking lot bottlenecks:
-Central DB hotspot on spot updates
-Allocation service contention during peak time
-Slow payment processing blocking exit
-Real-time availability queries overloading DB
 
-Possible improvements:
-Keep live availability in Redis/cache
-Partition by parking lot / floor
-Use asynchronous events for dashboards
-Pre-compute available spot counts
-Separate operational DB from analytics pipeline
-
-This is usually the step where strong candidates differentiate themselves in interviews and strong engineers in real systems.
-
-#################################################################### 12.Discuss edge cases ################################################################################
-
-Architect-level thinking appears here.
-
-Parking lot edge cases:
-Lost ticket
-Full parking lot
-Spot sensor says occupied but ticket missing
-Payment success but exit gate failure
-Duplicate vehicle entry attempt
-Offline gate terminal
-Emergency/manual override
-Premium/VIP/reserved slots
-EV charging slots
-Dynamic pricing
-
-A good design is not just the happy path.
-
-#################################################################### 13.State trade-offs and future evolution ############################################################
-
-Always end by explaining what you intentionally did not optimize.
-
-For example:
-Version 1 uses a single regional deployment for simplicity.
-Strong consistency for spot assignment, eventual consistency for reporting.
-RDBMS first, because transactional correctness matters more than ultra-scale.
-
-Reservation system, dynamic pricing, ML-based spot recommendation, and multi-city federation can be phase 2
-This signals mature design judgment.
+##################################################################################################################################################################################
