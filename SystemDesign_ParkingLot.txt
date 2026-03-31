@@ -1,6 +1,6 @@
 1.Clarify Requirements									(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
 2.Define Scope and Assumptions							(Arvind Kumar,The Latency Gambler,ChatGPT)     [25-MAR-2026]	(Done)
-3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [26-MAR-2026]	()
+3.Estimate Scale                                        (Arvind Kumar,The Latency Gambler,ChatGPT)     [29-MAR-2026]	(Done)
 4.Identify core use cases and workflows                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [26-MAR-2026]	()
 5.Identify Core Entities / Domain Model                 (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
 6.Define APIs / External Contracts                      (Arvind Kumar,The Latency Gambler,ChatGPT)     [27-MAR-2026]	()
@@ -356,7 +356,7 @@ Advantage :
 4.How much concurrency do we expect.
 
 Parking Lot Scale Estimation :
-------------------------------
+==============================
 Consider the usecase of Large commercial Parking Lot.
 
 1 parking lot location
@@ -400,36 +400,267 @@ With burst
 	
 4.Estimate availability queries :
 ---------------------------------
+Availability data may be requested by
+Entry display boards
+Admin dashboard
+
+Suppose display boards refresh every 5 seconds
+10 entry boards
+10 admin/operator screens
+
+	20 / 5 = 4 queries per second
+
+If many systems check availability frequently then it can grow.
+So this data may later be cached.
+
+5.Estimate ticket generation :
+------------------------------
+Each entry creates one ticket.
+If 15,000 vehicles use the parking lot in a day then 15,000 tickets/day.
+That means 15,000 write operations for entry sessions.
+Not very large for a normal database.
+
+6.Estimate payments :
+---------------------
+Each exit usually creates one payment record.
+So If 15,000 vehicles exit per day then 15,000 payments/day.
+This is less about scale and more about consistency and reliability.
+
+7.Estimate storage :
+--------------------
+Suppose each ticket record stores
+ticket id
+vehicle number
+vehicle type
+spot id
+entry time
+exit time
+fee
+status
+
+Assume one ticket record roughly takes 500 bytes to 1 KB including indexes and metadata.
+
+	15,000 KB/day = 15 MB/day at 1 KB each
+	15 MB × 365 ≈ 5.4 GB/year
+
+Even if we add payment info, logs and indexes then maybe 
+
+	10–20 GB/year operational data
+	
+This is still manageable in relational DB.
+
+8.Estimate concurrent operations :
+----------------------------------
+Even If the daily data is small, concurrent operations can create problems.
+1.Two gates trying to assign same spot.
+2.Payment retry happening twice.
+3.One vehicle scanned twice.
+4.Availability count getting stale.
+
+10–20 concurrent gate operations at peak
+many spot updates happening at same time
+simultaneous reads for availability
+
+9.Latency expectations :
+------------------------
+Entry gate :
+Driver should not wait long.
+Expected response: preferably under 1–2 seconds
+
+Exit gate :
+Should also be quick: Fee calculation + payment initiation should be fast.
+
+Availability display :
+Should be near real-time: A few seconds delay may be acceptable.
+
+This helps later when deciding :
+cache
+Precomputed counts
+sync vs async updates
+
+Conclusions :
+=============
+1.We do not need a super-complex internet-scale architecture, simple and clean architecture may be enough.
+Not required
+Dozens of microservices.
+Distributed NoSQL by default.
+Huge event streaming platform at day one.
+
+2.Relational database is a good fit.
+Data is structured.
+Transactions matter.
+Payment correctness matters.
+Spot assignment correctness matters.
+
+3.Concurrency matters more than huge throughput.
+Main risk is
+Same spot assigned twice.
+Duplicate ticket.
+Wrong availability count.
+Duplicate payment.
+
+So later we must focus o:
+Transactions.
+row locking or optimistic locking.
+Idempotency.
+State transitions.
+
+4.Cache may help availability reads.
+Because availability count may be read frequently.
+DB remains source of truth.
+Cache stores live counts.
+Display boards read from cache.
+
+5:Peak load matters more than average load.
+Many vehicles enter/exit together. So architecture should be designed for burst handling.
+
+General estimation for any System Design :
+==========================================
+1.Number of entities or Entity scale.
+2.Request scale.
+3.Storage scale.
+4.Read vs write pattern or Concurrency scale.
+5.Peak traffic or Latency expectations.
+
+#################################################################### 4.Identify core use cases and workflows ###################################################################
+
+Use case is a complete business scenario.
+A workflow is the step-by-step sequence inside an use case.
+
+Use case = overall scenario.
+Workflow = detailed steps in that scenario.
+
+Identifying the Usecases and Core workflows means describing how users and systems interact step by step to achieve the business goals.
+
+Actors in Parking Lot System :
+==============================
+Before writing use cases, identify the Actors.
+An actor is a person, device or an external system that interacts with our system.
+
+Primary actors :
+----------------
+Vehicle oowner
+Parking Attendant
+Admin
+
+System actors :
+---------------
+Entry gate machine
+Exit gate machine
+Payment gateway
+Display board
+Sensor / scanner
+
+Main use cases for Parking Lot :
+================================
+Vehicle enters parking lot
+System allocates parking spot
+Ticket is generated
+Vehicle exits parking lot
+Parking fee is calculated
+Payment is processed
+Spot is released
+Availability is updated/displayed
+Admin manages parking configuration
+
+1.Vehicle Entry :
+=================
+
+Goal :
+------
+Allow a vehicle to enter the parking lot.
+
+Primary actor :
+---------------
+Driver, Entry Gate Machine.
+
+Why this Use case exists :
+--------------------------
+Because every parking session starts here.
+
+Workflow :
+----------
+1.Vehicle arrives at entry gate.
+2.Entry gate machine detects vehicle.
+3.System checks whether parking is available for that vehicle type.
+4.If space is available then system proceeds.
+5.Ticket is generated.
+6.Entry time is recorded.
+7.Assigned spot details may be shown.
+8.Gate opens.
+9.Vehicle enters.
+
+Business rules :
+----------------
+Entry should not be allowed If the parking is full.
+Vehicle should get only one active ticket.
+Ticket must be tied to one parking session.
+
+Data :
+------
+Ticket.
+Entry timestamp.
+Vehicle session.
+Maybe provision for spot reservation.
+
+Failure scenario :
+------------------
+No available spot.
+Duplicate scan.
+Printer not working.
+Database error.
+Gate fails to open.
+
+2.Spot Allocation :
+===================
+
+Goal :
+------
+Assign a suitable parking spot to the vehicle.
+
+Primary actor :
+---------------
+System / Allocation Logic.
+
+Why this Use case exists :
+--------------------------
+Because vehicle must know where to park and system must track occupancy correctly.
+
+Workflow :
+----------
+1.System identifies vehicle type.
+2.System fetches available spots of matching type.
+3.System selects one suitable spot.
+4.Spot is marked as reserved or occupied.
+5.Spot is linked to the active ticket.
+6.Driver is informed of the allocated spot.
+
+Business rules :
+----------------
+One spot can hold only one active vehicle.
+Spot type must match vehicle type.
+Same spot should not be assigned twice.
+
+Data :
+------
+Spot status is updated.
+Ticket is created and Spot is assigned.
+Availability count is updated.
+
+Failure scenario :
+------------------
+No matching spot available.
+Two gates trying to assign same spot.
+Spot state outdated.
+Cache says free and DB says occupied.
+
+3.Ticket Generation :
+=====================
 
 
 
+#################################################################### 5.Identify Core Entities / Domain Model ##################################################################
 
-
-
-
-
-
-
-
-
-#################################################################### 4.Identify core use cases and workflows ###########################################################
-
-Now define the main flows.
-For parking lot:
-Vehicle enters
-Spot assigned
-Ticket issued
-Vehicle parked
-Vehicle exits
-Charge calculated
-Payment completed
-Spot released
-Occupancy updated
-
-This step helps you design around actual behavior instead of random components.
-
-Step 5: Identify Core Entities / Domain Model :
---------------------------------------------
 This is the bridge between requirements and design.
 
 For parking lot, likely entities:
@@ -447,8 +678,8 @@ Attendant / GateTerminal
 This is where parking-lot design becomes especially valuable, because it forces you to model the real domain cleanly.
 The referenced parking-lot deep dive specifically calls out designing core entities with the right abstractions.
 
-Step 6: Define APIs or system interfaces :
-------------------------------------------
+#################################################################### 6.Define APIs or system interfaces ######################################################################
+
 Ask: how do external actors interact with the system?
 
 For parking lot, sample APIs:
@@ -468,8 +699,8 @@ Notification/display service
 
 This step makes the design concrete and testable.
 
-Step 7: Design the high-level architecture :
---------------------------------------------
+#################################################################### 7.Design the high-level architecture ####################################################################
+
 Now draw the boxes.
 
 For parking lot, a clean high-level architecture could be:
@@ -487,8 +718,8 @@ Event Bus for occupancy updates, analytics, notifications
 At this point, explain responsibilities of each component, not just names.
 The referenced system design frameworks emphasize structured progression from requirements into architecture, rather than drawing components first.
 
-Step 8: Design the data model :
--------------------------------
+#################################################################### 8.Design the data model #################################################################################
+
 Choose persistent data and transient data.
 
 Parking lot tables/collections:
@@ -510,8 +741,8 @@ Payment state: PENDING / SUCCESS / FAILED
 For parking lot, relational storage is often a good starting point because transactions and consistency matter for ticketing, payments, and occupancy state.
 The parking-lot deep dive highlights persistence as part of the production-ready evolution.
 
-Step 9: Handle concurrency and consistency :
---------------------------------------------
+#################################################################### 9.Handle concurrency and consistency ####################################################################
+
 This is where many designs become real.
 
 For parking lot, major concurrency problems:
@@ -529,8 +760,8 @@ Cache invalidation on occupancy changes
 
 The parking-lot article explicitly highlights handling concurrency without breaking the system, which is a critical “real-world architect” layer.
 
-Step 10: Address non-functional requirements :
-----------------------------------------------
+#################################################################### 10.Address non-functional requirements #################################################################
+
 Now evaluate the design against system qualities:
 Scalability
 Availability
@@ -551,8 +782,8 @@ Audit logs for security/compliance
 
 This is where you explain trade-offs instead of pretending everything can be perfect.
 
-Step 11: Find bottlenecks and improve :
----------------------------------------
+#################################################################### 11.Find bottlenecks and improve #######################################################################
+
 Ask: where will this fail first?
 
 Parking lot bottlenecks:
@@ -570,8 +801,8 @@ Separate operational DB from analytics pipeline
 
 This is usually the step where strong candidates differentiate themselves in interviews and strong engineers in real systems.
 
-Step 12: Discuss edge cases :
------------------------------
+#################################################################### 12.Discuss edge cases ################################################################################
+
 Architect-level thinking appears here.
 
 Parking lot edge cases:
@@ -588,8 +819,8 @@ Dynamic pricing
 
 A good design is not just the happy path.
 
-Step 13: State trade-offs and future evolution :
-------------------------------------------------
+#################################################################### 13.State trade-offs and future evolution ############################################################
+
 Always end by explaining what you intentionally did not optimize.
 
 For example:
