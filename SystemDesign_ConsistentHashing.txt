@@ -1,4 +1,5 @@
 1.Consistent Hashing 										(Sudo Code)   					[24-JUN-2024]  (Done)
+2.Consistent Hashing 										(Vyacheslav Efimov)   			[06-APR-2026]  (Done)
 
 ############################################################### 1.Consistent Hashing  ###############################################################
 
@@ -25,3 +26,287 @@ Servers will not evenly distributed.
 
 The other approach is to create the replica's of the Servers.
 In this case no of keys to be replaced is reduced.
+
+############################################################### 2.Consistent Hashing (Vyacheslav Efimov) #############################################
+
+When the data is massively generated every day, it is practically impossible to store all the data on a single server.
+That is the reason we need horizontal scaling where every data part is stored on a separate server.
+With horizontal scaling, it is crucial to organise the data in a such a way that data can be accessed quickly from different servers.
+
+Problem :
+---------
+Consider the scenario where we have the data that has to be stored across different servers.
+The configuration of the servers can change over time.
+1.New server can be added.
+2.Old server can be removed.
+
+we have to design a system in such a way that transfer the data between servers and retrieve the required data blocks rapidly  when the configuration changes.
+
+Naive implementation :
+======================
+The naive implementation distributes the data across different servers based on a hash function.
+Consider the scenario where we have many users, cache entries, database rows and multiple servers.
+we need a rule to decide which server stores which data and we cannot randomly place them.
+This is the partitioning problem.
+
+1.Take the data key.
+2.Apply a hash function.
+3.Use modulo with number of servers.
+
+	serverIndex = hash(key) % N (Number of Servers)
+	
+where hash(key) converts the key into a number.
+N is the current number of servers.
+
+Usecase :
+---------
+Consider the scenario where we have 4 cache servers and we want to store product cache entries.
+	
+	S0
+	S1
+	S2
+	S3
+	
+	serverIndex = hash(productId) % 4
+	
+	hash("P100") = 18
+	hash("P101") = 7
+	hash("P102") = 22
+	hash("P103") = 31
+	
+	18 % 4 = 2 → S2
+	07 % 4 = 3 → S3
+	22 % 4 = 2 → S2
+	31 % 4 = 3 → S3
+	
+	P100 → S2
+	P101 → S3
+	P102 → S2
+	P103 → S3
+
+This is the naive hashing approach.
+
+Advantages :
+------------
+1.Easy to implement.
+2.Hashing and Modulo is cheap.
+3.Every client using the same formula gets the same server.
+4.A good hash function usually spreads the keys reasonably across the servers.
+
+Disadvantages :
+---------------
+The problem starts when the number of servers changes.
+
+	serverIndex = hash(key) % N
+	
+Major flaw is if N changes then answer for almost every key can change.
+
+	server = hash(key) % 5
+	
+	18 % 5 = 3 → S3
+	7 % 5 = 2 → S2
+	22 % 5 = 2 → S2
+	31 % 5 = 1 → S1
+	
+	| Key  | Old Server | New Server |
+	| ---- | ---------- | ---------- |
+	| P100 | S2         | S3         |
+	| P101 | S3         | S2         |
+	| P102 | S2         | S2         |
+	| P103 | S3         | S1         |
+
+This is the exact problem when server count changes from 4 to 5 then many keys get remapped.
+
+Cache system :
+--------------
+If we add one more server then :
+Most keys now point to different servers.
+Old cached data is on the wrong server.
+New requests miss the cache.
+Backend DB gets overloaded.
+This is called a cache miss storm or cache churn.
+
+Session store :
+---------------
+If the User sessions are mapped this way then :
+Many users suddenly appear Logged out.
+Session lookup goes to a different server.
+User experience breaks.
+
+In naive hashing approach the number of servers N is directly part of the formula.
+
+	hash(key) % N
+	
+Here if N changes then :
+Divisor changes.
+Remainder changes.
+Destination server changes.
+This does not affect only the keys that were on the added/removed server.
+It affects keys that were on completely unrelated servers too.	
+
+Consistent Hashing :
+====================
+Consistent hashing was introduced to solve exactly the naive hashing issue.
+when servers are added or removed then only a small subset of keys should move but not almost all the keys.
+
+	key → position → nearest server
+	
+This is the biggst conceptual shift.
+
+Step 1: Place servers on the ring :
+-----------------------------------
+
+	hash(S1) → position on ring
+	hash(S2) → position on ring
+	hash(S3) → position on ring
+	
+	| Server | Hash Position |
+	| ------ | ------------- |
+	| S1     | 50            |
+	| S2     | 150           |
+	| S3     | 300           |
+	
+Step 2 : Place keys on the ring :
+---------------------------------
+
+	hash(key) → position on ring
+	
+	| Key | Hash Position |
+	| --- | ------------- |
+	| K1  | 40            |
+	| K2  | 120           |
+	| K3  | 200           |
+	| K4  | 320           |
+	
+Step 3 : Assign key to server :
+-------------------------------
+
+	K1 (40) → next server is S1 (50)
+	K2 (120) → next server is S2 (150)
+	K3 (200) → next server is S3 (300)
+	K4 (320) → next server is S1 (wrap around)
+	
+	| Key | Server |
+	| --- | ------ |
+	| K1  | S1     |
+	| K2  | S2     |
+	| K3  | S3     |
+	| K4  | S1     |
+	
+Here each server owns the keys in this range.
+A newly added server only takes over the keys in the segment and all other keys remain with their old servers.
+
+Virtual Nodes :
+===============
+Consistent Hashing provides
+1.Minimal key movement when nodes change.
+2.Decentralized partitioning.
+3.Deterministic routing.
+
+Drawbacks :
+-----------
+1.Servers are placed on the ring using a hash and the placement is random i.e. Random ≠ evenly spaced.
+
+Servers :
+S1 = 10
+S2 = 20
+S3 = 300
+
+	| Server | Range Owned |
+	| ------ | ----------- |
+	| S1     | (300 → 10]  |
+	| S2     | (10 → 20]   |
+	| S3     | (20 → 300]  |
+	
+S2 owns tiny range and very low load.
+S3 owns huge range and overloaded.
+Problem here is Severe imbalance.
+
+2.Even if the distribution is balanced some keys are accessed much more frequently.
+
+3.Poor control over distribution.
+We cannot easily balance load and assign weights to nodes (in basic version)
+Everything depends on the hash function and is not predictable.
+	
+	hash(server)
+	
+4.Node capacity differences ignored.
+Here all nodes treated equally i.e. small node = large node which is not realistic.
+
+5.Large gaps in ring leads to uneven key ranges.
+
+6.Rebalancing still required but limited.
+Even though movement is minimal affected keys still need migration and data transfer is required.
+This does not come for zero cost.
+
+All above issues come from one root cause i.e. Each server is represented by only one point on the ring.
+
+Solution :
+----------
+
+	1 server = 1 position changes to 1 server = multiple positions (virtual nodes)
+	
+Suppose we have 3 physical servers : 
+
+	S1, S2, S3
+
+Instead of 3 points we create
+
+	S1 → S1#1, S1#2, S1#3
+	S2 → S2#1, S2#2, S2#3
+	S3 → S3#1, S3#2, S3#3
+	
+Here each virtual node is hashed independently and each server owns ~33% of keys.
+
+	| Virtual Node | Position |
+	| ------------ | -------- |
+	| S1#1         | 10       |
+	| S2#1         | 40       |
+	| S3#1         | 80       |
+	| S1#2         | 120      |
+	| S2#2         | 160      |
+	| S3#2         | 200      |
+	| S1#3         | 240      |
+	| S2#3         | 280      |
+	| S3#3         | 320      |
+	
+Instead of large uneven chunks each server now owns multiple small segments.
+
+	| Server | Segments   |
+	| ------ | ---------- |
+	| S1     | 3 segments |
+	| S2     | 3 segments |
+	| S3     | 3 segments |
+	
+Advantages of Virtul Nodes :
+----------------------------
+1.Load imbalance.
+2.Hotspot mitigation.
+3.Capacity-based distribution.
+4.Better scaling.
+
+
+
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
