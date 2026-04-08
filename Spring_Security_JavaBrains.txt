@@ -59,29 +59,11 @@ Method level security
 1.Authentication :
 ------------------
 Spring security is like security guard that authenticates each and every request.
-Who are you is called Authentication and what do you want.
-
-Most of the Applications like FaceBook,LinkedIn etc have some representation of Id .
-These sites will have Id's in their system that uniquely corresponding to us.
-After identifying the Id, should prove that it is yourself. 
-Common way is by using password.
-This kind of Authentication is called knowledge based Authentication.
-Here Authentication is done based on knowledge we have like password,Pin code or Answer to a particular question.
-Here the Advantage is simple and easy to use.
-The disadvantage is it is not fully safe if some one steals the password.
-
-There are some other Authentication like possession based Authentication 
-Phone calls/Text Messages
-Key cards and Badges
-Access Token Device
-Some Applications uses both Knowledge based and possession based Authentication which is called as Multi factor Authentication.
+Refer SystemDesign_Security for complete details.
 
 Authorization :
 ---------------
-Authorization is nothing but what the user can do and what he is supposed to do.
-It is like Yes or No.
-Once the user is successfully Authenticated,What the user can do depends on who the user is called Authorization.
-Authentication and Authorization are widely used in the Software Development.
+Refer SystemDesign_Security for complete details.
 
 Principal :
 -----------

@@ -1,37 +1,127 @@
-1.Authentication
-2.Authorization
-3.Role-Based Access Control (RBAC)
-4.Attribute-Based Access Control (ABAC)
-5.OAuth 2.0
-6.OpenID Connect
-7.JWT / session-based auth
-8.API keys
-9.Mutual TLS (mTLS)
-10.TLS/HTTPS
+1.Authentication and Authorization													(Alina Kovtun)				[08-APR-2026]  (Done)
+2.Role-Based Access Control (RBAC)
+3.Attribute-Based Access Control (ABAC)
+4.OAuth 2.0
+5.OpenID Connect
+6.JWT / session-based auth
+7.API keys
+8.Mutual TLS (mTLS)
+9.TLS/HTTPS
 11.Encryption at rest
-12.Encryption in transit
-13.Secrets management
-14.Key management
-15.Certificate management
-16.Input validation
-17.Output encoding
-18.SQL injection prevention
-19.XSS prevention
-20.CSRF protection
-21.Clickjacking protection
-22.CORS
-23.WAF (Web Application Firewall)
-24.DDoS protection
-25.Bot protection
-26.Security headers
-27.Network security groups / firewall rules
-28.Zero trust
-29.Audit logging
-30.Compliance and governance
-31.Data masking / tokenization
-32.PII protection
-33.Threat modeling
+11.Encryption in transit
+12.Secrets management
+13.Key management
+14.Certificate management
+15.Input validation
+16.Output encoding
+17.SQL injection prevention
+18.XSS prevention
+19.CSRF protection
+20.Clickjacking protection
+21.CORS
+22.WAF (Web Application Firewall)
+23.DDoS protection
+24.Bot protection
+25.Security headers
+26.Network security groups / firewall rules
+27.Zero trust
+28.Audit logging
+29.Compliance and governance
+30.Data masking / tokenization
+31.PII protection
+32.Threat modeling
 
 
-###################################################################### 1.Authentication #########################################################################
+############################################################ 1.Authentication and Authorization (Alina Kovtun) ###############################################################
+
+Authentication is the process of verifying the user's identity.
+In simple terms Authentication answers the question "Who are you".
+
+In most applications like Facebook or LinkedIn, every user has a unique ID. When you try to log in, the system must confirm that you are the actual owner of that ID.
+To prove identity, users provide evidence called authentication factors.
+Below are the types of Authentication.
+
+1. Knowledge-Based Authentication :
+-----------------------------------
+This is the most common method.
+Examples :
+Password.
+PIN.
+Security questions.
+
+✔ Advantage: Easy to use.
+✘ Disadvantage: Not very secure if credentials are stolen.
+
+2. Possession-Based Authentication :
+------------------------------------
+Here Authentication is based on something we have.
+Examples :
+OTP via SMS or phone call.
+Key cards or badges.
+Authenticator apps / token devices.
+
+3. Multi-Factor Authentication (MFA) :
+--------------------------------------
+This combines multiple methods for better security.
+Example :
+Password (something we know) + OTP (something we have).
+✔ More secure because even if one factor is compromised, the system is still protected.
+
+Authorization happens after the identity is confirmed. Authorization answers the question "What are you allowed to do".
+Authorization is like Yes or No.
+Once the user is successfully Authenticated, What the user can do depends on who the user is called Authorization.
+Authentication and Authorization are widely used in the Software Development.
+
+Note :
+------
+Always remember "N before Z" i.e. we cannot authorize someone if we don’t know who they are.
+
+Secure Login Flow :
+-------------------
+1.User sends the credentials over HTTPS.
+2.Server finds the user in the database by their email/username.
+3.Server takes the provided password, processes it through a hashing algorithm and compares it with the stored version.
+4.If the credentials matches then the server generates a "proof of entry" i.e. usually a SessionID or JWT and sends it back to the client.
+
+Never Encrypt Passwords :
+-------------------------
+Encrypt the passwords in the database are technically wrong and that’s dangerous.
+Encryption is a two-way street and if we encrypt the password then we can decrypt it.
+There will be a secret key somewhere on the server.
+If someone finds the key then it is possible to reverse every single password in the database.
+
+Hashing is one way. 
+A cryptographic hash function that takes an input i.e. the password and turns it into a fixed-length string of characters i.e. hash.
+Mathematically we cannot reverse the hash to find the original password.
+
+Rainbow Table with Salts :
+--------------------------
+Consider the scenario where two users use the same password then their hashes will be identical.
+Hackers are aware of this.
+They use Rainbow Tables i.e. massive lists of pre computed hashes for millions of common passwords.
+If they see the hash in the database that matches with their pre computed hash then the password is cracked instantly.
+To resolve this we use Salt.
+
+A salt is a random string of data added to the password before it is hashed.
+This ensures that even if two users have the same password, their hashes will look completely different.
+There is no need to generate our own salts or crypto functions.
+Use industry-standard algorithms that handle salting for us.
+
+Preferred Algorithms :
+----------------------
+Not all hashes are created equal.
+Some are too fast.
+If an algorithm is fast then the hacker can guess billions of passwords per second.
+For example MD5 or SHA-256.
+We require an algorithm that is computationally expensive i.e. intentionally slow to make brute-force attacks impossible.
+
+	| Algorithm  | Speed               |Salt Handling | Recommended       |
+	|------------|---------------------|--------------|-------------------|
+	| MD5 / SHA-1| Extremely Fast      | Manual       | NO (Broken)       |
+	| SHA-256    | Fast                | Manual       | NO (Too fast)     |
+	| bcrypt     | Slow (Adjustable)   | Automatic    | YES               |
+	| Argon2id   | Memory-Hard         | Automatic    | YES (Best)        |
+
+############################################################ 2.Role-Based Access Control (RBAC) ###############################################################
+
 
