@@ -1,4 +1,99 @@
-1.Longest substring without repeating characters								[01-APR-2026]  ()
-2.Maximum sum subarray of size K                                                [01-APR-2026]  ()
-3.Minimum window substring                                                      [01-APR-2026]  ()
-4.Permutation in String                                                         [01-APR-2026]  ()
+1.Maximum sum subarray of size K                                                [07-APR-2026]  (Done)
+2.Average of all subarrays of size K                                            [01-APR-2026]  (Done)
+3.Maximum number of vowels in substring of size K                               [01-APR-2026]  (Done)
+4.Maximum element in every window                                               [01-APR-2026]  ()
+5.Count distinct elements in every window                                       [01-APR-2026]  ()
+6.Check if permutation of pattern exists in string                              [01-APR-2026]  ()
+7.Anagram count in a string                                                     [01-APR-2026]  ()
+8.First Negative Number in Every Window of Size K								[01-APR-2026]  ()
+																				
+9.Minimum window substring                                                      [01-APR-2026]  ()
+10.Longest substring without repeating characters								[01-APR-2026]  ()
+
+
+############################################################### 1.Maximum sum subarray of size K  ###############################################################
+
+Sliding window is a technique where we maintain a window i.e. subset of elements and move it step-by-step instead of recalculating everything again.
+Instead of recalculating everything, reuse the previous window, remove the old value and add the new value.
+
+	public static int maximumSubArray() {
+        int[] numbers = {2, 1, 5, 1, 3, 2};
+        int target = 3;
+        int windowSum = 0;
+        int maxSum = 0;
+        /* initialize the first window */
+        for (int i = 0; i < target; i++) {
+            windowSum += numbers[i];
+        }
+        maxSum = windowSum;
+        /* Slide the window by removing the old value and adding the new value */
+        for (int i = target; i < numbers.length; i++) {
+            windowSum = windowSum - numbers[i - target] + numbers[i];
+            maxSum = Math.max(maxSum, windowSum);
+        }
+        return maxSum;
+    }
+	
+############################################################### 2.Average of all subarrays of size K  ##########################################################
+
+Here we need to find the total number of windows based on the given size K.
+
+	int totalNumberOfWindows = array.length - K + 1;
+	
+	public static double[] averageSubArray() {
+        int[] numbers = {1, 3, 2, 6, -1, 4, 1, 8, 2};
+        int target = 5;
+        int windowSum = 0;
+        /* total number of windows in the result */
+        double[] result = new double[numbers.length - target + 1];
+
+        /* initialize the first window */
+        for (int i = 0; i < target; i++) {
+            windowSum += numbers[i];
+        }
+        result[0] = (double) windowSum / target;
+        /* slide the window by removing the old element and adding the new element */
+        for (int i = target; i < numbers.length; i++) {
+            windowSum = windowSum - numbers[i - target] + numbers[i];
+            result[i - target + 1] = (double) windowSum / target;
+
+        }
+        return result;
+    }
+	
+############################################################### 3.Maximum vowels in substring of size K ##########################################################
+
+
+	public static int maxVowels() {
+        String alphabets = "abciiidef";
+        int target = 3;
+        int windowCount = 0;
+        int maxCount = 0;
+
+        /* initialize te window */
+        for (int i = 0; i < target; i++) {
+            if (isVowel(alphabets.charAt(i))) {
+                windowCount++;
+            }
+        }
+        maxCount = windowCount;
+        /* slide the window */
+        for (int i = target; i < alphabets.length(); i++) {
+            if (isVowel(alphabets.charAt(i - target))) {
+                windowCount--;
+            }
+            if (isVowel(alphabets.charAt(i))) {
+                windowCount++;
+            }
+            maxCount = Math.max(maxCount, windowCount);
+        }
+        return maxCount;
+    }
+
+    private static boolean isVowel(Character character) {
+        return character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u';
+    }
+	
+
+
+
