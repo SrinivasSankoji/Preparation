@@ -1,0 +1,163 @@
+1.Azure DevOps Pipeline                                      (Sonali Sood)		   [14-APR-2026]  ()
+
+
+########################################################### 1.Azure DevOps Pipeline (Sonali Sood) ########################################################################
+
+Azure Pipelines i.e. part of Azure DevOps is a cloud service from Microsoft that automatically builds, tests and deploys application.
+It connects to our source code and runs a set of steps whenever we make changes like compiling code, running tests and deploying the application.
+Azure Pipeline supports Continuous Integration (CI) and Continuous Delivery (CD) by automating the entire process in flexible pipeline.
+
+Advantages :
+------------
+1.Supports all major languages and platforms (Java, .NET, Python, Node.js, containers, etc)
+2.Deploys to diverse targets such as VMs, Kubernetes clusters and cloud services.
+3.Ensures consistent, repeatable software delivery with minimal manual intervention.
+
+Continuous Integration (CI) : 
+-----------------------------
+Developers frequently merge code into a shared repository.
+Azure Pipelines automatically run the builds and unit tests for each push or pull request, catching integration bugs early and maintaining code quality.
+
+Continuous Delivery (CD) :
+--------------------------
+The outputs from CI are deployed to downstream environments i.e. staging, production.
+Deployments can be automated and safeguarded with approvals, checks or policies.
+
+CI/CD creates a pipeline where code flows smoothly from development to production, giving teams faster feedback and safer releases.
+
+Azure DevOps offers two ways to define pipelines.
+Both deliver CI/CD but they differ in approach and maintainability.
+1.Classic Pipelines
+2.YAML Pipelines
+
+1.Classic Pipelines :
+---------------------
+1.Created via the Azure DevOps web portal with a graphical editor.
+2.Typically split into Build pipelines (compile/test) and Release pipelines (deploy).
+3.Configured through drag-and-drop stages and tasks.
+4.Stored inside Azure DevOps and not versioned in our repo.
+5.Classic Pipelines are legacy and are still supported but Microsoft recommends to use YAML.
+
+2.YAML Pipelines :
+------------------
+1.Defined in YAML file i.e. azure-pipelines.yml and stored in our repository.
+2.Configuration is version-controlled, reviewed and branched alongside our code.
+3.Supports multi-stage pipelines.
+4.Easier to reuse, share and track changes.
+5.YAML Pipelines are recommended for all new projects.
+
+Classic Pipelines are visual and easier for beginners but limited in portability.
+YAML Pipelines are configuration as code, future proof, flexible and preferred for modern DevOps teams.
+
+Create a Pipeline using UI :
+============================
+Setting up a pipeline in Azure DevOps will take few minutes. Before we build a pipeline, make sure we have
+
+1.Azure DevOps organization and project.
+2.Source code repository.
+Azure Pipelines integrates with Azure Repos, GitHub, GitLab, Bitbucket or other Git/SVN repos.
+Ensure the code is in supported repo.
+3.Repo connections/authorization.
+If using GitHub or an external repo, set up service connections or OAuth so Azure DevOps can access it.
+4.Build agent.
+By default Azure Pipelines provides Microsoft-hosted agents.
+For specialized requirements we can configure self-hosted agent.
+
+Start the Pipeline Wizard :
+---------------------------
+In Azure DevOps project -> Pipelines → New Pipeline.
+Select where the code is hosted. If prompted, authorize Azure DevOps via OAuth and pick the repository to connect.
+
+Choose a Template :
+-------------------
+Azure Pipelines analyzes our repo and suggests a YAML template.
+For Maven project → suggests a Maven build template.
+We can accept a template, customize it or start with a blank pipeline.
+
+Review & Run the Pipeline :
+---------------------------
+YAML editor opens with a generated pipeline i.e. azure-pipelines.yml
+Review the tasks, edit if needed then click Save and Run.
+Azure DevOps commits the YAML to our repo and triggers the first run.
+If the run succeeds then pipeline setup is complete.
+If it fails then check logs, fix errors, and rerun.
+
+Edit and Rerun :
+----------------
+To update the pipeline, edit the YAML file in our repo.
+Pipelines auto-trigger on pushes or PRs.
+We can create branch-specific pipelines by adding/revising YAML files per branch.
+
+Create a Pipeline using YAML :
+==============================
+YAML pipelines are the modern and recommended way to define CI/CD in Azure DevOps.
+Instead of configuring builds through UI, we describe the workflow in a version-controlled YAML file i.e. azure-pipelines.yml.
+This Pipeline as code approach makes pipelines more portable, traceable and easier to review.
+
+Sample YAML Pipeline File :
+---------------------------
+
+Best Practices for YAML Pipelines :
+-----------------------------------
+
+Multi-Stage Pipelines :
+-----------------------
+
+Pipeline Approvals and Checks :
+-------------------------------
+
+
+Integration with External Tools :
+---------------------------------
+
+
+Advanced Deployment Patterns & Pipeline Optimization :
+------------------------------------------------------
+
+
+Pipeline Performance: Caching & Parallelization :
+-------------------------------------------------
+
+Secret Management with Azure Key Vault :
+----------------------------------------
+
+
+Observability with Azure Monitor & Application Insights :
+---------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
