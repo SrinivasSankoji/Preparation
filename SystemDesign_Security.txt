@@ -1,5 +1,5 @@
-1.Authentication and Authorization													(Alina Kovtun)				[08-APR-2026]  (Done)
-2.Role-Based Access Control (RBAC)
+1.Authentication and Authorization													(Alina Kovtun)						[08-APR-2026]  (Done)
+2.Role-Based Access Control (RBAC)													(Abhinav Anand,JIN,NocoBase)		[29-APR-2026]  (Done)	
 3.Attribute-Based Access Control (ABAC)
 4.OAuth 2.0
 5.OpenID Connect
@@ -124,4 +124,236 @@ We require an algorithm that is computationally expensive i.e. intentionally slo
 
 ############################################################ 2.Role-Based Access Control (RBAC) ###############################################################
 
+Effectively managing user access and permissions is a fundamental requirement for any computing system.
+Once users have logged in, the system must control what they are allowed to access based on who they are.
+This is where the authorization comes into play.
+Every user has a unique identity like user ID, role or attributes.
+Based on this identity, the system assigns permissions.
+These permissions define which resources the user can access and what actions they can perform (read, write, delete, etc.)
+
+RBAC is a security model where users are given access to resources based on their roles i.e. job responsibilities instead of assigning permissions individually.
+After a user logs in, System needs a structured way to decide what they can access.
+RBAC solves this by grouping permissions into roles.
+    
+Instead of assigning permissions to each user separately
+Permissions are grouped into roles.
+Users are assigned to those roles.
+
+Here access control becomes
+
+	User → Role → Permissions → Resources.
+	
+1.Role :
+--------
+Role represents the specific job or responsibility within an organization.
+Roles are like categories or labels that groups the individuals based on their tasks.
+
+Examples :
+Admin
+Manager
+Employee
+
+Each role has a defined set of responsibilities.
+
+2.Permissions :
+---------------
+Permissions are the set of rules for a role that defines what actions or operations are allowed to perform on certain resources or data.
+
+Examples :
+Read data
+Write data
+Delete records
+Update settings
+
+3.Users :
+---------
+Users are individuals or entities within the organization.
+Users are assigned to one or more roles based on their job.
+
+RBAC Advantages :
+-----------------
+No need to manage permissions for each user.
+Changes are done at role level.
+Users get only required access.
+Avoids manual mistakes in assigning permissions.
+
+Types of RBAC :
+---------------
+RBAC can be categorized into several types or models, each with its own approach to manage user access based on roles.
+The three primary types of RBAC are
+1.Flat RBAC
+2.Hierarchical RBAC
+3.Constrained RBAC
+
+1.Flat RBAC :
+=============
+Flat RBAC is the simplest form of RBAC where users are assigned roles and roles have permissions but there is no hierarchy between roles.
+
+Roles are created independently.
+Each role has its own permissions.
+Users are assigned one or more roles.
+Roles do not inherit permissions from other roles.
+Every role is completely separate.
+
+Characteristics :
+-----------------
+No parent-child relationship between roles.
+No inheritance of permissions.
+Simple mapping of users to roles.
+Easy to implement and understand.
+Suitable for small systems.
+
+Consider a small company system.
+Roles are Admin, Editor and Viewer.
+
+Assign Permissions :
+Admin can Read data, Write data and Delete data.
+Editor can Read data and Write data.
+Viewer can Read data.
+
+Assign Users :
+John → Admin
+Priya → Editor
+Ravi → Viewer
+
+Here Editor role does not inherit anything from Admin.
+Viewer role does not inherit from Editor.
+Even if permissions look similar they must be defined separately for each role.
+
+Practical Problem in Flat RBAC :
+--------------------------------
+Suppose if we want to add new permission to Download Report.
+Now we must manually update Admin,Editor and Viewer role.
+This becomes repetitive and error-prone.
+
+Limitations :
+-------------
+No reuse of permissions.
+Hard to manage as system grows.
+No hierarchy leads to duplication.
+
+2.Hierarchical RBAC :
+=====================
+Hierarchical RBAC is an advanced RBAC model where roles are arranged in a hierarchy (tree structure) and higher-level roles automatically inherit permissions from lower-level roles.
+A higher role gets all the permissions of the lower role plus its own additional permissions.
+Here Roles are connected like a tree.
+
+	Admin
+	  ↑
+	Manager
+	  ↑
+	Employee
+	
+Employee → Basic permissions.
+Manager → Employee permissions + extra.
+Admin → Manager + Employee permissions + full control.
+
+Consider the scenario of company system.
+
+Roles :
+Employee (lowest level)
+Manager (middle level)
+Admin (highest level)
+
+Permissions :
+-------------
+Employee :
+View profile
+Submit requests
+
+Manager :
+Approve requests
+View team data
+
+Admin :
+Delete users
+Manage system
+
+After Inheritance :
+-------------------
+Employee :
+View profile
+Submit requests
+
+Manager :
+View profile (inherited)
+Submit requests (inherited)
+Approve requests
+View team data
+
+Admin :
+All Employee permissions
+All Manager permissions
+Delete users
+Manage system
+
+Here no need to redefine permissions again and again. If we update Employee permissions then Manager and Admin are automatically get updated.
+
+Advantages :
+------------
+1.Reduces Duplication.
+2.Easier Maintenance.
+3.Matches Real Organizations.
+
+3.Constrained RBAC :
+====================
+Constrained RBAC is an extension of RBAC where extra rules are applied to control how roles and permissions are assigned and used.
+In basic RBAC, users get access based only on roles. But in real-world systems, this is often not enough.
+Sometimes access must depend on conditions or rules not just roles. Access is allowed only if certain conditions are satisfied.
+
+	User → Role → Permissions + Constraints
+	
+Even If a user has a role, they may not be allowed to use it unless conditions are met.
+
+Types of Constraints :
+1.Separation of Duties (SoD)
+2.Cardinality Constraints
+3.Prerequisite Constraints
+4.Temporal Constraints
+
+1.Separation of Duties (SoD) :
+------------------------------
+Prevents a single user from having conflicting roles.
+A user cannot be both Payment Creator and Payment Approver.
+This prevents the fraud.
+
+2.Cardinality Constraints :
+---------------------------
+Limits number of users in a role.
+Only 1 Admin allowed.
+Only 2 Finance Heads allowed.
+
+3.Prerequisite Constraints :
+----------------------------
+User must satisfy a condition before getting a role.
+To become Manager User must first be Employee.
+To access system User must complete training.
+
+4.Temporal Constraints :
+------------------------
+Access allowed only during certain time.
+Office system accessible only from 9 AM – 6 PM.
+Admin access allowed only during working hours.
+
+Azure RBAC :
+============
+
+
+AWS RBAC with Amazon Cognito :
+==============================
+
+
+RBAC in Kubernetes :
+====================
+
+
+############################################################ 3.Attribute-Based Access Control (ABAC) ############################################################
+
+RBAC vs ACL :
+-------------
+
+
+RBAC vs ABAC :
+--------------
+	
 

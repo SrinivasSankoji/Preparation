@@ -3,30 +3,29 @@
 
 ########################################################### 1.Azure DevOps Pipeline (Sonali Sood) ########################################################################
 
-Azure Pipelines i.e. part of Azure DevOps is a cloud service from Microsoft that automatically builds, tests and deploys application.
+Azure Pipelines i.e. part of Azure DevOps is a cloud service from Microsoft that automatically builds, tests and deploys the application.
 It connects to our source code and runs a set of steps whenever we make changes like compiling code, running tests and deploying the application.
-Azure Pipeline supports Continuous Integration (CI) and Continuous Delivery (CD) by automating the entire process in flexible pipeline.
+Azure Pipeline supports Continuous Integration (CI) and Continuous Delivery (CD) by automating the entire process in a flexible pipeline.
 
 Advantages :
 ------------
 1.Supports all major languages and platforms (Java, .NET, Python, Node.js, containers, etc)
 2.Deploys to diverse targets such as VMs, Kubernetes clusters and cloud services.
-3.Ensures consistent, repeatable software delivery with minimal manual intervention.
+3.Ensures consistent and repeatable software delivery with minimal manual intervention.
 
 Continuous Integration (CI) : 
 -----------------------------
-Developers frequently merge code into a shared repository.
-Azure Pipelines automatically run the builds and unit tests for each push or pull request, catching integration bugs early and maintaining code quality.
+Developers frequently merge the code into a shared repository.
+Azure Pipelines automatically triggers the build and run the unit tests for each push or pull request, catching integration bugs early and maintaining code quality.
 
 Continuous Delivery (CD) :
 --------------------------
-The outputs from CI are deployed to downstream environments i.e. staging, production.
+The outputs from CI will be deployed to downstream environments i.e. staging, production.
 Deployments can be automated and safeguarded with approvals, checks or policies.
 
-CI/CD creates a pipeline where code flows smoothly from development to production, giving teams faster feedback and safer releases.
+CI/CD creates a pipeline where the code flows smoothly from development to production, giving teams faster feedback and safer releases.
 
-Azure DevOps offers two ways to define pipelines.
-Both deliver CI/CD but they differ in approach and maintainability.
+Azure DevOps offers two ways to create pipelines. Both deliver CI/CD but they differ in approach and maintainability.
 1.Classic Pipelines
 2.YAML Pipelines
 
@@ -103,6 +102,7 @@ Best Practices for YAML Pipelines :
 Multi-Stage Pipelines :
 -----------------------
 
+
 Pipeline Approvals and Checks :
 -------------------------------
 
@@ -117,6 +117,7 @@ Advanced Deployment Patterns & Pipeline Optimization :
 
 Pipeline Performance: Caching & Parallelization :
 -------------------------------------------------
+
 
 Secret Management with Azure Key Vault :
 ----------------------------------------
