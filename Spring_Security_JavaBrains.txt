@@ -1,13 +1,13 @@
-1.Introduction										(Java Brains)		[15-OCT-2019]  (Done)
-2.Five Spring Security Concepts						(Java Brains)		[15-OCT-2019]  (Done)
-3.Adding Spring Security To Spring Boot Project		(Java Brains)		[17-OCT-2019]  (Done)
-4.Spring Security Authentication					(Java Brains)		[17-OCT-2019]  (Done)
-5.Spring Security Authorization						(Java Brains)		[17-OCT-2019]  (Done)
-6.Internally Authentication works   				()					[]
-7.Spring Security JDBC Authentication  				()					[21-OCT-2019]  (Done)
-8.Spring Security JPA Authentication    			()					[]
-9.JSON Web Token 									()					[]																																							 													
-10.Spring Boot Azure AD 	 						(JavaInUse Medium)	[15-AUG-2024]  ()
+1.Introduction										(Java Brains)		          [15-OCT-2019]  (Done)
+2.Five Spring Security Concepts						(Java Brains)		          [15-OCT-2019]  (Done)
+3.Adding Spring Security To Spring Boot Project		(Java Brains)		          [17-OCT-2019]  (Done)
+4.Spring Security Authentication					(Java Brains)		          [17-OCT-2019]  (Done)
+5.Spring Security Authorization						(Java Brains)		          [17-OCT-2019]  (Done)
+6.Internally Authentication works   				()					          []
+7.Spring Security JDBC Authentication  				()					          [21-OCT-2019]  (Done)
+8.Spring Security JPA Authentication    			()					          []
+9.JSON Web Token 									(Alexandru Cambose)			  [05-MAY-2026]	 (Done)																																						 													
+10.Spring Boot Azure AD 	 						(JavaInUse Medium)	          [15-AUG-2024]  ()
 
 
 ######################################################### 1.Introduction :  ############################################################################
@@ -248,7 +248,149 @@ If we want to connect to the external Database Then add the dependency in pom.xm
 Add @EnableJpaRepositories to the Spring Boot Application.
 
 
-#########################################################        END             ###########################################################################
+######################################################### 9.JSON Web Token (Alexandru Cambose) #############################################################
+
+JSON Web Token is a compact and self-contained way of representing claims to be transferred between two parties.
+The claims are encoded as a JSON object that can be used to transfer the data.
+The information transmitted can be verified and trusted because it is digitally signed.
+There are two types of JWT's.
+1.JWS (JSON Web Signature)
+2.JWE (JSON Web Encryption)
+
+1.JWS (JSON Web Signature) :
+----------------------------
+JWS can be used to sign the data and making it integrity-protected.
+This means that Man-in-the-middle attacks can see the data for what it is and cannot modify it since the signature verification will fail.
+
+2.JWE (JSON Web Encryption) :
+-----------------------------
+JWE can be used to encrypt the data and making it integrity-protected.
+This means that Man-in-the-middle attacks cannot see the data for what it is and cannot modify it since the signature verification will fail.
+
+Usecase :
+---------
+1.Client-side/Stateless Sessions.
+Instead of generating a unique sessionId and storing it on the server-side and handing it back to the user,
+we can create a signed token that contains the data needed to identify the user.
+
+2.Federated Identity
+
+JWT structure :
+---------------
+Each part is separated by a period.
+The first part and the second part are individually Base64url encoded and the last part is the signature which is also Base64url encoded.
+
+	header.payload.signature
+	
+Header :
+========
+The first part of the token is called JOSE Header (JSON Object Signing and Encryption Header).
+It is a Base64Url-encoded JSON object that describes
+1.How the JWT is signed or encrypted.
+2.Which algorithm is used.
+3.What type of token it is.
+
+	{
+	  "alg": "HS256",
+	  "typ": "JWT"
+	}
+
+Header contains only metadata and not claims. Claims are only in the payload.
+
+Payload :
+=========
+The second part of the token is the Payload and this is where all the actual data is stored i.e. claims.
+The payload is a Base64Url-encoded JSON object that describes
+1.User identity.
+2.Authorization data.
+3.Token metadata i.e. expiry, issuer, etc.
+
+	{
+	  "sub": "user123",
+	  "name": "Srinivas",
+	  "role": "ADMIN",
+	  "iat": 1714996400,
+	  "exp": 1715000000
+	}
+
+Real-Time Flow :
+----------------
+1.User logs in.
+2.Auth server creates payload
+
+	{
+	  "sub": "user123",
+	  "role": "USER",
+	  "exp": 1715000000
+	}
+
+3.JWT is generated and sent to client.
+4.Client calls API with JWT.
+5.Backend decodes payload, Reads claims and Authorizes request.
+
+Properties :
+------------
+1.Payload is not Encrypted (by default) and anyone can decode it.
+So never store Passwords,Secrets and Sensitive financial data.
+
+	Base64 decode → readable JSON
+	
+2.Tamper-Protected.
+Even though readable, If someone modifies the payload then the Signature becomes invalid.
+
+3.Stateless Design.
+No DB lookup needed.
+All info is inside payload.
+That’s why JWT is used in Microservices and Distributed systems.
+
+Common mistakes to avoid :
+--------------------------
+1.Storing too much data leads to large token size.
+2.Storing sensitive information should be avoided as the Payload is visible.
+3.Missing exp leads to security risk.
+
+Best Practices :
+----------------
+✔ Keep payload minimal.
+✔ Include exp always.
+✔ Use roles/permissions carefully.
+✔ Prefer short-lived tokens.
+
+Signature :
+===========
+The third part of the token is the Signature.
+The signature is used to verify that the token was not tampered with and ensures the token was issued by a trusted source.
+
+	Signature = proof that header + payload are genuine
+	
+	encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
+	signature = HMACSHA256(encodedString, 'secret');
+	
+	jwtToken = base64UrlEncode(header) + "." + base64UrlEncode(payload) + "." + base64UrlEncode(signature)
+
+Security Insights :
+-------------------
+1.Payload is readable but not modifiable. 
+If the paylod is modified then Signature mismatch and the Token is rejected.
+
+2.alg = none Attack.
+If server wrongly accepts
+
+	{
+	  "alg": "none"
+	}
+
+Then Token can be forged without signature.
+✔ Always validate algorithm
+
+3.Secret Key Leakage.
+If the secret leaks then the attacker can generate tokens.
+
+4.Key Rotation.
+Use kid (Key ID) in header.
+Rotate keys periodically.
+
+######################################################################## END ###########################################################################
 
 
 

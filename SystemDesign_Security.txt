@@ -1,7 +1,7 @@
 1.Authentication and Authorization													(Alina Kovtun)						[08-APR-2026]  (Done)
 2.Role-Based Access Control (RBAC)													(Abhinav Anand,JIN,NocoBase)		[29-APR-2026]  (Done)	
-3.Attribute-Based Access Control (ABAC)
-4.OAuth 2.0
+3.Attribute-Based Access Control (ABAC)		
+4.OAuth 2.0																			(Vinotech)						    [05-MAY-2026]  (Done)
 5.OpenID Connect
 6.JWT / session-based auth
 7.API keys
@@ -356,4 +356,42 @@ RBAC vs ACL :
 RBAC vs ABAC :
 --------------
 	
+
+############################################################ 4.OAuth 2.0 ########################################################################################
+
+OAuth 2.0 i.e. Open Authorization 2.0 is an open standard protocol for Authorization.
+OAuth 2.0 allows applications (clients) to access resources (like user data) from a server (resource server) on behalf of a user (resource owner).
+It provides a way for users to grant limited access to their resources without sharing their credentials with third-party applications.
+
+OAuth 2.0 is widely used to enable secured delegated access, allowing different applications to interact with user data across different services.
+It is particularly common in scenarios involving social media logins, API access and mobile applications.
+
+Components of OAuth 2.0 :
+-------------------------
+1.Resource Owner
+2.Authorization Server
+3.Client
+4.Resource Server
+
+1.Resource Owner :
+------------------
+The user or entity that owns the data and can grant access to it.
+
+2.Authorization Server :
+------------------------
+The server that authenticates the resource owner and issues access tokens to the client after obtaining consent.
+
+3.Client :
+----------
+The application which is requesting an access to the resource owner’s data.
+
+4.Resource Server :
+-------------------
+The Server that hosts the resource owner data and accepts the access tokens for granting the access to the data.
+
+############################################################## 5.OpenID Connect ##################################################################################
+
+
+
+
 
