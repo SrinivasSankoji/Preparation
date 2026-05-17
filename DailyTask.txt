@@ -7,10 +7,6 @@ Spring IOC Revise (Done)
 Spring Core Annotations (Done)
 Spring Web Annotations ()
 
-02-JAN-2026 :
--------------
-
-
 03-JAN-2026 & 04-JAN-2026 :
 ---------------------------
 Idempotency (Done)
@@ -26,18 +22,6 @@ ThreadLocal ()
 Lock Condition Class (Done)
 Reentrant Lock (Done)
 ReadWrite Lock (Done)
-
-07-JAN-2026 :
--------------
-Stampade Lock ()
-Semaphore in Java Concurrency ()
-Condition ()
-CountDownLatch ()
-Coroutines ()
-Java Interrupts ()
-
-Licencing/ New Features ()
-SQL vs NoSQL ()
 
 08-JAN-2026 :
 -------------
@@ -65,15 +49,6 @@ Rate Limiter (InProgress)
 Token Bucket Algorithm (Done)
 Leaky Bucket Algorithm (Done)
 
-14-JAN-2026 :
--------------
-
-15-JAN-2026 :
--------------
-
-16-JAN-2026 :
--------------
-
 17-JAN-2026 & 18-JAN-2026 :
 ---------------------------
 ReadWrite Lock Example (Done)
@@ -85,9 +60,6 @@ CountDownLatch (Done)
 Cyclic Barrier ()
 Phaser ()
 Coroutines ()
-
-19-JAN-2026 :
--------------
 
 20-JAN-2026 :
 -------------
@@ -101,24 +73,11 @@ Cache stampade Implementation (Done)
 CompletableFuture (Done)
 Distributd Lock in Redis (Done)
 
-31-JAN-2026 :
--------------
-SQL vs NoSQL ()
-
 ###################################################### Febraury 2026  ##################################################################
-
-01-FEB-2026 :
--------------
-
-02-FEB-2026 :
--------------
 
 03-FEB-2026 :
 -------------
 Decorator Design Pattern (Done)
-
-04-FEB-2026 :
--------------
 
 05-FEB-2026 :
 -------------
@@ -136,28 +95,6 @@ Micro services Retryable (Done)
 SAGA (InProgress)
 Micro services RateLimiter ()
 
-09-FEB-2026 :
--------------
-isPollingEnabled ()
-Unit Testing ()
-DIT Report ()
-Test cases ()
-PR ()
-
-10-FEB-2026 :
--------------
-Redis review ()
-
-11-FEB-2026 :
--------------
-
-12-FEB-2026 :
--------------
-
-13-FEB-2026 :
--------------
-OOPS revise ()
-
 14-FEB-2026 & 15-FEB-2026 :
 ---------------------------
 Interface & Modifiers ()
@@ -165,46 +102,6 @@ Abstraction (Done)
 Encapsulation ()
 Polymorphism ()
 Completable Future DefogTech ()
-
-16-FEB-2026 :
--------------
-Redis review comments ()
-
-17-FEB-2026 :
--------------
-
-18-FEB-2026 :
--------------
-
-19-FEB-2026 :
--------------
-
-20-FEB-2026 :
--------------
-
-21-FEB-2026 & 22-FEB-2026 :
----------------------------
-
-25-FEB-2026 :
--------------
-MultiThreading Revise ()
-Completable Future ()
-Collections Revise ()
-Spring Boot Internals ()
-
-26-FEB-2026 :
--------------
-MultiThreading Revise ()
-Completable Future ()
-Collections Revise ()
-Spring Boot Internals ()
-
-27-FEB-2026 :
--------------
-MultiThreading Revise ()
-Completable Future ()
-Collections Revise ()
-Spring Boot Internals ()
 
 28-FEB-2026 :
 -------------
@@ -256,11 +153,6 @@ SQL vs NoSQL Revise (Done)
 Collections Programs ()
 String Programs ()
 Leetcode basic Programs ()
-
-06-MAR-2026 :
--------------
-Microservice Idempotent Revise ()
-Kafka Consumer Revise ()
 
 07-MAR-2026 & 08-MAR-2026 :
 ---------------------------
@@ -340,20 +232,9 @@ Each partition requires
 4.Metadata in controller
 5.Network communication	
 
-18-MAR-2026 :
--------------
-Kafka Idempotent Revise ()
-Spring IOC Revise ()
-
 19-MAR-2026 :
 -------------
 Parking Lot System Design - Clarify Requirements (Done)
-
-20-MAR-2026 :
--------------
-
-21-MAR-2026 & 22-MAR-2026 :
----------------------------
 
 23-MAR-2026 :
 -------------
@@ -361,11 +242,6 @@ Time Complexity ()
 Space Complexity ()
 Parking Lot System Design - Define scope and assumptions (Read)
 Kafka Idempotency (Done)
-
-24-MAR-2026 :
--------------
-Brute Force ()
-Estimate scale ()
 
 25-MAR-2026 :
 -------------
@@ -377,42 +253,17 @@ Reentrant Lock (Done)
 Parking Lot System Design - Estimate Scale ()
 Rate Limiter Revise (InProgress)
 
-27-MAR-2026 :
--------------
-Parking Lot System Design - Identify core use cases and workflows ()
-Rate Limiter Revise ()
-CompletabeFuture Revise ()
-Java 21 Features ()
-
 28-MAR-2026 & 29-MAR-2026 :
 ---------------------------
 Two Pointer practice (Done)
 Parking Lot System Design - Identify Core Entities / Domain Model ()
 
-30-MAR-2026 :
--------------
-
 31-MAR-2026 :
 -------------
 Ratre Limiter Revise (Done)
 Transaction Management (Done)
-Consistent Hashing ()
-SystemDesign_Hashing ()
-SystemDesign_ConsistentHashing ()
 
-###################################################### April 2026  ##################################################################
-
-01-APR-2026 :
--------------
-
-02-APR-2026 :
--------------
-
-03-APR-2026 :
--------------
-
-04-APR-2026 & 05-APR-2026 :
----------------------------
+###################################################### April 2026  ################################################################
 
 06-APR-2026 :
 -------------
@@ -426,34 +277,22 @@ Sliding Window Fixed (Done)
 -------------
 Authentication and Authorization (Done)
 
-09-APR-2026 :
--------------
-
-10-APR-2026 :
--------------
-
-11-APR-2026 & 12-APR-2026 :
----------------------------
-
-13-APR-2026 :
--------------
-
 14-APR-2026 :
 -------------
 Azure Pipeline (InProgress)
-RBAC ()
-Strangler Fig Design Pattern ()
-Parking Lot System Design Revise ()
+RBAC (Done)
 
-15-APR-2026 :
+###################################################### May 2026  ##################################################################
+
+05-MAY-2026 :
 -------------
+OAuth 2.0 (Done)
 
-16-APR-2026 :
--------------
-
-17-APR-2026 :
--------------
-
-18-APR-2026 & 19-APR-2026 :
+09-MAY-2026 & 10-MAY-2026 :
 ---------------------------
+Spring Security with OAuth2 (Done)
+Spring Security with JWT ()
 
+09-MAY-2026 & 10-MAY-2026 :
+---------------------------
+OpenId Connect (Done)

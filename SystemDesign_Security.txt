@@ -1,35 +1,36 @@
 1.Authentication and Authorization													(Alina Kovtun)						[08-APR-2026]  (Done)
 2.Role-Based Access Control (RBAC)													(Abhinav Anand,JIN,NocoBase)		[29-APR-2026]  (Done)	
-3.Attribute-Based Access Control (ABAC)		
+3.Attribute-Based Access Control (ABAC)												()                                  [16-MAY-2026]  ()
 4.OAuth 2.0																			(Vinotech)						    [05-MAY-2026]  (Done)
-5.OpenID Connect
-6.JWT / session-based auth
-7.API keys
-8.Mutual TLS (mTLS)
-9.TLS/HTTPS
-11.Encryption at rest
-11.Encryption in transit
-12.Secrets management
-13.Key management
-14.Certificate management
-15.Input validation
-16.Output encoding
-17.SQL injection prevention
-18.XSS prevention
-19.CSRF protection
-20.Clickjacking protection
-21.CORS
-22.WAF (Web Application Firewall)
-23.DDoS protection
-24.Bot protection
-25.Security headers
-26.Network security groups / firewall rules
-27.Zero trust
-28.Audit logging
-29.Compliance and governance
-30.Data masking / tokenization
-31.PII protection
-32.Threat modeling
+5.OpenID Connect																	(James Collerton)					[16-MAY-2026]  (Done)
+6.JWT / session-based auth and SAML													()									[16-MAY-2026]  ()
+7.API keys                                                                          ()									[16-MAY-2026]  ()
+8.Mutual TLS (mTLS)                                                                 ()									[16-MAY-2026]  ()
+9.TLS/HTTPS                                                                         ()									[16-MAY-2026]  ()
+
+10.Encryption at rest                                                               ()									[16-MAY-2026]  ()
+11.Encryption in transit                                                            ()									[16-MAY-2026]  ()
+12.Secrets management                                                               ()									[16-MAY-2026]  ()
+13.Key management                                                                   ()									[16-MAY-2026]  ()
+14.Certificate management                                                           ()									[16-MAY-2026]  ()
+15.Input validation                                                                 ()									[16-MAY-2026]  ()
+16.Output encoding                                                                  ()									[16-MAY-2026]  ()
+17.SQL injection prevention                                                         ()									[16-MAY-2026]  ()
+18.XSS prevention                                                                   ()									[16-MAY-2026]  ()
+19.CSRF protection                                                                  ()									[16-MAY-2026]  ()
+20.Clickjacking protection                                                          ()									[16-MAY-2026]  ()
+21.CORS                                                                             ()									[16-MAY-2026]  ()
+22.WAF (Web Application Firewall)                                                   ()									[16-MAY-2026]  ()
+23.DDoS protection                                                                  ()									[16-MAY-2026]  ()
+24.Bot protection                                                                   ()									[16-MAY-2026]  ()
+25.Security headers                                                                 ()									[16-MAY-2026]  ()
+26.Network security groups / firewall rules                                         ()									[16-MAY-2026]  ()
+27.Zero trust                                                                       ()									[16-MAY-2026]  ()
+28.Audit logging                                                                    ()									[16-MAY-2026]  ()
+29.Compliance and governance                                                        ()									[16-MAY-2026]  ()
+30.Data masking / tokenization                                                      ()									[16-MAY-2026]  ()
+31.PII protection                                                                   ()									[16-MAY-2026]  ()
+32.Threat modeling                                                                  ()									[16-MAY-2026]  ()
 
 
 ############################################################ 1.Authentication and Authorization (Alina Kovtun) ###############################################################
@@ -357,13 +358,14 @@ RBAC vs ABAC :
 --------------
 	
 
-############################################################ 4.OAuth 2.0 ########################################################################################
+############################################################ 4.OAuth 2.0 (Vinotech) ################################################################################
 
 OAuth 2.0 i.e. Open Authorization 2.0 is an open standard protocol for Authorization.
-OAuth 2.0 allows applications (clients) to access resources (like user data) from a server (resource server) on behalf of a user (resource owner).
-It provides a way for users to grant limited access to their resources without sharing their credentials with third-party applications.
+OAuth 2.0 allows the applications (clients) to access resources (like user data) from a server (resource server) on behalf of a user (resource owner).
+OAuth 2.0 provides a way for users to grant limited access to their resources without sharing their credentials with third-party applications.
 
-OAuth 2.0 is widely used to enable secured delegated access, allowing different applications to interact with user data across different services.
+OAuth 2.0 is widely used to enable secured delegated access which allows different applications to interact with user data across different services.
+Here the access is Limited,Scoped,Temporary and Revocable.
 It is particularly common in scenarios involving social media logins, API access and mobile applications.
 
 Components of OAuth 2.0 :
@@ -379,7 +381,7 @@ The user or entity that owns the data and can grant access to it.
 
 2.Authorization Server :
 ------------------------
-The server that authenticates the resource owner and issues access tokens to the client after obtaining consent.
+The server that authenticates the resource owner and issues access tokens to the client after obtaining the consent.
 
 3.Client :
 ----------
@@ -389,7 +391,289 @@ The application which is requesting an access to the resource owner’s data.
 -------------------
 The Server that hosts the resource owner data and accepts the access tokens for granting the access to the data.
 
-############################################################## 5.OpenID Connect ##################################################################################
+OAuth2 Shopping Cart Example Using Amazon :
+===========================================
+Consider the scenario of third-party application called QuickCart App.
+QuickCart App helps to compare products, create smart shopping carts, and perform one-click checkout using Amazon account data.
+QuickCart needs the permission to access Amazon instead of asking the user for username/password directly.
+
+	Amazon profile
+	Saved delivery addresses
+	Saved payment methods
+	Amazon cart/wishlist data
+	
+Here QuickCart uses OAuth2.
+
+	| OAuth2 Component     | Amazon Example                |
+	| ---------------------| ------------------------------|
+	| Resource Owner       | Amazon customer               |
+	| Client               | QuickCart App                 |
+	| Authorization Server | Amazon Authorization Server   |
+	| Resource Server      | Amazon APIs                   |
+	| Access Token         | Permission token              |
+	| Refresh Token        | Used to get new access tokens |
+	
+High level objective :
+----------------------
+User wants Quick checkout without entering address/payment repeatedly.
+OAuth2 allows QuickCart to securely access Amazon user data without sharing Amazon password.
+
+Step 1 : User Opens QuickCart App :
+-----------------------------------
+User browses the products in QuickCart.
+At checkout QuickCart says Connect to your Amazon account for faster checkout.
+User clicks Login to Amazon.
+
+Step 2: QuickCart Redirects the User to Amazon Authorization Server :
+---------------------------------------------------------------------
+QuickCart redirects the browser to
+
+	GET https://auth.amazon.com/oauth2/authorize
+	
+Complete CURL request.
+
+	GET https://auth.amazon.com/oauth2/authorize?
+	response_type=code
+	&client_id=quickcart-client-101
+	&redirect_uri=https://quickcart.com/oauth/callback
+	&scope=profile.read address.read payment.read
+	&state=abcxyz123
+	
+	| Parameter          | Meaning                 |
+	| ------------------ | ------------------------|
+	| response_type=code | Authorization Code Flow |
+	| client_id          | Identifies QuickCart    |
+	| redirect_uri       | Callback URL            |
+	| scope              | Requested permissions   |
+	| state              | CSRF protection         |
+
+Step 3: Amazon Shows Login Page :
+---------------------------------
+Amazon asks user to login with Email and Password.
+Here QuickCart doesn't have an access to Amazon credentials and is directed to Amazon.
+
+Step 4: Amazon Shows Consent Screen :
+-------------------------------------
+Amazon displays QuickCart wants permission to Allow / Deny.
+
+	✔ Read profile
+	✔ Read saved addresses
+	✔ Read payment methods
+
+User clicks Allow.
+
+Step 5: Amazon Generates Authorization Code :
+---------------------------------------------
+Amazon generates the Authorization Code and redirects the browser back to QuickCart.
+
+	GET https://quickcart.com/oauth/callback?code=AUTH_CODE_12345&state=abcxyz123
+	
+Here Authorization code is Short-lived,One-time use and Temporary.
+
+Step 6: QuickCart Exchanges Authorization Code for Access Token :
+-----------------------------------------------------------------
+Now QuickCart backend contacts Amazon backend directly.
+
+	POST https://auth.amazon.com/oauth2/token
+    Content-Type: application/x-www-form-urlencoded
+	
+	grant_type=authorization_code
+	code=AUTH_CODE_12345
+	client_id=quickcart-client-101
+	client_secret=quickcart-secret
+	redirect_uri=https://quickcart.com/oauth/callback
+
+Step 7: Amazon Returns Access Token :
+-------------------------------------
+
+	{
+	  "access_token": "ACCESS_TOKEN_ABC123",
+	  "refresh_token": "REFRESH_TOKEN_XYZ789",
+	  "token_type": "Bearer",
+	  "expires_in": 3600,
+	  "scope": "profile.read address.read payment.read"
+	}
+	
+	| Token         | Purpose                   |
+	| ------------- | ------------------------- |
+	| Access Token  | Access Amazon APIs        |
+	| Refresh Token | Generate new access token |
+	| Expiry        | Security purpose          |
+	
+Step 8: QuickCart Calls Amazon APIs :
+-------------------------------------
+QuickCart can access Amazon APIs using the token.
+
+Fetch User Profile.
+Fetch Saved Addresses.
+Fetch Saved Payment Methods.
+
+	GET https://api.amazon.com/user/profile
+	Authorization: Bearer ACCESS_TOKEN_ABC123
+	
+	GET https://api.amazon.com/user/addresses
+	Authorization: Bearer ACCESS_TOKEN_ABC123
+	
+	GET https://api.amazon.com/user/payment-methods
+	Authorization: Bearer ACCESS_TOKEN_ABC123
+	
+Step 9: Amazon Resource Server Validates Token :
+------------------------------------------------
+Before returning the data Amazon checks
+
+	Was token issued by Amazon?
+	Is token expired?
+	Does token contain required scope?
+	
+For profile API, Required scope = profile.read
+For payment API, Required scope = payment.read
+
+Step 10: QuickCart Shows Personalized Checkout :
+------------------------------------------------
+Now QuickCart can show the below details without asking the user to re-enter details.
+
+	Welcome Srinivas
+	Select delivery address
+	Select saved payment method
+	Place Order
+
+############################################################## 5.OpenID Connect(James Collerton) ###########################################################################
+
+OAuth2.0 is about Authorization and never guarantees who the user is.
+OAuth2.0 is about getting an access token with the right scopes that can be presented to get protected resources.
+OAuth2.0 refers to
+
+	Can this app access your data (or) This client is allowed to access this resource.
+
+OpenId Connect is about Authentication and Authorization and refers to
+	
+	Who are you
+
+OpenId Connect is an identity layer built on top of OAuth 2.0 that allows applications to verify who the user is (authentication) and get basic user profile information. 
+OpenId Connect is about getting an Id token that we can present to the sites to prove the identity.
+
+Why OIDC was introduced :
+-------------------------
+OAuth 2.0 was designed for authorization only but developers started misusing it for login.
+OAuth2 does not standardize user APIs.
+
+Problem:
+OAuth gives the Access Token but
+1.No standard way to identify the user.
+2.No guarantee who the user is.
+3.Different providers return different data formats.
+Google uses /userinfo.
+GitHub /user.
+Facebook /me.
+OIDC standardizes /userinfo.
+OIDC defines standard claims i.e. sub,email,name,picture etc.
+
+Solution:
+OIDC adds a standard identity layer.
+
+Usecase :
+---------
+Consider the scenario where we loggedIn to Medium using Google login.
+Here we used OIDC.
+Google acted as an Identity provider (IDP), issuing an ID token, which Medium used to check you are who you say you are.
+
+	User
+	  ↓
+	Client App
+	  ↓
+	Identity Provider
+	  ↓
+	Authorization Code
+	  ↓
+	Access Token + ID Token
+	  ↓
+	Validate ID Token
+	  ↓
+	User Authenticated
+
+OIDC standardizes the result of an Authentication but not the authentication method itself.
+Whether they use a username and password, an authentication code or any other.
+
+ID token :
+----------
+ID token is a JWT Token containing a set of specific claims that can be used to tell the people about the user Identity.
+These include things like name, email address and birthday.
+
+	{
+	  "sub": "12345",
+	  "name": "Srinivas",
+	  "email": "user@gmail.com",
+	  "iss": "https://accounts.google.com",
+	  "aud": "client-id"
+	}
+
+We send a request to our IDP asking for an ID token.
+This takes the form of an authorisation request which is exactly as OAuth2.0 but with the openId scope.
+The IDP does the work to perform Authentication and Authorisation from the end user, redirecting back to the party requesting an ID token.
+This response will provide both Access token, ID token and optionally refresh tokens.
+This is opposed to OAuth2.0 which only issues access and refresh tokens.
+
+Finally UserInfo endpoint is a way of getting a user’s information from their Access token.
+We send a request with the token and the endpoint sends back a JSON list of user details.
+
+The more complex part of the endpoint is how the IDP Authorisation Server knows what information we are allowed to see.
+When we ask an end user for Authorisation, there are a number of custom OIDC scopes we need to request.
+These scopes map to the standard claims for the ID token JWT.
+For example if the user grants us the email scope, we will at least see their email and email_verified information in the response from the UserInfo endpoint.
+
+	| Feature        | OAuth 2.0       | OpenID Connect                 |
+	| -------------- | --------------- | ------------------------------ |
+	| Purpose        | Authorization   | Authentication + Authorization |
+	| Main Token     | Access Token    | ID Token + Access Token        |
+	| User Identity  | ❌ Not defined  | ✅ Standardized                |
+	| Login Use Case | ❌ Not ideal    | ✅ Designed for login          |
+	| Protocol       | Framework       | Protocol built on OAuth2       |
+	| Scope          | resource access | identity (`openid`)            |
+
+System Design :
+---------------
+Frontend (React)
+API Gateway
+Auth Service
+Multiple microservices
+
+Without OIDC:
+We manage login manually.
+Security risk increases.
+
+With OIDC (Recommended):
+Keycloak
+Okta
+Auth0
+
+Flow:
+1.User logs in via OIDC provider.
+2.Provider returns ID Token.
+3.API Gateway validates token.
+4.Pass user identity to services.
+
+OIDC Flows :
+------------
+Similar to retrieving access tokens in OAuth2.0, there are multiple flows for getting an ID token.
+The three that exist are
+1.Authorization Code Flow.
+2.Implicit Flow
+3.Hybrid Flow.
+
+################################################################### 6.JWT / session-based auth ##########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

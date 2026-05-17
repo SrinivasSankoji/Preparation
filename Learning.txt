@@ -480,16 +480,27 @@ Notification System Design ()
 
 ######################################### May 2026  ###################################################
 
-Azure Pipeline ()
-Kubernetes Revise ()
-ActiveMQ ()
 Spring Security with OAuth2 ()
-Spring Security with JWT ()
-Strangler Fig Design Pattern ()
-SAML ()
+Spring Security with JWT Revise and Implementation ()
 OpenIdConnect ()
+SAML ()
 JMS ()
-Quartz Scheduler ()
+ActiveMQ ()
 
+Parking Lot System Deisgn ()
 
+######################################### June 2026  #################################################
 
+Azure Pipeline Implementation ()
+Strangler Fig Design Pattern ()
+
+Genarative AI :
+---------------
+GraphQL ()
+gRPC ()
+Microservice Resilience ()
+
+######################################### July 2026  #################################################
+
+Kubernetes Revise ()
+Helm Charts ()
